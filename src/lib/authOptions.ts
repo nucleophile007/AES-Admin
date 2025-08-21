@@ -1,12 +1,11 @@
 // src/lib/authOptions.ts
-import { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { allowedEmails as allowedFromEnv } from "./adminConfig"
 
 const fallbackAllowed = ["dkdps3212@gmail.com", "acharya.folsom@getMaxListeners.com"]
 export const allowedEmails = allowedFromEnv.length ? allowedFromEnv : fallbackAllowed
 
-export const authOptions: NextAuthOptions = {
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -14,23 +13,26 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: 'jwt',
+    strategy: 'jwt' as const,
   },
   pages: {
     signIn: '/auth/signin',
   },
   callbacks: {
-    async signIn({ user }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async signIn({ user }: any) {
       return allowedEmails.includes((user.email || "").toLowerCase())
     },
-    async jwt({ token, user }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async jwt({ token, user }: any) {
       if (user) {
         token.email = user.email
         token.role = allowedEmails.includes((user.email || "").toLowerCase()) ? "admin" : "user"
       }
       return token
     },
-    async session({ session, token }) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async session({ session, token }: any) {
       if (token.email && session.user) {
         session.user.email = token.email as string
         session.user.role = token.role as string

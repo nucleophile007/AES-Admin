@@ -1,9 +1,10 @@
-import { getServerSession } from 'next-auth'
+import { getServerSession } from 'next-auth/next'
 import { authOptions, allowedEmails } from '@/lib/authOptions'
+import type { Session } from 'next-auth'
 
 export interface AdminAuthResult {
   success: boolean
-  session?: any
+  session?: Session
   error?: string
   statusCode?: number
 }
@@ -12,13 +13,12 @@ export interface AdminAuthResult {
  * Server-side admin authentication helper
  * Validates that the user is authenticated and has admin privileges
  */
-export async function validateAdminAuth(): Promise<AdminAuthResult> {
+export async function checkAdminAuth(): Promise<AdminAuthResult> {
   try {
-    const session = await getServerSession(authOptions)
-    
-    // Check if user is authenticated
-    if (!session?.user?.email) {
-      return {
+    const session = await getServerSession(authOptions) as Session | null
+
+    // Check if session exists and has valid user
+    if (!session?.user?.email) {      return {
         success: false,
         error: 'Not authenticated - please sign in',
         statusCode: 401
@@ -52,9 +52,11 @@ export async function validateAdminAuth(): Promise<AdminAuthResult> {
 /**
  * Middleware wrapper for admin API routes
  */
-export function withAdminAuth(handler: (session: any, ...args: any[]) => Promise<Response>) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function withAdminAuth(handler: (session: Session, ...args: any[]) => Promise<Response>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return async (...args: any[]): Promise<Response> => {
-    const authResult = await validateAdminAuth()
+    const authResult = await checkAdminAuth()
     
     if (!authResult.success) {
       return Response.json(
@@ -63,6 +65,6 @@ export function withAdminAuth(handler: (session: any, ...args: any[]) => Promise
       )
     }
 
-    return handler(authResult.session, ...args)
+    return handler(authResult.session!, ...args)
   }
 }

@@ -28,8 +28,9 @@ export default function AdminAvailabilityPage() {
   const [selectedTimes, setSelectedTimes] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
   const [initialLoading, setInitialLoading] = useState(true)
-  const [days, setDays] = useState<Record<string, string[]>>({})
-  const [draftDays, setDraftDays] = useState<Record<string, string[]>>({})
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [days, setDays] = useState<Record<string, string[]>>({}) // Saved/committed availability data
+  const [draftDays, setDraftDays] = useState<Record<string, string[]>>({}) // Unsaved changes)
   const [dirtyDates, setDirtyDates] = useState<Set<string>>(new Set())
 
   // Calendar state & helpers
@@ -135,12 +136,12 @@ export default function AdminAvailabilityPage() {
       const deleted: string[] = json.deletedDates || []
       setDays(prev => {
         const next = { ...prev, ...saved }
-        for (const dd of deleted) delete (next as any)[dd]
+        for (const dd of deleted) delete next[dd]
         return next
       })
       setDraftDays(prev => {
         const next = { ...prev, ...saved }
-        for (const dd of deleted) delete (next as any)[dd]
+        for (const dd of deleted) delete next[dd]
         return next
       })
       setDirtyDates(new Set())

@@ -1,4 +1,4 @@
-import { validateAdminAuth } from '@/lib/adminAuth'
+import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
 import { PrismaClient } from '@/generated/prisma'
 
@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 
 export async function GET(req: NextRequest) {
   // Validate admin authentication
-  const authResult = await validateAdminAuth()
+  const authResult = await checkAdminAuth()
   if (!authResult.success) {
     return Response.json(
       { error: authResult.error },
@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   // Validate admin authentication
-  const authResult = await validateAdminAuth()
+  const authResult = await checkAdminAuth()
   if (!authResult.success) {
     return Response.json(
       { error: authResult.error },
@@ -56,6 +56,7 @@ export async function POST(req: NextRequest) {
       return Response.json({ error: 'Invalid payload' }, { status: 400 })
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const ops: any[] = []
     const deletedDates: string[] = []
 
@@ -93,6 +94,7 @@ export async function POST(req: NextRequest) {
 
     // Upserts return records; deleteMany returns { count }. Build upserted days separately
     const days = Array.isArray(results)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ? results.filter((r: any) => r && r.id && r.date).map((d: any) => d)
       : []
 

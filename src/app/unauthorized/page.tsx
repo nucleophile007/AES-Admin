@@ -22,7 +22,7 @@ export default function UnauthorizedPage() {
         </h1>
         
         <p className="text-gray-600 mb-6">
-          You don't have permission to access the admin area. Please contact the administrator if you believe this is an error.
+          You don&apos;t have permission to access the admin area. Please contact the administrator if you believe this is an error.
         </p>
         
         {session?.user?.email && (

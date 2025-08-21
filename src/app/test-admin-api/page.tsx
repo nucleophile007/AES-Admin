@@ -3,12 +3,18 @@
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
+interface TestResult {
+  status: number
+  data: unknown
+  success: boolean
+}
+
 export default function AdminAPITestPage() {
   const { data: session, status } = useSession()
-  const [results, setResults] = useState<Record<string, any>>({})
+  const [results, setResults] = useState<Record<string, TestResult>>({})
   const [loading, setLoading] = useState<Record<string, boolean>>({})
 
-  const testAPI = async (endpoint: string, method: 'GET' | 'POST' | 'PATCH' = 'GET', body?: any) => {
+  const testAPI = async (endpoint: string, method: 'GET' | 'POST' | 'PATCH' = 'GET', body?: unknown) => {
     setLoading(prev => ({ ...prev, [endpoint]: true }))
     
     try {
@@ -33,7 +39,7 @@ export default function AdminAPITestPage() {
       setResults(prev => ({
         ...prev,
         [endpoint]: {
-          status: 'ERROR',
+          status: 500,
           data: { error: error instanceof Error ? error.message : 'Unknown error' },
           success: false
         }
@@ -105,7 +111,7 @@ export default function AdminAPITestPage() {
         </div>
 
         <div className="space-y-4">
-          {Object.entries(results).map(([endpoint, result]: [string, any]) => (
+          {Object.entries(results).map(([endpoint, result]: [string, TestResult]) => (
             <div key={endpoint} className="bg-white rounded-lg shadow p-6">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">{endpoint}</h3>

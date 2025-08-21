@@ -1,11 +1,11 @@
-import { validateAdminAuth } from '@/lib/adminAuth'
+import { checkAdminAuth } from '@/lib/adminAuth'
 import { PrismaClient } from '@/generated/prisma'
 
 const prisma = new PrismaClient()
 
 export async function GET() {
   // Validate admin authentication
-  const authResult = await validateAdminAuth()
+  const authResult = await checkAdminAuth()
   if (!authResult.success) {
     return Response.json(
       { error: authResult.error },

@@ -1,4 +1,4 @@
-import { validateAdminAuth } from '@/lib/adminAuth'
+import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
 import { PrismaClient } from '@/generated/prisma'
 
@@ -9,7 +9,7 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> }
 ) {
   // Validate admin authentication
-  const authResult = await validateAdminAuth()
+  const authResult = await checkAdminAuth()
   if (!authResult.success) {
     return Response.json(
       { error: authResult.error },

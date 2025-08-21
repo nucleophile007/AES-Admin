@@ -3,9 +3,10 @@
 import { signIn, getProviders } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import { LogIn } from 'lucide-react'
+import type { ClientSafeProvider } from 'next-auth/react'
 
 export default function SignInPage() {
-  const [providers, setProviders] = useState<any>(null)
+  const [providers, setProviders] = useState<Record<string, ClientSafeProvider> | null>(null)
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -41,7 +42,7 @@ export default function SignInPage() {
           Please sign in with your authorized Google account to access the Webinar Registration Management System.
         </p>
         
-        {Object.values(providers).map((provider: any) => (
+        {Object.values(providers).map((provider: ClientSafeProvider) => (
           <div key={provider.name}>
             <button
               onClick={() => signIn(provider.id, { callbackUrl: '/' })}
