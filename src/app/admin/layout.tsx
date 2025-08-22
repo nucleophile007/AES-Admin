@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/lib/authOptions'
+import { allowedEmails } from '@/lib/adminConfig'
 import type { Session } from 'next-auth'
 
 export default async function AdminLayout({
@@ -15,8 +16,7 @@ export default async function AdminLayout({
   }
 
   // Check if user is authorized admin
-  const allowedEmails = process.env.ADMIN_ALLOWED_EMAILS?.split(',').map(e => e.trim()) || []
-  if (!allowedEmails.includes(session.user.email)) {
+  if (!allowedEmails.includes(session.user.email.toLowerCase())) {
     redirect('/unauthorized')
   }
 

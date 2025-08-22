@@ -2,18 +2,13 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/authOptions';
+import { allowedEmails } from '@/lib/adminConfig';
 import type { Session } from 'next-auth';
 
 export default async function AdminPage() {
   const session = await getServerSession(authOptions) as Session | null;
 
-  // Admin emails whitelist
-  const adminEmails = [
-    'deepak@acharyatutoring.com',
-    'acharyatutoring@gmail.com'
-  ];
-
-  if (!session?.user?.email || !adminEmails.includes(session.user.email)) {
+  if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     redirect('/auth/signin');
   }
 

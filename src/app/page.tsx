@@ -38,7 +38,15 @@ export default function AdminPage() {
   useEffect(() => {
     if (status === 'loading') return
     
-    if (!session?.user?.email || !['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com'].includes(session.user.email)) {
+    // If no session at all, redirect to sign in
+    if (!session) {
+      router.push('/auth/signin')
+      return
+    }
+    
+    // If session exists but email is not authorized, redirect to unauthorized
+    const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com']
+    if (!session.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       router.push('/unauthorized')
       return
     }
@@ -47,7 +55,10 @@ export default function AdminPage() {
   // Fetch data when authenticated
   useEffect(() => {
     if (status === 'loading') return
-    if (!session?.user?.email || !['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com'].includes(session.user.email)) return
+    if (!session || !session.user?.email) return
+    
+    const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com']
+    if (!allowedEmails.includes(session.user.email.toLowerCase())) return
 
     fetch("/api/admin/webinar-registrations")
       .then((res) => {
@@ -90,8 +101,14 @@ export default function AdminPage() {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>
   }
 
-  if (!session?.user?.email || !['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com'].includes(session.user.email)) {
-    return null // Will redirect via useEffect
+  if (!session) {
+    return null // Will redirect to sign in via useEffect
+  }
+
+  const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com']
+
+  if (!session.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
+    return null // Will redirect to unauthorized via useEffect
   }
 
   const programs = [...new Set(data.map((reg) => reg.program))]
