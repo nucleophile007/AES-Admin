@@ -1,8 +1,12 @@
 import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
 import { PrismaClient } from '@/generated/prisma'
+import { Client } from '@upstash/qstash'
 
 const prisma = new PrismaClient()
+const qstash = new Client({
+  token: process.env.QSTASH_TOKEN!,
+})
 
 export async function PATCH(
   req: NextRequest,
@@ -104,9 +108,32 @@ export async function PATCH(
       }
     }
 
+    // If approving for the first time, send approval email via QStash
+    if (approved && !existingReg.approved) {
+      try {
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+        await qstash.publishJSON({
+          url: `${baseUrl}/api/jobs/send-approval-email`,
+          body: {
+            parentEmail: updatedReg.parentEmail,
+            parentName: updatedReg.parentName,
+            studentName: updatedReg.studentName,
+            program: updatedReg.program,
+            preferredTime: updatedReg.preferredTime,
+          },
+        })
+        console.log('Approval email queued for:', updatedReg.parentEmail)
+      } catch (emailError) {
+        console.error('Failed to queue approval email:', emailError)
+        // Don't fail the approval if email fails
+      }
+    }
+
     return Response.json({ 
       registration: updatedReg,
-      message: approved ? 'Registration approved successfully' : 'Registration approval removed'
+      message: approved 
+        ? (existingReg.approved ? 'Registration approved successfully' : 'Registration approved successfully and notification email queued')
+        : 'Registration approval removed'
     })
   } catch (error) {
     console.error('Error updating registration:', error)
