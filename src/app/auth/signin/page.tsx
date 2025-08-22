@@ -59,7 +59,7 @@ export default function SignInPage() {
           </div>
         ))}
         
-        <div className="mt-6 text-xs text-gray-500">
+        <div className="mt-6 text-xs text-gray-600">
           <p>Only authorized admin accounts can access this system.</p>
           <p>Contact the administrator if you need access.</p>
         </div>

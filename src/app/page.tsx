@@ -20,6 +20,7 @@ interface WebinarRegistration {
   preferredTime: string
   createdAt: string
   approved: boolean
+  adminEmail: string | null
 }
 
 export default function AdminPage() {
@@ -124,7 +125,7 @@ export default function AdminPage() {
       if (!res.ok) throw new Error('Approve failed')
       const json = await res.json()
       const updated = json.registration as WebinarRegistration
-      setData(prev => prev.map(r => r.id === updated.id ? { ...r, approved: updated.approved } : r))
+      setData(prev => prev.map(r => r.id === updated.id ? { ...r, approved: updated.approved, adminEmail: updated.adminEmail } : r))
     } catch (e) {
       console.error(e)
       alert('Approve failed')
@@ -145,13 +146,18 @@ export default function AdminPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ approved: false })
       })
-      if (!res.ok) throw new Error('Unapprove failed')
+      
+      if (!res.ok) {
+        const errorData = await res.json()
+        throw new Error(errorData.error || 'Unapprove failed')
+      }
+      
       const json = await res.json()
       const updated = json.registration as WebinarRegistration
-      setData(prev => prev.map(r => r.id === updated.id ? { ...r, approved: updated.approved } : r))
+      setData(prev => prev.map(r => r.id === updated.id ? { ...r, approved: updated.approved, adminEmail: updated.adminEmail } : r))
     } catch (e) {
       console.error(e)
-      alert('Unapprove failed')
+      alert(e instanceof Error ? e.message : 'Unapprove failed')
     } finally {
       setApproving(prev => {
         const next = new Set(prev)
@@ -187,7 +193,7 @@ export default function AdminPage() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Webinar Registrations</h1>
-                <p className="text-sm text-gray-500">Manage and view all registration data</p>
+                <p className="text-sm text-gray-700">Manage and view all registration data</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -212,21 +218,21 @@ export default function AdminPage() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
               <input
                 type="text"
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
             </div>
             <div className="sm:w-48 relative">
-              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
               <select
                 value={selectedProgram}
                 onChange={(e) => setSelectedProgram(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-gray-900"
               >
                 <option value="all">All Programs</option>
                 {programs.map((program) => (
@@ -238,7 +244,7 @@ export default function AdminPage() {
             </div>
           </div>
           {filteredData.length !== data.length && (
-            <div className="mt-4 text-sm text-gray-600">
+            <div className="mt-4 text-sm text-gray-800 font-medium">
               Showing {filteredData.length} of {data.length} registrations
             </div>
           )}
@@ -250,83 +256,127 @@ export default function AdminPage() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
           {filteredData.length === 0 ? (
             <div className="text-center py-12">
-              <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-500 font-medium">No registrations found</p>
+              <Users className="h-12 w-12 text-gray-500 mx-auto mb-4" />
+              <p className="text-gray-700 font-medium">No registrations found</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
+              <table className="min-w-full divide-y divide-gray-200 table-fixed">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact Info</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Student Details</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Program</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Registered</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Approved</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
+                    <th className="w-16 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">ID</th>
+                    <th className="w-48 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Contact Info</th>
+                    <th className="w-40 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Student Details</th>
+                    <th className="w-32 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Program</th>
+                    <th className="w-36 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Time</th>
+                    <th className="w-32 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Registered</th>
+                    <th className="w-24 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Status</th>
+                    <th className="w-32 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Admin</th>
+                    <th className="w-28 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Action</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                   {filteredData.map((reg, idx) => (
                     <tr key={reg.id} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">#{reg.id}</td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-3 text-sm font-medium">#{reg.id}</td>
+                      <td className="px-3 py-3">
                         <div className="space-y-1">
-                          <div className="font-medium">{reg.parentName}</div>
-                          <div className="text-sm text-gray-500">{reg.parentEmail}</div>
-                          <div className="text-sm text-gray-500 flex items-center">
-                            <Phone className="h-3 w-3 mr-1" /> {reg.parentPhone}
+                          <div className="font-medium text-gray-900 text-sm truncate">{reg.parentName}</div>
+                          <div className="text-xs text-gray-700 truncate">{reg.parentEmail}</div>
+                          <div className="text-xs text-gray-700 flex items-center">
+                            <Phone className="h-3 w-3 mr-1 flex-shrink-0" /> 
+                            <span className="truncate">{reg.parentPhone}</span>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-3">
                         <div className="space-y-1">
-                          <div className="font-medium">{reg.studentName}</div>
-                          <div className="text-sm text-gray-500">Grade {reg.grade}</div>
-                          <div className="text-sm text-gray-500">{reg.schoolName}</div>
+                          <div className="font-medium text-gray-900 text-sm truncate">{reg.studentName}</div>
+                          <div className="text-xs text-gray-700">Grade {reg.grade}</div>
+                          <div className="text-xs text-gray-700 truncate">{reg.schoolName}</div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs bg-blue-100 text-blue-800">
+                      <td className="px-3 py-3">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800 truncate">
                           {reg.program}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">{reg.preferredTime}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {new Date(reg.createdAt).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
+                      <td className="px-3 py-3 text-sm font-medium text-gray-900">
+                        <div className="truncate">{reg.preferredTime}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 py-3 text-xs text-gray-700 font-medium">
+                        <div className="truncate">
+                          {new Date(reg.createdAt).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </div>
+                      </td>
+                      <td className="px-3 py-3">
                         {reg.approved ? (
-                          <span className="inline-flex items-center gap-1 text-green-700 bg-green-100 px-2 py-1 rounded text-xs"><CheckCircle className="w-3 h-3"/> Approved</span>
+                          <span className="inline-flex items-center gap-1 text-green-700 bg-green-100 px-2 py-1 rounded text-xs">
+                            <CheckCircle className="w-3 h-3"/>
+                            <span className="hidden sm:inline">Approved</span>
+                          </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 text-gray-700 bg-gray-100 px-2 py-1 rounded text-xs">Pending</span>
+                          <span className="inline-flex items-center gap-1 text-gray-700 bg-gray-100 px-2 py-1 rounded text-xs">
+                            <span className="hidden sm:inline">Pending</span>
+                            <span className="sm:hidden">•</span>
+                          </span>
                         )}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex gap-2">
+                      <td className="px-3 py-3 text-sm">
+                        {reg.adminEmail ? (
+                          <div className="text-xs text-gray-600 truncate" title={reg.adminEmail}>
+                            {reg.adminEmail.split('@')[0]}
+                          </div>
+                        ) : (
+                          <span className="text-xs text-gray-400">-</span>
+                        )}
+                      </td>
+                      <td className="px-3 py-3">
+                        <div className="flex gap-1">
                           {!reg.approved ? (
                             <button
-                              className={`text-sm px-3 py-1 rounded inline-flex items-center gap-2 ${approving.has(reg.id) ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700'}`}
+                              className={`text-xs px-2 py-1 rounded inline-flex items-center gap-1 ${approving.has(reg.id) ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700'}`}
                               disabled={approving.has(reg.id)}
                               onClick={() => approve(reg.id)}
+                              title="Approve registration"
                             >
-                              {approving.has(reg.id) ? (<><Loader2 className="h-4 w-4 animate-spin" /> Approving...</>) : (<><CheckCircle className="h-4 w-4" /> Approve</>)}
+                              {approving.has(reg.id) ? (
+                                <Loader2 className="h-3 w-3 animate-spin" />
+                              ) : (
+                                <>
+                                  <CheckCircle className="h-3 w-3" />
+                                  <span className="hidden lg:inline">Approve</span>
+                                </>
+                              )}
                             </button>
                           ) : (
                             <button
-                              className={`text-sm px-3 py-1 rounded inline-flex items-center gap-2 ${approving.has(reg.id) ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-red-600 text-white hover:bg-red-700'}`}
-                              disabled={approving.has(reg.id)}
+                              className={`text-xs px-2 py-1 rounded inline-flex items-center gap-1 ${
+                                approving.has(reg.id) || (reg.adminEmail !== session?.user?.email) 
+                                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                                  : 'bg-red-600 text-white hover:bg-red-700'
+                              }`}
+                              disabled={approving.has(reg.id) || (reg.adminEmail !== session?.user?.email)}
                               onClick={() => unapprove(reg.id)}
+                              title={
+                                reg.adminEmail !== session?.user?.email 
+                                  ? "Only the approving admin can remove approval" 
+                                  : "Remove approval"
+                              }
                             >
-                              {approving.has(reg.id) ? (<><Loader2 className="h-4 w-4 animate-spin" /> Updating...</>) : (<><X className="h-4 w-4" /> Unapprove</>)}
+                              {approving.has(reg.id) ? (
+                                <Loader2 className="h-3 w-3 animate-spin" />
+                              ) : (
+                                <>
+                                  <X className="h-3 w-3" />
+                                  <span className="hidden lg:inline">Remove</span>
+                                </>
+                              )}
                             </button>
                           )}
                         </div>

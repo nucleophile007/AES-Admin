@@ -18,7 +18,13 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url)
     const program = searchParams.get('program')
     
-    const whereClause = program ? { program } : {}
+    // Filter by current admin's email and program if specified
+    const whereClause: { program?: string; adminEmail: string } = {
+      adminEmail: authResult.session!.user!.email!
+    }
+    if (program) {
+      whereClause.program = program
+    }
     
     const days = await prisma.availabilityDay.findMany({ 
       where: whereClause,
@@ -56,6 +62,8 @@ export async function POST(req: NextRequest) {
       return Response.json({ error: 'Invalid payload' }, { status: 400 })
     }
 
+    const adminEmail = authResult.session!.user!.email!
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const ops: any[] = []
     const deletedDates: string[] = []
@@ -66,11 +74,12 @@ export async function POST(req: NextRequest) {
       }
       const timesArr = Array.isArray(it?.times) ? it!.times! : []
       if (timesArr.length === 0) {
-        // delete the date/program combination if exists
+        // delete the date/program combination if exists for this admin
         ops.push(prisma.availabilityDay.deleteMany({ 
           where: { 
             date: it.date,
-            program: it.program 
+            program: it.program,
+            adminEmail: adminEmail
           } 
         }))
         deletedDates.push(`${it.date}-${it.program}`)
@@ -78,13 +87,21 @@ export async function POST(req: NextRequest) {
         ops.push(
           prisma.availabilityDay.upsert({
             where: { 
-              date_program: {
+              date_program_adminEmail: {
                 date: it.date,
-                program: it.program
+                program: it.program,
+                adminEmail: adminEmail
               }
             },
-            update: { times: timesArr },
-            create: { date: it.date, times: timesArr, program: it.program },
+            update: { 
+              times: timesArr
+            },
+            create: { 
+              date: it.date, 
+              times: timesArr, 
+              program: it.program,
+              adminEmail: adminEmail
+            },
           })
         )
       }

@@ -43,34 +43,53 @@ export async function POST(
       return Response.json({ error: 'Registration not found' }, { status: 404 })
     }
 
-    if (!reg.approved) {
-      await prisma.webinarRegistration.update({ 
-        where: { id: numId }, 
-        data: { approved: true } 
-      })
-    }
+    const adminEmail = authResult.session!.user!.email!
+
+    // Use transaction to prevent race conditions
+    await prisma.$transaction(async (tx) => {
+      // Check current state of registration
+      const currentReg = await tx.webinarRegistration.findUnique({ where: { id: numId } })
+      if (!currentReg) {
+        throw new Error('Registration not found during transaction')
+      }
+
+      // Only update if not already approved by this admin
+      if (!currentReg.approved || currentReg.adminEmail !== adminEmail) {
+        await tx.webinarRegistration.update({ 
+          where: { id: numId }, 
+          data: { 
+            approved: true,
+            adminEmail: adminEmail
+          } 
+        })
+      }
+    })
 
     // Remove the booked slot from availability
     const { date, time } = parsePreferred(reg.preferredTime)
     if (date && time && reg.program) {
-      const day = await prisma.availabilityDay.findUnique({ 
-        where: { 
-          date_program: {
-            date: date,
-            program: reg.program
+      // Only remove from availability if this registration wasn't already approved by this admin
+      if (!reg.approved || reg.adminEmail !== adminEmail) {
+        const day = await prisma.availabilityDay.findUnique({ 
+          where: { 
+            date_program_adminEmail: {
+              date: date,
+              program: reg.program,
+              adminEmail: adminEmail
+            }
+          } 
+        })
+        if (day) {
+          const currentTimes = (day.times as string[]) || []
+          const nextTimes = currentTimes.filter((t) => t !== time)
+          if (nextTimes.length > 0) {
+            await prisma.availabilityDay.update({ 
+              where: { id: day.id }, 
+              data: { times: nextTimes } 
+            })
+          } else {
+            await prisma.availabilityDay.delete({ where: { id: day.id } })
           }
-        } 
-      })
-      if (day) {
-        const currentTimes = (day.times as string[]) || []
-        const nextTimes = currentTimes.filter((t) => t !== time)
-        if (nextTimes.length > 0) {
-          await prisma.availabilityDay.update({ 
-            where: { id: day.id }, 
-            data: { times: nextTimes } 
-          })
-        } else {
-          await prisma.availabilityDay.delete({ where: { id: day.id } })
         }
       }
     }

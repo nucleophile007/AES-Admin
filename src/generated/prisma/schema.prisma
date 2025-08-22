@@ -28,19 +28,23 @@ model WebinarRegistration {
   preferredTime String
   createdAt     DateTime @default(now())
   approved      Boolean  @default(false)
+  // Track which admin approved this registration (null until approved)
+  adminEmail    String?
 }
 
 model AvailabilityDay {
-  id        Int      @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   // Store date as string in M/D/YYYY to match frontend calendar keys (e.g., "8/16/2025")
-  date      String
+  date       String
   // Times are strings like "09:00 AM", "10:00 AM" (1-hour intervals)
-  times     Json
+  times      Json
   // Program this availability is for (e.g., "Mathematics Tutoring", "Science Tutoring")
-  program   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  program    String
+  // Admin email who created this availability
+  adminEmail String   @default("acharya.folsom@gmail.com")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  // Combination of date and program should be unique
-  @@unique([date, program])
+  // Combination of date, program, and admin email should be unique
+  @@unique([date, program, adminEmail])
 }

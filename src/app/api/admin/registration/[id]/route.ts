@@ -41,11 +41,36 @@ export async function PATCH(
       return Response.json({ error: 'Registration not found' }, { status: 404 })
     }
 
-    // Update the registration
-    const updatedReg = await prisma.webinarRegistration.update({
-      where: { id: numId },
-      data: { approved }
+    const adminEmail = authResult.session!.user!.email!
+
+    // Authorization check: Only the admin who approved can un-approve
+    if (!approved && existingReg.approved && existingReg.adminEmail !== adminEmail) {
+      return Response.json({ 
+        error: 'Only the admin who approved this registration can remove the approval' 
+      }, { status: 403 })
+    }
+
+    // Use transaction to prevent race conditions
+    const transactionResult = await prisma.$transaction(async (tx) => {
+      // Check if registration still exists and hasn't been modified
+      const currentReg = await tx.webinarRegistration.findUnique({ where: { id: numId } })
+      if (!currentReg) {
+        throw new Error('Registration not found during transaction')
+      }
+
+      // Update the registration
+      const updated = await tx.webinarRegistration.update({
+        where: { id: numId },
+        data: { 
+          approved,
+          adminEmail: approved ? adminEmail : null
+        }
+      })
+
+      return updated
     })
+
+    const updatedReg = transactionResult
 
     // If approving and it wasn't approved before, remove the time slot from availability
     if (approved && !existingReg.approved && existingReg.preferredTime && existingReg.program) {
@@ -55,9 +80,10 @@ export async function PATCH(
         
         const day = await prisma.availabilityDay.findUnique({ 
           where: { 
-            date_program: {
+            date_program_adminEmail: {
               date: date,
-              program: existingReg.program
+              program: existingReg.program,
+              adminEmail: adminEmail
             }
           } 
         })
@@ -78,16 +104,19 @@ export async function PATCH(
     }
 
     // If un-approving and it was approved before, add the time slot back to availability
-    if (!approved && existingReg.approved && existingReg.preferredTime && existingReg.program) {
+    if (!approved && existingReg.approved && existingReg.preferredTime && existingReg.program && existingReg.adminEmail) {
       const parts = existingReg.preferredTime.split(' at ')
       if (parts.length === 2) {
         const [date, time] = parts
+        // Use the admin email from the existing registration (who originally approved it)
+        const originalAdminEmail = existingReg.adminEmail
         
         const day = await prisma.availabilityDay.findUnique({ 
           where: { 
-            date_program: {
+            date_program_adminEmail: {
               date: date,
-              program: existingReg.program
+              program: existingReg.program,
+              adminEmail: originalAdminEmail
             }
           } 
         })
@@ -100,9 +129,24 @@ export async function PATCH(
             })
           }
         } else {
-          // Create new availability day with this time and program
-          await prisma.availabilityDay.create({
-            data: { date, times: [time], program: existingReg.program }
+          // Use upsert to handle potential race conditions when creating availability
+          await prisma.availabilityDay.upsert({
+            where: {
+              date_program_adminEmail: {
+                date,
+                program: existingReg.program,
+                adminEmail: originalAdminEmail
+              }
+            },
+            update: {
+              times: [time]
+            },
+            create: { 
+              date, 
+              times: [time], 
+              program: existingReg.program,
+              adminEmail: originalAdminEmail
+            }
           })
         }
       }

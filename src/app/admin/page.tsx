@@ -19,7 +19,7 @@ export default async function AdminPage() {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-            <p className="text-gray-600">Welcome back, {session.user.name}!</p>
+            <p className="text-gray-700">Welcome back, {session.user.name}!</p>
           </div>
 
           {/* Quick Stats */}
@@ -86,7 +86,7 @@ export default async function AdminPage() {
               ].map((program) => (
                 <div key={program} className="bg-gray-50 border border-gray-200 rounded-lg p-4">
                   <h3 className="font-medium text-gray-900">{program}</h3>
-                  <p className="text-sm text-gray-500 mt-1">Active program</p>
+                  <p className="text-sm text-gray-700 mt-1 font-medium">Active program</p>
                 </div>
               ))}
             </div>
