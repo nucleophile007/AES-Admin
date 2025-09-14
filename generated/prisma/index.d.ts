@@ -1636,7 +1636,6 @@ export namespace Prisma {
     preferredTime: string | null
     createdAt: Date | null
     approved: boolean | null
-    adminEmail: string | null
   }
 
   export type WebinarRegistrationMaxAggregateOutputType = {
@@ -1652,7 +1651,6 @@ export namespace Prisma {
     preferredTime: string | null
     createdAt: Date | null
     approved: boolean | null
-    adminEmail: string | null
   }
 
   export type WebinarRegistrationCountAggregateOutputType = {
@@ -1668,7 +1666,6 @@ export namespace Prisma {
     preferredTime: number
     createdAt: number
     approved: number
-    adminEmail: number
     _all: number
   }
 
@@ -1694,7 +1691,6 @@ export namespace Prisma {
     preferredTime?: true
     createdAt?: true
     approved?: true
-    adminEmail?: true
   }
 
   export type WebinarRegistrationMaxAggregateInputType = {
@@ -1710,7 +1706,6 @@ export namespace Prisma {
     preferredTime?: true
     createdAt?: true
     approved?: true
-    adminEmail?: true
   }
 
   export type WebinarRegistrationCountAggregateInputType = {
@@ -1726,7 +1721,6 @@ export namespace Prisma {
     preferredTime?: true
     createdAt?: true
     approved?: true
-    adminEmail?: true
     _all?: true
   }
 
@@ -1829,7 +1823,6 @@ export namespace Prisma {
     preferredTime: string
     createdAt: Date
     approved: boolean
-    adminEmail: string | null
     _count: WebinarRegistrationCountAggregateOutputType | null
     _avg: WebinarRegistrationAvgAggregateOutputType | null
     _sum: WebinarRegistrationSumAggregateOutputType | null
@@ -1864,7 +1857,6 @@ export namespace Prisma {
     preferredTime?: boolean
     createdAt?: boolean
     approved?: boolean
-    adminEmail?: boolean
   }, ExtArgs["result"]["webinarRegistration"]>
 
   export type WebinarRegistrationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1880,7 +1872,6 @@ export namespace Prisma {
     preferredTime?: boolean
     createdAt?: boolean
     approved?: boolean
-    adminEmail?: boolean
   }, ExtArgs["result"]["webinarRegistration"]>
 
   export type WebinarRegistrationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1896,7 +1887,6 @@ export namespace Prisma {
     preferredTime?: boolean
     createdAt?: boolean
     approved?: boolean
-    adminEmail?: boolean
   }, ExtArgs["result"]["webinarRegistration"]>
 
   export type WebinarRegistrationSelectScalar = {
@@ -1912,10 +1902,9 @@ export namespace Prisma {
     preferredTime?: boolean
     createdAt?: boolean
     approved?: boolean
-    adminEmail?: boolean
   }
 
-  export type WebinarRegistrationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "parentName" | "parentEmail" | "parentPhone" | "studentName" | "grade" | "schoolName" | "program" | "preferredTime" | "createdAt" | "approved" | "adminEmail", ExtArgs["result"]["webinarRegistration"]>
+  export type WebinarRegistrationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "parentName" | "parentEmail" | "parentPhone" | "studentName" | "grade" | "schoolName" | "program" | "preferredTime" | "createdAt" | "approved", ExtArgs["result"]["webinarRegistration"]>
 
   export type $WebinarRegistrationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "WebinarRegistration"
@@ -1933,7 +1922,6 @@ export namespace Prisma {
       preferredTime: string
       createdAt: Date
       approved: boolean
-      adminEmail: string | null
     }, ExtArgs["result"]["webinarRegistration"]>
     composites: {}
   }
@@ -2369,7 +2357,6 @@ export namespace Prisma {
     readonly preferredTime: FieldRef<"WebinarRegistration", 'String'>
     readonly createdAt: FieldRef<"WebinarRegistration", 'DateTime'>
     readonly approved: FieldRef<"WebinarRegistration", 'Boolean'>
-    readonly adminEmail: FieldRef<"WebinarRegistration", 'String'>
   }
     
 
@@ -2760,7 +2747,6 @@ export namespace Prisma {
     id: number | null
     date: string | null
     program: string | null
-    adminEmail: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2769,7 +2755,6 @@ export namespace Prisma {
     id: number | null
     date: string | null
     program: string | null
-    adminEmail: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2779,7 +2764,6 @@ export namespace Prisma {
     date: number
     times: number
     program: number
-    adminEmail: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2798,7 +2782,6 @@ export namespace Prisma {
     id?: true
     date?: true
     program?: true
-    adminEmail?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2807,7 +2790,6 @@ export namespace Prisma {
     id?: true
     date?: true
     program?: true
-    adminEmail?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2817,7 +2799,6 @@ export namespace Prisma {
     date?: true
     times?: true
     program?: true
-    adminEmail?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2914,7 +2895,6 @@ export namespace Prisma {
     date: string
     times: JsonValue
     program: string
-    adminEmail: string
     createdAt: Date
     updatedAt: Date
     _count: AvailabilityDayCountAggregateOutputType | null
@@ -2943,7 +2923,6 @@ export namespace Prisma {
     date?: boolean
     times?: boolean
     program?: boolean
-    adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["availabilityDay"]>
@@ -2953,7 +2932,6 @@ export namespace Prisma {
     date?: boolean
     times?: boolean
     program?: boolean
-    adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["availabilityDay"]>
@@ -2963,7 +2941,6 @@ export namespace Prisma {
     date?: boolean
     times?: boolean
     program?: boolean
-    adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["availabilityDay"]>
@@ -2973,12 +2950,11 @@ export namespace Prisma {
     date?: boolean
     times?: boolean
     program?: boolean
-    adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AvailabilityDayOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "times" | "program" | "adminEmail" | "createdAt" | "updatedAt", ExtArgs["result"]["availabilityDay"]>
+  export type AvailabilityDayOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "times" | "program" | "createdAt" | "updatedAt", ExtArgs["result"]["availabilityDay"]>
 
   export type $AvailabilityDayPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AvailabilityDay"
@@ -2988,7 +2964,6 @@ export namespace Prisma {
       date: string
       times: Prisma.JsonValue
       program: string
-      adminEmail: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["availabilityDay"]>
@@ -3418,7 +3393,6 @@ export namespace Prisma {
     readonly date: FieldRef<"AvailabilityDay", 'String'>
     readonly times: FieldRef<"AvailabilityDay", 'Json'>
     readonly program: FieldRef<"AvailabilityDay", 'String'>
-    readonly adminEmail: FieldRef<"AvailabilityDay", 'String'>
     readonly createdAt: FieldRef<"AvailabilityDay", 'DateTime'>
     readonly updatedAt: FieldRef<"AvailabilityDay", 'DateTime'>
   }
@@ -10731,8 +10705,7 @@ export namespace Prisma {
     program: 'program',
     preferredTime: 'preferredTime',
     createdAt: 'createdAt',
-    approved: 'approved',
-    adminEmail: 'adminEmail'
+    approved: 'approved'
   };
 
   export type WebinarRegistrationScalarFieldEnum = (typeof WebinarRegistrationScalarFieldEnum)[keyof typeof WebinarRegistrationScalarFieldEnum]
@@ -10743,7 +10716,6 @@ export namespace Prisma {
     date: 'date',
     times: 'times',
     program: 'program',
-    adminEmail: 'adminEmail',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -10858,14 +10830,6 @@ export namespace Prisma {
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
-  export const NullsOrder: {
-    first: 'first',
-    last: 'last'
-  };
-
-  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
   export const JsonNullValueFilter: {
     DbNull: typeof DbNull,
     JsonNull: typeof JsonNull,
@@ -10873,6 +10837,14 @@ export namespace Prisma {
   };
 
   export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -10976,7 +10948,6 @@ export namespace Prisma {
     preferredTime?: StringFilter<"WebinarRegistration"> | string
     createdAt?: DateTimeFilter<"WebinarRegistration"> | Date | string
     approved?: BoolFilter<"WebinarRegistration"> | boolean
-    adminEmail?: StringNullableFilter<"WebinarRegistration"> | string | null
   }
 
   export type WebinarRegistrationOrderByWithRelationInput = {
@@ -10992,7 +10963,6 @@ export namespace Prisma {
     preferredTime?: SortOrder
     createdAt?: SortOrder
     approved?: SortOrder
-    adminEmail?: SortOrderInput | SortOrder
   }
 
   export type WebinarRegistrationWhereUniqueInput = Prisma.AtLeast<{
@@ -11011,7 +10981,6 @@ export namespace Prisma {
     preferredTime?: StringFilter<"WebinarRegistration"> | string
     createdAt?: DateTimeFilter<"WebinarRegistration"> | Date | string
     approved?: BoolFilter<"WebinarRegistration"> | boolean
-    adminEmail?: StringNullableFilter<"WebinarRegistration"> | string | null
   }, "id">
 
   export type WebinarRegistrationOrderByWithAggregationInput = {
@@ -11027,7 +10996,6 @@ export namespace Prisma {
     preferredTime?: SortOrder
     createdAt?: SortOrder
     approved?: SortOrder
-    adminEmail?: SortOrderInput | SortOrder
     _count?: WebinarRegistrationCountOrderByAggregateInput
     _avg?: WebinarRegistrationAvgOrderByAggregateInput
     _max?: WebinarRegistrationMaxOrderByAggregateInput
@@ -11051,7 +11019,6 @@ export namespace Prisma {
     preferredTime?: StringWithAggregatesFilter<"WebinarRegistration"> | string
     createdAt?: DateTimeWithAggregatesFilter<"WebinarRegistration"> | Date | string
     approved?: BoolWithAggregatesFilter<"WebinarRegistration"> | boolean
-    adminEmail?: StringNullableWithAggregatesFilter<"WebinarRegistration"> | string | null
   }
 
   export type AvailabilityDayWhereInput = {
@@ -11062,7 +11029,6 @@ export namespace Prisma {
     date?: StringFilter<"AvailabilityDay"> | string
     times?: JsonFilter<"AvailabilityDay">
     program?: StringFilter<"AvailabilityDay"> | string
-    adminEmail?: StringFilter<"AvailabilityDay"> | string
     createdAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
     updatedAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
   }
@@ -11072,31 +11038,28 @@ export namespace Prisma {
     date?: SortOrder
     times?: SortOrder
     program?: SortOrder
-    adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type AvailabilityDayWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    date_program_adminEmail?: AvailabilityDayDateProgramAdminEmailCompoundUniqueInput
+    date_program?: AvailabilityDayDateProgramCompoundUniqueInput
     AND?: AvailabilityDayWhereInput | AvailabilityDayWhereInput[]
     OR?: AvailabilityDayWhereInput[]
     NOT?: AvailabilityDayWhereInput | AvailabilityDayWhereInput[]
     date?: StringFilter<"AvailabilityDay"> | string
     times?: JsonFilter<"AvailabilityDay">
     program?: StringFilter<"AvailabilityDay"> | string
-    adminEmail?: StringFilter<"AvailabilityDay"> | string
     createdAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
     updatedAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
-  }, "id" | "date_program_adminEmail">
+  }, "id" | "date_program">
 
   export type AvailabilityDayOrderByWithAggregationInput = {
     id?: SortOrder
     date?: SortOrder
     times?: SortOrder
     program?: SortOrder
-    adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: AvailabilityDayCountOrderByAggregateInput
@@ -11114,7 +11077,6 @@ export namespace Prisma {
     date?: StringWithAggregatesFilter<"AvailabilityDay"> | string
     times?: JsonWithAggregatesFilter<"AvailabilityDay">
     program?: StringWithAggregatesFilter<"AvailabilityDay"> | string
-    adminEmail?: StringWithAggregatesFilter<"AvailabilityDay"> | string
     createdAt?: DateTimeWithAggregatesFilter<"AvailabilityDay"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AvailabilityDay"> | Date | string
   }
@@ -11578,7 +11540,6 @@ export namespace Prisma {
     preferredTime: string
     createdAt?: Date | string
     approved?: boolean
-    adminEmail?: string | null
   }
 
   export type WebinarRegistrationUncheckedCreateInput = {
@@ -11594,7 +11555,6 @@ export namespace Prisma {
     preferredTime: string
     createdAt?: Date | string
     approved?: boolean
-    adminEmail?: string | null
   }
 
   export type WebinarRegistrationUpdateInput = {
@@ -11609,7 +11569,6 @@ export namespace Prisma {
     preferredTime?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     approved?: BoolFieldUpdateOperationsInput | boolean
-    adminEmail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type WebinarRegistrationUncheckedUpdateInput = {
@@ -11625,7 +11584,6 @@ export namespace Prisma {
     preferredTime?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     approved?: BoolFieldUpdateOperationsInput | boolean
-    adminEmail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type WebinarRegistrationCreateManyInput = {
@@ -11641,7 +11599,6 @@ export namespace Prisma {
     preferredTime: string
     createdAt?: Date | string
     approved?: boolean
-    adminEmail?: string | null
   }
 
   export type WebinarRegistrationUpdateManyMutationInput = {
@@ -11656,7 +11613,6 @@ export namespace Prisma {
     preferredTime?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     approved?: BoolFieldUpdateOperationsInput | boolean
-    adminEmail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type WebinarRegistrationUncheckedUpdateManyInput = {
@@ -11672,14 +11628,12 @@ export namespace Prisma {
     preferredTime?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     approved?: BoolFieldUpdateOperationsInput | boolean
-    adminEmail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AvailabilityDayCreateInput = {
     date: string
     times: JsonNullValueInput | InputJsonValue
     program: string
-    adminEmail?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11689,7 +11643,6 @@ export namespace Prisma {
     date: string
     times: JsonNullValueInput | InputJsonValue
     program: string
-    adminEmail?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11698,7 +11651,6 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
     program?: StringFieldUpdateOperationsInput | string
-    adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11708,7 +11660,6 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
     program?: StringFieldUpdateOperationsInput | string
-    adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11718,7 +11669,6 @@ export namespace Prisma {
     date: string
     times: JsonNullValueInput | InputJsonValue
     program: string
-    adminEmail?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -11727,7 +11677,6 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
     program?: StringFieldUpdateOperationsInput | string
-    adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11737,7 +11686,6 @@ export namespace Prisma {
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
     program?: StringFieldUpdateOperationsInput | string
-    adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12243,26 +12191,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type WebinarRegistrationCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
@@ -12276,7 +12204,6 @@ export namespace Prisma {
     preferredTime?: SortOrder
     createdAt?: SortOrder
     approved?: SortOrder
-    adminEmail?: SortOrder
   }
 
   export type WebinarRegistrationAvgOrderByAggregateInput = {
@@ -12296,7 +12223,6 @@ export namespace Prisma {
     preferredTime?: SortOrder
     createdAt?: SortOrder
     approved?: SortOrder
-    adminEmail?: SortOrder
   }
 
   export type WebinarRegistrationMinOrderByAggregateInput = {
@@ -12312,7 +12238,6 @@ export namespace Prisma {
     preferredTime?: SortOrder
     createdAt?: SortOrder
     approved?: SortOrder
-    adminEmail?: SortOrder
   }
 
   export type WebinarRegistrationSumOrderByAggregateInput = {
@@ -12374,24 +12299,6 @@ export namespace Prisma {
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
   }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -12416,10 +12323,9 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type AvailabilityDayDateProgramAdminEmailCompoundUniqueInput = {
+  export type AvailabilityDayDateProgramCompoundUniqueInput = {
     date: string
     program: string
-    adminEmail: string
   }
 
   export type AvailabilityDayCountOrderByAggregateInput = {
@@ -12427,7 +12333,6 @@ export namespace Prisma {
     date?: SortOrder
     times?: SortOrder
     program?: SortOrder
-    adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12440,7 +12345,6 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     program?: SortOrder
-    adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12449,7 +12353,6 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     program?: SortOrder
-    adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12709,6 +12612,21 @@ export namespace Prisma {
     totalPoints?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -12723,6 +12641,11 @@ export namespace Prisma {
   export type AssignmentScalarRelationFilter = {
     is?: AssignmentWhereInput
     isNot?: AssignmentWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type SubmissionStudentIdAssignmentIdCompoundUniqueInput = {
@@ -12778,6 +12701,24 @@ export namespace Prisma {
     studentId?: SortOrder
     assignmentId?: SortOrder
     grade?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12849,10 +12790,6 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -13122,6 +13059,10 @@ export namespace Prisma {
     connect?: StudentWhereUniqueInput
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -13201,20 +13142,6 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -13280,34 +13207,6 @@ export namespace Prisma {
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
   }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -13330,6 +13229,48 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {

@@ -132,8 +132,7 @@ exports.Prisma.WebinarRegistrationScalarFieldEnum = {
   program: 'program',
   preferredTime: 'preferredTime',
   createdAt: 'createdAt',
-  approved: 'approved',
-  adminEmail: 'adminEmail'
+  approved: 'approved'
 };
 
 exports.Prisma.AvailabilityDayScalarFieldEnum = {
@@ -141,7 +140,6 @@ exports.Prisma.AvailabilityDayScalarFieldEnum = {
   date: 'date',
   times: 'times',
   program: 'program',
-  adminEmail: 'adminEmail',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -226,15 +224,15 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 
