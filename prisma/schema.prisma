@@ -23,17 +23,19 @@ model WebinarRegistration {
   preferredTime String
   createdAt     DateTime @default(now())
   approved      Boolean  @default(false)
+  adminEmail    String?
 }
 
 model AvailabilityDay {
-  id        Int      @id @default(autoincrement())
-  date      String
-  times     Json
-  program   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         Int      @id @default(autoincrement())
+  date       String
+  times      Json
+  program    String
+  adminEmail String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  @@unique([date, program])
+  @@unique([date, program, adminEmail])
 }
 
 model Teacher {
