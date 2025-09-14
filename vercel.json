@@ -6,10 +6,11 @@
   },
   "build": {
     "env": {
-      "PRISMA_GENERATE_DATAPROXY": "true"
+      "PRISMA_GENERATE_DATAPROXY": "false",
+      "PRISMA_CLI_BINARY_TARGETS": "rhel-openssl-3.0.x,linux-musl-openssl-3.0.x"
     }
   },
-  "env": {
-    "PRISMA_CLI_BINARY_TARGETS": "rhel-openssl-3.0.x,linux-musl-openssl-3.0.x"
-  }
+  "installCommand": "npm ci && npx prisma generate",
+  "buildCommand": "next build",
+  "outputDirectory": ".next"
 }
