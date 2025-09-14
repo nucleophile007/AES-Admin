@@ -1,50 +1,126 @@
-// This Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
 model WebinarRegistration {
-  id           Int      @id @default(autoincrement())
-  email        String
-  parentName   String
-  parentEmail  String
-  parentPhone  String
-  studentName  String
-  grade        String
-  schoolName   String
-  program      String
+  id            Int      @id @default(autoincrement())
+  email         String
+  parentName    String
+  parentEmail   String
+  parentPhone   String
+  studentName   String
+  grade         String
+  schoolName    String
+  program       String
   preferredTime String
-  createdAt    DateTime @default(now())
-  approved     Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  approved      Boolean  @default(false)
   // Track which admin approved this registration (null until approved)
-  adminEmail   String?
+  adminEmail    String?
 }
 
 model AvailabilityDay {
-  id        Int      @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   // Store date as string in M/D/YYYY to match frontend calendar keys (e.g., "8/16/2025")
-  date      String
+  date       String
   // Times are strings like "09:00 AM", "10:00 AM" (1-hour intervals)
-  times     Json
+  times      Json
   // Program this availability is for (e.g., "Mathematics Tutoring", "Science Tutoring")
-  program   String
+  program    String
   // Admin email who created this availability
-  adminEmail String @default("acharya.folsom@gmail.com")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  adminEmail String   @default("acharya.folsom@gmail.com")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   // Combination of date, program, and admin email should be unique
   @@unique([date, program, adminEmail])
+}
+
+model Teacher {
+  id        Int              @id @default(autoincrement())
+  name      String
+  email     String           @unique
+  programs  String[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  students  TeacherStudent[]
+}
+
+model Student {
+  id           Int              @id @default(autoincrement())
+  name         String
+  email        String           @unique
+  grade        String
+  schoolName   String
+  parentName   String
+  parentEmail  String
+  parentPhone  String
+  program      String
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  enrollments  Enrollment[]
+  submissions  Submission[]
+  teacherLinks TeacherStudent[]
+}
+
+model TeacherStudent {
+  id         Int      @id @default(autoincrement())
+  teacherId  Int
+  studentId  Int
+  program    String
+  assignedAt DateTime @default(now())
+  student    Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  teacher    Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  @@unique([teacherId, studentId, program])
+}
+
+model Assignment {
+  id          Int          @id @default(autoincrement())
+  title       String
+  description String
+  program     String
+  subject     String
+  grade       String
+  dueDate     DateTime
+  totalPoints Int          @default(100)
+  isActive    Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  submissions Submission[]
+}
+
+model Submission {
+  id           Int        @id @default(autoincrement())
+  studentId    Int
+  assignmentId Int
+  content      String?
+  fileUrl      String?
+  submittedAt  DateTime   @default(now())
+  grade        Int?
+  feedback     String?
+  status       String     @default("submitted")
+  assignment   Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  student      Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, assignmentId])
+}
+
+model Enrollment {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  program   String
+  subject   String
+  startDate DateTime @default(now())
+  isActive  Boolean  @default(true)
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, program, subject])
 }

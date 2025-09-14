@@ -159,7 +159,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/deepakkumar/acharya_admin/src/generated/prisma",
+      "value": "C:\\Users\\HP\\Desktop\\AES-Admin\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -168,12 +168,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/deepakkumar/acharya_admin/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\HP\\Desktop\\AES-Admin\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
