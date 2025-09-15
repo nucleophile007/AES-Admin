@@ -1,8 +1,6 @@
 import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
-import { PrismaClient } from '@/generated/prisma'
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 export async function GET(req: NextRequest) {
   // Validate admin authentication

@@ -1,9 +1,7 @@
 import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
-import { PrismaClient } from '@/generated/prisma'
+import { prisma } from '@/lib/prisma'
 import { Client } from '@upstash/qstash'
-
-const prisma = new PrismaClient()
 
 // Initialize QStash client
 const qstash = process.env.QSTASH_TOKEN ? new Client({
