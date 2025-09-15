@@ -2,7 +2,6 @@ import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { Client } from '@upstash/qstash'
-import { PrismaClient } from '@prisma/client'
 
 const qstash = process.env.QSTASH_TOKEN ? new Client({
   token: process.env.QSTASH_TOKEN,
@@ -51,7 +50,8 @@ export async function PATCH(
     }
 
     // Use transaction to prevent race conditions
-    const transactionResult = await prisma.$transaction(async (tx: PrismaClient) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const transactionResult = await prisma.$transaction(async (tx: any) => {
       // Check if registration still exists and hasn't been modified
       const currentReg = await tx.webinarRegistration.findUnique({ where: { id: numId } })
       if (!currentReg) {

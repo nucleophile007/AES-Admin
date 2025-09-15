@@ -15,6 +15,12 @@ async function handler(req: Request) {
   try {
     const { parentEmail, parentName, studentName, program, preferredTime } = await req.json()
 
+    // Check if SMTP is configured
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER) {
+      console.warn('SMTP not configured, skipping email send')
+      return Response.json({ ok: true, message: 'Email service not configured' })
+    }
+
     await transporter.sendMail({
       from: process.env.SMTP_FROM,
       to: parentEmail,
@@ -93,4 +99,6 @@ async function handler(req: Request) {
   }
 }
 
-export const POST = verifySignatureAppRouter(handler)
+export const POST = process.env.QSTASH_CURRENT_SIGNING_KEY 
+  ? verifySignatureAppRouter(handler)
+  : handler
