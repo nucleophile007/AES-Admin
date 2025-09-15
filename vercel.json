@@ -6,7 +6,14 @@
   },
   "build": {
     "env": {
-      "PRISMA_GENERATE_DATAPROXY": "false"
+      "PRISMA_GENERATE_DATAPROXY": "false",
+      "PRISMA_CLI_QUERY_ENGINE_TYPE": "binary",
+      "PRISMA_CLIENT_ENGINE_TYPE": "binary"
     }
+  },
+  "env": {
+    "PRISMA_GENERATE_DATAPROXY": "false",
+    "PRISMA_CLI_QUERY_ENGINE_TYPE": "binary",
+    "PRISMA_CLIENT_ENGINE_TYPE": "binary"
   }
 }

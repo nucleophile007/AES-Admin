@@ -1,6 +1,33 @@
 import { checkAdminAuth } from '@/lib/adminAuth'
 import { prisma } from '@/lib/prisma'
 
+// Define types for the database objects
+type WebinarRegistration = {
+  id: number
+  email: string
+  parentName: string
+  parentEmail: string
+  parentPhone: string
+  studentName: string
+  grade: string
+  schoolName: string
+  program: string
+  preferredTime: string
+  createdAt: Date
+  approved: boolean
+  adminEmail: string | null
+}
+
+type AvailabilityDay = {
+  id: number
+  date: string
+  times: unknown
+  program: string
+  adminEmail: string
+  createdAt: Date
+  updatedAt: Date
+}
+
 export async function GET() {
   // Validate admin authentication
   const authResult = await checkAdminAuth()
@@ -36,7 +63,7 @@ export async function GET() {
     // Filter registrations to only show those where:
     // 1. The admin has availability for that date/time/program, OR
     // 2. The admin has already approved this registration
-    const relevantRegistrations = allRegistrations.filter(reg => {
+    const relevantRegistrations = allRegistrations.filter((reg: WebinarRegistration) => {
       // If admin already approved it, always show it
       if (reg.approved && reg.adminEmail === adminEmail) {
         return true
@@ -49,7 +76,7 @@ export async function GET() {
       }
 
       // Check if admin has availability for this date/time/program
-      const availabilityDay = adminAvailability.find(day => 
+      const availabilityDay = adminAvailability.find((day: AvailabilityDay) => 
         day.date === date && day.program === reg.program
       )
 
@@ -63,8 +90,8 @@ export async function GET() {
     })
 
     const totalCount = relevantRegistrations.length
-    const pendingCount = relevantRegistrations.filter(r => !r.approved).length
-    const approvedCount = relevantRegistrations.filter(r => r.approved).length
+    const pendingCount = relevantRegistrations.filter((r: WebinarRegistration) => !r.approved).length
+    const approvedCount = relevantRegistrations.filter((r: WebinarRegistration) => r.approved).length
 
     return Response.json({ 
       registrations: relevantRegistrations,

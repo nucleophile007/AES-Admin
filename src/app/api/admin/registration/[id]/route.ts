@@ -2,9 +2,11 @@ import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { Client } from '@upstash/qstash'
-const qstash = new Client({
-  token: process.env.QSTASH_TOKEN!,
-})
+import { PrismaClient } from '@prisma/client'
+
+const qstash = process.env.QSTASH_TOKEN ? new Client({
+  token: process.env.QSTASH_TOKEN,
+}) : null
 
 export async function PATCH(
   req: NextRequest,
@@ -49,7 +51,7 @@ export async function PATCH(
     }
 
     // Use transaction to prevent race conditions
-    const transactionResult = await prisma.$transaction(async (tx) => {
+    const transactionResult = await prisma.$transaction(async (tx: PrismaClient) => {
       // Check if registration still exists and hasn't been modified
       const currentReg = await tx.webinarRegistration.findUnique({ where: { id: numId } })
       if (!currentReg) {
@@ -153,18 +155,22 @@ export async function PATCH(
     // If approving for the first time, send approval email via QStash
     if (approved && !existingReg.approved) {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-        await qstash.publishJSON({
-          url: `${baseUrl}/api/jobs/send-approval-email`,
-          body: {
-            parentEmail: updatedReg.parentEmail,
-            parentName: updatedReg.parentName,
-            studentName: updatedReg.studentName,
-            program: updatedReg.program,
-            preferredTime: updatedReg.preferredTime,
-          },
-        })
-        console.log('Approval email queued for:', updatedReg.parentEmail)
+        if (qstash) {
+          const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+          await qstash.publishJSON({
+            url: `${baseUrl}/api/jobs/send-approval-email`,
+            body: {
+              parentEmail: updatedReg.parentEmail,
+              parentName: updatedReg.parentName,
+              studentName: updatedReg.studentName,
+              program: updatedReg.program,
+              preferredTime: updatedReg.preferredTime,
+            },
+          })
+          console.log('Approval email queued for:', updatedReg.parentEmail)
+        } else {
+          console.log('QStash not configured - skipping email notification')
+        }
       } catch (emailError) {
         console.error('Failed to queue approval email:', emailError)
         // Don't fail the approval if email fails

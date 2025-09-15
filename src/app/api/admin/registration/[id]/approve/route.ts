@@ -2,6 +2,7 @@ import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { Client } from '@upstash/qstash'
+import { PrismaClient } from '@prisma/client'
 
 // Initialize QStash client
 const qstash = process.env.QSTASH_TOKEN ? new Client({
@@ -44,7 +45,7 @@ export async function POST(
     const adminEmail = authResult.session!.user!.email!
 
     // Use transaction to prevent race conditions
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: PrismaClient) => {
       // Check current state of registration
       const currentReg = await tx.webinarRegistration.findUnique({ where: { id: numId } })
       if (!currentReg) {
