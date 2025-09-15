@@ -1,13 +1,7 @@
-const { PrismaPlugin } = require('@prisma/nextjs-monorepo-workaround-plugin');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.plugins = [...config.plugins, new PrismaPlugin()];
-    }
-    return config;
-  },
+  // No additional configuration needed for Prisma on Vercel
+  // The binary targets in schema.prisma and vercel.json config are sufficient
 };
 
 module.exports = nextConfig;
