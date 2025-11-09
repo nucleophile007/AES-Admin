@@ -38,7 +38,7 @@ export async function POST(
                            Math.random().toString(36).substring(2, 15)
     
     // Create or update activation request
-    const activationRequest = await prisma.activationRequest.upsert({
+    await prisma.activationRequest.upsert({
       where: { 
         email_role: {
           email,

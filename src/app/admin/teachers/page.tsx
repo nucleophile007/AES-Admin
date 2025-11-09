@@ -24,7 +24,6 @@ export default function TeachersPage() {
   const [data, setData] = useState<Teacher[]>([])
   const [filteredData, setFilteredData] = useState<Teacher[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedProgram, setSelectedProgram] = useState("all")
   const [actionLoading, setActionLoading] = useState<Record<string, boolean>>({})
@@ -82,7 +81,7 @@ export default function TeachersPage() {
       const json = await res.json()
       setData(json.teachers || [])
     } catch (e: any) {
-      setError(e.message)
+      console.error('Failed to load teachers:', e.message)
     } finally {
       setLoading(false)
     }
@@ -122,7 +121,7 @@ export default function TeachersPage() {
       
       if (!res.ok) throw new Error('Failed to update teacher status')
       
-      const updatedTeacher = await res.json()
+      await res.json()
       
       setData(prev => 
         prev.map(teacher => 

@@ -5,7 +5,7 @@ import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // GET /api/admin/teachers
-export async function GET(request: NextRequest) {
+export async function GET() {
   // Verify admin permissions
   const session = await getServerSession(authOptions)
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {

@@ -3,6 +3,9 @@ import { NextRequest } from 'next/server'
 import prisma from '@/lib/prisma'
 import { Client } from '@upstash/qstash'
 
+// @ts-ignore - Prisma extension types
+const db = prisma as any;
+
 // Initialize QStash client
 const qstash = process.env.QSTASH_TOKEN ? new Client({
   token: process.env.QSTASH_TOKEN,
@@ -36,7 +39,7 @@ export async function POST(
       return Response.json({ error: 'Invalid registration ID' }, { status: 400 })
     }
 
-    const reg = await prisma.sessionApproval.findUnique({ where: { id: numId } })
+    const reg = await db.webinarRegistration.findUnique({ where: { id: numId } })
     if (!reg) {
       return Response.json({ error: 'Registration not found' }, { status: 404 })
     }
@@ -46,14 +49,14 @@ export async function POST(
     // Use transaction to prevent race conditions
     await prisma.$transaction(async (tx: any) => {
       // Check current state of registration
-      const currentReg = await tx.sessionApproval.findUnique({ where: { id: numId } })
+      const currentReg = await tx.webinarRegistration.findUnique({ where: { id: numId } })
       if (!currentReg) {
         throw new Error('Registration not found during transaction')
       }
 
       // Only update if not already approved by this admin
       if (!currentReg.approved || currentReg.adminEmail !== adminEmail) {
-        await tx.sessionApproval.update({ 
+        await tx.webinarRegistration.update({ 
           where: { id: numId }, 
           data: { 
             approved: true,
@@ -117,7 +120,7 @@ export async function POST(
       // Don't fail the approval if email fails - log it for admin attention
     }
 
-    const updated = await prisma.sessionApproval.findUnique({ where: { id: numId } })
+    const updated = await db.webinarRegistration.findUnique({ where: { id: numId } })
     return Response.json({ 
       registration: updated,
       message: 'Registration approved successfully and notification email queued' 

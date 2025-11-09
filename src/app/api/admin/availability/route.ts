@@ -62,7 +62,6 @@ export async function POST(req: NextRequest) {
 
     const adminEmail = authResult.session!.user!.email!
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const ops: any[] = []
     const deletedDates: string[] = []
 
@@ -109,7 +108,6 @@ export async function POST(req: NextRequest) {
 
     // Upserts return records; deleteMany returns { count }. Build upserted days separately
     const days = Array.isArray(results)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ? results.filter((r: any) => r && r.id && r.date).map((d: any) => d)
       : []
 

@@ -28,7 +28,6 @@ export default function StudentsPage() {
   const [data, setData] = useState<Student[]>([])
   const [filteredData, setFilteredData] = useState<Student[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedProgram, setSelectedProgram] = useState("all")
   const [actionLoading, setActionLoading] = useState<Record<string, boolean>>({})
@@ -107,7 +106,7 @@ export default function StudentsPage() {
       const json = await res.json()
       setData(json.students || [])
     } catch (e: any) {
-      setError(e.message)
+      console.error('Failed to load students:', e.message)
     } finally {
       setLoading(false)
     }
@@ -271,7 +270,7 @@ export default function StudentsPage() {
         throw new Error(error.error || error.message || error.details || 'Failed to add enrollment')
       }
       
-      const result = await res.json()
+      await res.json()
       
       // Reset form
       setEnrollmentData({

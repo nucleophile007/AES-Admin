@@ -4,7 +4,7 @@ import prisma from '@/lib/prisma'
 import { getServerSession } from 'next-auth/next'
 
 // Fetch all enrollments with student and teacher information 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Check authentication
     const session = await getServerSession(authOptions)
@@ -23,6 +23,7 @@ export async function GET(request: NextRequest) {
         studentId: true,
         program: true,
         subject: true,
+        access: true,
         student: {
           select: {
             id: true,
@@ -46,11 +47,28 @@ export async function GET(request: NextRequest) {
     })
 
     // Transform the data to match the expected format
-    const formattedEnrollments = enrollments.map((enrollment) => ({
+    const formattedEnrollments = enrollments.map((enrollment: {
+      id: number;
+      studentId: number;
+      program: string;
+      subject: string;
+      access: string;
+      student: {
+        email: string;
+        parentEmail: string | null;
+        teacherLinks: Array<{
+          program: string;
+          teacher: {
+            name: string;
+          };
+        }>;
+      };
+    }) => ({
       id: enrollment.id,
       studentId: enrollment.studentId,
       program: enrollment.program,
       subject: enrollment.subject,
+      access: enrollment.access,
       student: {
         email: enrollment.student.email,
         parentEmail: enrollment.student.parentEmail,

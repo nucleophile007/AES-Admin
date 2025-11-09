@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
     let responseData;
     try {
       responseData = JSON.parse(responseText);
-    } catch (e) {
+    } catch {
       return NextResponse.json({
         success: false,
         status: emailResponse.status,

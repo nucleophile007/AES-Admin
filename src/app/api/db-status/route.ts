@@ -5,7 +5,7 @@ import prisma from "@/lib/prisma";
 const db = prisma as any
 
 // GET /api/db-status
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     // Try to execute a simple query to check if the database is connected
     const adminCount = await db.admin.count();
@@ -18,14 +18,14 @@ export async function GET(request: NextRequest) {
     try {
       await db.teacher.count();
       teachersStatus = "Available";
-    } catch (error) {
+    } catch {
       teachersStatus = "Not Available";
     }
     
     try {
       await db.student.count();
       studentsStatus = "Available";
-    } catch (error) {
+    } catch {
       studentsStatus = "Not Available";
     }
     

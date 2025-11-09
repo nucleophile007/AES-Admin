@@ -19,18 +19,15 @@ export const authOptions = {
     signIn: '/auth/signin',
   },
   callbacks: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async signIn({ user }: any) {
       return allowedEmails.includes((user.email || "").toLowerCase())
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async redirect({ url, baseUrl }: any) {
       // After sign in, redirect to home page (which will handle admin checking)
       if (url.startsWith("/")) return `${baseUrl}${url}`
       else if (new URL(url).origin === baseUrl) return url
       return baseUrl
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async jwt({ token, user }: any) {
       if (user) {
         token.email = user.email
@@ -38,7 +35,6 @@ export const authOptions = {
       }
       return token
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async session({ session, token }: any) {
       if (token.email && session.user) {
         session.user.email = token.email as string
