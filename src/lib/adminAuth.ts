@@ -52,9 +52,7 @@ export async function checkAdminAuth(): Promise<AdminAuthResult> {
 /**
  * Middleware wrapper for admin API routes
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function withAdminAuth(handler: (session: Session, ...args: any[]) => Promise<Response>) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return async (...args: any[]): Promise<Response> => {
     const authResult = await checkAdminAuth()
     

@@ -1,9 +1,10 @@
 import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
-import { PrismaClient } from '@/generated/prisma'
+import prisma from '@/lib/prisma'
 import { Client } from '@upstash/qstash'
 
-const prisma = new PrismaClient()
+// @ts-ignore - Prisma extension types
+const db = prisma as any;
 
 // Initialize QStash client
 const qstash = process.env.QSTASH_TOKEN ? new Client({
@@ -38,7 +39,7 @@ export async function POST(
       return Response.json({ error: 'Invalid registration ID' }, { status: 400 })
     }
 
-    const reg = await prisma.webinarRegistration.findUnique({ where: { id: numId } })
+    const reg = await db.webinarRegistration.findUnique({ where: { id: numId } })
     if (!reg) {
       return Response.json({ error: 'Registration not found' }, { status: 404 })
     }
@@ -46,7 +47,7 @@ export async function POST(
     const adminEmail = authResult.session!.user!.email!
 
     // Use transaction to prevent race conditions
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
       // Check current state of registration
       const currentReg = await tx.webinarRegistration.findUnique({ where: { id: numId } })
       if (!currentReg) {
@@ -119,7 +120,7 @@ export async function POST(
       // Don't fail the approval if email fails - log it for admin attention
     }
 
-    const updated = await prisma.webinarRegistration.findUnique({ where: { id: numId } })
+    const updated = await db.webinarRegistration.findUnique({ where: { id: numId } })
     return Response.json({ 
       registration: updated,
       message: 'Registration approved successfully and notification email queued' 

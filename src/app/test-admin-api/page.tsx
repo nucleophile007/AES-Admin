@@ -64,6 +64,17 @@ export default function AdminAPITestPage() {
           </div>
         </div>
 
+        <div className="bg-white rounded-lg shadow p-6 mb-6">
+          <h2 className="text-xl font-semibold mb-4">Database Status</h2>
+          <button
+            onClick={() => testAPI('/api/db-status')}
+            disabled={loading['/api/db-status']}
+            className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 mb-4"
+          >
+            {loading['/api/db-status'] ? 'Checking Database...' : 'Check Database Status'}
+          </button>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           <button
             onClick={() => testAPI('/api/admin/webinar-registrations')}
@@ -82,13 +93,29 @@ export default function AdminAPITestPage() {
           </button>
 
           <button
+            onClick={() => testAPI('/api/admin/teachers')}
+            disabled={loading['/api/admin/teachers']}
+            className="bg-amber-600 text-white py-3 px-4 rounded-lg hover:bg-amber-700 disabled:opacity-50"
+          >
+            {loading['/api/admin/teachers'] ? 'Testing...' : 'Test Teachers API'}
+          </button>
+
+          <button
+            onClick={() => testAPI('/api/admin/students')}
+            disabled={loading['/api/admin/students']}
+            className="bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 disabled:opacity-50"
+          >
+            {loading['/api/admin/students'] ? 'Testing...' : 'Test Students API'}
+          </button>
+          
+          <button
             onClick={() => testAPI('/api/admin/availability', 'POST', { 
               date: '2025-01-20', 
               times: ['10:00 AM', '2:00 PM'],
               program: 'Mathematics Tutoring'
             })}
             disabled={loading['/api/admin/availability']}
-            className="bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 disabled:opacity-50"
+            className="bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50"
           >
             {loading['/api/admin/availability'] ? 'Testing...' : 'Test Availability POST'}
           </button>
@@ -99,14 +126,6 @@ export default function AdminAPITestPage() {
             className="bg-orange-600 text-white py-3 px-4 rounded-lg hover:bg-orange-700 disabled:opacity-50"
           >
             {loading['/api/admin/registration/1/approve'] ? 'Testing...' : 'Test Approve Registration (POST)'}
-          </button>
-
-          <button
-            onClick={() => testAPI('/api/admin/registration/1', 'PATCH', { approved: true })}
-            disabled={loading['/api/admin/registration/1']}
-            className="bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50"
-          >
-            {loading['/api/admin/registration/1'] ? 'Testing...' : 'Test Update Registration (PATCH)'}
           </button>
         </div>
 

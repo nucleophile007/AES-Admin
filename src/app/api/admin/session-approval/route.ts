@@ -1,7 +1,5 @@
 import { checkAdminAuth } from '@/lib/adminAuth'
-import { PrismaClient } from '@/generated/prisma'
-
-const prisma = new PrismaClient()
+import prisma from '@/lib/prisma'
 
 export async function GET() {
   // Validate admin authentication
@@ -25,8 +23,8 @@ export async function GET() {
       return { date, time }
     }
 
-    // Fetch all webinar registrations
-    const allRegistrations = await prisma.webinarRegistration.findMany({
+    // Fetch all session approval requests
+    const allRegistrations = await (prisma as any).sessionApproval.findMany({
       orderBy: { createdAt: 'desc' },
     })
 
@@ -38,7 +36,7 @@ export async function GET() {
     // Filter registrations to only show those where:
     // 1. The admin has availability for that date/time/program, OR
     // 2. The admin has already approved this registration
-    const relevantRegistrations = allRegistrations.filter(reg => {
+    const relevantRegistrations = allRegistrations.filter((reg: any) => {
       // If admin already approved it, always show it
       if (reg.approved && reg.adminEmail === adminEmail) {
         return true
@@ -51,7 +49,7 @@ export async function GET() {
       }
 
       // Check if admin has availability for this date/time/program
-      const availabilityDay = adminAvailability.find(day => 
+      const availabilityDay = adminAvailability.find((day: any) => 
         day.date === date && day.program === reg.program
       )
 
@@ -65,8 +63,8 @@ export async function GET() {
     })
 
     const totalCount = relevantRegistrations.length
-    const pendingCount = relevantRegistrations.filter(r => !r.approved).length
-    const approvedCount = relevantRegistrations.filter(r => r.approved).length
+    const pendingCount = relevantRegistrations.filter((r: any) => !r.approved).length
+    const approvedCount = relevantRegistrations.filter((r: any) => r.approved).length
 
     return Response.json({ 
       registrations: relevantRegistrations,
@@ -76,7 +74,7 @@ export async function GET() {
       adminUser: authResult.session?.user?.email
     })
   } catch (error) {
-    console.error('Error fetching webinar registrations:', error)
-    return Response.json({ error: 'Failed to fetch registrations' }, { status: 500 })
+    console.error('Error fetching session approval requests:', error)
+    return Response.json({ error: 'Failed to fetch session requests' }, { status: 500 })
   }
 }
