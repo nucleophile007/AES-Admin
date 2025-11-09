@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Acharya Admin",
-  description: "Webinar Registration Management System",
+  description: "Session Approval Management System",
 };
 
 export default async function RootLayout({

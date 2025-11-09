@@ -1,39 +1,14 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Search, Users, Phone, Filter, CheckCircle, Loader2, X } from "lucide-react"
+import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquareQuote } from "lucide-react"
 
-
-interface WebinarRegistration {
-  id: number
-  email: string
-  parentName: string
-  parentEmail: string
-  parentPhone: string
-  studentName: string
-  grade: string
-  schoolName: string
-  program: string
-  preferredTime: string
-  createdAt: string
-  approved: boolean
-  adminEmail: string | null
-}
-
-export default function AdminPage() {
+export default function HomePage() {
   const { data: session, status } = useSession()
   const router = useRouter()
-  
-  const [data, setData] = useState<WebinarRegistration[]>([])
-  const [filteredData, setFilteredData] = useState<WebinarRegistration[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedProgram, setSelectedProgram] = useState("all")
-  const [approving, setApproving] = useState<Set<number>>(new Set())
 
   // Check admin access and redirect if needed
   useEffect(() => {
@@ -47,55 +22,11 @@ export default function AdminPage() {
     
     // If session exists but email is not authorized, redirect to unauthorized
     const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com']
-    if (!session.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       router.push('/unauthorized')
       return
     }
   }, [session, status, router])
-
-  // Fetch data when authenticated
-  useEffect(() => {
-    if (status === 'loading') return
-    if (!session || !session.user?.email) return
-    
-    const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com']
-    if (!allowedEmails.includes(session.user.email.toLowerCase())) return
-
-    fetch("/api/admin/webinar-registrations")
-      .then((res) => {
-        if (res.status === 403) {
-          throw new Error("Not authorized")
-        }
-        if (!res.ok) {
-          throw new Error("Failed to load data")
-        }
-        return res.json()
-      })
-      .then((json) => {
-        setData(json.registrations || [])
-        setLoading(false)
-      })
-      .catch((e: Error) => {
-        setError(e.message)
-        setLoading(false)
-      })
-  }, [session, status])
-
-  useEffect(() => {
-    let filtered = data.filter(
-      (reg) =>
-        reg.studentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        reg.parentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        reg.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        reg.schoolName.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
-
-    if (selectedProgram !== "all") {
-      filtered = filtered.filter((reg) => reg.program === selectedProgram)
-    }
-
-    setFilteredData(filtered)
-  }, [searchTerm, selectedProgram, data])
 
   // Check admin access before rendering dashboard
   if (status === 'loading') {
@@ -108,285 +39,100 @@ export default function AdminPage() {
 
   const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com']
 
-  if (!session.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
+  if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return null // Will redirect to unauthorized via useEffect
   }
 
-  const programs = [...new Set(data.map((reg) => reg.program))]
-
-  const approve = async (id: number) => {
-    setApproving(prev => new Set(prev).add(id))
-    try {
-      const res = await fetch(`/api/admin/registration/${id}`, { 
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ approved: true })
-      })
-      if (!res.ok) throw new Error('Approve failed')
-      const json = await res.json()
-      const updated = json.registration as WebinarRegistration
-      setData(prev => prev.map(r => r.id === updated.id ? { ...r, approved: updated.approved, adminEmail: updated.adminEmail } : r))
-    } catch (e) {
-      console.error(e)
-      alert('Approve failed')
-    } finally {
-      setApproving(prev => {
-        const next = new Set(prev)
-        next.delete(id)
-        return next
-      })
-    }
-  }
-
-  const unapprove = async (id: number) => {
-    setApproving(prev => new Set(prev).add(id))
-    try {
-      const res = await fetch(`/api/admin/registration/${id}`, { 
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ approved: false })
-      })
-      
-      if (!res.ok) {
-        const errorData = await res.json()
-        throw new Error(errorData.error || 'Unapprove failed')
-      }
-      
-      const json = await res.json()
-      const updated = json.registration as WebinarRegistration
-      setData(prev => prev.map(r => r.id === updated.id ? { ...r, approved: updated.approved, adminEmail: updated.adminEmail } : r))
-    } catch (e) {
-      console.error(e)
-      alert(e instanceof Error ? e.message : 'Unapprove failed')
-    } finally {
-      setApproving(prev => {
-        const next = new Set(prev)
-        next.delete(id)
-        return next
-      })
-    }
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
-          <p className="text-gray-600">Loading admin data...</p>
-        </div>
-      </div>
-    )
-  }
-  
-  if (error === "Not authorized") return <p className="p-6 text-red-600 font-medium">Not authorized to view this page.</p>
-  if (error) return <p>{error}</p>
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <Users className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Webinar Registrations</h1>
-                <p className="text-sm text-gray-700">Manage and view all registration data</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/admin/availability"
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
-              >
-                Manage Availability
-              </Link>
-              <div className="bg-blue-50 px-4 py-2 rounded-lg">
-                <span className="text-sm font-medium text-blue-700">
-                  Total Registrations: <span className="font-bold">{data.length}</span>
-                </span>
-              </div>
-            </div>
+    <div className="min-h-screen bg-gray-50 p-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+            <p className="text-gray-700">Welcome back, {session.user.name}!</p>
           </div>
-        </div>
-      </header>
 
-      {/* Filters */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-              />
-            </div>
-            <div className="sm:w-48 relative">
-              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-              <select
-                value={selectedProgram}
-                onChange={(e) => setSelectedProgram(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-gray-900"
-              >
-                <option value="all">All Programs</option>
-                {programs.map((program) => (
-                  <option key={program} value={program}>
-                    {program}
-                  </option>
-                ))}
-              </select>
-            </div>
+          {/* Admin Actions */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Link 
+              href="/admin/availability"
+              className="block bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-6 hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Manage Availability</h3>
+                  <p className="text-blue-100">Set available time slots for all programs</p>
+                </div>
+                <Calendar className="w-8 h-8 text-blue-200" />
+              </div>
+            </Link>
+
+            <Link 
+              href="/admin/session-approval"
+              className="block bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg p-6 hover:from-purple-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Session Approval</h3>
+                  <p className="text-purple-100">View and approve session requests</p>
+                </div>
+                <Users className="w-8 h-8 text-purple-200" />
+              </div>
+            </Link>
+
+            <Link 
+              href="/admin/students"
+              className="block bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-6 hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Students</h3>
+                  <p className="text-green-100">Manage student accounts and activations</p>
+                </div>
+                <GraduationCap className="w-8 h-8 text-green-200" />
+              </div>
+            </Link>
+
+            <Link 
+              href="/admin/teachers"
+              className="block bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg p-6 hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Teachers</h3>
+                  <p className="text-orange-100">Manage teacher accounts and programs</p>
+                </div>
+                <UserCircle className="w-8 h-8 text-orange-200" />
+              </div>
+            </Link>
+
+            <Link 
+              href="/admin/enrollments"
+              className="block bg-gradient-to-r from-indigo-500 to-indigo-600 text-white rounded-lg p-6 hover:from-indigo-600 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Enrollments</h3>
+                  <p className="text-indigo-100">Manage student enrollments and access</p>
+                </div>
+                <BookOpen className="w-8 h-8 text-indigo-200" />
+              </div>
+            </Link>
+
+            <Link 
+              href="/admin/testimonials"
+              className="block bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-lg p-6 hover:from-pink-600 hover:to-pink-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Manage Testimonials</h3>
+                  <p className="text-pink-100">Review and approve student testimonials</p>
+                </div>
+                <MessageSquareQuote className="w-8 h-8 text-pink-200" />
+              </div>
+            </Link>
           </div>
-          {filteredData.length !== data.length && (
-            <div className="mt-4 text-sm text-gray-800 font-medium">
-              Showing {filteredData.length} of {data.length} registrations
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Table */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          {filteredData.length === 0 ? (
-            <div className="text-center py-12">
-              <Users className="h-12 w-12 text-gray-500 mx-auto mb-4" />
-              <p className="text-gray-700 font-medium">No registrations found</p>
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200 table-fixed">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="w-16 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">ID</th>
-                    <th className="w-48 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Contact Info</th>
-                    <th className="w-40 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Student Details</th>
-                    <th className="w-32 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Program</th>
-                    <th className="w-36 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Time</th>
-                    <th className="w-32 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Registered</th>
-                    <th className="w-24 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Status</th>
-                    <th className="w-32 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Admin</th>
-                    <th className="w-28 px-3 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredData.map((reg, idx) => (
-                    <tr key={reg.id} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                      <td className="px-3 py-3 text-sm font-medium">#{reg.id}</td>
-                      <td className="px-3 py-3">
-                        <div className="space-y-1">
-                          <div className="font-medium text-gray-900 text-sm truncate">{reg.parentName}</div>
-                          <div className="text-xs text-gray-700 truncate">{reg.parentEmail}</div>
-                          <div className="text-xs text-gray-700 flex items-center">
-                            <Phone className="h-3 w-3 mr-1 flex-shrink-0" /> 
-                            <span className="truncate">{reg.parentPhone}</span>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-3 py-3">
-                        <div className="space-y-1">
-                          <div className="font-medium text-gray-900 text-sm truncate">{reg.studentName}</div>
-                          <div className="text-xs text-gray-700">Grade {reg.grade}</div>
-                          <div className="text-xs text-gray-700 truncate">{reg.schoolName}</div>
-                        </div>
-                      </td>
-                      <td className="px-3 py-3">
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800 truncate">
-                          {reg.program}
-                        </span>
-                      </td>
-                      <td className="px-3 py-3 text-sm font-medium text-gray-900">
-                        <div className="truncate">{reg.preferredTime}</div>
-                      </td>
-                      <td className="px-3 py-3 text-xs text-gray-700 font-medium">
-                        <div className="truncate">
-                          {new Date(reg.createdAt).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })}
-                        </div>
-                      </td>
-                      <td className="px-3 py-3">
-                        {reg.approved ? (
-                          <span className="inline-flex items-center gap-1 text-green-700 bg-green-100 px-2 py-1 rounded text-xs">
-                            <CheckCircle className="w-3 h-3"/>
-                            <span className="hidden sm:inline">Approved</span>
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 text-gray-700 bg-gray-100 px-2 py-1 rounded text-xs">
-                            <span className="hidden sm:inline">Pending</span>
-                            <span className="sm:hidden">•</span>
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-3 py-3 text-sm">
-                        {reg.adminEmail ? (
-                          <div className="text-xs text-gray-600 truncate" title={reg.adminEmail}>
-                            {reg.adminEmail.split('@')[0]}
-                          </div>
-                        ) : (
-                          <span className="text-xs text-gray-400">-</span>
-                        )}
-                      </td>
-                      <td className="px-3 py-3">
-                        <div className="flex gap-1">
-                          {!reg.approved ? (
-                            <button
-                              className={`text-xs px-2 py-1 rounded inline-flex items-center gap-1 ${approving.has(reg.id) ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-green-600 text-white hover:bg-green-700'}`}
-                              disabled={approving.has(reg.id)}
-                              onClick={() => approve(reg.id)}
-                              title="Approve registration"
-                            >
-                              {approving.has(reg.id) ? (
-                                <Loader2 className="h-3 w-3 animate-spin" />
-                              ) : (
-                                <>
-                                  <CheckCircle className="h-3 w-3" />
-                                  <span className="hidden lg:inline">Approve</span>
-                                </>
-                              )}
-                            </button>
-                          ) : (
-                            <button
-                              className={`text-xs px-2 py-1 rounded inline-flex items-center gap-1 ${
-                                approving.has(reg.id) || (reg.adminEmail !== session?.user?.email) 
-                                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-                                  : 'bg-red-600 text-white hover:bg-red-700'
-                              }`}
-                              disabled={approving.has(reg.id) || (reg.adminEmail !== session?.user?.email)}
-                              onClick={() => unapprove(reg.id)}
-                              title={
-                                reg.adminEmail !== session?.user?.email 
-                                  ? "Only the approving admin can remove approval" 
-                                  : "Remove approval"
-                              }
-                            >
-                              {approving.has(reg.id) ? (
-                                <Loader2 className="h-3 w-3 animate-spin" />
-                              ) : (
-                                <>
-                                  <X className="h-3 w-3" />
-                                  <span className="hidden lg:inline">Remove</span>
-                                </>
-                              )}
-                            </button>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
         </div>
       </div>
     </div>

@@ -1,9 +1,7 @@
 import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
-import { PrismaClient } from '@/generated/prisma'
+import prisma from '@/lib/prisma'
 import { Client } from '@upstash/qstash'
-
-const prisma = new PrismaClient()
 
 // Initialize QStash client
 const qstash = process.env.QSTASH_TOKEN ? new Client({
@@ -38,7 +36,7 @@ export async function POST(
       return Response.json({ error: 'Invalid registration ID' }, { status: 400 })
     }
 
-    const reg = await prisma.webinarRegistration.findUnique({ where: { id: numId } })
+    const reg = await prisma.sessionApproval.findUnique({ where: { id: numId } })
     if (!reg) {
       return Response.json({ error: 'Registration not found' }, { status: 404 })
     }
@@ -46,16 +44,16 @@ export async function POST(
     const adminEmail = authResult.session!.user!.email!
 
     // Use transaction to prevent race conditions
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
       // Check current state of registration
-      const currentReg = await tx.webinarRegistration.findUnique({ where: { id: numId } })
+      const currentReg = await tx.sessionApproval.findUnique({ where: { id: numId } })
       if (!currentReg) {
         throw new Error('Registration not found during transaction')
       }
 
       // Only update if not already approved by this admin
       if (!currentReg.approved || currentReg.adminEmail !== adminEmail) {
-        await tx.webinarRegistration.update({ 
+        await tx.sessionApproval.update({ 
           where: { id: numId }, 
           data: { 
             approved: true,
@@ -119,7 +117,7 @@ export async function POST(
       // Don't fail the approval if email fails - log it for admin attention
     }
 
-    const updated = await prisma.webinarRegistration.findUnique({ where: { id: numId } })
+    const updated = await prisma.sessionApproval.findUnique({ where: { id: numId } })
     return Response.json({ 
       registration: updated,
       message: 'Registration approved successfully and notification email queued' 

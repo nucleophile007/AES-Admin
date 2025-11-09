@@ -11,7 +11,7 @@ const {
   Public,
   getRuntime,
   skip
-} = require('./runtime/index-browser.js')
+} = require('@prisma/client/runtime/index-browser.js')
 
 
 const Prisma = {}
@@ -146,6 +146,192 @@ exports.Prisma.AvailabilityDayScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.TeacherScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  programs: 'programs',
+  isActivated: 'isActivated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StudentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  grade: 'grade',
+  schoolName: 'schoolName',
+  parentName: 'parentName',
+  parentEmail: 'parentEmail',
+  parentPhone: 'parentPhone',
+  program: 'program',
+  isActivated: 'isActivated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TeacherStudentScalarFieldEnum = {
+  id: 'id',
+  teacherId: 'teacherId',
+  studentId: 'studentId',
+  program: 'program',
+  assignedAt: 'assignedAt'
+};
+
+exports.Prisma.AssignmentScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  instructions: 'instructions',
+  program: 'program',
+  subject: 'subject',
+  dueDate: 'dueDate',
+  totalPoints: 'totalPoints',
+  isActive: 'isActive',
+  allowLateSubmission: 'allowLateSubmission',
+  teacherId: 'teacherId',
+  targetStudentId: 'targetStudentId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SubmissionScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  assignmentId: 'assignmentId',
+  content: 'content',
+  fileUrl: 'fileUrl',
+  fileName: 'fileName',
+  fileSize: 'fileSize',
+  submittedAt: 'submittedAt',
+  updatedAt: 'updatedAt',
+  grade: 'grade',
+  feedback: 'feedback',
+  status: 'status',
+  submissionNumber: 'submissionNumber'
+};
+
+exports.Prisma.EnrollmentScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  program: 'program',
+  subject: 'subject',
+  startDate: 'startDate',
+  isActive: 'isActive',
+  access: 'access'
+};
+
+exports.Prisma.ResourceScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  type: 'type',
+  fileUrl: 'fileUrl',
+  linkUrl: 'linkUrl',
+  fileName: 'fileName',
+  fileSize: 'fileSize',
+  program: 'program',
+  subject: 'subject',
+  grade: 'grade',
+  teacherId: 'teacherId',
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AssignmentResourceScalarFieldEnum = {
+  id: 'id',
+  assignmentId: 'assignmentId',
+  resourceId: 'resourceId',
+  isRequired: 'isRequired'
+};
+
+exports.Prisma.StudentResourceScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  resourceId: 'resourceId',
+  assignedAt: 'assignedAt',
+  viewedAt: 'viewedAt'
+};
+
+exports.Prisma.StudentSubmissionScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  title: 'title',
+  description: 'description',
+  content: 'content',
+  fileUrl: 'fileUrl',
+  fileName: 'fileName',
+  fileSize: 'fileSize',
+  submittedAt: 'submittedAt',
+  updatedAt: 'updatedAt',
+  teacherIds: 'teacherIds'
+};
+
+exports.Prisma.StudentSubmissionRemarkScalarFieldEnum = {
+  id: 'id',
+  studentSubmissionId: 'studentSubmissionId',
+  teacherId: 'teacherId',
+  remark: 'remark',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ClassScheduleScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  date: 'date',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  subject: 'subject',
+  description: 'description',
+  location: 'location',
+  meetingLink: 'meetingLink',
+  status: 'status',
+  color: 'color',
+  studentId: 'studentId',
+  teacherId: 'teacherId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MessageScalarFieldEnum = {
+  id: 'id',
+  senderId: 'senderId',
+  senderRole: 'senderRole',
+  recipientId: 'recipientId',
+  recipientRole: 'recipientRole',
+  content: 'content',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  isRead: 'isRead'
+};
+
+exports.Prisma.ActivationRequestScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  role: 'role',
+  token: 'token',
+  userId: 'userId',
+  expiresAt: 'expiresAt',
+  isUsed: 'isUsed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AdminScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -174,7 +360,22 @@ exports.Prisma.JsonNullValueFilter = {
 
 exports.Prisma.ModelName = {
   WebinarRegistration: 'WebinarRegistration',
-  AvailabilityDay: 'AvailabilityDay'
+  AvailabilityDay: 'AvailabilityDay',
+  Teacher: 'Teacher',
+  Student: 'Student',
+  TeacherStudent: 'TeacherStudent',
+  Assignment: 'Assignment',
+  Submission: 'Submission',
+  Enrollment: 'Enrollment',
+  Resource: 'Resource',
+  AssignmentResource: 'AssignmentResource',
+  StudentResource: 'StudentResource',
+  StudentSubmission: 'StudentSubmission',
+  StudentSubmissionRemark: 'StudentSubmissionRemark',
+  ClassSchedule: 'ClassSchedule',
+  Message: 'Message',
+  ActivationRequest: 'ActivationRequest',
+  Admin: 'Admin'
 };
 
 /**

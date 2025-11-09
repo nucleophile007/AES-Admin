@@ -10,6 +10,32 @@ function getIntervalForProgram(program: string) {
   return 60;
 }
 
+// Convert time string to minutes since midnight
+function timeToMinutes(timeStr: string): number {
+  const [time, period] = timeStr.split(' ')
+  const [hours, minutes] = time.split(':').map(Number)
+  let totalHours = hours
+  
+  if (period === 'PM' && hours !== 12) {
+    totalHours += 12
+  } else if (period === 'AM' && hours === 12) {
+    totalHours = 0
+  }
+  
+  return totalHours * 60 + minutes
+}
+
+// Check if two time slots overlap or one includes the other
+function timeSlotsOverlap(time1: string, duration1: number, time2: string, duration2: number): boolean {
+  const start1 = timeToMinutes(time1)
+  const end1 = start1 + duration1
+  const start2 = timeToMinutes(time2)
+  const end2 = start2 + duration2
+  
+  // Check for overlap: start1 < end2 AND start2 < end1
+  return start1 < end2 && start2 < end1
+}
+
 // Generate time slots for a day based on interval (full 24 hours)
 function generateTimeSlots(interval: number) {
   const slots: string[] = [];
@@ -166,9 +192,39 @@ export default function AdminAvailabilityPage() {
     setDirtyKeys(newDirtyKeys)
   }
 
+  // Check if a time slot overlaps with any existing slots in other programs
+  const checkTimeOverlap = (time: string, currentProgram: string, date: string): { hasOverlap: boolean; conflictingProgram?: string } => {
+    const currentDuration = getIntervalForProgram(currentProgram)
+    
+    // Check against all other programs
+    for (const program of PROGRAMS) {
+      if (program === currentProgram) continue
+      
+      const otherTimes = getCurrentTimesForProgramDate(program, date)
+      const otherDuration = getIntervalForProgram(program)
+      
+      for (const otherTime of otherTimes) {
+        if (timeSlotsOverlap(time, currentDuration, otherTime, otherDuration)) {
+          return { hasOverlap: true, conflictingProgram: program }
+        }
+      }
+    }
+    
+    return { hasOverlap: false }
+  }
+
   // Toggle time slot for selected program
   const toggleTime = (time: string) => {
     if (!selectedDate || !selectedProgram) return
+
+    // If adding a time slot, check for overlaps
+    if (!selectedTimes.includes(time)) {
+      const overlap = checkTimeOverlap(time, selectedProgram, selectedDate)
+      if (overlap.hasOverlap) {
+        alert(`Time slot ${time} overlaps with an existing slot in ${overlap.conflictingProgram}. Please choose a different time slot or remove the conflicting slot first.`)
+        return
+      }
+    }
 
     const newTimes = selectedTimes.includes(time)
       ? selectedTimes.filter(t => t !== time)
@@ -347,7 +403,7 @@ export default function AdminAvailabilityPage() {
 
         {/* Times column */}
         <div className="bg-white rounded-2xl border shadow-sm p-6">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-4">
             <div>
               <h2 className="text-xl font-semibold">Time Slots</h2>
               <p className="text-sm text-gray-600">
@@ -368,22 +424,49 @@ export default function AdminAvailabilityPage() {
             </button>
           </div>
 
+          {/* Legend */}
+          <div className="mb-4 flex flex-wrap gap-4 text-xs bg-gray-50 p-3 rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-blue-500 border border-blue-500 rounded"></span>
+              <span className="text-gray-700">Selected for this program</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-red-50 border border-red-200 rounded relative">
+                <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+              </span>
+              <span className="text-gray-700">Overlaps with another program</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 bg-white border border-gray-200 rounded"></span>
+              <span className="text-gray-700">Available to select</span>
+            </div>
+          </div>
+
           <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
             {generateTimeSlots(getIntervalForProgram(selectedProgram)).map((time) => {
               const active = selectedTimes.includes(time)
+              const overlap = selectedDate ? checkTimeOverlap(time, selectedProgram, selectedDate) : { hasOverlap: false }
+              const isBlocked = overlap.hasOverlap && !active
+              
               return (
                 <button
                   key={time}
                   type="button"
                   onClick={() => toggleTime(time)}
-                  className={`p-2 rounded border text-xs font-medium transition-all ${
+                  className={`p-2 rounded border text-xs font-medium transition-all relative ${
                     active
                       ? 'bg-blue-500 text-white border-blue-500 shadow'
+                      : isBlocked
+                      ? 'bg-red-50 text-red-400 border-red-200 cursor-not-allowed line-through'
                       : 'bg-white text-gray-700 border-gray-200 hover:bg-blue-50 hover:border-blue-300'
                   }`}
-                  disabled={!selectedDate || !selectedProgram}
+                  disabled={!selectedDate || !selectedProgram || isBlocked}
+                  title={isBlocked ? `Overlaps with ${overlap.conflictingProgram}` : ''}
                 >
                   {time}
+                  {isBlocked && (
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full" />
+                  )}
                 </button>
               )
             })}

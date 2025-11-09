@@ -1,9 +1,7 @@
 import { checkAdminAuth } from '@/lib/adminAuth'
 import { NextRequest } from 'next/server'
-import { PrismaClient } from '@/generated/prisma'
+import prisma from '@/lib/prisma'
 import { Client } from '@upstash/qstash'
-
-const prisma = new PrismaClient()
 const qstash = new Client({
   token: process.env.QSTASH_TOKEN!,
 })
@@ -36,7 +34,7 @@ export async function PATCH(
     }
 
     // Check if registration exists
-    const existingReg = await prisma.webinarRegistration.findUnique({ where: { id: numId } })
+    const existingReg = await prisma.sessionApproval.findUnique({ where: { id: numId } })
     if (!existingReg) {
       return Response.json({ error: 'Registration not found' }, { status: 404 })
     }
@@ -51,15 +49,15 @@ export async function PATCH(
     }
 
     // Use transaction to prevent race conditions
-    const transactionResult = await prisma.$transaction(async (tx) => {
+    const transactionResult = await prisma.$transaction(async (tx: any) => {
       // Check if registration still exists and hasn't been modified
-      const currentReg = await tx.webinarRegistration.findUnique({ where: { id: numId } })
+      const currentReg = await tx.sessionApproval.findUnique({ where: { id: numId } })
       if (!currentReg) {
         throw new Error('Registration not found during transaction')
       }
 
       // Update the registration
-      const updated = await tx.webinarRegistration.update({
+      const updated = await tx.sessionApproval.update({
         where: { id: numId },
         data: { 
           approved,
