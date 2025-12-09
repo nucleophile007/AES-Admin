@@ -46,7 +46,7 @@ export default function SessionApprovalPage() {
     }
     
     // If session exists but email is not authorized, redirect to unauthorized
-    const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com']
+    const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com', 'luvshanker14@gmail.com']
     if (!session.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       router.push('/unauthorized')
       return
@@ -58,7 +58,7 @@ export default function SessionApprovalPage() {
     if (status === 'loading') return
     if (!session || !session.user?.email) return
     
-    const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com']
+    const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com', 'luvshanker14@gmail.com']
     if (!allowedEmails.includes(session.user.email.toLowerCase())) return
 
     fetch("/api/admin/session-approval")
@@ -106,7 +106,7 @@ export default function SessionApprovalPage() {
     return null // Will redirect to sign in via useEffect
   }
 
-  const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com']
+  const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com', 'luvshanker14@gmail.com']
 
   if (!session.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return null // Will redirect to unauthorized via useEffect
@@ -198,7 +198,7 @@ export default function SessionApprovalPage() {
             </div>
             <div className="flex items-center gap-3">
               <Link
-                href="/admin"
+                href="/"
                 className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
               >
                 Back to Dashboard

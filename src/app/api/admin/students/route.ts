@@ -103,7 +103,30 @@ export async function POST(request: NextRequest) {
     console.log("Creating student with data:", { name, email, grade, schoolName, program, subject, teacherId })
     
     const result = await prisma.$transaction(async (tx) => {
-      // 1. Create student
+      // 1. Create or update parent account (one per email)
+      let parentAccount = await tx.parentAccount.findUnique({
+        where: { email: parentEmail }
+      })
+
+      if (!parentAccount) {
+        parentAccount = await tx.parentAccount.create({
+          data: {
+            name: parentName,
+            email: parentEmail,
+            phone: parentPhone
+          }
+        })
+      } else {
+        parentAccount = await tx.parentAccount.update({
+          where: { id: parentAccount.id },
+          data: {
+            name: parentName,
+            phone: parentPhone ?? parentAccount.phone
+          }
+        })
+      }
+
+      // 2. Create student
       const student = await tx.student.create({
         data: {
           name,
@@ -113,13 +136,14 @@ export async function POST(request: NextRequest) {
           program,
           parentName,
           parentEmail,
-          parentPhone
+          parentPhone,
+          parentAccountId: parentAccount.id
           // password: null by default
           // isActivated: false by default
         }
       })
 
-      // 2. Create enrollment
+      // 3. Create enrollment
       const enrollment = await tx.enrollment.create({
         data: {
           studentId: student.id,
@@ -129,7 +153,7 @@ export async function POST(request: NextRequest) {
         }
       })
 
-      // 3. Create teacher-student link
+      // 4. Create teacher-student link
       const teacherStudent = await tx.teacherStudent.create({
         data: {
           teacherId: parseInt(teacherId),
@@ -138,7 +162,7 @@ export async function POST(request: NextRequest) {
         }
       })
 
-      return { student, enrollment, teacherStudent }
+      return { student, enrollment, teacherStudent, parentAccount }
     })
     
     console.log("Student created successfully:", result.student.id)
@@ -147,6 +171,7 @@ export async function POST(request: NextRequest) {
     
     return NextResponse.json({ 
       student: result.student,
+      parentAccount: result.parentAccount,
       enrollment: result.enrollment,
       teacherLink: result.teacherStudent
     }, { status: 201 })

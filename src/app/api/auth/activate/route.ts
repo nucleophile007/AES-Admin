@@ -40,6 +40,10 @@ export async function GET(request: NextRequest) {
       userData = await prisma.student.findUnique({
         where: { id: activationRequest.userId }
       })
+    } else if (activationRequest.role === 'PARENT') {
+      userData = await prisma.parentAccount.findUnique({
+        where: { id: activationRequest.userId }
+      })
     } else if (activationRequest.role === 'ADMIN') {
       userData = await prisma.admin.findUnique({
         where: { id: activationRequest.userId }
@@ -112,6 +116,14 @@ export async function POST(request: NextRequest) {
       })
     } else if (activationRequest.role === 'STUDENT') {
       await prisma.student.update({
+        where: { id: activationRequest.userId },
+        data: {
+          password: hashedPassword,
+          isActivated: true
+        }
+      })
+    } else if (activationRequest.role === 'PARENT') {
+      await prisma.parentAccount.update({
         where: { id: activationRequest.userId },
         data: {
           password: hashedPassword,

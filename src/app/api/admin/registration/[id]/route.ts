@@ -55,7 +55,7 @@ export async function PATCH(
     // Use transaction to prevent race conditions
     const transactionResult = await prisma.$transaction(async (tx: any) => {
       // Check if registration still exists and hasn't been modified
-      const currentReg = await tx.sessionApproval.findUnique({ where: { id: numId } })
+      const currentReg = await tx.webinarRegistration.findUnique({ where: { id: numId } })
       if (!currentReg) {
         throw new Error('Registration not found during transaction')
       }

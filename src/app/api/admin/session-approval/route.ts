@@ -24,7 +24,7 @@ export async function GET() {
     }
 
     // Fetch all session approval requests
-    const allRegistrations = await (prisma as any).sessionApproval.findMany({
+    const allRegistrations = await prisma.webinarRegistration.findMany({
       orderBy: { createdAt: 'desc' },
     })
 

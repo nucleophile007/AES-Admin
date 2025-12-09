@@ -9,7 +9,7 @@ export async function GET() {
   try {
     // Try to execute a simple query to check if the database is connected
     const adminCount = await db.admin.count();
-    const sessionApprovalsCount = await db.sessionApproval.count();
+    const sessionApprovalsCount = await db.webinarRegistration.count();
     
     // Try to check if our new models exist by querying them
     let teachersStatus = "N/A";
@@ -33,7 +33,7 @@ export async function GET() {
       status: "Connected",
       models: {
         admin: `Available (${adminCount} records)`,
-        sessionApproval: `Available (${sessionApprovalsCount} records)`,
+        webinarRegistration: `Available (${sessionApprovalsCount} records)`,
         teacher: teachersStatus,
         student: studentsStatus,
       },

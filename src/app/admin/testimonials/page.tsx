@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { CheckCircle, XCircle, User, Users, Calendar, Mail, Phone, School, GraduationCap } from 'lucide-react'
+import { CheckCircle, XCircle, User, Users, Calendar, Mail, Phone, School, GraduationCap, Eye, EyeOff, MessageSquareQuote } from 'lucide-react'
+import Link from 'next/link'
 
 interface Student {
   id: number
@@ -65,12 +66,36 @@ export default function TestimonialsPage() {
 
       if (!response.ok) throw new Error('Failed to update testimonial')
 
+      const data = await response.json()
+      
       // Update local state
       setTestimonials(testimonials.map(t =>
         t.id === testimonialId ? { ...t, isApproved: !currentStatus } : t
       ))
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to update testimonial')
+    }
+  }
+
+  const toggleVisibility = async (testimonialId: number, currentStatus: boolean) => {
+    try {
+      const response = await fetch('/api/admin/testimonials', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          testimonialId,
+          isVisible: !currentStatus,
+        }),
+      })
+
+      if (!response.ok) throw new Error('Failed to update testimonial visibility')
+
+      // Update local state
+      setTestimonials(testimonials.map(t =>
+        t.id === testimonialId ? { ...t, isVisible: !currentStatus } : t
+      ))
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to update testimonial visibility')
     }
   }
 
@@ -104,11 +129,33 @@ export default function TestimonialsPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Manage Testimonials</h1>
-        <p className="text-gray-600">Review and approve testimonials from students and parents</p>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div className="flex items-center space-x-3">
+              <div className="bg-teal-600 p-2 rounded-lg">
+                <MessageSquareQuote className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Manage Testimonials</h1>
+                <p className="text-sm text-gray-700">Review and approve testimonials from students and parents</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
+              >
+                Back to Dashboard
+              </Link>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
@@ -286,6 +333,25 @@ export default function TestimonialsPage() {
                     }`}>
                       {testimonial.isApproved ? 'Approved' : 'Pending'}
                     </span>
+                    {testimonial.isApproved && (
+                      <span className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${
+                        testimonial.isVisible
+                          ? 'bg-blue-100 text-blue-800'
+                          : 'bg-gray-100 text-gray-800'
+                      }`}>
+                        {testimonial.isVisible ? (
+                          <>
+                            <Eye className="w-3 h-3" />
+                            Visible
+                          </>
+                        ) : (
+                          <>
+                            <EyeOff className="w-3 h-3" />
+                            Hidden
+                          </>
+                        )}
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -388,12 +454,37 @@ export default function TestimonialsPage() {
                       </>
                     )}
                   </button>
+                  <button
+                    onClick={() => toggleVisibility(testimonial.id, testimonial.isVisible)}
+                    disabled={!testimonial.isApproved}
+                    className={`flex-1 px-4 py-2 rounded-lg font-medium transition-colors ${
+                      !testimonial.isApproved
+                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                        : testimonial.isVisible
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                        : 'bg-gray-600 hover:bg-gray-700 text-white'
+                    }`}
+                    title={!testimonial.isApproved ? 'Approve first to make visible' : testimonial.isVisible ? 'Hide from website' : 'Show on website'}
+                  >
+                    {testimonial.isVisible ? (
+                      <>
+                        <EyeOff className="w-4 h-4 inline mr-2" />
+                        Hide from Website
+                      </>
+                    ) : (
+                      <>
+                        <Eye className="w-4 h-4 inline mr-2" />
+                        Show on Website
+                      </>
+                    )}
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       )}
+      </div>
     </div>
   )
 }

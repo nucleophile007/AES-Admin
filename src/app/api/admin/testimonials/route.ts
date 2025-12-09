@@ -17,7 +17,7 @@ export async function GET() {
 
     const testimonials = await db.testimonial.findMany({
       include: {
-        student: {
+        Student: {
           select: {
             id: true,
             name: true,
@@ -36,7 +36,14 @@ export async function GET() {
       },
     })
 
-    return NextResponse.json(testimonials)
+    // Transform Student to student for frontend compatibility
+    const transformedTestimonials = testimonials.map((testimonial: any) => ({
+      ...testimonial,
+      student: testimonial.Student,
+      Student: undefined, // Remove uppercase field
+    }))
+
+    return NextResponse.json(transformedTestimonials)
   } catch (error) {
     console.error('Error fetching testimonials:', error)
     return NextResponse.json(
@@ -56,20 +63,36 @@ export async function PATCH(request: Request) {
     }
 
     const body = await request.json()
-    const { testimonialId, isApproved } = body
+    const { testimonialId, isApproved, isVisible } = body
 
-    if (!testimonialId || typeof isApproved !== 'boolean') {
+    if (!testimonialId) {
       return NextResponse.json(
-        { error: 'testimonialId and isApproved are required' },
+        { error: 'testimonialId is required' },
+        { status: 400 }
+      )
+    }
+
+    // Build update data object
+    const updateData: any = {}
+    if (typeof isApproved === 'boolean') {
+      updateData.isApproved = isApproved
+    }
+    if (typeof isVisible === 'boolean') {
+      updateData.isVisible = isVisible
+    }
+
+    if (Object.keys(updateData).length === 0) {
+      return NextResponse.json(
+        { error: 'At least one of isApproved or isVisible must be provided' },
         { status: 400 }
       )
     }
 
     const updatedTestimonial = await db.testimonial.update({
       where: { id: testimonialId },
-      data: { isApproved },
+      data: updateData,
       include: {
-        student: {
+        Student: {
           select: {
             name: true,
             email: true,

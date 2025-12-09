@@ -4,6 +4,10 @@ import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { CheckCircle, X, Loader2, User, Lock } from "lucide-react"
 
+const STUDENT_PORTAL_URL = process.env.NEXT_PUBLIC_STUDENT_PORTAL_URL || process.env.NEXT_PUBLIC_USER_SITE_URL || 'http://localhost:3001'
+const PARENT_PORTAL_URL = process.env.NEXT_PUBLIC_PARENT_PORTAL_URL || STUDENT_PORTAL_URL
+const TEACHER_PORTAL_URL = process.env.NEXT_PUBLIC_TEACHER_PORTAL_URL || STUDENT_PORTAL_URL
+
 function ActivateContent() {
   const searchParams = useSearchParams()
   const token = searchParams.get("token")
@@ -131,15 +135,19 @@ function ActivateContent() {
 
   if (success) {
     // Determine the redirect URL based on role
-    const redirectUrl = userData?.role === 'TEACHER' || userData?.role === 'STUDENT' 
-      ? 'http://localhost:3001' 
-      : '/auth/signin'
-    
-    const roleMessage = userData?.role === 'TEACHER' 
-      ? 'teacher portal' 
-      : userData?.role === 'STUDENT' 
-        ? 'student portal' 
-        : 'admin dashboard'
+    let redirectUrl = '/auth/signin'
+    let roleMessage = 'admin dashboard'
+
+    if (userData?.role === 'TEACHER') {
+      redirectUrl = TEACHER_PORTAL_URL
+      roleMessage = 'teacher portal'
+    } else if (userData?.role === 'STUDENT') {
+      redirectUrl = STUDENT_PORTAL_URL
+      roleMessage = 'student portal'
+    } else if (userData?.role === 'PARENT') {
+      redirectUrl = PARENT_PORTAL_URL
+      roleMessage = 'parent portal'
+    }
 
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">

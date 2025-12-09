@@ -16,7 +16,7 @@ export async function GET() {
     console.log("Getting database stats...");
     const studentCount = await db.student.count();
     const teacherCount = await db.teacher.count();
-    const sessionCount = await db.sessionApproval.count();
+    const sessionCount = await db.webinarRegistration.count();
 
     return NextResponse.json({
       status: "success",

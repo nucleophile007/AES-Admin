@@ -30,12 +30,36 @@ export async function POST(request: NextRequest) {
     const activationLink = `${userSiteUrl}/auth/activate?token=${encodeURIComponent(token)}`
     
     // Build email content
-    const subject = `Activate Your ${role === 'TEACHER' ? 'Teacher' : 'Student'} Account`
+    const roleDetails = {
+      TEACHER: {
+        noun: "Teacher",
+        description: "teacher",
+        portal: "teacher portal"
+      },
+      STUDENT: {
+        noun: "Student",
+        description: "student",
+        portal: "student portal"
+      },
+      PARENT: {
+        noun: "Parent",
+        description: "parent/guardian",
+        portal: "parent portal"
+      }
+    } as const
+
+    const roleInfo = roleDetails[(role as keyof typeof roleDetails)] ?? {
+      noun: "Account",
+      description: "user",
+      portal: "portal"
+    }
+
+    const subject = `Activate Your ${roleInfo.noun} Account`
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <h2 style="color: #3b82f6;">Welcome to Acharya Education!</h2>
         <p>Hello ${name},</p>
-        <p>You have been registered as a ${role === 'TEACHER' ? 'teacher' : 'student'} in our system. To complete your registration and set your password, please click the button below:</p>
+        <p>You have been registered as a ${roleInfo.description} in our system. To complete your registration and set your password, please click the button below:</p>
         
         <div style="text-align: center; margin: 30px 0;">
           <a href="${activationLink}" style="background-color: #3b82f6; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold;">
@@ -43,7 +67,7 @@ export async function POST(request: NextRequest) {
           </a>
         </div>
         
-        <p><strong>Important:</strong> This link will redirect you to the user portal where you can set your password and access your account.</p>
+        <p><strong>Important:</strong> This link will redirect you to the ${roleInfo.portal} where you can set your password and access your account.</p>
         <p>This link will expire in 24 hours.</p>
         <p>If you can't click the button, copy and paste this URL into your browser:</p>
         <p style="word-break: break-all; background: #f3f4f6; padding: 10px; font-size: 12px;">${activationLink}</p>
