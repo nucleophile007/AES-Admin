@@ -21,7 +21,7 @@
     "@upstash/qstash": "^2.8.4",
     "bcrypt": "^6.0.0",
     "lucide-react": "^0.539.0",
-    "next": "15.4.6",
+    "next": "15.4.8",
     "next-auth": "^4.24.11",
     "nodemailer": "^6.10.1",
     "prisma": "^6.14.0",
