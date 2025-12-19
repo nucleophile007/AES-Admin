@@ -2,6 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { useEffect, useState, useRef } from 'react'
 import { MessageCircle, X, Send } from 'lucide-react'
 
@@ -279,65 +280,97 @@ export default function EnrollmentsPage() {
 
   if (status === 'loading' || loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p className="text-lg">Loading...</p>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
+          <p className="mt-4 text-gray-600">Loading enrollments...</p>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Student Enrollments</h1>
-      </div>
-
-      {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-          {error}
-        </div>
-      )}
-
-      {/* Program Filter Buttons */}
-      {uniquePrograms.length > 0 && (
-        <div className="mb-6 bg-white rounded-lg shadow p-4">
-          <h2 className="text-sm font-semibold text-gray-700 mb-3">Filter by Program:</h2>
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setSelectedProgram('all')}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                selectedProgram === 'all'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div className="flex items-center space-x-3">
+              <div className="bg-blue-600 p-2 rounded-lg">
+                <MessageCircle className="h-6 w-6 text-yellow-300" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  Student Enrollments
+                </h1>
+                <p className="text-sm text-gray-700">
+                  Manage enrollments, access, reminders, and chat
+                </p>
+              </div>
+            </div>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
             >
-              All Programs ({enrollments.length})
-            </button>
-            {uniquePrograms.map((program) => {
-              const count = enrollments.filter(e => e.program === program).length
-              return (
-                <button
-                  key={program}
-                  onClick={() => setSelectedProgram(program)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                    selectedProgram === program
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  {program} ({count})
-                </button>
-              )
-            })}
+              Back to Dashboard
+            </Link>
           </div>
-          {selectedProgram !== 'all' && (
-            <p className="text-sm text-gray-600 mt-3">
-              Showing {filteredEnrollments.length} enrollment(s) for <span className="font-semibold">{selectedProgram}</span>
-            </p>
-          )}
         </div>
-      )}
+      </header>
 
-      <div className="overflow-x-auto bg-white rounded-lg shadow">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {error}
+          </div>
+        )}
+
+        {/* Program Filter Buttons */}
+        {uniquePrograms.length > 0 && (
+          <div className="mb-6 bg-white rounded-lg shadow-sm border border-blue-100 p-4">
+            <h2 className="text-sm font-semibold text-gray-700 mb-3">
+              Filter by Program:
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedProgram('all')}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  selectedProgram === 'all'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                All Programs ({enrollments.length})
+              </button>
+              {uniquePrograms.map((program) => {
+                const count = enrollments.filter(
+                  (e) => e.program === program
+                ).length
+                return (
+                  <button
+                    key={program}
+                    onClick={() => setSelectedProgram(program)}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      selectedProgram === program
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {program} ({count})
+                  </button>
+                )
+              })}
+            </div>
+            {selectedProgram !== 'all' && (
+              <p className="text-sm text-gray-600 mt-3">
+                Showing {filteredEnrollments.length} enrollment(s) for{' '}
+                <span className="font-semibold">{selectedProgram}</span>
+              </p>
+            )}
+          </div>
+        )}
+
+        <div className="overflow-x-auto bg-white rounded-lg shadow-sm border border-gray-200">
         <table className="min-w-full table-auto">
           <thead className="bg-gray-50">
             <tr>
@@ -653,6 +686,7 @@ export default function EnrollmentsPage() {
           </div>
         </div>
       )}
+      </main>
     </div>
   )
 }

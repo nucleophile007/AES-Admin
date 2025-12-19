@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ChevronLeft, ChevronRight, ArrowLeft, CheckCircle2 } from "lucide-react"
+import { ChevronLeft, ChevronRight, ArrowLeft, CheckCircle2, Calendar } from "lucide-react"
 import Link from "next/link"
 
 // Helper to get interval (in minutes) for a program
@@ -62,7 +62,7 @@ const PROGRAMS = [
   'SAT Coaching',
   'Research Program',
   'Olympiads',
-  'Profile Building'
+  'Parent Meet'
 ]
 
 export default function AdminAvailabilityPage() {
@@ -277,27 +277,47 @@ export default function AdminAvailabilityPage() {
     }
   }
 
-  if (initialLoading) return <div className="max-w-7xl mx-auto p-6">Loading...</div>
+  if (initialLoading) return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center">
+        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
+        <p className="mt-4 text-gray-600">Loading availability...</p>
+      </div>
+    </div>
+  )
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      {/* Navigation Breadcrumb */}
-      <div className="mb-6">
-        <Link 
-          href="/" 
-          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium mb-4"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back to Registrations
-        </Link>
-        <h1 className="text-3xl font-bold mb-2">Manage Program Availability</h1>
-        <p className="text-gray-600">Set available time slots for multiple programs at once</p>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-6">
+            <div className="flex items-center space-x-3">
+              <div className="bg-blue-600 p-2 rounded-lg">
+                <Calendar className="h-6 w-6 text-yellow-300" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Manage Program Availability</h1>
+                <p className="text-sm text-gray-700">Set available time slots for multiple programs at once</p>
+              </div>
+            </div>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Dashboard
+            </Link>
+          </div>
+        </div>
+      </header>
 
-      {/* Program Selection */}
-      <div className="mb-6">
-        <h2 className="text-lg font-semibold mb-3">Select Program</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        {/* Program Selection */}
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold mb-3 text-gray-900">Select Program</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {PROGRAMS.map((program) => (
             <button
               key={program}
@@ -317,36 +337,36 @@ export default function AdminAvailabilityPage() {
         </div>
       </div>
 
-      {/* Selected Program Info */}
-      {selectedProgram && (
-        <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-semibold text-blue-900">
-                Managing: {selectedProgram}
-              </h3>
-              <p className="text-sm text-blue-700">
-                Set available time slots for this program
-              </p>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-blue-600">
-              <span className="inline-flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-green-500"/> has slots
-              </span>
-              {dirtyKeys.size > 0 && (
+        {/* Selected Program Info */}
+        {selectedProgram && (
+          <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-semibold text-blue-900">
+                  Managing: {selectedProgram}
+                </h3>
+                <p className="text-sm text-blue-700">
+                  Set available time slots for this program
+                </p>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-blue-600">
                 <span className="inline-flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-amber-500"/> unsaved changes ({dirtyKeys.size})
+                  <span className="w-2 h-2 rounded-full bg-green-500"/> has slots
                 </span>
-              )}
+                {dirtyKeys.size > 0 && (
+                  <span className="inline-flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-yellow-400"/> unsaved changes ({dirtyKeys.size})
+                  </span>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Calendar column */}
-        <div className="bg-white rounded-2xl border shadow-sm p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Calendar column */}
+          <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-6">
+            <div className="flex items-center justify-between mb-6">
             <button 
               className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
               type="button" 
@@ -364,17 +384,17 @@ export default function AdminAvailabilityPage() {
             >
               <ChevronRight className="h-5 w-5" />
             </button>
-          </div>
+            </div>
           
-          <div className="grid grid-cols-7 gap-2 mb-3">
+            <div className="grid grid-cols-7 gap-2 mb-3">
             {daysOfWeek.map(d => (
               <div key={d} className="text-center text-sm font-semibold text-gray-700 py-2">
                 {d}
               </div>
             ))}
-          </div>
+            </div>
           
-          <div className="grid grid-cols-7 gap-2">
+            <div className="grid grid-cols-7 gap-2">
             {calendarDays.map((day, idx) => (
               <div key={idx} className="aspect-square flex items-center justify-center">
                 {day && (
@@ -399,13 +419,14 @@ export default function AdminAvailabilityPage() {
               </div>
             ))}
           </div>
-        </div>
+            </div>
+          </div>
 
-        {/* Times column */}
-        <div className="bg-white rounded-2xl border shadow-sm p-6">
-          <div className="flex items-center justify-between mb-4">
+          {/* Times column */}
+          <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-6">
+            <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-xl font-semibold">Time Slots</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Time Slots</h2>
               <p className="text-sm text-gray-600">
                 {selectedDate 
                   ? `Selected: ${selectedDate} | ${selectedProgram}`
@@ -415,17 +436,17 @@ export default function AdminAvailabilityPage() {
                 }
               </p>
             </div>
-            <button 
-              onClick={saveAll} 
-              disabled={loading || dirtyKeys.size === 0}
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {loading ? 'Saving...' : `Save All ${dirtyKeys.size > 0 ? `(${dirtyKeys.size})` : ''}`}
-            </button>
-          </div>
+              <button 
+                onClick={saveAll} 
+                disabled={loading || dirtyKeys.size === 0}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                {loading ? 'Saving...' : `Save All ${dirtyKeys.size > 0 ? `(${dirtyKeys.size})` : ''}`}
+              </button>
+            </div>
 
-          {/* Legend */}
-          <div className="mb-4 flex flex-wrap gap-4 text-xs bg-gray-50 p-3 rounded-lg border border-gray-200">
+            {/* Legend */}
+            <div className="mb-4 flex flex-wrap gap-4 text-xs bg-blue-50 p-3 rounded-lg border border-blue-100">
             <div className="flex items-center gap-2">
               <span className="w-4 h-4 bg-blue-500 border border-blue-500 rounded"></span>
               <span className="text-gray-700">Selected for this program</span>
@@ -440,9 +461,9 @@ export default function AdminAvailabilityPage() {
               <span className="w-4 h-4 bg-white border border-gray-200 rounded"></span>
               <span className="text-gray-700">Available to select</span>
             </div>
-          </div>
+            </div>
 
-          <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
+            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
             {generateTimeSlots(getIntervalForProgram(selectedProgram)).map((time) => {
               const active = selectedTimes.includes(time)
               const overlap = selectedDate ? checkTimeOverlap(time, selectedProgram, selectedDate) : { hasOverlap: false }
@@ -470,33 +491,33 @@ export default function AdminAvailabilityPage() {
                 </button>
               )
             })}
-          </div>
-
-          {selectedDate && selectedProgram && (
-            <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-              <h3 className="font-semibold mb-3">
-                Selected Times for {selectedDate}
-                <span className="ml-2 text-sm font-normal text-blue-600">
-                  ({selectedProgram})
-                </span>
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {selectedTimes.length > 0 ? (
-                  selectedTimes.sort((a,b)=>a.localeCompare(b)).map(t => (
-                    <span 
-                      key={t} 
-                      className="px-3 py-1 text-sm rounded-full font-medium bg-blue-100 text-blue-800"
-                    >
-                      {t}
-                    </span>
-                  ))
-                ) : (
-                  <span className="text-gray-700 text-sm font-medium">No times selected</span>
-                )}
-              </div>
             </div>
-          )}
-        </div>
+
+            {selectedDate && selectedProgram && (
+              <div className="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                <h3 className="font-semibold mb-3 text-gray-900">
+                  Selected Times for {selectedDate}
+                  <span className="ml-2 text-sm font-normal text-blue-600">
+                    ({selectedProgram})
+                  </span>
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedTimes.length > 0 ? (
+                    selectedTimes.sort((a,b)=>a.localeCompare(b)).map(t => (
+                      <span 
+                        key={t} 
+                        className="px-3 py-1 text-sm rounded-full font-medium bg-blue-100 text-blue-800"
+                      >
+                        {t}
+                      </span>
+                    ))
+                  ) : (
+                    <span className="text-gray-700 text-sm font-medium">No times selected</span>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
       </div>
     </div>
   )

@@ -17,6 +17,13 @@ interface Teacher {
   updatedAt: string
 }
 
+const PROGRAM_OPTIONS = [
+  "College Prep",
+  "Tutoring",
+  "MATH Competitions",
+  "Research",
+] as const
+
 export default function TeachersPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
@@ -286,7 +293,7 @@ export default function TeachersPage() {
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-3">
               <div className="bg-blue-600 p-2 rounded-lg">
-                <User className="h-6 w-6 text-white" />
+                <User className="h-6 w-6 text-yellow-300" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Teacher Management</h1>
@@ -302,7 +309,7 @@ export default function TeachersPage() {
               </Link>
               <button
                 onClick={() => setShowForm(!showForm)}
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
+                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
               >
                 <Plus className="w-4 h-4" />
                 {showForm ? 'Cancel' : 'Add Teacher'}
@@ -315,8 +322,18 @@ export default function TeachersPage() {
       {/* Add Teacher Form */}
       {showForm && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Add New Teacher</h2>
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900">Add New Teacher</h2>
+                <p className="text-sm text-gray-600">
+                  Create a new mentor profile and assign their programs.
+                </p>
+              </div>
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-yellow-50 text-yellow-800 border border-yellow-200">
+                New Teacher
+              </span>
+            </div>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
@@ -326,7 +343,7 @@ export default function TeachersPage() {
                   <input
                     type="text"
                     id="name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter teacher name"
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -341,7 +358,7 @@ export default function TeachersPage() {
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter teacher email"
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
@@ -367,14 +384,19 @@ export default function TeachersPage() {
                 
                 {formData.programs.map((program, index) => (
                   <div key={index} className="flex gap-2 mb-2">
-                    <input
-                      type="text"
-                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="Enter program name"
+                    <select
+                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                       value={program}
                       onChange={(e) => handleProgramChange(index, e.target.value)}
                       required={index === 0} // At least one program required
-                    />
+                    >
+                      <option value="">Select a program...</option>
+                      {PROGRAM_OPTIONS.map((opt) => (
+                        <option key={opt} value={opt}>
+                          {opt}
+                        </option>
+                      ))}
+                    </select>
                     {formData.programs.length > 1 && (
                       <button
                         type="button"

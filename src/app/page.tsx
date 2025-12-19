@@ -14,118 +14,199 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-yellow-50 p-8">
       <div className="max-w-6xl mx-auto">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+        <div className="bg-white/90 backdrop-blur rounded-2xl shadow-lg border border-blue-100 p-8">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
-            <p className="text-gray-700">Welcome back, {session.user.name}!</p>
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-1">
+                  Acharya Admin
+                </p>
+                <h1 className="text-3xl font-bold text-gray-900 mb-1">
+                  Admin Dashboard
+                </h1>
+                <p className="text-gray-700">
+                  Welcome back, <span className="font-semibold text-blue-700">{session.user.name}</span>!
+                </p>
+              </div>
+              <div className="hidden sm:flex items-center gap-2 rounded-full bg-yellow-50 border border-yellow-200 px-4 py-2">
+                <span className="inline-flex h-2 w-2 rounded-full bg-green-500 mr-1" />
+                <span className="text-xs font-medium text-gray-800">
+                  All systems <span className="font-semibold text-green-700">online</span>
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Admin Actions */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link 
               href="/admin/availability"
-              className="block bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-6 hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Manage Availability</h3>
-                  <p className="text-blue-100">Set available time slots for all programs</p>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Manage Availability</h3>
+                  <p className="text-sm text-gray-600">
+                    Set available time slots for all programs
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600 mr-1.5" />
+                    Scheduling
+                  </span>
                 </div>
-                <Calendar className="w-8 h-8 text-blue-200" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-inner group-hover:bg-blue-700 transition-colors">
+                  <Calendar className="w-6 h-6" />
+                </div>
               </div>
             </Link>
 
             <Link 
               href="/admin/session-approval"
-              className="block bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg p-6 hover:from-purple-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Session Approval</h3>
-                  <p className="text-purple-100">View and approve session requests</p>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Session Approval</h3>
+                  <p className="text-sm text-gray-600">
+                    View and approve session requests
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-yellow-50 text-yellow-800 border border-yellow-200">
+                    <span className="h-1.5 w-1.5 rounded-full bg-yellow-500 mr-1.5" />
+                    High Priority
+                  </span>
                 </div>
-                <Users className="w-8 h-8 text-purple-200" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500 text-white shadow-inner group-hover:bg-blue-600 transition-colors">
+                  <Users className="w-6 h-6" />
+                </div>
               </div>
             </Link>
 
             <Link 
               href="/admin/students"
-              className="block bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-6 hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Students</h3>
-                  <p className="text-green-100">Manage student accounts and activations</p>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Students</h3>
+                  <p className="text-sm text-gray-600">
+                    Manage student accounts and activations
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600 mr-1.5" />
+                    Student Hub
+                  </span>
                 </div>
-                <GraduationCap className="w-8 h-8 text-green-200" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-inner group-hover:bg-blue-700 transition-colors">
+                  <GraduationCap className="w-6 h-6" />
+                </div>
               </div>
             </Link>
 
             <Link 
               href="/admin/teachers"
-              className="block bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg p-6 hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Teachers</h3>
-                  <p className="text-orange-100">Manage teacher accounts and programs</p>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Teachers</h3>
+                  <p className="text-sm text-gray-600">
+                    Manage teacher accounts and programs
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-yellow-50 text-yellow-800 border border-yellow-200">
+                    <span className="h-1.5 w-1.5 rounded-full bg-yellow-500 mr-1.5" />
+                    Mentors
+                  </span>
                 </div>
-                <UserCircle className="w-8 h-8 text-orange-200" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500 text-white shadow-inner group-hover:bg-blue-600 transition-colors">
+                  <UserCircle className="w-6 h-6" />
+                </div>
               </div>
             </Link>
 
             <Link 
               href="/admin/enrollments"
-              className="block bg-gradient-to-r from-indigo-500 to-indigo-600 text-white rounded-lg p-6 hover:from-indigo-600 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Enrollments</h3>
-                  <p className="text-indigo-100">Manage student enrollments and access</p>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Enrollments</h3>
+                  <p className="text-sm text-gray-600">
+                    Manage student enrollments and access
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600 mr-1.5" />
+                    Access Control
+                  </span>
                 </div>
-                <BookOpen className="w-8 h-8 text-indigo-200" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-inner group-hover:bg-blue-700 transition-colors">
+                  <BookOpen className="w-6 h-6" />
+                </div>
               </div>
             </Link>
 
             <Link 
               href="/admin/feedback"
-              className="block bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-lg p-6 hover:from-pink-600 hover:to-pink-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Parent Feedback</h3>
-                  <p className="text-pink-100">Review and respond to parent feedback</p>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Parent Feedback</h3>
+                  <p className="text-sm text-gray-600">
+                    Review and respond to parent feedback
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-yellow-50 text-yellow-800 border border-yellow-200">
+                    <span className="h-1.5 w-1.5 rounded-full bg-yellow-500 mr-1.5" />
+                    Engagement
+                  </span>
                 </div>
-                <MessageSquare className="w-8 h-8 text-pink-200" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500 text-white shadow-inner group-hover:bg-blue-600 transition-colors">
+                  <MessageSquare className="w-6 h-6" />
+                </div>
               </div>
             </Link>
 
             <Link 
               href="/admin/transaction-receipts"
-              className="block bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-lg p-6 hover:from-emerald-600 hover:to-emerald-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Transaction Receipts</h3>
-                  <p className="text-emerald-100">Review and verify payment receipts</p>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Transaction Receipts</h3>
+                  <p className="text-sm text-gray-600">
+                    Review and verify payment receipts
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-yellow-50 text-yellow-800 border border-yellow-200">
+                    <span className="h-1.5 w-1.5 rounded-full bg-yellow-500 mr-1.5" />
+                    Finance
+                  </span>
                 </div>
-                <Receipt className="w-8 h-8 text-emerald-200" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-inner group-hover:bg-blue-700 transition-colors">
+                  <Receipt className="w-6 h-6" />
+                </div>
               </div>
             </Link>
 
             <Link 
               href="/admin/testimonials"
-              className="block bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-lg p-6 hover:from-teal-600 hover:to-teal-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-1"
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Manage Testimonials</h3>
-                  <p className="text-teal-100">Review and approve student testimonials</p>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Manage Testimonials</h3>
+                  <p className="text-sm text-gray-600">
+                    Review and approve student testimonials
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600 mr-1.5" />
+                    Social Proof
+                  </span>
                 </div>
-                <MessageSquareQuote className="w-8 h-8 text-teal-200" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500 text-white shadow-inner group-hover:bg-blue-600 transition-colors">
+                  <MessageSquareQuote className="w-6 h-6" />
+                </div>
               </div>
             </Link>
           </div>

@@ -21,6 +21,13 @@ interface Student {
   updatedAt: string
 }
 
+const PROGRAM_OPTIONS = [
+  "College Prep",
+  "Tutoring",
+  "MATH Competitions",
+  "Research",
+] as const
+
 export default function StudentsPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
@@ -338,8 +345,8 @@ export default function StudentsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-3">
-              <div className="bg-green-600 p-2 rounded-lg">
-                <GraduationCap className="h-6 w-6 text-white" />
+              <div className="bg-blue-600 p-2 rounded-lg">
+                <GraduationCap className="h-6 w-6 text-yellow-300" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Student Management</h1>
@@ -355,7 +362,7 @@ export default function StudentsPage() {
               </Link>
               <button
                 onClick={() => setShowForm(!showForm)}
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700"
+                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
               >
                 <Plus className="w-4 h-4" />
                 {showForm ? 'Cancel' : 'Add Student'}
@@ -368,8 +375,18 @@ export default function StudentsPage() {
       {/* Add Student Form */}
       {showForm && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Add New Student</h2>
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900">Add New Student</h2>
+                <p className="text-sm text-gray-600">
+                  Capture student and parent details for enrollment.
+                </p>
+              </div>
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-yellow-50 text-yellow-800 border border-yellow-200">
+                New Student
+              </span>
+            </div>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
@@ -379,7 +396,7 @@ export default function StudentsPage() {
                   <input
                     type="text"
                     id="name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter student name"
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -394,7 +411,7 @@ export default function StudentsPage() {
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter student email"
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
@@ -409,7 +426,7 @@ export default function StudentsPage() {
                   <input
                     type="text"
                     id="grade"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter student grade"
                     value={formData.grade}
                     onChange={(e) => setFormData(prev => ({ ...prev, grade: e.target.value }))}
@@ -424,7 +441,7 @@ export default function StudentsPage() {
                   <input
                     type="text"
                     id="schoolName"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter school name"
                     value={formData.schoolName}
                     onChange={(e) => setFormData(prev => ({ ...prev, schoolName: e.target.value }))}
@@ -436,15 +453,20 @@ export default function StudentsPage() {
                   <label htmlFor="program" className="block text-sm font-medium text-gray-700 mb-1">
                     Program
                   </label>
-                  <input
-                    type="text"
+                  <select
                     id="program"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter student program (e.g., SAT, ACT)"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                     value={formData.program}
                     onChange={(e) => setFormData(prev => ({ ...prev, program: e.target.value }))}
                     required
-                  />
+                  >
+                    <option value="">Select a program...</option>
+                    {PROGRAM_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>
@@ -454,7 +476,7 @@ export default function StudentsPage() {
                   <input
                     type="text"
                     id="subject"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter subject (e.g., Math, English)"
                     value={formData.subject}
                     onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
@@ -468,7 +490,7 @@ export default function StudentsPage() {
                   </label>
                   <select
                     id="teacherId"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     value={formData.teacherId}
                     onChange={(e) => setFormData(prev => ({ ...prev, teacherId: e.target.value }))}
                     required
@@ -496,7 +518,7 @@ export default function StudentsPage() {
                       <input
                         type="text"
                         id="parentName"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Enter parent name"
                         value={formData.parentName}
                         onChange={(e) => setFormData(prev => ({ ...prev, parentName: e.target.value }))}
@@ -511,7 +533,7 @@ export default function StudentsPage() {
                       <input
                         type="email"
                         id="parentEmail"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Enter parent email"
                         value={formData.parentEmail}
                         onChange={(e) => setFormData(prev => ({ ...prev, parentEmail: e.target.value }))}
@@ -526,7 +548,7 @@ export default function StudentsPage() {
                       <input
                         type="tel"
                         id="parentPhone"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Enter parent phone"
                         value={formData.parentPhone}
                         onChange={(e) => setFormData(prev => ({ ...prev, parentPhone: e.target.value }))}
@@ -561,7 +583,7 @@ export default function StudentsPage() {
       {/* Add Enrollment Form Modal */}
       {showEnrollmentForm && selectedStudentForEnrollment && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold text-gray-900">
                 Add Enrollment for {selectedStudentForEnrollment.name}
@@ -582,15 +604,20 @@ export default function StudentsPage() {
                   <label htmlFor="enrollProgram" className="block text-sm font-medium text-gray-700 mb-1">
                     Program
                   </label>
-                  <input
-                    type="text"
+                  <select
                     id="enrollProgram"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter program (e.g., SAT, ACT)"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                     value={enrollmentData.program}
                     onChange={(e) => setEnrollmentData(prev => ({ ...prev, program: e.target.value }))}
                     required
-                  />
+                  >
+                    <option value="">Select a program...</option>
+                    {PROGRAM_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>
@@ -600,7 +627,7 @@ export default function StudentsPage() {
                   <input
                     type="text"
                     id="enrollSubject"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Enter subject (e.g., Math, English)"
                     value={enrollmentData.subject}
                     onChange={(e) => setEnrollmentData(prev => ({ ...prev, subject: e.target.value }))}
@@ -614,7 +641,7 @@ export default function StudentsPage() {
                   </label>
                   <select
                     id="enrollTeacher"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     value={enrollmentData.teacherId}
                     onChange={(e) => setEnrollmentData(prev => ({ ...prev, teacherId: e.target.value }))}
                     required
@@ -653,7 +680,7 @@ export default function StudentsPage() {
                 <button
                   type="submit"
                   disabled={enrollmentLoading}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-green-300"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-300"
                 >
                   {enrollmentLoading && <Loader2 className="w-4 h-4 animate-spin" />}
                   Add Enrollment

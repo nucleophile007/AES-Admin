@@ -189,7 +189,7 @@ export default function SessionApprovalPage() {
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-3">
               <div className="bg-blue-600 p-2 rounded-lg">
-                <Users className="h-6 w-6 text-white" />
+                <Users className="h-6 w-6 text-yellow-300" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Session Approval</h1>
