@@ -170,7 +170,8 @@ exports.Prisma.StudentScalarFieldEnum = {
   program: 'program',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  isActivated: 'isActivated'
+  isActivated: 'isActivated',
+  parentAccountId: 'parentAccountId'
 };
 
 exports.Prisma.TeacherStudentScalarFieldEnum = {
@@ -366,7 +367,8 @@ exports.Prisma.TestimonialScalarFieldEnum = {
   isApproved: 'isApproved',
   isVisible: 'isVisible',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  videoLink: 'videoLink'
 };
 
 exports.Prisma.SecurityLogScalarFieldEnum = {
@@ -389,6 +391,79 @@ exports.Prisma.FailedActivationScalarFieldEnum = {
   reason: 'reason',
   metadata: 'metadata',
   createdAt: 'createdAt'
+};
+
+exports.Prisma.FeedbackScalarFieldEnum = {
+  id: 'id',
+  parentId: 'parentId',
+  parentName: 'parentName',
+  parentEmail: 'parentEmail',
+  message: 'message',
+  rating: 'rating',
+  status: 'status',
+  response: 'response',
+  createdAt: 'createdAt',
+  reviewedAt: 'reviewedAt'
+};
+
+exports.Prisma.ParentAccountScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  password: 'password',
+  isActivated: 'isActivated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TransactionReceiptScalarFieldEnum = {
+  id: 'id',
+  parentId: 'parentId',
+  parentName: 'parentName',
+  parentEmail: 'parentEmail',
+  amount: 'amount',
+  transactionDate: 'transactionDate',
+  transactionId: 'transactionId',
+  description: 'description',
+  receiptUrl: 'receiptUrl',
+  receiptFileName: 'receiptFileName',
+  receiptFileSize: 'receiptFileSize',
+  status: 'status',
+  adminNotes: 'adminNotes',
+  createdAt: 'createdAt',
+  reviewedAt: 'reviewedAt'
+};
+
+exports.Prisma.PasswordResetRequestScalarFieldEnum = {
+  id: 'id',
+  role: 'role',
+  userId: 'userId',
+  tokenHash: 'tokenHash',
+  expiresAt: 'expiresAt',
+  isUsed: 'isUsed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MentorScalarFieldEnum = {
+  id: 'id',
+  teacherId: 'teacherId',
+  name: 'name',
+  role: 'role',
+  workplace: 'workplace',
+  education: 'education',
+  institution: 'institution',
+  image: 'image',
+  experience: 'experience',
+  specialties: 'specialties',
+  achievements: 'achievements',
+  bio: 'bio',
+  isActive: 'isActive',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  department: 'department'
 };
 
 exports.Prisma.SortOrder = {
@@ -443,7 +518,12 @@ exports.Prisma.ModelName = {
   Payment: 'Payment',
   Testimonial: 'Testimonial',
   SecurityLog: 'SecurityLog',
-  FailedActivation: 'FailedActivation'
+  FailedActivation: 'FailedActivation',
+  Feedback: 'Feedback',
+  ParentAccount: 'ParentAccount',
+  TransactionReceipt: 'TransactionReceipt',
+  PasswordResetRequest: 'PasswordResetRequest',
+  Mentor: 'Mentor'
 };
 
 /**

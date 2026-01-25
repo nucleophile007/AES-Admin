@@ -1,14 +1,6 @@
 import { withAuth } from "next-auth/middleware"
 import { NextResponse } from "next/server"
-
-// Get allowed emails from environment or use fallbacks
-const allowedEmails = (process.env.ADMIN_ALLOWED_EMAILS || "")
-  .split(",")
-  .map((s) => s.trim().toLowerCase())
-  .filter(Boolean)
-
-const fallbackAllowed = ["dkdps3212@gmail.com", "acharya.folsom@gmail.com"]
-const adminEmails = allowedEmails.length ? allowedEmails : fallbackAllowed
+import { allowedEmails } from "./src/lib/adminConfig"
 
 export default withAuth(
   function middleware(req) {
@@ -16,8 +8,10 @@ export default withAuth(
     const { pathname } = req.nextUrl
     const email = req.nextauth.token?.email?.toLowerCase() || ''
     
+    console.log("🛡️ Middleware Check:", { pathname, email, allowedEmails, isAllowed: allowedEmails.includes(email) })
+    
     // Check if the user's email is in the allowed list
-    if (!adminEmails.includes(email)) {
+    if (!allowedEmails.includes(email)) {
       const url = req.nextUrl.clone()
       url.pathname = '/unauthorized'
       return NextResponse.redirect(url)

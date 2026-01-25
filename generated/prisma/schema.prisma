@@ -48,6 +48,7 @@ model Teacher {
   isActivated       Boolean                   @default(false)
   assignments       Assignment[]
   classSchedules    ClassSchedule[]
+  mentorProfile     Mentor?
   resources         Resource[]
   submissionRemarks StudentSubmissionRemark[]
   students          TeacherStudent[]
@@ -67,10 +68,12 @@ model Student {
   createdAt           DateTime            @default(now())
   updatedAt           DateTime            @updatedAt
   isActivated         Boolean             @default(false)
+  parentAccountId     Int?
   assignedAssignments Assignment[]        @relation("AssignedAssignments")
   classSchedules      ClassSchedule[]
   enrollments         Enrollment[]
   Payment             Payment[]
+  parentAccount       ParentAccount?      @relation(fields: [parentAccountId], references: [id])
   assignedResources   StudentResource[]
   studentSubmissions  StudentSubmission[]
   submissions         Submission[]
@@ -267,7 +270,7 @@ model ActivationRequest {
   expiresAt DateTime
   isUsed    Boolean  @default(false)
   createdAt DateTime @default(now())
-  updatedAt DateTime
+  updatedAt DateTime @updatedAt
 
   @@unique([email, role])
 }
@@ -318,19 +321,19 @@ model Testimonial {
   isVisible  Boolean  @default(true)
   createdAt  DateTime @default(now())
   updatedAt  DateTime
+  videoLink  String?
   Student    Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }
 
-// Security logging tables
 model SecurityLog {
   id        Int      @id @default(autoincrement())
-  event     String // e.g., 'ACCOUNT_ACTIVATED', 'LOGIN_ATTEMPT', 'PASSWORD_RESET'
+  event     String
   userId    Int
-  userRole  String // 'TEACHER', 'STUDENT', 'ADMIN'
+  userRole  String
   success   Boolean
   ipAddress String
   userAgent String
-  metadata  Json? // Additional context about the event
+  metadata  Json?
   createdAt DateTime @default(now())
 
   @@index([userId, event])
@@ -342,11 +345,99 @@ model FailedActivation {
   token     String
   ipAddress String
   userAgent String
-  reason    String // 'TOKEN_NOT_FOUND', 'TOKEN_EXPIRED', 'WEAK_PASSWORD', etc.
-  metadata  Json? // Additional context
+  reason    String
+  metadata  Json?
   createdAt DateTime @default(now())
 
   @@index([token])
   @@index([ipAddress])
   @@index([createdAt])
+}
+
+model Feedback {
+  id          Int       @id @default(autoincrement())
+  parentId    Int
+  parentName  String
+  parentEmail String
+  message     String
+  rating      Int?
+  status      String    @default("new")
+  response    String?
+  createdAt   DateTime  @default(now())
+  reviewedAt  DateTime?
+
+  @@index([createdAt])
+  @@index([parentId])
+}
+
+model ParentAccount {
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String    @unique
+  phone       String?
+  password    String?
+  isActivated Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  students    Student[]
+}
+
+model TransactionReceipt {
+  id              Int       @id @default(autoincrement())
+  parentId        Int
+  parentName      String
+  parentEmail     String
+  amount          String
+  transactionDate String
+  transactionId   String?
+  description     String?
+  receiptUrl      String
+  receiptFileName String
+  receiptFileSize Int
+  status          String    @default("pending")
+  adminNotes      String?
+  createdAt       DateTime  @default(now())
+  reviewedAt      DateTime?
+
+  @@index([createdAt])
+  @@index([parentId])
+  @@index([status])
+}
+
+model PasswordResetRequest {
+  id        Int      @id @default(autoincrement())
+  role      String
+  userId    Int
+  tokenHash String   @unique
+  expiresAt DateTime
+  isUsed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+
+  @@index([expiresAt])
+  @@index([role, userId])
+}
+
+model Mentor {
+  id           Int      @id @default(autoincrement())
+  teacherId    Int?     @unique
+  name         String
+  role         String
+  workplace    String
+  education    String
+  institution  String
+  image        String
+  experience   String?
+  specialties  String[]
+  achievements String[]
+  bio          String
+  isActive     Boolean  @default(true)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  department   String   @default("General")
+  teacher      Teacher? @relation(fields: [teacherId], references: [id])
+
+  @@index([isActive, displayOrder])
+  @@index([teacherId])
 }

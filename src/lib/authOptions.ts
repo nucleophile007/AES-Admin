@@ -1,9 +1,6 @@
 // src/lib/authOptions.ts
 import GoogleProvider from "next-auth/providers/google"
-import { allowedEmails as allowedFromEnv } from "./adminConfig"
-
-const fallbackAllowed = ["dkdps3212@gmail.com", "acharya.folsom@getMaxListeners.com"]
-export const allowedEmails = allowedFromEnv.length ? allowedFromEnv : fallbackAllowed
+import { allowedEmails } from "./adminConfig"
 
 export const authOptions = {
   providers: [
@@ -20,7 +17,10 @@ export const authOptions = {
   },
   callbacks: {
     async signIn({ user }: any) {
-      return allowedEmails.includes((user.email || "").toLowerCase())
+      const userEmail = (user.email || "").toLowerCase()
+      const isAllowed = allowedEmails.includes(userEmail)
+      console.log("🔑 SignIn Attempt:", { userEmail, isAllowed, allowedEmails })
+      return isAllowed
     },
     async redirect({ url, baseUrl }: any) {
       // After sign in, redirect to home page (which will handle admin checking)
@@ -32,6 +32,7 @@ export const authOptions = {
       if (user) {
         token.email = user.email
         token.role = allowedEmails.includes((user.email || "").toLowerCase()) ? "admin" : "user"
+        console.log("🎫 JWT Created:", { email: token.email, role: token.role })
       }
       return token
     },
