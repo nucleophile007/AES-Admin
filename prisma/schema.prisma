@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -47,6 +48,7 @@ model Teacher {
   isActivated       Boolean                   @default(false)
   assignments       Assignment[]
   classSchedules    ClassSchedule[]
+  mentorProfile     Mentor?
   resources         Resource[]
   submissionRemarks StudentSubmissionRemark[]
   students          TeacherStudent[]
@@ -414,4 +416,28 @@ model PasswordResetRequest {
 
   @@index([expiresAt])
   @@index([role, userId])
+}
+
+model Mentor {
+  id           Int      @id @default(autoincrement())
+  teacherId    Int?     @unique
+  name         String
+  role         String
+  workplace    String
+  education    String
+  institution  String
+  image        String
+  experience   String?
+  specialties  String[]
+  achievements String[]
+  bio          String
+  isActive     Boolean  @default(true)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  department   String   @default("General")
+  teacher      Teacher? @relation(fields: [teacherId], references: [id])
+
+  @@index([isActive, displayOrder])
+  @@index([teacherId])
 }

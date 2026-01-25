@@ -1,5 +1,6 @@
 import { getServerSession } from 'next-auth/next'
-import { authOptions, allowedEmails } from '@/lib/authOptions'
+import { authOptions } from '@/lib/authOptions'
+import { allowedEmails } from '@/lib/adminConfig'
 import type { Session } from 'next-auth'
 
 export interface AdminAuthResult {

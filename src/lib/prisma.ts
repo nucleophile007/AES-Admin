@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '../../generated/prisma'
 
 // Create a more robust Prisma client with connection handling improvements
 const prismaClientSingleton = () => {

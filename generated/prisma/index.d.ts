@@ -118,6 +118,31 @@ export type SecurityLog = $Result.DefaultSelection<Prisma.$SecurityLogPayload>
  * 
  */
 export type FailedActivation = $Result.DefaultSelection<Prisma.$FailedActivationPayload>
+/**
+ * Model Feedback
+ * 
+ */
+export type Feedback = $Result.DefaultSelection<Prisma.$FeedbackPayload>
+/**
+ * Model ParentAccount
+ * 
+ */
+export type ParentAccount = $Result.DefaultSelection<Prisma.$ParentAccountPayload>
+/**
+ * Model TransactionReceipt
+ * 
+ */
+export type TransactionReceipt = $Result.DefaultSelection<Prisma.$TransactionReceiptPayload>
+/**
+ * Model PasswordResetRequest
+ * 
+ */
+export type PasswordResetRequest = $Result.DefaultSelection<Prisma.$PasswordResetRequestPayload>
+/**
+ * Model Mentor
+ * 
+ */
+export type Mentor = $Result.DefaultSelection<Prisma.$MentorPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -446,6 +471,56 @@ export class PrismaClient<
     * ```
     */
   get failedActivation(): Prisma.FailedActivationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.feedback`: Exposes CRUD operations for the **Feedback** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Feedbacks
+    * const feedbacks = await prisma.feedback.findMany()
+    * ```
+    */
+  get feedback(): Prisma.FeedbackDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.parentAccount`: Exposes CRUD operations for the **ParentAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ParentAccounts
+    * const parentAccounts = await prisma.parentAccount.findMany()
+    * ```
+    */
+  get parentAccount(): Prisma.ParentAccountDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.transactionReceipt`: Exposes CRUD operations for the **TransactionReceipt** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TransactionReceipts
+    * const transactionReceipts = await prisma.transactionReceipt.findMany()
+    * ```
+    */
+  get transactionReceipt(): Prisma.TransactionReceiptDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.passwordResetRequest`: Exposes CRUD operations for the **PasswordResetRequest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PasswordResetRequests
+    * const passwordResetRequests = await prisma.passwordResetRequest.findMany()
+    * ```
+    */
+  get passwordResetRequest(): Prisma.PasswordResetRequestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mentor`: Exposes CRUD operations for the **Mentor** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Mentors
+    * const mentors = await prisma.mentor.findMany()
+    * ```
+    */
+  get mentor(): Prisma.MentorDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -906,7 +981,12 @@ export namespace Prisma {
     Payment: 'Payment',
     Testimonial: 'Testimonial',
     SecurityLog: 'SecurityLog',
-    FailedActivation: 'FailedActivation'
+    FailedActivation: 'FailedActivation',
+    Feedback: 'Feedback',
+    ParentAccount: 'ParentAccount',
+    TransactionReceipt: 'TransactionReceipt',
+    PasswordResetRequest: 'PasswordResetRequest',
+    Mentor: 'Mentor'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -925,7 +1005,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2483,6 +2563,376 @@ export namespace Prisma {
           }
         }
       }
+      Feedback: {
+        payload: Prisma.$FeedbackPayload<ExtArgs>
+        fields: Prisma.FeedbackFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FeedbackFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FeedbackFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          findFirst: {
+            args: Prisma.FeedbackFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FeedbackFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          findMany: {
+            args: Prisma.FeedbackFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+          }
+          create: {
+            args: Prisma.FeedbackCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          createMany: {
+            args: Prisma.FeedbackCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FeedbackCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+          }
+          delete: {
+            args: Prisma.FeedbackDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          update: {
+            args: Prisma.FeedbackUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          deleteMany: {
+            args: Prisma.FeedbackDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FeedbackUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FeedbackUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>[]
+          }
+          upsert: {
+            args: Prisma.FeedbackUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FeedbackPayload>
+          }
+          aggregate: {
+            args: Prisma.FeedbackAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFeedback>
+          }
+          groupBy: {
+            args: Prisma.FeedbackGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FeedbackGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FeedbackCountArgs<ExtArgs>
+            result: $Utils.Optional<FeedbackCountAggregateOutputType> | number
+          }
+        }
+      }
+      ParentAccount: {
+        payload: Prisma.$ParentAccountPayload<ExtArgs>
+        fields: Prisma.ParentAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ParentAccountFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ParentAccountFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.ParentAccountFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ParentAccountFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload>
+          }
+          findMany: {
+            args: Prisma.ParentAccountFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload>[]
+          }
+          create: {
+            args: Prisma.ParentAccountCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload>
+          }
+          createMany: {
+            args: Prisma.ParentAccountCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ParentAccountCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload>[]
+          }
+          delete: {
+            args: Prisma.ParentAccountDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload>
+          }
+          update: {
+            args: Prisma.ParentAccountUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.ParentAccountDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ParentAccountUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ParentAccountUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload>[]
+          }
+          upsert: {
+            args: Prisma.ParentAccountUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ParentAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.ParentAccountAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateParentAccount>
+          }
+          groupBy: {
+            args: Prisma.ParentAccountGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ParentAccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ParentAccountCountArgs<ExtArgs>
+            result: $Utils.Optional<ParentAccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      TransactionReceipt: {
+        payload: Prisma.$TransactionReceiptPayload<ExtArgs>
+        fields: Prisma.TransactionReceiptFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TransactionReceiptFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TransactionReceiptFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload>
+          }
+          findFirst: {
+            args: Prisma.TransactionReceiptFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TransactionReceiptFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload>
+          }
+          findMany: {
+            args: Prisma.TransactionReceiptFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload>[]
+          }
+          create: {
+            args: Prisma.TransactionReceiptCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload>
+          }
+          createMany: {
+            args: Prisma.TransactionReceiptCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TransactionReceiptCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload>[]
+          }
+          delete: {
+            args: Prisma.TransactionReceiptDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload>
+          }
+          update: {
+            args: Prisma.TransactionReceiptUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload>
+          }
+          deleteMany: {
+            args: Prisma.TransactionReceiptDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TransactionReceiptUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TransactionReceiptUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload>[]
+          }
+          upsert: {
+            args: Prisma.TransactionReceiptUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionReceiptPayload>
+          }
+          aggregate: {
+            args: Prisma.TransactionReceiptAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTransactionReceipt>
+          }
+          groupBy: {
+            args: Prisma.TransactionReceiptGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TransactionReceiptGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TransactionReceiptCountArgs<ExtArgs>
+            result: $Utils.Optional<TransactionReceiptCountAggregateOutputType> | number
+          }
+        }
+      }
+      PasswordResetRequest: {
+        payload: Prisma.$PasswordResetRequestPayload<ExtArgs>
+        fields: Prisma.PasswordResetRequestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PasswordResetRequestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PasswordResetRequestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload>
+          }
+          findFirst: {
+            args: Prisma.PasswordResetRequestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PasswordResetRequestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload>
+          }
+          findMany: {
+            args: Prisma.PasswordResetRequestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload>[]
+          }
+          create: {
+            args: Prisma.PasswordResetRequestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload>
+          }
+          createMany: {
+            args: Prisma.PasswordResetRequestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PasswordResetRequestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload>[]
+          }
+          delete: {
+            args: Prisma.PasswordResetRequestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload>
+          }
+          update: {
+            args: Prisma.PasswordResetRequestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload>
+          }
+          deleteMany: {
+            args: Prisma.PasswordResetRequestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PasswordResetRequestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PasswordResetRequestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload>[]
+          }
+          upsert: {
+            args: Prisma.PasswordResetRequestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PasswordResetRequestPayload>
+          }
+          aggregate: {
+            args: Prisma.PasswordResetRequestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePasswordResetRequest>
+          }
+          groupBy: {
+            args: Prisma.PasswordResetRequestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PasswordResetRequestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PasswordResetRequestCountArgs<ExtArgs>
+            result: $Utils.Optional<PasswordResetRequestCountAggregateOutputType> | number
+          }
+        }
+      }
+      Mentor: {
+        payload: Prisma.$MentorPayload<ExtArgs>
+        fields: Prisma.MentorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MentorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MentorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload>
+          }
+          findFirst: {
+            args: Prisma.MentorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MentorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload>
+          }
+          findMany: {
+            args: Prisma.MentorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload>[]
+          }
+          create: {
+            args: Prisma.MentorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload>
+          }
+          createMany: {
+            args: Prisma.MentorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MentorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload>[]
+          }
+          delete: {
+            args: Prisma.MentorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload>
+          }
+          update: {
+            args: Prisma.MentorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload>
+          }
+          deleteMany: {
+            args: Prisma.MentorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MentorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MentorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload>[]
+          }
+          upsert: {
+            args: Prisma.MentorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorPayload>
+          }
+          aggregate: {
+            args: Prisma.MentorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMentor>
+          }
+          groupBy: {
+            args: Prisma.MentorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MentorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MentorCountArgs<ExtArgs>
+            result: $Utils.Optional<MentorCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2596,6 +3046,11 @@ export namespace Prisma {
     testimonial?: TestimonialOmit
     securityLog?: SecurityLogOmit
     failedActivation?: FailedActivationOmit
+    feedback?: FeedbackOmit
+    parentAccount?: ParentAccountOmit
+    transactionReceipt?: TransactionReceiptOmit
+    passwordResetRequest?: PasswordResetRequestOmit
+    mentor?: MentorOmit
   }
 
   /* Types for Logging */
@@ -2980,6 +3435,37 @@ export namespace Prisma {
    */
   export type StudentSubmissionCountOutputTypeCountTeacherRemarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StudentSubmissionRemarkWhereInput
+  }
+
+
+  /**
+   * Count Type ParentAccountCountOutputType
+   */
+
+  export type ParentAccountCountOutputType = {
+    students: number
+  }
+
+  export type ParentAccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    students?: boolean | ParentAccountCountOutputTypeCountStudentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ParentAccountCountOutputType without action
+   */
+  export type ParentAccountCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccountCountOutputType
+     */
+    select?: ParentAccountCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ParentAccountCountOutputType without action
+   */
+  export type ParentAccountCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentWhereInput
   }
 
 
@@ -5391,6 +5877,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: boolean | Teacher$assignmentsArgs<ExtArgs>
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
+    mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
     students?: boolean | Teacher$studentsArgs<ExtArgs>
@@ -5434,6 +5921,7 @@ export namespace Prisma {
   export type TeacherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignments?: boolean | Teacher$assignmentsArgs<ExtArgs>
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
+    mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
     students?: boolean | Teacher$studentsArgs<ExtArgs>
@@ -5447,6 +5935,7 @@ export namespace Prisma {
     objects: {
       assignments: Prisma.$AssignmentPayload<ExtArgs>[]
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
+      mentorProfile: Prisma.$MentorPayload<ExtArgs> | null
       resources: Prisma.$ResourcePayload<ExtArgs>[]
       submissionRemarks: Prisma.$StudentSubmissionRemarkPayload<ExtArgs>[]
       students: Prisma.$TeacherStudentPayload<ExtArgs>[]
@@ -5856,6 +6345,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     assignments<T extends Teacher$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     classSchedules<T extends Teacher$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    mentorProfile<T extends Teacher$mentorProfileArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$mentorProfileArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     resources<T extends Teacher$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissionRemarks<T extends Teacher$submissionRemarksArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$submissionRemarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionRemarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     students<T extends Teacher$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6332,6 +6822,25 @@ export namespace Prisma {
   }
 
   /**
+   * Teacher.mentorProfile
+   */
+  export type Teacher$mentorProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    where?: MentorWhereInput
+  }
+
+  /**
    * Teacher.resources
    */
   export type Teacher$resourcesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6436,10 +6945,12 @@ export namespace Prisma {
 
   export type StudentAvgAggregateOutputType = {
     id: number | null
+    parentAccountId: number | null
   }
 
   export type StudentSumAggregateOutputType = {
     id: number | null
+    parentAccountId: number | null
   }
 
   export type StudentMinAggregateOutputType = {
@@ -6456,6 +6967,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     isActivated: boolean | null
+    parentAccountId: number | null
   }
 
   export type StudentMaxAggregateOutputType = {
@@ -6472,6 +6984,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     isActivated: boolean | null
+    parentAccountId: number | null
   }
 
   export type StudentCountAggregateOutputType = {
@@ -6488,16 +7001,19 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     isActivated: number
+    parentAccountId: number
     _all: number
   }
 
 
   export type StudentAvgAggregateInputType = {
     id?: true
+    parentAccountId?: true
   }
 
   export type StudentSumAggregateInputType = {
     id?: true
+    parentAccountId?: true
   }
 
   export type StudentMinAggregateInputType = {
@@ -6514,6 +7030,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isActivated?: true
+    parentAccountId?: true
   }
 
   export type StudentMaxAggregateInputType = {
@@ -6530,6 +7047,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isActivated?: true
+    parentAccountId?: true
   }
 
   export type StudentCountAggregateInputType = {
@@ -6546,6 +7064,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     isActivated?: true
+    parentAccountId?: true
     _all?: true
   }
 
@@ -6649,6 +7168,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     isActivated: boolean
+    parentAccountId: number | null
     _count: StudentCountAggregateOutputType | null
     _avg: StudentAvgAggregateOutputType | null
     _sum: StudentSumAggregateOutputType | null
@@ -6684,10 +7204,12 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isActivated?: boolean
+    parentAccountId?: boolean
     assignedAssignments?: boolean | Student$assignedAssignmentsArgs<ExtArgs>
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
+    parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
     studentSubmissions?: boolean | Student$studentSubmissionsArgs<ExtArgs>
     submissions?: boolean | Student$submissionsArgs<ExtArgs>
@@ -6710,6 +7232,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isActivated?: boolean
+    parentAccountId?: boolean
+    parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
   export type StudentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6726,6 +7250,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isActivated?: boolean
+    parentAccountId?: boolean
+    parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
   export type StudentSelectScalar = {
@@ -6742,14 +7268,16 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     isActivated?: boolean
+    parentAccountId?: boolean
   }
 
-  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "grade" | "schoolName" | "parentName" | "parentEmail" | "parentPhone" | "program" | "createdAt" | "updatedAt" | "isActivated", ExtArgs["result"]["student"]>
+  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "grade" | "schoolName" | "parentName" | "parentEmail" | "parentPhone" | "program" | "createdAt" | "updatedAt" | "isActivated" | "parentAccountId", ExtArgs["result"]["student"]>
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignedAssignments?: boolean | Student$assignedAssignmentsArgs<ExtArgs>
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
+    parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
     studentSubmissions?: boolean | Student$studentSubmissionsArgs<ExtArgs>
     submissions?: boolean | Student$submissionsArgs<ExtArgs>
@@ -6757,8 +7285,12 @@ export namespace Prisma {
     Testimonial?: boolean | Student$TestimonialArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type StudentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type StudentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type StudentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
+  }
+  export type StudentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
+  }
 
   export type $StudentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Student"
@@ -6767,6 +7299,7 @@ export namespace Prisma {
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
       Payment: Prisma.$PaymentPayload<ExtArgs>[]
+      parentAccount: Prisma.$ParentAccountPayload<ExtArgs> | null
       assignedResources: Prisma.$StudentResourcePayload<ExtArgs>[]
       studentSubmissions: Prisma.$StudentSubmissionPayload<ExtArgs>[]
       submissions: Prisma.$SubmissionPayload<ExtArgs>[]
@@ -6787,6 +7320,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       isActivated: boolean
+      parentAccountId: number | null
     }, ExtArgs["result"]["student"]>
     composites: {}
   }
@@ -7185,6 +7719,7 @@ export namespace Prisma {
     classSchedules<T extends Student$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Student$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     enrollments<T extends Student$enrollmentsArgs<ExtArgs> = {}>(args?: Subset<T, Student$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Payment<T extends Student$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Student$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    parentAccount<T extends Student$parentAccountArgs<ExtArgs> = {}>(args?: Subset<T, Student$parentAccountArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     assignedResources<T extends Student$assignedResourcesArgs<ExtArgs> = {}>(args?: Subset<T, Student$assignedResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     studentSubmissions<T extends Student$studentSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$studentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissions<T extends Student$submissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -7232,6 +7767,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Student", 'DateTime'>
     readonly updatedAt: FieldRef<"Student", 'DateTime'>
     readonly isActivated: FieldRef<"Student", 'Boolean'>
+    readonly parentAccountId: FieldRef<"Student", 'Int'>
   }
     
 
@@ -7481,6 +8017,10 @@ export namespace Prisma {
      */
     data: StudentCreateManyInput | StudentCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7551,6 +8091,10 @@ export namespace Prisma {
      * Limit how many Students to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7713,6 +8257,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
+  }
+
+  /**
+   * Student.parentAccount
+   */
+  export type Student$parentAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    where?: ParentAccountWhereInput
   }
 
   /**
@@ -24292,6 +24855,7 @@ export namespace Prisma {
     isVisible: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    videoLink: string | null
   }
 
   export type TestimonialMaxAggregateOutputType = {
@@ -24304,6 +24868,7 @@ export namespace Prisma {
     isVisible: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    videoLink: string | null
   }
 
   export type TestimonialCountAggregateOutputType = {
@@ -24316,6 +24881,7 @@ export namespace Prisma {
     isVisible: number
     createdAt: number
     updatedAt: number
+    videoLink: number
     _all: number
   }
 
@@ -24340,6 +24906,7 @@ export namespace Prisma {
     isVisible?: true
     createdAt?: true
     updatedAt?: true
+    videoLink?: true
   }
 
   export type TestimonialMaxAggregateInputType = {
@@ -24352,6 +24919,7 @@ export namespace Prisma {
     isVisible?: true
     createdAt?: true
     updatedAt?: true
+    videoLink?: true
   }
 
   export type TestimonialCountAggregateInputType = {
@@ -24364,6 +24932,7 @@ export namespace Prisma {
     isVisible?: true
     createdAt?: true
     updatedAt?: true
+    videoLink?: true
     _all?: true
   }
 
@@ -24463,6 +25032,7 @@ export namespace Prisma {
     isVisible: boolean
     createdAt: Date
     updatedAt: Date
+    videoLink: string | null
     _count: TestimonialCountAggregateOutputType | null
     _avg: TestimonialAvgAggregateOutputType | null
     _sum: TestimonialSumAggregateOutputType | null
@@ -24494,6 +25064,7 @@ export namespace Prisma {
     isVisible?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    videoLink?: boolean
     Student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
@@ -24507,6 +25078,7 @@ export namespace Prisma {
     isVisible?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    videoLink?: boolean
     Student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
@@ -24520,6 +25092,7 @@ export namespace Prisma {
     isVisible?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    videoLink?: boolean
     Student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
@@ -24533,9 +25106,10 @@ export namespace Prisma {
     isVisible?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    videoLink?: boolean
   }
 
-  export type TestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "content" | "authorType" | "authorName" | "isApproved" | "isVisible" | "createdAt" | "updatedAt", ExtArgs["result"]["testimonial"]>
+  export type TestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "content" | "authorType" | "authorName" | "isApproved" | "isVisible" | "createdAt" | "updatedAt" | "videoLink", ExtArgs["result"]["testimonial"]>
   export type TestimonialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Student?: boolean | StudentDefaultArgs<ExtArgs>
   }
@@ -24561,6 +25135,7 @@ export namespace Prisma {
       isVisible: boolean
       createdAt: Date
       updatedAt: Date
+      videoLink: string | null
     }, ExtArgs["result"]["testimonial"]>
     composites: {}
   }
@@ -24994,6 +25569,7 @@ export namespace Prisma {
     readonly isVisible: FieldRef<"Testimonial", 'Boolean'>
     readonly createdAt: FieldRef<"Testimonial", 'DateTime'>
     readonly updatedAt: FieldRef<"Testimonial", 'DateTime'>
+    readonly videoLink: FieldRef<"Testimonial", 'String'>
   }
     
 
@@ -27541,6 +28117,5757 @@ export namespace Prisma {
 
 
   /**
+   * Model Feedback
+   */
+
+  export type AggregateFeedback = {
+    _count: FeedbackCountAggregateOutputType | null
+    _avg: FeedbackAvgAggregateOutputType | null
+    _sum: FeedbackSumAggregateOutputType | null
+    _min: FeedbackMinAggregateOutputType | null
+    _max: FeedbackMaxAggregateOutputType | null
+  }
+
+  export type FeedbackAvgAggregateOutputType = {
+    id: number | null
+    parentId: number | null
+    rating: number | null
+  }
+
+  export type FeedbackSumAggregateOutputType = {
+    id: number | null
+    parentId: number | null
+    rating: number | null
+  }
+
+  export type FeedbackMinAggregateOutputType = {
+    id: number | null
+    parentId: number | null
+    parentName: string | null
+    parentEmail: string | null
+    message: string | null
+    rating: number | null
+    status: string | null
+    response: string | null
+    createdAt: Date | null
+    reviewedAt: Date | null
+  }
+
+  export type FeedbackMaxAggregateOutputType = {
+    id: number | null
+    parentId: number | null
+    parentName: string | null
+    parentEmail: string | null
+    message: string | null
+    rating: number | null
+    status: string | null
+    response: string | null
+    createdAt: Date | null
+    reviewedAt: Date | null
+  }
+
+  export type FeedbackCountAggregateOutputType = {
+    id: number
+    parentId: number
+    parentName: number
+    parentEmail: number
+    message: number
+    rating: number
+    status: number
+    response: number
+    createdAt: number
+    reviewedAt: number
+    _all: number
+  }
+
+
+  export type FeedbackAvgAggregateInputType = {
+    id?: true
+    parentId?: true
+    rating?: true
+  }
+
+  export type FeedbackSumAggregateInputType = {
+    id?: true
+    parentId?: true
+    rating?: true
+  }
+
+  export type FeedbackMinAggregateInputType = {
+    id?: true
+    parentId?: true
+    parentName?: true
+    parentEmail?: true
+    message?: true
+    rating?: true
+    status?: true
+    response?: true
+    createdAt?: true
+    reviewedAt?: true
+  }
+
+  export type FeedbackMaxAggregateInputType = {
+    id?: true
+    parentId?: true
+    parentName?: true
+    parentEmail?: true
+    message?: true
+    rating?: true
+    status?: true
+    response?: true
+    createdAt?: true
+    reviewedAt?: true
+  }
+
+  export type FeedbackCountAggregateInputType = {
+    id?: true
+    parentId?: true
+    parentName?: true
+    parentEmail?: true
+    message?: true
+    rating?: true
+    status?: true
+    response?: true
+    createdAt?: true
+    reviewedAt?: true
+    _all?: true
+  }
+
+  export type FeedbackAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Feedback to aggregate.
+     */
+    where?: FeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Feedbacks to fetch.
+     */
+    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Feedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Feedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Feedbacks
+    **/
+    _count?: true | FeedbackCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FeedbackAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FeedbackSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FeedbackMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FeedbackMaxAggregateInputType
+  }
+
+  export type GetFeedbackAggregateType<T extends FeedbackAggregateArgs> = {
+        [P in keyof T & keyof AggregateFeedback]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFeedback[P]>
+      : GetScalarType<T[P], AggregateFeedback[P]>
+  }
+
+
+
+
+  export type FeedbackGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FeedbackWhereInput
+    orderBy?: FeedbackOrderByWithAggregationInput | FeedbackOrderByWithAggregationInput[]
+    by: FeedbackScalarFieldEnum[] | FeedbackScalarFieldEnum
+    having?: FeedbackScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FeedbackCountAggregateInputType | true
+    _avg?: FeedbackAvgAggregateInputType
+    _sum?: FeedbackSumAggregateInputType
+    _min?: FeedbackMinAggregateInputType
+    _max?: FeedbackMaxAggregateInputType
+  }
+
+  export type FeedbackGroupByOutputType = {
+    id: number
+    parentId: number
+    parentName: string
+    parentEmail: string
+    message: string
+    rating: number | null
+    status: string
+    response: string | null
+    createdAt: Date
+    reviewedAt: Date | null
+    _count: FeedbackCountAggregateOutputType | null
+    _avg: FeedbackAvgAggregateOutputType | null
+    _sum: FeedbackSumAggregateOutputType | null
+    _min: FeedbackMinAggregateOutputType | null
+    _max: FeedbackMaxAggregateOutputType | null
+  }
+
+  type GetFeedbackGroupByPayload<T extends FeedbackGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FeedbackGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FeedbackGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FeedbackGroupByOutputType[P]>
+            : GetScalarType<T[P], FeedbackGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FeedbackSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    parentId?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    message?: boolean
+    rating?: boolean
+    status?: boolean
+    response?: boolean
+    createdAt?: boolean
+    reviewedAt?: boolean
+  }, ExtArgs["result"]["feedback"]>
+
+  export type FeedbackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    parentId?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    message?: boolean
+    rating?: boolean
+    status?: boolean
+    response?: boolean
+    createdAt?: boolean
+    reviewedAt?: boolean
+  }, ExtArgs["result"]["feedback"]>
+
+  export type FeedbackSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    parentId?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    message?: boolean
+    rating?: boolean
+    status?: boolean
+    response?: boolean
+    createdAt?: boolean
+    reviewedAt?: boolean
+  }, ExtArgs["result"]["feedback"]>
+
+  export type FeedbackSelectScalar = {
+    id?: boolean
+    parentId?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    message?: boolean
+    rating?: boolean
+    status?: boolean
+    response?: boolean
+    createdAt?: boolean
+    reviewedAt?: boolean
+  }
+
+  export type FeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parentId" | "parentName" | "parentEmail" | "message" | "rating" | "status" | "response" | "createdAt" | "reviewedAt", ExtArgs["result"]["feedback"]>
+
+  export type $FeedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Feedback"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      parentId: number
+      parentName: string
+      parentEmail: string
+      message: string
+      rating: number | null
+      status: string
+      response: string | null
+      createdAt: Date
+      reviewedAt: Date | null
+    }, ExtArgs["result"]["feedback"]>
+    composites: {}
+  }
+
+  type FeedbackGetPayload<S extends boolean | null | undefined | FeedbackDefaultArgs> = $Result.GetResult<Prisma.$FeedbackPayload, S>
+
+  type FeedbackCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FeedbackFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FeedbackCountAggregateInputType | true
+    }
+
+  export interface FeedbackDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Feedback'], meta: { name: 'Feedback' } }
+    /**
+     * Find zero or one Feedback that matches the filter.
+     * @param {FeedbackFindUniqueArgs} args - Arguments to find a Feedback
+     * @example
+     * // Get one Feedback
+     * const feedback = await prisma.feedback.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FeedbackFindUniqueArgs>(args: SelectSubset<T, FeedbackFindUniqueArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Feedback that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FeedbackFindUniqueOrThrowArgs} args - Arguments to find a Feedback
+     * @example
+     * // Get one Feedback
+     * const feedback = await prisma.feedback.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FeedbackFindUniqueOrThrowArgs>(args: SelectSubset<T, FeedbackFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Feedback that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackFindFirstArgs} args - Arguments to find a Feedback
+     * @example
+     * // Get one Feedback
+     * const feedback = await prisma.feedback.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FeedbackFindFirstArgs>(args?: SelectSubset<T, FeedbackFindFirstArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Feedback that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackFindFirstOrThrowArgs} args - Arguments to find a Feedback
+     * @example
+     * // Get one Feedback
+     * const feedback = await prisma.feedback.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FeedbackFindFirstOrThrowArgs>(args?: SelectSubset<T, FeedbackFindFirstOrThrowArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Feedbacks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Feedbacks
+     * const feedbacks = await prisma.feedback.findMany()
+     * 
+     * // Get first 10 Feedbacks
+     * const feedbacks = await prisma.feedback.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const feedbackWithIdOnly = await prisma.feedback.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FeedbackFindManyArgs>(args?: SelectSubset<T, FeedbackFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Feedback.
+     * @param {FeedbackCreateArgs} args - Arguments to create a Feedback.
+     * @example
+     * // Create one Feedback
+     * const Feedback = await prisma.feedback.create({
+     *   data: {
+     *     // ... data to create a Feedback
+     *   }
+     * })
+     * 
+     */
+    create<T extends FeedbackCreateArgs>(args: SelectSubset<T, FeedbackCreateArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Feedbacks.
+     * @param {FeedbackCreateManyArgs} args - Arguments to create many Feedbacks.
+     * @example
+     * // Create many Feedbacks
+     * const feedback = await prisma.feedback.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FeedbackCreateManyArgs>(args?: SelectSubset<T, FeedbackCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Feedbacks and returns the data saved in the database.
+     * @param {FeedbackCreateManyAndReturnArgs} args - Arguments to create many Feedbacks.
+     * @example
+     * // Create many Feedbacks
+     * const feedback = await prisma.feedback.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Feedbacks and only return the `id`
+     * const feedbackWithIdOnly = await prisma.feedback.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FeedbackCreateManyAndReturnArgs>(args?: SelectSubset<T, FeedbackCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Feedback.
+     * @param {FeedbackDeleteArgs} args - Arguments to delete one Feedback.
+     * @example
+     * // Delete one Feedback
+     * const Feedback = await prisma.feedback.delete({
+     *   where: {
+     *     // ... filter to delete one Feedback
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FeedbackDeleteArgs>(args: SelectSubset<T, FeedbackDeleteArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Feedback.
+     * @param {FeedbackUpdateArgs} args - Arguments to update one Feedback.
+     * @example
+     * // Update one Feedback
+     * const feedback = await prisma.feedback.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FeedbackUpdateArgs>(args: SelectSubset<T, FeedbackUpdateArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Feedbacks.
+     * @param {FeedbackDeleteManyArgs} args - Arguments to filter Feedbacks to delete.
+     * @example
+     * // Delete a few Feedbacks
+     * const { count } = await prisma.feedback.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FeedbackDeleteManyArgs>(args?: SelectSubset<T, FeedbackDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Feedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Feedbacks
+     * const feedback = await prisma.feedback.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FeedbackUpdateManyArgs>(args: SelectSubset<T, FeedbackUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Feedbacks and returns the data updated in the database.
+     * @param {FeedbackUpdateManyAndReturnArgs} args - Arguments to update many Feedbacks.
+     * @example
+     * // Update many Feedbacks
+     * const feedback = await prisma.feedback.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Feedbacks and only return the `id`
+     * const feedbackWithIdOnly = await prisma.feedback.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FeedbackUpdateManyAndReturnArgs>(args: SelectSubset<T, FeedbackUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Feedback.
+     * @param {FeedbackUpsertArgs} args - Arguments to update or create a Feedback.
+     * @example
+     * // Update or create a Feedback
+     * const feedback = await prisma.feedback.upsert({
+     *   create: {
+     *     // ... data to create a Feedback
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Feedback we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FeedbackUpsertArgs>(args: SelectSubset<T, FeedbackUpsertArgs<ExtArgs>>): Prisma__FeedbackClient<$Result.GetResult<Prisma.$FeedbackPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Feedbacks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackCountArgs} args - Arguments to filter Feedbacks to count.
+     * @example
+     * // Count the number of Feedbacks
+     * const count = await prisma.feedback.count({
+     *   where: {
+     *     // ... the filter for the Feedbacks we want to count
+     *   }
+     * })
+    **/
+    count<T extends FeedbackCountArgs>(
+      args?: Subset<T, FeedbackCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FeedbackCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Feedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FeedbackAggregateArgs>(args: Subset<T, FeedbackAggregateArgs>): Prisma.PrismaPromise<GetFeedbackAggregateType<T>>
+
+    /**
+     * Group by Feedback.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FeedbackGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FeedbackGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FeedbackGroupByArgs['orderBy'] }
+        : { orderBy?: FeedbackGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FeedbackGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFeedbackGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Feedback model
+   */
+  readonly fields: FeedbackFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Feedback.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FeedbackClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Feedback model
+   */
+  interface FeedbackFieldRefs {
+    readonly id: FieldRef<"Feedback", 'Int'>
+    readonly parentId: FieldRef<"Feedback", 'Int'>
+    readonly parentName: FieldRef<"Feedback", 'String'>
+    readonly parentEmail: FieldRef<"Feedback", 'String'>
+    readonly message: FieldRef<"Feedback", 'String'>
+    readonly rating: FieldRef<"Feedback", 'Int'>
+    readonly status: FieldRef<"Feedback", 'String'>
+    readonly response: FieldRef<"Feedback", 'String'>
+    readonly createdAt: FieldRef<"Feedback", 'DateTime'>
+    readonly reviewedAt: FieldRef<"Feedback", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Feedback findUnique
+   */
+  export type FeedbackFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Filter, which Feedback to fetch.
+     */
+    where: FeedbackWhereUniqueInput
+  }
+
+  /**
+   * Feedback findUniqueOrThrow
+   */
+  export type FeedbackFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Filter, which Feedback to fetch.
+     */
+    where: FeedbackWhereUniqueInput
+  }
+
+  /**
+   * Feedback findFirst
+   */
+  export type FeedbackFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Filter, which Feedback to fetch.
+     */
+    where?: FeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Feedbacks to fetch.
+     */
+    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Feedbacks.
+     */
+    cursor?: FeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Feedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Feedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Feedbacks.
+     */
+    distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * Feedback findFirstOrThrow
+   */
+  export type FeedbackFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Filter, which Feedback to fetch.
+     */
+    where?: FeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Feedbacks to fetch.
+     */
+    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Feedbacks.
+     */
+    cursor?: FeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Feedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Feedbacks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Feedbacks.
+     */
+    distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * Feedback findMany
+   */
+  export type FeedbackFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Filter, which Feedbacks to fetch.
+     */
+    where?: FeedbackWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Feedbacks to fetch.
+     */
+    orderBy?: FeedbackOrderByWithRelationInput | FeedbackOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Feedbacks.
+     */
+    cursor?: FeedbackWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Feedbacks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Feedbacks.
+     */
+    skip?: number
+    distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
+  }
+
+  /**
+   * Feedback create
+   */
+  export type FeedbackCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * The data needed to create a Feedback.
+     */
+    data: XOR<FeedbackCreateInput, FeedbackUncheckedCreateInput>
+  }
+
+  /**
+   * Feedback createMany
+   */
+  export type FeedbackCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Feedbacks.
+     */
+    data: FeedbackCreateManyInput | FeedbackCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Feedback createManyAndReturn
+   */
+  export type FeedbackCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * The data used to create many Feedbacks.
+     */
+    data: FeedbackCreateManyInput | FeedbackCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Feedback update
+   */
+  export type FeedbackUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * The data needed to update a Feedback.
+     */
+    data: XOR<FeedbackUpdateInput, FeedbackUncheckedUpdateInput>
+    /**
+     * Choose, which Feedback to update.
+     */
+    where: FeedbackWhereUniqueInput
+  }
+
+  /**
+   * Feedback updateMany
+   */
+  export type FeedbackUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Feedbacks.
+     */
+    data: XOR<FeedbackUpdateManyMutationInput, FeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which Feedbacks to update
+     */
+    where?: FeedbackWhereInput
+    /**
+     * Limit how many Feedbacks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Feedback updateManyAndReturn
+   */
+  export type FeedbackUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * The data used to update Feedbacks.
+     */
+    data: XOR<FeedbackUpdateManyMutationInput, FeedbackUncheckedUpdateManyInput>
+    /**
+     * Filter which Feedbacks to update
+     */
+    where?: FeedbackWhereInput
+    /**
+     * Limit how many Feedbacks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Feedback upsert
+   */
+  export type FeedbackUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * The filter to search for the Feedback to update in case it exists.
+     */
+    where: FeedbackWhereUniqueInput
+    /**
+     * In case the Feedback found by the `where` argument doesn't exist, create a new Feedback with this data.
+     */
+    create: XOR<FeedbackCreateInput, FeedbackUncheckedCreateInput>
+    /**
+     * In case the Feedback was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FeedbackUpdateInput, FeedbackUncheckedUpdateInput>
+  }
+
+  /**
+   * Feedback delete
+   */
+  export type FeedbackDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+    /**
+     * Filter which Feedback to delete.
+     */
+    where: FeedbackWhereUniqueInput
+  }
+
+  /**
+   * Feedback deleteMany
+   */
+  export type FeedbackDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Feedbacks to delete
+     */
+    where?: FeedbackWhereInput
+    /**
+     * Limit how many Feedbacks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Feedback without action
+   */
+  export type FeedbackDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Feedback
+     */
+    select?: FeedbackSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Feedback
+     */
+    omit?: FeedbackOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ParentAccount
+   */
+
+  export type AggregateParentAccount = {
+    _count: ParentAccountCountAggregateOutputType | null
+    _avg: ParentAccountAvgAggregateOutputType | null
+    _sum: ParentAccountSumAggregateOutputType | null
+    _min: ParentAccountMinAggregateOutputType | null
+    _max: ParentAccountMaxAggregateOutputType | null
+  }
+
+  export type ParentAccountAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ParentAccountSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ParentAccountMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    email: string | null
+    phone: string | null
+    password: string | null
+    isActivated: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ParentAccountMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    email: string | null
+    phone: string | null
+    password: string | null
+    isActivated: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ParentAccountCountAggregateOutputType = {
+    id: number
+    name: number
+    email: number
+    phone: number
+    password: number
+    isActivated: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ParentAccountAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type ParentAccountSumAggregateInputType = {
+    id?: true
+  }
+
+  export type ParentAccountMinAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    phone?: true
+    password?: true
+    isActivated?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ParentAccountMaxAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    phone?: true
+    password?: true
+    isActivated?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ParentAccountCountAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    phone?: true
+    password?: true
+    isActivated?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ParentAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParentAccount to aggregate.
+     */
+    where?: ParentAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParentAccounts to fetch.
+     */
+    orderBy?: ParentAccountOrderByWithRelationInput | ParentAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ParentAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParentAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParentAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ParentAccounts
+    **/
+    _count?: true | ParentAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ParentAccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ParentAccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ParentAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ParentAccountMaxAggregateInputType
+  }
+
+  export type GetParentAccountAggregateType<T extends ParentAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateParentAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateParentAccount[P]>
+      : GetScalarType<T[P], AggregateParentAccount[P]>
+  }
+
+
+
+
+  export type ParentAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ParentAccountWhereInput
+    orderBy?: ParentAccountOrderByWithAggregationInput | ParentAccountOrderByWithAggregationInput[]
+    by: ParentAccountScalarFieldEnum[] | ParentAccountScalarFieldEnum
+    having?: ParentAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ParentAccountCountAggregateInputType | true
+    _avg?: ParentAccountAvgAggregateInputType
+    _sum?: ParentAccountSumAggregateInputType
+    _min?: ParentAccountMinAggregateInputType
+    _max?: ParentAccountMaxAggregateInputType
+  }
+
+  export type ParentAccountGroupByOutputType = {
+    id: number
+    name: string
+    email: string
+    phone: string | null
+    password: string | null
+    isActivated: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: ParentAccountCountAggregateOutputType | null
+    _avg: ParentAccountAvgAggregateOutputType | null
+    _sum: ParentAccountSumAggregateOutputType | null
+    _min: ParentAccountMinAggregateOutputType | null
+    _max: ParentAccountMaxAggregateOutputType | null
+  }
+
+  type GetParentAccountGroupByPayload<T extends ParentAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ParentAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ParentAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ParentAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], ParentAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ParentAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    phone?: boolean
+    password?: boolean
+    isActivated?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    students?: boolean | ParentAccount$studentsArgs<ExtArgs>
+    _count?: boolean | ParentAccountCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["parentAccount"]>
+
+  export type ParentAccountSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    phone?: boolean
+    password?: boolean
+    isActivated?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["parentAccount"]>
+
+  export type ParentAccountSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    phone?: boolean
+    password?: boolean
+    isActivated?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["parentAccount"]>
+
+  export type ParentAccountSelectScalar = {
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    phone?: boolean
+    password?: boolean
+    isActivated?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ParentAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "password" | "isActivated" | "createdAt" | "updatedAt", ExtArgs["result"]["parentAccount"]>
+  export type ParentAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    students?: boolean | ParentAccount$studentsArgs<ExtArgs>
+    _count?: boolean | ParentAccountCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ParentAccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ParentAccountIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ParentAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ParentAccount"
+    objects: {
+      students: Prisma.$StudentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      email: string
+      phone: string | null
+      password: string | null
+      isActivated: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["parentAccount"]>
+    composites: {}
+  }
+
+  type ParentAccountGetPayload<S extends boolean | null | undefined | ParentAccountDefaultArgs> = $Result.GetResult<Prisma.$ParentAccountPayload, S>
+
+  type ParentAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ParentAccountFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ParentAccountCountAggregateInputType | true
+    }
+
+  export interface ParentAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ParentAccount'], meta: { name: 'ParentAccount' } }
+    /**
+     * Find zero or one ParentAccount that matches the filter.
+     * @param {ParentAccountFindUniqueArgs} args - Arguments to find a ParentAccount
+     * @example
+     * // Get one ParentAccount
+     * const parentAccount = await prisma.parentAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ParentAccountFindUniqueArgs>(args: SelectSubset<T, ParentAccountFindUniqueArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ParentAccount that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ParentAccountFindUniqueOrThrowArgs} args - Arguments to find a ParentAccount
+     * @example
+     * // Get one ParentAccount
+     * const parentAccount = await prisma.parentAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ParentAccountFindUniqueOrThrowArgs>(args: SelectSubset<T, ParentAccountFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParentAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParentAccountFindFirstArgs} args - Arguments to find a ParentAccount
+     * @example
+     * // Get one ParentAccount
+     * const parentAccount = await prisma.parentAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ParentAccountFindFirstArgs>(args?: SelectSubset<T, ParentAccountFindFirstArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ParentAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParentAccountFindFirstOrThrowArgs} args - Arguments to find a ParentAccount
+     * @example
+     * // Get one ParentAccount
+     * const parentAccount = await prisma.parentAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ParentAccountFindFirstOrThrowArgs>(args?: SelectSubset<T, ParentAccountFindFirstOrThrowArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ParentAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParentAccountFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ParentAccounts
+     * const parentAccounts = await prisma.parentAccount.findMany()
+     * 
+     * // Get first 10 ParentAccounts
+     * const parentAccounts = await prisma.parentAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const parentAccountWithIdOnly = await prisma.parentAccount.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ParentAccountFindManyArgs>(args?: SelectSubset<T, ParentAccountFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ParentAccount.
+     * @param {ParentAccountCreateArgs} args - Arguments to create a ParentAccount.
+     * @example
+     * // Create one ParentAccount
+     * const ParentAccount = await prisma.parentAccount.create({
+     *   data: {
+     *     // ... data to create a ParentAccount
+     *   }
+     * })
+     * 
+     */
+    create<T extends ParentAccountCreateArgs>(args: SelectSubset<T, ParentAccountCreateArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ParentAccounts.
+     * @param {ParentAccountCreateManyArgs} args - Arguments to create many ParentAccounts.
+     * @example
+     * // Create many ParentAccounts
+     * const parentAccount = await prisma.parentAccount.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ParentAccountCreateManyArgs>(args?: SelectSubset<T, ParentAccountCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ParentAccounts and returns the data saved in the database.
+     * @param {ParentAccountCreateManyAndReturnArgs} args - Arguments to create many ParentAccounts.
+     * @example
+     * // Create many ParentAccounts
+     * const parentAccount = await prisma.parentAccount.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ParentAccounts and only return the `id`
+     * const parentAccountWithIdOnly = await prisma.parentAccount.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ParentAccountCreateManyAndReturnArgs>(args?: SelectSubset<T, ParentAccountCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ParentAccount.
+     * @param {ParentAccountDeleteArgs} args - Arguments to delete one ParentAccount.
+     * @example
+     * // Delete one ParentAccount
+     * const ParentAccount = await prisma.parentAccount.delete({
+     *   where: {
+     *     // ... filter to delete one ParentAccount
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ParentAccountDeleteArgs>(args: SelectSubset<T, ParentAccountDeleteArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ParentAccount.
+     * @param {ParentAccountUpdateArgs} args - Arguments to update one ParentAccount.
+     * @example
+     * // Update one ParentAccount
+     * const parentAccount = await prisma.parentAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ParentAccountUpdateArgs>(args: SelectSubset<T, ParentAccountUpdateArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ParentAccounts.
+     * @param {ParentAccountDeleteManyArgs} args - Arguments to filter ParentAccounts to delete.
+     * @example
+     * // Delete a few ParentAccounts
+     * const { count } = await prisma.parentAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ParentAccountDeleteManyArgs>(args?: SelectSubset<T, ParentAccountDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParentAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParentAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ParentAccounts
+     * const parentAccount = await prisma.parentAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ParentAccountUpdateManyArgs>(args: SelectSubset<T, ParentAccountUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ParentAccounts and returns the data updated in the database.
+     * @param {ParentAccountUpdateManyAndReturnArgs} args - Arguments to update many ParentAccounts.
+     * @example
+     * // Update many ParentAccounts
+     * const parentAccount = await prisma.parentAccount.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ParentAccounts and only return the `id`
+     * const parentAccountWithIdOnly = await prisma.parentAccount.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ParentAccountUpdateManyAndReturnArgs>(args: SelectSubset<T, ParentAccountUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ParentAccount.
+     * @param {ParentAccountUpsertArgs} args - Arguments to update or create a ParentAccount.
+     * @example
+     * // Update or create a ParentAccount
+     * const parentAccount = await prisma.parentAccount.upsert({
+     *   create: {
+     *     // ... data to create a ParentAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ParentAccount we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ParentAccountUpsertArgs>(args: SelectSubset<T, ParentAccountUpsertArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ParentAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParentAccountCountArgs} args - Arguments to filter ParentAccounts to count.
+     * @example
+     * // Count the number of ParentAccounts
+     * const count = await prisma.parentAccount.count({
+     *   where: {
+     *     // ... the filter for the ParentAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends ParentAccountCountArgs>(
+      args?: Subset<T, ParentAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ParentAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ParentAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParentAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ParentAccountAggregateArgs>(args: Subset<T, ParentAccountAggregateArgs>): Prisma.PrismaPromise<GetParentAccountAggregateType<T>>
+
+    /**
+     * Group by ParentAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ParentAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ParentAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ParentAccountGroupByArgs['orderBy'] }
+        : { orderBy?: ParentAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ParentAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetParentAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ParentAccount model
+   */
+  readonly fields: ParentAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ParentAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ParentAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    students<T extends ParentAccount$studentsArgs<ExtArgs> = {}>(args?: Subset<T, ParentAccount$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ParentAccount model
+   */
+  interface ParentAccountFieldRefs {
+    readonly id: FieldRef<"ParentAccount", 'Int'>
+    readonly name: FieldRef<"ParentAccount", 'String'>
+    readonly email: FieldRef<"ParentAccount", 'String'>
+    readonly phone: FieldRef<"ParentAccount", 'String'>
+    readonly password: FieldRef<"ParentAccount", 'String'>
+    readonly isActivated: FieldRef<"ParentAccount", 'Boolean'>
+    readonly createdAt: FieldRef<"ParentAccount", 'DateTime'>
+    readonly updatedAt: FieldRef<"ParentAccount", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ParentAccount findUnique
+   */
+  export type ParentAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which ParentAccount to fetch.
+     */
+    where: ParentAccountWhereUniqueInput
+  }
+
+  /**
+   * ParentAccount findUniqueOrThrow
+   */
+  export type ParentAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which ParentAccount to fetch.
+     */
+    where: ParentAccountWhereUniqueInput
+  }
+
+  /**
+   * ParentAccount findFirst
+   */
+  export type ParentAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which ParentAccount to fetch.
+     */
+    where?: ParentAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParentAccounts to fetch.
+     */
+    orderBy?: ParentAccountOrderByWithRelationInput | ParentAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParentAccounts.
+     */
+    cursor?: ParentAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParentAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParentAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParentAccounts.
+     */
+    distinct?: ParentAccountScalarFieldEnum | ParentAccountScalarFieldEnum[]
+  }
+
+  /**
+   * ParentAccount findFirstOrThrow
+   */
+  export type ParentAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which ParentAccount to fetch.
+     */
+    where?: ParentAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParentAccounts to fetch.
+     */
+    orderBy?: ParentAccountOrderByWithRelationInput | ParentAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ParentAccounts.
+     */
+    cursor?: ParentAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParentAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParentAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ParentAccounts.
+     */
+    distinct?: ParentAccountScalarFieldEnum | ParentAccountScalarFieldEnum[]
+  }
+
+  /**
+   * ParentAccount findMany
+   */
+  export type ParentAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    /**
+     * Filter, which ParentAccounts to fetch.
+     */
+    where?: ParentAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ParentAccounts to fetch.
+     */
+    orderBy?: ParentAccountOrderByWithRelationInput | ParentAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ParentAccounts.
+     */
+    cursor?: ParentAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ParentAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ParentAccounts.
+     */
+    skip?: number
+    distinct?: ParentAccountScalarFieldEnum | ParentAccountScalarFieldEnum[]
+  }
+
+  /**
+   * ParentAccount create
+   */
+  export type ParentAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ParentAccount.
+     */
+    data: XOR<ParentAccountCreateInput, ParentAccountUncheckedCreateInput>
+  }
+
+  /**
+   * ParentAccount createMany
+   */
+  export type ParentAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ParentAccounts.
+     */
+    data: ParentAccountCreateManyInput | ParentAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ParentAccount createManyAndReturn
+   */
+  export type ParentAccountCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * The data used to create many ParentAccounts.
+     */
+    data: ParentAccountCreateManyInput | ParentAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ParentAccount update
+   */
+  export type ParentAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ParentAccount.
+     */
+    data: XOR<ParentAccountUpdateInput, ParentAccountUncheckedUpdateInput>
+    /**
+     * Choose, which ParentAccount to update.
+     */
+    where: ParentAccountWhereUniqueInput
+  }
+
+  /**
+   * ParentAccount updateMany
+   */
+  export type ParentAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ParentAccounts.
+     */
+    data: XOR<ParentAccountUpdateManyMutationInput, ParentAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which ParentAccounts to update
+     */
+    where?: ParentAccountWhereInput
+    /**
+     * Limit how many ParentAccounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParentAccount updateManyAndReturn
+   */
+  export type ParentAccountUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * The data used to update ParentAccounts.
+     */
+    data: XOR<ParentAccountUpdateManyMutationInput, ParentAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which ParentAccounts to update
+     */
+    where?: ParentAccountWhereInput
+    /**
+     * Limit how many ParentAccounts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParentAccount upsert
+   */
+  export type ParentAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ParentAccount to update in case it exists.
+     */
+    where: ParentAccountWhereUniqueInput
+    /**
+     * In case the ParentAccount found by the `where` argument doesn't exist, create a new ParentAccount with this data.
+     */
+    create: XOR<ParentAccountCreateInput, ParentAccountUncheckedCreateInput>
+    /**
+     * In case the ParentAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ParentAccountUpdateInput, ParentAccountUncheckedUpdateInput>
+  }
+
+  /**
+   * ParentAccount delete
+   */
+  export type ParentAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    /**
+     * Filter which ParentAccount to delete.
+     */
+    where: ParentAccountWhereUniqueInput
+  }
+
+  /**
+   * ParentAccount deleteMany
+   */
+  export type ParentAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ParentAccounts to delete
+     */
+    where?: ParentAccountWhereInput
+    /**
+     * Limit how many ParentAccounts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ParentAccount.students
+   */
+  export type ParentAccount$studentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
+    orderBy?: StudentOrderByWithRelationInput | StudentOrderByWithRelationInput[]
+    cursor?: StudentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentScalarFieldEnum | StudentScalarFieldEnum[]
+  }
+
+  /**
+   * ParentAccount without action
+   */
+  export type ParentAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TransactionReceipt
+   */
+
+  export type AggregateTransactionReceipt = {
+    _count: TransactionReceiptCountAggregateOutputType | null
+    _avg: TransactionReceiptAvgAggregateOutputType | null
+    _sum: TransactionReceiptSumAggregateOutputType | null
+    _min: TransactionReceiptMinAggregateOutputType | null
+    _max: TransactionReceiptMaxAggregateOutputType | null
+  }
+
+  export type TransactionReceiptAvgAggregateOutputType = {
+    id: number | null
+    parentId: number | null
+    receiptFileSize: number | null
+  }
+
+  export type TransactionReceiptSumAggregateOutputType = {
+    id: number | null
+    parentId: number | null
+    receiptFileSize: number | null
+  }
+
+  export type TransactionReceiptMinAggregateOutputType = {
+    id: number | null
+    parentId: number | null
+    parentName: string | null
+    parentEmail: string | null
+    amount: string | null
+    transactionDate: string | null
+    transactionId: string | null
+    description: string | null
+    receiptUrl: string | null
+    receiptFileName: string | null
+    receiptFileSize: number | null
+    status: string | null
+    adminNotes: string | null
+    createdAt: Date | null
+    reviewedAt: Date | null
+  }
+
+  export type TransactionReceiptMaxAggregateOutputType = {
+    id: number | null
+    parentId: number | null
+    parentName: string | null
+    parentEmail: string | null
+    amount: string | null
+    transactionDate: string | null
+    transactionId: string | null
+    description: string | null
+    receiptUrl: string | null
+    receiptFileName: string | null
+    receiptFileSize: number | null
+    status: string | null
+    adminNotes: string | null
+    createdAt: Date | null
+    reviewedAt: Date | null
+  }
+
+  export type TransactionReceiptCountAggregateOutputType = {
+    id: number
+    parentId: number
+    parentName: number
+    parentEmail: number
+    amount: number
+    transactionDate: number
+    transactionId: number
+    description: number
+    receiptUrl: number
+    receiptFileName: number
+    receiptFileSize: number
+    status: number
+    adminNotes: number
+    createdAt: number
+    reviewedAt: number
+    _all: number
+  }
+
+
+  export type TransactionReceiptAvgAggregateInputType = {
+    id?: true
+    parentId?: true
+    receiptFileSize?: true
+  }
+
+  export type TransactionReceiptSumAggregateInputType = {
+    id?: true
+    parentId?: true
+    receiptFileSize?: true
+  }
+
+  export type TransactionReceiptMinAggregateInputType = {
+    id?: true
+    parentId?: true
+    parentName?: true
+    parentEmail?: true
+    amount?: true
+    transactionDate?: true
+    transactionId?: true
+    description?: true
+    receiptUrl?: true
+    receiptFileName?: true
+    receiptFileSize?: true
+    status?: true
+    adminNotes?: true
+    createdAt?: true
+    reviewedAt?: true
+  }
+
+  export type TransactionReceiptMaxAggregateInputType = {
+    id?: true
+    parentId?: true
+    parentName?: true
+    parentEmail?: true
+    amount?: true
+    transactionDate?: true
+    transactionId?: true
+    description?: true
+    receiptUrl?: true
+    receiptFileName?: true
+    receiptFileSize?: true
+    status?: true
+    adminNotes?: true
+    createdAt?: true
+    reviewedAt?: true
+  }
+
+  export type TransactionReceiptCountAggregateInputType = {
+    id?: true
+    parentId?: true
+    parentName?: true
+    parentEmail?: true
+    amount?: true
+    transactionDate?: true
+    transactionId?: true
+    description?: true
+    receiptUrl?: true
+    receiptFileName?: true
+    receiptFileSize?: true
+    status?: true
+    adminNotes?: true
+    createdAt?: true
+    reviewedAt?: true
+    _all?: true
+  }
+
+  export type TransactionReceiptAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TransactionReceipt to aggregate.
+     */
+    where?: TransactionReceiptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransactionReceipts to fetch.
+     */
+    orderBy?: TransactionReceiptOrderByWithRelationInput | TransactionReceiptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TransactionReceiptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransactionReceipts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransactionReceipts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TransactionReceipts
+    **/
+    _count?: true | TransactionReceiptCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TransactionReceiptAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TransactionReceiptSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TransactionReceiptMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TransactionReceiptMaxAggregateInputType
+  }
+
+  export type GetTransactionReceiptAggregateType<T extends TransactionReceiptAggregateArgs> = {
+        [P in keyof T & keyof AggregateTransactionReceipt]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTransactionReceipt[P]>
+      : GetScalarType<T[P], AggregateTransactionReceipt[P]>
+  }
+
+
+
+
+  export type TransactionReceiptGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionReceiptWhereInput
+    orderBy?: TransactionReceiptOrderByWithAggregationInput | TransactionReceiptOrderByWithAggregationInput[]
+    by: TransactionReceiptScalarFieldEnum[] | TransactionReceiptScalarFieldEnum
+    having?: TransactionReceiptScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TransactionReceiptCountAggregateInputType | true
+    _avg?: TransactionReceiptAvgAggregateInputType
+    _sum?: TransactionReceiptSumAggregateInputType
+    _min?: TransactionReceiptMinAggregateInputType
+    _max?: TransactionReceiptMaxAggregateInputType
+  }
+
+  export type TransactionReceiptGroupByOutputType = {
+    id: number
+    parentId: number
+    parentName: string
+    parentEmail: string
+    amount: string
+    transactionDate: string
+    transactionId: string | null
+    description: string | null
+    receiptUrl: string
+    receiptFileName: string
+    receiptFileSize: number
+    status: string
+    adminNotes: string | null
+    createdAt: Date
+    reviewedAt: Date | null
+    _count: TransactionReceiptCountAggregateOutputType | null
+    _avg: TransactionReceiptAvgAggregateOutputType | null
+    _sum: TransactionReceiptSumAggregateOutputType | null
+    _min: TransactionReceiptMinAggregateOutputType | null
+    _max: TransactionReceiptMaxAggregateOutputType | null
+  }
+
+  type GetTransactionReceiptGroupByPayload<T extends TransactionReceiptGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TransactionReceiptGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TransactionReceiptGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TransactionReceiptGroupByOutputType[P]>
+            : GetScalarType<T[P], TransactionReceiptGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TransactionReceiptSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    parentId?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    amount?: boolean
+    transactionDate?: boolean
+    transactionId?: boolean
+    description?: boolean
+    receiptUrl?: boolean
+    receiptFileName?: boolean
+    receiptFileSize?: boolean
+    status?: boolean
+    adminNotes?: boolean
+    createdAt?: boolean
+    reviewedAt?: boolean
+  }, ExtArgs["result"]["transactionReceipt"]>
+
+  export type TransactionReceiptSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    parentId?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    amount?: boolean
+    transactionDate?: boolean
+    transactionId?: boolean
+    description?: boolean
+    receiptUrl?: boolean
+    receiptFileName?: boolean
+    receiptFileSize?: boolean
+    status?: boolean
+    adminNotes?: boolean
+    createdAt?: boolean
+    reviewedAt?: boolean
+  }, ExtArgs["result"]["transactionReceipt"]>
+
+  export type TransactionReceiptSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    parentId?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    amount?: boolean
+    transactionDate?: boolean
+    transactionId?: boolean
+    description?: boolean
+    receiptUrl?: boolean
+    receiptFileName?: boolean
+    receiptFileSize?: boolean
+    status?: boolean
+    adminNotes?: boolean
+    createdAt?: boolean
+    reviewedAt?: boolean
+  }, ExtArgs["result"]["transactionReceipt"]>
+
+  export type TransactionReceiptSelectScalar = {
+    id?: boolean
+    parentId?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    amount?: boolean
+    transactionDate?: boolean
+    transactionId?: boolean
+    description?: boolean
+    receiptUrl?: boolean
+    receiptFileName?: boolean
+    receiptFileSize?: boolean
+    status?: boolean
+    adminNotes?: boolean
+    createdAt?: boolean
+    reviewedAt?: boolean
+  }
+
+  export type TransactionReceiptOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parentId" | "parentName" | "parentEmail" | "amount" | "transactionDate" | "transactionId" | "description" | "receiptUrl" | "receiptFileName" | "receiptFileSize" | "status" | "adminNotes" | "createdAt" | "reviewedAt", ExtArgs["result"]["transactionReceipt"]>
+
+  export type $TransactionReceiptPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TransactionReceipt"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      parentId: number
+      parentName: string
+      parentEmail: string
+      amount: string
+      transactionDate: string
+      transactionId: string | null
+      description: string | null
+      receiptUrl: string
+      receiptFileName: string
+      receiptFileSize: number
+      status: string
+      adminNotes: string | null
+      createdAt: Date
+      reviewedAt: Date | null
+    }, ExtArgs["result"]["transactionReceipt"]>
+    composites: {}
+  }
+
+  type TransactionReceiptGetPayload<S extends boolean | null | undefined | TransactionReceiptDefaultArgs> = $Result.GetResult<Prisma.$TransactionReceiptPayload, S>
+
+  type TransactionReceiptCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TransactionReceiptFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TransactionReceiptCountAggregateInputType | true
+    }
+
+  export interface TransactionReceiptDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TransactionReceipt'], meta: { name: 'TransactionReceipt' } }
+    /**
+     * Find zero or one TransactionReceipt that matches the filter.
+     * @param {TransactionReceiptFindUniqueArgs} args - Arguments to find a TransactionReceipt
+     * @example
+     * // Get one TransactionReceipt
+     * const transactionReceipt = await prisma.transactionReceipt.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TransactionReceiptFindUniqueArgs>(args: SelectSubset<T, TransactionReceiptFindUniqueArgs<ExtArgs>>): Prisma__TransactionReceiptClient<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TransactionReceipt that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TransactionReceiptFindUniqueOrThrowArgs} args - Arguments to find a TransactionReceipt
+     * @example
+     * // Get one TransactionReceipt
+     * const transactionReceipt = await prisma.transactionReceipt.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TransactionReceiptFindUniqueOrThrowArgs>(args: SelectSubset<T, TransactionReceiptFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TransactionReceiptClient<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TransactionReceipt that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionReceiptFindFirstArgs} args - Arguments to find a TransactionReceipt
+     * @example
+     * // Get one TransactionReceipt
+     * const transactionReceipt = await prisma.transactionReceipt.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TransactionReceiptFindFirstArgs>(args?: SelectSubset<T, TransactionReceiptFindFirstArgs<ExtArgs>>): Prisma__TransactionReceiptClient<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TransactionReceipt that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionReceiptFindFirstOrThrowArgs} args - Arguments to find a TransactionReceipt
+     * @example
+     * // Get one TransactionReceipt
+     * const transactionReceipt = await prisma.transactionReceipt.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TransactionReceiptFindFirstOrThrowArgs>(args?: SelectSubset<T, TransactionReceiptFindFirstOrThrowArgs<ExtArgs>>): Prisma__TransactionReceiptClient<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TransactionReceipts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionReceiptFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TransactionReceipts
+     * const transactionReceipts = await prisma.transactionReceipt.findMany()
+     * 
+     * // Get first 10 TransactionReceipts
+     * const transactionReceipts = await prisma.transactionReceipt.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const transactionReceiptWithIdOnly = await prisma.transactionReceipt.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TransactionReceiptFindManyArgs>(args?: SelectSubset<T, TransactionReceiptFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TransactionReceipt.
+     * @param {TransactionReceiptCreateArgs} args - Arguments to create a TransactionReceipt.
+     * @example
+     * // Create one TransactionReceipt
+     * const TransactionReceipt = await prisma.transactionReceipt.create({
+     *   data: {
+     *     // ... data to create a TransactionReceipt
+     *   }
+     * })
+     * 
+     */
+    create<T extends TransactionReceiptCreateArgs>(args: SelectSubset<T, TransactionReceiptCreateArgs<ExtArgs>>): Prisma__TransactionReceiptClient<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TransactionReceipts.
+     * @param {TransactionReceiptCreateManyArgs} args - Arguments to create many TransactionReceipts.
+     * @example
+     * // Create many TransactionReceipts
+     * const transactionReceipt = await prisma.transactionReceipt.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TransactionReceiptCreateManyArgs>(args?: SelectSubset<T, TransactionReceiptCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TransactionReceipts and returns the data saved in the database.
+     * @param {TransactionReceiptCreateManyAndReturnArgs} args - Arguments to create many TransactionReceipts.
+     * @example
+     * // Create many TransactionReceipts
+     * const transactionReceipt = await prisma.transactionReceipt.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TransactionReceipts and only return the `id`
+     * const transactionReceiptWithIdOnly = await prisma.transactionReceipt.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TransactionReceiptCreateManyAndReturnArgs>(args?: SelectSubset<T, TransactionReceiptCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TransactionReceipt.
+     * @param {TransactionReceiptDeleteArgs} args - Arguments to delete one TransactionReceipt.
+     * @example
+     * // Delete one TransactionReceipt
+     * const TransactionReceipt = await prisma.transactionReceipt.delete({
+     *   where: {
+     *     // ... filter to delete one TransactionReceipt
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TransactionReceiptDeleteArgs>(args: SelectSubset<T, TransactionReceiptDeleteArgs<ExtArgs>>): Prisma__TransactionReceiptClient<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TransactionReceipt.
+     * @param {TransactionReceiptUpdateArgs} args - Arguments to update one TransactionReceipt.
+     * @example
+     * // Update one TransactionReceipt
+     * const transactionReceipt = await prisma.transactionReceipt.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TransactionReceiptUpdateArgs>(args: SelectSubset<T, TransactionReceiptUpdateArgs<ExtArgs>>): Prisma__TransactionReceiptClient<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TransactionReceipts.
+     * @param {TransactionReceiptDeleteManyArgs} args - Arguments to filter TransactionReceipts to delete.
+     * @example
+     * // Delete a few TransactionReceipts
+     * const { count } = await prisma.transactionReceipt.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TransactionReceiptDeleteManyArgs>(args?: SelectSubset<T, TransactionReceiptDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TransactionReceipts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionReceiptUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TransactionReceipts
+     * const transactionReceipt = await prisma.transactionReceipt.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TransactionReceiptUpdateManyArgs>(args: SelectSubset<T, TransactionReceiptUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TransactionReceipts and returns the data updated in the database.
+     * @param {TransactionReceiptUpdateManyAndReturnArgs} args - Arguments to update many TransactionReceipts.
+     * @example
+     * // Update many TransactionReceipts
+     * const transactionReceipt = await prisma.transactionReceipt.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TransactionReceipts and only return the `id`
+     * const transactionReceiptWithIdOnly = await prisma.transactionReceipt.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TransactionReceiptUpdateManyAndReturnArgs>(args: SelectSubset<T, TransactionReceiptUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TransactionReceipt.
+     * @param {TransactionReceiptUpsertArgs} args - Arguments to update or create a TransactionReceipt.
+     * @example
+     * // Update or create a TransactionReceipt
+     * const transactionReceipt = await prisma.transactionReceipt.upsert({
+     *   create: {
+     *     // ... data to create a TransactionReceipt
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TransactionReceipt we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TransactionReceiptUpsertArgs>(args: SelectSubset<T, TransactionReceiptUpsertArgs<ExtArgs>>): Prisma__TransactionReceiptClient<$Result.GetResult<Prisma.$TransactionReceiptPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TransactionReceipts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionReceiptCountArgs} args - Arguments to filter TransactionReceipts to count.
+     * @example
+     * // Count the number of TransactionReceipts
+     * const count = await prisma.transactionReceipt.count({
+     *   where: {
+     *     // ... the filter for the TransactionReceipts we want to count
+     *   }
+     * })
+    **/
+    count<T extends TransactionReceiptCountArgs>(
+      args?: Subset<T, TransactionReceiptCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TransactionReceiptCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TransactionReceipt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionReceiptAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TransactionReceiptAggregateArgs>(args: Subset<T, TransactionReceiptAggregateArgs>): Prisma.PrismaPromise<GetTransactionReceiptAggregateType<T>>
+
+    /**
+     * Group by TransactionReceipt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionReceiptGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TransactionReceiptGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TransactionReceiptGroupByArgs['orderBy'] }
+        : { orderBy?: TransactionReceiptGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TransactionReceiptGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTransactionReceiptGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TransactionReceipt model
+   */
+  readonly fields: TransactionReceiptFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TransactionReceipt.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TransactionReceiptClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TransactionReceipt model
+   */
+  interface TransactionReceiptFieldRefs {
+    readonly id: FieldRef<"TransactionReceipt", 'Int'>
+    readonly parentId: FieldRef<"TransactionReceipt", 'Int'>
+    readonly parentName: FieldRef<"TransactionReceipt", 'String'>
+    readonly parentEmail: FieldRef<"TransactionReceipt", 'String'>
+    readonly amount: FieldRef<"TransactionReceipt", 'String'>
+    readonly transactionDate: FieldRef<"TransactionReceipt", 'String'>
+    readonly transactionId: FieldRef<"TransactionReceipt", 'String'>
+    readonly description: FieldRef<"TransactionReceipt", 'String'>
+    readonly receiptUrl: FieldRef<"TransactionReceipt", 'String'>
+    readonly receiptFileName: FieldRef<"TransactionReceipt", 'String'>
+    readonly receiptFileSize: FieldRef<"TransactionReceipt", 'Int'>
+    readonly status: FieldRef<"TransactionReceipt", 'String'>
+    readonly adminNotes: FieldRef<"TransactionReceipt", 'String'>
+    readonly createdAt: FieldRef<"TransactionReceipt", 'DateTime'>
+    readonly reviewedAt: FieldRef<"TransactionReceipt", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TransactionReceipt findUnique
+   */
+  export type TransactionReceiptFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * Filter, which TransactionReceipt to fetch.
+     */
+    where: TransactionReceiptWhereUniqueInput
+  }
+
+  /**
+   * TransactionReceipt findUniqueOrThrow
+   */
+  export type TransactionReceiptFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * Filter, which TransactionReceipt to fetch.
+     */
+    where: TransactionReceiptWhereUniqueInput
+  }
+
+  /**
+   * TransactionReceipt findFirst
+   */
+  export type TransactionReceiptFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * Filter, which TransactionReceipt to fetch.
+     */
+    where?: TransactionReceiptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransactionReceipts to fetch.
+     */
+    orderBy?: TransactionReceiptOrderByWithRelationInput | TransactionReceiptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TransactionReceipts.
+     */
+    cursor?: TransactionReceiptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransactionReceipts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransactionReceipts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TransactionReceipts.
+     */
+    distinct?: TransactionReceiptScalarFieldEnum | TransactionReceiptScalarFieldEnum[]
+  }
+
+  /**
+   * TransactionReceipt findFirstOrThrow
+   */
+  export type TransactionReceiptFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * Filter, which TransactionReceipt to fetch.
+     */
+    where?: TransactionReceiptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransactionReceipts to fetch.
+     */
+    orderBy?: TransactionReceiptOrderByWithRelationInput | TransactionReceiptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TransactionReceipts.
+     */
+    cursor?: TransactionReceiptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransactionReceipts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransactionReceipts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TransactionReceipts.
+     */
+    distinct?: TransactionReceiptScalarFieldEnum | TransactionReceiptScalarFieldEnum[]
+  }
+
+  /**
+   * TransactionReceipt findMany
+   */
+  export type TransactionReceiptFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * Filter, which TransactionReceipts to fetch.
+     */
+    where?: TransactionReceiptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TransactionReceipts to fetch.
+     */
+    orderBy?: TransactionReceiptOrderByWithRelationInput | TransactionReceiptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TransactionReceipts.
+     */
+    cursor?: TransactionReceiptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TransactionReceipts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TransactionReceipts.
+     */
+    skip?: number
+    distinct?: TransactionReceiptScalarFieldEnum | TransactionReceiptScalarFieldEnum[]
+  }
+
+  /**
+   * TransactionReceipt create
+   */
+  export type TransactionReceiptCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * The data needed to create a TransactionReceipt.
+     */
+    data: XOR<TransactionReceiptCreateInput, TransactionReceiptUncheckedCreateInput>
+  }
+
+  /**
+   * TransactionReceipt createMany
+   */
+  export type TransactionReceiptCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TransactionReceipts.
+     */
+    data: TransactionReceiptCreateManyInput | TransactionReceiptCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TransactionReceipt createManyAndReturn
+   */
+  export type TransactionReceiptCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * The data used to create many TransactionReceipts.
+     */
+    data: TransactionReceiptCreateManyInput | TransactionReceiptCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TransactionReceipt update
+   */
+  export type TransactionReceiptUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * The data needed to update a TransactionReceipt.
+     */
+    data: XOR<TransactionReceiptUpdateInput, TransactionReceiptUncheckedUpdateInput>
+    /**
+     * Choose, which TransactionReceipt to update.
+     */
+    where: TransactionReceiptWhereUniqueInput
+  }
+
+  /**
+   * TransactionReceipt updateMany
+   */
+  export type TransactionReceiptUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TransactionReceipts.
+     */
+    data: XOR<TransactionReceiptUpdateManyMutationInput, TransactionReceiptUncheckedUpdateManyInput>
+    /**
+     * Filter which TransactionReceipts to update
+     */
+    where?: TransactionReceiptWhereInput
+    /**
+     * Limit how many TransactionReceipts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TransactionReceipt updateManyAndReturn
+   */
+  export type TransactionReceiptUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * The data used to update TransactionReceipts.
+     */
+    data: XOR<TransactionReceiptUpdateManyMutationInput, TransactionReceiptUncheckedUpdateManyInput>
+    /**
+     * Filter which TransactionReceipts to update
+     */
+    where?: TransactionReceiptWhereInput
+    /**
+     * Limit how many TransactionReceipts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TransactionReceipt upsert
+   */
+  export type TransactionReceiptUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * The filter to search for the TransactionReceipt to update in case it exists.
+     */
+    where: TransactionReceiptWhereUniqueInput
+    /**
+     * In case the TransactionReceipt found by the `where` argument doesn't exist, create a new TransactionReceipt with this data.
+     */
+    create: XOR<TransactionReceiptCreateInput, TransactionReceiptUncheckedCreateInput>
+    /**
+     * In case the TransactionReceipt was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TransactionReceiptUpdateInput, TransactionReceiptUncheckedUpdateInput>
+  }
+
+  /**
+   * TransactionReceipt delete
+   */
+  export type TransactionReceiptDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+    /**
+     * Filter which TransactionReceipt to delete.
+     */
+    where: TransactionReceiptWhereUniqueInput
+  }
+
+  /**
+   * TransactionReceipt deleteMany
+   */
+  export type TransactionReceiptDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TransactionReceipts to delete
+     */
+    where?: TransactionReceiptWhereInput
+    /**
+     * Limit how many TransactionReceipts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TransactionReceipt without action
+   */
+  export type TransactionReceiptDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TransactionReceipt
+     */
+    select?: TransactionReceiptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TransactionReceipt
+     */
+    omit?: TransactionReceiptOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PasswordResetRequest
+   */
+
+  export type AggregatePasswordResetRequest = {
+    _count: PasswordResetRequestCountAggregateOutputType | null
+    _avg: PasswordResetRequestAvgAggregateOutputType | null
+    _sum: PasswordResetRequestSumAggregateOutputType | null
+    _min: PasswordResetRequestMinAggregateOutputType | null
+    _max: PasswordResetRequestMaxAggregateOutputType | null
+  }
+
+  export type PasswordResetRequestAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type PasswordResetRequestSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type PasswordResetRequestMinAggregateOutputType = {
+    id: number | null
+    role: string | null
+    userId: number | null
+    tokenHash: string | null
+    expiresAt: Date | null
+    isUsed: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PasswordResetRequestMaxAggregateOutputType = {
+    id: number | null
+    role: string | null
+    userId: number | null
+    tokenHash: string | null
+    expiresAt: Date | null
+    isUsed: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PasswordResetRequestCountAggregateOutputType = {
+    id: number
+    role: number
+    userId: number
+    tokenHash: number
+    expiresAt: number
+    isUsed: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PasswordResetRequestAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type PasswordResetRequestSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type PasswordResetRequestMinAggregateInputType = {
+    id?: true
+    role?: true
+    userId?: true
+    tokenHash?: true
+    expiresAt?: true
+    isUsed?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PasswordResetRequestMaxAggregateInputType = {
+    id?: true
+    role?: true
+    userId?: true
+    tokenHash?: true
+    expiresAt?: true
+    isUsed?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PasswordResetRequestCountAggregateInputType = {
+    id?: true
+    role?: true
+    userId?: true
+    tokenHash?: true
+    expiresAt?: true
+    isUsed?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PasswordResetRequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PasswordResetRequest to aggregate.
+     */
+    where?: PasswordResetRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PasswordResetRequests to fetch.
+     */
+    orderBy?: PasswordResetRequestOrderByWithRelationInput | PasswordResetRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PasswordResetRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PasswordResetRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PasswordResetRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PasswordResetRequests
+    **/
+    _count?: true | PasswordResetRequestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PasswordResetRequestAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PasswordResetRequestSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PasswordResetRequestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PasswordResetRequestMaxAggregateInputType
+  }
+
+  export type GetPasswordResetRequestAggregateType<T extends PasswordResetRequestAggregateArgs> = {
+        [P in keyof T & keyof AggregatePasswordResetRequest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePasswordResetRequest[P]>
+      : GetScalarType<T[P], AggregatePasswordResetRequest[P]>
+  }
+
+
+
+
+  export type PasswordResetRequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PasswordResetRequestWhereInput
+    orderBy?: PasswordResetRequestOrderByWithAggregationInput | PasswordResetRequestOrderByWithAggregationInput[]
+    by: PasswordResetRequestScalarFieldEnum[] | PasswordResetRequestScalarFieldEnum
+    having?: PasswordResetRequestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PasswordResetRequestCountAggregateInputType | true
+    _avg?: PasswordResetRequestAvgAggregateInputType
+    _sum?: PasswordResetRequestSumAggregateInputType
+    _min?: PasswordResetRequestMinAggregateInputType
+    _max?: PasswordResetRequestMaxAggregateInputType
+  }
+
+  export type PasswordResetRequestGroupByOutputType = {
+    id: number
+    role: string
+    userId: number
+    tokenHash: string
+    expiresAt: Date
+    isUsed: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: PasswordResetRequestCountAggregateOutputType | null
+    _avg: PasswordResetRequestAvgAggregateOutputType | null
+    _sum: PasswordResetRequestSumAggregateOutputType | null
+    _min: PasswordResetRequestMinAggregateOutputType | null
+    _max: PasswordResetRequestMaxAggregateOutputType | null
+  }
+
+  type GetPasswordResetRequestGroupByPayload<T extends PasswordResetRequestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PasswordResetRequestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PasswordResetRequestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PasswordResetRequestGroupByOutputType[P]>
+            : GetScalarType<T[P], PasswordResetRequestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PasswordResetRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    role?: boolean
+    userId?: boolean
+    tokenHash?: boolean
+    expiresAt?: boolean
+    isUsed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["passwordResetRequest"]>
+
+  export type PasswordResetRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    role?: boolean
+    userId?: boolean
+    tokenHash?: boolean
+    expiresAt?: boolean
+    isUsed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["passwordResetRequest"]>
+
+  export type PasswordResetRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    role?: boolean
+    userId?: boolean
+    tokenHash?: boolean
+    expiresAt?: boolean
+    isUsed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["passwordResetRequest"]>
+
+  export type PasswordResetRequestSelectScalar = {
+    id?: boolean
+    role?: boolean
+    userId?: boolean
+    tokenHash?: boolean
+    expiresAt?: boolean
+    isUsed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PasswordResetRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "role" | "userId" | "tokenHash" | "expiresAt" | "isUsed" | "createdAt" | "updatedAt", ExtArgs["result"]["passwordResetRequest"]>
+
+  export type $PasswordResetRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PasswordResetRequest"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      role: string
+      userId: number
+      tokenHash: string
+      expiresAt: Date
+      isUsed: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["passwordResetRequest"]>
+    composites: {}
+  }
+
+  type PasswordResetRequestGetPayload<S extends boolean | null | undefined | PasswordResetRequestDefaultArgs> = $Result.GetResult<Prisma.$PasswordResetRequestPayload, S>
+
+  type PasswordResetRequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PasswordResetRequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PasswordResetRequestCountAggregateInputType | true
+    }
+
+  export interface PasswordResetRequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PasswordResetRequest'], meta: { name: 'PasswordResetRequest' } }
+    /**
+     * Find zero or one PasswordResetRequest that matches the filter.
+     * @param {PasswordResetRequestFindUniqueArgs} args - Arguments to find a PasswordResetRequest
+     * @example
+     * // Get one PasswordResetRequest
+     * const passwordResetRequest = await prisma.passwordResetRequest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PasswordResetRequestFindUniqueArgs>(args: SelectSubset<T, PasswordResetRequestFindUniqueArgs<ExtArgs>>): Prisma__PasswordResetRequestClient<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PasswordResetRequest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PasswordResetRequestFindUniqueOrThrowArgs} args - Arguments to find a PasswordResetRequest
+     * @example
+     * // Get one PasswordResetRequest
+     * const passwordResetRequest = await prisma.passwordResetRequest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PasswordResetRequestFindUniqueOrThrowArgs>(args: SelectSubset<T, PasswordResetRequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PasswordResetRequestClient<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PasswordResetRequest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PasswordResetRequestFindFirstArgs} args - Arguments to find a PasswordResetRequest
+     * @example
+     * // Get one PasswordResetRequest
+     * const passwordResetRequest = await prisma.passwordResetRequest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PasswordResetRequestFindFirstArgs>(args?: SelectSubset<T, PasswordResetRequestFindFirstArgs<ExtArgs>>): Prisma__PasswordResetRequestClient<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PasswordResetRequest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PasswordResetRequestFindFirstOrThrowArgs} args - Arguments to find a PasswordResetRequest
+     * @example
+     * // Get one PasswordResetRequest
+     * const passwordResetRequest = await prisma.passwordResetRequest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PasswordResetRequestFindFirstOrThrowArgs>(args?: SelectSubset<T, PasswordResetRequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__PasswordResetRequestClient<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PasswordResetRequests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PasswordResetRequestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PasswordResetRequests
+     * const passwordResetRequests = await prisma.passwordResetRequest.findMany()
+     * 
+     * // Get first 10 PasswordResetRequests
+     * const passwordResetRequests = await prisma.passwordResetRequest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const passwordResetRequestWithIdOnly = await prisma.passwordResetRequest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PasswordResetRequestFindManyArgs>(args?: SelectSubset<T, PasswordResetRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PasswordResetRequest.
+     * @param {PasswordResetRequestCreateArgs} args - Arguments to create a PasswordResetRequest.
+     * @example
+     * // Create one PasswordResetRequest
+     * const PasswordResetRequest = await prisma.passwordResetRequest.create({
+     *   data: {
+     *     // ... data to create a PasswordResetRequest
+     *   }
+     * })
+     * 
+     */
+    create<T extends PasswordResetRequestCreateArgs>(args: SelectSubset<T, PasswordResetRequestCreateArgs<ExtArgs>>): Prisma__PasswordResetRequestClient<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PasswordResetRequests.
+     * @param {PasswordResetRequestCreateManyArgs} args - Arguments to create many PasswordResetRequests.
+     * @example
+     * // Create many PasswordResetRequests
+     * const passwordResetRequest = await prisma.passwordResetRequest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PasswordResetRequestCreateManyArgs>(args?: SelectSubset<T, PasswordResetRequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PasswordResetRequests and returns the data saved in the database.
+     * @param {PasswordResetRequestCreateManyAndReturnArgs} args - Arguments to create many PasswordResetRequests.
+     * @example
+     * // Create many PasswordResetRequests
+     * const passwordResetRequest = await prisma.passwordResetRequest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PasswordResetRequests and only return the `id`
+     * const passwordResetRequestWithIdOnly = await prisma.passwordResetRequest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PasswordResetRequestCreateManyAndReturnArgs>(args?: SelectSubset<T, PasswordResetRequestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PasswordResetRequest.
+     * @param {PasswordResetRequestDeleteArgs} args - Arguments to delete one PasswordResetRequest.
+     * @example
+     * // Delete one PasswordResetRequest
+     * const PasswordResetRequest = await prisma.passwordResetRequest.delete({
+     *   where: {
+     *     // ... filter to delete one PasswordResetRequest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PasswordResetRequestDeleteArgs>(args: SelectSubset<T, PasswordResetRequestDeleteArgs<ExtArgs>>): Prisma__PasswordResetRequestClient<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PasswordResetRequest.
+     * @param {PasswordResetRequestUpdateArgs} args - Arguments to update one PasswordResetRequest.
+     * @example
+     * // Update one PasswordResetRequest
+     * const passwordResetRequest = await prisma.passwordResetRequest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PasswordResetRequestUpdateArgs>(args: SelectSubset<T, PasswordResetRequestUpdateArgs<ExtArgs>>): Prisma__PasswordResetRequestClient<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PasswordResetRequests.
+     * @param {PasswordResetRequestDeleteManyArgs} args - Arguments to filter PasswordResetRequests to delete.
+     * @example
+     * // Delete a few PasswordResetRequests
+     * const { count } = await prisma.passwordResetRequest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PasswordResetRequestDeleteManyArgs>(args?: SelectSubset<T, PasswordResetRequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PasswordResetRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PasswordResetRequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PasswordResetRequests
+     * const passwordResetRequest = await prisma.passwordResetRequest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PasswordResetRequestUpdateManyArgs>(args: SelectSubset<T, PasswordResetRequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PasswordResetRequests and returns the data updated in the database.
+     * @param {PasswordResetRequestUpdateManyAndReturnArgs} args - Arguments to update many PasswordResetRequests.
+     * @example
+     * // Update many PasswordResetRequests
+     * const passwordResetRequest = await prisma.passwordResetRequest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PasswordResetRequests and only return the `id`
+     * const passwordResetRequestWithIdOnly = await prisma.passwordResetRequest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PasswordResetRequestUpdateManyAndReturnArgs>(args: SelectSubset<T, PasswordResetRequestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PasswordResetRequest.
+     * @param {PasswordResetRequestUpsertArgs} args - Arguments to update or create a PasswordResetRequest.
+     * @example
+     * // Update or create a PasswordResetRequest
+     * const passwordResetRequest = await prisma.passwordResetRequest.upsert({
+     *   create: {
+     *     // ... data to create a PasswordResetRequest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PasswordResetRequest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PasswordResetRequestUpsertArgs>(args: SelectSubset<T, PasswordResetRequestUpsertArgs<ExtArgs>>): Prisma__PasswordResetRequestClient<$Result.GetResult<Prisma.$PasswordResetRequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PasswordResetRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PasswordResetRequestCountArgs} args - Arguments to filter PasswordResetRequests to count.
+     * @example
+     * // Count the number of PasswordResetRequests
+     * const count = await prisma.passwordResetRequest.count({
+     *   where: {
+     *     // ... the filter for the PasswordResetRequests we want to count
+     *   }
+     * })
+    **/
+    count<T extends PasswordResetRequestCountArgs>(
+      args?: Subset<T, PasswordResetRequestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PasswordResetRequestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PasswordResetRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PasswordResetRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PasswordResetRequestAggregateArgs>(args: Subset<T, PasswordResetRequestAggregateArgs>): Prisma.PrismaPromise<GetPasswordResetRequestAggregateType<T>>
+
+    /**
+     * Group by PasswordResetRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PasswordResetRequestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PasswordResetRequestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PasswordResetRequestGroupByArgs['orderBy'] }
+        : { orderBy?: PasswordResetRequestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PasswordResetRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPasswordResetRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PasswordResetRequest model
+   */
+  readonly fields: PasswordResetRequestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PasswordResetRequest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PasswordResetRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PasswordResetRequest model
+   */
+  interface PasswordResetRequestFieldRefs {
+    readonly id: FieldRef<"PasswordResetRequest", 'Int'>
+    readonly role: FieldRef<"PasswordResetRequest", 'String'>
+    readonly userId: FieldRef<"PasswordResetRequest", 'Int'>
+    readonly tokenHash: FieldRef<"PasswordResetRequest", 'String'>
+    readonly expiresAt: FieldRef<"PasswordResetRequest", 'DateTime'>
+    readonly isUsed: FieldRef<"PasswordResetRequest", 'Boolean'>
+    readonly createdAt: FieldRef<"PasswordResetRequest", 'DateTime'>
+    readonly updatedAt: FieldRef<"PasswordResetRequest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PasswordResetRequest findUnique
+   */
+  export type PasswordResetRequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * Filter, which PasswordResetRequest to fetch.
+     */
+    where: PasswordResetRequestWhereUniqueInput
+  }
+
+  /**
+   * PasswordResetRequest findUniqueOrThrow
+   */
+  export type PasswordResetRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * Filter, which PasswordResetRequest to fetch.
+     */
+    where: PasswordResetRequestWhereUniqueInput
+  }
+
+  /**
+   * PasswordResetRequest findFirst
+   */
+  export type PasswordResetRequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * Filter, which PasswordResetRequest to fetch.
+     */
+    where?: PasswordResetRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PasswordResetRequests to fetch.
+     */
+    orderBy?: PasswordResetRequestOrderByWithRelationInput | PasswordResetRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PasswordResetRequests.
+     */
+    cursor?: PasswordResetRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PasswordResetRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PasswordResetRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PasswordResetRequests.
+     */
+    distinct?: PasswordResetRequestScalarFieldEnum | PasswordResetRequestScalarFieldEnum[]
+  }
+
+  /**
+   * PasswordResetRequest findFirstOrThrow
+   */
+  export type PasswordResetRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * Filter, which PasswordResetRequest to fetch.
+     */
+    where?: PasswordResetRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PasswordResetRequests to fetch.
+     */
+    orderBy?: PasswordResetRequestOrderByWithRelationInput | PasswordResetRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PasswordResetRequests.
+     */
+    cursor?: PasswordResetRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PasswordResetRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PasswordResetRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PasswordResetRequests.
+     */
+    distinct?: PasswordResetRequestScalarFieldEnum | PasswordResetRequestScalarFieldEnum[]
+  }
+
+  /**
+   * PasswordResetRequest findMany
+   */
+  export type PasswordResetRequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * Filter, which PasswordResetRequests to fetch.
+     */
+    where?: PasswordResetRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PasswordResetRequests to fetch.
+     */
+    orderBy?: PasswordResetRequestOrderByWithRelationInput | PasswordResetRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PasswordResetRequests.
+     */
+    cursor?: PasswordResetRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PasswordResetRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PasswordResetRequests.
+     */
+    skip?: number
+    distinct?: PasswordResetRequestScalarFieldEnum | PasswordResetRequestScalarFieldEnum[]
+  }
+
+  /**
+   * PasswordResetRequest create
+   */
+  export type PasswordResetRequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * The data needed to create a PasswordResetRequest.
+     */
+    data: XOR<PasswordResetRequestCreateInput, PasswordResetRequestUncheckedCreateInput>
+  }
+
+  /**
+   * PasswordResetRequest createMany
+   */
+  export type PasswordResetRequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PasswordResetRequests.
+     */
+    data: PasswordResetRequestCreateManyInput | PasswordResetRequestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PasswordResetRequest createManyAndReturn
+   */
+  export type PasswordResetRequestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * The data used to create many PasswordResetRequests.
+     */
+    data: PasswordResetRequestCreateManyInput | PasswordResetRequestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PasswordResetRequest update
+   */
+  export type PasswordResetRequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * The data needed to update a PasswordResetRequest.
+     */
+    data: XOR<PasswordResetRequestUpdateInput, PasswordResetRequestUncheckedUpdateInput>
+    /**
+     * Choose, which PasswordResetRequest to update.
+     */
+    where: PasswordResetRequestWhereUniqueInput
+  }
+
+  /**
+   * PasswordResetRequest updateMany
+   */
+  export type PasswordResetRequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PasswordResetRequests.
+     */
+    data: XOR<PasswordResetRequestUpdateManyMutationInput, PasswordResetRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which PasswordResetRequests to update
+     */
+    where?: PasswordResetRequestWhereInput
+    /**
+     * Limit how many PasswordResetRequests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PasswordResetRequest updateManyAndReturn
+   */
+  export type PasswordResetRequestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * The data used to update PasswordResetRequests.
+     */
+    data: XOR<PasswordResetRequestUpdateManyMutationInput, PasswordResetRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which PasswordResetRequests to update
+     */
+    where?: PasswordResetRequestWhereInput
+    /**
+     * Limit how many PasswordResetRequests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PasswordResetRequest upsert
+   */
+  export type PasswordResetRequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * The filter to search for the PasswordResetRequest to update in case it exists.
+     */
+    where: PasswordResetRequestWhereUniqueInput
+    /**
+     * In case the PasswordResetRequest found by the `where` argument doesn't exist, create a new PasswordResetRequest with this data.
+     */
+    create: XOR<PasswordResetRequestCreateInput, PasswordResetRequestUncheckedCreateInput>
+    /**
+     * In case the PasswordResetRequest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PasswordResetRequestUpdateInput, PasswordResetRequestUncheckedUpdateInput>
+  }
+
+  /**
+   * PasswordResetRequest delete
+   */
+  export type PasswordResetRequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+    /**
+     * Filter which PasswordResetRequest to delete.
+     */
+    where: PasswordResetRequestWhereUniqueInput
+  }
+
+  /**
+   * PasswordResetRequest deleteMany
+   */
+  export type PasswordResetRequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PasswordResetRequests to delete
+     */
+    where?: PasswordResetRequestWhereInput
+    /**
+     * Limit how many PasswordResetRequests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PasswordResetRequest without action
+   */
+  export type PasswordResetRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PasswordResetRequest
+     */
+    select?: PasswordResetRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PasswordResetRequest
+     */
+    omit?: PasswordResetRequestOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Mentor
+   */
+
+  export type AggregateMentor = {
+    _count: MentorCountAggregateOutputType | null
+    _avg: MentorAvgAggregateOutputType | null
+    _sum: MentorSumAggregateOutputType | null
+    _min: MentorMinAggregateOutputType | null
+    _max: MentorMaxAggregateOutputType | null
+  }
+
+  export type MentorAvgAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    displayOrder: number | null
+  }
+
+  export type MentorSumAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    displayOrder: number | null
+  }
+
+  export type MentorMinAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    name: string | null
+    role: string | null
+    workplace: string | null
+    education: string | null
+    institution: string | null
+    image: string | null
+    experience: string | null
+    bio: string | null
+    isActive: boolean | null
+    displayOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    department: string | null
+  }
+
+  export type MentorMaxAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    name: string | null
+    role: string | null
+    workplace: string | null
+    education: string | null
+    institution: string | null
+    image: string | null
+    experience: string | null
+    bio: string | null
+    isActive: boolean | null
+    displayOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    department: string | null
+  }
+
+  export type MentorCountAggregateOutputType = {
+    id: number
+    teacherId: number
+    name: number
+    role: number
+    workplace: number
+    education: number
+    institution: number
+    image: number
+    experience: number
+    specialties: number
+    achievements: number
+    bio: number
+    isActive: number
+    displayOrder: number
+    createdAt: number
+    updatedAt: number
+    department: number
+    _all: number
+  }
+
+
+  export type MentorAvgAggregateInputType = {
+    id?: true
+    teacherId?: true
+    displayOrder?: true
+  }
+
+  export type MentorSumAggregateInputType = {
+    id?: true
+    teacherId?: true
+    displayOrder?: true
+  }
+
+  export type MentorMinAggregateInputType = {
+    id?: true
+    teacherId?: true
+    name?: true
+    role?: true
+    workplace?: true
+    education?: true
+    institution?: true
+    image?: true
+    experience?: true
+    bio?: true
+    isActive?: true
+    displayOrder?: true
+    createdAt?: true
+    updatedAt?: true
+    department?: true
+  }
+
+  export type MentorMaxAggregateInputType = {
+    id?: true
+    teacherId?: true
+    name?: true
+    role?: true
+    workplace?: true
+    education?: true
+    institution?: true
+    image?: true
+    experience?: true
+    bio?: true
+    isActive?: true
+    displayOrder?: true
+    createdAt?: true
+    updatedAt?: true
+    department?: true
+  }
+
+  export type MentorCountAggregateInputType = {
+    id?: true
+    teacherId?: true
+    name?: true
+    role?: true
+    workplace?: true
+    education?: true
+    institution?: true
+    image?: true
+    experience?: true
+    specialties?: true
+    achievements?: true
+    bio?: true
+    isActive?: true
+    displayOrder?: true
+    createdAt?: true
+    updatedAt?: true
+    department?: true
+    _all?: true
+  }
+
+  export type MentorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Mentor to aggregate.
+     */
+    where?: MentorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Mentors to fetch.
+     */
+    orderBy?: MentorOrderByWithRelationInput | MentorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MentorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Mentors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Mentors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Mentors
+    **/
+    _count?: true | MentorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MentorAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MentorSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MentorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MentorMaxAggregateInputType
+  }
+
+  export type GetMentorAggregateType<T extends MentorAggregateArgs> = {
+        [P in keyof T & keyof AggregateMentor]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMentor[P]>
+      : GetScalarType<T[P], AggregateMentor[P]>
+  }
+
+
+
+
+  export type MentorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentorWhereInput
+    orderBy?: MentorOrderByWithAggregationInput | MentorOrderByWithAggregationInput[]
+    by: MentorScalarFieldEnum[] | MentorScalarFieldEnum
+    having?: MentorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MentorCountAggregateInputType | true
+    _avg?: MentorAvgAggregateInputType
+    _sum?: MentorSumAggregateInputType
+    _min?: MentorMinAggregateInputType
+    _max?: MentorMaxAggregateInputType
+  }
+
+  export type MentorGroupByOutputType = {
+    id: number
+    teacherId: number | null
+    name: string
+    role: string
+    workplace: string
+    education: string
+    institution: string
+    image: string
+    experience: string | null
+    specialties: string[]
+    achievements: string[]
+    bio: string
+    isActive: boolean
+    displayOrder: number
+    createdAt: Date
+    updatedAt: Date
+    department: string
+    _count: MentorCountAggregateOutputType | null
+    _avg: MentorAvgAggregateOutputType | null
+    _sum: MentorSumAggregateOutputType | null
+    _min: MentorMinAggregateOutputType | null
+    _max: MentorMaxAggregateOutputType | null
+  }
+
+  type GetMentorGroupByPayload<T extends MentorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MentorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MentorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MentorGroupByOutputType[P]>
+            : GetScalarType<T[P], MentorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MentorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    name?: boolean
+    role?: boolean
+    workplace?: boolean
+    education?: boolean
+    institution?: boolean
+    image?: boolean
+    experience?: boolean
+    specialties?: boolean
+    achievements?: boolean
+    bio?: boolean
+    isActive?: boolean
+    displayOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    department?: boolean
+    teacher?: boolean | Mentor$teacherArgs<ExtArgs>
+  }, ExtArgs["result"]["mentor"]>
+
+  export type MentorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    name?: boolean
+    role?: boolean
+    workplace?: boolean
+    education?: boolean
+    institution?: boolean
+    image?: boolean
+    experience?: boolean
+    specialties?: boolean
+    achievements?: boolean
+    bio?: boolean
+    isActive?: boolean
+    displayOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    department?: boolean
+    teacher?: boolean | Mentor$teacherArgs<ExtArgs>
+  }, ExtArgs["result"]["mentor"]>
+
+  export type MentorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    name?: boolean
+    role?: boolean
+    workplace?: boolean
+    education?: boolean
+    institution?: boolean
+    image?: boolean
+    experience?: boolean
+    specialties?: boolean
+    achievements?: boolean
+    bio?: boolean
+    isActive?: boolean
+    displayOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    department?: boolean
+    teacher?: boolean | Mentor$teacherArgs<ExtArgs>
+  }, ExtArgs["result"]["mentor"]>
+
+  export type MentorSelectScalar = {
+    id?: boolean
+    teacherId?: boolean
+    name?: boolean
+    role?: boolean
+    workplace?: boolean
+    education?: boolean
+    institution?: boolean
+    image?: boolean
+    experience?: boolean
+    specialties?: boolean
+    achievements?: boolean
+    bio?: boolean
+    isActive?: boolean
+    displayOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    department?: boolean
+  }
+
+  export type MentorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teacherId" | "name" | "role" | "workplace" | "education" | "institution" | "image" | "experience" | "specialties" | "achievements" | "bio" | "isActive" | "displayOrder" | "createdAt" | "updatedAt" | "department", ExtArgs["result"]["mentor"]>
+  export type MentorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    teacher?: boolean | Mentor$teacherArgs<ExtArgs>
+  }
+  export type MentorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    teacher?: boolean | Mentor$teacherArgs<ExtArgs>
+  }
+  export type MentorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    teacher?: boolean | Mentor$teacherArgs<ExtArgs>
+  }
+
+  export type $MentorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Mentor"
+    objects: {
+      teacher: Prisma.$TeacherPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      teacherId: number | null
+      name: string
+      role: string
+      workplace: string
+      education: string
+      institution: string
+      image: string
+      experience: string | null
+      specialties: string[]
+      achievements: string[]
+      bio: string
+      isActive: boolean
+      displayOrder: number
+      createdAt: Date
+      updatedAt: Date
+      department: string
+    }, ExtArgs["result"]["mentor"]>
+    composites: {}
+  }
+
+  type MentorGetPayload<S extends boolean | null | undefined | MentorDefaultArgs> = $Result.GetResult<Prisma.$MentorPayload, S>
+
+  type MentorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MentorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MentorCountAggregateInputType | true
+    }
+
+  export interface MentorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Mentor'], meta: { name: 'Mentor' } }
+    /**
+     * Find zero or one Mentor that matches the filter.
+     * @param {MentorFindUniqueArgs} args - Arguments to find a Mentor
+     * @example
+     * // Get one Mentor
+     * const mentor = await prisma.mentor.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MentorFindUniqueArgs>(args: SelectSubset<T, MentorFindUniqueArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Mentor that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MentorFindUniqueOrThrowArgs} args - Arguments to find a Mentor
+     * @example
+     * // Get one Mentor
+     * const mentor = await prisma.mentor.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MentorFindUniqueOrThrowArgs>(args: SelectSubset<T, MentorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Mentor that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorFindFirstArgs} args - Arguments to find a Mentor
+     * @example
+     * // Get one Mentor
+     * const mentor = await prisma.mentor.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MentorFindFirstArgs>(args?: SelectSubset<T, MentorFindFirstArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Mentor that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorFindFirstOrThrowArgs} args - Arguments to find a Mentor
+     * @example
+     * // Get one Mentor
+     * const mentor = await prisma.mentor.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MentorFindFirstOrThrowArgs>(args?: SelectSubset<T, MentorFindFirstOrThrowArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Mentors that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Mentors
+     * const mentors = await prisma.mentor.findMany()
+     * 
+     * // Get first 10 Mentors
+     * const mentors = await prisma.mentor.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mentorWithIdOnly = await prisma.mentor.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MentorFindManyArgs>(args?: SelectSubset<T, MentorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Mentor.
+     * @param {MentorCreateArgs} args - Arguments to create a Mentor.
+     * @example
+     * // Create one Mentor
+     * const Mentor = await prisma.mentor.create({
+     *   data: {
+     *     // ... data to create a Mentor
+     *   }
+     * })
+     * 
+     */
+    create<T extends MentorCreateArgs>(args: SelectSubset<T, MentorCreateArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Mentors.
+     * @param {MentorCreateManyArgs} args - Arguments to create many Mentors.
+     * @example
+     * // Create many Mentors
+     * const mentor = await prisma.mentor.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MentorCreateManyArgs>(args?: SelectSubset<T, MentorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Mentors and returns the data saved in the database.
+     * @param {MentorCreateManyAndReturnArgs} args - Arguments to create many Mentors.
+     * @example
+     * // Create many Mentors
+     * const mentor = await prisma.mentor.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Mentors and only return the `id`
+     * const mentorWithIdOnly = await prisma.mentor.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MentorCreateManyAndReturnArgs>(args?: SelectSubset<T, MentorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Mentor.
+     * @param {MentorDeleteArgs} args - Arguments to delete one Mentor.
+     * @example
+     * // Delete one Mentor
+     * const Mentor = await prisma.mentor.delete({
+     *   where: {
+     *     // ... filter to delete one Mentor
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MentorDeleteArgs>(args: SelectSubset<T, MentorDeleteArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Mentor.
+     * @param {MentorUpdateArgs} args - Arguments to update one Mentor.
+     * @example
+     * // Update one Mentor
+     * const mentor = await prisma.mentor.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MentorUpdateArgs>(args: SelectSubset<T, MentorUpdateArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Mentors.
+     * @param {MentorDeleteManyArgs} args - Arguments to filter Mentors to delete.
+     * @example
+     * // Delete a few Mentors
+     * const { count } = await prisma.mentor.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MentorDeleteManyArgs>(args?: SelectSubset<T, MentorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Mentors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Mentors
+     * const mentor = await prisma.mentor.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MentorUpdateManyArgs>(args: SelectSubset<T, MentorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Mentors and returns the data updated in the database.
+     * @param {MentorUpdateManyAndReturnArgs} args - Arguments to update many Mentors.
+     * @example
+     * // Update many Mentors
+     * const mentor = await prisma.mentor.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Mentors and only return the `id`
+     * const mentorWithIdOnly = await prisma.mentor.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MentorUpdateManyAndReturnArgs>(args: SelectSubset<T, MentorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Mentor.
+     * @param {MentorUpsertArgs} args - Arguments to update or create a Mentor.
+     * @example
+     * // Update or create a Mentor
+     * const mentor = await prisma.mentor.upsert({
+     *   create: {
+     *     // ... data to create a Mentor
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Mentor we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MentorUpsertArgs>(args: SelectSubset<T, MentorUpsertArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Mentors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorCountArgs} args - Arguments to filter Mentors to count.
+     * @example
+     * // Count the number of Mentors
+     * const count = await prisma.mentor.count({
+     *   where: {
+     *     // ... the filter for the Mentors we want to count
+     *   }
+     * })
+    **/
+    count<T extends MentorCountArgs>(
+      args?: Subset<T, MentorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MentorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Mentor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MentorAggregateArgs>(args: Subset<T, MentorAggregateArgs>): Prisma.PrismaPromise<GetMentorAggregateType<T>>
+
+    /**
+     * Group by Mentor.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MentorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MentorGroupByArgs['orderBy'] }
+        : { orderBy?: MentorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MentorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMentorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Mentor model
+   */
+  readonly fields: MentorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Mentor.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MentorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    teacher<T extends Mentor$teacherArgs<ExtArgs> = {}>(args?: Subset<T, Mentor$teacherArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Mentor model
+   */
+  interface MentorFieldRefs {
+    readonly id: FieldRef<"Mentor", 'Int'>
+    readonly teacherId: FieldRef<"Mentor", 'Int'>
+    readonly name: FieldRef<"Mentor", 'String'>
+    readonly role: FieldRef<"Mentor", 'String'>
+    readonly workplace: FieldRef<"Mentor", 'String'>
+    readonly education: FieldRef<"Mentor", 'String'>
+    readonly institution: FieldRef<"Mentor", 'String'>
+    readonly image: FieldRef<"Mentor", 'String'>
+    readonly experience: FieldRef<"Mentor", 'String'>
+    readonly specialties: FieldRef<"Mentor", 'String[]'>
+    readonly achievements: FieldRef<"Mentor", 'String[]'>
+    readonly bio: FieldRef<"Mentor", 'String'>
+    readonly isActive: FieldRef<"Mentor", 'Boolean'>
+    readonly displayOrder: FieldRef<"Mentor", 'Int'>
+    readonly createdAt: FieldRef<"Mentor", 'DateTime'>
+    readonly updatedAt: FieldRef<"Mentor", 'DateTime'>
+    readonly department: FieldRef<"Mentor", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Mentor findUnique
+   */
+  export type MentorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    /**
+     * Filter, which Mentor to fetch.
+     */
+    where: MentorWhereUniqueInput
+  }
+
+  /**
+   * Mentor findUniqueOrThrow
+   */
+  export type MentorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    /**
+     * Filter, which Mentor to fetch.
+     */
+    where: MentorWhereUniqueInput
+  }
+
+  /**
+   * Mentor findFirst
+   */
+  export type MentorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    /**
+     * Filter, which Mentor to fetch.
+     */
+    where?: MentorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Mentors to fetch.
+     */
+    orderBy?: MentorOrderByWithRelationInput | MentorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Mentors.
+     */
+    cursor?: MentorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Mentors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Mentors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Mentors.
+     */
+    distinct?: MentorScalarFieldEnum | MentorScalarFieldEnum[]
+  }
+
+  /**
+   * Mentor findFirstOrThrow
+   */
+  export type MentorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    /**
+     * Filter, which Mentor to fetch.
+     */
+    where?: MentorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Mentors to fetch.
+     */
+    orderBy?: MentorOrderByWithRelationInput | MentorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Mentors.
+     */
+    cursor?: MentorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Mentors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Mentors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Mentors.
+     */
+    distinct?: MentorScalarFieldEnum | MentorScalarFieldEnum[]
+  }
+
+  /**
+   * Mentor findMany
+   */
+  export type MentorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    /**
+     * Filter, which Mentors to fetch.
+     */
+    where?: MentorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Mentors to fetch.
+     */
+    orderBy?: MentorOrderByWithRelationInput | MentorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Mentors.
+     */
+    cursor?: MentorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Mentors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Mentors.
+     */
+    skip?: number
+    distinct?: MentorScalarFieldEnum | MentorScalarFieldEnum[]
+  }
+
+  /**
+   * Mentor create
+   */
+  export type MentorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Mentor.
+     */
+    data: XOR<MentorCreateInput, MentorUncheckedCreateInput>
+  }
+
+  /**
+   * Mentor createMany
+   */
+  export type MentorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Mentors.
+     */
+    data: MentorCreateManyInput | MentorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Mentor createManyAndReturn
+   */
+  export type MentorCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * The data used to create many Mentors.
+     */
+    data: MentorCreateManyInput | MentorCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Mentor update
+   */
+  export type MentorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Mentor.
+     */
+    data: XOR<MentorUpdateInput, MentorUncheckedUpdateInput>
+    /**
+     * Choose, which Mentor to update.
+     */
+    where: MentorWhereUniqueInput
+  }
+
+  /**
+   * Mentor updateMany
+   */
+  export type MentorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Mentors.
+     */
+    data: XOR<MentorUpdateManyMutationInput, MentorUncheckedUpdateManyInput>
+    /**
+     * Filter which Mentors to update
+     */
+    where?: MentorWhereInput
+    /**
+     * Limit how many Mentors to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Mentor updateManyAndReturn
+   */
+  export type MentorUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * The data used to update Mentors.
+     */
+    data: XOR<MentorUpdateManyMutationInput, MentorUncheckedUpdateManyInput>
+    /**
+     * Filter which Mentors to update
+     */
+    where?: MentorWhereInput
+    /**
+     * Limit how many Mentors to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Mentor upsert
+   */
+  export type MentorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Mentor to update in case it exists.
+     */
+    where: MentorWhereUniqueInput
+    /**
+     * In case the Mentor found by the `where` argument doesn't exist, create a new Mentor with this data.
+     */
+    create: XOR<MentorCreateInput, MentorUncheckedCreateInput>
+    /**
+     * In case the Mentor was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MentorUpdateInput, MentorUncheckedUpdateInput>
+  }
+
+  /**
+   * Mentor delete
+   */
+  export type MentorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+    /**
+     * Filter which Mentor to delete.
+     */
+    where: MentorWhereUniqueInput
+  }
+
+  /**
+   * Mentor deleteMany
+   */
+  export type MentorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Mentors to delete
+     */
+    where?: MentorWhereInput
+    /**
+     * Limit how many Mentors to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Mentor.teacher
+   */
+  export type Mentor$teacherArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Teacher
+     */
+    select?: TeacherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Teacher
+     */
+    omit?: TeacherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
+    where?: TeacherWhereInput
+  }
+
+  /**
+   * Mentor without action
+   */
+  export type MentorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Mentor
+     */
+    select?: MentorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Mentor
+     */
+    omit?: MentorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -27613,7 +33940,8 @@ export namespace Prisma {
     program: 'program',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    isActivated: 'isActivated'
+    isActivated: 'isActivated',
+    parentAccountId: 'parentAccountId'
   };
 
   export type StudentScalarFieldEnum = (typeof StudentScalarFieldEnum)[keyof typeof StudentScalarFieldEnum]
@@ -27854,7 +34182,8 @@ export namespace Prisma {
     isApproved: 'isApproved',
     isVisible: 'isVisible',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    videoLink: 'videoLink'
   };
 
   export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
@@ -27886,6 +34215,94 @@ export namespace Prisma {
   };
 
   export type FailedActivationScalarFieldEnum = (typeof FailedActivationScalarFieldEnum)[keyof typeof FailedActivationScalarFieldEnum]
+
+
+  export const FeedbackScalarFieldEnum: {
+    id: 'id',
+    parentId: 'parentId',
+    parentName: 'parentName',
+    parentEmail: 'parentEmail',
+    message: 'message',
+    rating: 'rating',
+    status: 'status',
+    response: 'response',
+    createdAt: 'createdAt',
+    reviewedAt: 'reviewedAt'
+  };
+
+  export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
+
+
+  export const ParentAccountScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    phone: 'phone',
+    password: 'password',
+    isActivated: 'isActivated',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ParentAccountScalarFieldEnum = (typeof ParentAccountScalarFieldEnum)[keyof typeof ParentAccountScalarFieldEnum]
+
+
+  export const TransactionReceiptScalarFieldEnum: {
+    id: 'id',
+    parentId: 'parentId',
+    parentName: 'parentName',
+    parentEmail: 'parentEmail',
+    amount: 'amount',
+    transactionDate: 'transactionDate',
+    transactionId: 'transactionId',
+    description: 'description',
+    receiptUrl: 'receiptUrl',
+    receiptFileName: 'receiptFileName',
+    receiptFileSize: 'receiptFileSize',
+    status: 'status',
+    adminNotes: 'adminNotes',
+    createdAt: 'createdAt',
+    reviewedAt: 'reviewedAt'
+  };
+
+  export type TransactionReceiptScalarFieldEnum = (typeof TransactionReceiptScalarFieldEnum)[keyof typeof TransactionReceiptScalarFieldEnum]
+
+
+  export const PasswordResetRequestScalarFieldEnum: {
+    id: 'id',
+    role: 'role',
+    userId: 'userId',
+    tokenHash: 'tokenHash',
+    expiresAt: 'expiresAt',
+    isUsed: 'isUsed',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PasswordResetRequestScalarFieldEnum = (typeof PasswordResetRequestScalarFieldEnum)[keyof typeof PasswordResetRequestScalarFieldEnum]
+
+
+  export const MentorScalarFieldEnum: {
+    id: 'id',
+    teacherId: 'teacherId',
+    name: 'name',
+    role: 'role',
+    workplace: 'workplace',
+    education: 'education',
+    institution: 'institution',
+    image: 'image',
+    experience: 'experience',
+    specialties: 'specialties',
+    achievements: 'achievements',
+    bio: 'bio',
+    isActive: 'isActive',
+    displayOrder: 'displayOrder',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    department: 'department'
+  };
+
+  export type MentorScalarFieldEnum = (typeof MentorScalarFieldEnum)[keyof typeof MentorScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -28194,6 +34611,7 @@ export namespace Prisma {
     isActivated?: BoolFilter<"Teacher"> | boolean
     assignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
+    mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
     resources?: ResourceListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
     students?: TeacherStudentListRelationFilter
@@ -28210,6 +34628,7 @@ export namespace Prisma {
     isActivated?: SortOrder
     assignments?: AssignmentOrderByRelationAggregateInput
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
+    mentorProfile?: MentorOrderByWithRelationInput
     resources?: ResourceOrderByRelationAggregateInput
     submissionRemarks?: StudentSubmissionRemarkOrderByRelationAggregateInput
     students?: TeacherStudentOrderByRelationAggregateInput
@@ -28229,6 +34648,7 @@ export namespace Prisma {
     isActivated?: BoolFilter<"Teacher"> | boolean
     assignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
+    mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
     resources?: ResourceListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
     students?: TeacherStudentListRelationFilter
@@ -28281,10 +34701,12 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Student"> | Date | string
     updatedAt?: DateTimeFilter<"Student"> | Date | string
     isActivated?: BoolFilter<"Student"> | boolean
+    parentAccountId?: IntNullableFilter<"Student"> | number | null
     assignedAssignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     Payment?: PaymentListRelationFilter
+    parentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
     assignedResources?: StudentResourceListRelationFilter
     studentSubmissions?: StudentSubmissionListRelationFilter
     submissions?: SubmissionListRelationFilter
@@ -28306,10 +34728,12 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isActivated?: SortOrder
+    parentAccountId?: SortOrderInput | SortOrder
     assignedAssignments?: AssignmentOrderByRelationAggregateInput
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     enrollments?: EnrollmentOrderByRelationAggregateInput
     Payment?: PaymentOrderByRelationAggregateInput
+    parentAccount?: ParentAccountOrderByWithRelationInput
     assignedResources?: StudentResourceOrderByRelationAggregateInput
     studentSubmissions?: StudentSubmissionOrderByRelationAggregateInput
     submissions?: SubmissionOrderByRelationAggregateInput
@@ -28334,10 +34758,12 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Student"> | Date | string
     updatedAt?: DateTimeFilter<"Student"> | Date | string
     isActivated?: BoolFilter<"Student"> | boolean
+    parentAccountId?: IntNullableFilter<"Student"> | number | null
     assignedAssignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     Payment?: PaymentListRelationFilter
+    parentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
     assignedResources?: StudentResourceListRelationFilter
     studentSubmissions?: StudentSubmissionListRelationFilter
     submissions?: SubmissionListRelationFilter
@@ -28359,6 +34785,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isActivated?: SortOrder
+    parentAccountId?: SortOrderInput | SortOrder
     _count?: StudentCountOrderByAggregateInput
     _avg?: StudentAvgOrderByAggregateInput
     _max?: StudentMaxOrderByAggregateInput
@@ -28383,6 +34810,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
     isActivated?: BoolWithAggregatesFilter<"Student"> | boolean
+    parentAccountId?: IntNullableWithAggregatesFilter<"Student"> | number | null
   }
 
   export type TeacherStudentWhereInput = {
@@ -29596,6 +36024,7 @@ export namespace Prisma {
     isVisible?: BoolFilter<"Testimonial"> | boolean
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
+    videoLink?: StringNullableFilter<"Testimonial"> | string | null
     Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }
 
@@ -29609,6 +36038,7 @@ export namespace Prisma {
     isVisible?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    videoLink?: SortOrderInput | SortOrder
     Student?: StudentOrderByWithRelationInput
   }
 
@@ -29625,6 +36055,7 @@ export namespace Prisma {
     isVisible?: BoolFilter<"Testimonial"> | boolean
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
+    videoLink?: StringNullableFilter<"Testimonial"> | string | null
     Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }, "id">
 
@@ -29638,6 +36069,7 @@ export namespace Prisma {
     isVisible?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    videoLink?: SortOrderInput | SortOrder
     _count?: TestimonialCountOrderByAggregateInput
     _avg?: TestimonialAvgOrderByAggregateInput
     _max?: TestimonialMaxOrderByAggregateInput
@@ -29658,6 +36090,7 @@ export namespace Prisma {
     isVisible?: BoolWithAggregatesFilter<"Testimonial"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
+    videoLink?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
   }
 
   export type SecurityLogWhereInput = {
@@ -29796,6 +36229,447 @@ export namespace Prisma {
     reason?: StringWithAggregatesFilter<"FailedActivation"> | string
     metadata?: JsonNullableWithAggregatesFilter<"FailedActivation">
     createdAt?: DateTimeWithAggregatesFilter<"FailedActivation"> | Date | string
+  }
+
+  export type FeedbackWhereInput = {
+    AND?: FeedbackWhereInput | FeedbackWhereInput[]
+    OR?: FeedbackWhereInput[]
+    NOT?: FeedbackWhereInput | FeedbackWhereInput[]
+    id?: IntFilter<"Feedback"> | number
+    parentId?: IntFilter<"Feedback"> | number
+    parentName?: StringFilter<"Feedback"> | string
+    parentEmail?: StringFilter<"Feedback"> | string
+    message?: StringFilter<"Feedback"> | string
+    rating?: IntNullableFilter<"Feedback"> | number | null
+    status?: StringFilter<"Feedback"> | string
+    response?: StringNullableFilter<"Feedback"> | string | null
+    createdAt?: DateTimeFilter<"Feedback"> | Date | string
+    reviewedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
+  }
+
+  export type FeedbackOrderByWithRelationInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    message?: SortOrder
+    rating?: SortOrderInput | SortOrder
+    status?: SortOrder
+    response?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+  }
+
+  export type FeedbackWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: FeedbackWhereInput | FeedbackWhereInput[]
+    OR?: FeedbackWhereInput[]
+    NOT?: FeedbackWhereInput | FeedbackWhereInput[]
+    parentId?: IntFilter<"Feedback"> | number
+    parentName?: StringFilter<"Feedback"> | string
+    parentEmail?: StringFilter<"Feedback"> | string
+    message?: StringFilter<"Feedback"> | string
+    rating?: IntNullableFilter<"Feedback"> | number | null
+    status?: StringFilter<"Feedback"> | string
+    response?: StringNullableFilter<"Feedback"> | string | null
+    createdAt?: DateTimeFilter<"Feedback"> | Date | string
+    reviewedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
+  }, "id">
+
+  export type FeedbackOrderByWithAggregationInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    message?: SortOrder
+    rating?: SortOrderInput | SortOrder
+    status?: SortOrder
+    response?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    _count?: FeedbackCountOrderByAggregateInput
+    _avg?: FeedbackAvgOrderByAggregateInput
+    _max?: FeedbackMaxOrderByAggregateInput
+    _min?: FeedbackMinOrderByAggregateInput
+    _sum?: FeedbackSumOrderByAggregateInput
+  }
+
+  export type FeedbackScalarWhereWithAggregatesInput = {
+    AND?: FeedbackScalarWhereWithAggregatesInput | FeedbackScalarWhereWithAggregatesInput[]
+    OR?: FeedbackScalarWhereWithAggregatesInput[]
+    NOT?: FeedbackScalarWhereWithAggregatesInput | FeedbackScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Feedback"> | number
+    parentId?: IntWithAggregatesFilter<"Feedback"> | number
+    parentName?: StringWithAggregatesFilter<"Feedback"> | string
+    parentEmail?: StringWithAggregatesFilter<"Feedback"> | string
+    message?: StringWithAggregatesFilter<"Feedback"> | string
+    rating?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    status?: StringWithAggregatesFilter<"Feedback"> | string
+    response?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Feedback"> | Date | string
+    reviewedAt?: DateTimeNullableWithAggregatesFilter<"Feedback"> | Date | string | null
+  }
+
+  export type ParentAccountWhereInput = {
+    AND?: ParentAccountWhereInput | ParentAccountWhereInput[]
+    OR?: ParentAccountWhereInput[]
+    NOT?: ParentAccountWhereInput | ParentAccountWhereInput[]
+    id?: IntFilter<"ParentAccount"> | number
+    name?: StringFilter<"ParentAccount"> | string
+    email?: StringFilter<"ParentAccount"> | string
+    phone?: StringNullableFilter<"ParentAccount"> | string | null
+    password?: StringNullableFilter<"ParentAccount"> | string | null
+    isActivated?: BoolFilter<"ParentAccount"> | boolean
+    createdAt?: DateTimeFilter<"ParentAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"ParentAccount"> | Date | string
+    students?: StudentListRelationFilter
+  }
+
+  export type ParentAccountOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    password?: SortOrderInput | SortOrder
+    isActivated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    students?: StudentOrderByRelationAggregateInput
+  }
+
+  export type ParentAccountWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    email?: string
+    AND?: ParentAccountWhereInput | ParentAccountWhereInput[]
+    OR?: ParentAccountWhereInput[]
+    NOT?: ParentAccountWhereInput | ParentAccountWhereInput[]
+    name?: StringFilter<"ParentAccount"> | string
+    phone?: StringNullableFilter<"ParentAccount"> | string | null
+    password?: StringNullableFilter<"ParentAccount"> | string | null
+    isActivated?: BoolFilter<"ParentAccount"> | boolean
+    createdAt?: DateTimeFilter<"ParentAccount"> | Date | string
+    updatedAt?: DateTimeFilter<"ParentAccount"> | Date | string
+    students?: StudentListRelationFilter
+  }, "id" | "email">
+
+  export type ParentAccountOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    password?: SortOrderInput | SortOrder
+    isActivated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ParentAccountCountOrderByAggregateInput
+    _avg?: ParentAccountAvgOrderByAggregateInput
+    _max?: ParentAccountMaxOrderByAggregateInput
+    _min?: ParentAccountMinOrderByAggregateInput
+    _sum?: ParentAccountSumOrderByAggregateInput
+  }
+
+  export type ParentAccountScalarWhereWithAggregatesInput = {
+    AND?: ParentAccountScalarWhereWithAggregatesInput | ParentAccountScalarWhereWithAggregatesInput[]
+    OR?: ParentAccountScalarWhereWithAggregatesInput[]
+    NOT?: ParentAccountScalarWhereWithAggregatesInput | ParentAccountScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ParentAccount"> | number
+    name?: StringWithAggregatesFilter<"ParentAccount"> | string
+    email?: StringWithAggregatesFilter<"ParentAccount"> | string
+    phone?: StringNullableWithAggregatesFilter<"ParentAccount"> | string | null
+    password?: StringNullableWithAggregatesFilter<"ParentAccount"> | string | null
+    isActivated?: BoolWithAggregatesFilter<"ParentAccount"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ParentAccount"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ParentAccount"> | Date | string
+  }
+
+  export type TransactionReceiptWhereInput = {
+    AND?: TransactionReceiptWhereInput | TransactionReceiptWhereInput[]
+    OR?: TransactionReceiptWhereInput[]
+    NOT?: TransactionReceiptWhereInput | TransactionReceiptWhereInput[]
+    id?: IntFilter<"TransactionReceipt"> | number
+    parentId?: IntFilter<"TransactionReceipt"> | number
+    parentName?: StringFilter<"TransactionReceipt"> | string
+    parentEmail?: StringFilter<"TransactionReceipt"> | string
+    amount?: StringFilter<"TransactionReceipt"> | string
+    transactionDate?: StringFilter<"TransactionReceipt"> | string
+    transactionId?: StringNullableFilter<"TransactionReceipt"> | string | null
+    description?: StringNullableFilter<"TransactionReceipt"> | string | null
+    receiptUrl?: StringFilter<"TransactionReceipt"> | string
+    receiptFileName?: StringFilter<"TransactionReceipt"> | string
+    receiptFileSize?: IntFilter<"TransactionReceipt"> | number
+    status?: StringFilter<"TransactionReceipt"> | string
+    adminNotes?: StringNullableFilter<"TransactionReceipt"> | string | null
+    createdAt?: DateTimeFilter<"TransactionReceipt"> | Date | string
+    reviewedAt?: DateTimeNullableFilter<"TransactionReceipt"> | Date | string | null
+  }
+
+  export type TransactionReceiptOrderByWithRelationInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    amount?: SortOrder
+    transactionDate?: SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    receiptUrl?: SortOrder
+    receiptFileName?: SortOrder
+    receiptFileSize?: SortOrder
+    status?: SortOrder
+    adminNotes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+  }
+
+  export type TransactionReceiptWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TransactionReceiptWhereInput | TransactionReceiptWhereInput[]
+    OR?: TransactionReceiptWhereInput[]
+    NOT?: TransactionReceiptWhereInput | TransactionReceiptWhereInput[]
+    parentId?: IntFilter<"TransactionReceipt"> | number
+    parentName?: StringFilter<"TransactionReceipt"> | string
+    parentEmail?: StringFilter<"TransactionReceipt"> | string
+    amount?: StringFilter<"TransactionReceipt"> | string
+    transactionDate?: StringFilter<"TransactionReceipt"> | string
+    transactionId?: StringNullableFilter<"TransactionReceipt"> | string | null
+    description?: StringNullableFilter<"TransactionReceipt"> | string | null
+    receiptUrl?: StringFilter<"TransactionReceipt"> | string
+    receiptFileName?: StringFilter<"TransactionReceipt"> | string
+    receiptFileSize?: IntFilter<"TransactionReceipt"> | number
+    status?: StringFilter<"TransactionReceipt"> | string
+    adminNotes?: StringNullableFilter<"TransactionReceipt"> | string | null
+    createdAt?: DateTimeFilter<"TransactionReceipt"> | Date | string
+    reviewedAt?: DateTimeNullableFilter<"TransactionReceipt"> | Date | string | null
+  }, "id">
+
+  export type TransactionReceiptOrderByWithAggregationInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    amount?: SortOrder
+    transactionDate?: SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    receiptUrl?: SortOrder
+    receiptFileName?: SortOrder
+    receiptFileSize?: SortOrder
+    status?: SortOrder
+    adminNotes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    _count?: TransactionReceiptCountOrderByAggregateInput
+    _avg?: TransactionReceiptAvgOrderByAggregateInput
+    _max?: TransactionReceiptMaxOrderByAggregateInput
+    _min?: TransactionReceiptMinOrderByAggregateInput
+    _sum?: TransactionReceiptSumOrderByAggregateInput
+  }
+
+  export type TransactionReceiptScalarWhereWithAggregatesInput = {
+    AND?: TransactionReceiptScalarWhereWithAggregatesInput | TransactionReceiptScalarWhereWithAggregatesInput[]
+    OR?: TransactionReceiptScalarWhereWithAggregatesInput[]
+    NOT?: TransactionReceiptScalarWhereWithAggregatesInput | TransactionReceiptScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TransactionReceipt"> | number
+    parentId?: IntWithAggregatesFilter<"TransactionReceipt"> | number
+    parentName?: StringWithAggregatesFilter<"TransactionReceipt"> | string
+    parentEmail?: StringWithAggregatesFilter<"TransactionReceipt"> | string
+    amount?: StringWithAggregatesFilter<"TransactionReceipt"> | string
+    transactionDate?: StringWithAggregatesFilter<"TransactionReceipt"> | string
+    transactionId?: StringNullableWithAggregatesFilter<"TransactionReceipt"> | string | null
+    description?: StringNullableWithAggregatesFilter<"TransactionReceipt"> | string | null
+    receiptUrl?: StringWithAggregatesFilter<"TransactionReceipt"> | string
+    receiptFileName?: StringWithAggregatesFilter<"TransactionReceipt"> | string
+    receiptFileSize?: IntWithAggregatesFilter<"TransactionReceipt"> | number
+    status?: StringWithAggregatesFilter<"TransactionReceipt"> | string
+    adminNotes?: StringNullableWithAggregatesFilter<"TransactionReceipt"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"TransactionReceipt"> | Date | string
+    reviewedAt?: DateTimeNullableWithAggregatesFilter<"TransactionReceipt"> | Date | string | null
+  }
+
+  export type PasswordResetRequestWhereInput = {
+    AND?: PasswordResetRequestWhereInput | PasswordResetRequestWhereInput[]
+    OR?: PasswordResetRequestWhereInput[]
+    NOT?: PasswordResetRequestWhereInput | PasswordResetRequestWhereInput[]
+    id?: IntFilter<"PasswordResetRequest"> | number
+    role?: StringFilter<"PasswordResetRequest"> | string
+    userId?: IntFilter<"PasswordResetRequest"> | number
+    tokenHash?: StringFilter<"PasswordResetRequest"> | string
+    expiresAt?: DateTimeFilter<"PasswordResetRequest"> | Date | string
+    isUsed?: BoolFilter<"PasswordResetRequest"> | boolean
+    createdAt?: DateTimeFilter<"PasswordResetRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"PasswordResetRequest"> | Date | string
+  }
+
+  export type PasswordResetRequestOrderByWithRelationInput = {
+    id?: SortOrder
+    role?: SortOrder
+    userId?: SortOrder
+    tokenHash?: SortOrder
+    expiresAt?: SortOrder
+    isUsed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PasswordResetRequestWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    tokenHash?: string
+    AND?: PasswordResetRequestWhereInput | PasswordResetRequestWhereInput[]
+    OR?: PasswordResetRequestWhereInput[]
+    NOT?: PasswordResetRequestWhereInput | PasswordResetRequestWhereInput[]
+    role?: StringFilter<"PasswordResetRequest"> | string
+    userId?: IntFilter<"PasswordResetRequest"> | number
+    expiresAt?: DateTimeFilter<"PasswordResetRequest"> | Date | string
+    isUsed?: BoolFilter<"PasswordResetRequest"> | boolean
+    createdAt?: DateTimeFilter<"PasswordResetRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"PasswordResetRequest"> | Date | string
+  }, "id" | "tokenHash">
+
+  export type PasswordResetRequestOrderByWithAggregationInput = {
+    id?: SortOrder
+    role?: SortOrder
+    userId?: SortOrder
+    tokenHash?: SortOrder
+    expiresAt?: SortOrder
+    isUsed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PasswordResetRequestCountOrderByAggregateInput
+    _avg?: PasswordResetRequestAvgOrderByAggregateInput
+    _max?: PasswordResetRequestMaxOrderByAggregateInput
+    _min?: PasswordResetRequestMinOrderByAggregateInput
+    _sum?: PasswordResetRequestSumOrderByAggregateInput
+  }
+
+  export type PasswordResetRequestScalarWhereWithAggregatesInput = {
+    AND?: PasswordResetRequestScalarWhereWithAggregatesInput | PasswordResetRequestScalarWhereWithAggregatesInput[]
+    OR?: PasswordResetRequestScalarWhereWithAggregatesInput[]
+    NOT?: PasswordResetRequestScalarWhereWithAggregatesInput | PasswordResetRequestScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PasswordResetRequest"> | number
+    role?: StringWithAggregatesFilter<"PasswordResetRequest"> | string
+    userId?: IntWithAggregatesFilter<"PasswordResetRequest"> | number
+    tokenHash?: StringWithAggregatesFilter<"PasswordResetRequest"> | string
+    expiresAt?: DateTimeWithAggregatesFilter<"PasswordResetRequest"> | Date | string
+    isUsed?: BoolWithAggregatesFilter<"PasswordResetRequest"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"PasswordResetRequest"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PasswordResetRequest"> | Date | string
+  }
+
+  export type MentorWhereInput = {
+    AND?: MentorWhereInput | MentorWhereInput[]
+    OR?: MentorWhereInput[]
+    NOT?: MentorWhereInput | MentorWhereInput[]
+    id?: IntFilter<"Mentor"> | number
+    teacherId?: IntNullableFilter<"Mentor"> | number | null
+    name?: StringFilter<"Mentor"> | string
+    role?: StringFilter<"Mentor"> | string
+    workplace?: StringFilter<"Mentor"> | string
+    education?: StringFilter<"Mentor"> | string
+    institution?: StringFilter<"Mentor"> | string
+    image?: StringFilter<"Mentor"> | string
+    experience?: StringNullableFilter<"Mentor"> | string | null
+    specialties?: StringNullableListFilter<"Mentor">
+    achievements?: StringNullableListFilter<"Mentor">
+    bio?: StringFilter<"Mentor"> | string
+    isActive?: BoolFilter<"Mentor"> | boolean
+    displayOrder?: IntFilter<"Mentor"> | number
+    createdAt?: DateTimeFilter<"Mentor"> | Date | string
+    updatedAt?: DateTimeFilter<"Mentor"> | Date | string
+    department?: StringFilter<"Mentor"> | string
+    teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
+  }
+
+  export type MentorOrderByWithRelationInput = {
+    id?: SortOrder
+    teacherId?: SortOrderInput | SortOrder
+    name?: SortOrder
+    role?: SortOrder
+    workplace?: SortOrder
+    education?: SortOrder
+    institution?: SortOrder
+    image?: SortOrder
+    experience?: SortOrderInput | SortOrder
+    specialties?: SortOrder
+    achievements?: SortOrder
+    bio?: SortOrder
+    isActive?: SortOrder
+    displayOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    department?: SortOrder
+    teacher?: TeacherOrderByWithRelationInput
+  }
+
+  export type MentorWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    teacherId?: number
+    AND?: MentorWhereInput | MentorWhereInput[]
+    OR?: MentorWhereInput[]
+    NOT?: MentorWhereInput | MentorWhereInput[]
+    name?: StringFilter<"Mentor"> | string
+    role?: StringFilter<"Mentor"> | string
+    workplace?: StringFilter<"Mentor"> | string
+    education?: StringFilter<"Mentor"> | string
+    institution?: StringFilter<"Mentor"> | string
+    image?: StringFilter<"Mentor"> | string
+    experience?: StringNullableFilter<"Mentor"> | string | null
+    specialties?: StringNullableListFilter<"Mentor">
+    achievements?: StringNullableListFilter<"Mentor">
+    bio?: StringFilter<"Mentor"> | string
+    isActive?: BoolFilter<"Mentor"> | boolean
+    displayOrder?: IntFilter<"Mentor"> | number
+    createdAt?: DateTimeFilter<"Mentor"> | Date | string
+    updatedAt?: DateTimeFilter<"Mentor"> | Date | string
+    department?: StringFilter<"Mentor"> | string
+    teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
+  }, "id" | "teacherId">
+
+  export type MentorOrderByWithAggregationInput = {
+    id?: SortOrder
+    teacherId?: SortOrderInput | SortOrder
+    name?: SortOrder
+    role?: SortOrder
+    workplace?: SortOrder
+    education?: SortOrder
+    institution?: SortOrder
+    image?: SortOrder
+    experience?: SortOrderInput | SortOrder
+    specialties?: SortOrder
+    achievements?: SortOrder
+    bio?: SortOrder
+    isActive?: SortOrder
+    displayOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    department?: SortOrder
+    _count?: MentorCountOrderByAggregateInput
+    _avg?: MentorAvgOrderByAggregateInput
+    _max?: MentorMaxOrderByAggregateInput
+    _min?: MentorMinOrderByAggregateInput
+    _sum?: MentorSumOrderByAggregateInput
+  }
+
+  export type MentorScalarWhereWithAggregatesInput = {
+    AND?: MentorScalarWhereWithAggregatesInput | MentorScalarWhereWithAggregatesInput[]
+    OR?: MentorScalarWhereWithAggregatesInput[]
+    NOT?: MentorScalarWhereWithAggregatesInput | MentorScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Mentor"> | number
+    teacherId?: IntNullableWithAggregatesFilter<"Mentor"> | number | null
+    name?: StringWithAggregatesFilter<"Mentor"> | string
+    role?: StringWithAggregatesFilter<"Mentor"> | string
+    workplace?: StringWithAggregatesFilter<"Mentor"> | string
+    education?: StringWithAggregatesFilter<"Mentor"> | string
+    institution?: StringWithAggregatesFilter<"Mentor"> | string
+    image?: StringWithAggregatesFilter<"Mentor"> | string
+    experience?: StringNullableWithAggregatesFilter<"Mentor"> | string | null
+    specialties?: StringNullableListFilter<"Mentor">
+    achievements?: StringNullableListFilter<"Mentor">
+    bio?: StringWithAggregatesFilter<"Mentor"> | string
+    isActive?: BoolWithAggregatesFilter<"Mentor"> | boolean
+    displayOrder?: IntWithAggregatesFilter<"Mentor"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Mentor"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Mentor"> | Date | string
+    department?: StringWithAggregatesFilter<"Mentor"> | string
   }
 
   export type WebinarRegistrationCreateInput = {
@@ -29984,6 +36858,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -30000,6 +36875,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -30015,6 +36891,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -30031,6 +36908,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -30085,6 +36963,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -30106,6 +36985,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -30134,6 +37014,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -30155,6 +37036,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -30180,6 +37062,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
   }
 
   export type StudentUpdateManyMutationInput = {
@@ -30211,6 +37094,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type TeacherStudentCreateInput = {
@@ -31164,7 +38048,7 @@ export namespace Prisma {
     expiresAt: Date | string
     isUsed?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
   export type ActivationRequestUncheckedCreateInput = {
@@ -31176,7 +38060,7 @@ export namespace Prisma {
     expiresAt: Date | string
     isUsed?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
   export type ActivationRequestUpdateInput = {
@@ -31211,7 +38095,7 @@ export namespace Prisma {
     expiresAt: Date | string
     isUsed?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
   export type ActivationRequestUpdateManyMutationInput = {
@@ -31475,6 +38359,7 @@ export namespace Prisma {
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
+    videoLink?: string | null
     Student: StudentCreateNestedOneWithoutTestimonialInput
   }
 
@@ -31488,6 +38373,7 @@ export namespace Prisma {
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
+    videoLink?: string | null
   }
 
   export type TestimonialUpdateInput = {
@@ -31498,6 +38384,7 @@ export namespace Prisma {
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoLink?: NullableStringFieldUpdateOperationsInput | string | null
     Student?: StudentUpdateOneRequiredWithoutTestimonialNestedInput
   }
 
@@ -31511,6 +38398,7 @@ export namespace Prisma {
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoLink?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TestimonialCreateManyInput = {
@@ -31523,6 +38411,7 @@ export namespace Prisma {
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
+    videoLink?: string | null
   }
 
   export type TestimonialUpdateManyMutationInput = {
@@ -31533,6 +38422,7 @@ export namespace Prisma {
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoLink?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TestimonialUncheckedUpdateManyInput = {
@@ -31545,6 +38435,7 @@ export namespace Prisma {
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoLink?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SecurityLogCreateInput = {
@@ -31693,6 +38584,505 @@ export namespace Prisma {
     reason?: StringFieldUpdateOperationsInput | string
     metadata?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FeedbackCreateInput = {
+    parentId: number
+    parentName: string
+    parentEmail: string
+    message: string
+    rating?: number | null
+    status?: string
+    response?: string | null
+    createdAt?: Date | string
+    reviewedAt?: Date | string | null
+  }
+
+  export type FeedbackUncheckedCreateInput = {
+    id?: number
+    parentId: number
+    parentName: string
+    parentEmail: string
+    message: string
+    rating?: number | null
+    status?: string
+    response?: string | null
+    createdAt?: Date | string
+    reviewedAt?: Date | string | null
+  }
+
+  export type FeedbackUpdateInput = {
+    parentId?: IntFieldUpdateOperationsInput | number
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    response?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FeedbackUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    parentId?: IntFieldUpdateOperationsInput | number
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    response?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FeedbackCreateManyInput = {
+    id?: number
+    parentId: number
+    parentName: string
+    parentEmail: string
+    message: string
+    rating?: number | null
+    status?: string
+    response?: string | null
+    createdAt?: Date | string
+    reviewedAt?: Date | string | null
+  }
+
+  export type FeedbackUpdateManyMutationInput = {
+    parentId?: IntFieldUpdateOperationsInput | number
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    response?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FeedbackUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    parentId?: IntFieldUpdateOperationsInput | number
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    response?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type ParentAccountCreateInput = {
+    name: string
+    email: string
+    phone?: string | null
+    password?: string | null
+    isActivated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    students?: StudentCreateNestedManyWithoutParentAccountInput
+  }
+
+  export type ParentAccountUncheckedCreateInput = {
+    id?: number
+    name: string
+    email: string
+    phone?: string | null
+    password?: string | null
+    isActivated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    students?: StudentUncheckedCreateNestedManyWithoutParentAccountInput
+  }
+
+  export type ParentAccountUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    students?: StudentUpdateManyWithoutParentAccountNestedInput
+  }
+
+  export type ParentAccountUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    students?: StudentUncheckedUpdateManyWithoutParentAccountNestedInput
+  }
+
+  export type ParentAccountCreateManyInput = {
+    id?: number
+    name: string
+    email: string
+    phone?: string | null
+    password?: string | null
+    isActivated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ParentAccountUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParentAccountUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionReceiptCreateInput = {
+    parentId: number
+    parentName: string
+    parentEmail: string
+    amount: string
+    transactionDate: string
+    transactionId?: string | null
+    description?: string | null
+    receiptUrl: string
+    receiptFileName: string
+    receiptFileSize: number
+    status?: string
+    adminNotes?: string | null
+    createdAt?: Date | string
+    reviewedAt?: Date | string | null
+  }
+
+  export type TransactionReceiptUncheckedCreateInput = {
+    id?: number
+    parentId: number
+    parentName: string
+    parentEmail: string
+    amount: string
+    transactionDate: string
+    transactionId?: string | null
+    description?: string | null
+    receiptUrl: string
+    receiptFileName: string
+    receiptFileSize: number
+    status?: string
+    adminNotes?: string | null
+    createdAt?: Date | string
+    reviewedAt?: Date | string | null
+  }
+
+  export type TransactionReceiptUpdateInput = {
+    parentId?: IntFieldUpdateOperationsInput | number
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    transactionDate?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: StringFieldUpdateOperationsInput | string
+    receiptFileName?: StringFieldUpdateOperationsInput | string
+    receiptFileSize?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TransactionReceiptUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    parentId?: IntFieldUpdateOperationsInput | number
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    transactionDate?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: StringFieldUpdateOperationsInput | string
+    receiptFileName?: StringFieldUpdateOperationsInput | string
+    receiptFileSize?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TransactionReceiptCreateManyInput = {
+    id?: number
+    parentId: number
+    parentName: string
+    parentEmail: string
+    amount: string
+    transactionDate: string
+    transactionId?: string | null
+    description?: string | null
+    receiptUrl: string
+    receiptFileName: string
+    receiptFileSize: number
+    status?: string
+    adminNotes?: string | null
+    createdAt?: Date | string
+    reviewedAt?: Date | string | null
+  }
+
+  export type TransactionReceiptUpdateManyMutationInput = {
+    parentId?: IntFieldUpdateOperationsInput | number
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    transactionDate?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: StringFieldUpdateOperationsInput | string
+    receiptFileName?: StringFieldUpdateOperationsInput | string
+    receiptFileSize?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TransactionReceiptUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    parentId?: IntFieldUpdateOperationsInput | number
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    amount?: StringFieldUpdateOperationsInput | string
+    transactionDate?: StringFieldUpdateOperationsInput | string
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    receiptUrl?: StringFieldUpdateOperationsInput | string
+    receiptFileName?: StringFieldUpdateOperationsInput | string
+    receiptFileSize?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PasswordResetRequestCreateInput = {
+    role: string
+    userId: number
+    tokenHash: string
+    expiresAt: Date | string
+    isUsed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type PasswordResetRequestUncheckedCreateInput = {
+    id?: number
+    role: string
+    userId: number
+    tokenHash: string
+    expiresAt: Date | string
+    isUsed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type PasswordResetRequestUpdateInput = {
+    role?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isUsed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PasswordResetRequestUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    role?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isUsed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PasswordResetRequestCreateManyInput = {
+    id?: number
+    role: string
+    userId: number
+    tokenHash: string
+    expiresAt: Date | string
+    isUsed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type PasswordResetRequestUpdateManyMutationInput = {
+    role?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isUsed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PasswordResetRequestUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    role?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isUsed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentorCreateInput = {
+    name: string
+    role: string
+    workplace: string
+    education: string
+    institution: string
+    image: string
+    experience?: string | null
+    specialties?: MentorCreatespecialtiesInput | string[]
+    achievements?: MentorCreateachievementsInput | string[]
+    bio: string
+    isActive?: boolean
+    displayOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    department?: string
+    teacher?: TeacherCreateNestedOneWithoutMentorProfileInput
+  }
+
+  export type MentorUncheckedCreateInput = {
+    id?: number
+    teacherId?: number | null
+    name: string
+    role: string
+    workplace: string
+    education: string
+    institution: string
+    image: string
+    experience?: string | null
+    specialties?: MentorCreatespecialtiesInput | string[]
+    achievements?: MentorCreateachievementsInput | string[]
+    bio: string
+    isActive?: boolean
+    displayOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    department?: string
+  }
+
+  export type MentorUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    workplace?: StringFieldUpdateOperationsInput | string
+    education?: StringFieldUpdateOperationsInput | string
+    institution?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    experience?: NullableStringFieldUpdateOperationsInput | string | null
+    specialties?: MentorUpdatespecialtiesInput | string[]
+    achievements?: MentorUpdateachievementsInput | string[]
+    bio?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: StringFieldUpdateOperationsInput | string
+    teacher?: TeacherUpdateOneWithoutMentorProfileNestedInput
+  }
+
+  export type MentorUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    workplace?: StringFieldUpdateOperationsInput | string
+    education?: StringFieldUpdateOperationsInput | string
+    institution?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    experience?: NullableStringFieldUpdateOperationsInput | string | null
+    specialties?: MentorUpdatespecialtiesInput | string[]
+    achievements?: MentorUpdateachievementsInput | string[]
+    bio?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MentorCreateManyInput = {
+    id?: number
+    teacherId?: number | null
+    name: string
+    role: string
+    workplace: string
+    education: string
+    institution: string
+    image: string
+    experience?: string | null
+    specialties?: MentorCreatespecialtiesInput | string[]
+    achievements?: MentorCreateachievementsInput | string[]
+    bio: string
+    isActive?: boolean
+    displayOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    department?: string
+  }
+
+  export type MentorUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    workplace?: StringFieldUpdateOperationsInput | string
+    education?: StringFieldUpdateOperationsInput | string
+    institution?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    experience?: NullableStringFieldUpdateOperationsInput | string | null
+    specialties?: MentorUpdatespecialtiesInput | string[]
+    achievements?: MentorUpdateachievementsInput | string[]
+    bio?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MentorUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    workplace?: StringFieldUpdateOperationsInput | string
+    education?: StringFieldUpdateOperationsInput | string
+    institution?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    experience?: NullableStringFieldUpdateOperationsInput | string | null
+    specialties?: MentorUpdatespecialtiesInput | string[]
+    achievements?: MentorUpdateachievementsInput | string[]
+    bio?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -31998,6 +39388,11 @@ export namespace Prisma {
     none?: ClassScheduleWhereInput
   }
 
+  export type MentorNullableScalarRelationFilter = {
+    is?: MentorWhereInput | null
+    isNot?: MentorWhereInput | null
+  }
+
   export type ResourceListRelationFilter = {
     every?: ResourceWhereInput
     some?: ResourceWhereInput
@@ -32075,6 +39470,17 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type EnrollmentListRelationFilter = {
     every?: EnrollmentWhereInput
     some?: EnrollmentWhereInput
@@ -32085,6 +39491,11 @@ export namespace Prisma {
     every?: PaymentWhereInput
     some?: PaymentWhereInput
     none?: PaymentWhereInput
+  }
+
+  export type ParentAccountNullableScalarRelationFilter = {
+    is?: ParentAccountWhereInput | null
+    isNot?: ParentAccountWhereInput | null
   }
 
   export type StudentResourceListRelationFilter = {
@@ -32149,10 +39560,12 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isActivated?: SortOrder
+    parentAccountId?: SortOrder
   }
 
   export type StudentAvgOrderByAggregateInput = {
     id?: SortOrder
+    parentAccountId?: SortOrder
   }
 
   export type StudentMaxOrderByAggregateInput = {
@@ -32169,6 +39582,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isActivated?: SortOrder
+    parentAccountId?: SortOrder
   }
 
   export type StudentMinOrderByAggregateInput = {
@@ -32185,10 +39599,28 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isActivated?: SortOrder
+    parentAccountId?: SortOrder
   }
 
   export type StudentSumOrderByAggregateInput = {
     id?: SortOrder
+    parentAccountId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type StudentScalarRelationFilter = {
@@ -32241,17 +39673,6 @@ export namespace Prisma {
     id?: SortOrder
     teacherId?: SortOrder
     studentId?: SortOrder
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type StudentNullableScalarRelationFilter = {
@@ -32332,22 +39753,6 @@ export namespace Prisma {
     totalPoints?: SortOrder
     teacherId?: SortOrder
     targetStudentId?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type AssignmentScalarRelationFilter = {
@@ -33063,6 +40468,7 @@ export namespace Prisma {
     isVisible?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    videoLink?: SortOrder
   }
 
   export type TestimonialAvgOrderByAggregateInput = {
@@ -33080,6 +40486,7 @@ export namespace Prisma {
     isVisible?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    videoLink?: SortOrder
   }
 
   export type TestimonialMinOrderByAggregateInput = {
@@ -33092,6 +40499,7 @@ export namespace Prisma {
     isVisible?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    videoLink?: SortOrder
   }
 
   export type TestimonialSumOrderByAggregateInput = {
@@ -33228,6 +40636,290 @@ export namespace Prisma {
     id?: SortOrder
   }
 
+  export type FeedbackCountOrderByAggregateInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    message?: SortOrder
+    rating?: SortOrder
+    status?: SortOrder
+    response?: SortOrder
+    createdAt?: SortOrder
+    reviewedAt?: SortOrder
+  }
+
+  export type FeedbackAvgOrderByAggregateInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    rating?: SortOrder
+  }
+
+  export type FeedbackMaxOrderByAggregateInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    message?: SortOrder
+    rating?: SortOrder
+    status?: SortOrder
+    response?: SortOrder
+    createdAt?: SortOrder
+    reviewedAt?: SortOrder
+  }
+
+  export type FeedbackMinOrderByAggregateInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    message?: SortOrder
+    rating?: SortOrder
+    status?: SortOrder
+    response?: SortOrder
+    createdAt?: SortOrder
+    reviewedAt?: SortOrder
+  }
+
+  export type FeedbackSumOrderByAggregateInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    rating?: SortOrder
+  }
+
+  export type StudentListRelationFilter = {
+    every?: StudentWhereInput
+    some?: StudentWhereInput
+    none?: StudentWhereInput
+  }
+
+  export type StudentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ParentAccountCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    password?: SortOrder
+    isActivated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ParentAccountAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ParentAccountMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    password?: SortOrder
+    isActivated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ParentAccountMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    phone?: SortOrder
+    password?: SortOrder
+    isActivated?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ParentAccountSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type TransactionReceiptCountOrderByAggregateInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    amount?: SortOrder
+    transactionDate?: SortOrder
+    transactionId?: SortOrder
+    description?: SortOrder
+    receiptUrl?: SortOrder
+    receiptFileName?: SortOrder
+    receiptFileSize?: SortOrder
+    status?: SortOrder
+    adminNotes?: SortOrder
+    createdAt?: SortOrder
+    reviewedAt?: SortOrder
+  }
+
+  export type TransactionReceiptAvgOrderByAggregateInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    receiptFileSize?: SortOrder
+  }
+
+  export type TransactionReceiptMaxOrderByAggregateInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    amount?: SortOrder
+    transactionDate?: SortOrder
+    transactionId?: SortOrder
+    description?: SortOrder
+    receiptUrl?: SortOrder
+    receiptFileName?: SortOrder
+    receiptFileSize?: SortOrder
+    status?: SortOrder
+    adminNotes?: SortOrder
+    createdAt?: SortOrder
+    reviewedAt?: SortOrder
+  }
+
+  export type TransactionReceiptMinOrderByAggregateInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    amount?: SortOrder
+    transactionDate?: SortOrder
+    transactionId?: SortOrder
+    description?: SortOrder
+    receiptUrl?: SortOrder
+    receiptFileName?: SortOrder
+    receiptFileSize?: SortOrder
+    status?: SortOrder
+    adminNotes?: SortOrder
+    createdAt?: SortOrder
+    reviewedAt?: SortOrder
+  }
+
+  export type TransactionReceiptSumOrderByAggregateInput = {
+    id?: SortOrder
+    parentId?: SortOrder
+    receiptFileSize?: SortOrder
+  }
+
+  export type PasswordResetRequestCountOrderByAggregateInput = {
+    id?: SortOrder
+    role?: SortOrder
+    userId?: SortOrder
+    tokenHash?: SortOrder
+    expiresAt?: SortOrder
+    isUsed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PasswordResetRequestAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type PasswordResetRequestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    role?: SortOrder
+    userId?: SortOrder
+    tokenHash?: SortOrder
+    expiresAt?: SortOrder
+    isUsed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PasswordResetRequestMinOrderByAggregateInput = {
+    id?: SortOrder
+    role?: SortOrder
+    userId?: SortOrder
+    tokenHash?: SortOrder
+    expiresAt?: SortOrder
+    isUsed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PasswordResetRequestSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type TeacherNullableScalarRelationFilter = {
+    is?: TeacherWhereInput | null
+    isNot?: TeacherWhereInput | null
+  }
+
+  export type MentorCountOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    name?: SortOrder
+    role?: SortOrder
+    workplace?: SortOrder
+    education?: SortOrder
+    institution?: SortOrder
+    image?: SortOrder
+    experience?: SortOrder
+    specialties?: SortOrder
+    achievements?: SortOrder
+    bio?: SortOrder
+    isActive?: SortOrder
+    displayOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    department?: SortOrder
+  }
+
+  export type MentorAvgOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    displayOrder?: SortOrder
+  }
+
+  export type MentorMaxOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    name?: SortOrder
+    role?: SortOrder
+    workplace?: SortOrder
+    education?: SortOrder
+    institution?: SortOrder
+    image?: SortOrder
+    experience?: SortOrder
+    bio?: SortOrder
+    isActive?: SortOrder
+    displayOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    department?: SortOrder
+  }
+
+  export type MentorMinOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    name?: SortOrder
+    role?: SortOrder
+    workplace?: SortOrder
+    education?: SortOrder
+    institution?: SortOrder
+    image?: SortOrder
+    experience?: SortOrder
+    bio?: SortOrder
+    isActive?: SortOrder
+    displayOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    department?: SortOrder
+  }
+
+  export type MentorSumOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    displayOrder?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -33270,6 +40962,12 @@ export namespace Prisma {
     connect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
   }
 
+  export type MentorCreateNestedOneWithoutTeacherInput = {
+    create?: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
+    connectOrCreate?: MentorCreateOrConnectWithoutTeacherInput
+    connect?: MentorWhereUniqueInput
+  }
+
   export type ResourceCreateNestedManyWithoutTeacherInput = {
     create?: XOR<ResourceCreateWithoutTeacherInput, ResourceUncheckedCreateWithoutTeacherInput> | ResourceCreateWithoutTeacherInput[] | ResourceUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: ResourceCreateOrConnectWithoutTeacherInput | ResourceCreateOrConnectWithoutTeacherInput[]
@@ -33303,6 +41001,12 @@ export namespace Prisma {
     connectOrCreate?: ClassScheduleCreateOrConnectWithoutTeacherInput | ClassScheduleCreateOrConnectWithoutTeacherInput[]
     createMany?: ClassScheduleCreateManyTeacherInputEnvelope
     connect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+  }
+
+  export type MentorUncheckedCreateNestedOneWithoutTeacherInput = {
+    create?: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
+    connectOrCreate?: MentorCreateOrConnectWithoutTeacherInput
+    connect?: MentorWhereUniqueInput
   }
 
   export type ResourceUncheckedCreateNestedManyWithoutTeacherInput = {
@@ -33357,6 +41061,16 @@ export namespace Prisma {
     update?: ClassScheduleUpdateWithWhereUniqueWithoutTeacherInput | ClassScheduleUpdateWithWhereUniqueWithoutTeacherInput[]
     updateMany?: ClassScheduleUpdateManyWithWhereWithoutTeacherInput | ClassScheduleUpdateManyWithWhereWithoutTeacherInput[]
     deleteMany?: ClassScheduleScalarWhereInput | ClassScheduleScalarWhereInput[]
+  }
+
+  export type MentorUpdateOneWithoutTeacherNestedInput = {
+    create?: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
+    connectOrCreate?: MentorCreateOrConnectWithoutTeacherInput
+    upsert?: MentorUpsertWithoutTeacherInput
+    disconnect?: MentorWhereInput | boolean
+    delete?: MentorWhereInput | boolean
+    connect?: MentorWhereUniqueInput
+    update?: XOR<XOR<MentorUpdateToOneWithWhereWithoutTeacherInput, MentorUpdateWithoutTeacherInput>, MentorUncheckedUpdateWithoutTeacherInput>
   }
 
   export type ResourceUpdateManyWithoutTeacherNestedInput = {
@@ -33429,6 +41143,16 @@ export namespace Prisma {
     deleteMany?: ClassScheduleScalarWhereInput | ClassScheduleScalarWhereInput[]
   }
 
+  export type MentorUncheckedUpdateOneWithoutTeacherNestedInput = {
+    create?: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
+    connectOrCreate?: MentorCreateOrConnectWithoutTeacherInput
+    upsert?: MentorUpsertWithoutTeacherInput
+    disconnect?: MentorWhereInput | boolean
+    delete?: MentorWhereInput | boolean
+    connect?: MentorWhereUniqueInput
+    update?: XOR<XOR<MentorUpdateToOneWithWhereWithoutTeacherInput, MentorUpdateWithoutTeacherInput>, MentorUncheckedUpdateWithoutTeacherInput>
+  }
+
   export type ResourceUncheckedUpdateManyWithoutTeacherNestedInput = {
     create?: XOR<ResourceCreateWithoutTeacherInput, ResourceUncheckedCreateWithoutTeacherInput> | ResourceCreateWithoutTeacherInput[] | ResourceUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: ResourceCreateOrConnectWithoutTeacherInput | ResourceCreateOrConnectWithoutTeacherInput[]
@@ -33497,6 +41221,12 @@ export namespace Prisma {
     connectOrCreate?: PaymentCreateOrConnectWithoutStudentInput | PaymentCreateOrConnectWithoutStudentInput[]
     createMany?: PaymentCreateManyStudentInputEnvelope
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  }
+
+  export type ParentAccountCreateNestedOneWithoutStudentsInput = {
+    create?: XOR<ParentAccountCreateWithoutStudentsInput, ParentAccountUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: ParentAccountCreateOrConnectWithoutStudentsInput
+    connect?: ParentAccountWhereUniqueInput
   }
 
   export type StudentResourceCreateNestedManyWithoutStudentInput = {
@@ -33653,6 +41383,16 @@ export namespace Prisma {
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
   }
 
+  export type ParentAccountUpdateOneWithoutStudentsNestedInput = {
+    create?: XOR<ParentAccountCreateWithoutStudentsInput, ParentAccountUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: ParentAccountCreateOrConnectWithoutStudentsInput
+    upsert?: ParentAccountUpsertWithoutStudentsInput
+    disconnect?: ParentAccountWhereInput | boolean
+    delete?: ParentAccountWhereInput | boolean
+    connect?: ParentAccountWhereUniqueInput
+    update?: XOR<XOR<ParentAccountUpdateToOneWithWhereWithoutStudentsInput, ParentAccountUpdateWithoutStudentsInput>, ParentAccountUncheckedUpdateWithoutStudentsInput>
+  }
+
   export type StudentResourceUpdateManyWithoutStudentNestedInput = {
     create?: XOR<StudentResourceCreateWithoutStudentInput, StudentResourceUncheckedCreateWithoutStudentInput> | StudentResourceCreateWithoutStudentInput[] | StudentResourceUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: StudentResourceCreateOrConnectWithoutStudentInput | StudentResourceCreateOrConnectWithoutStudentInput[]
@@ -33721,6 +41461,14 @@ export namespace Prisma {
     update?: TestimonialUpdateWithWhereUniqueWithoutStudentInput | TestimonialUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: TestimonialUpdateManyWithWhereWithoutStudentInput | TestimonialUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: TestimonialScalarWhereInput | TestimonialScalarWhereInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput = {
@@ -33961,14 +41709,6 @@ export namespace Prisma {
     update?: SubmissionUpdateWithWhereUniqueWithoutAssignmentInput | SubmissionUpdateWithWhereUniqueWithoutAssignmentInput[]
     updateMany?: SubmissionUpdateManyWithWhereWithoutAssignmentInput | SubmissionUpdateManyWithWhereWithoutAssignmentInput[]
     deleteMany?: SubmissionScalarWhereInput | SubmissionScalarWhereInput[]
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput = {
@@ -34404,6 +42144,82 @@ export namespace Prisma {
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutTestimonialInput, StudentUpdateWithoutTestimonialInput>, StudentUncheckedUpdateWithoutTestimonialInput>
   }
 
+  export type StudentCreateNestedManyWithoutParentAccountInput = {
+    create?: XOR<StudentCreateWithoutParentAccountInput, StudentUncheckedCreateWithoutParentAccountInput> | StudentCreateWithoutParentAccountInput[] | StudentUncheckedCreateWithoutParentAccountInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutParentAccountInput | StudentCreateOrConnectWithoutParentAccountInput[]
+    createMany?: StudentCreateManyParentAccountInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
+  export type StudentUncheckedCreateNestedManyWithoutParentAccountInput = {
+    create?: XOR<StudentCreateWithoutParentAccountInput, StudentUncheckedCreateWithoutParentAccountInput> | StudentCreateWithoutParentAccountInput[] | StudentUncheckedCreateWithoutParentAccountInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutParentAccountInput | StudentCreateOrConnectWithoutParentAccountInput[]
+    createMany?: StudentCreateManyParentAccountInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
+  export type StudentUpdateManyWithoutParentAccountNestedInput = {
+    create?: XOR<StudentCreateWithoutParentAccountInput, StudentUncheckedCreateWithoutParentAccountInput> | StudentCreateWithoutParentAccountInput[] | StudentUncheckedCreateWithoutParentAccountInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutParentAccountInput | StudentCreateOrConnectWithoutParentAccountInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutParentAccountInput | StudentUpsertWithWhereUniqueWithoutParentAccountInput[]
+    createMany?: StudentCreateManyParentAccountInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutParentAccountInput | StudentUpdateWithWhereUniqueWithoutParentAccountInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutParentAccountInput | StudentUpdateManyWithWhereWithoutParentAccountInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type StudentUncheckedUpdateManyWithoutParentAccountNestedInput = {
+    create?: XOR<StudentCreateWithoutParentAccountInput, StudentUncheckedCreateWithoutParentAccountInput> | StudentCreateWithoutParentAccountInput[] | StudentUncheckedCreateWithoutParentAccountInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutParentAccountInput | StudentCreateOrConnectWithoutParentAccountInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutParentAccountInput | StudentUpsertWithWhereUniqueWithoutParentAccountInput[]
+    createMany?: StudentCreateManyParentAccountInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutParentAccountInput | StudentUpdateWithWhereUniqueWithoutParentAccountInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutParentAccountInput | StudentUpdateManyWithWhereWithoutParentAccountInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type MentorCreatespecialtiesInput = {
+    set: string[]
+  }
+
+  export type MentorCreateachievementsInput = {
+    set: string[]
+  }
+
+  export type TeacherCreateNestedOneWithoutMentorProfileInput = {
+    create?: XOR<TeacherCreateWithoutMentorProfileInput, TeacherUncheckedCreateWithoutMentorProfileInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutMentorProfileInput
+    connect?: TeacherWhereUniqueInput
+  }
+
+  export type MentorUpdatespecialtiesInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type MentorUpdateachievementsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type TeacherUpdateOneWithoutMentorProfileNestedInput = {
+    create?: XOR<TeacherCreateWithoutMentorProfileInput, TeacherUncheckedCreateWithoutMentorProfileInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutMentorProfileInput
+    upsert?: TeacherUpsertWithoutMentorProfileInput
+    disconnect?: TeacherWhereInput | boolean
+    delete?: TeacherWhereInput | boolean
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutMentorProfileInput, TeacherUpdateWithoutMentorProfileInput>, TeacherUncheckedUpdateWithoutMentorProfileInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -34739,6 +42555,48 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MentorCreateWithoutTeacherInput = {
+    name: string
+    role: string
+    workplace: string
+    education: string
+    institution: string
+    image: string
+    experience?: string | null
+    specialties?: MentorCreatespecialtiesInput | string[]
+    achievements?: MentorCreateachievementsInput | string[]
+    bio: string
+    isActive?: boolean
+    displayOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    department?: string
+  }
+
+  export type MentorUncheckedCreateWithoutTeacherInput = {
+    id?: number
+    name: string
+    role: string
+    workplace: string
+    education: string
+    institution: string
+    image: string
+    experience?: string | null
+    specialties?: MentorCreatespecialtiesInput | string[]
+    achievements?: MentorCreateachievementsInput | string[]
+    bio: string
+    isActive?: boolean
+    displayOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    department?: string
+  }
+
+  export type MentorCreateOrConnectWithoutTeacherInput = {
+    where: MentorWhereUniqueInput
+    create: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
+  }
+
   export type ResourceCreateWithoutTeacherInput = {
     title: string
     description?: string | null
@@ -34905,6 +42763,54 @@ export namespace Prisma {
     teacherId?: IntFilter<"ClassSchedule"> | number
     createdAt?: DateTimeFilter<"ClassSchedule"> | Date | string
     updatedAt?: DateTimeFilter<"ClassSchedule"> | Date | string
+  }
+
+  export type MentorUpsertWithoutTeacherInput = {
+    update: XOR<MentorUpdateWithoutTeacherInput, MentorUncheckedUpdateWithoutTeacherInput>
+    create: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
+    where?: MentorWhereInput
+  }
+
+  export type MentorUpdateToOneWithWhereWithoutTeacherInput = {
+    where?: MentorWhereInput
+    data: XOR<MentorUpdateWithoutTeacherInput, MentorUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type MentorUpdateWithoutTeacherInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    workplace?: StringFieldUpdateOperationsInput | string
+    education?: StringFieldUpdateOperationsInput | string
+    institution?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    experience?: NullableStringFieldUpdateOperationsInput | string | null
+    specialties?: MentorUpdatespecialtiesInput | string[]
+    achievements?: MentorUpdateachievementsInput | string[]
+    bio?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MentorUncheckedUpdateWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    workplace?: StringFieldUpdateOperationsInput | string
+    education?: StringFieldUpdateOperationsInput | string
+    institution?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    experience?: NullableStringFieldUpdateOperationsInput | string | null
+    specialties?: MentorUpdatespecialtiesInput | string[]
+    achievements?: MentorUpdateachievementsInput | string[]
+    bio?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: StringFieldUpdateOperationsInput | string
   }
 
   export type ResourceUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -35171,6 +43077,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ParentAccountCreateWithoutStudentsInput = {
+    name: string
+    email: string
+    phone?: string | null
+    password?: string | null
+    isActivated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ParentAccountUncheckedCreateWithoutStudentsInput = {
+    id?: number
+    name: string
+    email: string
+    phone?: string | null
+    password?: string | null
+    isActivated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ParentAccountCreateOrConnectWithoutStudentsInput = {
+    where: ParentAccountWhereUniqueInput
+    create: XOR<ParentAccountCreateWithoutStudentsInput, ParentAccountUncheckedCreateWithoutStudentsInput>
+  }
+
   export type StudentResourceCreateWithoutStudentInput = {
     assignedAt?: Date | string
     viewedAt?: Date | string | null
@@ -35301,6 +43233,7 @@ export namespace Prisma {
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
+    videoLink?: string | null
   }
 
   export type TestimonialUncheckedCreateWithoutStudentInput = {
@@ -35312,6 +43245,7 @@ export namespace Prisma {
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
+    videoLink?: string | null
   }
 
   export type TestimonialCreateOrConnectWithoutStudentInput = {
@@ -35426,6 +43360,38 @@ export namespace Prisma {
     paidAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     updatedAt?: DateTimeFilter<"Payment"> | Date | string
+  }
+
+  export type ParentAccountUpsertWithoutStudentsInput = {
+    update: XOR<ParentAccountUpdateWithoutStudentsInput, ParentAccountUncheckedUpdateWithoutStudentsInput>
+    create: XOR<ParentAccountCreateWithoutStudentsInput, ParentAccountUncheckedCreateWithoutStudentsInput>
+    where?: ParentAccountWhereInput
+  }
+
+  export type ParentAccountUpdateToOneWithWhereWithoutStudentsInput = {
+    where?: ParentAccountWhereInput
+    data: XOR<ParentAccountUpdateWithoutStudentsInput, ParentAccountUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type ParentAccountUpdateWithoutStudentsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ParentAccountUncheckedUpdateWithoutStudentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StudentResourceUpsertWithWhereUniqueWithoutStudentInput = {
@@ -35568,6 +43534,7 @@ export namespace Prisma {
     isVisible?: BoolFilter<"Testimonial"> | boolean
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
+    videoLink?: StringNullableFilter<"Testimonial"> | string | null
   }
 
   export type StudentCreateWithoutTeacherLinksInput = {
@@ -35587,6 +43554,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -35607,6 +43575,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -35632,6 +43601,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
   }
@@ -35647,6 +43617,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -35684,6 +43655,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -35704,6 +43676,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -35735,6 +43708,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
   }
@@ -35750,6 +43724,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -35770,6 +43745,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -35791,6 +43767,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -35815,6 +43792,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -35830,6 +43808,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -35927,6 +43906,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -35948,6 +43928,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -35978,6 +43959,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -35993,6 +43975,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -36097,6 +44080,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
@@ -36117,6 +44101,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -36206,6 +44191,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
@@ -36226,6 +44212,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -36252,6 +44239,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -36273,6 +44261,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -36370,6 +44359,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -36391,6 +44381,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -36448,6 +44439,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -36463,6 +44455,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -36532,6 +44525,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -36547,6 +44541,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -36802,6 +44797,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
@@ -36822,6 +44818,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -36913,6 +44910,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
@@ -36933,6 +44931,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -36960,6 +44959,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
@@ -36980,6 +44980,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -37048,6 +45049,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
@@ -37068,6 +45070,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -37136,6 +45139,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -37151,6 +45155,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -37219,6 +45224,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -37234,6 +45240,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -37254,6 +45261,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -37275,6 +45283,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -37299,6 +45308,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -37314,6 +45324,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -37351,6 +45362,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -37372,6 +45384,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -37402,6 +45415,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -37417,6 +45431,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -37462,6 +45477,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -37483,6 +45499,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -37555,6 +45572,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -37576,6 +45594,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -37603,6 +45622,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -37623,6 +45643,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    parentAccountId?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -37666,6 +45687,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -37686,6 +45708,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -37694,6 +45717,179 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentCreateWithoutParentAccountInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutParentAccountInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutParentAccountInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutParentAccountInput, StudentUncheckedCreateWithoutParentAccountInput>
+  }
+
+  export type StudentCreateManyParentAccountInputEnvelope = {
+    data: StudentCreateManyParentAccountInput | StudentCreateManyParentAccountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StudentUpsertWithWhereUniqueWithoutParentAccountInput = {
+    where: StudentWhereUniqueInput
+    update: XOR<StudentUpdateWithoutParentAccountInput, StudentUncheckedUpdateWithoutParentAccountInput>
+    create: XOR<StudentCreateWithoutParentAccountInput, StudentUncheckedCreateWithoutParentAccountInput>
+  }
+
+  export type StudentUpdateWithWhereUniqueWithoutParentAccountInput = {
+    where: StudentWhereUniqueInput
+    data: XOR<StudentUpdateWithoutParentAccountInput, StudentUncheckedUpdateWithoutParentAccountInput>
+  }
+
+  export type StudentUpdateManyWithWhereWithoutParentAccountInput = {
+    where: StudentScalarWhereInput
+    data: XOR<StudentUpdateManyMutationInput, StudentUncheckedUpdateManyWithoutParentAccountInput>
+  }
+
+  export type StudentScalarWhereInput = {
+    AND?: StudentScalarWhereInput | StudentScalarWhereInput[]
+    OR?: StudentScalarWhereInput[]
+    NOT?: StudentScalarWhereInput | StudentScalarWhereInput[]
+    id?: IntFilter<"Student"> | number
+    name?: StringFilter<"Student"> | string
+    email?: StringFilter<"Student"> | string
+    password?: StringNullableFilter<"Student"> | string | null
+    grade?: StringFilter<"Student"> | string
+    schoolName?: StringFilter<"Student"> | string
+    parentName?: StringFilter<"Student"> | string
+    parentEmail?: StringFilter<"Student"> | string
+    parentPhone?: StringFilter<"Student"> | string
+    program?: StringFilter<"Student"> | string
+    createdAt?: DateTimeFilter<"Student"> | Date | string
+    updatedAt?: DateTimeFilter<"Student"> | Date | string
+    isActivated?: BoolFilter<"Student"> | boolean
+    parentAccountId?: IntNullableFilter<"Student"> | number | null
+  }
+
+  export type TeacherCreateWithoutMentorProfileInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherUncheckedCreateWithoutMentorProfileInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherCreateOrConnectWithoutMentorProfileInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutMentorProfileInput, TeacherUncheckedCreateWithoutMentorProfileInput>
+  }
+
+  export type TeacherUpsertWithoutMentorProfileInput = {
+    update: XOR<TeacherUpdateWithoutMentorProfileInput, TeacherUncheckedUpdateWithoutMentorProfileInput>
+    create: XOR<TeacherCreateWithoutMentorProfileInput, TeacherUncheckedCreateWithoutMentorProfileInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutMentorProfileInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutMentorProfileInput, TeacherUncheckedUpdateWithoutMentorProfileInput>
+  }
+
+  export type TeacherUpdateWithoutMentorProfileInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutMentorProfileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
   export type AssignmentCreateManyTeacherInput = {
@@ -38075,6 +46271,7 @@ export namespace Prisma {
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
+    videoLink?: string | null
   }
 
   export type AssignmentUpdateWithoutTargetStudentInput = {
@@ -38406,6 +46603,7 @@ export namespace Prisma {
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoLink?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TestimonialUncheckedUpdateWithoutStudentInput = {
@@ -38417,6 +46615,7 @@ export namespace Prisma {
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoLink?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TestimonialUncheckedUpdateManyWithoutStudentInput = {
@@ -38428,6 +46627,7 @@ export namespace Prisma {
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoLink?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AssignmentResourceCreateManyAssignmentInput = {
@@ -38682,6 +46882,87 @@ export namespace Prisma {
     remark?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentCreateManyParentAccountInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+  }
+
+  export type StudentUpdateWithoutParentAccountInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutParentAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateManyWithoutParentAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
   }
 
 

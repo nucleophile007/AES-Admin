@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/authOptions';
 import { allowedEmails } from '@/lib/adminConfig';
 import type { Session } from 'next-auth';
-import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquare, Receipt, MessageSquareQuote } from "lucide-react";
+import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquare, Receipt, MessageSquareQuote, Award } from "lucide-react";
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions) as Session | null;
@@ -206,6 +206,27 @@ export default async function HomePage() {
                 </div>
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500 text-white shadow-inner group-hover:bg-blue-600 transition-colors">
                   <MessageSquareQuote className="w-6 h-6" />
+                </div>
+              </div>
+            </Link>
+
+            <Link 
+              href="/admin/mentors"
+              className="group block rounded-xl p-6 bg-white border border-purple-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Mentor Profiles</h3>
+                  <p className="text-sm text-gray-600">
+                    Manage mentor profiles and information
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-100">
+                    <span className="h-1.5 w-1.5 rounded-full bg-purple-600 mr-1.5" />
+                    Featured Content
+                  </span>
+                </div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600 text-white shadow-inner group-hover:bg-purple-700 transition-colors">
+                  <Award className="w-6 h-6" />
                 </div>
               </div>
             </Link>
