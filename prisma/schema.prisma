@@ -49,6 +49,7 @@ model Teacher {
   assignments       Assignment[]
   classSchedules    ClassSchedule[]
   mentorProfile     Mentor?
+  ProgressReport    ProgressReport[]
   resources         Resource[]
   submissionRemarks StudentSubmissionRemark[]
   students          TeacherStudent[]
@@ -73,6 +74,7 @@ model Student {
   classSchedules      ClassSchedule[]
   enrollments         Enrollment[]
   Payment             Payment[]
+  ProgressReport      ProgressReport[]
   parentAccount       ParentAccount?      @relation(fields: [parentAccountId], references: [id])
   assignedResources   StudentResource[]
   studentSubmissions  StudentSubmission[]
@@ -312,17 +314,34 @@ model Payment {
 }
 
 model Testimonial {
-  id         Int      @id @default(autoincrement())
-  studentId  Int
-  content    String
-  authorType String
-  authorName String
-  isApproved Boolean  @default(false)
-  isVisible  Boolean  @default(true)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime
-  videoLink  String?
-  Student    Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  id                           Int       @id @default(autoincrement())
+  studentId                    Int?
+  content                      String?
+  authorType                   String?
+  authorName                   String?
+  isApproved                   Boolean   @default(false)
+  isVisible                    Boolean   @default(true)
+  createdAt                    DateTime  @default(now())
+  updatedAt                    DateTime
+  videoLink                    String?
+  beforeAfterExpectations      String?
+  consentToFeature             Boolean   @default(false)
+  experienceDescription        String?
+  grade                        String?
+  programs                     String[]
+  rating                       Int?
+  school                       String?
+  studentInfo                  String?
+  studentName                  String?
+  submittedAt                  DateTime?
+  successStory                 String?
+  // Individual section approvals
+  contentApproved              Boolean   @default(false)
+  ratingApproved               Boolean   @default(false)
+  beforeAfterApproved          Boolean   @default(false)
+  successStoryApproved         Boolean   @default(false)
+  programsApproved             Boolean   @default(false)
+  Student                      Student?  @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }
 
 model SecurityLog {
@@ -355,16 +374,41 @@ model FailedActivation {
 }
 
 model Feedback {
-  id          Int       @id @default(autoincrement())
-  parentId    Int
-  parentName  String
-  parentEmail String
-  message     String
-  rating      Int?
-  status      String    @default("new")
-  response    String?
-  createdAt   DateTime  @default(now())
-  reviewedAt  DateTime?
+  id                           Int       @id @default(autoincrement())
+  parentId                     Int?
+  parentName                   String?
+  parentEmail                  String?
+  studentName                  String?
+  grade                        String?
+  school                       String?
+  programs                     String[]
+  heardAbout                   String?
+  beforeAfterExpectations      String?
+  childExperience              String?
+  successStory                 String?
+  overallExperience            String?
+  studentRating                Int?
+  schedulingRating             Int?
+  wouldRecommend               String?
+  consentToFeature             Boolean   @default(false)
+  favoriteThingToShare         String?
+  suggestions                  String?
+  status                       String    @default("new")
+  response                     String?
+  isApproved                   Boolean   @default(false)
+  isVisible                    Boolean   @default(true)
+  submittedAt                  DateTime?
+  createdAt                    DateTime  @default(now())
+  reviewedAt                   DateTime?
+  updatedAt                    DateTime  @updatedAt
+  // Individual section approvals
+  beforeAfterApproved          Boolean   @default(false)
+  childExperienceApproved      Boolean   @default(false)
+  successStoryApproved         Boolean   @default(false)
+  overallExperienceApproved    Boolean   @default(false)
+  programsApproved             Boolean   @default(false)
+  studentRatingApproved        Boolean   @default(false)
+  schedulingRatingApproved     Boolean   @default(false)
 
   @@index([createdAt])
   @@index([parentId])
@@ -430,14 +474,32 @@ model Mentor {
   experience   String?
   specialties  String[]
   achievements String[]
+  department   String   @default("General")
   bio          String
   isActive     Boolean  @default(true)
   displayOrder Int      @default(0)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  department   String   @default("General")
   teacher      Teacher? @relation(fields: [teacherId], references: [id])
 
   @@index([isActive, displayOrder])
+  @@index([teacherId])
+}
+
+model ProgressReport {
+  id                 Int      @id @default(autoincrement())
+  studentId          Int
+  teacherId          Int
+  reportDate         DateTime @default(now())
+  overallProgress    String
+  milestonesAchieved String?
+  publications       String?
+  nextSteps          String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime
+  Student            Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  Teacher            Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
   @@index([teacherId])
 }

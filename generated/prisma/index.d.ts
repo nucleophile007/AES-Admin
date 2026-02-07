@@ -143,6 +143,11 @@ export type PasswordResetRequest = $Result.DefaultSelection<Prisma.$PasswordRese
  * 
  */
 export type Mentor = $Result.DefaultSelection<Prisma.$MentorPayload>
+/**
+ * Model ProgressReport
+ * 
+ */
+export type ProgressReport = $Result.DefaultSelection<Prisma.$ProgressReportPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -521,6 +526,16 @@ export class PrismaClient<
     * ```
     */
   get mentor(): Prisma.MentorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.progressReport`: Exposes CRUD operations for the **ProgressReport** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProgressReports
+    * const progressReports = await prisma.progressReport.findMany()
+    * ```
+    */
+  get progressReport(): Prisma.ProgressReportDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -986,7 +1001,8 @@ export namespace Prisma {
     ParentAccount: 'ParentAccount',
     TransactionReceipt: 'TransactionReceipt',
     PasswordResetRequest: 'PasswordResetRequest',
-    Mentor: 'Mentor'
+    Mentor: 'Mentor',
+    ProgressReport: 'ProgressReport'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1005,7 +1021,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor" | "progressReport"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2933,6 +2949,80 @@ export namespace Prisma {
           }
         }
       }
+      ProgressReport: {
+        payload: Prisma.$ProgressReportPayload<ExtArgs>
+        fields: Prisma.ProgressReportFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProgressReportFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProgressReportFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          findFirst: {
+            args: Prisma.ProgressReportFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProgressReportFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          findMany: {
+            args: Prisma.ProgressReportFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>[]
+          }
+          create: {
+            args: Prisma.ProgressReportCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          createMany: {
+            args: Prisma.ProgressReportCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProgressReportCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>[]
+          }
+          delete: {
+            args: Prisma.ProgressReportDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          update: {
+            args: Prisma.ProgressReportUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProgressReportDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProgressReportUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProgressReportUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProgressReportUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          aggregate: {
+            args: Prisma.ProgressReportAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProgressReport>
+          }
+          groupBy: {
+            args: Prisma.ProgressReportGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProgressReportGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProgressReportCountArgs<ExtArgs>
+            result: $Utils.Optional<ProgressReportCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3051,6 +3141,7 @@ export namespace Prisma {
     transactionReceipt?: TransactionReceiptOmit
     passwordResetRequest?: PasswordResetRequestOmit
     mentor?: MentorOmit
+    progressReport?: ProgressReportOmit
   }
 
   /* Types for Logging */
@@ -3133,6 +3224,7 @@ export namespace Prisma {
   export type TeacherCountOutputType = {
     assignments: number
     classSchedules: number
+    ProgressReport: number
     resources: number
     submissionRemarks: number
     students: number
@@ -3141,6 +3233,7 @@ export namespace Prisma {
   export type TeacherCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignments?: boolean | TeacherCountOutputTypeCountAssignmentsArgs
     classSchedules?: boolean | TeacherCountOutputTypeCountClassSchedulesArgs
+    ProgressReport?: boolean | TeacherCountOutputTypeCountProgressReportArgs
     resources?: boolean | TeacherCountOutputTypeCountResourcesArgs
     submissionRemarks?: boolean | TeacherCountOutputTypeCountSubmissionRemarksArgs
     students?: boolean | TeacherCountOutputTypeCountStudentsArgs
@@ -3174,6 +3267,13 @@ export namespace Prisma {
   /**
    * TeacherCountOutputType without action
    */
+  export type TeacherCountOutputTypeCountProgressReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressReportWhereInput
+  }
+
+  /**
+   * TeacherCountOutputType without action
+   */
   export type TeacherCountOutputTypeCountResourcesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ResourceWhereInput
   }
@@ -3202,6 +3302,7 @@ export namespace Prisma {
     classSchedules: number
     enrollments: number
     Payment: number
+    ProgressReport: number
     assignedResources: number
     studentSubmissions: number
     submissions: number
@@ -3214,6 +3315,7 @@ export namespace Prisma {
     classSchedules?: boolean | StudentCountOutputTypeCountClassSchedulesArgs
     enrollments?: boolean | StudentCountOutputTypeCountEnrollmentsArgs
     Payment?: boolean | StudentCountOutputTypeCountPaymentArgs
+    ProgressReport?: boolean | StudentCountOutputTypeCountProgressReportArgs
     assignedResources?: boolean | StudentCountOutputTypeCountAssignedResourcesArgs
     studentSubmissions?: boolean | StudentCountOutputTypeCountStudentSubmissionsArgs
     submissions?: boolean | StudentCountOutputTypeCountSubmissionsArgs
@@ -3258,6 +3360,13 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountPaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PaymentWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountProgressReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressReportWhereInput
   }
 
   /**
@@ -5878,6 +5987,7 @@ export namespace Prisma {
     assignments?: boolean | Teacher$assignmentsArgs<ExtArgs>
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
+    ProgressReport?: boolean | Teacher$ProgressReportArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
     students?: boolean | Teacher$studentsArgs<ExtArgs>
@@ -5922,6 +6032,7 @@ export namespace Prisma {
     assignments?: boolean | Teacher$assignmentsArgs<ExtArgs>
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
+    ProgressReport?: boolean | Teacher$ProgressReportArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
     students?: boolean | Teacher$studentsArgs<ExtArgs>
@@ -5936,6 +6047,7 @@ export namespace Prisma {
       assignments: Prisma.$AssignmentPayload<ExtArgs>[]
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       mentorProfile: Prisma.$MentorPayload<ExtArgs> | null
+      ProgressReport: Prisma.$ProgressReportPayload<ExtArgs>[]
       resources: Prisma.$ResourcePayload<ExtArgs>[]
       submissionRemarks: Prisma.$StudentSubmissionRemarkPayload<ExtArgs>[]
       students: Prisma.$TeacherStudentPayload<ExtArgs>[]
@@ -6346,6 +6458,7 @@ export namespace Prisma {
     assignments<T extends Teacher$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     classSchedules<T extends Teacher$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     mentorProfile<T extends Teacher$mentorProfileArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$mentorProfileArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    ProgressReport<T extends Teacher$ProgressReportArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$ProgressReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     resources<T extends Teacher$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissionRemarks<T extends Teacher$submissionRemarksArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$submissionRemarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionRemarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     students<T extends Teacher$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6841,6 +6954,30 @@ export namespace Prisma {
   }
 
   /**
+   * Teacher.ProgressReport
+   */
+  export type Teacher$ProgressReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    where?: ProgressReportWhereInput
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    cursor?: ProgressReportWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
+  }
+
+  /**
    * Teacher.resources
    */
   export type Teacher$resourcesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7209,6 +7346,7 @@ export namespace Prisma {
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
+    ProgressReport?: boolean | Student$ProgressReportArgs<ExtArgs>
     parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
     studentSubmissions?: boolean | Student$studentSubmissionsArgs<ExtArgs>
@@ -7277,6 +7415,7 @@ export namespace Prisma {
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
+    ProgressReport?: boolean | Student$ProgressReportArgs<ExtArgs>
     parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
     studentSubmissions?: boolean | Student$studentSubmissionsArgs<ExtArgs>
@@ -7299,6 +7438,7 @@ export namespace Prisma {
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
       Payment: Prisma.$PaymentPayload<ExtArgs>[]
+      ProgressReport: Prisma.$ProgressReportPayload<ExtArgs>[]
       parentAccount: Prisma.$ParentAccountPayload<ExtArgs> | null
       assignedResources: Prisma.$StudentResourcePayload<ExtArgs>[]
       studentSubmissions: Prisma.$StudentSubmissionPayload<ExtArgs>[]
@@ -7719,6 +7859,7 @@ export namespace Prisma {
     classSchedules<T extends Student$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Student$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     enrollments<T extends Student$enrollmentsArgs<ExtArgs> = {}>(args?: Subset<T, Student$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Payment<T extends Student$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Student$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ProgressReport<T extends Student$ProgressReportArgs<ExtArgs> = {}>(args?: Subset<T, Student$ProgressReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     parentAccount<T extends Student$parentAccountArgs<ExtArgs> = {}>(args?: Subset<T, Student$parentAccountArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     assignedResources<T extends Student$assignedResourcesArgs<ExtArgs> = {}>(args?: Subset<T, Student$assignedResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     studentSubmissions<T extends Student$studentSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$studentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8257,6 +8398,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
+  }
+
+  /**
+   * Student.ProgressReport
+   */
+  export type Student$ProgressReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    where?: ProgressReportWhereInput
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    cursor?: ProgressReportWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
   }
 
   /**
@@ -24838,11 +25003,13 @@ export namespace Prisma {
   export type TestimonialAvgAggregateOutputType = {
     id: number | null
     studentId: number | null
+    rating: number | null
   }
 
   export type TestimonialSumAggregateOutputType = {
     id: number | null
     studentId: number | null
+    rating: number | null
   }
 
   export type TestimonialMinAggregateOutputType = {
@@ -24856,6 +25023,21 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     videoLink: string | null
+    beforeAfterExpectations: string | null
+    consentToFeature: boolean | null
+    experienceDescription: string | null
+    grade: string | null
+    rating: number | null
+    school: string | null
+    studentInfo: string | null
+    studentName: string | null
+    submittedAt: Date | null
+    successStory: string | null
+    contentApproved: boolean | null
+    ratingApproved: boolean | null
+    beforeAfterApproved: boolean | null
+    successStoryApproved: boolean | null
+    programsApproved: boolean | null
   }
 
   export type TestimonialMaxAggregateOutputType = {
@@ -24869,6 +25051,21 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     videoLink: string | null
+    beforeAfterExpectations: string | null
+    consentToFeature: boolean | null
+    experienceDescription: string | null
+    grade: string | null
+    rating: number | null
+    school: string | null
+    studentInfo: string | null
+    studentName: string | null
+    submittedAt: Date | null
+    successStory: string | null
+    contentApproved: boolean | null
+    ratingApproved: boolean | null
+    beforeAfterApproved: boolean | null
+    successStoryApproved: boolean | null
+    programsApproved: boolean | null
   }
 
   export type TestimonialCountAggregateOutputType = {
@@ -24882,6 +25079,22 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     videoLink: number
+    beforeAfterExpectations: number
+    consentToFeature: number
+    experienceDescription: number
+    grade: number
+    programs: number
+    rating: number
+    school: number
+    studentInfo: number
+    studentName: number
+    submittedAt: number
+    successStory: number
+    contentApproved: number
+    ratingApproved: number
+    beforeAfterApproved: number
+    successStoryApproved: number
+    programsApproved: number
     _all: number
   }
 
@@ -24889,11 +25102,13 @@ export namespace Prisma {
   export type TestimonialAvgAggregateInputType = {
     id?: true
     studentId?: true
+    rating?: true
   }
 
   export type TestimonialSumAggregateInputType = {
     id?: true
     studentId?: true
+    rating?: true
   }
 
   export type TestimonialMinAggregateInputType = {
@@ -24907,6 +25122,21 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     videoLink?: true
+    beforeAfterExpectations?: true
+    consentToFeature?: true
+    experienceDescription?: true
+    grade?: true
+    rating?: true
+    school?: true
+    studentInfo?: true
+    studentName?: true
+    submittedAt?: true
+    successStory?: true
+    contentApproved?: true
+    ratingApproved?: true
+    beforeAfterApproved?: true
+    successStoryApproved?: true
+    programsApproved?: true
   }
 
   export type TestimonialMaxAggregateInputType = {
@@ -24920,6 +25150,21 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     videoLink?: true
+    beforeAfterExpectations?: true
+    consentToFeature?: true
+    experienceDescription?: true
+    grade?: true
+    rating?: true
+    school?: true
+    studentInfo?: true
+    studentName?: true
+    submittedAt?: true
+    successStory?: true
+    contentApproved?: true
+    ratingApproved?: true
+    beforeAfterApproved?: true
+    successStoryApproved?: true
+    programsApproved?: true
   }
 
   export type TestimonialCountAggregateInputType = {
@@ -24933,6 +25178,22 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     videoLink?: true
+    beforeAfterExpectations?: true
+    consentToFeature?: true
+    experienceDescription?: true
+    grade?: true
+    programs?: true
+    rating?: true
+    school?: true
+    studentInfo?: true
+    studentName?: true
+    submittedAt?: true
+    successStory?: true
+    contentApproved?: true
+    ratingApproved?: true
+    beforeAfterApproved?: true
+    successStoryApproved?: true
+    programsApproved?: true
     _all?: true
   }
 
@@ -25024,15 +25285,31 @@ export namespace Prisma {
 
   export type TestimonialGroupByOutputType = {
     id: number
-    studentId: number
-    content: string
-    authorType: string
-    authorName: string
+    studentId: number | null
+    content: string | null
+    authorType: string | null
+    authorName: string | null
     isApproved: boolean
     isVisible: boolean
     createdAt: Date
     updatedAt: Date
     videoLink: string | null
+    beforeAfterExpectations: string | null
+    consentToFeature: boolean
+    experienceDescription: string | null
+    grade: string | null
+    programs: string[]
+    rating: number | null
+    school: string | null
+    studentInfo: string | null
+    studentName: string | null
+    submittedAt: Date | null
+    successStory: string | null
+    contentApproved: boolean
+    ratingApproved: boolean
+    beforeAfterApproved: boolean
+    successStoryApproved: boolean
+    programsApproved: boolean
     _count: TestimonialCountAggregateOutputType | null
     _avg: TestimonialAvgAggregateOutputType | null
     _sum: TestimonialSumAggregateOutputType | null
@@ -25065,7 +25342,23 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    beforeAfterExpectations?: boolean
+    consentToFeature?: boolean
+    experienceDescription?: boolean
+    grade?: boolean
+    programs?: boolean
+    rating?: boolean
+    school?: boolean
+    studentInfo?: boolean
+    studentName?: boolean
+    submittedAt?: boolean
+    successStory?: boolean
+    contentApproved?: boolean
+    ratingApproved?: boolean
+    beforeAfterApproved?: boolean
+    successStoryApproved?: boolean
+    programsApproved?: boolean
+    Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
   export type TestimonialSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -25079,7 +25372,23 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    beforeAfterExpectations?: boolean
+    consentToFeature?: boolean
+    experienceDescription?: boolean
+    grade?: boolean
+    programs?: boolean
+    rating?: boolean
+    school?: boolean
+    studentInfo?: boolean
+    studentName?: boolean
+    submittedAt?: boolean
+    successStory?: boolean
+    contentApproved?: boolean
+    ratingApproved?: boolean
+    beforeAfterApproved?: boolean
+    successStoryApproved?: boolean
+    programsApproved?: boolean
+    Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
   export type TestimonialSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -25093,7 +25402,23 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    beforeAfterExpectations?: boolean
+    consentToFeature?: boolean
+    experienceDescription?: boolean
+    grade?: boolean
+    programs?: boolean
+    rating?: boolean
+    school?: boolean
+    studentInfo?: boolean
+    studentName?: boolean
+    submittedAt?: boolean
+    successStory?: boolean
+    contentApproved?: boolean
+    ratingApproved?: boolean
+    beforeAfterApproved?: boolean
+    successStoryApproved?: boolean
+    programsApproved?: boolean
+    Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
   export type TestimonialSelectScalar = {
@@ -25107,35 +25432,67 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
+    beforeAfterExpectations?: boolean
+    consentToFeature?: boolean
+    experienceDescription?: boolean
+    grade?: boolean
+    programs?: boolean
+    rating?: boolean
+    school?: boolean
+    studentInfo?: boolean
+    studentName?: boolean
+    submittedAt?: boolean
+    successStory?: boolean
+    contentApproved?: boolean
+    ratingApproved?: boolean
+    beforeAfterApproved?: boolean
+    successStoryApproved?: boolean
+    programsApproved?: boolean
   }
 
-  export type TestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "content" | "authorType" | "authorName" | "isApproved" | "isVisible" | "createdAt" | "updatedAt" | "videoLink", ExtArgs["result"]["testimonial"]>
+  export type TestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "content" | "authorType" | "authorName" | "isApproved" | "isVisible" | "createdAt" | "updatedAt" | "videoLink" | "beforeAfterExpectations" | "consentToFeature" | "experienceDescription" | "grade" | "programs" | "rating" | "school" | "studentInfo" | "studentName" | "submittedAt" | "successStory" | "contentApproved" | "ratingApproved" | "beforeAfterApproved" | "successStoryApproved" | "programsApproved", ExtArgs["result"]["testimonial"]>
   export type TestimonialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }
   export type TestimonialIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }
   export type TestimonialIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }
 
   export type $TestimonialPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Testimonial"
     objects: {
-      Student: Prisma.$StudentPayload<ExtArgs>
+      Student: Prisma.$StudentPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      studentId: number
-      content: string
-      authorType: string
-      authorName: string
+      studentId: number | null
+      content: string | null
+      authorType: string | null
+      authorName: string | null
       isApproved: boolean
       isVisible: boolean
       createdAt: Date
       updatedAt: Date
       videoLink: string | null
+      beforeAfterExpectations: string | null
+      consentToFeature: boolean
+      experienceDescription: string | null
+      grade: string | null
+      programs: string[]
+      rating: number | null
+      school: string | null
+      studentInfo: string | null
+      studentName: string | null
+      submittedAt: Date | null
+      successStory: string | null
+      contentApproved: boolean
+      ratingApproved: boolean
+      beforeAfterApproved: boolean
+      successStoryApproved: boolean
+      programsApproved: boolean
     }, ExtArgs["result"]["testimonial"]>
     composites: {}
   }
@@ -25530,7 +25887,7 @@ export namespace Prisma {
    */
   export interface Prisma__TestimonialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Student<T extends Testimonial$StudentArgs<ExtArgs> = {}>(args?: Subset<T, Testimonial$StudentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -25570,6 +25927,22 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Testimonial", 'DateTime'>
     readonly updatedAt: FieldRef<"Testimonial", 'DateTime'>
     readonly videoLink: FieldRef<"Testimonial", 'String'>
+    readonly beforeAfterExpectations: FieldRef<"Testimonial", 'String'>
+    readonly consentToFeature: FieldRef<"Testimonial", 'Boolean'>
+    readonly experienceDescription: FieldRef<"Testimonial", 'String'>
+    readonly grade: FieldRef<"Testimonial", 'String'>
+    readonly programs: FieldRef<"Testimonial", 'String[]'>
+    readonly rating: FieldRef<"Testimonial", 'Int'>
+    readonly school: FieldRef<"Testimonial", 'String'>
+    readonly studentInfo: FieldRef<"Testimonial", 'String'>
+    readonly studentName: FieldRef<"Testimonial", 'String'>
+    readonly submittedAt: FieldRef<"Testimonial", 'DateTime'>
+    readonly successStory: FieldRef<"Testimonial", 'String'>
+    readonly contentApproved: FieldRef<"Testimonial", 'Boolean'>
+    readonly ratingApproved: FieldRef<"Testimonial", 'Boolean'>
+    readonly beforeAfterApproved: FieldRef<"Testimonial", 'Boolean'>
+    readonly successStoryApproved: FieldRef<"Testimonial", 'Boolean'>
+    readonly programsApproved: FieldRef<"Testimonial", 'Boolean'>
   }
     
 
@@ -25963,6 +26336,25 @@ export namespace Prisma {
      * Limit how many Testimonials to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Testimonial.Student
+   */
+  export type Testimonial$StudentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
   }
 
   /**
@@ -28131,13 +28523,15 @@ export namespace Prisma {
   export type FeedbackAvgAggregateOutputType = {
     id: number | null
     parentId: number | null
-    rating: number | null
+    studentRating: number | null
+    schedulingRating: number | null
   }
 
   export type FeedbackSumAggregateOutputType = {
     id: number | null
     parentId: number | null
-    rating: number | null
+    studentRating: number | null
+    schedulingRating: number | null
   }
 
   export type FeedbackMinAggregateOutputType = {
@@ -28145,12 +28539,35 @@ export namespace Prisma {
     parentId: number | null
     parentName: string | null
     parentEmail: string | null
-    message: string | null
-    rating: number | null
+    studentName: string | null
+    grade: string | null
+    school: string | null
+    heardAbout: string | null
+    beforeAfterExpectations: string | null
+    childExperience: string | null
+    successStory: string | null
+    overallExperience: string | null
+    studentRating: number | null
+    schedulingRating: number | null
+    wouldRecommend: string | null
+    consentToFeature: boolean | null
+    favoriteThingToShare: string | null
+    suggestions: string | null
     status: string | null
     response: string | null
+    isApproved: boolean | null
+    isVisible: boolean | null
+    submittedAt: Date | null
     createdAt: Date | null
     reviewedAt: Date | null
+    updatedAt: Date | null
+    beforeAfterApproved: boolean | null
+    childExperienceApproved: boolean | null
+    successStoryApproved: boolean | null
+    overallExperienceApproved: boolean | null
+    programsApproved: boolean | null
+    studentRatingApproved: boolean | null
+    schedulingRatingApproved: boolean | null
   }
 
   export type FeedbackMaxAggregateOutputType = {
@@ -28158,12 +28575,35 @@ export namespace Prisma {
     parentId: number | null
     parentName: string | null
     parentEmail: string | null
-    message: string | null
-    rating: number | null
+    studentName: string | null
+    grade: string | null
+    school: string | null
+    heardAbout: string | null
+    beforeAfterExpectations: string | null
+    childExperience: string | null
+    successStory: string | null
+    overallExperience: string | null
+    studentRating: number | null
+    schedulingRating: number | null
+    wouldRecommend: string | null
+    consentToFeature: boolean | null
+    favoriteThingToShare: string | null
+    suggestions: string | null
     status: string | null
     response: string | null
+    isApproved: boolean | null
+    isVisible: boolean | null
+    submittedAt: Date | null
     createdAt: Date | null
     reviewedAt: Date | null
+    updatedAt: Date | null
+    beforeAfterApproved: boolean | null
+    childExperienceApproved: boolean | null
+    successStoryApproved: boolean | null
+    overallExperienceApproved: boolean | null
+    programsApproved: boolean | null
+    studentRatingApproved: boolean | null
+    schedulingRatingApproved: boolean | null
   }
 
   export type FeedbackCountAggregateOutputType = {
@@ -28171,12 +28611,36 @@ export namespace Prisma {
     parentId: number
     parentName: number
     parentEmail: number
-    message: number
-    rating: number
+    studentName: number
+    grade: number
+    school: number
+    programs: number
+    heardAbout: number
+    beforeAfterExpectations: number
+    childExperience: number
+    successStory: number
+    overallExperience: number
+    studentRating: number
+    schedulingRating: number
+    wouldRecommend: number
+    consentToFeature: number
+    favoriteThingToShare: number
+    suggestions: number
     status: number
     response: number
+    isApproved: number
+    isVisible: number
+    submittedAt: number
     createdAt: number
     reviewedAt: number
+    updatedAt: number
+    beforeAfterApproved: number
+    childExperienceApproved: number
+    successStoryApproved: number
+    overallExperienceApproved: number
+    programsApproved: number
+    studentRatingApproved: number
+    schedulingRatingApproved: number
     _all: number
   }
 
@@ -28184,13 +28648,15 @@ export namespace Prisma {
   export type FeedbackAvgAggregateInputType = {
     id?: true
     parentId?: true
-    rating?: true
+    studentRating?: true
+    schedulingRating?: true
   }
 
   export type FeedbackSumAggregateInputType = {
     id?: true
     parentId?: true
-    rating?: true
+    studentRating?: true
+    schedulingRating?: true
   }
 
   export type FeedbackMinAggregateInputType = {
@@ -28198,12 +28664,35 @@ export namespace Prisma {
     parentId?: true
     parentName?: true
     parentEmail?: true
-    message?: true
-    rating?: true
+    studentName?: true
+    grade?: true
+    school?: true
+    heardAbout?: true
+    beforeAfterExpectations?: true
+    childExperience?: true
+    successStory?: true
+    overallExperience?: true
+    studentRating?: true
+    schedulingRating?: true
+    wouldRecommend?: true
+    consentToFeature?: true
+    favoriteThingToShare?: true
+    suggestions?: true
     status?: true
     response?: true
+    isApproved?: true
+    isVisible?: true
+    submittedAt?: true
     createdAt?: true
     reviewedAt?: true
+    updatedAt?: true
+    beforeAfterApproved?: true
+    childExperienceApproved?: true
+    successStoryApproved?: true
+    overallExperienceApproved?: true
+    programsApproved?: true
+    studentRatingApproved?: true
+    schedulingRatingApproved?: true
   }
 
   export type FeedbackMaxAggregateInputType = {
@@ -28211,12 +28700,35 @@ export namespace Prisma {
     parentId?: true
     parentName?: true
     parentEmail?: true
-    message?: true
-    rating?: true
+    studentName?: true
+    grade?: true
+    school?: true
+    heardAbout?: true
+    beforeAfterExpectations?: true
+    childExperience?: true
+    successStory?: true
+    overallExperience?: true
+    studentRating?: true
+    schedulingRating?: true
+    wouldRecommend?: true
+    consentToFeature?: true
+    favoriteThingToShare?: true
+    suggestions?: true
     status?: true
     response?: true
+    isApproved?: true
+    isVisible?: true
+    submittedAt?: true
     createdAt?: true
     reviewedAt?: true
+    updatedAt?: true
+    beforeAfterApproved?: true
+    childExperienceApproved?: true
+    successStoryApproved?: true
+    overallExperienceApproved?: true
+    programsApproved?: true
+    studentRatingApproved?: true
+    schedulingRatingApproved?: true
   }
 
   export type FeedbackCountAggregateInputType = {
@@ -28224,12 +28736,36 @@ export namespace Prisma {
     parentId?: true
     parentName?: true
     parentEmail?: true
-    message?: true
-    rating?: true
+    studentName?: true
+    grade?: true
+    school?: true
+    programs?: true
+    heardAbout?: true
+    beforeAfterExpectations?: true
+    childExperience?: true
+    successStory?: true
+    overallExperience?: true
+    studentRating?: true
+    schedulingRating?: true
+    wouldRecommend?: true
+    consentToFeature?: true
+    favoriteThingToShare?: true
+    suggestions?: true
     status?: true
     response?: true
+    isApproved?: true
+    isVisible?: true
+    submittedAt?: true
     createdAt?: true
     reviewedAt?: true
+    updatedAt?: true
+    beforeAfterApproved?: true
+    childExperienceApproved?: true
+    successStoryApproved?: true
+    overallExperienceApproved?: true
+    programsApproved?: true
+    studentRatingApproved?: true
+    schedulingRatingApproved?: true
     _all?: true
   }
 
@@ -28321,15 +28857,39 @@ export namespace Prisma {
 
   export type FeedbackGroupByOutputType = {
     id: number
-    parentId: number
-    parentName: string
-    parentEmail: string
-    message: string
-    rating: number | null
+    parentId: number | null
+    parentName: string | null
+    parentEmail: string | null
+    studentName: string | null
+    grade: string | null
+    school: string | null
+    programs: string[]
+    heardAbout: string | null
+    beforeAfterExpectations: string | null
+    childExperience: string | null
+    successStory: string | null
+    overallExperience: string | null
+    studentRating: number | null
+    schedulingRating: number | null
+    wouldRecommend: string | null
+    consentToFeature: boolean
+    favoriteThingToShare: string | null
+    suggestions: string | null
     status: string
     response: string | null
+    isApproved: boolean
+    isVisible: boolean
+    submittedAt: Date | null
     createdAt: Date
     reviewedAt: Date | null
+    updatedAt: Date
+    beforeAfterApproved: boolean
+    childExperienceApproved: boolean
+    successStoryApproved: boolean
+    overallExperienceApproved: boolean
+    programsApproved: boolean
+    studentRatingApproved: boolean
+    schedulingRatingApproved: boolean
     _count: FeedbackCountAggregateOutputType | null
     _avg: FeedbackAvgAggregateOutputType | null
     _sum: FeedbackSumAggregateOutputType | null
@@ -28356,12 +28916,36 @@ export namespace Prisma {
     parentId?: boolean
     parentName?: boolean
     parentEmail?: boolean
-    message?: boolean
-    rating?: boolean
+    studentName?: boolean
+    grade?: boolean
+    school?: boolean
+    programs?: boolean
+    heardAbout?: boolean
+    beforeAfterExpectations?: boolean
+    childExperience?: boolean
+    successStory?: boolean
+    overallExperience?: boolean
+    studentRating?: boolean
+    schedulingRating?: boolean
+    wouldRecommend?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: boolean
+    suggestions?: boolean
     status?: boolean
     response?: boolean
+    isApproved?: boolean
+    isVisible?: boolean
+    submittedAt?: boolean
     createdAt?: boolean
     reviewedAt?: boolean
+    updatedAt?: boolean
+    beforeAfterApproved?: boolean
+    childExperienceApproved?: boolean
+    successStoryApproved?: boolean
+    overallExperienceApproved?: boolean
+    programsApproved?: boolean
+    studentRatingApproved?: boolean
+    schedulingRatingApproved?: boolean
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -28369,12 +28953,36 @@ export namespace Prisma {
     parentId?: boolean
     parentName?: boolean
     parentEmail?: boolean
-    message?: boolean
-    rating?: boolean
+    studentName?: boolean
+    grade?: boolean
+    school?: boolean
+    programs?: boolean
+    heardAbout?: boolean
+    beforeAfterExpectations?: boolean
+    childExperience?: boolean
+    successStory?: boolean
+    overallExperience?: boolean
+    studentRating?: boolean
+    schedulingRating?: boolean
+    wouldRecommend?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: boolean
+    suggestions?: boolean
     status?: boolean
     response?: boolean
+    isApproved?: boolean
+    isVisible?: boolean
+    submittedAt?: boolean
     createdAt?: boolean
     reviewedAt?: boolean
+    updatedAt?: boolean
+    beforeAfterApproved?: boolean
+    childExperienceApproved?: boolean
+    successStoryApproved?: boolean
+    overallExperienceApproved?: boolean
+    programsApproved?: boolean
+    studentRatingApproved?: boolean
+    schedulingRatingApproved?: boolean
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -28382,12 +28990,36 @@ export namespace Prisma {
     parentId?: boolean
     parentName?: boolean
     parentEmail?: boolean
-    message?: boolean
-    rating?: boolean
+    studentName?: boolean
+    grade?: boolean
+    school?: boolean
+    programs?: boolean
+    heardAbout?: boolean
+    beforeAfterExpectations?: boolean
+    childExperience?: boolean
+    successStory?: boolean
+    overallExperience?: boolean
+    studentRating?: boolean
+    schedulingRating?: boolean
+    wouldRecommend?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: boolean
+    suggestions?: boolean
     status?: boolean
     response?: boolean
+    isApproved?: boolean
+    isVisible?: boolean
+    submittedAt?: boolean
     createdAt?: boolean
     reviewedAt?: boolean
+    updatedAt?: boolean
+    beforeAfterApproved?: boolean
+    childExperienceApproved?: boolean
+    successStoryApproved?: boolean
+    overallExperienceApproved?: boolean
+    programsApproved?: boolean
+    studentRatingApproved?: boolean
+    schedulingRatingApproved?: boolean
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectScalar = {
@@ -28395,30 +29027,78 @@ export namespace Prisma {
     parentId?: boolean
     parentName?: boolean
     parentEmail?: boolean
-    message?: boolean
-    rating?: boolean
+    studentName?: boolean
+    grade?: boolean
+    school?: boolean
+    programs?: boolean
+    heardAbout?: boolean
+    beforeAfterExpectations?: boolean
+    childExperience?: boolean
+    successStory?: boolean
+    overallExperience?: boolean
+    studentRating?: boolean
+    schedulingRating?: boolean
+    wouldRecommend?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: boolean
+    suggestions?: boolean
     status?: boolean
     response?: boolean
+    isApproved?: boolean
+    isVisible?: boolean
+    submittedAt?: boolean
     createdAt?: boolean
     reviewedAt?: boolean
+    updatedAt?: boolean
+    beforeAfterApproved?: boolean
+    childExperienceApproved?: boolean
+    successStoryApproved?: boolean
+    overallExperienceApproved?: boolean
+    programsApproved?: boolean
+    studentRatingApproved?: boolean
+    schedulingRatingApproved?: boolean
   }
 
-  export type FeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parentId" | "parentName" | "parentEmail" | "message" | "rating" | "status" | "response" | "createdAt" | "reviewedAt", ExtArgs["result"]["feedback"]>
+  export type FeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parentId" | "parentName" | "parentEmail" | "studentName" | "grade" | "school" | "programs" | "heardAbout" | "beforeAfterExpectations" | "childExperience" | "successStory" | "overallExperience" | "studentRating" | "schedulingRating" | "wouldRecommend" | "consentToFeature" | "favoriteThingToShare" | "suggestions" | "status" | "response" | "isApproved" | "isVisible" | "submittedAt" | "createdAt" | "reviewedAt" | "updatedAt" | "beforeAfterApproved" | "childExperienceApproved" | "successStoryApproved" | "overallExperienceApproved" | "programsApproved" | "studentRatingApproved" | "schedulingRatingApproved", ExtArgs["result"]["feedback"]>
 
   export type $FeedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Feedback"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      parentId: number
-      parentName: string
-      parentEmail: string
-      message: string
-      rating: number | null
+      parentId: number | null
+      parentName: string | null
+      parentEmail: string | null
+      studentName: string | null
+      grade: string | null
+      school: string | null
+      programs: string[]
+      heardAbout: string | null
+      beforeAfterExpectations: string | null
+      childExperience: string | null
+      successStory: string | null
+      overallExperience: string | null
+      studentRating: number | null
+      schedulingRating: number | null
+      wouldRecommend: string | null
+      consentToFeature: boolean
+      favoriteThingToShare: string | null
+      suggestions: string | null
       status: string
       response: string | null
+      isApproved: boolean
+      isVisible: boolean
+      submittedAt: Date | null
       createdAt: Date
       reviewedAt: Date | null
+      updatedAt: Date
+      beforeAfterApproved: boolean
+      childExperienceApproved: boolean
+      successStoryApproved: boolean
+      overallExperienceApproved: boolean
+      programsApproved: boolean
+      studentRatingApproved: boolean
+      schedulingRatingApproved: boolean
     }, ExtArgs["result"]["feedback"]>
     composites: {}
   }
@@ -28846,12 +29526,36 @@ export namespace Prisma {
     readonly parentId: FieldRef<"Feedback", 'Int'>
     readonly parentName: FieldRef<"Feedback", 'String'>
     readonly parentEmail: FieldRef<"Feedback", 'String'>
-    readonly message: FieldRef<"Feedback", 'String'>
-    readonly rating: FieldRef<"Feedback", 'Int'>
+    readonly studentName: FieldRef<"Feedback", 'String'>
+    readonly grade: FieldRef<"Feedback", 'String'>
+    readonly school: FieldRef<"Feedback", 'String'>
+    readonly programs: FieldRef<"Feedback", 'String[]'>
+    readonly heardAbout: FieldRef<"Feedback", 'String'>
+    readonly beforeAfterExpectations: FieldRef<"Feedback", 'String'>
+    readonly childExperience: FieldRef<"Feedback", 'String'>
+    readonly successStory: FieldRef<"Feedback", 'String'>
+    readonly overallExperience: FieldRef<"Feedback", 'String'>
+    readonly studentRating: FieldRef<"Feedback", 'Int'>
+    readonly schedulingRating: FieldRef<"Feedback", 'Int'>
+    readonly wouldRecommend: FieldRef<"Feedback", 'String'>
+    readonly consentToFeature: FieldRef<"Feedback", 'Boolean'>
+    readonly favoriteThingToShare: FieldRef<"Feedback", 'String'>
+    readonly suggestions: FieldRef<"Feedback", 'String'>
     readonly status: FieldRef<"Feedback", 'String'>
     readonly response: FieldRef<"Feedback", 'String'>
+    readonly isApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly isVisible: FieldRef<"Feedback", 'Boolean'>
+    readonly submittedAt: FieldRef<"Feedback", 'DateTime'>
     readonly createdAt: FieldRef<"Feedback", 'DateTime'>
     readonly reviewedAt: FieldRef<"Feedback", 'DateTime'>
+    readonly updatedAt: FieldRef<"Feedback", 'DateTime'>
+    readonly beforeAfterApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly childExperienceApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly successStoryApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly overallExperienceApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly programsApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly studentRatingApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly schedulingRatingApproved: FieldRef<"Feedback", 'Boolean'>
   }
     
 
@@ -32634,12 +33338,12 @@ export namespace Prisma {
     institution: string | null
     image: string | null
     experience: string | null
+    department: string | null
     bio: string | null
     isActive: boolean | null
     displayOrder: number | null
     createdAt: Date | null
     updatedAt: Date | null
-    department: string | null
   }
 
   export type MentorMaxAggregateOutputType = {
@@ -32652,12 +33356,12 @@ export namespace Prisma {
     institution: string | null
     image: string | null
     experience: string | null
+    department: string | null
     bio: string | null
     isActive: boolean | null
     displayOrder: number | null
     createdAt: Date | null
     updatedAt: Date | null
-    department: string | null
   }
 
   export type MentorCountAggregateOutputType = {
@@ -32672,12 +33376,12 @@ export namespace Prisma {
     experience: number
     specialties: number
     achievements: number
+    department: number
     bio: number
     isActive: number
     displayOrder: number
     createdAt: number
     updatedAt: number
-    department: number
     _all: number
   }
 
@@ -32704,12 +33408,12 @@ export namespace Prisma {
     institution?: true
     image?: true
     experience?: true
+    department?: true
     bio?: true
     isActive?: true
     displayOrder?: true
     createdAt?: true
     updatedAt?: true
-    department?: true
   }
 
   export type MentorMaxAggregateInputType = {
@@ -32722,12 +33426,12 @@ export namespace Prisma {
     institution?: true
     image?: true
     experience?: true
+    department?: true
     bio?: true
     isActive?: true
     displayOrder?: true
     createdAt?: true
     updatedAt?: true
-    department?: true
   }
 
   export type MentorCountAggregateInputType = {
@@ -32742,12 +33446,12 @@ export namespace Prisma {
     experience?: true
     specialties?: true
     achievements?: true
+    department?: true
     bio?: true
     isActive?: true
     displayOrder?: true
     createdAt?: true
     updatedAt?: true
-    department?: true
     _all?: true
   }
 
@@ -32849,12 +33553,12 @@ export namespace Prisma {
     experience: string | null
     specialties: string[]
     achievements: string[]
+    department: string
     bio: string
     isActive: boolean
     displayOrder: number
     createdAt: Date
     updatedAt: Date
-    department: string
     _count: MentorCountAggregateOutputType | null
     _avg: MentorAvgAggregateOutputType | null
     _sum: MentorSumAggregateOutputType | null
@@ -32888,12 +33592,12 @@ export namespace Prisma {
     experience?: boolean
     specialties?: boolean
     achievements?: boolean
+    department?: boolean
     bio?: boolean
     isActive?: boolean
     displayOrder?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    department?: boolean
     teacher?: boolean | Mentor$teacherArgs<ExtArgs>
   }, ExtArgs["result"]["mentor"]>
 
@@ -32909,12 +33613,12 @@ export namespace Prisma {
     experience?: boolean
     specialties?: boolean
     achievements?: boolean
+    department?: boolean
     bio?: boolean
     isActive?: boolean
     displayOrder?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    department?: boolean
     teacher?: boolean | Mentor$teacherArgs<ExtArgs>
   }, ExtArgs["result"]["mentor"]>
 
@@ -32930,12 +33634,12 @@ export namespace Prisma {
     experience?: boolean
     specialties?: boolean
     achievements?: boolean
+    department?: boolean
     bio?: boolean
     isActive?: boolean
     displayOrder?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    department?: boolean
     teacher?: boolean | Mentor$teacherArgs<ExtArgs>
   }, ExtArgs["result"]["mentor"]>
 
@@ -32951,15 +33655,15 @@ export namespace Prisma {
     experience?: boolean
     specialties?: boolean
     achievements?: boolean
+    department?: boolean
     bio?: boolean
     isActive?: boolean
     displayOrder?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    department?: boolean
   }
 
-  export type MentorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teacherId" | "name" | "role" | "workplace" | "education" | "institution" | "image" | "experience" | "specialties" | "achievements" | "bio" | "isActive" | "displayOrder" | "createdAt" | "updatedAt" | "department", ExtArgs["result"]["mentor"]>
+  export type MentorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teacherId" | "name" | "role" | "workplace" | "education" | "institution" | "image" | "experience" | "specialties" | "achievements" | "department" | "bio" | "isActive" | "displayOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["mentor"]>
   export type MentorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     teacher?: boolean | Mentor$teacherArgs<ExtArgs>
   }
@@ -32987,12 +33691,12 @@ export namespace Prisma {
       experience: string | null
       specialties: string[]
       achievements: string[]
+      department: string
       bio: string
       isActive: boolean
       displayOrder: number
       createdAt: Date
       updatedAt: Date
-      department: string
     }, ExtArgs["result"]["mentor"]>
     composites: {}
   }
@@ -33428,12 +34132,12 @@ export namespace Prisma {
     readonly experience: FieldRef<"Mentor", 'String'>
     readonly specialties: FieldRef<"Mentor", 'String[]'>
     readonly achievements: FieldRef<"Mentor", 'String[]'>
+    readonly department: FieldRef<"Mentor", 'String'>
     readonly bio: FieldRef<"Mentor", 'String'>
     readonly isActive: FieldRef<"Mentor", 'Boolean'>
     readonly displayOrder: FieldRef<"Mentor", 'Int'>
     readonly createdAt: FieldRef<"Mentor", 'DateTime'>
     readonly updatedAt: FieldRef<"Mentor", 'DateTime'>
-    readonly department: FieldRef<"Mentor", 'String'>
   }
     
 
@@ -33868,6 +34572,1179 @@ export namespace Prisma {
 
 
   /**
+   * Model ProgressReport
+   */
+
+  export type AggregateProgressReport = {
+    _count: ProgressReportCountAggregateOutputType | null
+    _avg: ProgressReportAvgAggregateOutputType | null
+    _sum: ProgressReportSumAggregateOutputType | null
+    _min: ProgressReportMinAggregateOutputType | null
+    _max: ProgressReportMaxAggregateOutputType | null
+  }
+
+  export type ProgressReportAvgAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    teacherId: number | null
+  }
+
+  export type ProgressReportSumAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    teacherId: number | null
+  }
+
+  export type ProgressReportMinAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    teacherId: number | null
+    reportDate: Date | null
+    overallProgress: string | null
+    milestonesAchieved: string | null
+    publications: string | null
+    nextSteps: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProgressReportMaxAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    teacherId: number | null
+    reportDate: Date | null
+    overallProgress: string | null
+    milestonesAchieved: string | null
+    publications: string | null
+    nextSteps: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProgressReportCountAggregateOutputType = {
+    id: number
+    studentId: number
+    teacherId: number
+    reportDate: number
+    overallProgress: number
+    milestonesAchieved: number
+    publications: number
+    nextSteps: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ProgressReportAvgAggregateInputType = {
+    id?: true
+    studentId?: true
+    teacherId?: true
+  }
+
+  export type ProgressReportSumAggregateInputType = {
+    id?: true
+    studentId?: true
+    teacherId?: true
+  }
+
+  export type ProgressReportMinAggregateInputType = {
+    id?: true
+    studentId?: true
+    teacherId?: true
+    reportDate?: true
+    overallProgress?: true
+    milestonesAchieved?: true
+    publications?: true
+    nextSteps?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProgressReportMaxAggregateInputType = {
+    id?: true
+    studentId?: true
+    teacherId?: true
+    reportDate?: true
+    overallProgress?: true
+    milestonesAchieved?: true
+    publications?: true
+    nextSteps?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProgressReportCountAggregateInputType = {
+    id?: true
+    studentId?: true
+    teacherId?: true
+    reportDate?: true
+    overallProgress?: true
+    milestonesAchieved?: true
+    publications?: true
+    nextSteps?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ProgressReportAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgressReport to aggregate.
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressReports to fetch.
+     */
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProgressReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProgressReports
+    **/
+    _count?: true | ProgressReportCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProgressReportAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProgressReportSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProgressReportMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProgressReportMaxAggregateInputType
+  }
+
+  export type GetProgressReportAggregateType<T extends ProgressReportAggregateArgs> = {
+        [P in keyof T & keyof AggregateProgressReport]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProgressReport[P]>
+      : GetScalarType<T[P], AggregateProgressReport[P]>
+  }
+
+
+
+
+  export type ProgressReportGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressReportWhereInput
+    orderBy?: ProgressReportOrderByWithAggregationInput | ProgressReportOrderByWithAggregationInput[]
+    by: ProgressReportScalarFieldEnum[] | ProgressReportScalarFieldEnum
+    having?: ProgressReportScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProgressReportCountAggregateInputType | true
+    _avg?: ProgressReportAvgAggregateInputType
+    _sum?: ProgressReportSumAggregateInputType
+    _min?: ProgressReportMinAggregateInputType
+    _max?: ProgressReportMaxAggregateInputType
+  }
+
+  export type ProgressReportGroupByOutputType = {
+    id: number
+    studentId: number
+    teacherId: number
+    reportDate: Date
+    overallProgress: string
+    milestonesAchieved: string | null
+    publications: string | null
+    nextSteps: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ProgressReportCountAggregateOutputType | null
+    _avg: ProgressReportAvgAggregateOutputType | null
+    _sum: ProgressReportSumAggregateOutputType | null
+    _min: ProgressReportMinAggregateOutputType | null
+    _max: ProgressReportMaxAggregateOutputType | null
+  }
+
+  type GetProgressReportGroupByPayload<T extends ProgressReportGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProgressReportGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProgressReportGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProgressReportGroupByOutputType[P]>
+            : GetScalarType<T[P], ProgressReportGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProgressReportSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    teacherId?: boolean
+    reportDate?: boolean
+    overallProgress?: boolean
+    milestonesAchieved?: boolean
+    publications?: boolean
+    nextSteps?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressReport"]>
+
+  export type ProgressReportSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    teacherId?: boolean
+    reportDate?: boolean
+    overallProgress?: boolean
+    milestonesAchieved?: boolean
+    publications?: boolean
+    nextSteps?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressReport"]>
+
+  export type ProgressReportSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    teacherId?: boolean
+    reportDate?: boolean
+    overallProgress?: boolean
+    milestonesAchieved?: boolean
+    publications?: boolean
+    nextSteps?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressReport"]>
+
+  export type ProgressReportSelectScalar = {
+    id?: boolean
+    studentId?: boolean
+    teacherId?: boolean
+    reportDate?: boolean
+    overallProgress?: boolean
+    milestonesAchieved?: boolean
+    publications?: boolean
+    nextSteps?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ProgressReportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "teacherId" | "reportDate" | "overallProgress" | "milestonesAchieved" | "publications" | "nextSteps" | "createdAt" | "updatedAt", ExtArgs["result"]["progressReport"]>
+  export type ProgressReportInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+  export type ProgressReportIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+  export type ProgressReportIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+
+  export type $ProgressReportPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProgressReport"
+    objects: {
+      Student: Prisma.$StudentPayload<ExtArgs>
+      Teacher: Prisma.$TeacherPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      studentId: number
+      teacherId: number
+      reportDate: Date
+      overallProgress: string
+      milestonesAchieved: string | null
+      publications: string | null
+      nextSteps: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["progressReport"]>
+    composites: {}
+  }
+
+  type ProgressReportGetPayload<S extends boolean | null | undefined | ProgressReportDefaultArgs> = $Result.GetResult<Prisma.$ProgressReportPayload, S>
+
+  type ProgressReportCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProgressReportFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProgressReportCountAggregateInputType | true
+    }
+
+  export interface ProgressReportDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProgressReport'], meta: { name: 'ProgressReport' } }
+    /**
+     * Find zero or one ProgressReport that matches the filter.
+     * @param {ProgressReportFindUniqueArgs} args - Arguments to find a ProgressReport
+     * @example
+     * // Get one ProgressReport
+     * const progressReport = await prisma.progressReport.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProgressReportFindUniqueArgs>(args: SelectSubset<T, ProgressReportFindUniqueArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProgressReport that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProgressReportFindUniqueOrThrowArgs} args - Arguments to find a ProgressReport
+     * @example
+     * // Get one ProgressReport
+     * const progressReport = await prisma.progressReport.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProgressReportFindUniqueOrThrowArgs>(args: SelectSubset<T, ProgressReportFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgressReport that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportFindFirstArgs} args - Arguments to find a ProgressReport
+     * @example
+     * // Get one ProgressReport
+     * const progressReport = await prisma.progressReport.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProgressReportFindFirstArgs>(args?: SelectSubset<T, ProgressReportFindFirstArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgressReport that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportFindFirstOrThrowArgs} args - Arguments to find a ProgressReport
+     * @example
+     * // Get one ProgressReport
+     * const progressReport = await prisma.progressReport.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProgressReportFindFirstOrThrowArgs>(args?: SelectSubset<T, ProgressReportFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProgressReports that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProgressReports
+     * const progressReports = await prisma.progressReport.findMany()
+     * 
+     * // Get first 10 ProgressReports
+     * const progressReports = await prisma.progressReport.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const progressReportWithIdOnly = await prisma.progressReport.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProgressReportFindManyArgs>(args?: SelectSubset<T, ProgressReportFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProgressReport.
+     * @param {ProgressReportCreateArgs} args - Arguments to create a ProgressReport.
+     * @example
+     * // Create one ProgressReport
+     * const ProgressReport = await prisma.progressReport.create({
+     *   data: {
+     *     // ... data to create a ProgressReport
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProgressReportCreateArgs>(args: SelectSubset<T, ProgressReportCreateArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProgressReports.
+     * @param {ProgressReportCreateManyArgs} args - Arguments to create many ProgressReports.
+     * @example
+     * // Create many ProgressReports
+     * const progressReport = await prisma.progressReport.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProgressReportCreateManyArgs>(args?: SelectSubset<T, ProgressReportCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProgressReports and returns the data saved in the database.
+     * @param {ProgressReportCreateManyAndReturnArgs} args - Arguments to create many ProgressReports.
+     * @example
+     * // Create many ProgressReports
+     * const progressReport = await prisma.progressReport.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProgressReports and only return the `id`
+     * const progressReportWithIdOnly = await prisma.progressReport.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProgressReportCreateManyAndReturnArgs>(args?: SelectSubset<T, ProgressReportCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProgressReport.
+     * @param {ProgressReportDeleteArgs} args - Arguments to delete one ProgressReport.
+     * @example
+     * // Delete one ProgressReport
+     * const ProgressReport = await prisma.progressReport.delete({
+     *   where: {
+     *     // ... filter to delete one ProgressReport
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProgressReportDeleteArgs>(args: SelectSubset<T, ProgressReportDeleteArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProgressReport.
+     * @param {ProgressReportUpdateArgs} args - Arguments to update one ProgressReport.
+     * @example
+     * // Update one ProgressReport
+     * const progressReport = await prisma.progressReport.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProgressReportUpdateArgs>(args: SelectSubset<T, ProgressReportUpdateArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProgressReports.
+     * @param {ProgressReportDeleteManyArgs} args - Arguments to filter ProgressReports to delete.
+     * @example
+     * // Delete a few ProgressReports
+     * const { count } = await prisma.progressReport.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProgressReportDeleteManyArgs>(args?: SelectSubset<T, ProgressReportDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProgressReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProgressReports
+     * const progressReport = await prisma.progressReport.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProgressReportUpdateManyArgs>(args: SelectSubset<T, ProgressReportUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProgressReports and returns the data updated in the database.
+     * @param {ProgressReportUpdateManyAndReturnArgs} args - Arguments to update many ProgressReports.
+     * @example
+     * // Update many ProgressReports
+     * const progressReport = await prisma.progressReport.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProgressReports and only return the `id`
+     * const progressReportWithIdOnly = await prisma.progressReport.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProgressReportUpdateManyAndReturnArgs>(args: SelectSubset<T, ProgressReportUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProgressReport.
+     * @param {ProgressReportUpsertArgs} args - Arguments to update or create a ProgressReport.
+     * @example
+     * // Update or create a ProgressReport
+     * const progressReport = await prisma.progressReport.upsert({
+     *   create: {
+     *     // ... data to create a ProgressReport
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProgressReport we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProgressReportUpsertArgs>(args: SelectSubset<T, ProgressReportUpsertArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProgressReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportCountArgs} args - Arguments to filter ProgressReports to count.
+     * @example
+     * // Count the number of ProgressReports
+     * const count = await prisma.progressReport.count({
+     *   where: {
+     *     // ... the filter for the ProgressReports we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProgressReportCountArgs>(
+      args?: Subset<T, ProgressReportCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProgressReportCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProgressReport.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProgressReportAggregateArgs>(args: Subset<T, ProgressReportAggregateArgs>): Prisma.PrismaPromise<GetProgressReportAggregateType<T>>
+
+    /**
+     * Group by ProgressReport.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProgressReportGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProgressReportGroupByArgs['orderBy'] }
+        : { orderBy?: ProgressReportGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProgressReportGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProgressReportGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProgressReport model
+   */
+  readonly fields: ProgressReportFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProgressReport.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProgressReportClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProgressReport model
+   */
+  interface ProgressReportFieldRefs {
+    readonly id: FieldRef<"ProgressReport", 'Int'>
+    readonly studentId: FieldRef<"ProgressReport", 'Int'>
+    readonly teacherId: FieldRef<"ProgressReport", 'Int'>
+    readonly reportDate: FieldRef<"ProgressReport", 'DateTime'>
+    readonly overallProgress: FieldRef<"ProgressReport", 'String'>
+    readonly milestonesAchieved: FieldRef<"ProgressReport", 'String'>
+    readonly publications: FieldRef<"ProgressReport", 'String'>
+    readonly nextSteps: FieldRef<"ProgressReport", 'String'>
+    readonly createdAt: FieldRef<"ProgressReport", 'DateTime'>
+    readonly updatedAt: FieldRef<"ProgressReport", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProgressReport findUnique
+   */
+  export type ProgressReportFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressReport to fetch.
+     */
+    where: ProgressReportWhereUniqueInput
+  }
+
+  /**
+   * ProgressReport findUniqueOrThrow
+   */
+  export type ProgressReportFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressReport to fetch.
+     */
+    where: ProgressReportWhereUniqueInput
+  }
+
+  /**
+   * ProgressReport findFirst
+   */
+  export type ProgressReportFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressReport to fetch.
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressReports to fetch.
+     */
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgressReports.
+     */
+    cursor?: ProgressReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgressReports.
+     */
+    distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressReport findFirstOrThrow
+   */
+  export type ProgressReportFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressReport to fetch.
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressReports to fetch.
+     */
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgressReports.
+     */
+    cursor?: ProgressReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgressReports.
+     */
+    distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressReport findMany
+   */
+  export type ProgressReportFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressReports to fetch.
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressReports to fetch.
+     */
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProgressReports.
+     */
+    cursor?: ProgressReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressReports.
+     */
+    skip?: number
+    distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressReport create
+   */
+  export type ProgressReportCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProgressReport.
+     */
+    data: XOR<ProgressReportCreateInput, ProgressReportUncheckedCreateInput>
+  }
+
+  /**
+   * ProgressReport createMany
+   */
+  export type ProgressReportCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProgressReports.
+     */
+    data: ProgressReportCreateManyInput | ProgressReportCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProgressReport createManyAndReturn
+   */
+  export type ProgressReportCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProgressReports.
+     */
+    data: ProgressReportCreateManyInput | ProgressReportCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProgressReport update
+   */
+  export type ProgressReportUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProgressReport.
+     */
+    data: XOR<ProgressReportUpdateInput, ProgressReportUncheckedUpdateInput>
+    /**
+     * Choose, which ProgressReport to update.
+     */
+    where: ProgressReportWhereUniqueInput
+  }
+
+  /**
+   * ProgressReport updateMany
+   */
+  export type ProgressReportUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProgressReports.
+     */
+    data: XOR<ProgressReportUpdateManyMutationInput, ProgressReportUncheckedUpdateManyInput>
+    /**
+     * Filter which ProgressReports to update
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * Limit how many ProgressReports to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressReport updateManyAndReturn
+   */
+  export type ProgressReportUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * The data used to update ProgressReports.
+     */
+    data: XOR<ProgressReportUpdateManyMutationInput, ProgressReportUncheckedUpdateManyInput>
+    /**
+     * Filter which ProgressReports to update
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * Limit how many ProgressReports to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProgressReport upsert
+   */
+  export type ProgressReportUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProgressReport to update in case it exists.
+     */
+    where: ProgressReportWhereUniqueInput
+    /**
+     * In case the ProgressReport found by the `where` argument doesn't exist, create a new ProgressReport with this data.
+     */
+    create: XOR<ProgressReportCreateInput, ProgressReportUncheckedCreateInput>
+    /**
+     * In case the ProgressReport was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProgressReportUpdateInput, ProgressReportUncheckedUpdateInput>
+  }
+
+  /**
+   * ProgressReport delete
+   */
+  export type ProgressReportDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter which ProgressReport to delete.
+     */
+    where: ProgressReportWhereUniqueInput
+  }
+
+  /**
+   * ProgressReport deleteMany
+   */
+  export type ProgressReportDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgressReports to delete
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * Limit how many ProgressReports to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressReport without action
+   */
+  export type ProgressReportDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -34183,7 +36060,23 @@ export namespace Prisma {
     isVisible: 'isVisible',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    videoLink: 'videoLink'
+    videoLink: 'videoLink',
+    beforeAfterExpectations: 'beforeAfterExpectations',
+    consentToFeature: 'consentToFeature',
+    experienceDescription: 'experienceDescription',
+    grade: 'grade',
+    programs: 'programs',
+    rating: 'rating',
+    school: 'school',
+    studentInfo: 'studentInfo',
+    studentName: 'studentName',
+    submittedAt: 'submittedAt',
+    successStory: 'successStory',
+    contentApproved: 'contentApproved',
+    ratingApproved: 'ratingApproved',
+    beforeAfterApproved: 'beforeAfterApproved',
+    successStoryApproved: 'successStoryApproved',
+    programsApproved: 'programsApproved'
   };
 
   export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
@@ -34222,12 +36115,36 @@ export namespace Prisma {
     parentId: 'parentId',
     parentName: 'parentName',
     parentEmail: 'parentEmail',
-    message: 'message',
-    rating: 'rating',
+    studentName: 'studentName',
+    grade: 'grade',
+    school: 'school',
+    programs: 'programs',
+    heardAbout: 'heardAbout',
+    beforeAfterExpectations: 'beforeAfterExpectations',
+    childExperience: 'childExperience',
+    successStory: 'successStory',
+    overallExperience: 'overallExperience',
+    studentRating: 'studentRating',
+    schedulingRating: 'schedulingRating',
+    wouldRecommend: 'wouldRecommend',
+    consentToFeature: 'consentToFeature',
+    favoriteThingToShare: 'favoriteThingToShare',
+    suggestions: 'suggestions',
     status: 'status',
     response: 'response',
+    isApproved: 'isApproved',
+    isVisible: 'isVisible',
+    submittedAt: 'submittedAt',
     createdAt: 'createdAt',
-    reviewedAt: 'reviewedAt'
+    reviewedAt: 'reviewedAt',
+    updatedAt: 'updatedAt',
+    beforeAfterApproved: 'beforeAfterApproved',
+    childExperienceApproved: 'childExperienceApproved',
+    successStoryApproved: 'successStoryApproved',
+    overallExperienceApproved: 'overallExperienceApproved',
+    programsApproved: 'programsApproved',
+    studentRatingApproved: 'studentRatingApproved',
+    schedulingRatingApproved: 'schedulingRatingApproved'
   };
 
   export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
@@ -34294,15 +36211,31 @@ export namespace Prisma {
     experience: 'experience',
     specialties: 'specialties',
     achievements: 'achievements',
+    department: 'department',
     bio: 'bio',
     isActive: 'isActive',
     displayOrder: 'displayOrder',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    department: 'department'
+    updatedAt: 'updatedAt'
   };
 
   export type MentorScalarFieldEnum = (typeof MentorScalarFieldEnum)[keyof typeof MentorScalarFieldEnum]
+
+
+  export const ProgressReportScalarFieldEnum: {
+    id: 'id',
+    studentId: 'studentId',
+    teacherId: 'teacherId',
+    reportDate: 'reportDate',
+    overallProgress: 'overallProgress',
+    milestonesAchieved: 'milestonesAchieved',
+    publications: 'publications',
+    nextSteps: 'nextSteps',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ProgressReportScalarFieldEnum = (typeof ProgressReportScalarFieldEnum)[keyof typeof ProgressReportScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -34612,6 +36545,7 @@ export namespace Prisma {
     assignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
+    ProgressReport?: ProgressReportListRelationFilter
     resources?: ResourceListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
     students?: TeacherStudentListRelationFilter
@@ -34629,6 +36563,7 @@ export namespace Prisma {
     assignments?: AssignmentOrderByRelationAggregateInput
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     mentorProfile?: MentorOrderByWithRelationInput
+    ProgressReport?: ProgressReportOrderByRelationAggregateInput
     resources?: ResourceOrderByRelationAggregateInput
     submissionRemarks?: StudentSubmissionRemarkOrderByRelationAggregateInput
     students?: TeacherStudentOrderByRelationAggregateInput
@@ -34649,6 +36584,7 @@ export namespace Prisma {
     assignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
+    ProgressReport?: ProgressReportListRelationFilter
     resources?: ResourceListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
     students?: TeacherStudentListRelationFilter
@@ -34706,6 +36642,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     Payment?: PaymentListRelationFilter
+    ProgressReport?: ProgressReportListRelationFilter
     parentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
     assignedResources?: StudentResourceListRelationFilter
     studentSubmissions?: StudentSubmissionListRelationFilter
@@ -34733,6 +36670,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     enrollments?: EnrollmentOrderByRelationAggregateInput
     Payment?: PaymentOrderByRelationAggregateInput
+    ProgressReport?: ProgressReportOrderByRelationAggregateInput
     parentAccount?: ParentAccountOrderByWithRelationInput
     assignedResources?: StudentResourceOrderByRelationAggregateInput
     studentSubmissions?: StudentSubmissionOrderByRelationAggregateInput
@@ -34763,6 +36701,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     Payment?: PaymentListRelationFilter
+    ProgressReport?: ProgressReportListRelationFilter
     parentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
     assignedResources?: StudentResourceListRelationFilter
     studentSubmissions?: StudentSubmissionListRelationFilter
@@ -36016,29 +37955,61 @@ export namespace Prisma {
     OR?: TestimonialWhereInput[]
     NOT?: TestimonialWhereInput | TestimonialWhereInput[]
     id?: IntFilter<"Testimonial"> | number
-    studentId?: IntFilter<"Testimonial"> | number
-    content?: StringFilter<"Testimonial"> | string
-    authorType?: StringFilter<"Testimonial"> | string
-    authorName?: StringFilter<"Testimonial"> | string
+    studentId?: IntNullableFilter<"Testimonial"> | number | null
+    content?: StringNullableFilter<"Testimonial"> | string | null
+    authorType?: StringNullableFilter<"Testimonial"> | string | null
+    authorName?: StringNullableFilter<"Testimonial"> | string | null
     isApproved?: BoolFilter<"Testimonial"> | boolean
     isVisible?: BoolFilter<"Testimonial"> | boolean
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableFilter<"Testimonial"> | string | null
-    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    beforeAfterExpectations?: StringNullableFilter<"Testimonial"> | string | null
+    consentToFeature?: BoolFilter<"Testimonial"> | boolean
+    experienceDescription?: StringNullableFilter<"Testimonial"> | string | null
+    grade?: StringNullableFilter<"Testimonial"> | string | null
+    programs?: StringNullableListFilter<"Testimonial">
+    rating?: IntNullableFilter<"Testimonial"> | number | null
+    school?: StringNullableFilter<"Testimonial"> | string | null
+    studentInfo?: StringNullableFilter<"Testimonial"> | string | null
+    studentName?: StringNullableFilter<"Testimonial"> | string | null
+    submittedAt?: DateTimeNullableFilter<"Testimonial"> | Date | string | null
+    successStory?: StringNullableFilter<"Testimonial"> | string | null
+    contentApproved?: BoolFilter<"Testimonial"> | boolean
+    ratingApproved?: BoolFilter<"Testimonial"> | boolean
+    beforeAfterApproved?: BoolFilter<"Testimonial"> | boolean
+    successStoryApproved?: BoolFilter<"Testimonial"> | boolean
+    programsApproved?: BoolFilter<"Testimonial"> | boolean
+    Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }
 
   export type TestimonialOrderByWithRelationInput = {
     id?: SortOrder
-    studentId?: SortOrder
-    content?: SortOrder
-    authorType?: SortOrder
-    authorName?: SortOrder
+    studentId?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
+    authorType?: SortOrderInput | SortOrder
+    authorName?: SortOrderInput | SortOrder
     isApproved?: SortOrder
     isVisible?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrderInput | SortOrder
+    beforeAfterExpectations?: SortOrderInput | SortOrder
+    consentToFeature?: SortOrder
+    experienceDescription?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    programs?: SortOrder
+    rating?: SortOrderInput | SortOrder
+    school?: SortOrderInput | SortOrder
+    studentInfo?: SortOrderInput | SortOrder
+    studentName?: SortOrderInput | SortOrder
+    submittedAt?: SortOrderInput | SortOrder
+    successStory?: SortOrderInput | SortOrder
+    contentApproved?: SortOrder
+    ratingApproved?: SortOrder
+    beforeAfterApproved?: SortOrder
+    successStoryApproved?: SortOrder
+    programsApproved?: SortOrder
     Student?: StudentOrderByWithRelationInput
   }
 
@@ -36047,29 +38018,61 @@ export namespace Prisma {
     AND?: TestimonialWhereInput | TestimonialWhereInput[]
     OR?: TestimonialWhereInput[]
     NOT?: TestimonialWhereInput | TestimonialWhereInput[]
-    studentId?: IntFilter<"Testimonial"> | number
-    content?: StringFilter<"Testimonial"> | string
-    authorType?: StringFilter<"Testimonial"> | string
-    authorName?: StringFilter<"Testimonial"> | string
+    studentId?: IntNullableFilter<"Testimonial"> | number | null
+    content?: StringNullableFilter<"Testimonial"> | string | null
+    authorType?: StringNullableFilter<"Testimonial"> | string | null
+    authorName?: StringNullableFilter<"Testimonial"> | string | null
     isApproved?: BoolFilter<"Testimonial"> | boolean
     isVisible?: BoolFilter<"Testimonial"> | boolean
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableFilter<"Testimonial"> | string | null
-    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    beforeAfterExpectations?: StringNullableFilter<"Testimonial"> | string | null
+    consentToFeature?: BoolFilter<"Testimonial"> | boolean
+    experienceDescription?: StringNullableFilter<"Testimonial"> | string | null
+    grade?: StringNullableFilter<"Testimonial"> | string | null
+    programs?: StringNullableListFilter<"Testimonial">
+    rating?: IntNullableFilter<"Testimonial"> | number | null
+    school?: StringNullableFilter<"Testimonial"> | string | null
+    studentInfo?: StringNullableFilter<"Testimonial"> | string | null
+    studentName?: StringNullableFilter<"Testimonial"> | string | null
+    submittedAt?: DateTimeNullableFilter<"Testimonial"> | Date | string | null
+    successStory?: StringNullableFilter<"Testimonial"> | string | null
+    contentApproved?: BoolFilter<"Testimonial"> | boolean
+    ratingApproved?: BoolFilter<"Testimonial"> | boolean
+    beforeAfterApproved?: BoolFilter<"Testimonial"> | boolean
+    successStoryApproved?: BoolFilter<"Testimonial"> | boolean
+    programsApproved?: BoolFilter<"Testimonial"> | boolean
+    Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }, "id">
 
   export type TestimonialOrderByWithAggregationInput = {
     id?: SortOrder
-    studentId?: SortOrder
-    content?: SortOrder
-    authorType?: SortOrder
-    authorName?: SortOrder
+    studentId?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
+    authorType?: SortOrderInput | SortOrder
+    authorName?: SortOrderInput | SortOrder
     isApproved?: SortOrder
     isVisible?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrderInput | SortOrder
+    beforeAfterExpectations?: SortOrderInput | SortOrder
+    consentToFeature?: SortOrder
+    experienceDescription?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    programs?: SortOrder
+    rating?: SortOrderInput | SortOrder
+    school?: SortOrderInput | SortOrder
+    studentInfo?: SortOrderInput | SortOrder
+    studentName?: SortOrderInput | SortOrder
+    submittedAt?: SortOrderInput | SortOrder
+    successStory?: SortOrderInput | SortOrder
+    contentApproved?: SortOrder
+    ratingApproved?: SortOrder
+    beforeAfterApproved?: SortOrder
+    successStoryApproved?: SortOrder
+    programsApproved?: SortOrder
     _count?: TestimonialCountOrderByAggregateInput
     _avg?: TestimonialAvgOrderByAggregateInput
     _max?: TestimonialMaxOrderByAggregateInput
@@ -36082,15 +38085,31 @@ export namespace Prisma {
     OR?: TestimonialScalarWhereWithAggregatesInput[]
     NOT?: TestimonialScalarWhereWithAggregatesInput | TestimonialScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Testimonial"> | number
-    studentId?: IntWithAggregatesFilter<"Testimonial"> | number
-    content?: StringWithAggregatesFilter<"Testimonial"> | string
-    authorType?: StringWithAggregatesFilter<"Testimonial"> | string
-    authorName?: StringWithAggregatesFilter<"Testimonial"> | string
+    studentId?: IntNullableWithAggregatesFilter<"Testimonial"> | number | null
+    content?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    authorType?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    authorName?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
     isApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
     isVisible?: BoolWithAggregatesFilter<"Testimonial"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    beforeAfterExpectations?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    consentToFeature?: BoolWithAggregatesFilter<"Testimonial"> | boolean
+    experienceDescription?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    grade?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    programs?: StringNullableListFilter<"Testimonial">
+    rating?: IntNullableWithAggregatesFilter<"Testimonial"> | number | null
+    school?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    studentInfo?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    studentName?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    submittedAt?: DateTimeNullableWithAggregatesFilter<"Testimonial"> | Date | string | null
+    successStory?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    contentApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
+    ratingApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
+    beforeAfterApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
+    successStoryApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
+    programsApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
   }
 
   export type SecurityLogWhereInput = {
@@ -36236,28 +38255,76 @@ export namespace Prisma {
     OR?: FeedbackWhereInput[]
     NOT?: FeedbackWhereInput | FeedbackWhereInput[]
     id?: IntFilter<"Feedback"> | number
-    parentId?: IntFilter<"Feedback"> | number
-    parentName?: StringFilter<"Feedback"> | string
-    parentEmail?: StringFilter<"Feedback"> | string
-    message?: StringFilter<"Feedback"> | string
-    rating?: IntNullableFilter<"Feedback"> | number | null
+    parentId?: IntNullableFilter<"Feedback"> | number | null
+    parentName?: StringNullableFilter<"Feedback"> | string | null
+    parentEmail?: StringNullableFilter<"Feedback"> | string | null
+    studentName?: StringNullableFilter<"Feedback"> | string | null
+    grade?: StringNullableFilter<"Feedback"> | string | null
+    school?: StringNullableFilter<"Feedback"> | string | null
+    programs?: StringNullableListFilter<"Feedback">
+    heardAbout?: StringNullableFilter<"Feedback"> | string | null
+    beforeAfterExpectations?: StringNullableFilter<"Feedback"> | string | null
+    childExperience?: StringNullableFilter<"Feedback"> | string | null
+    successStory?: StringNullableFilter<"Feedback"> | string | null
+    overallExperience?: StringNullableFilter<"Feedback"> | string | null
+    studentRating?: IntNullableFilter<"Feedback"> | number | null
+    schedulingRating?: IntNullableFilter<"Feedback"> | number | null
+    wouldRecommend?: StringNullableFilter<"Feedback"> | string | null
+    consentToFeature?: BoolFilter<"Feedback"> | boolean
+    favoriteThingToShare?: StringNullableFilter<"Feedback"> | string | null
+    suggestions?: StringNullableFilter<"Feedback"> | string | null
     status?: StringFilter<"Feedback"> | string
     response?: StringNullableFilter<"Feedback"> | string | null
+    isApproved?: BoolFilter<"Feedback"> | boolean
+    isVisible?: BoolFilter<"Feedback"> | boolean
+    submittedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
     createdAt?: DateTimeFilter<"Feedback"> | Date | string
     reviewedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
+    updatedAt?: DateTimeFilter<"Feedback"> | Date | string
+    beforeAfterApproved?: BoolFilter<"Feedback"> | boolean
+    childExperienceApproved?: BoolFilter<"Feedback"> | boolean
+    successStoryApproved?: BoolFilter<"Feedback"> | boolean
+    overallExperienceApproved?: BoolFilter<"Feedback"> | boolean
+    programsApproved?: BoolFilter<"Feedback"> | boolean
+    studentRatingApproved?: BoolFilter<"Feedback"> | boolean
+    schedulingRatingApproved?: BoolFilter<"Feedback"> | boolean
   }
 
   export type FeedbackOrderByWithRelationInput = {
     id?: SortOrder
-    parentId?: SortOrder
-    parentName?: SortOrder
-    parentEmail?: SortOrder
-    message?: SortOrder
-    rating?: SortOrderInput | SortOrder
+    parentId?: SortOrderInput | SortOrder
+    parentName?: SortOrderInput | SortOrder
+    parentEmail?: SortOrderInput | SortOrder
+    studentName?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    school?: SortOrderInput | SortOrder
+    programs?: SortOrder
+    heardAbout?: SortOrderInput | SortOrder
+    beforeAfterExpectations?: SortOrderInput | SortOrder
+    childExperience?: SortOrderInput | SortOrder
+    successStory?: SortOrderInput | SortOrder
+    overallExperience?: SortOrderInput | SortOrder
+    studentRating?: SortOrderInput | SortOrder
+    schedulingRating?: SortOrderInput | SortOrder
+    wouldRecommend?: SortOrderInput | SortOrder
+    consentToFeature?: SortOrder
+    favoriteThingToShare?: SortOrderInput | SortOrder
+    suggestions?: SortOrderInput | SortOrder
     status?: SortOrder
     response?: SortOrderInput | SortOrder
+    isApproved?: SortOrder
+    isVisible?: SortOrder
+    submittedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reviewedAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    beforeAfterApproved?: SortOrder
+    childExperienceApproved?: SortOrder
+    successStoryApproved?: SortOrder
+    overallExperienceApproved?: SortOrder
+    programsApproved?: SortOrder
+    studentRatingApproved?: SortOrder
+    schedulingRatingApproved?: SortOrder
   }
 
   export type FeedbackWhereUniqueInput = Prisma.AtLeast<{
@@ -36265,28 +38332,76 @@ export namespace Prisma {
     AND?: FeedbackWhereInput | FeedbackWhereInput[]
     OR?: FeedbackWhereInput[]
     NOT?: FeedbackWhereInput | FeedbackWhereInput[]
-    parentId?: IntFilter<"Feedback"> | number
-    parentName?: StringFilter<"Feedback"> | string
-    parentEmail?: StringFilter<"Feedback"> | string
-    message?: StringFilter<"Feedback"> | string
-    rating?: IntNullableFilter<"Feedback"> | number | null
+    parentId?: IntNullableFilter<"Feedback"> | number | null
+    parentName?: StringNullableFilter<"Feedback"> | string | null
+    parentEmail?: StringNullableFilter<"Feedback"> | string | null
+    studentName?: StringNullableFilter<"Feedback"> | string | null
+    grade?: StringNullableFilter<"Feedback"> | string | null
+    school?: StringNullableFilter<"Feedback"> | string | null
+    programs?: StringNullableListFilter<"Feedback">
+    heardAbout?: StringNullableFilter<"Feedback"> | string | null
+    beforeAfterExpectations?: StringNullableFilter<"Feedback"> | string | null
+    childExperience?: StringNullableFilter<"Feedback"> | string | null
+    successStory?: StringNullableFilter<"Feedback"> | string | null
+    overallExperience?: StringNullableFilter<"Feedback"> | string | null
+    studentRating?: IntNullableFilter<"Feedback"> | number | null
+    schedulingRating?: IntNullableFilter<"Feedback"> | number | null
+    wouldRecommend?: StringNullableFilter<"Feedback"> | string | null
+    consentToFeature?: BoolFilter<"Feedback"> | boolean
+    favoriteThingToShare?: StringNullableFilter<"Feedback"> | string | null
+    suggestions?: StringNullableFilter<"Feedback"> | string | null
     status?: StringFilter<"Feedback"> | string
     response?: StringNullableFilter<"Feedback"> | string | null
+    isApproved?: BoolFilter<"Feedback"> | boolean
+    isVisible?: BoolFilter<"Feedback"> | boolean
+    submittedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
     createdAt?: DateTimeFilter<"Feedback"> | Date | string
     reviewedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
+    updatedAt?: DateTimeFilter<"Feedback"> | Date | string
+    beforeAfterApproved?: BoolFilter<"Feedback"> | boolean
+    childExperienceApproved?: BoolFilter<"Feedback"> | boolean
+    successStoryApproved?: BoolFilter<"Feedback"> | boolean
+    overallExperienceApproved?: BoolFilter<"Feedback"> | boolean
+    programsApproved?: BoolFilter<"Feedback"> | boolean
+    studentRatingApproved?: BoolFilter<"Feedback"> | boolean
+    schedulingRatingApproved?: BoolFilter<"Feedback"> | boolean
   }, "id">
 
   export type FeedbackOrderByWithAggregationInput = {
     id?: SortOrder
-    parentId?: SortOrder
-    parentName?: SortOrder
-    parentEmail?: SortOrder
-    message?: SortOrder
-    rating?: SortOrderInput | SortOrder
+    parentId?: SortOrderInput | SortOrder
+    parentName?: SortOrderInput | SortOrder
+    parentEmail?: SortOrderInput | SortOrder
+    studentName?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    school?: SortOrderInput | SortOrder
+    programs?: SortOrder
+    heardAbout?: SortOrderInput | SortOrder
+    beforeAfterExpectations?: SortOrderInput | SortOrder
+    childExperience?: SortOrderInput | SortOrder
+    successStory?: SortOrderInput | SortOrder
+    overallExperience?: SortOrderInput | SortOrder
+    studentRating?: SortOrderInput | SortOrder
+    schedulingRating?: SortOrderInput | SortOrder
+    wouldRecommend?: SortOrderInput | SortOrder
+    consentToFeature?: SortOrder
+    favoriteThingToShare?: SortOrderInput | SortOrder
+    suggestions?: SortOrderInput | SortOrder
     status?: SortOrder
     response?: SortOrderInput | SortOrder
+    isApproved?: SortOrder
+    isVisible?: SortOrder
+    submittedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reviewedAt?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    beforeAfterApproved?: SortOrder
+    childExperienceApproved?: SortOrder
+    successStoryApproved?: SortOrder
+    overallExperienceApproved?: SortOrder
+    programsApproved?: SortOrder
+    studentRatingApproved?: SortOrder
+    schedulingRatingApproved?: SortOrder
     _count?: FeedbackCountOrderByAggregateInput
     _avg?: FeedbackAvgOrderByAggregateInput
     _max?: FeedbackMaxOrderByAggregateInput
@@ -36299,15 +38414,39 @@ export namespace Prisma {
     OR?: FeedbackScalarWhereWithAggregatesInput[]
     NOT?: FeedbackScalarWhereWithAggregatesInput | FeedbackScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Feedback"> | number
-    parentId?: IntWithAggregatesFilter<"Feedback"> | number
-    parentName?: StringWithAggregatesFilter<"Feedback"> | string
-    parentEmail?: StringWithAggregatesFilter<"Feedback"> | string
-    message?: StringWithAggregatesFilter<"Feedback"> | string
-    rating?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    parentId?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    parentName?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    parentEmail?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    studentName?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    grade?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    school?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    programs?: StringNullableListFilter<"Feedback">
+    heardAbout?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    beforeAfterExpectations?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    childExperience?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    successStory?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    overallExperience?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    studentRating?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    schedulingRating?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    wouldRecommend?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    consentToFeature?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    favoriteThingToShare?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    suggestions?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
     status?: StringWithAggregatesFilter<"Feedback"> | string
     response?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    isApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    isVisible?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    submittedAt?: DateTimeNullableWithAggregatesFilter<"Feedback"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Feedback"> | Date | string
     reviewedAt?: DateTimeNullableWithAggregatesFilter<"Feedback"> | Date | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"Feedback"> | Date | string
+    beforeAfterApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    childExperienceApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    successStoryApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    overallExperienceApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    programsApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    studentRatingApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    schedulingRatingApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
   }
 
   export type ParentAccountWhereInput = {
@@ -36570,12 +38709,12 @@ export namespace Prisma {
     experience?: StringNullableFilter<"Mentor"> | string | null
     specialties?: StringNullableListFilter<"Mentor">
     achievements?: StringNullableListFilter<"Mentor">
+    department?: StringFilter<"Mentor"> | string
     bio?: StringFilter<"Mentor"> | string
     isActive?: BoolFilter<"Mentor"> | boolean
     displayOrder?: IntFilter<"Mentor"> | number
     createdAt?: DateTimeFilter<"Mentor"> | Date | string
     updatedAt?: DateTimeFilter<"Mentor"> | Date | string
-    department?: StringFilter<"Mentor"> | string
     teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
   }
 
@@ -36591,12 +38730,12 @@ export namespace Prisma {
     experience?: SortOrderInput | SortOrder
     specialties?: SortOrder
     achievements?: SortOrder
+    department?: SortOrder
     bio?: SortOrder
     isActive?: SortOrder
     displayOrder?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    department?: SortOrder
     teacher?: TeacherOrderByWithRelationInput
   }
 
@@ -36615,12 +38754,12 @@ export namespace Prisma {
     experience?: StringNullableFilter<"Mentor"> | string | null
     specialties?: StringNullableListFilter<"Mentor">
     achievements?: StringNullableListFilter<"Mentor">
+    department?: StringFilter<"Mentor"> | string
     bio?: StringFilter<"Mentor"> | string
     isActive?: BoolFilter<"Mentor"> | boolean
     displayOrder?: IntFilter<"Mentor"> | number
     createdAt?: DateTimeFilter<"Mentor"> | Date | string
     updatedAt?: DateTimeFilter<"Mentor"> | Date | string
-    department?: StringFilter<"Mentor"> | string
     teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
   }, "id" | "teacherId">
 
@@ -36636,12 +38775,12 @@ export namespace Prisma {
     experience?: SortOrderInput | SortOrder
     specialties?: SortOrder
     achievements?: SortOrder
+    department?: SortOrder
     bio?: SortOrder
     isActive?: SortOrder
     displayOrder?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    department?: SortOrder
     _count?: MentorCountOrderByAggregateInput
     _avg?: MentorAvgOrderByAggregateInput
     _max?: MentorMaxOrderByAggregateInput
@@ -36664,12 +38803,97 @@ export namespace Prisma {
     experience?: StringNullableWithAggregatesFilter<"Mentor"> | string | null
     specialties?: StringNullableListFilter<"Mentor">
     achievements?: StringNullableListFilter<"Mentor">
+    department?: StringWithAggregatesFilter<"Mentor"> | string
     bio?: StringWithAggregatesFilter<"Mentor"> | string
     isActive?: BoolWithAggregatesFilter<"Mentor"> | boolean
     displayOrder?: IntWithAggregatesFilter<"Mentor"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Mentor"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Mentor"> | Date | string
-    department?: StringWithAggregatesFilter<"Mentor"> | string
+  }
+
+  export type ProgressReportWhereInput = {
+    AND?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    OR?: ProgressReportWhereInput[]
+    NOT?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    id?: IntFilter<"ProgressReport"> | number
+    studentId?: IntFilter<"ProgressReport"> | number
+    teacherId?: IntFilter<"ProgressReport"> | number
+    reportDate?: DateTimeFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableFilter<"ProgressReport"> | string | null
+    publications?: StringNullableFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+  }
+
+  export type ProgressReportOrderByWithRelationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrderInput | SortOrder
+    publications?: SortOrderInput | SortOrder
+    nextSteps?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    Student?: StudentOrderByWithRelationInput
+    Teacher?: TeacherOrderByWithRelationInput
+  }
+
+  export type ProgressReportWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    OR?: ProgressReportWhereInput[]
+    NOT?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    studentId?: IntFilter<"ProgressReport"> | number
+    teacherId?: IntFilter<"ProgressReport"> | number
+    reportDate?: DateTimeFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableFilter<"ProgressReport"> | string | null
+    publications?: StringNullableFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+  }, "id">
+
+  export type ProgressReportOrderByWithAggregationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrderInput | SortOrder
+    publications?: SortOrderInput | SortOrder
+    nextSteps?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ProgressReportCountOrderByAggregateInput
+    _avg?: ProgressReportAvgOrderByAggregateInput
+    _max?: ProgressReportMaxOrderByAggregateInput
+    _min?: ProgressReportMinOrderByAggregateInput
+    _sum?: ProgressReportSumOrderByAggregateInput
+  }
+
+  export type ProgressReportScalarWhereWithAggregatesInput = {
+    AND?: ProgressReportScalarWhereWithAggregatesInput | ProgressReportScalarWhereWithAggregatesInput[]
+    OR?: ProgressReportScalarWhereWithAggregatesInput[]
+    NOT?: ProgressReportScalarWhereWithAggregatesInput | ProgressReportScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ProgressReport"> | number
+    studentId?: IntWithAggregatesFilter<"ProgressReport"> | number
+    teacherId?: IntWithAggregatesFilter<"ProgressReport"> | number
+    reportDate?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringWithAggregatesFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    publications?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
   }
 
   export type WebinarRegistrationCreateInput = {
@@ -36859,6 +39083,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -36876,6 +39101,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -36892,6 +39118,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -36909,6 +39136,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -36963,6 +39191,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -36990,6 +39219,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -37014,6 +39244,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -37041,6 +39272,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -38352,90 +40584,202 @@ export namespace Prisma {
   }
 
   export type TestimonialCreateInput = {
-    content: string
-    authorType: string
-    authorName: string
+    content?: string | null
+    authorType?: string | null
+    authorName?: string | null
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    Student: StudentCreateNestedOneWithoutTestimonialInput
+    beforeAfterExpectations?: string | null
+    consentToFeature?: boolean
+    experienceDescription?: string | null
+    grade?: string | null
+    programs?: TestimonialCreateprogramsInput | string[]
+    rating?: number | null
+    school?: string | null
+    studentInfo?: string | null
+    studentName?: string | null
+    submittedAt?: Date | string | null
+    successStory?: string | null
+    contentApproved?: boolean
+    ratingApproved?: boolean
+    beforeAfterApproved?: boolean
+    successStoryApproved?: boolean
+    programsApproved?: boolean
+    Student?: StudentCreateNestedOneWithoutTestimonialInput
   }
 
   export type TestimonialUncheckedCreateInput = {
     id?: number
-    studentId: number
-    content: string
-    authorType: string
-    authorName: string
+    studentId?: number | null
+    content?: string | null
+    authorType?: string | null
+    authorName?: string | null
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
+    beforeAfterExpectations?: string | null
+    consentToFeature?: boolean
+    experienceDescription?: string | null
+    grade?: string | null
+    programs?: TestimonialCreateprogramsInput | string[]
+    rating?: number | null
+    school?: string | null
+    studentInfo?: string | null
+    studentName?: string | null
+    submittedAt?: Date | string | null
+    successStory?: string | null
+    contentApproved?: boolean
+    ratingApproved?: boolean
+    beforeAfterApproved?: boolean
+    successStoryApproved?: boolean
+    programsApproved?: boolean
   }
 
   export type TestimonialUpdateInput = {
-    content?: StringFieldUpdateOperationsInput | string
-    authorType?: StringFieldUpdateOperationsInput | string
-    authorName?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    authorType?: NullableStringFieldUpdateOperationsInput | string | null
+    authorName?: NullableStringFieldUpdateOperationsInput | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    Student?: StudentUpdateOneRequiredWithoutTestimonialNestedInput
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TestimonialUpdateprogramsInput | string[]
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    Student?: StudentUpdateOneWithoutTestimonialNestedInput
   }
 
   export type TestimonialUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    studentId?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    authorType?: StringFieldUpdateOperationsInput | string
-    authorName?: StringFieldUpdateOperationsInput | string
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    authorType?: NullableStringFieldUpdateOperationsInput | string | null
+    authorName?: NullableStringFieldUpdateOperationsInput | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TestimonialUpdateprogramsInput | string[]
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TestimonialCreateManyInput = {
     id?: number
-    studentId: number
-    content: string
-    authorType: string
-    authorName: string
+    studentId?: number | null
+    content?: string | null
+    authorType?: string | null
+    authorName?: string | null
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
+    beforeAfterExpectations?: string | null
+    consentToFeature?: boolean
+    experienceDescription?: string | null
+    grade?: string | null
+    programs?: TestimonialCreateprogramsInput | string[]
+    rating?: number | null
+    school?: string | null
+    studentInfo?: string | null
+    studentName?: string | null
+    submittedAt?: Date | string | null
+    successStory?: string | null
+    contentApproved?: boolean
+    ratingApproved?: boolean
+    beforeAfterApproved?: boolean
+    successStoryApproved?: boolean
+    programsApproved?: boolean
   }
 
   export type TestimonialUpdateManyMutationInput = {
-    content?: StringFieldUpdateOperationsInput | string
-    authorType?: StringFieldUpdateOperationsInput | string
-    authorName?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    authorType?: NullableStringFieldUpdateOperationsInput | string | null
+    authorName?: NullableStringFieldUpdateOperationsInput | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TestimonialUpdateprogramsInput | string[]
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TestimonialUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    studentId?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    authorType?: StringFieldUpdateOperationsInput | string
-    authorName?: StringFieldUpdateOperationsInput | string
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    authorType?: NullableStringFieldUpdateOperationsInput | string | null
+    authorName?: NullableStringFieldUpdateOperationsInput | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TestimonialUpdateprogramsInput | string[]
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SecurityLogCreateInput = {
@@ -38587,91 +40931,259 @@ export namespace Prisma {
   }
 
   export type FeedbackCreateInput = {
-    parentId: number
-    parentName: string
-    parentEmail: string
-    message: string
-    rating?: number | null
+    parentId?: number | null
+    parentName?: string | null
+    parentEmail?: string | null
+    studentName?: string | null
+    grade?: string | null
+    school?: string | null
+    programs?: FeedbackCreateprogramsInput | string[]
+    heardAbout?: string | null
+    beforeAfterExpectations?: string | null
+    childExperience?: string | null
+    successStory?: string | null
+    overallExperience?: string | null
+    studentRating?: number | null
+    schedulingRating?: number | null
+    wouldRecommend?: string | null
+    consentToFeature?: boolean
+    favoriteThingToShare?: string | null
+    suggestions?: string | null
     status?: string
     response?: string | null
+    isApproved?: boolean
+    isVisible?: boolean
+    submittedAt?: Date | string | null
     createdAt?: Date | string
     reviewedAt?: Date | string | null
+    updatedAt?: Date | string
+    beforeAfterApproved?: boolean
+    childExperienceApproved?: boolean
+    successStoryApproved?: boolean
+    overallExperienceApproved?: boolean
+    programsApproved?: boolean
+    studentRatingApproved?: boolean
+    schedulingRatingApproved?: boolean
   }
 
   export type FeedbackUncheckedCreateInput = {
     id?: number
-    parentId: number
-    parentName: string
-    parentEmail: string
-    message: string
-    rating?: number | null
+    parentId?: number | null
+    parentName?: string | null
+    parentEmail?: string | null
+    studentName?: string | null
+    grade?: string | null
+    school?: string | null
+    programs?: FeedbackCreateprogramsInput | string[]
+    heardAbout?: string | null
+    beforeAfterExpectations?: string | null
+    childExperience?: string | null
+    successStory?: string | null
+    overallExperience?: string | null
+    studentRating?: number | null
+    schedulingRating?: number | null
+    wouldRecommend?: string | null
+    consentToFeature?: boolean
+    favoriteThingToShare?: string | null
+    suggestions?: string | null
     status?: string
     response?: string | null
+    isApproved?: boolean
+    isVisible?: boolean
+    submittedAt?: Date | string | null
     createdAt?: Date | string
     reviewedAt?: Date | string | null
+    updatedAt?: Date | string
+    beforeAfterApproved?: boolean
+    childExperienceApproved?: boolean
+    successStoryApproved?: boolean
+    overallExperienceApproved?: boolean
+    programsApproved?: boolean
+    studentRatingApproved?: boolean
+    schedulingRatingApproved?: boolean
   }
 
   export type FeedbackUpdateInput = {
-    parentId?: IntFieldUpdateOperationsInput | number
-    parentName?: StringFieldUpdateOperationsInput | string
-    parentEmail?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    parentName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: FeedbackUpdateprogramsInput | string[]
+    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
+    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
+    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
+    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     response?: NullableStringFieldUpdateOperationsInput | string | null
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    childExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    overallExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    schedulingRatingApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FeedbackUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    parentId?: IntFieldUpdateOperationsInput | number
-    parentName?: StringFieldUpdateOperationsInput | string
-    parentEmail?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    parentName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: FeedbackUpdateprogramsInput | string[]
+    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
+    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
+    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
+    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     response?: NullableStringFieldUpdateOperationsInput | string | null
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    childExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    overallExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    schedulingRatingApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FeedbackCreateManyInput = {
     id?: number
-    parentId: number
-    parentName: string
-    parentEmail: string
-    message: string
-    rating?: number | null
+    parentId?: number | null
+    parentName?: string | null
+    parentEmail?: string | null
+    studentName?: string | null
+    grade?: string | null
+    school?: string | null
+    programs?: FeedbackCreateprogramsInput | string[]
+    heardAbout?: string | null
+    beforeAfterExpectations?: string | null
+    childExperience?: string | null
+    successStory?: string | null
+    overallExperience?: string | null
+    studentRating?: number | null
+    schedulingRating?: number | null
+    wouldRecommend?: string | null
+    consentToFeature?: boolean
+    favoriteThingToShare?: string | null
+    suggestions?: string | null
     status?: string
     response?: string | null
+    isApproved?: boolean
+    isVisible?: boolean
+    submittedAt?: Date | string | null
     createdAt?: Date | string
     reviewedAt?: Date | string | null
+    updatedAt?: Date | string
+    beforeAfterApproved?: boolean
+    childExperienceApproved?: boolean
+    successStoryApproved?: boolean
+    overallExperienceApproved?: boolean
+    programsApproved?: boolean
+    studentRatingApproved?: boolean
+    schedulingRatingApproved?: boolean
   }
 
   export type FeedbackUpdateManyMutationInput = {
-    parentId?: IntFieldUpdateOperationsInput | number
-    parentName?: StringFieldUpdateOperationsInput | string
-    parentEmail?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    parentName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: FeedbackUpdateprogramsInput | string[]
+    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
+    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
+    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
+    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     response?: NullableStringFieldUpdateOperationsInput | string | null
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    childExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    overallExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    schedulingRatingApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FeedbackUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    parentId?: IntFieldUpdateOperationsInput | number
-    parentName?: StringFieldUpdateOperationsInput | string
-    parentEmail?: StringFieldUpdateOperationsInput | string
-    message?: StringFieldUpdateOperationsInput | string
-    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    parentName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: FeedbackUpdateprogramsInput | string[]
+    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
+    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
+    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
+    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
+    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     response?: NullableStringFieldUpdateOperationsInput | string | null
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    childExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    overallExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    schedulingRatingApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ParentAccountCreateInput = {
@@ -38959,12 +41471,12 @@ export namespace Prisma {
     experience?: string | null
     specialties?: MentorCreatespecialtiesInput | string[]
     achievements?: MentorCreateachievementsInput | string[]
+    department?: string
     bio: string
     isActive?: boolean
     displayOrder?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    department?: string
     teacher?: TeacherCreateNestedOneWithoutMentorProfileInput
   }
 
@@ -38980,12 +41492,12 @@ export namespace Prisma {
     experience?: string | null
     specialties?: MentorCreatespecialtiesInput | string[]
     achievements?: MentorCreateachievementsInput | string[]
+    department?: string
     bio: string
     isActive?: boolean
     displayOrder?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    department?: string
   }
 
   export type MentorUpdateInput = {
@@ -38998,12 +41510,12 @@ export namespace Prisma {
     experience?: NullableStringFieldUpdateOperationsInput | string | null
     specialties?: MentorUpdatespecialtiesInput | string[]
     achievements?: MentorUpdateachievementsInput | string[]
+    department?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    department?: StringFieldUpdateOperationsInput | string
     teacher?: TeacherUpdateOneWithoutMentorProfileNestedInput
   }
 
@@ -39019,12 +41531,12 @@ export namespace Prisma {
     experience?: NullableStringFieldUpdateOperationsInput | string | null
     specialties?: MentorUpdatespecialtiesInput | string[]
     achievements?: MentorUpdateachievementsInput | string[]
+    department?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    department?: StringFieldUpdateOperationsInput | string
   }
 
   export type MentorCreateManyInput = {
@@ -39039,12 +41551,12 @@ export namespace Prisma {
     experience?: string | null
     specialties?: MentorCreatespecialtiesInput | string[]
     achievements?: MentorCreateachievementsInput | string[]
+    department?: string
     bio: string
     isActive?: boolean
     displayOrder?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    department?: string
   }
 
   export type MentorUpdateManyMutationInput = {
@@ -39057,12 +41569,12 @@ export namespace Prisma {
     experience?: NullableStringFieldUpdateOperationsInput | string | null
     specialties?: MentorUpdatespecialtiesInput | string[]
     achievements?: MentorUpdateachievementsInput | string[]
+    department?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    department?: StringFieldUpdateOperationsInput | string
   }
 
   export type MentorUncheckedUpdateManyInput = {
@@ -39077,12 +41589,98 @@ export namespace Prisma {
     experience?: NullableStringFieldUpdateOperationsInput | string | null
     specialties?: MentorUpdatespecialtiesInput | string[]
     achievements?: MentorUpdateachievementsInput | string[]
+    department?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    department?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProgressReportCreateInput = {
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Student: StudentCreateNestedOneWithoutProgressReportInput
+    Teacher: TeacherCreateNestedOneWithoutProgressReportInput
+  }
+
+  export type ProgressReportUncheckedCreateInput = {
+    id?: number
+    studentId: number
+    teacherId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type ProgressReportUpdateInput = {
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Student?: StudentUpdateOneRequiredWithoutProgressReportNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutProgressReportNestedInput
+  }
+
+  export type ProgressReportUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressReportCreateManyInput = {
+    id?: number
+    studentId: number
+    teacherId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type ProgressReportUpdateManyMutationInput = {
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressReportUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -39393,6 +41991,12 @@ export namespace Prisma {
     isNot?: MentorWhereInput | null
   }
 
+  export type ProgressReportListRelationFilter = {
+    every?: ProgressReportWhereInput
+    some?: ProgressReportWhereInput
+    none?: ProgressReportWhereInput
+  }
+
   export type ResourceListRelationFilter = {
     every?: ResourceWhereInput
     some?: ResourceWhereInput
@@ -39416,6 +42020,10 @@ export namespace Prisma {
   }
 
   export type ClassScheduleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProgressReportOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -40469,11 +43077,28 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrder
+    beforeAfterExpectations?: SortOrder
+    consentToFeature?: SortOrder
+    experienceDescription?: SortOrder
+    grade?: SortOrder
+    programs?: SortOrder
+    rating?: SortOrder
+    school?: SortOrder
+    studentInfo?: SortOrder
+    studentName?: SortOrder
+    submittedAt?: SortOrder
+    successStory?: SortOrder
+    contentApproved?: SortOrder
+    ratingApproved?: SortOrder
+    beforeAfterApproved?: SortOrder
+    successStoryApproved?: SortOrder
+    programsApproved?: SortOrder
   }
 
   export type TestimonialAvgOrderByAggregateInput = {
     id?: SortOrder
     studentId?: SortOrder
+    rating?: SortOrder
   }
 
   export type TestimonialMaxOrderByAggregateInput = {
@@ -40487,6 +43112,21 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrder
+    beforeAfterExpectations?: SortOrder
+    consentToFeature?: SortOrder
+    experienceDescription?: SortOrder
+    grade?: SortOrder
+    rating?: SortOrder
+    school?: SortOrder
+    studentInfo?: SortOrder
+    studentName?: SortOrder
+    submittedAt?: SortOrder
+    successStory?: SortOrder
+    contentApproved?: SortOrder
+    ratingApproved?: SortOrder
+    beforeAfterApproved?: SortOrder
+    successStoryApproved?: SortOrder
+    programsApproved?: SortOrder
   }
 
   export type TestimonialMinOrderByAggregateInput = {
@@ -40500,11 +43140,27 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrder
+    beforeAfterExpectations?: SortOrder
+    consentToFeature?: SortOrder
+    experienceDescription?: SortOrder
+    grade?: SortOrder
+    rating?: SortOrder
+    school?: SortOrder
+    studentInfo?: SortOrder
+    studentName?: SortOrder
+    submittedAt?: SortOrder
+    successStory?: SortOrder
+    contentApproved?: SortOrder
+    ratingApproved?: SortOrder
+    beforeAfterApproved?: SortOrder
+    successStoryApproved?: SortOrder
+    programsApproved?: SortOrder
   }
 
   export type TestimonialSumOrderByAggregateInput = {
     id?: SortOrder
     studentId?: SortOrder
+    rating?: SortOrder
   }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -40641,18 +43297,43 @@ export namespace Prisma {
     parentId?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
-    message?: SortOrder
-    rating?: SortOrder
+    studentName?: SortOrder
+    grade?: SortOrder
+    school?: SortOrder
+    programs?: SortOrder
+    heardAbout?: SortOrder
+    beforeAfterExpectations?: SortOrder
+    childExperience?: SortOrder
+    successStory?: SortOrder
+    overallExperience?: SortOrder
+    studentRating?: SortOrder
+    schedulingRating?: SortOrder
+    wouldRecommend?: SortOrder
+    consentToFeature?: SortOrder
+    favoriteThingToShare?: SortOrder
+    suggestions?: SortOrder
     status?: SortOrder
     response?: SortOrder
+    isApproved?: SortOrder
+    isVisible?: SortOrder
+    submittedAt?: SortOrder
     createdAt?: SortOrder
     reviewedAt?: SortOrder
+    updatedAt?: SortOrder
+    beforeAfterApproved?: SortOrder
+    childExperienceApproved?: SortOrder
+    successStoryApproved?: SortOrder
+    overallExperienceApproved?: SortOrder
+    programsApproved?: SortOrder
+    studentRatingApproved?: SortOrder
+    schedulingRatingApproved?: SortOrder
   }
 
   export type FeedbackAvgOrderByAggregateInput = {
     id?: SortOrder
     parentId?: SortOrder
-    rating?: SortOrder
+    studentRating?: SortOrder
+    schedulingRating?: SortOrder
   }
 
   export type FeedbackMaxOrderByAggregateInput = {
@@ -40660,12 +43341,35 @@ export namespace Prisma {
     parentId?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
-    message?: SortOrder
-    rating?: SortOrder
+    studentName?: SortOrder
+    grade?: SortOrder
+    school?: SortOrder
+    heardAbout?: SortOrder
+    beforeAfterExpectations?: SortOrder
+    childExperience?: SortOrder
+    successStory?: SortOrder
+    overallExperience?: SortOrder
+    studentRating?: SortOrder
+    schedulingRating?: SortOrder
+    wouldRecommend?: SortOrder
+    consentToFeature?: SortOrder
+    favoriteThingToShare?: SortOrder
+    suggestions?: SortOrder
     status?: SortOrder
     response?: SortOrder
+    isApproved?: SortOrder
+    isVisible?: SortOrder
+    submittedAt?: SortOrder
     createdAt?: SortOrder
     reviewedAt?: SortOrder
+    updatedAt?: SortOrder
+    beforeAfterApproved?: SortOrder
+    childExperienceApproved?: SortOrder
+    successStoryApproved?: SortOrder
+    overallExperienceApproved?: SortOrder
+    programsApproved?: SortOrder
+    studentRatingApproved?: SortOrder
+    schedulingRatingApproved?: SortOrder
   }
 
   export type FeedbackMinOrderByAggregateInput = {
@@ -40673,18 +43377,42 @@ export namespace Prisma {
     parentId?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
-    message?: SortOrder
-    rating?: SortOrder
+    studentName?: SortOrder
+    grade?: SortOrder
+    school?: SortOrder
+    heardAbout?: SortOrder
+    beforeAfterExpectations?: SortOrder
+    childExperience?: SortOrder
+    successStory?: SortOrder
+    overallExperience?: SortOrder
+    studentRating?: SortOrder
+    schedulingRating?: SortOrder
+    wouldRecommend?: SortOrder
+    consentToFeature?: SortOrder
+    favoriteThingToShare?: SortOrder
+    suggestions?: SortOrder
     status?: SortOrder
     response?: SortOrder
+    isApproved?: SortOrder
+    isVisible?: SortOrder
+    submittedAt?: SortOrder
     createdAt?: SortOrder
     reviewedAt?: SortOrder
+    updatedAt?: SortOrder
+    beforeAfterApproved?: SortOrder
+    childExperienceApproved?: SortOrder
+    successStoryApproved?: SortOrder
+    overallExperienceApproved?: SortOrder
+    programsApproved?: SortOrder
+    studentRatingApproved?: SortOrder
+    schedulingRatingApproved?: SortOrder
   }
 
   export type FeedbackSumOrderByAggregateInput = {
     id?: SortOrder
     parentId?: SortOrder
-    rating?: SortOrder
+    studentRating?: SortOrder
+    schedulingRating?: SortOrder
   }
 
   export type StudentListRelationFilter = {
@@ -40864,12 +43592,12 @@ export namespace Prisma {
     experience?: SortOrder
     specialties?: SortOrder
     achievements?: SortOrder
+    department?: SortOrder
     bio?: SortOrder
     isActive?: SortOrder
     displayOrder?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    department?: SortOrder
   }
 
   export type MentorAvgOrderByAggregateInput = {
@@ -40888,12 +43616,12 @@ export namespace Prisma {
     institution?: SortOrder
     image?: SortOrder
     experience?: SortOrder
+    department?: SortOrder
     bio?: SortOrder
     isActive?: SortOrder
     displayOrder?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    department?: SortOrder
   }
 
   export type MentorMinOrderByAggregateInput = {
@@ -40906,18 +43634,69 @@ export namespace Prisma {
     institution?: SortOrder
     image?: SortOrder
     experience?: SortOrder
+    department?: SortOrder
     bio?: SortOrder
     isActive?: SortOrder
     displayOrder?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    department?: SortOrder
   }
 
   export type MentorSumOrderByAggregateInput = {
     id?: SortOrder
     teacherId?: SortOrder
     displayOrder?: SortOrder
+  }
+
+  export type ProgressReportCountOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrder
+    publications?: SortOrder
+    nextSteps?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProgressReportAvgOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+  }
+
+  export type ProgressReportMaxOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrder
+    publications?: SortOrder
+    nextSteps?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProgressReportMinOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrder
+    publications?: SortOrder
+    nextSteps?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProgressReportSumOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -40968,6 +43747,13 @@ export namespace Prisma {
     connect?: MentorWhereUniqueInput
   }
 
+  export type ProgressReportCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput> | ProgressReportCreateWithoutTeacherInput[] | ProgressReportUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutTeacherInput | ProgressReportCreateOrConnectWithoutTeacherInput[]
+    createMany?: ProgressReportCreateManyTeacherInputEnvelope
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+  }
+
   export type ResourceCreateNestedManyWithoutTeacherInput = {
     create?: XOR<ResourceCreateWithoutTeacherInput, ResourceUncheckedCreateWithoutTeacherInput> | ResourceCreateWithoutTeacherInput[] | ResourceUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: ResourceCreateOrConnectWithoutTeacherInput | ResourceCreateOrConnectWithoutTeacherInput[]
@@ -41007,6 +43793,13 @@ export namespace Prisma {
     create?: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
     connectOrCreate?: MentorCreateOrConnectWithoutTeacherInput
     connect?: MentorWhereUniqueInput
+  }
+
+  export type ProgressReportUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput> | ProgressReportCreateWithoutTeacherInput[] | ProgressReportUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutTeacherInput | ProgressReportCreateOrConnectWithoutTeacherInput[]
+    createMany?: ProgressReportCreateManyTeacherInputEnvelope
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
   }
 
   export type ResourceUncheckedCreateNestedManyWithoutTeacherInput = {
@@ -41071,6 +43864,20 @@ export namespace Prisma {
     delete?: MentorWhereInput | boolean
     connect?: MentorWhereUniqueInput
     update?: XOR<XOR<MentorUpdateToOneWithWhereWithoutTeacherInput, MentorUpdateWithoutTeacherInput>, MentorUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type ProgressReportUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput> | ProgressReportCreateWithoutTeacherInput[] | ProgressReportUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutTeacherInput | ProgressReportCreateOrConnectWithoutTeacherInput[]
+    upsert?: ProgressReportUpsertWithWhereUniqueWithoutTeacherInput | ProgressReportUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: ProgressReportCreateManyTeacherInputEnvelope
+    set?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    disconnect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    delete?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    update?: ProgressReportUpdateWithWhereUniqueWithoutTeacherInput | ProgressReportUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: ProgressReportUpdateManyWithWhereWithoutTeacherInput | ProgressReportUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
   }
 
   export type ResourceUpdateManyWithoutTeacherNestedInput = {
@@ -41153,6 +43960,20 @@ export namespace Prisma {
     update?: XOR<XOR<MentorUpdateToOneWithWhereWithoutTeacherInput, MentorUpdateWithoutTeacherInput>, MentorUncheckedUpdateWithoutTeacherInput>
   }
 
+  export type ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput> | ProgressReportCreateWithoutTeacherInput[] | ProgressReportUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutTeacherInput | ProgressReportCreateOrConnectWithoutTeacherInput[]
+    upsert?: ProgressReportUpsertWithWhereUniqueWithoutTeacherInput | ProgressReportUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: ProgressReportCreateManyTeacherInputEnvelope
+    set?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    disconnect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    delete?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    update?: ProgressReportUpdateWithWhereUniqueWithoutTeacherInput | ProgressReportUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: ProgressReportUpdateManyWithWhereWithoutTeacherInput | ProgressReportUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+  }
+
   export type ResourceUncheckedUpdateManyWithoutTeacherNestedInput = {
     create?: XOR<ResourceCreateWithoutTeacherInput, ResourceUncheckedCreateWithoutTeacherInput> | ResourceCreateWithoutTeacherInput[] | ResourceUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: ResourceCreateOrConnectWithoutTeacherInput | ResourceCreateOrConnectWithoutTeacherInput[]
@@ -41223,6 +44044,13 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
+  export type ProgressReportCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput> | ProgressReportCreateWithoutStudentInput[] | ProgressReportUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
+    createMany?: ProgressReportCreateManyStudentInputEnvelope
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+  }
+
   export type ParentAccountCreateNestedOneWithoutStudentsInput = {
     create?: XOR<ParentAccountCreateWithoutStudentsInput, ParentAccountUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: ParentAccountCreateOrConnectWithoutStudentsInput
@@ -41290,6 +44118,13 @@ export namespace Prisma {
     connectOrCreate?: PaymentCreateOrConnectWithoutStudentInput | PaymentCreateOrConnectWithoutStudentInput[]
     createMany?: PaymentCreateManyStudentInputEnvelope
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  }
+
+  export type ProgressReportUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput> | ProgressReportCreateWithoutStudentInput[] | ProgressReportUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
+    createMany?: ProgressReportCreateManyStudentInputEnvelope
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
   }
 
   export type StudentResourceUncheckedCreateNestedManyWithoutStudentInput = {
@@ -41381,6 +44216,20 @@ export namespace Prisma {
     update?: PaymentUpdateWithWhereUniqueWithoutStudentInput | PaymentUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: PaymentUpdateManyWithWhereWithoutStudentInput | PaymentUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+  }
+
+  export type ProgressReportUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput> | ProgressReportCreateWithoutStudentInput[] | ProgressReportUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
+    upsert?: ProgressReportUpsertWithWhereUniqueWithoutStudentInput | ProgressReportUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ProgressReportCreateManyStudentInputEnvelope
+    set?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    disconnect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    delete?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    update?: ProgressReportUpdateWithWhereUniqueWithoutStudentInput | ProgressReportUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ProgressReportUpdateManyWithWhereWithoutStudentInput | ProgressReportUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
   }
 
   export type ParentAccountUpdateOneWithoutStudentsNestedInput = {
@@ -41525,6 +44374,20 @@ export namespace Prisma {
     update?: PaymentUpdateWithWhereUniqueWithoutStudentInput | PaymentUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: PaymentUpdateManyWithWhereWithoutStudentInput | PaymentUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+  }
+
+  export type ProgressReportUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput> | ProgressReportCreateWithoutStudentInput[] | ProgressReportUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
+    upsert?: ProgressReportUpsertWithWhereUniqueWithoutStudentInput | ProgressReportUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ProgressReportCreateManyStudentInputEnvelope
+    set?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    disconnect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    delete?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    update?: ProgressReportUpdateWithWhereUniqueWithoutStudentInput | ProgressReportUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ProgressReportUpdateManyWithWhereWithoutStudentInput | ProgressReportUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
   }
 
   export type StudentResourceUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -42130,18 +44993,38 @@ export namespace Prisma {
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutPaymentInput, StudentUpdateWithoutPaymentInput>, StudentUncheckedUpdateWithoutPaymentInput>
   }
 
+  export type TestimonialCreateprogramsInput = {
+    set: string[]
+  }
+
   export type StudentCreateNestedOneWithoutTestimonialInput = {
     create?: XOR<StudentCreateWithoutTestimonialInput, StudentUncheckedCreateWithoutTestimonialInput>
     connectOrCreate?: StudentCreateOrConnectWithoutTestimonialInput
     connect?: StudentWhereUniqueInput
   }
 
-  export type StudentUpdateOneRequiredWithoutTestimonialNestedInput = {
+  export type TestimonialUpdateprogramsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type StudentUpdateOneWithoutTestimonialNestedInput = {
     create?: XOR<StudentCreateWithoutTestimonialInput, StudentUncheckedCreateWithoutTestimonialInput>
     connectOrCreate?: StudentCreateOrConnectWithoutTestimonialInput
     upsert?: StudentUpsertWithoutTestimonialInput
+    disconnect?: StudentWhereInput | boolean
+    delete?: StudentWhereInput | boolean
     connect?: StudentWhereUniqueInput
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutTestimonialInput, StudentUpdateWithoutTestimonialInput>, StudentUncheckedUpdateWithoutTestimonialInput>
+  }
+
+  export type FeedbackCreateprogramsInput = {
+    set: string[]
+  }
+
+  export type FeedbackUpdateprogramsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type StudentCreateNestedManyWithoutParentAccountInput = {
@@ -42218,6 +45101,34 @@ export namespace Prisma {
     delete?: TeacherWhereInput | boolean
     connect?: TeacherWhereUniqueInput
     update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutMentorProfileInput, TeacherUpdateWithoutMentorProfileInput>, TeacherUncheckedUpdateWithoutMentorProfileInput>
+  }
+
+  export type StudentCreateNestedOneWithoutProgressReportInput = {
+    create?: XOR<StudentCreateWithoutProgressReportInput, StudentUncheckedCreateWithoutProgressReportInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutProgressReportInput
+    connect?: StudentWhereUniqueInput
+  }
+
+  export type TeacherCreateNestedOneWithoutProgressReportInput = {
+    create?: XOR<TeacherCreateWithoutProgressReportInput, TeacherUncheckedCreateWithoutProgressReportInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutProgressReportInput
+    connect?: TeacherWhereUniqueInput
+  }
+
+  export type StudentUpdateOneRequiredWithoutProgressReportNestedInput = {
+    create?: XOR<StudentCreateWithoutProgressReportInput, StudentUncheckedCreateWithoutProgressReportInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutProgressReportInput
+    upsert?: StudentUpsertWithoutProgressReportInput
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutProgressReportInput, StudentUpdateWithoutProgressReportInput>, StudentUncheckedUpdateWithoutProgressReportInput>
+  }
+
+  export type TeacherUpdateOneRequiredWithoutProgressReportNestedInput = {
+    create?: XOR<TeacherCreateWithoutProgressReportInput, TeacherUncheckedCreateWithoutProgressReportInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutProgressReportInput
+    upsert?: TeacherUpsertWithoutProgressReportInput
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutProgressReportInput, TeacherUpdateWithoutProgressReportInput>, TeacherUncheckedUpdateWithoutProgressReportInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -42565,12 +45476,12 @@ export namespace Prisma {
     experience?: string | null
     specialties?: MentorCreatespecialtiesInput | string[]
     achievements?: MentorCreateachievementsInput | string[]
+    department?: string
     bio: string
     isActive?: boolean
     displayOrder?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    department?: string
   }
 
   export type MentorUncheckedCreateWithoutTeacherInput = {
@@ -42584,17 +45495,50 @@ export namespace Prisma {
     experience?: string | null
     specialties?: MentorCreatespecialtiesInput | string[]
     achievements?: MentorCreateachievementsInput | string[]
+    department?: string
     bio: string
     isActive?: boolean
     displayOrder?: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    department?: string
   }
 
   export type MentorCreateOrConnectWithoutTeacherInput = {
     where: MentorWhereUniqueInput
     create: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type ProgressReportCreateWithoutTeacherInput = {
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Student: StudentCreateNestedOneWithoutProgressReportInput
+  }
+
+  export type ProgressReportUncheckedCreateWithoutTeacherInput = {
+    id?: number
+    studentId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type ProgressReportCreateOrConnectWithoutTeacherInput = {
+    where: ProgressReportWhereUniqueInput
+    create: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type ProgressReportCreateManyTeacherInputEnvelope = {
+    data: ProgressReportCreateManyTeacherInput | ProgressReportCreateManyTeacherInput[]
+    skipDuplicates?: boolean
   }
 
   export type ResourceCreateWithoutTeacherInput = {
@@ -42786,12 +45730,12 @@ export namespace Prisma {
     experience?: NullableStringFieldUpdateOperationsInput | string | null
     specialties?: MentorUpdatespecialtiesInput | string[]
     achievements?: MentorUpdateachievementsInput | string[]
+    department?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    department?: StringFieldUpdateOperationsInput | string
   }
 
   export type MentorUncheckedUpdateWithoutTeacherInput = {
@@ -42805,12 +45749,44 @@ export namespace Prisma {
     experience?: NullableStringFieldUpdateOperationsInput | string | null
     specialties?: MentorUpdatespecialtiesInput | string[]
     achievements?: MentorUpdateachievementsInput | string[]
+    department?: StringFieldUpdateOperationsInput | string
     bio?: StringFieldUpdateOperationsInput | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    department?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProgressReportUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: ProgressReportWhereUniqueInput
+    update: XOR<ProgressReportUpdateWithoutTeacherInput, ProgressReportUncheckedUpdateWithoutTeacherInput>
+    create: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type ProgressReportUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: ProgressReportWhereUniqueInput
+    data: XOR<ProgressReportUpdateWithoutTeacherInput, ProgressReportUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type ProgressReportUpdateManyWithWhereWithoutTeacherInput = {
+    where: ProgressReportScalarWhereInput
+    data: XOR<ProgressReportUpdateManyMutationInput, ProgressReportUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type ProgressReportScalarWhereInput = {
+    AND?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+    OR?: ProgressReportScalarWhereInput[]
+    NOT?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+    id?: IntFilter<"ProgressReport"> | number
+    studentId?: IntFilter<"ProgressReport"> | number
+    teacherId?: IntFilter<"ProgressReport"> | number
+    reportDate?: DateTimeFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableFilter<"ProgressReport"> | string | null
+    publications?: StringNullableFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
   }
 
   export type ResourceUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -43077,6 +46053,39 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProgressReportCreateWithoutStudentInput = {
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Teacher: TeacherCreateNestedOneWithoutProgressReportInput
+  }
+
+  export type ProgressReportUncheckedCreateWithoutStudentInput = {
+    id?: number
+    teacherId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type ProgressReportCreateOrConnectWithoutStudentInput = {
+    where: ProgressReportWhereUniqueInput
+    create: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ProgressReportCreateManyStudentInputEnvelope = {
+    data: ProgressReportCreateManyStudentInput | ProgressReportCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ParentAccountCreateWithoutStudentsInput = {
     name: string
     email: string
@@ -43226,26 +46235,58 @@ export namespace Prisma {
   }
 
   export type TestimonialCreateWithoutStudentInput = {
-    content: string
-    authorType: string
-    authorName: string
+    content?: string | null
+    authorType?: string | null
+    authorName?: string | null
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
+    beforeAfterExpectations?: string | null
+    consentToFeature?: boolean
+    experienceDescription?: string | null
+    grade?: string | null
+    programs?: TestimonialCreateprogramsInput | string[]
+    rating?: number | null
+    school?: string | null
+    studentInfo?: string | null
+    studentName?: string | null
+    submittedAt?: Date | string | null
+    successStory?: string | null
+    contentApproved?: boolean
+    ratingApproved?: boolean
+    beforeAfterApproved?: boolean
+    successStoryApproved?: boolean
+    programsApproved?: boolean
   }
 
   export type TestimonialUncheckedCreateWithoutStudentInput = {
     id?: number
-    content: string
-    authorType: string
-    authorName: string
+    content?: string | null
+    authorType?: string | null
+    authorName?: string | null
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
+    beforeAfterExpectations?: string | null
+    consentToFeature?: boolean
+    experienceDescription?: string | null
+    grade?: string | null
+    programs?: TestimonialCreateprogramsInput | string[]
+    rating?: number | null
+    school?: string | null
+    studentInfo?: string | null
+    studentName?: string | null
+    submittedAt?: Date | string | null
+    successStory?: string | null
+    contentApproved?: boolean
+    ratingApproved?: boolean
+    beforeAfterApproved?: boolean
+    successStoryApproved?: boolean
+    programsApproved?: boolean
   }
 
   export type TestimonialCreateOrConnectWithoutStudentInput = {
@@ -43360,6 +46401,22 @@ export namespace Prisma {
     paidAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     updatedAt?: DateTimeFilter<"Payment"> | Date | string
+  }
+
+  export type ProgressReportUpsertWithWhereUniqueWithoutStudentInput = {
+    where: ProgressReportWhereUniqueInput
+    update: XOR<ProgressReportUpdateWithoutStudentInput, ProgressReportUncheckedUpdateWithoutStudentInput>
+    create: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ProgressReportUpdateWithWhereUniqueWithoutStudentInput = {
+    where: ProgressReportWhereUniqueInput
+    data: XOR<ProgressReportUpdateWithoutStudentInput, ProgressReportUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type ProgressReportUpdateManyWithWhereWithoutStudentInput = {
+    where: ProgressReportScalarWhereInput
+    data: XOR<ProgressReportUpdateManyMutationInput, ProgressReportUncheckedUpdateManyWithoutStudentInput>
   }
 
   export type ParentAccountUpsertWithoutStudentsInput = {
@@ -43526,15 +46583,31 @@ export namespace Prisma {
     OR?: TestimonialScalarWhereInput[]
     NOT?: TestimonialScalarWhereInput | TestimonialScalarWhereInput[]
     id?: IntFilter<"Testimonial"> | number
-    studentId?: IntFilter<"Testimonial"> | number
-    content?: StringFilter<"Testimonial"> | string
-    authorType?: StringFilter<"Testimonial"> | string
-    authorName?: StringFilter<"Testimonial"> | string
+    studentId?: IntNullableFilter<"Testimonial"> | number | null
+    content?: StringNullableFilter<"Testimonial"> | string | null
+    authorType?: StringNullableFilter<"Testimonial"> | string | null
+    authorName?: StringNullableFilter<"Testimonial"> | string | null
     isApproved?: BoolFilter<"Testimonial"> | boolean
     isVisible?: BoolFilter<"Testimonial"> | boolean
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableFilter<"Testimonial"> | string | null
+    beforeAfterExpectations?: StringNullableFilter<"Testimonial"> | string | null
+    consentToFeature?: BoolFilter<"Testimonial"> | boolean
+    experienceDescription?: StringNullableFilter<"Testimonial"> | string | null
+    grade?: StringNullableFilter<"Testimonial"> | string | null
+    programs?: StringNullableListFilter<"Testimonial">
+    rating?: IntNullableFilter<"Testimonial"> | number | null
+    school?: StringNullableFilter<"Testimonial"> | string | null
+    studentInfo?: StringNullableFilter<"Testimonial"> | string | null
+    studentName?: StringNullableFilter<"Testimonial"> | string | null
+    submittedAt?: DateTimeNullableFilter<"Testimonial"> | Date | string | null
+    successStory?: StringNullableFilter<"Testimonial"> | string | null
+    contentApproved?: BoolFilter<"Testimonial"> | boolean
+    ratingApproved?: BoolFilter<"Testimonial"> | boolean
+    beforeAfterApproved?: BoolFilter<"Testimonial"> | boolean
+    successStoryApproved?: BoolFilter<"Testimonial"> | boolean
+    programsApproved?: BoolFilter<"Testimonial"> | boolean
   }
 
   export type StudentCreateWithoutTeacherLinksInput = {
@@ -43554,6 +46627,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -43580,6 +46654,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -43602,6 +46677,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
   }
@@ -43618,6 +46694,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -43655,6 +46732,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -43681,6 +46759,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -43709,6 +46788,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
   }
@@ -43725,6 +46805,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -43745,6 +46826,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -43771,6 +46853,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -43793,6 +46876,7 @@ export namespace Prisma {
     isActivated?: boolean
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -43809,6 +46893,7 @@ export namespace Prisma {
     isActivated?: boolean
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -43906,6 +46991,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -43932,6 +47018,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -43960,6 +47047,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -43976,6 +47064,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -44080,6 +47169,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -44106,6 +47196,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
@@ -44191,6 +47282,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -44217,6 +47309,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
@@ -44239,6 +47332,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -44265,6 +47359,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -44359,6 +47454,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -44385,6 +47481,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -44440,6 +47537,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -44456,6 +47554,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -44526,6 +47625,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -44542,6 +47642,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -44797,6 +47898,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -44823,6 +47925,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
@@ -44910,6 +48013,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -44936,6 +48040,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
@@ -44959,6 +48064,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -44985,6 +48091,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
@@ -45049,6 +48156,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -45075,6 +48183,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
@@ -45140,6 +48249,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -45156,6 +48266,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -45225,6 +48336,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -45241,6 +48353,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -45261,6 +48374,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -45287,6 +48401,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -45309,6 +48424,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -45325,6 +48441,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -45362,6 +48479,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -45388,6 +48506,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -45416,6 +48535,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -45432,6 +48552,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -45477,6 +48598,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -45503,6 +48625,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -45572,6 +48695,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -45598,6 +48722,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -45622,6 +48747,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -45648,6 +48774,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -45687,6 +48814,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -45713,6 +48841,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -45736,6 +48865,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -45761,6 +48891,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -45824,6 +48955,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -45840,6 +48972,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -45871,6 +49004,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -45887,6 +49021,207 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type StudentCreateWithoutProgressReportInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutProgressReportInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutProgressReportInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutProgressReportInput, StudentUncheckedCreateWithoutProgressReportInput>
+  }
+
+  export type TeacherCreateWithoutProgressReportInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherUncheckedCreateWithoutProgressReportInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherCreateOrConnectWithoutProgressReportInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutProgressReportInput, TeacherUncheckedCreateWithoutProgressReportInput>
+  }
+
+  export type StudentUpsertWithoutProgressReportInput = {
+    update: XOR<StudentUpdateWithoutProgressReportInput, StudentUncheckedUpdateWithoutProgressReportInput>
+    create: XOR<StudentCreateWithoutProgressReportInput, StudentUncheckedCreateWithoutProgressReportInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutProgressReportInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutProgressReportInput, StudentUncheckedUpdateWithoutProgressReportInput>
+  }
+
+  export type StudentUpdateWithoutProgressReportInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutProgressReportInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type TeacherUpsertWithoutProgressReportInput = {
+    update: XOR<TeacherUpdateWithoutProgressReportInput, TeacherUncheckedUpdateWithoutProgressReportInput>
+    create: XOR<TeacherCreateWithoutProgressReportInput, TeacherUncheckedCreateWithoutProgressReportInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutProgressReportInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutProgressReportInput, TeacherUncheckedUpdateWithoutProgressReportInput>
+  }
+
+  export type TeacherUpdateWithoutProgressReportInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutProgressReportInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -45923,6 +49258,18 @@ export namespace Prisma {
     studentId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type ProgressReportCreateManyTeacherInput = {
+    id?: number
+    studentId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
   }
 
   export type ResourceCreateManyTeacherInput = {
@@ -46054,6 +49401,41 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressReportUpdateWithoutTeacherInput = {
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Student?: StudentUpdateOneRequiredWithoutProgressReportNestedInput
+  }
+
+  export type ProgressReportUncheckedUpdateWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressReportUncheckedUpdateManyWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -46220,6 +49602,18 @@ export namespace Prisma {
     updatedAt: Date | string
   }
 
+  export type ProgressReportCreateManyStudentInput = {
+    id?: number
+    teacherId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
   export type StudentResourceCreateManyStudentInput = {
     id?: number
     resourceId: number
@@ -46264,14 +49658,30 @@ export namespace Prisma {
 
   export type TestimonialCreateManyStudentInput = {
     id?: number
-    content: string
-    authorType: string
-    authorName: string
+    content?: string | null
+    authorType?: string | null
+    authorName?: string | null
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
+    beforeAfterExpectations?: string | null
+    consentToFeature?: boolean
+    experienceDescription?: string | null
+    grade?: string | null
+    programs?: TestimonialCreateprogramsInput | string[]
+    rating?: number | null
+    school?: string | null
+    studentInfo?: string | null
+    studentName?: string | null
+    submittedAt?: Date | string | null
+    successStory?: string | null
+    contentApproved?: boolean
+    ratingApproved?: boolean
+    beforeAfterApproved?: boolean
+    successStoryApproved?: boolean
+    programsApproved?: boolean
   }
 
   export type AssignmentUpdateWithoutTargetStudentInput = {
@@ -46471,6 +49881,41 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ProgressReportUpdateWithoutStudentInput = {
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Teacher?: TeacherUpdateOneRequiredWithoutProgressReportNestedInput
+  }
+
+  export type ProgressReportUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressReportUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StudentResourceUpdateWithoutStudentInput = {
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -46596,38 +50041,86 @@ export namespace Prisma {
   }
 
   export type TestimonialUpdateWithoutStudentInput = {
-    content?: StringFieldUpdateOperationsInput | string
-    authorType?: StringFieldUpdateOperationsInput | string
-    authorName?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    authorType?: NullableStringFieldUpdateOperationsInput | string | null
+    authorName?: NullableStringFieldUpdateOperationsInput | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TestimonialUpdateprogramsInput | string[]
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TestimonialUncheckedUpdateWithoutStudentInput = {
     id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    authorType?: StringFieldUpdateOperationsInput | string
-    authorName?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    authorType?: NullableStringFieldUpdateOperationsInput | string | null
+    authorName?: NullableStringFieldUpdateOperationsInput | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TestimonialUpdateprogramsInput | string[]
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TestimonialUncheckedUpdateManyWithoutStudentInput = {
     id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    authorType?: StringFieldUpdateOperationsInput | string
-    authorName?: StringFieldUpdateOperationsInput | string
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    authorType?: NullableStringFieldUpdateOperationsInput | string | null
+    authorName?: NullableStringFieldUpdateOperationsInput | string | null
     isApproved?: BoolFieldUpdateOperationsInput | boolean
     isVisible?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TestimonialUpdateprogramsInput | string[]
+    rating?: NullableIntFieldUpdateOperationsInput | number | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    programsApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AssignmentResourceCreateManyAssignmentInput = {
@@ -46917,6 +50410,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -46942,6 +50436,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput

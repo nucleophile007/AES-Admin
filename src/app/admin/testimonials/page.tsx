@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { CheckCircle, XCircle, User, Users, Calendar, Mail, Phone, School, GraduationCap, Eye, EyeOff, MessageSquareQuote } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { CheckCircle, XCircle, User, Users, Calendar, Mail, Phone, School, GraduationCap, Eye, EyeOff, MessageSquareQuote, ChevronDown, ChevronUp } from 'lucide-react'
 import Link from 'next/link'
 
 interface Student {
@@ -25,6 +25,21 @@ interface Testimonial {
   isVisible: boolean
   createdAt: string
   updatedAt: string
+  submittedAt: string | null
+  studentName: string | null
+  grade: string | null
+  school: string | null
+  programs: string[]
+  rating: number | null
+  beforeAfterExpectations: string | null
+  successStory: string | null
+  consentToFeature: boolean
+  videoLink: string | null
+  contentApproved: boolean
+  ratingApproved: boolean
+  beforeAfterApproved: boolean
+  successStoryApproved: boolean
+  programsApproved: boolean
   student: Student
 }
 
@@ -34,10 +49,42 @@ export default function TestimonialsPage() {
   const [error, setError] = useState('')
   const [filter, setFilter] = useState<'all' | 'approved' | 'pending'>('all')
   const [authorFilter, setAuthorFilter] = useState<'all' | 'student' | 'parent'>('all')
+  const [expandedRows, setExpandedRows] = useState<Set<number>>(new Set())
+  const [viewingContent, setViewingContent] = useState<{ title: string; content: string } | null>(null)
+  const [syncing, setSyncing] = useState(false)
+  const [syncMessage, setSyncMessage] = useState('')
 
   useEffect(() => {
-    fetchTestimonials()
+    // Auto-sync on page load, then fetch testimonials
+    syncFromSheet()
   }, [])
+
+  const syncFromSheet = async () => {
+    try {
+      setSyncing(true)
+      setSyncMessage('')
+      
+      const response = await fetch('/api/admin/testimonials/sync', {
+        method: 'POST',
+      })
+      
+      if (!response.ok) throw new Error('Failed to sync from Google Sheets')
+      
+      const result = await response.json()
+      
+      if (result.stats) {
+        const { imported, skipped, errors } = result.stats
+        setSyncMessage(`Synced: ${imported} imported, ${skipped} skipped, ${errors} errors`)
+      }
+      
+      // After syncing, fetch the updated testimonials
+      await fetchTestimonials()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to sync')
+    } finally {
+      setSyncing(false)
+    }
+  }
 
   const fetchTestimonials = async () => {
     try {
@@ -52,6 +99,7 @@ export default function TestimonialsPage() {
       setLoading(false)
     }
   }
+
 
   const toggleApproval = async (testimonialId: number, currentStatus: boolean) => {
     try {
@@ -99,6 +147,41 @@ export default function TestimonialsPage() {
     }
   }
 
+  const toggleSectionApproval = async (testimonialId: number, section: string) => {
+    try {
+      const response = await fetch(`/api/admin/testimonials/${testimonialId}/toggle-section`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ section }),
+      })
+
+      if (!response.ok) throw new Error('Failed to toggle section approval')
+
+      const data = await response.json()
+      
+      // Update local state
+      setTestimonials(testimonials.map(t =>
+        t.id === testimonialId ? { ...t, [section]: data[section] } : t
+      ))
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to toggle section approval')
+    }
+  }
+
+  const toggleRowExpansion = (id: number) => {
+    const newExpanded = new Set(expandedRows)
+    if (newExpanded.has(id)) {
+      newExpanded.delete(id)
+    } else {
+      newExpanded.add(id)
+    }
+    setExpandedRows(newExpanded)
+  }
+
+  const viewFullContent = (title: string, content: string) => {
+    setViewingContent({ title, content })
+  }
+
   const filteredTestimonials = testimonials.filter(t => {
     const statusMatch = filter === 'all' || 
                        (filter === 'approved' && t.isApproved) ||
@@ -114,7 +197,7 @@ export default function TestimonialsPage() {
     approved: testimonials.filter(t => t.isApproved).length,
     pending: testimonials.filter(t => !t.isApproved).length,
     fromStudents: testimonials.filter(t => t.authorType === 'student').length,
-    fromParents: testimonials.filter(t => t.authorType === 'parent').length,
+    // fromParents: testimonials.filter(t => t.authorType === 'parent').length,
   }
 
   if (loading) {
@@ -122,7 +205,9 @@ export default function TestimonialsPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
-          <p className="mt-4 text-gray-600">Loading testimonials...</p>
+          <p className="mt-4 text-gray-600">
+            {syncing ? 'Syncing from Google Sheets...' : 'Loading testimonials...'}
+          </p>
         </div>
       </div>
     )
@@ -139,11 +224,34 @@ export default function TestimonialsPage() {
                 <MessageSquareQuote className="h-6 w-6 text-yellow-300" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Manage Testimonials</h1>
-                <p className="text-sm text-gray-700">Review and approve testimonials from students and parents</p>
+                <h1 className="text-2xl font-bold text-gray-900">Manage Student Testimonials</h1>
+                <p className="text-sm text-gray-700">Review and approve testimonials from students</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
+              <button
+                onClick={syncFromSheet}
+                disabled={syncing}
+                className={`inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg ${
+                  syncing 
+                    ? 'bg-gray-400 text-white cursor-not-allowed' 
+                    : 'bg-green-600 text-white hover:bg-green-700'
+                }`}
+              >
+                {syncing ? (
+                  <>
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-r-transparent"></div>
+                    Syncing...
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Sync from Sheet
+                  </>
+                )}
+              </button>
               <Link
                 href="/"
                 className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
@@ -160,6 +268,12 @@ export default function TestimonialsPage() {
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
           {error}
+        </div>
+      )}
+
+      {syncMessage && (
+        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+          {syncMessage}
         </div>
       )}
 
@@ -201,15 +315,6 @@ export default function TestimonialsPage() {
             <GraduationCap className="w-8 h-8 text-purple-500" />
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">From Parents</p>
-              <p className="text-2xl font-bold text-indigo-600">{stats.fromParents}</p>
-            </div>
-            <Users className="w-8 h-8 text-indigo-500" />
-          </div>
-        </div>
       </div>
 
       {/* Filters */}
@@ -236,7 +341,7 @@ export default function TestimonialsPage() {
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
               >
-                Approved ({stats.approved})
+                Approved ({testimonials.filter(t => t.isApproved).length})
               </button>
               <button
                 onClick={() => setFilter('pending')}
@@ -246,7 +351,7 @@ export default function TestimonialsPage() {
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
               >
-                Pending ({stats.pending})
+                Pending ({testimonials.filter(t => !t.isApproved).length})
               </button>
             </div>
           </div>
@@ -273,7 +378,7 @@ export default function TestimonialsPage() {
               >
                 Students
               </button>
-              <button
+              {/* <button
                 onClick={() => setAuthorFilter('parent')}
                 className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                   authorFilter === 'parent'
@@ -282,7 +387,7 @@ export default function TestimonialsPage() {
                 }`}
               >
                 Parents
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -293,195 +398,290 @@ export default function TestimonialsPage() {
         )}
       </div>
 
-      {/* Testimonials List */}
+      {/* Student Testimonials Table */}
       {filteredTestimonials.length === 0 ? (
         <div className="bg-white rounded-lg shadow p-8 text-center">
           <p className="text-gray-500">No testimonials found matching the current filters.</p>
         </div>
       ) : (
-        <div className="space-y-6">
-          {filteredTestimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className={`bg-white rounded-lg shadow-md overflow-hidden border-l-4 ${
-                testimonial.isApproved ? 'border-green-500' : 'border-orange-500'
-              }`}
-            >
-              <div className="p-6">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-full ${
-                      testimonial.authorType === 'student' ? 'bg-purple-100' : 'bg-indigo-100'
-                    }`}>
-                      {testimonial.authorType === 'student' ? (
-                        <User className="w-5 h-5 text-purple-600" />
-                      ) : (
-                        <Users className="w-5 h-5 text-indigo-600" />
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg text-gray-900">{testimonial.authorName}</h3>
-                      <p className="text-sm text-gray-500 capitalize">{testimonial.authorType}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      testimonial.isApproved
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-orange-100 text-orange-800'
-                    }`}>
-                      {testimonial.isApproved ? 'Approved' : 'Pending'}
-                    </span>
-                    {testimonial.isApproved && (
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 ${
-                        testimonial.isVisible
-                          ? 'bg-blue-100 text-blue-800'
-                          : 'bg-gray-100 text-gray-800'
-                      }`}>
-                        {testimonial.isVisible ? (
-                          <>
-                            <Eye className="w-3 h-3" />
-                            Visible
-                          </>
-                        ) : (
-                          <>
-                            <EyeOff className="w-3 h-3" />
-                            Hidden
-                          </>
+        <div className="bg-white rounded-lg shadow overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-8"></th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade/School</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Experience</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Programs</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Before/After</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Success Story</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {filteredTestimonials.map((testimonial) => (
+                  <React.Fragment key={testimonial.id}>
+                    {/* Main Row */}
+                    <tr className="hover:bg-gray-50">
+                      <td className="px-4 py-3">
+                        <button
+                          onClick={() => toggleRowExpansion(testimonial.id)}
+                          className="text-gray-500 hover:text-gray-700"
+                        >
+                          {expandedRows.has(testimonial.id) ? (
+                            <ChevronUp className="w-5 h-5" />
+                          ) : (
+                            <ChevronDown className="w-5 h-5" />
+                          )}
+                        </button>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <div className={`p-1.5 rounded-full ${
+                            testimonial.authorType === 'student' ? 'bg-purple-100' : 'bg-indigo-100'
+                          }`}>
+                            {testimonial.authorType === 'student' ? (
+                              <User className="w-4 h-4 text-purple-600" />
+                            ) : (
+                              <Users className="w-4 h-4 text-indigo-600" />
+                            )}
+                          </div>
+                          <div>
+                            <div className="text-sm font-medium text-gray-900">{testimonial.authorName}</div>
+                            <div className="text-xs text-gray-500 capitalize">{testimonial.authorType}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="text-sm text-gray-900">{testimonial.student.grade}</div>
+                        <div className="text-xs text-gray-500">{testimonial.student.schoolName}</div>
+                      </td>
+                      <td className="px-4 py-3 max-w-xs">
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => toggleSectionApproval(testimonial.id, 'contentApproved')}
+                            className={`flex-shrink-0 w-6 h-6 rounded flex items-center justify-center ${
+                              testimonial.contentApproved ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-400'
+                            }`}
+                            title={testimonial.contentApproved ? 'Approved' : 'Not approved'}
+                          >
+                            {testimonial.contentApproved ? '✓' : '○'}
+                          </button>
+                          <button
+                            onClick={() => viewFullContent('Experience Description', testimonial.content || '')}
+                            className="text-sm text-gray-600 truncate hover:text-blue-600 text-left"
+                          >
+                            {testimonial.content?.substring(0, 50)}...
+                          </button>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3">
+                        {testimonial.rating && (
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => toggleSectionApproval(testimonial.id, 'ratingApproved')}
+                              className={`flex-shrink-0 w-6 h-6 rounded flex items-center justify-center ${
+                                testimonial.ratingApproved ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-400'
+                              }`}
+                              title={testimonial.ratingApproved ? 'Approved' : 'Not approved'}
+                            >
+                              {testimonial.ratingApproved ? '✓' : '○'}
+                            </button>
+                            <div className="flex items-center gap-1">
+                              <span className="text-yellow-400">★</span>
+                              <span className="text-sm font-medium">{testimonial.rating}</span>
+                            </div>
+                          </div>
                         )}
-                      </span>
-                    )}
-                  </div>
-                </div>
+                      </td>
+                      <td className="px-4 py-3 max-w-xs">
+                        {testimonial.programs && testimonial.programs.length > 0 && (
+                          <div className="flex flex-wrap gap-1">
+                            {testimonial.programs.map((program, idx) => (
+                              <span key={idx} className="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded">
+                                {program}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-4 py-3 max-w-xs">
+                        {testimonial.beforeAfterExpectations && (
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => toggleSectionApproval(testimonial.id, 'beforeAfterApproved')}
+                              className={`flex-shrink-0 w-6 h-6 rounded flex items-center justify-center ${
+                                testimonial.beforeAfterApproved ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-400'
+                              }`}
+                              title={testimonial.beforeAfterApproved ? 'Approved' : 'Not approved'}
+                            >
+                              {testimonial.beforeAfterApproved ? '✓' : '○'}
+                            </button>
+                            <button
+                              onClick={() => viewFullContent('Before/After Expectations', testimonial.beforeAfterExpectations || '')}
+                              className="text-sm text-gray-600 truncate hover:text-blue-600 text-left"
+                            >
+                              {testimonial.beforeAfterExpectations.substring(0, 50)}...
+                            </button>
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-4 py-3 max-w-xs">
+                        {testimonial.successStory && (
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => toggleSectionApproval(testimonial.id, 'successStoryApproved')}
+                              className={`flex-shrink-0 w-6 h-6 rounded flex items-center justify-center ${
+                                testimonial.successStoryApproved ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-400'
+                              }`}
+                              title={testimonial.successStoryApproved ? 'Approved' : 'Not approved'}
+                            >
+                              {testimonial.successStoryApproved ? '✓' : '○'}
+                            </button>
+                            <button
+                              onClick={() => viewFullContent('Success Story', testimonial.successStory || '')}
+                              className="text-sm text-gray-600 truncate hover:text-blue-600 text-left"
+                            >
+                              {testimonial.successStory.substring(0, 50)}...
+                            </button>
+                          </div>
+                        )}
+                      </td>
+                      <td className="px-4 py-3 text-sm text-gray-500">
+                        {testimonial.submittedAt 
+                          ? new Date(testimonial.submittedAt).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                              year: 'numeric'
+                            })
+                          : 'N/A'}
+                      </td>
+                      <td className="px-4 py-3">
+                        <button
+                          onClick={() => toggleApproval(testimonial.id, testimonial.isApproved)}
+                          className={`px-3 py-1.5 rounded text-xs font-medium ${
+                            testimonial.isApproved
+                              ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                              : 'bg-orange-100 text-orange-700 hover:bg-orange-200'
+                          }`}
+                        >
+                          {testimonial.isApproved ? 'Approved' : 'Approve'}
+                        </button>
+                      </td>
+                    </tr>
 
-                {/* Testimonial Content */}
-                <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                  <p className="text-gray-700 leading-relaxed italic">"{testimonial.content}"</p>
-                </div>
+                    {/* Expanded Details Row */}
+                    {expandedRows.has(testimonial.id) && (
+                      <tr key={`${testimonial.id}-details`} className="bg-gray-50">
+                        <td colSpan={10} className="px-4 py-6">
+                          <div className="space-y-4">
+                            {/* Full Content */}
+                            <div className="bg-white rounded-lg p-4">
+                              <h4 className="text-sm font-semibold text-gray-700 mb-2">Experience Description</h4>
+                              <p className="text-sm text-gray-600 leading-relaxed italic">"{testimonial.content}"</p>
+                            </div>
 
-                {/* Student Details */}
-                <div className="border-t pt-4">
-                  <h4 className="text-sm font-semibold text-gray-700 mb-3">Student Details</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div className="flex items-center gap-2">
-                      <User className="w-4 h-4 text-gray-400" />
-                      <div>
-                        <p className="text-xs text-gray-500">Student Name</p>
-                        <p className="text-sm font-medium text-gray-900">{testimonial.student.name}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4 text-gray-400" />
-                      <div>
-                        <p className="text-xs text-gray-500">Student Email</p>
-                        <p className="text-sm font-medium text-gray-900">{testimonial.student.email}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <GraduationCap className="w-4 h-4 text-gray-400" />
-                      <div>
-                        <p className="text-xs text-gray-500">Grade</p>
-                        <p className="text-sm font-medium text-gray-900">{testimonial.student.grade}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <School className="w-4 h-4 text-gray-400" />
-                      <div>
-                        <p className="text-xs text-gray-500">School</p>
-                        <p className="text-sm font-medium text-gray-900">{testimonial.student.schoolName}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-gray-400" />
-                      <div>
-                        <p className="text-xs text-gray-500">Parent Name</p>
-                        <p className="text-sm font-medium text-gray-900">{testimonial.student.parentName}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4 text-gray-400" />
-                      <div>
-                        <p className="text-xs text-gray-500">Parent Email</p>
-                        <p className="text-sm font-medium text-gray-900">{testimonial.student.parentEmail}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-gray-400" />
-                      <div>
-                        <p className="text-xs text-gray-500">Parent Phone</p>
-                        <p className="text-sm font-medium text-gray-900">{testimonial.student.parentPhone}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <GraduationCap className="w-4 h-4 text-gray-400" />
-                      <div>
-                        <p className="text-xs text-gray-500">Program</p>
-                        <p className="text-sm font-medium text-gray-900">{testimonial.student.program}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-gray-400" />
-                      <div>
-                        <p className="text-xs text-gray-500">Submitted</p>
-                        <p className="text-sm font-medium text-gray-900">
-                          {new Date(testimonial.createdAt).toLocaleDateString()}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                            {/* Programs List */}
+                            {testimonial.programs && testimonial.programs.length > 0 && (
+                              <div className="bg-white rounded-lg p-4">
+                                <h4 className="text-sm font-semibold text-gray-700 mb-2">Programs Enrolled</h4>
+                                <div className="flex flex-wrap gap-2">
+                                  {testimonial.programs.map((program, idx) => (
+                                    <span key={idx} className="px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700">
+                                      {program}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
 
-                {/* Actions */}
-                <div className="flex gap-3 mt-4 pt-4 border-t">
-                  <button
-                    onClick={() => toggleApproval(testimonial.id, testimonial.isApproved)}
-                    className={`flex-1 px-4 py-2 rounded-lg font-medium transition-colors ${
-                      testimonial.isApproved
-                        ? 'bg-orange-600 hover:bg-orange-700 text-white'
-                        : 'bg-green-600 hover:bg-green-700 text-white'
-                    }`}
-                  >
-                    {testimonial.isApproved ? (
-                      <>
-                        <XCircle className="w-4 h-4 inline mr-2" />
-                        Disapprove
-                      </>
-                    ) : (
-                      <>
-                        <CheckCircle className="w-4 h-4 inline mr-2" />
-                        Approve
-                      </>
+                            {/* Before/After */}
+                            {testimonial.beforeAfterExpectations && (
+                              <div className="bg-white rounded-lg p-4">
+                                <h4 className="text-sm font-semibold text-gray-700 mb-2">Before/After Expectations</h4>
+                                <p className="text-sm text-gray-600 leading-relaxed">{testimonial.beforeAfterExpectations}</p>
+                              </div>
+                            )}
+
+                            {/* Success Story */}
+                            {testimonial.successStory && (
+                              <div className="bg-white rounded-lg p-4">
+                                <h4 className="text-sm font-semibold text-gray-700 mb-2">Success Story</h4>
+                                <p className="text-sm text-gray-600 leading-relaxed">{testimonial.successStory}</p>
+                              </div>
+                            )}
+
+                            {/* Student Details */}
+                            <div className="bg-white rounded-lg p-4">
+                              <h4 className="text-sm font-semibold text-gray-700 mb-3">Student Details</h4>
+                              <div className="grid grid-cols-3 gap-4 text-sm">
+                                <div>
+                                  <span className="text-gray-500">Email:</span>
+                                  <span className="ml-2 font-medium">{testimonial.student.email || 'N/A'}</span>
+                                </div>
+                                <div>
+                                  <span className="text-gray-500">Parent Name:</span>
+                                  <span className="ml-2 font-medium">{testimonial.student.parentName || 'N/A'}</span>
+                                </div>
+                                <div>
+                                  <span className="text-gray-500">Parent Email:</span>
+                                  <span className="ml-2 font-medium">{testimonial.student.parentEmail || 'N/A'}</span>
+                                </div>
+                                <div>
+                                  <span className="text-gray-500">Parent Phone:</span>
+                                  <span className="ml-2 font-medium">{testimonial.student.parentPhone || 'N/A'}</span>
+                                </div>
+                                {testimonial.consentToFeature && (
+                                  <div>
+                                    <span className="px-2 py-1 rounded text-xs font-medium bg-amber-100 text-amber-700">
+                                      ⭐ Consent to Feature
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
                     )}
-                  </button>
-                  <button
-                    onClick={() => toggleVisibility(testimonial.id, testimonial.isVisible)}
-                    disabled={!testimonial.isApproved}
-                    className={`flex-1 px-4 py-2 rounded-lg font-medium transition-colors ${
-                      !testimonial.isApproved
-                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                        : testimonial.isVisible
-                        ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                        : 'bg-gray-600 hover:bg-gray-700 text-white'
-                    }`}
-                    title={!testimonial.isApproved ? 'Approve first to make visible' : testimonial.isVisible ? 'Hide from website' : 'Show on website'}
-                  >
-                    {testimonial.isVisible ? (
-                      <>
-                        <EyeOff className="w-4 h-4 inline mr-2" />
-                        Hide from Website
-                      </>
-                    ) : (
-                      <>
-                        <Eye className="w-4 h-4 inline mr-2" />
-                        Show on Website
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
+                  </React.Fragment>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Full Content Modal */}
+      {viewingContent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+            <div className="flex items-center justify-between p-4 border-b">
+              <h3 className="text-lg font-semibold text-gray-900">{viewingContent.title}</h3>
+              <button
+                onClick={() => setViewingContent(null)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
-          ))}
+            <div className="p-6 overflow-y-auto max-h-[calc(80vh-80px)]">
+              <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{viewingContent.content}</p>
+            </div>
+            <div className="flex justify-end p-4 border-t">
+              <button
+                onClick={() => setViewingContent(null)}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </div>
       )}
       </div>

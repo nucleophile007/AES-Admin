@@ -11,7 +11,10 @@
     "db:test": "node scripts/test-db-connection.mjs",
     "db:pull": "npx prisma db pull",
     "db:push": "npx prisma db push",
-    "db:generate": "npx prisma generate"
+    "db:generate": "npx prisma generate",
+    "testimonials:sync": "npx tsx scripts/sync-testimonials-from-sheet.ts",
+    "testimonials:sync-parents": "npx tsx scripts/sync-parent-testimonials-from-sheet.ts",
+    "testimonials:test-webhook": "node scripts/test-testimonials-webhook.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.922.0",
@@ -20,6 +23,7 @@
     "@types/nodemailer": "^7.0.1",
     "@upstash/qstash": "^2.8.4",
     "bcrypt": "^6.0.0",
+    "googleapis": "^171.0.0",
     "lucide-react": "^0.539.0",
     "next": "15.4.8",
     "next-auth": "^4.24.11",
@@ -41,6 +45,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

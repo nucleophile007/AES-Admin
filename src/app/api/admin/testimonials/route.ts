@@ -32,14 +32,25 @@ export async function GET() {
         },
       },
       orderBy: {
-        createdAt: 'desc',
+        submittedAt: 'desc',
       },
     })
 
-    // Transform Student to student for frontend compatibility
+    // Transform and merge Student relation with direct fields
     const transformedTestimonials = testimonials.map((testimonial: any) => ({
       ...testimonial,
-      student: testimonial.Student,
+      // Use linked Student data if available, otherwise use direct fields
+      student: testimonial.Student || {
+        id: null,
+        name: testimonial.studentName || 'N/A',
+        email: null,
+        grade: testimonial.grade || 'N/A',
+        schoolName: testimonial.school || 'N/A',
+        parentName: null,
+        parentEmail: null,
+        parentPhone: null,
+        program: testimonial.programs?.join(', ') || 'N/A',
+      },
       Student: undefined, // Remove uppercase field
     }))
 

@@ -368,7 +368,23 @@ exports.Prisma.TestimonialScalarFieldEnum = {
   isVisible: 'isVisible',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  videoLink: 'videoLink'
+  videoLink: 'videoLink',
+  beforeAfterExpectations: 'beforeAfterExpectations',
+  consentToFeature: 'consentToFeature',
+  experienceDescription: 'experienceDescription',
+  grade: 'grade',
+  programs: 'programs',
+  rating: 'rating',
+  school: 'school',
+  studentInfo: 'studentInfo',
+  studentName: 'studentName',
+  submittedAt: 'submittedAt',
+  successStory: 'successStory',
+  contentApproved: 'contentApproved',
+  ratingApproved: 'ratingApproved',
+  beforeAfterApproved: 'beforeAfterApproved',
+  successStoryApproved: 'successStoryApproved',
+  programsApproved: 'programsApproved'
 };
 
 exports.Prisma.SecurityLogScalarFieldEnum = {
@@ -398,12 +414,36 @@ exports.Prisma.FeedbackScalarFieldEnum = {
   parentId: 'parentId',
   parentName: 'parentName',
   parentEmail: 'parentEmail',
-  message: 'message',
-  rating: 'rating',
+  studentName: 'studentName',
+  grade: 'grade',
+  school: 'school',
+  programs: 'programs',
+  heardAbout: 'heardAbout',
+  beforeAfterExpectations: 'beforeAfterExpectations',
+  childExperience: 'childExperience',
+  successStory: 'successStory',
+  overallExperience: 'overallExperience',
+  studentRating: 'studentRating',
+  schedulingRating: 'schedulingRating',
+  wouldRecommend: 'wouldRecommend',
+  consentToFeature: 'consentToFeature',
+  favoriteThingToShare: 'favoriteThingToShare',
+  suggestions: 'suggestions',
   status: 'status',
   response: 'response',
+  isApproved: 'isApproved',
+  isVisible: 'isVisible',
+  submittedAt: 'submittedAt',
   createdAt: 'createdAt',
-  reviewedAt: 'reviewedAt'
+  reviewedAt: 'reviewedAt',
+  updatedAt: 'updatedAt',
+  beforeAfterApproved: 'beforeAfterApproved',
+  childExperienceApproved: 'childExperienceApproved',
+  successStoryApproved: 'successStoryApproved',
+  overallExperienceApproved: 'overallExperienceApproved',
+  programsApproved: 'programsApproved',
+  studentRatingApproved: 'studentRatingApproved',
+  schedulingRatingApproved: 'schedulingRatingApproved'
 };
 
 exports.Prisma.ParentAccountScalarFieldEnum = {
@@ -458,12 +498,25 @@ exports.Prisma.MentorScalarFieldEnum = {
   experience: 'experience',
   specialties: 'specialties',
   achievements: 'achievements',
+  department: 'department',
   bio: 'bio',
   isActive: 'isActive',
   displayOrder: 'displayOrder',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  department: 'department'
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ProgressReportScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  teacherId: 'teacherId',
+  reportDate: 'reportDate',
+  overallProgress: 'overallProgress',
+  milestonesAchieved: 'milestonesAchieved',
+  publications: 'publications',
+  nextSteps: 'nextSteps',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -523,7 +576,8 @@ exports.Prisma.ModelName = {
   ParentAccount: 'ParentAccount',
   TransactionReceipt: 'TransactionReceipt',
   PasswordResetRequest: 'PasswordResetRequest',
-  Mentor: 'Mentor'
+  Mentor: 'Mentor',
+  ProgressReport: 'ProgressReport'
 };
 
 /**
