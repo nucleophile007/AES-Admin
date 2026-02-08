@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { CheckCircle, XCircle, User, Users, Calendar, Mail, Phone, School, GraduationCap, Eye, EyeOff, MessageSquareQuote, ChevronDown, ChevronUp } from 'lucide-react'
+import { CheckCircle, XCircle, User, Users, Calendar, Mail, Phone, School, GraduationCap, Eye, EyeOff, MessageSquareQuote, ChevronDown, ChevronUp, Trash2 } from 'lucide-react'
 import Link from 'next/link'
 
 interface Student {
@@ -165,6 +165,29 @@ export default function TestimonialsPage() {
       ))
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to toggle section approval')
+    }
+  }
+
+  const deleteTestimonial = async (testimonialId: number, authorName: string) => {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete the testimonial from ${authorName}?\n\nNote: This will only delete from the database. You'll need to manually delete the row from the Google Sheet.`
+    )
+    
+    if (!confirmed) return
+
+    try {
+      const response = await fetch(`/api/admin/testimonials?id=${testimonialId}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) throw new Error('Failed to delete testimonial')
+
+      // Update local state by removing the deleted testimonial
+      setTestimonials(testimonials.filter(t => t.id !== testimonialId))
+      
+      alert('Testimonial deleted successfully. Please remember to delete the corresponding row from the Google Sheet.')
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to delete testimonial')
     }
   }
 
@@ -560,16 +583,25 @@ export default function TestimonialsPage() {
                           : 'N/A'}
                       </td>
                       <td className="px-4 py-3">
-                        <button
-                          onClick={() => toggleApproval(testimonial.id, testimonial.isApproved)}
-                          className={`px-3 py-1.5 rounded text-xs font-medium ${
-                            testimonial.isApproved
-                              ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                              : 'bg-orange-100 text-orange-700 hover:bg-orange-200'
-                          }`}
-                        >
-                          {testimonial.isApproved ? 'Approved' : 'Approve'}
-                        </button>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => toggleApproval(testimonial.id, testimonial.isApproved)}
+                            className={`px-3 py-1.5 rounded text-xs font-medium ${
+                              testimonial.isApproved
+                                ? 'bg-green-100 text-green-700 hover:bg-green-200'
+                                : 'bg-orange-100 text-orange-700 hover:bg-orange-200'
+                            }`}
+                          >
+                            {testimonial.isApproved ? 'Approved' : 'Approve'}
+                          </button>
+                          <button
+                            onClick={() => deleteTestimonial(testimonial.id, testimonial.authorName)}
+                            className="p-1.5 rounded text-red-600 hover:bg-red-50"
+                            title="Delete testimonial"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
 

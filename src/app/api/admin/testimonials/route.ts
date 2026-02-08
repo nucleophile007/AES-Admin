@@ -124,3 +124,39 @@ export async function PATCH(request: Request) {
     )
   }
 }
+
+// DELETE /api/admin/testimonials - Delete a testimonial
+export async function DELETE(request: Request) {
+  try {
+    const session = await getServerSession(authOptions)
+
+    if (!session || session.user.role !== 'admin') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { searchParams } = new URL(request.url)
+    const testimonialId = searchParams.get('id')
+
+    if (!testimonialId) {
+      return NextResponse.json(
+        { error: 'testimonialId is required' },
+        { status: 400 }
+      )
+    }
+
+    await db.testimonial.delete({
+      where: { id: parseInt(testimonialId) },
+    })
+
+    return NextResponse.json({
+      success: true,
+      message: 'Testimonial deleted successfully',
+    })
+  } catch (error) {
+    console.error('Error deleting testimonial:', error)
+    return NextResponse.json(
+      { error: 'Failed to delete testimonial' },
+      { status: 500 }
+    )
+  }
+}
