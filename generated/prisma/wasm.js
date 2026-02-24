@@ -612,14 +612,14 @@ exports.Prisma.ResearchScalarFieldEnum = {
   description: 'description',
   published: 'published',
   author: 'author',
-  pdfPath: 'pdfPath',
+  pdfFilename: 'pdfFilename',
   createdAt: 'createdAt'
 };
 
 exports.Prisma.SlideScalarFieldEnum = {
   id: 'id',
   researchId: 'researchId',
-  imagePath: 'imagePath',
+  imageFilename: 'imageFilename',
   order: 'order'
 };
 

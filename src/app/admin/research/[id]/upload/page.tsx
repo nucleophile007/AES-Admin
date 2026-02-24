@@ -150,7 +150,8 @@ import { auth } from "@/auth"
 import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 import Link from "next/link"
-import { Upload, FileText, ArrowLeft, Images } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
+import UploadForms from "./UploadForms"
 
 interface Props {
   params: Promise<{ id: string }>
@@ -204,88 +205,12 @@ export default async function ResearchUploadPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Upload Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* SLIDE IMAGE UPLOAD */}
-          <div className="bg-white rounded-xl border shadow-sm p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <Images className="w-6 h-6 text-blue-600" />
-              <h3 className="text-lg font-semibold text-gray-900">
-                Upload Slide Images
-              </h3>
-            </div>
-
-            <p className="text-sm text-gray-600 mb-4">
-              Upload slide images (PNG or JPG).
-              <br />
-              <span className="font-medium">
-                Order matters — images are saved in upload order.
-              </span>
-            </p>
-
-            <form
-              action={`/api/admin/research/${research.id}/upload-slides`}
-              method="POST"
-              encType="multipart/form-data"
-            >
-              <input
-                type="file"
-                name="files"
-                accept="image/png,image/jpeg"
-                multiple
-                required
-                className="block w-full text-sm mb-4"
-              />
-
-              <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                Upload Slides
-              </button>
-            </form>
-
-            {research.Slide.length > 0 && (
-              <p className="text-xs text-green-600 mt-3">
-                ✔ {research.Slide.length} slides already uploaded
-              </p>
-            )}
-          </div>
-
-          {/* PDF Upload */}
-          <div className="bg-white rounded-xl border shadow-sm p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <FileText className="w-6 h-6 text-yellow-600" />
-              <h3 className="text-lg font-semibold text-gray-900">
-                Upload Technical Report (PDF)
-              </h3>
-            </div>
-
-            <p className="text-sm text-gray-600 mb-4">
-              Optional secure technical document (PDF).
-            </p>
-
-            <form
-              action={`/api/admin/research/${research.id}/upload-pdf`}
-              method="POST"
-              encType="multipart/form-data"
-            >
-              <input
-                type="file"
-                name="file"
-                accept=".pdf"
-                className="block w-full text-sm mb-4"
-              />
-
-              <button className="w-full px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400">
-                Upload PDF
-              </button>
-            </form>
-
-            {research.pdfPath && (
-              <p className="text-xs text-green-600 mt-3">
-                ✔ PDF already uploaded
-              </p>
-            )}
-          </div>
-        </div>
+        {/* Upload Forms */}
+        <UploadForms
+          researchId={research.id}
+          slidesCount={research.Slide.length}
+          pdfFilename={research.pdfFilename}
+        />
 
         {/* Footer Note */}
         <div className="mt-8 text-sm text-gray-500">

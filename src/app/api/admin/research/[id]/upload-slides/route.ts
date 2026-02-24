@@ -43,29 +43,46 @@ export async function POST(
 
       const buffer = Buffer.from(await file.arrayBuffer())
 
-      // OPTIONAL watermark
+      // Get image dimensions
+      const metadata = await sharp(buffer).metadata()
+      const width = metadata.width!
+      const height = metadata.height!
+
+      // Create watermark SVG with dynamic sizing based on image dimensions
+      const fontSize = Math.min(width, height) * 0.1 // 10% of smallest dimension
       const watermarkSvg = `
-        <svg width="400" height="80">
-          <text x="0" y="50"
-            font-size="48"
-            fill="gray"
-            opacity="0.25">
+        <svg width="${width}" height="${height}">
+          <text
+            x="50%"
+            y="50%"
+            font-family="Arial, sans-serif"
+            font-size="${fontSize}"
+            font-weight="bold"
+            fill="rgb(128, 128, 128)"
+            fill-opacity="0.5"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            transform="rotate(-45 ${width/2} ${height/2})"
+          >
             © Acharyaes.com
           </text>
         </svg>
       `
 
+      // Apply watermark
       const processed = await sharp(buffer)
         .composite([
           {
             input: Buffer.from(watermarkSvg),
-            gravity: "southeast",
+            top: 0,
+            left: 0,
           },
         ])
         .png()
         .toBuffer()
 
-      const storagePath = `${researchId}/slide-${order}.png`
+      const fileName = `slide-${order}.png`
+      const storagePath = `${researchId}/${fileName}`
 
       await supabaseServer.storage
         .from("research-slides")
@@ -74,14 +91,11 @@ export async function POST(
           upsert: true,
         })
 
-      const { data } = supabaseServer.storage
-        .from("research-slides")
-        .getPublicUrl(storagePath)
-
+      // Save only filename in DB (not public URL)
       await prisma.slide.create({
         data: {
           researchId,
-          imagePath: data.publicUrl,
+          imageFilename: fileName,
           order,
         },
       })
