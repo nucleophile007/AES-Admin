@@ -49,23 +49,21 @@ export async function POST(
       const height = metadata.height!
 
       // Create watermark SVG with dynamic sizing based on image dimensions
-      const fontSize = Math.min(width, height) * 0.1 // 10% of smallest dimension
+      const fontSize = Math.min(width, height) * 0.08 // 8% of smallest dimension
       const watermarkSvg = `
-        <svg width="${width}" height="${height}">
+        <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
           <text
             x="50%"
             y="50%"
-            font-family="Arial, sans-serif"
-            font-size="${fontSize}"
-            font-weight="bold"
-            fill="rgb(128, 128, 128)"
-            fill-opacity="0.5"
+            font-family="sans-serif"
+            font-size="${fontSize}px"
+            font-weight="700"
+            fill="#808080"
+            fill-opacity="0.4"
             text-anchor="middle"
-            dominant-baseline="middle"
-            transform="rotate(-45 ${width/2} ${height/2})"
-          >
-            © Acharyaes.com
-          </text>
+            dominant-baseline="central"
+            transform="rotate(-45, ${width/2}, ${height/2})"
+          >© Acharyaes.com</text>
         </svg>
       `
 
