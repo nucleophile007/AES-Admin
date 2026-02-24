@@ -1,13 +1,11 @@
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/authOptions';
+import { auth } from '@/auth';
 import { allowedEmails } from '@/lib/adminConfig';
-import type { Session } from 'next-auth';
-import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquare, Receipt, MessageSquareQuote, Award ,FileCheck, PlusCircle} from "lucide-react";
+import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquare, Receipt, MessageSquareQuote, Award, FileCheck, PlusCircle } from "lucide-react";
 
 export default async function HomePage() {
-  const session = await getServerSession(authOptions) as Session | null;
+  const session = await auth();
 
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     redirect('/auth/signin');
@@ -42,7 +40,7 @@ export default async function HomePage() {
 
           {/* Admin Actions */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link 
+            <Link
               href="/admin/availability"
               className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
@@ -63,7 +61,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/admin/session-approval"
               className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
@@ -84,7 +82,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/admin/students"
               className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
@@ -105,7 +103,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/admin/teachers"
               className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
@@ -126,7 +124,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/admin/enrollments"
               className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
@@ -147,7 +145,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/admin/feedback"
               className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
@@ -168,7 +166,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/admin/transaction-receipts"
               className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
@@ -189,7 +187,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/admin/testimonials"
               className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
@@ -210,7 +208,7 @@ export default async function HomePage() {
               </div>
             </Link>
 
-            <Link 
+            <Link
               href="/admin/mentors"
               className="group block rounded-xl p-6 bg-white border border-purple-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
@@ -232,7 +230,7 @@ export default async function HomePage() {
             </Link>
 
             {/* Research Access Approvals */}
-            <Link 
+            <Link
               href="/admin/research-approvals"
               className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >
@@ -256,7 +254,7 @@ export default async function HomePage() {
             </Link>
 
             {/* Add New Research */}
-            <Link 
+            <Link
               href="/admin/new-research"
               className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
             >

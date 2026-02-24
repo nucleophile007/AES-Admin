@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { authOptions } from '@/lib/authOptions'
+import { auth } from '@/auth'
 import prisma from '@/lib/prisma'
-import { getServerSession } from 'next-auth/next'
 
 export async function PATCH(
   request: NextRequest,
@@ -11,7 +10,7 @@ export async function PATCH(
     const { id } = await params
     
     // Check authentication
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     
     if (!session || !session.user?.email) {
       return NextResponse.json(

@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/lib/authOptions'
+import { auth } from '@/auth'
 import prisma from '@/lib/prisma'
 
 // @ts-ignore - Prisma extension types issue with testimonial model
@@ -9,7 +8,7 @@ const db = prisma as any
 // GET /api/admin/testimonials - Fetch all testimonials
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
 
     if (!session || session.user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -67,7 +66,7 @@ export async function GET() {
 // PATCH /api/admin/testimonials - Update testimonial approval status
 export async function PATCH(request: Request) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
 
     if (!session || session.user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -128,7 +127,7 @@ export async function PATCH(request: Request) {
 // DELETE /api/admin/testimonials - Delete a testimonial
 export async function DELETE(request: Request) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
 
     if (!session || session.user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

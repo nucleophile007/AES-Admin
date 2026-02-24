@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from '@/auth'
 import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
@@ -10,7 +9,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   // Verify admin permissions
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return NextResponse.json({ error: "Not authorized" }, { status: 403 })
   }
@@ -41,7 +40,7 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   // Verify admin permissions
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return NextResponse.json({ error: "Not authorized" }, { status: 403 })
   }
@@ -79,7 +78,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   // Verify admin permissions
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return NextResponse.json({ error: "Not authorized" }, { status: 403 })
   }

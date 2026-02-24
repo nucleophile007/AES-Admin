@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { authOptions } from '@/lib/authOptions'
-import { getServerSession } from 'next-auth/next'
+import { auth } from '@/auth'
 import nodemailer from 'nodemailer'
 import prisma from '@/lib/prisma'
 import { uploadToR2 } from '@/lib/r2Upload'
@@ -11,7 +10,7 @@ const db = prisma as any;
 export async function POST(request: NextRequest) {
   try {
     // Check authentication
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     
     if (!session || !session.user?.email) {
       return NextResponse.json(

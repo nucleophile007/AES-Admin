@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/lib/authOptions'
+import { auth } from '@/auth'
 import prisma from '@/lib/prisma'
 
 // @ts-ignore - Prisma extension types issue
@@ -9,7 +8,7 @@ const db = prisma as any
 // GET /api/admin/chat - Fetch chat messages
 export async function GET(request: Request) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
 
     if (!session || session.user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -73,7 +72,7 @@ export async function GET(request: Request) {
 // POST /api/admin/chat - Send a message
 export async function POST(request: Request) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
 
     if (!session || session.user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

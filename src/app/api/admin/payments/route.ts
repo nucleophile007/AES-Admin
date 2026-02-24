@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/authOptions';
+import { auth } from '@/auth'
 import prisma from '@/lib/prisma';
 
 // @ts-ignore - Prisma extension types
@@ -9,7 +8,7 @@ const db = prisma as any;
 // GET: Fetch all payment records
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
 
     if (!session?.user?.email) {
       return NextResponse.json(
@@ -66,7 +65,7 @@ export async function GET(request: NextRequest) {
 // PATCH: Update payment status
 export async function PATCH(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
 
     if (!session?.user?.email) {
       return NextResponse.json(

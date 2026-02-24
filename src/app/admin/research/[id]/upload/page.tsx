@@ -146,8 +146,7 @@
 //   )
 // }
 import { redirect } from "next/navigation"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from "@/auth"
 import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 import Link from "next/link"
@@ -158,7 +157,7 @@ interface Props {
 }
 
 export default async function ResearchUploadPage({ params }: Props) {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
 
   // 🔐 Admin guard
   if (
@@ -214,7 +213,7 @@ export default async function ResearchUploadPage({ params }: Props) {
             </div>
 
             <p className="text-sm text-gray-600 mb-4">
-              Upload slide images (PNG or JPG).  
+              Upload slide images (PNG or JPG).
               <br />
               <span className="font-medium">
                 Order matters — images are saved in upload order.
