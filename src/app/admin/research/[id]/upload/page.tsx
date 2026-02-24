@@ -153,7 +153,7 @@ import Link from "next/link"
 import { Upload, FileText, ArrowLeft, Images } from "lucide-react"
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export default async function ResearchUploadPage({ params }: Props) {
@@ -167,9 +167,12 @@ export default async function ResearchUploadPage({ params }: Props) {
     redirect("/auth/signin")
   }
 
+  // Await params
+  const { id } = await params
+
   // 🔍 Fetch research
   const research = await prisma.research.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: { Slide: true },
   })
 
