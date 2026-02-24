@@ -25,6 +25,7 @@
     "@types/nodemailer": "^7.0.1",
     "@upstash/qstash": "^2.8.4",
     "bcrypt": "^6.0.0",
+    "canvas": "^3.2.1",
     "cloudconvert": "^3.0.0",
     "googleapis": "^171.0.0",
     "lucide-react": "^0.539.0",
