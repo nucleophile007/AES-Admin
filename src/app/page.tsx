@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/authOptions';
 import { allowedEmails } from '@/lib/adminConfig';
 import type { Session } from 'next-auth';
-import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquare, Receipt, MessageSquareQuote, Award } from "lucide-react";
+import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquare, Receipt, MessageSquareQuote, Award, CalendarDays } from "lucide-react";
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions) as Session | null;
@@ -227,6 +227,27 @@ export default async function HomePage() {
                 </div>
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600 text-white shadow-inner group-hover:bg-purple-700 transition-colors">
                   <Award className="w-6 h-6" />
+                </div>
+              </div>
+            </Link>
+
+            <Link 
+              href="/admin/events"
+              className="group block rounded-xl p-6 bg-gradient-to-br from-white to-emerald-50 border border-emerald-200 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Events Management</h3>
+                  <p className="text-sm text-gray-600">
+                    Create and manage events with registrations
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 mr-1.5" />
+                    New Feature ✨
+                  </span>
+                </div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-inner group-hover:bg-emerald-700 transition-colors">
+                  <CalendarDays className="w-6 h-6" />
                 </div>
               </div>
             </Link>

@@ -64,7 +64,10 @@ export async function POST(request: NextRequest) {
     if (file && file.size > 0) {
       try {
         const buffer = Buffer.from(await file.arrayBuffer())
-        const uploadResult = await uploadToR2(buffer, file.name, file.type)
+        const timestamp = Date.now()
+        const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_")
+        const uniqueFileName = `payment-receipts/${timestamp}-${sanitizedName}`
+        const uploadResult = await uploadToR2(buffer, uniqueFileName, file.type)
         fileUrl = uploadResult.fileUrl
         fileName = uploadResult.fileName
         fileSize = uploadResult.fileSize

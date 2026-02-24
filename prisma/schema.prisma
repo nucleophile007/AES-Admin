@@ -49,6 +49,7 @@ model Teacher {
   assignments       Assignment[]
   classSchedules    ClassSchedule[]
   mentorProfile     Mentor?
+  ProgressReport    ProgressReport[]
   resources         Resource[]
   submissionRemarks StudentSubmissionRemark[]
   students          TeacherStudent[]
@@ -73,6 +74,7 @@ model Student {
   classSchedules      ClassSchedule[]
   enrollments         Enrollment[]
   Payment             Payment[]
+  ProgressReport      ProgressReport[]
   parentAccount       ParentAccount?      @relation(fields: [parentAccountId], references: [id])
   assignedResources   StudentResource[]
   studentSubmissions  StudentSubmission[]
@@ -439,5 +441,115 @@ model Mentor {
   teacher      Teacher? @relation(fields: [teacherId], references: [id])
 
   @@index([isActive, displayOrder])
+  @@index([teacherId])
+}
+
+model EventRegistration {
+  id                   Int          @id @default(autoincrement())
+  eventId              Int
+  studentName          String
+  studentEmail         String
+  studentPhone         String?
+  studentGrade         String?
+  schoolName           String?
+  parentName           String
+  parentEmail          String
+  parentPhone          String?
+  registrationStatus   String       @default("pending")
+  paymentStatus        String?      @default("pending")
+  paymentAmount        Float?       @default(0)
+  specialRequirements  String?
+  howDidYouHear        String?
+  notes                String?
+  checkedInAt          DateTime?
+  attendanceConfirmed  Boolean      @default(false)
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime
+  adminNotes           String?
+  certificateIssued    Boolean      @default(false)
+  customFieldResponses Json?
+  paymentMethod        String?
+  transactionId        String?
+  GeneralEvent         GeneralEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([eventId, studentEmail])
+  @@index([eventId])
+  @@index([parentEmail])
+  @@index([paymentStatus])
+  @@index([registrationStatus])
+  @@index([studentEmail])
+}
+
+model GeneralEvent {
+  id                     Int                 @id @default(autoincrement())
+  title                  String
+  description            String
+  category               String
+  eventDate              DateTime
+  eventTime              String
+  location               String
+  image                  String?
+  maxParticipants        Int?
+  registrationDeadline   DateTime?
+  status                 String              @default("upcoming")
+  isPublished            Boolean             @default(false)
+  isFeatured             Boolean             @default(false)
+  targetAudience         String?
+  requirements           String?
+  agenda                 String?
+  speakers               Json?
+  tags                   String[]
+  contactEmail           String?
+  contactPhone           String?
+  createdBy              String?
+  createdAt              DateTime            @default(now())
+  updatedAt              DateTime
+  customFields           Json?
+  earlyBirdDeadline      DateTime?
+  earlyBirdFee           Float?
+  publishedAt            DateTime?
+  publishedBy            String?
+  registrationFee        Float?              @default(0)
+  registrationFormConfig Json?
+  requiresPayment        Boolean             @default(false)
+  EventRegistration      EventRegistration[]
+
+  @@index([category])
+  @@index([eventDate])
+  @@index([isFeatured])
+  @@index([isPublished])
+  @@index([status])
+}
+
+model ProgressReport {
+  id                 Int      @id @default(autoincrement())
+  studentId          Int
+  teacherId          Int
+  reportDate         DateTime @default(now())
+  overallProgress    String
+  milestonesAchieved String?
+  publications       String?
+  nextSteps          String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime
+  attendanceRate     Float?
+  classParticipation String?
+  homeworkCompletion Float?
+  improvementAreas   String?
+  isVisible          Boolean  @default(true)
+  parentNotes        String?
+  progressRating     Int?
+  recommendations    String?
+  reportPeriod       String?
+  skillsImproved     String?
+  status             String   @default("draft")
+  strengthsAreas     String?
+  subject            String?
+  Student            Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  Teacher            Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  @@index([reportDate])
+  @@index([status])
+  @@index([studentId])
   @@index([teacherId])
 }

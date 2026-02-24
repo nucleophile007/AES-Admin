@@ -143,6 +143,21 @@ export type PasswordResetRequest = $Result.DefaultSelection<Prisma.$PasswordRese
  * 
  */
 export type Mentor = $Result.DefaultSelection<Prisma.$MentorPayload>
+/**
+ * Model EventRegistration
+ * 
+ */
+export type EventRegistration = $Result.DefaultSelection<Prisma.$EventRegistrationPayload>
+/**
+ * Model GeneralEvent
+ * 
+ */
+export type GeneralEvent = $Result.DefaultSelection<Prisma.$GeneralEventPayload>
+/**
+ * Model ProgressReport
+ * 
+ */
+export type ProgressReport = $Result.DefaultSelection<Prisma.$ProgressReportPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -521,6 +536,36 @@ export class PrismaClient<
     * ```
     */
   get mentor(): Prisma.MentorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.eventRegistration`: Exposes CRUD operations for the **EventRegistration** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EventRegistrations
+    * const eventRegistrations = await prisma.eventRegistration.findMany()
+    * ```
+    */
+  get eventRegistration(): Prisma.EventRegistrationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.generalEvent`: Exposes CRUD operations for the **GeneralEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GeneralEvents
+    * const generalEvents = await prisma.generalEvent.findMany()
+    * ```
+    */
+  get generalEvent(): Prisma.GeneralEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.progressReport`: Exposes CRUD operations for the **ProgressReport** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProgressReports
+    * const progressReports = await prisma.progressReport.findMany()
+    * ```
+    */
+  get progressReport(): Prisma.ProgressReportDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -986,7 +1031,10 @@ export namespace Prisma {
     ParentAccount: 'ParentAccount',
     TransactionReceipt: 'TransactionReceipt',
     PasswordResetRequest: 'PasswordResetRequest',
-    Mentor: 'Mentor'
+    Mentor: 'Mentor',
+    EventRegistration: 'EventRegistration',
+    GeneralEvent: 'GeneralEvent',
+    ProgressReport: 'ProgressReport'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1005,7 +1053,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor" | "eventRegistration" | "generalEvent" | "progressReport"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2933,6 +2981,228 @@ export namespace Prisma {
           }
         }
       }
+      EventRegistration: {
+        payload: Prisma.$EventRegistrationPayload<ExtArgs>
+        fields: Prisma.EventRegistrationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EventRegistrationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EventRegistrationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          findFirst: {
+            args: Prisma.EventRegistrationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EventRegistrationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          findMany: {
+            args: Prisma.EventRegistrationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>[]
+          }
+          create: {
+            args: Prisma.EventRegistrationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          createMany: {
+            args: Prisma.EventRegistrationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EventRegistrationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>[]
+          }
+          delete: {
+            args: Prisma.EventRegistrationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          update: {
+            args: Prisma.EventRegistrationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          deleteMany: {
+            args: Prisma.EventRegistrationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EventRegistrationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EventRegistrationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>[]
+          }
+          upsert: {
+            args: Prisma.EventRegistrationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          aggregate: {
+            args: Prisma.EventRegistrationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEventRegistration>
+          }
+          groupBy: {
+            args: Prisma.EventRegistrationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EventRegistrationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EventRegistrationCountArgs<ExtArgs>
+            result: $Utils.Optional<EventRegistrationCountAggregateOutputType> | number
+          }
+        }
+      }
+      GeneralEvent: {
+        payload: Prisma.$GeneralEventPayload<ExtArgs>
+        fields: Prisma.GeneralEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GeneralEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GeneralEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          findFirst: {
+            args: Prisma.GeneralEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GeneralEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          findMany: {
+            args: Prisma.GeneralEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>[]
+          }
+          create: {
+            args: Prisma.GeneralEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          createMany: {
+            args: Prisma.GeneralEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GeneralEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>[]
+          }
+          delete: {
+            args: Prisma.GeneralEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          update: {
+            args: Prisma.GeneralEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.GeneralEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GeneralEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GeneralEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.GeneralEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          aggregate: {
+            args: Prisma.GeneralEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGeneralEvent>
+          }
+          groupBy: {
+            args: Prisma.GeneralEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GeneralEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GeneralEventCountArgs<ExtArgs>
+            result: $Utils.Optional<GeneralEventCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProgressReport: {
+        payload: Prisma.$ProgressReportPayload<ExtArgs>
+        fields: Prisma.ProgressReportFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProgressReportFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProgressReportFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          findFirst: {
+            args: Prisma.ProgressReportFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProgressReportFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          findMany: {
+            args: Prisma.ProgressReportFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>[]
+          }
+          create: {
+            args: Prisma.ProgressReportCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          createMany: {
+            args: Prisma.ProgressReportCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProgressReportCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>[]
+          }
+          delete: {
+            args: Prisma.ProgressReportDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          update: {
+            args: Prisma.ProgressReportUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProgressReportDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProgressReportUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProgressReportUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProgressReportUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProgressReportPayload>
+          }
+          aggregate: {
+            args: Prisma.ProgressReportAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProgressReport>
+          }
+          groupBy: {
+            args: Prisma.ProgressReportGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProgressReportGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProgressReportCountArgs<ExtArgs>
+            result: $Utils.Optional<ProgressReportCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3051,6 +3321,9 @@ export namespace Prisma {
     transactionReceipt?: TransactionReceiptOmit
     passwordResetRequest?: PasswordResetRequestOmit
     mentor?: MentorOmit
+    eventRegistration?: EventRegistrationOmit
+    generalEvent?: GeneralEventOmit
+    progressReport?: ProgressReportOmit
   }
 
   /* Types for Logging */
@@ -3133,6 +3406,7 @@ export namespace Prisma {
   export type TeacherCountOutputType = {
     assignments: number
     classSchedules: number
+    ProgressReport: number
     resources: number
     submissionRemarks: number
     students: number
@@ -3141,6 +3415,7 @@ export namespace Prisma {
   export type TeacherCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignments?: boolean | TeacherCountOutputTypeCountAssignmentsArgs
     classSchedules?: boolean | TeacherCountOutputTypeCountClassSchedulesArgs
+    ProgressReport?: boolean | TeacherCountOutputTypeCountProgressReportArgs
     resources?: boolean | TeacherCountOutputTypeCountResourcesArgs
     submissionRemarks?: boolean | TeacherCountOutputTypeCountSubmissionRemarksArgs
     students?: boolean | TeacherCountOutputTypeCountStudentsArgs
@@ -3174,6 +3449,13 @@ export namespace Prisma {
   /**
    * TeacherCountOutputType without action
    */
+  export type TeacherCountOutputTypeCountProgressReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressReportWhereInput
+  }
+
+  /**
+   * TeacherCountOutputType without action
+   */
   export type TeacherCountOutputTypeCountResourcesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ResourceWhereInput
   }
@@ -3202,6 +3484,7 @@ export namespace Prisma {
     classSchedules: number
     enrollments: number
     Payment: number
+    ProgressReport: number
     assignedResources: number
     studentSubmissions: number
     submissions: number
@@ -3214,6 +3497,7 @@ export namespace Prisma {
     classSchedules?: boolean | StudentCountOutputTypeCountClassSchedulesArgs
     enrollments?: boolean | StudentCountOutputTypeCountEnrollmentsArgs
     Payment?: boolean | StudentCountOutputTypeCountPaymentArgs
+    ProgressReport?: boolean | StudentCountOutputTypeCountProgressReportArgs
     assignedResources?: boolean | StudentCountOutputTypeCountAssignedResourcesArgs
     studentSubmissions?: boolean | StudentCountOutputTypeCountStudentSubmissionsArgs
     submissions?: boolean | StudentCountOutputTypeCountSubmissionsArgs
@@ -3258,6 +3542,13 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountPaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PaymentWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountProgressReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressReportWhereInput
   }
 
   /**
@@ -3466,6 +3757,37 @@ export namespace Prisma {
    */
   export type ParentAccountCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StudentWhereInput
+  }
+
+
+  /**
+   * Count Type GeneralEventCountOutputType
+   */
+
+  export type GeneralEventCountOutputType = {
+    EventRegistration: number
+  }
+
+  export type GeneralEventCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    EventRegistration?: boolean | GeneralEventCountOutputTypeCountEventRegistrationArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * GeneralEventCountOutputType without action
+   */
+  export type GeneralEventCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEventCountOutputType
+     */
+    select?: GeneralEventCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * GeneralEventCountOutputType without action
+   */
+  export type GeneralEventCountOutputTypeCountEventRegistrationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventRegistrationWhereInput
   }
 
 
@@ -5878,6 +6200,7 @@ export namespace Prisma {
     assignments?: boolean | Teacher$assignmentsArgs<ExtArgs>
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
+    ProgressReport?: boolean | Teacher$ProgressReportArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
     students?: boolean | Teacher$studentsArgs<ExtArgs>
@@ -5922,6 +6245,7 @@ export namespace Prisma {
     assignments?: boolean | Teacher$assignmentsArgs<ExtArgs>
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
+    ProgressReport?: boolean | Teacher$ProgressReportArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
     students?: boolean | Teacher$studentsArgs<ExtArgs>
@@ -5936,6 +6260,7 @@ export namespace Prisma {
       assignments: Prisma.$AssignmentPayload<ExtArgs>[]
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       mentorProfile: Prisma.$MentorPayload<ExtArgs> | null
+      ProgressReport: Prisma.$ProgressReportPayload<ExtArgs>[]
       resources: Prisma.$ResourcePayload<ExtArgs>[]
       submissionRemarks: Prisma.$StudentSubmissionRemarkPayload<ExtArgs>[]
       students: Prisma.$TeacherStudentPayload<ExtArgs>[]
@@ -6346,6 +6671,7 @@ export namespace Prisma {
     assignments<T extends Teacher$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     classSchedules<T extends Teacher$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     mentorProfile<T extends Teacher$mentorProfileArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$mentorProfileArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    ProgressReport<T extends Teacher$ProgressReportArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$ProgressReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     resources<T extends Teacher$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissionRemarks<T extends Teacher$submissionRemarksArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$submissionRemarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionRemarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     students<T extends Teacher$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6841,6 +7167,30 @@ export namespace Prisma {
   }
 
   /**
+   * Teacher.ProgressReport
+   */
+  export type Teacher$ProgressReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    where?: ProgressReportWhereInput
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    cursor?: ProgressReportWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
+  }
+
+  /**
    * Teacher.resources
    */
   export type Teacher$resourcesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7209,6 +7559,7 @@ export namespace Prisma {
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
+    ProgressReport?: boolean | Student$ProgressReportArgs<ExtArgs>
     parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
     studentSubmissions?: boolean | Student$studentSubmissionsArgs<ExtArgs>
@@ -7277,6 +7628,7 @@ export namespace Prisma {
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
+    ProgressReport?: boolean | Student$ProgressReportArgs<ExtArgs>
     parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
     studentSubmissions?: boolean | Student$studentSubmissionsArgs<ExtArgs>
@@ -7299,6 +7651,7 @@ export namespace Prisma {
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
       Payment: Prisma.$PaymentPayload<ExtArgs>[]
+      ProgressReport: Prisma.$ProgressReportPayload<ExtArgs>[]
       parentAccount: Prisma.$ParentAccountPayload<ExtArgs> | null
       assignedResources: Prisma.$StudentResourcePayload<ExtArgs>[]
       studentSubmissions: Prisma.$StudentSubmissionPayload<ExtArgs>[]
@@ -7719,6 +8072,7 @@ export namespace Prisma {
     classSchedules<T extends Student$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Student$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     enrollments<T extends Student$enrollmentsArgs<ExtArgs> = {}>(args?: Subset<T, Student$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Payment<T extends Student$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Student$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ProgressReport<T extends Student$ProgressReportArgs<ExtArgs> = {}>(args?: Subset<T, Student$ProgressReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     parentAccount<T extends Student$parentAccountArgs<ExtArgs> = {}>(args?: Subset<T, Student$parentAccountArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     assignedResources<T extends Student$assignedResourcesArgs<ExtArgs> = {}>(args?: Subset<T, Student$assignedResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     studentSubmissions<T extends Student$studentSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$studentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8257,6 +8611,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
+  }
+
+  /**
+   * Student.ProgressReport
+   */
+  export type Student$ProgressReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    where?: ProgressReportWhereInput
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    cursor?: ProgressReportWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
   }
 
   /**
@@ -33868,6 +34246,4154 @@ export namespace Prisma {
 
 
   /**
+   * Model EventRegistration
+   */
+
+  export type AggregateEventRegistration = {
+    _count: EventRegistrationCountAggregateOutputType | null
+    _avg: EventRegistrationAvgAggregateOutputType | null
+    _sum: EventRegistrationSumAggregateOutputType | null
+    _min: EventRegistrationMinAggregateOutputType | null
+    _max: EventRegistrationMaxAggregateOutputType | null
+  }
+
+  export type EventRegistrationAvgAggregateOutputType = {
+    id: number | null
+    eventId: number | null
+    paymentAmount: number | null
+  }
+
+  export type EventRegistrationSumAggregateOutputType = {
+    id: number | null
+    eventId: number | null
+    paymentAmount: number | null
+  }
+
+  export type EventRegistrationMinAggregateOutputType = {
+    id: number | null
+    eventId: number | null
+    studentName: string | null
+    studentEmail: string | null
+    studentPhone: string | null
+    studentGrade: string | null
+    schoolName: string | null
+    parentName: string | null
+    parentEmail: string | null
+    parentPhone: string | null
+    registrationStatus: string | null
+    paymentStatus: string | null
+    paymentAmount: number | null
+    specialRequirements: string | null
+    howDidYouHear: string | null
+    notes: string | null
+    checkedInAt: Date | null
+    attendanceConfirmed: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    adminNotes: string | null
+    certificateIssued: boolean | null
+    paymentMethod: string | null
+    transactionId: string | null
+  }
+
+  export type EventRegistrationMaxAggregateOutputType = {
+    id: number | null
+    eventId: number | null
+    studentName: string | null
+    studentEmail: string | null
+    studentPhone: string | null
+    studentGrade: string | null
+    schoolName: string | null
+    parentName: string | null
+    parentEmail: string | null
+    parentPhone: string | null
+    registrationStatus: string | null
+    paymentStatus: string | null
+    paymentAmount: number | null
+    specialRequirements: string | null
+    howDidYouHear: string | null
+    notes: string | null
+    checkedInAt: Date | null
+    attendanceConfirmed: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    adminNotes: string | null
+    certificateIssued: boolean | null
+    paymentMethod: string | null
+    transactionId: string | null
+  }
+
+  export type EventRegistrationCountAggregateOutputType = {
+    id: number
+    eventId: number
+    studentName: number
+    studentEmail: number
+    studentPhone: number
+    studentGrade: number
+    schoolName: number
+    parentName: number
+    parentEmail: number
+    parentPhone: number
+    registrationStatus: number
+    paymentStatus: number
+    paymentAmount: number
+    specialRequirements: number
+    howDidYouHear: number
+    notes: number
+    checkedInAt: number
+    attendanceConfirmed: number
+    createdAt: number
+    updatedAt: number
+    adminNotes: number
+    certificateIssued: number
+    customFieldResponses: number
+    paymentMethod: number
+    transactionId: number
+    _all: number
+  }
+
+
+  export type EventRegistrationAvgAggregateInputType = {
+    id?: true
+    eventId?: true
+    paymentAmount?: true
+  }
+
+  export type EventRegistrationSumAggregateInputType = {
+    id?: true
+    eventId?: true
+    paymentAmount?: true
+  }
+
+  export type EventRegistrationMinAggregateInputType = {
+    id?: true
+    eventId?: true
+    studentName?: true
+    studentEmail?: true
+    studentPhone?: true
+    studentGrade?: true
+    schoolName?: true
+    parentName?: true
+    parentEmail?: true
+    parentPhone?: true
+    registrationStatus?: true
+    paymentStatus?: true
+    paymentAmount?: true
+    specialRequirements?: true
+    howDidYouHear?: true
+    notes?: true
+    checkedInAt?: true
+    attendanceConfirmed?: true
+    createdAt?: true
+    updatedAt?: true
+    adminNotes?: true
+    certificateIssued?: true
+    paymentMethod?: true
+    transactionId?: true
+  }
+
+  export type EventRegistrationMaxAggregateInputType = {
+    id?: true
+    eventId?: true
+    studentName?: true
+    studentEmail?: true
+    studentPhone?: true
+    studentGrade?: true
+    schoolName?: true
+    parentName?: true
+    parentEmail?: true
+    parentPhone?: true
+    registrationStatus?: true
+    paymentStatus?: true
+    paymentAmount?: true
+    specialRequirements?: true
+    howDidYouHear?: true
+    notes?: true
+    checkedInAt?: true
+    attendanceConfirmed?: true
+    createdAt?: true
+    updatedAt?: true
+    adminNotes?: true
+    certificateIssued?: true
+    paymentMethod?: true
+    transactionId?: true
+  }
+
+  export type EventRegistrationCountAggregateInputType = {
+    id?: true
+    eventId?: true
+    studentName?: true
+    studentEmail?: true
+    studentPhone?: true
+    studentGrade?: true
+    schoolName?: true
+    parentName?: true
+    parentEmail?: true
+    parentPhone?: true
+    registrationStatus?: true
+    paymentStatus?: true
+    paymentAmount?: true
+    specialRequirements?: true
+    howDidYouHear?: true
+    notes?: true
+    checkedInAt?: true
+    attendanceConfirmed?: true
+    createdAt?: true
+    updatedAt?: true
+    adminNotes?: true
+    certificateIssued?: true
+    customFieldResponses?: true
+    paymentMethod?: true
+    transactionId?: true
+    _all?: true
+  }
+
+  export type EventRegistrationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EventRegistration to aggregate.
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventRegistrations to fetch.
+     */
+    orderBy?: EventRegistrationOrderByWithRelationInput | EventRegistrationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EventRegistrationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventRegistrations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventRegistrations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EventRegistrations
+    **/
+    _count?: true | EventRegistrationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EventRegistrationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EventRegistrationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EventRegistrationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EventRegistrationMaxAggregateInputType
+  }
+
+  export type GetEventRegistrationAggregateType<T extends EventRegistrationAggregateArgs> = {
+        [P in keyof T & keyof AggregateEventRegistration]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEventRegistration[P]>
+      : GetScalarType<T[P], AggregateEventRegistration[P]>
+  }
+
+
+
+
+  export type EventRegistrationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventRegistrationWhereInput
+    orderBy?: EventRegistrationOrderByWithAggregationInput | EventRegistrationOrderByWithAggregationInput[]
+    by: EventRegistrationScalarFieldEnum[] | EventRegistrationScalarFieldEnum
+    having?: EventRegistrationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EventRegistrationCountAggregateInputType | true
+    _avg?: EventRegistrationAvgAggregateInputType
+    _sum?: EventRegistrationSumAggregateInputType
+    _min?: EventRegistrationMinAggregateInputType
+    _max?: EventRegistrationMaxAggregateInputType
+  }
+
+  export type EventRegistrationGroupByOutputType = {
+    id: number
+    eventId: number
+    studentName: string
+    studentEmail: string
+    studentPhone: string | null
+    studentGrade: string | null
+    schoolName: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone: string | null
+    registrationStatus: string
+    paymentStatus: string | null
+    paymentAmount: number | null
+    specialRequirements: string | null
+    howDidYouHear: string | null
+    notes: string | null
+    checkedInAt: Date | null
+    attendanceConfirmed: boolean
+    createdAt: Date
+    updatedAt: Date
+    adminNotes: string | null
+    certificateIssued: boolean
+    customFieldResponses: JsonValue | null
+    paymentMethod: string | null
+    transactionId: string | null
+    _count: EventRegistrationCountAggregateOutputType | null
+    _avg: EventRegistrationAvgAggregateOutputType | null
+    _sum: EventRegistrationSumAggregateOutputType | null
+    _min: EventRegistrationMinAggregateOutputType | null
+    _max: EventRegistrationMaxAggregateOutputType | null
+  }
+
+  type GetEventRegistrationGroupByPayload<T extends EventRegistrationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EventRegistrationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EventRegistrationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EventRegistrationGroupByOutputType[P]>
+            : GetScalarType<T[P], EventRegistrationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EventRegistrationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    studentName?: boolean
+    studentEmail?: boolean
+    studentPhone?: boolean
+    studentGrade?: boolean
+    schoolName?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    parentPhone?: boolean
+    registrationStatus?: boolean
+    paymentStatus?: boolean
+    paymentAmount?: boolean
+    specialRequirements?: boolean
+    howDidYouHear?: boolean
+    notes?: boolean
+    checkedInAt?: boolean
+    attendanceConfirmed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    adminNotes?: boolean
+    certificateIssued?: boolean
+    customFieldResponses?: boolean
+    paymentMethod?: boolean
+    transactionId?: boolean
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventRegistration"]>
+
+  export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    studentName?: boolean
+    studentEmail?: boolean
+    studentPhone?: boolean
+    studentGrade?: boolean
+    schoolName?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    parentPhone?: boolean
+    registrationStatus?: boolean
+    paymentStatus?: boolean
+    paymentAmount?: boolean
+    specialRequirements?: boolean
+    howDidYouHear?: boolean
+    notes?: boolean
+    checkedInAt?: boolean
+    attendanceConfirmed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    adminNotes?: boolean
+    certificateIssued?: boolean
+    customFieldResponses?: boolean
+    paymentMethod?: boolean
+    transactionId?: boolean
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventRegistration"]>
+
+  export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    studentName?: boolean
+    studentEmail?: boolean
+    studentPhone?: boolean
+    studentGrade?: boolean
+    schoolName?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    parentPhone?: boolean
+    registrationStatus?: boolean
+    paymentStatus?: boolean
+    paymentAmount?: boolean
+    specialRequirements?: boolean
+    howDidYouHear?: boolean
+    notes?: boolean
+    checkedInAt?: boolean
+    attendanceConfirmed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    adminNotes?: boolean
+    certificateIssued?: boolean
+    customFieldResponses?: boolean
+    paymentMethod?: boolean
+    transactionId?: boolean
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventRegistration"]>
+
+  export type EventRegistrationSelectScalar = {
+    id?: boolean
+    eventId?: boolean
+    studentName?: boolean
+    studentEmail?: boolean
+    studentPhone?: boolean
+    studentGrade?: boolean
+    schoolName?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    parentPhone?: boolean
+    registrationStatus?: boolean
+    paymentStatus?: boolean
+    paymentAmount?: boolean
+    specialRequirements?: boolean
+    howDidYouHear?: boolean
+    notes?: boolean
+    checkedInAt?: boolean
+    attendanceConfirmed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    adminNotes?: boolean
+    certificateIssued?: boolean
+    customFieldResponses?: boolean
+    paymentMethod?: boolean
+    transactionId?: boolean
+  }
+
+  export type EventRegistrationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "eventId" | "studentName" | "studentEmail" | "studentPhone" | "studentGrade" | "schoolName" | "parentName" | "parentEmail" | "parentPhone" | "registrationStatus" | "paymentStatus" | "paymentAmount" | "specialRequirements" | "howDidYouHear" | "notes" | "checkedInAt" | "attendanceConfirmed" | "createdAt" | "updatedAt" | "adminNotes" | "certificateIssued" | "customFieldResponses" | "paymentMethod" | "transactionId", ExtArgs["result"]["eventRegistration"]>
+  export type EventRegistrationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }
+  export type EventRegistrationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }
+  export type EventRegistrationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }
+
+  export type $EventRegistrationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EventRegistration"
+    objects: {
+      GeneralEvent: Prisma.$GeneralEventPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      eventId: number
+      studentName: string
+      studentEmail: string
+      studentPhone: string | null
+      studentGrade: string | null
+      schoolName: string | null
+      parentName: string
+      parentEmail: string
+      parentPhone: string | null
+      registrationStatus: string
+      paymentStatus: string | null
+      paymentAmount: number | null
+      specialRequirements: string | null
+      howDidYouHear: string | null
+      notes: string | null
+      checkedInAt: Date | null
+      attendanceConfirmed: boolean
+      createdAt: Date
+      updatedAt: Date
+      adminNotes: string | null
+      certificateIssued: boolean
+      customFieldResponses: Prisma.JsonValue | null
+      paymentMethod: string | null
+      transactionId: string | null
+    }, ExtArgs["result"]["eventRegistration"]>
+    composites: {}
+  }
+
+  type EventRegistrationGetPayload<S extends boolean | null | undefined | EventRegistrationDefaultArgs> = $Result.GetResult<Prisma.$EventRegistrationPayload, S>
+
+  type EventRegistrationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EventRegistrationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EventRegistrationCountAggregateInputType | true
+    }
+
+  export interface EventRegistrationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EventRegistration'], meta: { name: 'EventRegistration' } }
+    /**
+     * Find zero or one EventRegistration that matches the filter.
+     * @param {EventRegistrationFindUniqueArgs} args - Arguments to find a EventRegistration
+     * @example
+     * // Get one EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EventRegistrationFindUniqueArgs>(args: SelectSubset<T, EventRegistrationFindUniqueArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EventRegistration that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EventRegistrationFindUniqueOrThrowArgs} args - Arguments to find a EventRegistration
+     * @example
+     * // Get one EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EventRegistrationFindUniqueOrThrowArgs>(args: SelectSubset<T, EventRegistrationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EventRegistration that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationFindFirstArgs} args - Arguments to find a EventRegistration
+     * @example
+     * // Get one EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EventRegistrationFindFirstArgs>(args?: SelectSubset<T, EventRegistrationFindFirstArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EventRegistration that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationFindFirstOrThrowArgs} args - Arguments to find a EventRegistration
+     * @example
+     * // Get one EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EventRegistrationFindFirstOrThrowArgs>(args?: SelectSubset<T, EventRegistrationFindFirstOrThrowArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EventRegistrations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EventRegistrations
+     * const eventRegistrations = await prisma.eventRegistration.findMany()
+     * 
+     * // Get first 10 EventRegistrations
+     * const eventRegistrations = await prisma.eventRegistration.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const eventRegistrationWithIdOnly = await prisma.eventRegistration.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EventRegistrationFindManyArgs>(args?: SelectSubset<T, EventRegistrationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EventRegistration.
+     * @param {EventRegistrationCreateArgs} args - Arguments to create a EventRegistration.
+     * @example
+     * // Create one EventRegistration
+     * const EventRegistration = await prisma.eventRegistration.create({
+     *   data: {
+     *     // ... data to create a EventRegistration
+     *   }
+     * })
+     * 
+     */
+    create<T extends EventRegistrationCreateArgs>(args: SelectSubset<T, EventRegistrationCreateArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EventRegistrations.
+     * @param {EventRegistrationCreateManyArgs} args - Arguments to create many EventRegistrations.
+     * @example
+     * // Create many EventRegistrations
+     * const eventRegistration = await prisma.eventRegistration.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EventRegistrationCreateManyArgs>(args?: SelectSubset<T, EventRegistrationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EventRegistrations and returns the data saved in the database.
+     * @param {EventRegistrationCreateManyAndReturnArgs} args - Arguments to create many EventRegistrations.
+     * @example
+     * // Create many EventRegistrations
+     * const eventRegistration = await prisma.eventRegistration.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EventRegistrations and only return the `id`
+     * const eventRegistrationWithIdOnly = await prisma.eventRegistration.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EventRegistrationCreateManyAndReturnArgs>(args?: SelectSubset<T, EventRegistrationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EventRegistration.
+     * @param {EventRegistrationDeleteArgs} args - Arguments to delete one EventRegistration.
+     * @example
+     * // Delete one EventRegistration
+     * const EventRegistration = await prisma.eventRegistration.delete({
+     *   where: {
+     *     // ... filter to delete one EventRegistration
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EventRegistrationDeleteArgs>(args: SelectSubset<T, EventRegistrationDeleteArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EventRegistration.
+     * @param {EventRegistrationUpdateArgs} args - Arguments to update one EventRegistration.
+     * @example
+     * // Update one EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EventRegistrationUpdateArgs>(args: SelectSubset<T, EventRegistrationUpdateArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EventRegistrations.
+     * @param {EventRegistrationDeleteManyArgs} args - Arguments to filter EventRegistrations to delete.
+     * @example
+     * // Delete a few EventRegistrations
+     * const { count } = await prisma.eventRegistration.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EventRegistrationDeleteManyArgs>(args?: SelectSubset<T, EventRegistrationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EventRegistrations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EventRegistrations
+     * const eventRegistration = await prisma.eventRegistration.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EventRegistrationUpdateManyArgs>(args: SelectSubset<T, EventRegistrationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EventRegistrations and returns the data updated in the database.
+     * @param {EventRegistrationUpdateManyAndReturnArgs} args - Arguments to update many EventRegistrations.
+     * @example
+     * // Update many EventRegistrations
+     * const eventRegistration = await prisma.eventRegistration.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EventRegistrations and only return the `id`
+     * const eventRegistrationWithIdOnly = await prisma.eventRegistration.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EventRegistrationUpdateManyAndReturnArgs>(args: SelectSubset<T, EventRegistrationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EventRegistration.
+     * @param {EventRegistrationUpsertArgs} args - Arguments to update or create a EventRegistration.
+     * @example
+     * // Update or create a EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.upsert({
+     *   create: {
+     *     // ... data to create a EventRegistration
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EventRegistration we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EventRegistrationUpsertArgs>(args: SelectSubset<T, EventRegistrationUpsertArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EventRegistrations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationCountArgs} args - Arguments to filter EventRegistrations to count.
+     * @example
+     * // Count the number of EventRegistrations
+     * const count = await prisma.eventRegistration.count({
+     *   where: {
+     *     // ... the filter for the EventRegistrations we want to count
+     *   }
+     * })
+    **/
+    count<T extends EventRegistrationCountArgs>(
+      args?: Subset<T, EventRegistrationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EventRegistrationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EventRegistration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EventRegistrationAggregateArgs>(args: Subset<T, EventRegistrationAggregateArgs>): Prisma.PrismaPromise<GetEventRegistrationAggregateType<T>>
+
+    /**
+     * Group by EventRegistration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EventRegistrationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EventRegistrationGroupByArgs['orderBy'] }
+        : { orderBy?: EventRegistrationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EventRegistrationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEventRegistrationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EventRegistration model
+   */
+  readonly fields: EventRegistrationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EventRegistration.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EventRegistrationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    GeneralEvent<T extends GeneralEventDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GeneralEventDefaultArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EventRegistration model
+   */
+  interface EventRegistrationFieldRefs {
+    readonly id: FieldRef<"EventRegistration", 'Int'>
+    readonly eventId: FieldRef<"EventRegistration", 'Int'>
+    readonly studentName: FieldRef<"EventRegistration", 'String'>
+    readonly studentEmail: FieldRef<"EventRegistration", 'String'>
+    readonly studentPhone: FieldRef<"EventRegistration", 'String'>
+    readonly studentGrade: FieldRef<"EventRegistration", 'String'>
+    readonly schoolName: FieldRef<"EventRegistration", 'String'>
+    readonly parentName: FieldRef<"EventRegistration", 'String'>
+    readonly parentEmail: FieldRef<"EventRegistration", 'String'>
+    readonly parentPhone: FieldRef<"EventRegistration", 'String'>
+    readonly registrationStatus: FieldRef<"EventRegistration", 'String'>
+    readonly paymentStatus: FieldRef<"EventRegistration", 'String'>
+    readonly paymentAmount: FieldRef<"EventRegistration", 'Float'>
+    readonly specialRequirements: FieldRef<"EventRegistration", 'String'>
+    readonly howDidYouHear: FieldRef<"EventRegistration", 'String'>
+    readonly notes: FieldRef<"EventRegistration", 'String'>
+    readonly checkedInAt: FieldRef<"EventRegistration", 'DateTime'>
+    readonly attendanceConfirmed: FieldRef<"EventRegistration", 'Boolean'>
+    readonly createdAt: FieldRef<"EventRegistration", 'DateTime'>
+    readonly updatedAt: FieldRef<"EventRegistration", 'DateTime'>
+    readonly adminNotes: FieldRef<"EventRegistration", 'String'>
+    readonly certificateIssued: FieldRef<"EventRegistration", 'Boolean'>
+    readonly customFieldResponses: FieldRef<"EventRegistration", 'Json'>
+    readonly paymentMethod: FieldRef<"EventRegistration", 'String'>
+    readonly transactionId: FieldRef<"EventRegistration", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EventRegistration findUnique
+   */
+  export type EventRegistrationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter, which EventRegistration to fetch.
+     */
+    where: EventRegistrationWhereUniqueInput
+  }
+
+  /**
+   * EventRegistration findUniqueOrThrow
+   */
+  export type EventRegistrationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter, which EventRegistration to fetch.
+     */
+    where: EventRegistrationWhereUniqueInput
+  }
+
+  /**
+   * EventRegistration findFirst
+   */
+  export type EventRegistrationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter, which EventRegistration to fetch.
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventRegistrations to fetch.
+     */
+    orderBy?: EventRegistrationOrderByWithRelationInput | EventRegistrationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EventRegistrations.
+     */
+    cursor?: EventRegistrationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventRegistrations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventRegistrations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EventRegistrations.
+     */
+    distinct?: EventRegistrationScalarFieldEnum | EventRegistrationScalarFieldEnum[]
+  }
+
+  /**
+   * EventRegistration findFirstOrThrow
+   */
+  export type EventRegistrationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter, which EventRegistration to fetch.
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventRegistrations to fetch.
+     */
+    orderBy?: EventRegistrationOrderByWithRelationInput | EventRegistrationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EventRegistrations.
+     */
+    cursor?: EventRegistrationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventRegistrations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventRegistrations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EventRegistrations.
+     */
+    distinct?: EventRegistrationScalarFieldEnum | EventRegistrationScalarFieldEnum[]
+  }
+
+  /**
+   * EventRegistration findMany
+   */
+  export type EventRegistrationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter, which EventRegistrations to fetch.
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventRegistrations to fetch.
+     */
+    orderBy?: EventRegistrationOrderByWithRelationInput | EventRegistrationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EventRegistrations.
+     */
+    cursor?: EventRegistrationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventRegistrations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventRegistrations.
+     */
+    skip?: number
+    distinct?: EventRegistrationScalarFieldEnum | EventRegistrationScalarFieldEnum[]
+  }
+
+  /**
+   * EventRegistration create
+   */
+  export type EventRegistrationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EventRegistration.
+     */
+    data: XOR<EventRegistrationCreateInput, EventRegistrationUncheckedCreateInput>
+  }
+
+  /**
+   * EventRegistration createMany
+   */
+  export type EventRegistrationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EventRegistrations.
+     */
+    data: EventRegistrationCreateManyInput | EventRegistrationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EventRegistration createManyAndReturn
+   */
+  export type EventRegistrationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * The data used to create many EventRegistrations.
+     */
+    data: EventRegistrationCreateManyInput | EventRegistrationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EventRegistration update
+   */
+  export type EventRegistrationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EventRegistration.
+     */
+    data: XOR<EventRegistrationUpdateInput, EventRegistrationUncheckedUpdateInput>
+    /**
+     * Choose, which EventRegistration to update.
+     */
+    where: EventRegistrationWhereUniqueInput
+  }
+
+  /**
+   * EventRegistration updateMany
+   */
+  export type EventRegistrationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EventRegistrations.
+     */
+    data: XOR<EventRegistrationUpdateManyMutationInput, EventRegistrationUncheckedUpdateManyInput>
+    /**
+     * Filter which EventRegistrations to update
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * Limit how many EventRegistrations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventRegistration updateManyAndReturn
+   */
+  export type EventRegistrationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * The data used to update EventRegistrations.
+     */
+    data: XOR<EventRegistrationUpdateManyMutationInput, EventRegistrationUncheckedUpdateManyInput>
+    /**
+     * Filter which EventRegistrations to update
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * Limit how many EventRegistrations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EventRegistration upsert
+   */
+  export type EventRegistrationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EventRegistration to update in case it exists.
+     */
+    where: EventRegistrationWhereUniqueInput
+    /**
+     * In case the EventRegistration found by the `where` argument doesn't exist, create a new EventRegistration with this data.
+     */
+    create: XOR<EventRegistrationCreateInput, EventRegistrationUncheckedCreateInput>
+    /**
+     * In case the EventRegistration was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EventRegistrationUpdateInput, EventRegistrationUncheckedUpdateInput>
+  }
+
+  /**
+   * EventRegistration delete
+   */
+  export type EventRegistrationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter which EventRegistration to delete.
+     */
+    where: EventRegistrationWhereUniqueInput
+  }
+
+  /**
+   * EventRegistration deleteMany
+   */
+  export type EventRegistrationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EventRegistrations to delete
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * Limit how many EventRegistrations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventRegistration without action
+   */
+  export type EventRegistrationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model GeneralEvent
+   */
+
+  export type AggregateGeneralEvent = {
+    _count: GeneralEventCountAggregateOutputType | null
+    _avg: GeneralEventAvgAggregateOutputType | null
+    _sum: GeneralEventSumAggregateOutputType | null
+    _min: GeneralEventMinAggregateOutputType | null
+    _max: GeneralEventMaxAggregateOutputType | null
+  }
+
+  export type GeneralEventAvgAggregateOutputType = {
+    id: number | null
+    maxParticipants: number | null
+    earlyBirdFee: number | null
+    registrationFee: number | null
+  }
+
+  export type GeneralEventSumAggregateOutputType = {
+    id: number | null
+    maxParticipants: number | null
+    earlyBirdFee: number | null
+    registrationFee: number | null
+  }
+
+  export type GeneralEventMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    category: string | null
+    eventDate: Date | null
+    eventTime: string | null
+    location: string | null
+    image: string | null
+    maxParticipants: number | null
+    registrationDeadline: Date | null
+    status: string | null
+    isPublished: boolean | null
+    isFeatured: boolean | null
+    targetAudience: string | null
+    requirements: string | null
+    agenda: string | null
+    contactEmail: string | null
+    contactPhone: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    earlyBirdDeadline: Date | null
+    earlyBirdFee: number | null
+    publishedAt: Date | null
+    publishedBy: string | null
+    registrationFee: number | null
+    requiresPayment: boolean | null
+  }
+
+  export type GeneralEventMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    category: string | null
+    eventDate: Date | null
+    eventTime: string | null
+    location: string | null
+    image: string | null
+    maxParticipants: number | null
+    registrationDeadline: Date | null
+    status: string | null
+    isPublished: boolean | null
+    isFeatured: boolean | null
+    targetAudience: string | null
+    requirements: string | null
+    agenda: string | null
+    contactEmail: string | null
+    contactPhone: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    earlyBirdDeadline: Date | null
+    earlyBirdFee: number | null
+    publishedAt: Date | null
+    publishedBy: string | null
+    registrationFee: number | null
+    requiresPayment: boolean | null
+  }
+
+  export type GeneralEventCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    category: number
+    eventDate: number
+    eventTime: number
+    location: number
+    image: number
+    maxParticipants: number
+    registrationDeadline: number
+    status: number
+    isPublished: number
+    isFeatured: number
+    targetAudience: number
+    requirements: number
+    agenda: number
+    speakers: number
+    tags: number
+    contactEmail: number
+    contactPhone: number
+    createdBy: number
+    createdAt: number
+    updatedAt: number
+    customFields: number
+    earlyBirdDeadline: number
+    earlyBirdFee: number
+    publishedAt: number
+    publishedBy: number
+    registrationFee: number
+    registrationFormConfig: number
+    requiresPayment: number
+    _all: number
+  }
+
+
+  export type GeneralEventAvgAggregateInputType = {
+    id?: true
+    maxParticipants?: true
+    earlyBirdFee?: true
+    registrationFee?: true
+  }
+
+  export type GeneralEventSumAggregateInputType = {
+    id?: true
+    maxParticipants?: true
+    earlyBirdFee?: true
+    registrationFee?: true
+  }
+
+  export type GeneralEventMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    category?: true
+    eventDate?: true
+    eventTime?: true
+    location?: true
+    image?: true
+    maxParticipants?: true
+    registrationDeadline?: true
+    status?: true
+    isPublished?: true
+    isFeatured?: true
+    targetAudience?: true
+    requirements?: true
+    agenda?: true
+    contactEmail?: true
+    contactPhone?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+    earlyBirdDeadline?: true
+    earlyBirdFee?: true
+    publishedAt?: true
+    publishedBy?: true
+    registrationFee?: true
+    requiresPayment?: true
+  }
+
+  export type GeneralEventMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    category?: true
+    eventDate?: true
+    eventTime?: true
+    location?: true
+    image?: true
+    maxParticipants?: true
+    registrationDeadline?: true
+    status?: true
+    isPublished?: true
+    isFeatured?: true
+    targetAudience?: true
+    requirements?: true
+    agenda?: true
+    contactEmail?: true
+    contactPhone?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+    earlyBirdDeadline?: true
+    earlyBirdFee?: true
+    publishedAt?: true
+    publishedBy?: true
+    registrationFee?: true
+    requiresPayment?: true
+  }
+
+  export type GeneralEventCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    category?: true
+    eventDate?: true
+    eventTime?: true
+    location?: true
+    image?: true
+    maxParticipants?: true
+    registrationDeadline?: true
+    status?: true
+    isPublished?: true
+    isFeatured?: true
+    targetAudience?: true
+    requirements?: true
+    agenda?: true
+    speakers?: true
+    tags?: true
+    contactEmail?: true
+    contactPhone?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+    customFields?: true
+    earlyBirdDeadline?: true
+    earlyBirdFee?: true
+    publishedAt?: true
+    publishedBy?: true
+    registrationFee?: true
+    registrationFormConfig?: true
+    requiresPayment?: true
+    _all?: true
+  }
+
+  export type GeneralEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GeneralEvent to aggregate.
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralEvents to fetch.
+     */
+    orderBy?: GeneralEventOrderByWithRelationInput | GeneralEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GeneralEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GeneralEvents
+    **/
+    _count?: true | GeneralEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GeneralEventAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GeneralEventSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GeneralEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GeneralEventMaxAggregateInputType
+  }
+
+  export type GetGeneralEventAggregateType<T extends GeneralEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateGeneralEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGeneralEvent[P]>
+      : GetScalarType<T[P], AggregateGeneralEvent[P]>
+  }
+
+
+
+
+  export type GeneralEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GeneralEventWhereInput
+    orderBy?: GeneralEventOrderByWithAggregationInput | GeneralEventOrderByWithAggregationInput[]
+    by: GeneralEventScalarFieldEnum[] | GeneralEventScalarFieldEnum
+    having?: GeneralEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GeneralEventCountAggregateInputType | true
+    _avg?: GeneralEventAvgAggregateInputType
+    _sum?: GeneralEventSumAggregateInputType
+    _min?: GeneralEventMinAggregateInputType
+    _max?: GeneralEventMaxAggregateInputType
+  }
+
+  export type GeneralEventGroupByOutputType = {
+    id: number
+    title: string
+    description: string
+    category: string
+    eventDate: Date
+    eventTime: string
+    location: string
+    image: string | null
+    maxParticipants: number | null
+    registrationDeadline: Date | null
+    status: string
+    isPublished: boolean
+    isFeatured: boolean
+    targetAudience: string | null
+    requirements: string | null
+    agenda: string | null
+    speakers: JsonValue | null
+    tags: string[]
+    contactEmail: string | null
+    contactPhone: string | null
+    createdBy: string | null
+    createdAt: Date
+    updatedAt: Date
+    customFields: JsonValue | null
+    earlyBirdDeadline: Date | null
+    earlyBirdFee: number | null
+    publishedAt: Date | null
+    publishedBy: string | null
+    registrationFee: number | null
+    registrationFormConfig: JsonValue | null
+    requiresPayment: boolean
+    _count: GeneralEventCountAggregateOutputType | null
+    _avg: GeneralEventAvgAggregateOutputType | null
+    _sum: GeneralEventSumAggregateOutputType | null
+    _min: GeneralEventMinAggregateOutputType | null
+    _max: GeneralEventMaxAggregateOutputType | null
+  }
+
+  type GetGeneralEventGroupByPayload<T extends GeneralEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GeneralEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GeneralEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GeneralEventGroupByOutputType[P]>
+            : GetScalarType<T[P], GeneralEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GeneralEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    location?: boolean
+    image?: boolean
+    maxParticipants?: boolean
+    registrationDeadline?: boolean
+    status?: boolean
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: boolean
+    requirements?: boolean
+    agenda?: boolean
+    speakers?: boolean
+    tags?: boolean
+    contactEmail?: boolean
+    contactPhone?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customFields?: boolean
+    earlyBirdDeadline?: boolean
+    earlyBirdFee?: boolean
+    publishedAt?: boolean
+    publishedBy?: boolean
+    registrationFee?: boolean
+    registrationFormConfig?: boolean
+    requiresPayment?: boolean
+    EventRegistration?: boolean | GeneralEvent$EventRegistrationArgs<ExtArgs>
+    _count?: boolean | GeneralEventCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["generalEvent"]>
+
+  export type GeneralEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    location?: boolean
+    image?: boolean
+    maxParticipants?: boolean
+    registrationDeadline?: boolean
+    status?: boolean
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: boolean
+    requirements?: boolean
+    agenda?: boolean
+    speakers?: boolean
+    tags?: boolean
+    contactEmail?: boolean
+    contactPhone?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customFields?: boolean
+    earlyBirdDeadline?: boolean
+    earlyBirdFee?: boolean
+    publishedAt?: boolean
+    publishedBy?: boolean
+    registrationFee?: boolean
+    registrationFormConfig?: boolean
+    requiresPayment?: boolean
+  }, ExtArgs["result"]["generalEvent"]>
+
+  export type GeneralEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    location?: boolean
+    image?: boolean
+    maxParticipants?: boolean
+    registrationDeadline?: boolean
+    status?: boolean
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: boolean
+    requirements?: boolean
+    agenda?: boolean
+    speakers?: boolean
+    tags?: boolean
+    contactEmail?: boolean
+    contactPhone?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customFields?: boolean
+    earlyBirdDeadline?: boolean
+    earlyBirdFee?: boolean
+    publishedAt?: boolean
+    publishedBy?: boolean
+    registrationFee?: boolean
+    registrationFormConfig?: boolean
+    requiresPayment?: boolean
+  }, ExtArgs["result"]["generalEvent"]>
+
+  export type GeneralEventSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    location?: boolean
+    image?: boolean
+    maxParticipants?: boolean
+    registrationDeadline?: boolean
+    status?: boolean
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: boolean
+    requirements?: boolean
+    agenda?: boolean
+    speakers?: boolean
+    tags?: boolean
+    contactEmail?: boolean
+    contactPhone?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customFields?: boolean
+    earlyBirdDeadline?: boolean
+    earlyBirdFee?: boolean
+    publishedAt?: boolean
+    publishedBy?: boolean
+    registrationFee?: boolean
+    registrationFormConfig?: boolean
+    requiresPayment?: boolean
+  }
+
+  export type GeneralEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "eventDate" | "eventTime" | "location" | "image" | "maxParticipants" | "registrationDeadline" | "status" | "isPublished" | "isFeatured" | "targetAudience" | "requirements" | "agenda" | "speakers" | "tags" | "contactEmail" | "contactPhone" | "createdBy" | "createdAt" | "updatedAt" | "customFields" | "earlyBirdDeadline" | "earlyBirdFee" | "publishedAt" | "publishedBy" | "registrationFee" | "registrationFormConfig" | "requiresPayment", ExtArgs["result"]["generalEvent"]>
+  export type GeneralEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    EventRegistration?: boolean | GeneralEvent$EventRegistrationArgs<ExtArgs>
+    _count?: boolean | GeneralEventCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type GeneralEventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type GeneralEventIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $GeneralEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GeneralEvent"
+    objects: {
+      EventRegistration: Prisma.$EventRegistrationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      description: string
+      category: string
+      eventDate: Date
+      eventTime: string
+      location: string
+      image: string | null
+      maxParticipants: number | null
+      registrationDeadline: Date | null
+      status: string
+      isPublished: boolean
+      isFeatured: boolean
+      targetAudience: string | null
+      requirements: string | null
+      agenda: string | null
+      speakers: Prisma.JsonValue | null
+      tags: string[]
+      contactEmail: string | null
+      contactPhone: string | null
+      createdBy: string | null
+      createdAt: Date
+      updatedAt: Date
+      customFields: Prisma.JsonValue | null
+      earlyBirdDeadline: Date | null
+      earlyBirdFee: number | null
+      publishedAt: Date | null
+      publishedBy: string | null
+      registrationFee: number | null
+      registrationFormConfig: Prisma.JsonValue | null
+      requiresPayment: boolean
+    }, ExtArgs["result"]["generalEvent"]>
+    composites: {}
+  }
+
+  type GeneralEventGetPayload<S extends boolean | null | undefined | GeneralEventDefaultArgs> = $Result.GetResult<Prisma.$GeneralEventPayload, S>
+
+  type GeneralEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GeneralEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GeneralEventCountAggregateInputType | true
+    }
+
+  export interface GeneralEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GeneralEvent'], meta: { name: 'GeneralEvent' } }
+    /**
+     * Find zero or one GeneralEvent that matches the filter.
+     * @param {GeneralEventFindUniqueArgs} args - Arguments to find a GeneralEvent
+     * @example
+     * // Get one GeneralEvent
+     * const generalEvent = await prisma.generalEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GeneralEventFindUniqueArgs>(args: SelectSubset<T, GeneralEventFindUniqueArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GeneralEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GeneralEventFindUniqueOrThrowArgs} args - Arguments to find a GeneralEvent
+     * @example
+     * // Get one GeneralEvent
+     * const generalEvent = await prisma.generalEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GeneralEventFindUniqueOrThrowArgs>(args: SelectSubset<T, GeneralEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GeneralEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventFindFirstArgs} args - Arguments to find a GeneralEvent
+     * @example
+     * // Get one GeneralEvent
+     * const generalEvent = await prisma.generalEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GeneralEventFindFirstArgs>(args?: SelectSubset<T, GeneralEventFindFirstArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GeneralEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventFindFirstOrThrowArgs} args - Arguments to find a GeneralEvent
+     * @example
+     * // Get one GeneralEvent
+     * const generalEvent = await prisma.generalEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GeneralEventFindFirstOrThrowArgs>(args?: SelectSubset<T, GeneralEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GeneralEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GeneralEvents
+     * const generalEvents = await prisma.generalEvent.findMany()
+     * 
+     * // Get first 10 GeneralEvents
+     * const generalEvents = await prisma.generalEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const generalEventWithIdOnly = await prisma.generalEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GeneralEventFindManyArgs>(args?: SelectSubset<T, GeneralEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GeneralEvent.
+     * @param {GeneralEventCreateArgs} args - Arguments to create a GeneralEvent.
+     * @example
+     * // Create one GeneralEvent
+     * const GeneralEvent = await prisma.generalEvent.create({
+     *   data: {
+     *     // ... data to create a GeneralEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends GeneralEventCreateArgs>(args: SelectSubset<T, GeneralEventCreateArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GeneralEvents.
+     * @param {GeneralEventCreateManyArgs} args - Arguments to create many GeneralEvents.
+     * @example
+     * // Create many GeneralEvents
+     * const generalEvent = await prisma.generalEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GeneralEventCreateManyArgs>(args?: SelectSubset<T, GeneralEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GeneralEvents and returns the data saved in the database.
+     * @param {GeneralEventCreateManyAndReturnArgs} args - Arguments to create many GeneralEvents.
+     * @example
+     * // Create many GeneralEvents
+     * const generalEvent = await prisma.generalEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GeneralEvents and only return the `id`
+     * const generalEventWithIdOnly = await prisma.generalEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GeneralEventCreateManyAndReturnArgs>(args?: SelectSubset<T, GeneralEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GeneralEvent.
+     * @param {GeneralEventDeleteArgs} args - Arguments to delete one GeneralEvent.
+     * @example
+     * // Delete one GeneralEvent
+     * const GeneralEvent = await prisma.generalEvent.delete({
+     *   where: {
+     *     // ... filter to delete one GeneralEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GeneralEventDeleteArgs>(args: SelectSubset<T, GeneralEventDeleteArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GeneralEvent.
+     * @param {GeneralEventUpdateArgs} args - Arguments to update one GeneralEvent.
+     * @example
+     * // Update one GeneralEvent
+     * const generalEvent = await prisma.generalEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GeneralEventUpdateArgs>(args: SelectSubset<T, GeneralEventUpdateArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GeneralEvents.
+     * @param {GeneralEventDeleteManyArgs} args - Arguments to filter GeneralEvents to delete.
+     * @example
+     * // Delete a few GeneralEvents
+     * const { count } = await prisma.generalEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GeneralEventDeleteManyArgs>(args?: SelectSubset<T, GeneralEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GeneralEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GeneralEvents
+     * const generalEvent = await prisma.generalEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GeneralEventUpdateManyArgs>(args: SelectSubset<T, GeneralEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GeneralEvents and returns the data updated in the database.
+     * @param {GeneralEventUpdateManyAndReturnArgs} args - Arguments to update many GeneralEvents.
+     * @example
+     * // Update many GeneralEvents
+     * const generalEvent = await prisma.generalEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GeneralEvents and only return the `id`
+     * const generalEventWithIdOnly = await prisma.generalEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GeneralEventUpdateManyAndReturnArgs>(args: SelectSubset<T, GeneralEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GeneralEvent.
+     * @param {GeneralEventUpsertArgs} args - Arguments to update or create a GeneralEvent.
+     * @example
+     * // Update or create a GeneralEvent
+     * const generalEvent = await prisma.generalEvent.upsert({
+     *   create: {
+     *     // ... data to create a GeneralEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GeneralEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GeneralEventUpsertArgs>(args: SelectSubset<T, GeneralEventUpsertArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GeneralEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventCountArgs} args - Arguments to filter GeneralEvents to count.
+     * @example
+     * // Count the number of GeneralEvents
+     * const count = await prisma.generalEvent.count({
+     *   where: {
+     *     // ... the filter for the GeneralEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends GeneralEventCountArgs>(
+      args?: Subset<T, GeneralEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GeneralEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GeneralEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GeneralEventAggregateArgs>(args: Subset<T, GeneralEventAggregateArgs>): Prisma.PrismaPromise<GetGeneralEventAggregateType<T>>
+
+    /**
+     * Group by GeneralEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GeneralEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GeneralEventGroupByArgs['orderBy'] }
+        : { orderBy?: GeneralEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GeneralEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGeneralEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GeneralEvent model
+   */
+  readonly fields: GeneralEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GeneralEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GeneralEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    EventRegistration<T extends GeneralEvent$EventRegistrationArgs<ExtArgs> = {}>(args?: Subset<T, GeneralEvent$EventRegistrationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GeneralEvent model
+   */
+  interface GeneralEventFieldRefs {
+    readonly id: FieldRef<"GeneralEvent", 'Int'>
+    readonly title: FieldRef<"GeneralEvent", 'String'>
+    readonly description: FieldRef<"GeneralEvent", 'String'>
+    readonly category: FieldRef<"GeneralEvent", 'String'>
+    readonly eventDate: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly eventTime: FieldRef<"GeneralEvent", 'String'>
+    readonly location: FieldRef<"GeneralEvent", 'String'>
+    readonly image: FieldRef<"GeneralEvent", 'String'>
+    readonly maxParticipants: FieldRef<"GeneralEvent", 'Int'>
+    readonly registrationDeadline: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly status: FieldRef<"GeneralEvent", 'String'>
+    readonly isPublished: FieldRef<"GeneralEvent", 'Boolean'>
+    readonly isFeatured: FieldRef<"GeneralEvent", 'Boolean'>
+    readonly targetAudience: FieldRef<"GeneralEvent", 'String'>
+    readonly requirements: FieldRef<"GeneralEvent", 'String'>
+    readonly agenda: FieldRef<"GeneralEvent", 'String'>
+    readonly speakers: FieldRef<"GeneralEvent", 'Json'>
+    readonly tags: FieldRef<"GeneralEvent", 'String[]'>
+    readonly contactEmail: FieldRef<"GeneralEvent", 'String'>
+    readonly contactPhone: FieldRef<"GeneralEvent", 'String'>
+    readonly createdBy: FieldRef<"GeneralEvent", 'String'>
+    readonly createdAt: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly updatedAt: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly customFields: FieldRef<"GeneralEvent", 'Json'>
+    readonly earlyBirdDeadline: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly earlyBirdFee: FieldRef<"GeneralEvent", 'Float'>
+    readonly publishedAt: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly publishedBy: FieldRef<"GeneralEvent", 'String'>
+    readonly registrationFee: FieldRef<"GeneralEvent", 'Float'>
+    readonly registrationFormConfig: FieldRef<"GeneralEvent", 'Json'>
+    readonly requiresPayment: FieldRef<"GeneralEvent", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GeneralEvent findUnique
+   */
+  export type GeneralEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralEvent to fetch.
+     */
+    where: GeneralEventWhereUniqueInput
+  }
+
+  /**
+   * GeneralEvent findUniqueOrThrow
+   */
+  export type GeneralEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralEvent to fetch.
+     */
+    where: GeneralEventWhereUniqueInput
+  }
+
+  /**
+   * GeneralEvent findFirst
+   */
+  export type GeneralEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralEvent to fetch.
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralEvents to fetch.
+     */
+    orderBy?: GeneralEventOrderByWithRelationInput | GeneralEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GeneralEvents.
+     */
+    cursor?: GeneralEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GeneralEvents.
+     */
+    distinct?: GeneralEventScalarFieldEnum | GeneralEventScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralEvent findFirstOrThrow
+   */
+  export type GeneralEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralEvent to fetch.
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralEvents to fetch.
+     */
+    orderBy?: GeneralEventOrderByWithRelationInput | GeneralEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GeneralEvents.
+     */
+    cursor?: GeneralEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GeneralEvents.
+     */
+    distinct?: GeneralEventScalarFieldEnum | GeneralEventScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralEvent findMany
+   */
+  export type GeneralEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralEvents to fetch.
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralEvents to fetch.
+     */
+    orderBy?: GeneralEventOrderByWithRelationInput | GeneralEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GeneralEvents.
+     */
+    cursor?: GeneralEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralEvents.
+     */
+    skip?: number
+    distinct?: GeneralEventScalarFieldEnum | GeneralEventScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralEvent create
+   */
+  export type GeneralEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GeneralEvent.
+     */
+    data: XOR<GeneralEventCreateInput, GeneralEventUncheckedCreateInput>
+  }
+
+  /**
+   * GeneralEvent createMany
+   */
+  export type GeneralEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GeneralEvents.
+     */
+    data: GeneralEventCreateManyInput | GeneralEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GeneralEvent createManyAndReturn
+   */
+  export type GeneralEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many GeneralEvents.
+     */
+    data: GeneralEventCreateManyInput | GeneralEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GeneralEvent update
+   */
+  export type GeneralEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GeneralEvent.
+     */
+    data: XOR<GeneralEventUpdateInput, GeneralEventUncheckedUpdateInput>
+    /**
+     * Choose, which GeneralEvent to update.
+     */
+    where: GeneralEventWhereUniqueInput
+  }
+
+  /**
+   * GeneralEvent updateMany
+   */
+  export type GeneralEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GeneralEvents.
+     */
+    data: XOR<GeneralEventUpdateManyMutationInput, GeneralEventUncheckedUpdateManyInput>
+    /**
+     * Filter which GeneralEvents to update
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * Limit how many GeneralEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralEvent updateManyAndReturn
+   */
+  export type GeneralEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * The data used to update GeneralEvents.
+     */
+    data: XOR<GeneralEventUpdateManyMutationInput, GeneralEventUncheckedUpdateManyInput>
+    /**
+     * Filter which GeneralEvents to update
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * Limit how many GeneralEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralEvent upsert
+   */
+  export type GeneralEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GeneralEvent to update in case it exists.
+     */
+    where: GeneralEventWhereUniqueInput
+    /**
+     * In case the GeneralEvent found by the `where` argument doesn't exist, create a new GeneralEvent with this data.
+     */
+    create: XOR<GeneralEventCreateInput, GeneralEventUncheckedCreateInput>
+    /**
+     * In case the GeneralEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GeneralEventUpdateInput, GeneralEventUncheckedUpdateInput>
+  }
+
+  /**
+   * GeneralEvent delete
+   */
+  export type GeneralEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter which GeneralEvent to delete.
+     */
+    where: GeneralEventWhereUniqueInput
+  }
+
+  /**
+   * GeneralEvent deleteMany
+   */
+  export type GeneralEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GeneralEvents to delete
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * Limit how many GeneralEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralEvent.EventRegistration
+   */
+  export type GeneralEvent$EventRegistrationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    where?: EventRegistrationWhereInput
+    orderBy?: EventRegistrationOrderByWithRelationInput | EventRegistrationOrderByWithRelationInput[]
+    cursor?: EventRegistrationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EventRegistrationScalarFieldEnum | EventRegistrationScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralEvent without action
+   */
+  export type GeneralEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProgressReport
+   */
+
+  export type AggregateProgressReport = {
+    _count: ProgressReportCountAggregateOutputType | null
+    _avg: ProgressReportAvgAggregateOutputType | null
+    _sum: ProgressReportSumAggregateOutputType | null
+    _min: ProgressReportMinAggregateOutputType | null
+    _max: ProgressReportMaxAggregateOutputType | null
+  }
+
+  export type ProgressReportAvgAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    teacherId: number | null
+    attendanceRate: number | null
+    homeworkCompletion: number | null
+    progressRating: number | null
+  }
+
+  export type ProgressReportSumAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    teacherId: number | null
+    attendanceRate: number | null
+    homeworkCompletion: number | null
+    progressRating: number | null
+  }
+
+  export type ProgressReportMinAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    teacherId: number | null
+    reportDate: Date | null
+    overallProgress: string | null
+    milestonesAchieved: string | null
+    publications: string | null
+    nextSteps: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    attendanceRate: number | null
+    classParticipation: string | null
+    homeworkCompletion: number | null
+    improvementAreas: string | null
+    isVisible: boolean | null
+    parentNotes: string | null
+    progressRating: number | null
+    recommendations: string | null
+    reportPeriod: string | null
+    skillsImproved: string | null
+    status: string | null
+    strengthsAreas: string | null
+    subject: string | null
+  }
+
+  export type ProgressReportMaxAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    teacherId: number | null
+    reportDate: Date | null
+    overallProgress: string | null
+    milestonesAchieved: string | null
+    publications: string | null
+    nextSteps: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    attendanceRate: number | null
+    classParticipation: string | null
+    homeworkCompletion: number | null
+    improvementAreas: string | null
+    isVisible: boolean | null
+    parentNotes: string | null
+    progressRating: number | null
+    recommendations: string | null
+    reportPeriod: string | null
+    skillsImproved: string | null
+    status: string | null
+    strengthsAreas: string | null
+    subject: string | null
+  }
+
+  export type ProgressReportCountAggregateOutputType = {
+    id: number
+    studentId: number
+    teacherId: number
+    reportDate: number
+    overallProgress: number
+    milestonesAchieved: number
+    publications: number
+    nextSteps: number
+    createdAt: number
+    updatedAt: number
+    attendanceRate: number
+    classParticipation: number
+    homeworkCompletion: number
+    improvementAreas: number
+    isVisible: number
+    parentNotes: number
+    progressRating: number
+    recommendations: number
+    reportPeriod: number
+    skillsImproved: number
+    status: number
+    strengthsAreas: number
+    subject: number
+    _all: number
+  }
+
+
+  export type ProgressReportAvgAggregateInputType = {
+    id?: true
+    studentId?: true
+    teacherId?: true
+    attendanceRate?: true
+    homeworkCompletion?: true
+    progressRating?: true
+  }
+
+  export type ProgressReportSumAggregateInputType = {
+    id?: true
+    studentId?: true
+    teacherId?: true
+    attendanceRate?: true
+    homeworkCompletion?: true
+    progressRating?: true
+  }
+
+  export type ProgressReportMinAggregateInputType = {
+    id?: true
+    studentId?: true
+    teacherId?: true
+    reportDate?: true
+    overallProgress?: true
+    milestonesAchieved?: true
+    publications?: true
+    nextSteps?: true
+    createdAt?: true
+    updatedAt?: true
+    attendanceRate?: true
+    classParticipation?: true
+    homeworkCompletion?: true
+    improvementAreas?: true
+    isVisible?: true
+    parentNotes?: true
+    progressRating?: true
+    recommendations?: true
+    reportPeriod?: true
+    skillsImproved?: true
+    status?: true
+    strengthsAreas?: true
+    subject?: true
+  }
+
+  export type ProgressReportMaxAggregateInputType = {
+    id?: true
+    studentId?: true
+    teacherId?: true
+    reportDate?: true
+    overallProgress?: true
+    milestonesAchieved?: true
+    publications?: true
+    nextSteps?: true
+    createdAt?: true
+    updatedAt?: true
+    attendanceRate?: true
+    classParticipation?: true
+    homeworkCompletion?: true
+    improvementAreas?: true
+    isVisible?: true
+    parentNotes?: true
+    progressRating?: true
+    recommendations?: true
+    reportPeriod?: true
+    skillsImproved?: true
+    status?: true
+    strengthsAreas?: true
+    subject?: true
+  }
+
+  export type ProgressReportCountAggregateInputType = {
+    id?: true
+    studentId?: true
+    teacherId?: true
+    reportDate?: true
+    overallProgress?: true
+    milestonesAchieved?: true
+    publications?: true
+    nextSteps?: true
+    createdAt?: true
+    updatedAt?: true
+    attendanceRate?: true
+    classParticipation?: true
+    homeworkCompletion?: true
+    improvementAreas?: true
+    isVisible?: true
+    parentNotes?: true
+    progressRating?: true
+    recommendations?: true
+    reportPeriod?: true
+    skillsImproved?: true
+    status?: true
+    strengthsAreas?: true
+    subject?: true
+    _all?: true
+  }
+
+  export type ProgressReportAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgressReport to aggregate.
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressReports to fetch.
+     */
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProgressReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProgressReports
+    **/
+    _count?: true | ProgressReportCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProgressReportAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProgressReportSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProgressReportMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProgressReportMaxAggregateInputType
+  }
+
+  export type GetProgressReportAggregateType<T extends ProgressReportAggregateArgs> = {
+        [P in keyof T & keyof AggregateProgressReport]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProgressReport[P]>
+      : GetScalarType<T[P], AggregateProgressReport[P]>
+  }
+
+
+
+
+  export type ProgressReportGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProgressReportWhereInput
+    orderBy?: ProgressReportOrderByWithAggregationInput | ProgressReportOrderByWithAggregationInput[]
+    by: ProgressReportScalarFieldEnum[] | ProgressReportScalarFieldEnum
+    having?: ProgressReportScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProgressReportCountAggregateInputType | true
+    _avg?: ProgressReportAvgAggregateInputType
+    _sum?: ProgressReportSumAggregateInputType
+    _min?: ProgressReportMinAggregateInputType
+    _max?: ProgressReportMaxAggregateInputType
+  }
+
+  export type ProgressReportGroupByOutputType = {
+    id: number
+    studentId: number
+    teacherId: number
+    reportDate: Date
+    overallProgress: string
+    milestonesAchieved: string | null
+    publications: string | null
+    nextSteps: string | null
+    createdAt: Date
+    updatedAt: Date
+    attendanceRate: number | null
+    classParticipation: string | null
+    homeworkCompletion: number | null
+    improvementAreas: string | null
+    isVisible: boolean
+    parentNotes: string | null
+    progressRating: number | null
+    recommendations: string | null
+    reportPeriod: string | null
+    skillsImproved: string | null
+    status: string
+    strengthsAreas: string | null
+    subject: string | null
+    _count: ProgressReportCountAggregateOutputType | null
+    _avg: ProgressReportAvgAggregateOutputType | null
+    _sum: ProgressReportSumAggregateOutputType | null
+    _min: ProgressReportMinAggregateOutputType | null
+    _max: ProgressReportMaxAggregateOutputType | null
+  }
+
+  type GetProgressReportGroupByPayload<T extends ProgressReportGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProgressReportGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProgressReportGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProgressReportGroupByOutputType[P]>
+            : GetScalarType<T[P], ProgressReportGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProgressReportSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    teacherId?: boolean
+    reportDate?: boolean
+    overallProgress?: boolean
+    milestonesAchieved?: boolean
+    publications?: boolean
+    nextSteps?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    attendanceRate?: boolean
+    classParticipation?: boolean
+    homeworkCompletion?: boolean
+    improvementAreas?: boolean
+    isVisible?: boolean
+    parentNotes?: boolean
+    progressRating?: boolean
+    recommendations?: boolean
+    reportPeriod?: boolean
+    skillsImproved?: boolean
+    status?: boolean
+    strengthsAreas?: boolean
+    subject?: boolean
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressReport"]>
+
+  export type ProgressReportSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    teacherId?: boolean
+    reportDate?: boolean
+    overallProgress?: boolean
+    milestonesAchieved?: boolean
+    publications?: boolean
+    nextSteps?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    attendanceRate?: boolean
+    classParticipation?: boolean
+    homeworkCompletion?: boolean
+    improvementAreas?: boolean
+    isVisible?: boolean
+    parentNotes?: boolean
+    progressRating?: boolean
+    recommendations?: boolean
+    reportPeriod?: boolean
+    skillsImproved?: boolean
+    status?: boolean
+    strengthsAreas?: boolean
+    subject?: boolean
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressReport"]>
+
+  export type ProgressReportSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    teacherId?: boolean
+    reportDate?: boolean
+    overallProgress?: boolean
+    milestonesAchieved?: boolean
+    publications?: boolean
+    nextSteps?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    attendanceRate?: boolean
+    classParticipation?: boolean
+    homeworkCompletion?: boolean
+    improvementAreas?: boolean
+    isVisible?: boolean
+    parentNotes?: boolean
+    progressRating?: boolean
+    recommendations?: boolean
+    reportPeriod?: boolean
+    skillsImproved?: boolean
+    status?: boolean
+    strengthsAreas?: boolean
+    subject?: boolean
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["progressReport"]>
+
+  export type ProgressReportSelectScalar = {
+    id?: boolean
+    studentId?: boolean
+    teacherId?: boolean
+    reportDate?: boolean
+    overallProgress?: boolean
+    milestonesAchieved?: boolean
+    publications?: boolean
+    nextSteps?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    attendanceRate?: boolean
+    classParticipation?: boolean
+    homeworkCompletion?: boolean
+    improvementAreas?: boolean
+    isVisible?: boolean
+    parentNotes?: boolean
+    progressRating?: boolean
+    recommendations?: boolean
+    reportPeriod?: boolean
+    skillsImproved?: boolean
+    status?: boolean
+    strengthsAreas?: boolean
+    subject?: boolean
+  }
+
+  export type ProgressReportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "teacherId" | "reportDate" | "overallProgress" | "milestonesAchieved" | "publications" | "nextSteps" | "createdAt" | "updatedAt" | "attendanceRate" | "classParticipation" | "homeworkCompletion" | "improvementAreas" | "isVisible" | "parentNotes" | "progressRating" | "recommendations" | "reportPeriod" | "skillsImproved" | "status" | "strengthsAreas" | "subject", ExtArgs["result"]["progressReport"]>
+  export type ProgressReportInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+  export type ProgressReportIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+  export type ProgressReportIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+
+  export type $ProgressReportPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProgressReport"
+    objects: {
+      Student: Prisma.$StudentPayload<ExtArgs>
+      Teacher: Prisma.$TeacherPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      studentId: number
+      teacherId: number
+      reportDate: Date
+      overallProgress: string
+      milestonesAchieved: string | null
+      publications: string | null
+      nextSteps: string | null
+      createdAt: Date
+      updatedAt: Date
+      attendanceRate: number | null
+      classParticipation: string | null
+      homeworkCompletion: number | null
+      improvementAreas: string | null
+      isVisible: boolean
+      parentNotes: string | null
+      progressRating: number | null
+      recommendations: string | null
+      reportPeriod: string | null
+      skillsImproved: string | null
+      status: string
+      strengthsAreas: string | null
+      subject: string | null
+    }, ExtArgs["result"]["progressReport"]>
+    composites: {}
+  }
+
+  type ProgressReportGetPayload<S extends boolean | null | undefined | ProgressReportDefaultArgs> = $Result.GetResult<Prisma.$ProgressReportPayload, S>
+
+  type ProgressReportCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProgressReportFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProgressReportCountAggregateInputType | true
+    }
+
+  export interface ProgressReportDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProgressReport'], meta: { name: 'ProgressReport' } }
+    /**
+     * Find zero or one ProgressReport that matches the filter.
+     * @param {ProgressReportFindUniqueArgs} args - Arguments to find a ProgressReport
+     * @example
+     * // Get one ProgressReport
+     * const progressReport = await prisma.progressReport.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProgressReportFindUniqueArgs>(args: SelectSubset<T, ProgressReportFindUniqueArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProgressReport that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProgressReportFindUniqueOrThrowArgs} args - Arguments to find a ProgressReport
+     * @example
+     * // Get one ProgressReport
+     * const progressReport = await prisma.progressReport.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProgressReportFindUniqueOrThrowArgs>(args: SelectSubset<T, ProgressReportFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgressReport that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportFindFirstArgs} args - Arguments to find a ProgressReport
+     * @example
+     * // Get one ProgressReport
+     * const progressReport = await prisma.progressReport.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProgressReportFindFirstArgs>(args?: SelectSubset<T, ProgressReportFindFirstArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProgressReport that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportFindFirstOrThrowArgs} args - Arguments to find a ProgressReport
+     * @example
+     * // Get one ProgressReport
+     * const progressReport = await prisma.progressReport.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProgressReportFindFirstOrThrowArgs>(args?: SelectSubset<T, ProgressReportFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProgressReports that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProgressReports
+     * const progressReports = await prisma.progressReport.findMany()
+     * 
+     * // Get first 10 ProgressReports
+     * const progressReports = await prisma.progressReport.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const progressReportWithIdOnly = await prisma.progressReport.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProgressReportFindManyArgs>(args?: SelectSubset<T, ProgressReportFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProgressReport.
+     * @param {ProgressReportCreateArgs} args - Arguments to create a ProgressReport.
+     * @example
+     * // Create one ProgressReport
+     * const ProgressReport = await prisma.progressReport.create({
+     *   data: {
+     *     // ... data to create a ProgressReport
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProgressReportCreateArgs>(args: SelectSubset<T, ProgressReportCreateArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProgressReports.
+     * @param {ProgressReportCreateManyArgs} args - Arguments to create many ProgressReports.
+     * @example
+     * // Create many ProgressReports
+     * const progressReport = await prisma.progressReport.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProgressReportCreateManyArgs>(args?: SelectSubset<T, ProgressReportCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProgressReports and returns the data saved in the database.
+     * @param {ProgressReportCreateManyAndReturnArgs} args - Arguments to create many ProgressReports.
+     * @example
+     * // Create many ProgressReports
+     * const progressReport = await prisma.progressReport.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProgressReports and only return the `id`
+     * const progressReportWithIdOnly = await prisma.progressReport.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProgressReportCreateManyAndReturnArgs>(args?: SelectSubset<T, ProgressReportCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProgressReport.
+     * @param {ProgressReportDeleteArgs} args - Arguments to delete one ProgressReport.
+     * @example
+     * // Delete one ProgressReport
+     * const ProgressReport = await prisma.progressReport.delete({
+     *   where: {
+     *     // ... filter to delete one ProgressReport
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProgressReportDeleteArgs>(args: SelectSubset<T, ProgressReportDeleteArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProgressReport.
+     * @param {ProgressReportUpdateArgs} args - Arguments to update one ProgressReport.
+     * @example
+     * // Update one ProgressReport
+     * const progressReport = await prisma.progressReport.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProgressReportUpdateArgs>(args: SelectSubset<T, ProgressReportUpdateArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProgressReports.
+     * @param {ProgressReportDeleteManyArgs} args - Arguments to filter ProgressReports to delete.
+     * @example
+     * // Delete a few ProgressReports
+     * const { count } = await prisma.progressReport.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProgressReportDeleteManyArgs>(args?: SelectSubset<T, ProgressReportDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProgressReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProgressReports
+     * const progressReport = await prisma.progressReport.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProgressReportUpdateManyArgs>(args: SelectSubset<T, ProgressReportUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProgressReports and returns the data updated in the database.
+     * @param {ProgressReportUpdateManyAndReturnArgs} args - Arguments to update many ProgressReports.
+     * @example
+     * // Update many ProgressReports
+     * const progressReport = await prisma.progressReport.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProgressReports and only return the `id`
+     * const progressReportWithIdOnly = await prisma.progressReport.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProgressReportUpdateManyAndReturnArgs>(args: SelectSubset<T, ProgressReportUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProgressReport.
+     * @param {ProgressReportUpsertArgs} args - Arguments to update or create a ProgressReport.
+     * @example
+     * // Update or create a ProgressReport
+     * const progressReport = await prisma.progressReport.upsert({
+     *   create: {
+     *     // ... data to create a ProgressReport
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProgressReport we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProgressReportUpsertArgs>(args: SelectSubset<T, ProgressReportUpsertArgs<ExtArgs>>): Prisma__ProgressReportClient<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProgressReports.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportCountArgs} args - Arguments to filter ProgressReports to count.
+     * @example
+     * // Count the number of ProgressReports
+     * const count = await prisma.progressReport.count({
+     *   where: {
+     *     // ... the filter for the ProgressReports we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProgressReportCountArgs>(
+      args?: Subset<T, ProgressReportCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProgressReportCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProgressReport.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProgressReportAggregateArgs>(args: Subset<T, ProgressReportAggregateArgs>): Prisma.PrismaPromise<GetProgressReportAggregateType<T>>
+
+    /**
+     * Group by ProgressReport.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProgressReportGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProgressReportGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProgressReportGroupByArgs['orderBy'] }
+        : { orderBy?: ProgressReportGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProgressReportGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProgressReportGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProgressReport model
+   */
+  readonly fields: ProgressReportFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProgressReport.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProgressReportClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProgressReport model
+   */
+  interface ProgressReportFieldRefs {
+    readonly id: FieldRef<"ProgressReport", 'Int'>
+    readonly studentId: FieldRef<"ProgressReport", 'Int'>
+    readonly teacherId: FieldRef<"ProgressReport", 'Int'>
+    readonly reportDate: FieldRef<"ProgressReport", 'DateTime'>
+    readonly overallProgress: FieldRef<"ProgressReport", 'String'>
+    readonly milestonesAchieved: FieldRef<"ProgressReport", 'String'>
+    readonly publications: FieldRef<"ProgressReport", 'String'>
+    readonly nextSteps: FieldRef<"ProgressReport", 'String'>
+    readonly createdAt: FieldRef<"ProgressReport", 'DateTime'>
+    readonly updatedAt: FieldRef<"ProgressReport", 'DateTime'>
+    readonly attendanceRate: FieldRef<"ProgressReport", 'Float'>
+    readonly classParticipation: FieldRef<"ProgressReport", 'String'>
+    readonly homeworkCompletion: FieldRef<"ProgressReport", 'Float'>
+    readonly improvementAreas: FieldRef<"ProgressReport", 'String'>
+    readonly isVisible: FieldRef<"ProgressReport", 'Boolean'>
+    readonly parentNotes: FieldRef<"ProgressReport", 'String'>
+    readonly progressRating: FieldRef<"ProgressReport", 'Int'>
+    readonly recommendations: FieldRef<"ProgressReport", 'String'>
+    readonly reportPeriod: FieldRef<"ProgressReport", 'String'>
+    readonly skillsImproved: FieldRef<"ProgressReport", 'String'>
+    readonly status: FieldRef<"ProgressReport", 'String'>
+    readonly strengthsAreas: FieldRef<"ProgressReport", 'String'>
+    readonly subject: FieldRef<"ProgressReport", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProgressReport findUnique
+   */
+  export type ProgressReportFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressReport to fetch.
+     */
+    where: ProgressReportWhereUniqueInput
+  }
+
+  /**
+   * ProgressReport findUniqueOrThrow
+   */
+  export type ProgressReportFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressReport to fetch.
+     */
+    where: ProgressReportWhereUniqueInput
+  }
+
+  /**
+   * ProgressReport findFirst
+   */
+  export type ProgressReportFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressReport to fetch.
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressReports to fetch.
+     */
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgressReports.
+     */
+    cursor?: ProgressReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgressReports.
+     */
+    distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressReport findFirstOrThrow
+   */
+  export type ProgressReportFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressReport to fetch.
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressReports to fetch.
+     */
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProgressReports.
+     */
+    cursor?: ProgressReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressReports.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProgressReports.
+     */
+    distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressReport findMany
+   */
+  export type ProgressReportFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter, which ProgressReports to fetch.
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProgressReports to fetch.
+     */
+    orderBy?: ProgressReportOrderByWithRelationInput | ProgressReportOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProgressReports.
+     */
+    cursor?: ProgressReportWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProgressReports from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProgressReports.
+     */
+    skip?: number
+    distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
+  }
+
+  /**
+   * ProgressReport create
+   */
+  export type ProgressReportCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProgressReport.
+     */
+    data: XOR<ProgressReportCreateInput, ProgressReportUncheckedCreateInput>
+  }
+
+  /**
+   * ProgressReport createMany
+   */
+  export type ProgressReportCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProgressReports.
+     */
+    data: ProgressReportCreateManyInput | ProgressReportCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProgressReport createManyAndReturn
+   */
+  export type ProgressReportCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProgressReports.
+     */
+    data: ProgressReportCreateManyInput | ProgressReportCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProgressReport update
+   */
+  export type ProgressReportUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProgressReport.
+     */
+    data: XOR<ProgressReportUpdateInput, ProgressReportUncheckedUpdateInput>
+    /**
+     * Choose, which ProgressReport to update.
+     */
+    where: ProgressReportWhereUniqueInput
+  }
+
+  /**
+   * ProgressReport updateMany
+   */
+  export type ProgressReportUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProgressReports.
+     */
+    data: XOR<ProgressReportUpdateManyMutationInput, ProgressReportUncheckedUpdateManyInput>
+    /**
+     * Filter which ProgressReports to update
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * Limit how many ProgressReports to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressReport updateManyAndReturn
+   */
+  export type ProgressReportUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * The data used to update ProgressReports.
+     */
+    data: XOR<ProgressReportUpdateManyMutationInput, ProgressReportUncheckedUpdateManyInput>
+    /**
+     * Filter which ProgressReports to update
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * Limit how many ProgressReports to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProgressReport upsert
+   */
+  export type ProgressReportUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProgressReport to update in case it exists.
+     */
+    where: ProgressReportWhereUniqueInput
+    /**
+     * In case the ProgressReport found by the `where` argument doesn't exist, create a new ProgressReport with this data.
+     */
+    create: XOR<ProgressReportCreateInput, ProgressReportUncheckedCreateInput>
+    /**
+     * In case the ProgressReport was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProgressReportUpdateInput, ProgressReportUncheckedUpdateInput>
+  }
+
+  /**
+   * ProgressReport delete
+   */
+  export type ProgressReportDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+    /**
+     * Filter which ProgressReport to delete.
+     */
+    where: ProgressReportWhereUniqueInput
+  }
+
+  /**
+   * ProgressReport deleteMany
+   */
+  export type ProgressReportDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProgressReports to delete
+     */
+    where?: ProgressReportWhereInput
+    /**
+     * Limit how many ProgressReports to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProgressReport without action
+   */
+  export type ProgressReportDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProgressReport
+     */
+    select?: ProgressReportSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProgressReport
+     */
+    omit?: ProgressReportOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProgressReportInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -34305,6 +38831,103 @@ export namespace Prisma {
   export type MentorScalarFieldEnum = (typeof MentorScalarFieldEnum)[keyof typeof MentorScalarFieldEnum]
 
 
+  export const EventRegistrationScalarFieldEnum: {
+    id: 'id',
+    eventId: 'eventId',
+    studentName: 'studentName',
+    studentEmail: 'studentEmail',
+    studentPhone: 'studentPhone',
+    studentGrade: 'studentGrade',
+    schoolName: 'schoolName',
+    parentName: 'parentName',
+    parentEmail: 'parentEmail',
+    parentPhone: 'parentPhone',
+    registrationStatus: 'registrationStatus',
+    paymentStatus: 'paymentStatus',
+    paymentAmount: 'paymentAmount',
+    specialRequirements: 'specialRequirements',
+    howDidYouHear: 'howDidYouHear',
+    notes: 'notes',
+    checkedInAt: 'checkedInAt',
+    attendanceConfirmed: 'attendanceConfirmed',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    adminNotes: 'adminNotes',
+    certificateIssued: 'certificateIssued',
+    customFieldResponses: 'customFieldResponses',
+    paymentMethod: 'paymentMethod',
+    transactionId: 'transactionId'
+  };
+
+  export type EventRegistrationScalarFieldEnum = (typeof EventRegistrationScalarFieldEnum)[keyof typeof EventRegistrationScalarFieldEnum]
+
+
+  export const GeneralEventScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    category: 'category',
+    eventDate: 'eventDate',
+    eventTime: 'eventTime',
+    location: 'location',
+    image: 'image',
+    maxParticipants: 'maxParticipants',
+    registrationDeadline: 'registrationDeadline',
+    status: 'status',
+    isPublished: 'isPublished',
+    isFeatured: 'isFeatured',
+    targetAudience: 'targetAudience',
+    requirements: 'requirements',
+    agenda: 'agenda',
+    speakers: 'speakers',
+    tags: 'tags',
+    contactEmail: 'contactEmail',
+    contactPhone: 'contactPhone',
+    createdBy: 'createdBy',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    customFields: 'customFields',
+    earlyBirdDeadline: 'earlyBirdDeadline',
+    earlyBirdFee: 'earlyBirdFee',
+    publishedAt: 'publishedAt',
+    publishedBy: 'publishedBy',
+    registrationFee: 'registrationFee',
+    registrationFormConfig: 'registrationFormConfig',
+    requiresPayment: 'requiresPayment'
+  };
+
+  export type GeneralEventScalarFieldEnum = (typeof GeneralEventScalarFieldEnum)[keyof typeof GeneralEventScalarFieldEnum]
+
+
+  export const ProgressReportScalarFieldEnum: {
+    id: 'id',
+    studentId: 'studentId',
+    teacherId: 'teacherId',
+    reportDate: 'reportDate',
+    overallProgress: 'overallProgress',
+    milestonesAchieved: 'milestonesAchieved',
+    publications: 'publications',
+    nextSteps: 'nextSteps',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    attendanceRate: 'attendanceRate',
+    classParticipation: 'classParticipation',
+    homeworkCompletion: 'homeworkCompletion',
+    improvementAreas: 'improvementAreas',
+    isVisible: 'isVisible',
+    parentNotes: 'parentNotes',
+    progressRating: 'progressRating',
+    recommendations: 'recommendations',
+    reportPeriod: 'reportPeriod',
+    skillsImproved: 'skillsImproved',
+    status: 'status',
+    strengthsAreas: 'strengthsAreas',
+    subject: 'subject'
+  };
+
+  export type ProgressReportScalarFieldEnum = (typeof ProgressReportScalarFieldEnum)[keyof typeof ProgressReportScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -34612,6 +39235,7 @@ export namespace Prisma {
     assignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
+    ProgressReport?: ProgressReportListRelationFilter
     resources?: ResourceListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
     students?: TeacherStudentListRelationFilter
@@ -34629,6 +39253,7 @@ export namespace Prisma {
     assignments?: AssignmentOrderByRelationAggregateInput
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     mentorProfile?: MentorOrderByWithRelationInput
+    ProgressReport?: ProgressReportOrderByRelationAggregateInput
     resources?: ResourceOrderByRelationAggregateInput
     submissionRemarks?: StudentSubmissionRemarkOrderByRelationAggregateInput
     students?: TeacherStudentOrderByRelationAggregateInput
@@ -34649,6 +39274,7 @@ export namespace Prisma {
     assignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
+    ProgressReport?: ProgressReportListRelationFilter
     resources?: ResourceListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
     students?: TeacherStudentListRelationFilter
@@ -34706,6 +39332,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     Payment?: PaymentListRelationFilter
+    ProgressReport?: ProgressReportListRelationFilter
     parentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
     assignedResources?: StudentResourceListRelationFilter
     studentSubmissions?: StudentSubmissionListRelationFilter
@@ -34733,6 +39360,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     enrollments?: EnrollmentOrderByRelationAggregateInput
     Payment?: PaymentOrderByRelationAggregateInput
+    ProgressReport?: ProgressReportOrderByRelationAggregateInput
     parentAccount?: ParentAccountOrderByWithRelationInput
     assignedResources?: StudentResourceOrderByRelationAggregateInput
     studentSubmissions?: StudentSubmissionOrderByRelationAggregateInput
@@ -34763,6 +39391,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     Payment?: PaymentListRelationFilter
+    ProgressReport?: ProgressReportListRelationFilter
     parentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
     assignedResources?: StudentResourceListRelationFilter
     studentSubmissions?: StudentSubmissionListRelationFilter
@@ -36672,6 +41301,501 @@ export namespace Prisma {
     department?: StringWithAggregatesFilter<"Mentor"> | string
   }
 
+  export type EventRegistrationWhereInput = {
+    AND?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    OR?: EventRegistrationWhereInput[]
+    NOT?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    id?: IntFilter<"EventRegistration"> | number
+    eventId?: IntFilter<"EventRegistration"> | number
+    studentName?: StringFilter<"EventRegistration"> | string
+    studentEmail?: StringFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableFilter<"EventRegistration"> | string | null
+    parentName?: StringFilter<"EventRegistration"> | string
+    parentEmail?: StringFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableFilter<"EventRegistration"> | string | null
+    notes?: StringNullableFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableFilter<"EventRegistration">
+    paymentMethod?: StringNullableFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableFilter<"EventRegistration"> | string | null
+    GeneralEvent?: XOR<GeneralEventScalarRelationFilter, GeneralEventWhereInput>
+  }
+
+  export type EventRegistrationOrderByWithRelationInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrderInput | SortOrder
+    studentGrade?: SortOrderInput | SortOrder
+    schoolName?: SortOrderInput | SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrderInput | SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrderInput | SortOrder
+    paymentAmount?: SortOrderInput | SortOrder
+    specialRequirements?: SortOrderInput | SortOrder
+    howDidYouHear?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    checkedInAt?: SortOrderInput | SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrderInput | SortOrder
+    certificateIssued?: SortOrder
+    customFieldResponses?: SortOrderInput | SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    GeneralEvent?: GeneralEventOrderByWithRelationInput
+  }
+
+  export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    eventId_studentEmail?: EventRegistrationEventIdStudentEmailCompoundUniqueInput
+    AND?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    OR?: EventRegistrationWhereInput[]
+    NOT?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    eventId?: IntFilter<"EventRegistration"> | number
+    studentName?: StringFilter<"EventRegistration"> | string
+    studentEmail?: StringFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableFilter<"EventRegistration"> | string | null
+    parentName?: StringFilter<"EventRegistration"> | string
+    parentEmail?: StringFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableFilter<"EventRegistration"> | string | null
+    notes?: StringNullableFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableFilter<"EventRegistration">
+    paymentMethod?: StringNullableFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableFilter<"EventRegistration"> | string | null
+    GeneralEvent?: XOR<GeneralEventScalarRelationFilter, GeneralEventWhereInput>
+  }, "id" | "eventId_studentEmail">
+
+  export type EventRegistrationOrderByWithAggregationInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrderInput | SortOrder
+    studentGrade?: SortOrderInput | SortOrder
+    schoolName?: SortOrderInput | SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrderInput | SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrderInput | SortOrder
+    paymentAmount?: SortOrderInput | SortOrder
+    specialRequirements?: SortOrderInput | SortOrder
+    howDidYouHear?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    checkedInAt?: SortOrderInput | SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrderInput | SortOrder
+    certificateIssued?: SortOrder
+    customFieldResponses?: SortOrderInput | SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    _count?: EventRegistrationCountOrderByAggregateInput
+    _avg?: EventRegistrationAvgOrderByAggregateInput
+    _max?: EventRegistrationMaxOrderByAggregateInput
+    _min?: EventRegistrationMinOrderByAggregateInput
+    _sum?: EventRegistrationSumOrderByAggregateInput
+  }
+
+  export type EventRegistrationScalarWhereWithAggregatesInput = {
+    AND?: EventRegistrationScalarWhereWithAggregatesInput | EventRegistrationScalarWhereWithAggregatesInput[]
+    OR?: EventRegistrationScalarWhereWithAggregatesInput[]
+    NOT?: EventRegistrationScalarWhereWithAggregatesInput | EventRegistrationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"EventRegistration"> | number
+    eventId?: IntWithAggregatesFilter<"EventRegistration"> | number
+    studentName?: StringWithAggregatesFilter<"EventRegistration"> | string
+    studentEmail?: StringWithAggregatesFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    parentName?: StringWithAggregatesFilter<"EventRegistration"> | string
+    parentEmail?: StringWithAggregatesFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringWithAggregatesFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableWithAggregatesFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    notes?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableWithAggregatesFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolWithAggregatesFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolWithAggregatesFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableWithAggregatesFilter<"EventRegistration">
+    paymentMethod?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+  }
+
+  export type GeneralEventWhereInput = {
+    AND?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    OR?: GeneralEventWhereInput[]
+    NOT?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    id?: IntFilter<"GeneralEvent"> | number
+    title?: StringFilter<"GeneralEvent"> | string
+    description?: StringFilter<"GeneralEvent"> | string
+    category?: StringFilter<"GeneralEvent"> | string
+    eventDate?: DateTimeFilter<"GeneralEvent"> | Date | string
+    eventTime?: StringFilter<"GeneralEvent"> | string
+    location?: StringFilter<"GeneralEvent"> | string
+    image?: StringNullableFilter<"GeneralEvent"> | string | null
+    maxParticipants?: IntNullableFilter<"GeneralEvent"> | number | null
+    registrationDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    status?: StringFilter<"GeneralEvent"> | string
+    isPublished?: BoolFilter<"GeneralEvent"> | boolean
+    isFeatured?: BoolFilter<"GeneralEvent"> | boolean
+    targetAudience?: StringNullableFilter<"GeneralEvent"> | string | null
+    requirements?: StringNullableFilter<"GeneralEvent"> | string | null
+    agenda?: StringNullableFilter<"GeneralEvent"> | string | null
+    speakers?: JsonNullableFilter<"GeneralEvent">
+    tags?: StringNullableListFilter<"GeneralEvent">
+    contactEmail?: StringNullableFilter<"GeneralEvent"> | string | null
+    contactPhone?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    customFields?: JsonNullableFilter<"GeneralEvent">
+    earlyBirdDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    earlyBirdFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    publishedAt?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    publishedBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    registrationFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    registrationFormConfig?: JsonNullableFilter<"GeneralEvent">
+    requiresPayment?: BoolFilter<"GeneralEvent"> | boolean
+    EventRegistration?: EventRegistrationListRelationFilter
+  }
+
+  export type GeneralEventOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrderInput | SortOrder
+    maxParticipants?: SortOrderInput | SortOrder
+    registrationDeadline?: SortOrderInput | SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrderInput | SortOrder
+    requirements?: SortOrderInput | SortOrder
+    agenda?: SortOrderInput | SortOrder
+    speakers?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    contactEmail?: SortOrderInput | SortOrder
+    contactPhone?: SortOrderInput | SortOrder
+    createdBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customFields?: SortOrderInput | SortOrder
+    earlyBirdDeadline?: SortOrderInput | SortOrder
+    earlyBirdFee?: SortOrderInput | SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    publishedBy?: SortOrderInput | SortOrder
+    registrationFee?: SortOrderInput | SortOrder
+    registrationFormConfig?: SortOrderInput | SortOrder
+    requiresPayment?: SortOrder
+    EventRegistration?: EventRegistrationOrderByRelationAggregateInput
+  }
+
+  export type GeneralEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    OR?: GeneralEventWhereInput[]
+    NOT?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    title?: StringFilter<"GeneralEvent"> | string
+    description?: StringFilter<"GeneralEvent"> | string
+    category?: StringFilter<"GeneralEvent"> | string
+    eventDate?: DateTimeFilter<"GeneralEvent"> | Date | string
+    eventTime?: StringFilter<"GeneralEvent"> | string
+    location?: StringFilter<"GeneralEvent"> | string
+    image?: StringNullableFilter<"GeneralEvent"> | string | null
+    maxParticipants?: IntNullableFilter<"GeneralEvent"> | number | null
+    registrationDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    status?: StringFilter<"GeneralEvent"> | string
+    isPublished?: BoolFilter<"GeneralEvent"> | boolean
+    isFeatured?: BoolFilter<"GeneralEvent"> | boolean
+    targetAudience?: StringNullableFilter<"GeneralEvent"> | string | null
+    requirements?: StringNullableFilter<"GeneralEvent"> | string | null
+    agenda?: StringNullableFilter<"GeneralEvent"> | string | null
+    speakers?: JsonNullableFilter<"GeneralEvent">
+    tags?: StringNullableListFilter<"GeneralEvent">
+    contactEmail?: StringNullableFilter<"GeneralEvent"> | string | null
+    contactPhone?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    customFields?: JsonNullableFilter<"GeneralEvent">
+    earlyBirdDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    earlyBirdFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    publishedAt?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    publishedBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    registrationFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    registrationFormConfig?: JsonNullableFilter<"GeneralEvent">
+    requiresPayment?: BoolFilter<"GeneralEvent"> | boolean
+    EventRegistration?: EventRegistrationListRelationFilter
+  }, "id">
+
+  export type GeneralEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrderInput | SortOrder
+    maxParticipants?: SortOrderInput | SortOrder
+    registrationDeadline?: SortOrderInput | SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrderInput | SortOrder
+    requirements?: SortOrderInput | SortOrder
+    agenda?: SortOrderInput | SortOrder
+    speakers?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    contactEmail?: SortOrderInput | SortOrder
+    contactPhone?: SortOrderInput | SortOrder
+    createdBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customFields?: SortOrderInput | SortOrder
+    earlyBirdDeadline?: SortOrderInput | SortOrder
+    earlyBirdFee?: SortOrderInput | SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    publishedBy?: SortOrderInput | SortOrder
+    registrationFee?: SortOrderInput | SortOrder
+    registrationFormConfig?: SortOrderInput | SortOrder
+    requiresPayment?: SortOrder
+    _count?: GeneralEventCountOrderByAggregateInput
+    _avg?: GeneralEventAvgOrderByAggregateInput
+    _max?: GeneralEventMaxOrderByAggregateInput
+    _min?: GeneralEventMinOrderByAggregateInput
+    _sum?: GeneralEventSumOrderByAggregateInput
+  }
+
+  export type GeneralEventScalarWhereWithAggregatesInput = {
+    AND?: GeneralEventScalarWhereWithAggregatesInput | GeneralEventScalarWhereWithAggregatesInput[]
+    OR?: GeneralEventScalarWhereWithAggregatesInput[]
+    NOT?: GeneralEventScalarWhereWithAggregatesInput | GeneralEventScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GeneralEvent"> | number
+    title?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    description?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    category?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    eventDate?: DateTimeWithAggregatesFilter<"GeneralEvent"> | Date | string
+    eventTime?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    location?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    image?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    maxParticipants?: IntNullableWithAggregatesFilter<"GeneralEvent"> | number | null
+    registrationDeadline?: DateTimeNullableWithAggregatesFilter<"GeneralEvent"> | Date | string | null
+    status?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    isPublished?: BoolWithAggregatesFilter<"GeneralEvent"> | boolean
+    isFeatured?: BoolWithAggregatesFilter<"GeneralEvent"> | boolean
+    targetAudience?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    requirements?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    agenda?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    speakers?: JsonNullableWithAggregatesFilter<"GeneralEvent">
+    tags?: StringNullableListFilter<"GeneralEvent">
+    contactEmail?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    contactPhone?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    createdBy?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"GeneralEvent"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GeneralEvent"> | Date | string
+    customFields?: JsonNullableWithAggregatesFilter<"GeneralEvent">
+    earlyBirdDeadline?: DateTimeNullableWithAggregatesFilter<"GeneralEvent"> | Date | string | null
+    earlyBirdFee?: FloatNullableWithAggregatesFilter<"GeneralEvent"> | number | null
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"GeneralEvent"> | Date | string | null
+    publishedBy?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    registrationFee?: FloatNullableWithAggregatesFilter<"GeneralEvent"> | number | null
+    registrationFormConfig?: JsonNullableWithAggregatesFilter<"GeneralEvent">
+    requiresPayment?: BoolWithAggregatesFilter<"GeneralEvent"> | boolean
+  }
+
+  export type ProgressReportWhereInput = {
+    AND?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    OR?: ProgressReportWhereInput[]
+    NOT?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    id?: IntFilter<"ProgressReport"> | number
+    studentId?: IntFilter<"ProgressReport"> | number
+    teacherId?: IntFilter<"ProgressReport"> | number
+    reportDate?: DateTimeFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableFilter<"ProgressReport"> | string | null
+    publications?: StringNullableFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    isVisible?: BoolFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableFilter<"ProgressReport"> | string | null
+    status?: StringFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    subject?: StringNullableFilter<"ProgressReport"> | string | null
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+  }
+
+  export type ProgressReportOrderByWithRelationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrderInput | SortOrder
+    publications?: SortOrderInput | SortOrder
+    nextSteps?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    attendanceRate?: SortOrderInput | SortOrder
+    classParticipation?: SortOrderInput | SortOrder
+    homeworkCompletion?: SortOrderInput | SortOrder
+    improvementAreas?: SortOrderInput | SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrderInput | SortOrder
+    progressRating?: SortOrderInput | SortOrder
+    recommendations?: SortOrderInput | SortOrder
+    reportPeriod?: SortOrderInput | SortOrder
+    skillsImproved?: SortOrderInput | SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrderInput | SortOrder
+    subject?: SortOrderInput | SortOrder
+    Student?: StudentOrderByWithRelationInput
+    Teacher?: TeacherOrderByWithRelationInput
+  }
+
+  export type ProgressReportWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    OR?: ProgressReportWhereInput[]
+    NOT?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    studentId?: IntFilter<"ProgressReport"> | number
+    teacherId?: IntFilter<"ProgressReport"> | number
+    reportDate?: DateTimeFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableFilter<"ProgressReport"> | string | null
+    publications?: StringNullableFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    isVisible?: BoolFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableFilter<"ProgressReport"> | string | null
+    status?: StringFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    subject?: StringNullableFilter<"ProgressReport"> | string | null
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+  }, "id">
+
+  export type ProgressReportOrderByWithAggregationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrderInput | SortOrder
+    publications?: SortOrderInput | SortOrder
+    nextSteps?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    attendanceRate?: SortOrderInput | SortOrder
+    classParticipation?: SortOrderInput | SortOrder
+    homeworkCompletion?: SortOrderInput | SortOrder
+    improvementAreas?: SortOrderInput | SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrderInput | SortOrder
+    progressRating?: SortOrderInput | SortOrder
+    recommendations?: SortOrderInput | SortOrder
+    reportPeriod?: SortOrderInput | SortOrder
+    skillsImproved?: SortOrderInput | SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrderInput | SortOrder
+    subject?: SortOrderInput | SortOrder
+    _count?: ProgressReportCountOrderByAggregateInput
+    _avg?: ProgressReportAvgOrderByAggregateInput
+    _max?: ProgressReportMaxOrderByAggregateInput
+    _min?: ProgressReportMinOrderByAggregateInput
+    _sum?: ProgressReportSumOrderByAggregateInput
+  }
+
+  export type ProgressReportScalarWhereWithAggregatesInput = {
+    AND?: ProgressReportScalarWhereWithAggregatesInput | ProgressReportScalarWhereWithAggregatesInput[]
+    OR?: ProgressReportScalarWhereWithAggregatesInput[]
+    NOT?: ProgressReportScalarWhereWithAggregatesInput | ProgressReportScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ProgressReport"> | number
+    studentId?: IntWithAggregatesFilter<"ProgressReport"> | number
+    teacherId?: IntWithAggregatesFilter<"ProgressReport"> | number
+    reportDate?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringWithAggregatesFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    publications?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableWithAggregatesFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableWithAggregatesFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    isVisible?: BoolWithAggregatesFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableWithAggregatesFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    status?: StringWithAggregatesFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    subject?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+  }
+
   export type WebinarRegistrationCreateInput = {
     email: string
     parentName: string
@@ -36859,6 +41983,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -36876,6 +42001,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -36892,6 +42018,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -36909,6 +42036,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -36963,6 +42091,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -36990,6 +42119,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -37014,6 +42144,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -37041,6 +42172,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -39085,6 +44217,614 @@ export namespace Prisma {
     department?: StringFieldUpdateOperationsInput | string
   }
 
+  export type EventRegistrationCreateInput = {
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+    GeneralEvent: GeneralEventCreateNestedOneWithoutEventRegistrationInput
+  }
+
+  export type EventRegistrationUncheckedCreateInput = {
+    id?: number
+    eventId: number
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationUpdateInput = {
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    GeneralEvent?: GeneralEventUpdateOneRequiredWithoutEventRegistrationNestedInput
+  }
+
+  export type EventRegistrationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    eventId?: IntFieldUpdateOperationsInput | number
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationCreateManyInput = {
+    id?: number
+    eventId: number
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationUpdateManyMutationInput = {
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    eventId?: IntFieldUpdateOperationsInput | number
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type GeneralEventCreateInput = {
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+    EventRegistration?: EventRegistrationCreateNestedManyWithoutGeneralEventInput
+  }
+
+  export type GeneralEventUncheckedCreateInput = {
+    id?: number
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+    EventRegistration?: EventRegistrationUncheckedCreateNestedManyWithoutGeneralEventInput
+  }
+
+  export type GeneralEventUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    EventRegistration?: EventRegistrationUpdateManyWithoutGeneralEventNestedInput
+  }
+
+  export type GeneralEventUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    EventRegistration?: EventRegistrationUncheckedUpdateManyWithoutGeneralEventNestedInput
+  }
+
+  export type GeneralEventCreateManyInput = {
+    id?: number
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+  }
+
+  export type GeneralEventUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type GeneralEventUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ProgressReportCreateInput = {
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
+    Student: StudentCreateNestedOneWithoutProgressReportInput
+    Teacher: TeacherCreateNestedOneWithoutProgressReportInput
+  }
+
+  export type ProgressReportUncheckedCreateInput = {
+    id?: number
+    studentId: number
+    teacherId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
+  }
+
+  export type ProgressReportUpdateInput = {
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    Student?: StudentUpdateOneRequiredWithoutProgressReportNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutProgressReportNestedInput
+  }
+
+  export type ProgressReportUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProgressReportCreateManyInput = {
+    id?: number
+    studentId: number
+    teacherId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
+  }
+
+  export type ProgressReportUpdateManyMutationInput = {
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProgressReportUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -39393,6 +45133,12 @@ export namespace Prisma {
     isNot?: MentorWhereInput | null
   }
 
+  export type ProgressReportListRelationFilter = {
+    every?: ProgressReportWhereInput
+    some?: ProgressReportWhereInput
+    none?: ProgressReportWhereInput
+  }
+
   export type ResourceListRelationFilter = {
     every?: ResourceWhereInput
     some?: ResourceWhereInput
@@ -39416,6 +45162,10 @@ export namespace Prisma {
   }
 
   export type ClassScheduleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProgressReportOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -40920,6 +46670,351 @@ export namespace Prisma {
     displayOrder?: SortOrder
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type GeneralEventScalarRelationFilter = {
+    is?: GeneralEventWhereInput
+    isNot?: GeneralEventWhereInput
+  }
+
+  export type EventRegistrationEventIdStudentEmailCompoundUniqueInput = {
+    eventId: number
+    studentEmail: string
+  }
+
+  export type EventRegistrationCountOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrder
+    studentGrade?: SortOrder
+    schoolName?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrder
+    paymentAmount?: SortOrder
+    specialRequirements?: SortOrder
+    howDidYouHear?: SortOrder
+    notes?: SortOrder
+    checkedInAt?: SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrder
+    certificateIssued?: SortOrder
+    customFieldResponses?: SortOrder
+    paymentMethod?: SortOrder
+    transactionId?: SortOrder
+  }
+
+  export type EventRegistrationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    paymentAmount?: SortOrder
+  }
+
+  export type EventRegistrationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrder
+    studentGrade?: SortOrder
+    schoolName?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrder
+    paymentAmount?: SortOrder
+    specialRequirements?: SortOrder
+    howDidYouHear?: SortOrder
+    notes?: SortOrder
+    checkedInAt?: SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrder
+    certificateIssued?: SortOrder
+    paymentMethod?: SortOrder
+    transactionId?: SortOrder
+  }
+
+  export type EventRegistrationMinOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrder
+    studentGrade?: SortOrder
+    schoolName?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrder
+    paymentAmount?: SortOrder
+    specialRequirements?: SortOrder
+    howDidYouHear?: SortOrder
+    notes?: SortOrder
+    checkedInAt?: SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrder
+    certificateIssued?: SortOrder
+    paymentMethod?: SortOrder
+    transactionId?: SortOrder
+  }
+
+  export type EventRegistrationSumOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    paymentAmount?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type EventRegistrationListRelationFilter = {
+    every?: EventRegistrationWhereInput
+    some?: EventRegistrationWhereInput
+    none?: EventRegistrationWhereInput
+  }
+
+  export type EventRegistrationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GeneralEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrder
+    maxParticipants?: SortOrder
+    registrationDeadline?: SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrder
+    requirements?: SortOrder
+    agenda?: SortOrder
+    speakers?: SortOrder
+    tags?: SortOrder
+    contactEmail?: SortOrder
+    contactPhone?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customFields?: SortOrder
+    earlyBirdDeadline?: SortOrder
+    earlyBirdFee?: SortOrder
+    publishedAt?: SortOrder
+    publishedBy?: SortOrder
+    registrationFee?: SortOrder
+    registrationFormConfig?: SortOrder
+    requiresPayment?: SortOrder
+  }
+
+  export type GeneralEventAvgOrderByAggregateInput = {
+    id?: SortOrder
+    maxParticipants?: SortOrder
+    earlyBirdFee?: SortOrder
+    registrationFee?: SortOrder
+  }
+
+  export type GeneralEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrder
+    maxParticipants?: SortOrder
+    registrationDeadline?: SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrder
+    requirements?: SortOrder
+    agenda?: SortOrder
+    contactEmail?: SortOrder
+    contactPhone?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    earlyBirdDeadline?: SortOrder
+    earlyBirdFee?: SortOrder
+    publishedAt?: SortOrder
+    publishedBy?: SortOrder
+    registrationFee?: SortOrder
+    requiresPayment?: SortOrder
+  }
+
+  export type GeneralEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrder
+    maxParticipants?: SortOrder
+    registrationDeadline?: SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrder
+    requirements?: SortOrder
+    agenda?: SortOrder
+    contactEmail?: SortOrder
+    contactPhone?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    earlyBirdDeadline?: SortOrder
+    earlyBirdFee?: SortOrder
+    publishedAt?: SortOrder
+    publishedBy?: SortOrder
+    registrationFee?: SortOrder
+    requiresPayment?: SortOrder
+  }
+
+  export type GeneralEventSumOrderByAggregateInput = {
+    id?: SortOrder
+    maxParticipants?: SortOrder
+    earlyBirdFee?: SortOrder
+    registrationFee?: SortOrder
+  }
+
+  export type ProgressReportCountOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrder
+    publications?: SortOrder
+    nextSteps?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    attendanceRate?: SortOrder
+    classParticipation?: SortOrder
+    homeworkCompletion?: SortOrder
+    improvementAreas?: SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrder
+    progressRating?: SortOrder
+    recommendations?: SortOrder
+    reportPeriod?: SortOrder
+    skillsImproved?: SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrder
+    subject?: SortOrder
+  }
+
+  export type ProgressReportAvgOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    attendanceRate?: SortOrder
+    homeworkCompletion?: SortOrder
+    progressRating?: SortOrder
+  }
+
+  export type ProgressReportMaxOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrder
+    publications?: SortOrder
+    nextSteps?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    attendanceRate?: SortOrder
+    classParticipation?: SortOrder
+    homeworkCompletion?: SortOrder
+    improvementAreas?: SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrder
+    progressRating?: SortOrder
+    recommendations?: SortOrder
+    reportPeriod?: SortOrder
+    skillsImproved?: SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrder
+    subject?: SortOrder
+  }
+
+  export type ProgressReportMinOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrder
+    publications?: SortOrder
+    nextSteps?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    attendanceRate?: SortOrder
+    classParticipation?: SortOrder
+    homeworkCompletion?: SortOrder
+    improvementAreas?: SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrder
+    progressRating?: SortOrder
+    recommendations?: SortOrder
+    reportPeriod?: SortOrder
+    skillsImproved?: SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrder
+    subject?: SortOrder
+  }
+
+  export type ProgressReportSumOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    attendanceRate?: SortOrder
+    homeworkCompletion?: SortOrder
+    progressRating?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -40968,6 +47063,13 @@ export namespace Prisma {
     connect?: MentorWhereUniqueInput
   }
 
+  export type ProgressReportCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput> | ProgressReportCreateWithoutTeacherInput[] | ProgressReportUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutTeacherInput | ProgressReportCreateOrConnectWithoutTeacherInput[]
+    createMany?: ProgressReportCreateManyTeacherInputEnvelope
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+  }
+
   export type ResourceCreateNestedManyWithoutTeacherInput = {
     create?: XOR<ResourceCreateWithoutTeacherInput, ResourceUncheckedCreateWithoutTeacherInput> | ResourceCreateWithoutTeacherInput[] | ResourceUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: ResourceCreateOrConnectWithoutTeacherInput | ResourceCreateOrConnectWithoutTeacherInput[]
@@ -41007,6 +47109,13 @@ export namespace Prisma {
     create?: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
     connectOrCreate?: MentorCreateOrConnectWithoutTeacherInput
     connect?: MentorWhereUniqueInput
+  }
+
+  export type ProgressReportUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput> | ProgressReportCreateWithoutTeacherInput[] | ProgressReportUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutTeacherInput | ProgressReportCreateOrConnectWithoutTeacherInput[]
+    createMany?: ProgressReportCreateManyTeacherInputEnvelope
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
   }
 
   export type ResourceUncheckedCreateNestedManyWithoutTeacherInput = {
@@ -41071,6 +47180,20 @@ export namespace Prisma {
     delete?: MentorWhereInput | boolean
     connect?: MentorWhereUniqueInput
     update?: XOR<XOR<MentorUpdateToOneWithWhereWithoutTeacherInput, MentorUpdateWithoutTeacherInput>, MentorUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type ProgressReportUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput> | ProgressReportCreateWithoutTeacherInput[] | ProgressReportUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutTeacherInput | ProgressReportCreateOrConnectWithoutTeacherInput[]
+    upsert?: ProgressReportUpsertWithWhereUniqueWithoutTeacherInput | ProgressReportUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: ProgressReportCreateManyTeacherInputEnvelope
+    set?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    disconnect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    delete?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    update?: ProgressReportUpdateWithWhereUniqueWithoutTeacherInput | ProgressReportUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: ProgressReportUpdateManyWithWhereWithoutTeacherInput | ProgressReportUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
   }
 
   export type ResourceUpdateManyWithoutTeacherNestedInput = {
@@ -41153,6 +47276,20 @@ export namespace Prisma {
     update?: XOR<XOR<MentorUpdateToOneWithWhereWithoutTeacherInput, MentorUpdateWithoutTeacherInput>, MentorUncheckedUpdateWithoutTeacherInput>
   }
 
+  export type ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput> | ProgressReportCreateWithoutTeacherInput[] | ProgressReportUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutTeacherInput | ProgressReportCreateOrConnectWithoutTeacherInput[]
+    upsert?: ProgressReportUpsertWithWhereUniqueWithoutTeacherInput | ProgressReportUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: ProgressReportCreateManyTeacherInputEnvelope
+    set?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    disconnect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    delete?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    update?: ProgressReportUpdateWithWhereUniqueWithoutTeacherInput | ProgressReportUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: ProgressReportUpdateManyWithWhereWithoutTeacherInput | ProgressReportUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+  }
+
   export type ResourceUncheckedUpdateManyWithoutTeacherNestedInput = {
     create?: XOR<ResourceCreateWithoutTeacherInput, ResourceUncheckedCreateWithoutTeacherInput> | ResourceCreateWithoutTeacherInput[] | ResourceUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: ResourceCreateOrConnectWithoutTeacherInput | ResourceCreateOrConnectWithoutTeacherInput[]
@@ -41223,6 +47360,13 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
   }
 
+  export type ProgressReportCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput> | ProgressReportCreateWithoutStudentInput[] | ProgressReportUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
+    createMany?: ProgressReportCreateManyStudentInputEnvelope
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+  }
+
   export type ParentAccountCreateNestedOneWithoutStudentsInput = {
     create?: XOR<ParentAccountCreateWithoutStudentsInput, ParentAccountUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: ParentAccountCreateOrConnectWithoutStudentsInput
@@ -41290,6 +47434,13 @@ export namespace Prisma {
     connectOrCreate?: PaymentCreateOrConnectWithoutStudentInput | PaymentCreateOrConnectWithoutStudentInput[]
     createMany?: PaymentCreateManyStudentInputEnvelope
     connect?: PaymentWhereUniqueInput | PaymentWhereUniqueInput[]
+  }
+
+  export type ProgressReportUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput> | ProgressReportCreateWithoutStudentInput[] | ProgressReportUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
+    createMany?: ProgressReportCreateManyStudentInputEnvelope
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
   }
 
   export type StudentResourceUncheckedCreateNestedManyWithoutStudentInput = {
@@ -41381,6 +47532,20 @@ export namespace Prisma {
     update?: PaymentUpdateWithWhereUniqueWithoutStudentInput | PaymentUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: PaymentUpdateManyWithWhereWithoutStudentInput | PaymentUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+  }
+
+  export type ProgressReportUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput> | ProgressReportCreateWithoutStudentInput[] | ProgressReportUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
+    upsert?: ProgressReportUpsertWithWhereUniqueWithoutStudentInput | ProgressReportUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ProgressReportCreateManyStudentInputEnvelope
+    set?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    disconnect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    delete?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    update?: ProgressReportUpdateWithWhereUniqueWithoutStudentInput | ProgressReportUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ProgressReportUpdateManyWithWhereWithoutStudentInput | ProgressReportUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
   }
 
   export type ParentAccountUpdateOneWithoutStudentsNestedInput = {
@@ -41525,6 +47690,20 @@ export namespace Prisma {
     update?: PaymentUpdateWithWhereUniqueWithoutStudentInput | PaymentUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: PaymentUpdateManyWithWhereWithoutStudentInput | PaymentUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: PaymentScalarWhereInput | PaymentScalarWhereInput[]
+  }
+
+  export type ProgressReportUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput> | ProgressReportCreateWithoutStudentInput[] | ProgressReportUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
+    upsert?: ProgressReportUpsertWithWhereUniqueWithoutStudentInput | ProgressReportUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ProgressReportCreateManyStudentInputEnvelope
+    set?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    disconnect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    delete?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+    update?: ProgressReportUpdateWithWhereUniqueWithoutStudentInput | ProgressReportUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ProgressReportUpdateManyWithWhereWithoutStudentInput | ProgressReportUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
   }
 
   export type StudentResourceUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -42220,6 +48399,107 @@ export namespace Prisma {
     update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutMentorProfileInput, TeacherUpdateWithoutMentorProfileInput>, TeacherUncheckedUpdateWithoutMentorProfileInput>
   }
 
+  export type GeneralEventCreateNestedOneWithoutEventRegistrationInput = {
+    create?: XOR<GeneralEventCreateWithoutEventRegistrationInput, GeneralEventUncheckedCreateWithoutEventRegistrationInput>
+    connectOrCreate?: GeneralEventCreateOrConnectWithoutEventRegistrationInput
+    connect?: GeneralEventWhereUniqueInput
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type GeneralEventUpdateOneRequiredWithoutEventRegistrationNestedInput = {
+    create?: XOR<GeneralEventCreateWithoutEventRegistrationInput, GeneralEventUncheckedCreateWithoutEventRegistrationInput>
+    connectOrCreate?: GeneralEventCreateOrConnectWithoutEventRegistrationInput
+    upsert?: GeneralEventUpsertWithoutEventRegistrationInput
+    connect?: GeneralEventWhereUniqueInput
+    update?: XOR<XOR<GeneralEventUpdateToOneWithWhereWithoutEventRegistrationInput, GeneralEventUpdateWithoutEventRegistrationInput>, GeneralEventUncheckedUpdateWithoutEventRegistrationInput>
+  }
+
+  export type GeneralEventCreatetagsInput = {
+    set: string[]
+  }
+
+  export type EventRegistrationCreateNestedManyWithoutGeneralEventInput = {
+    create?: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput> | EventRegistrationCreateWithoutGeneralEventInput[] | EventRegistrationUncheckedCreateWithoutGeneralEventInput[]
+    connectOrCreate?: EventRegistrationCreateOrConnectWithoutGeneralEventInput | EventRegistrationCreateOrConnectWithoutGeneralEventInput[]
+    createMany?: EventRegistrationCreateManyGeneralEventInputEnvelope
+    connect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+  }
+
+  export type EventRegistrationUncheckedCreateNestedManyWithoutGeneralEventInput = {
+    create?: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput> | EventRegistrationCreateWithoutGeneralEventInput[] | EventRegistrationUncheckedCreateWithoutGeneralEventInput[]
+    connectOrCreate?: EventRegistrationCreateOrConnectWithoutGeneralEventInput | EventRegistrationCreateOrConnectWithoutGeneralEventInput[]
+    createMany?: EventRegistrationCreateManyGeneralEventInputEnvelope
+    connect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+  }
+
+  export type GeneralEventUpdatetagsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type EventRegistrationUpdateManyWithoutGeneralEventNestedInput = {
+    create?: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput> | EventRegistrationCreateWithoutGeneralEventInput[] | EventRegistrationUncheckedCreateWithoutGeneralEventInput[]
+    connectOrCreate?: EventRegistrationCreateOrConnectWithoutGeneralEventInput | EventRegistrationCreateOrConnectWithoutGeneralEventInput[]
+    upsert?: EventRegistrationUpsertWithWhereUniqueWithoutGeneralEventInput | EventRegistrationUpsertWithWhereUniqueWithoutGeneralEventInput[]
+    createMany?: EventRegistrationCreateManyGeneralEventInputEnvelope
+    set?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    disconnect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    delete?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    connect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    update?: EventRegistrationUpdateWithWhereUniqueWithoutGeneralEventInput | EventRegistrationUpdateWithWhereUniqueWithoutGeneralEventInput[]
+    updateMany?: EventRegistrationUpdateManyWithWhereWithoutGeneralEventInput | EventRegistrationUpdateManyWithWhereWithoutGeneralEventInput[]
+    deleteMany?: EventRegistrationScalarWhereInput | EventRegistrationScalarWhereInput[]
+  }
+
+  export type EventRegistrationUncheckedUpdateManyWithoutGeneralEventNestedInput = {
+    create?: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput> | EventRegistrationCreateWithoutGeneralEventInput[] | EventRegistrationUncheckedCreateWithoutGeneralEventInput[]
+    connectOrCreate?: EventRegistrationCreateOrConnectWithoutGeneralEventInput | EventRegistrationCreateOrConnectWithoutGeneralEventInput[]
+    upsert?: EventRegistrationUpsertWithWhereUniqueWithoutGeneralEventInput | EventRegistrationUpsertWithWhereUniqueWithoutGeneralEventInput[]
+    createMany?: EventRegistrationCreateManyGeneralEventInputEnvelope
+    set?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    disconnect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    delete?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    connect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    update?: EventRegistrationUpdateWithWhereUniqueWithoutGeneralEventInput | EventRegistrationUpdateWithWhereUniqueWithoutGeneralEventInput[]
+    updateMany?: EventRegistrationUpdateManyWithWhereWithoutGeneralEventInput | EventRegistrationUpdateManyWithWhereWithoutGeneralEventInput[]
+    deleteMany?: EventRegistrationScalarWhereInput | EventRegistrationScalarWhereInput[]
+  }
+
+  export type StudentCreateNestedOneWithoutProgressReportInput = {
+    create?: XOR<StudentCreateWithoutProgressReportInput, StudentUncheckedCreateWithoutProgressReportInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutProgressReportInput
+    connect?: StudentWhereUniqueInput
+  }
+
+  export type TeacherCreateNestedOneWithoutProgressReportInput = {
+    create?: XOR<TeacherCreateWithoutProgressReportInput, TeacherUncheckedCreateWithoutProgressReportInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutProgressReportInput
+    connect?: TeacherWhereUniqueInput
+  }
+
+  export type StudentUpdateOneRequiredWithoutProgressReportNestedInput = {
+    create?: XOR<StudentCreateWithoutProgressReportInput, StudentUncheckedCreateWithoutProgressReportInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutProgressReportInput
+    upsert?: StudentUpsertWithoutProgressReportInput
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutProgressReportInput, StudentUpdateWithoutProgressReportInput>, StudentUncheckedUpdateWithoutProgressReportInput>
+  }
+
+  export type TeacherUpdateOneRequiredWithoutProgressReportNestedInput = {
+    create?: XOR<TeacherCreateWithoutProgressReportInput, TeacherUncheckedCreateWithoutProgressReportInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutProgressReportInput
+    upsert?: TeacherUpsertWithoutProgressReportInput
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutProgressReportInput, TeacherUpdateWithoutProgressReportInput>, TeacherUncheckedUpdateWithoutProgressReportInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -42467,6 +48747,22 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
   export type AssignmentCreateWithoutTeacherInput = {
     title: string
     description: string
@@ -42595,6 +48891,65 @@ export namespace Prisma {
   export type MentorCreateOrConnectWithoutTeacherInput = {
     where: MentorWhereUniqueInput
     create: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type ProgressReportCreateWithoutTeacherInput = {
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
+    Student: StudentCreateNestedOneWithoutProgressReportInput
+  }
+
+  export type ProgressReportUncheckedCreateWithoutTeacherInput = {
+    id?: number
+    studentId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
+  }
+
+  export type ProgressReportCreateOrConnectWithoutTeacherInput = {
+    where: ProgressReportWhereUniqueInput
+    create: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type ProgressReportCreateManyTeacherInputEnvelope = {
+    data: ProgressReportCreateManyTeacherInput | ProgressReportCreateManyTeacherInput[]
+    skipDuplicates?: boolean
   }
 
   export type ResourceCreateWithoutTeacherInput = {
@@ -42811,6 +49166,51 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     department?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProgressReportUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: ProgressReportWhereUniqueInput
+    update: XOR<ProgressReportUpdateWithoutTeacherInput, ProgressReportUncheckedUpdateWithoutTeacherInput>
+    create: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type ProgressReportUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: ProgressReportWhereUniqueInput
+    data: XOR<ProgressReportUpdateWithoutTeacherInput, ProgressReportUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type ProgressReportUpdateManyWithWhereWithoutTeacherInput = {
+    where: ProgressReportScalarWhereInput
+    data: XOR<ProgressReportUpdateManyMutationInput, ProgressReportUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type ProgressReportScalarWhereInput = {
+    AND?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+    OR?: ProgressReportScalarWhereInput[]
+    NOT?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+    id?: IntFilter<"ProgressReport"> | number
+    studentId?: IntFilter<"ProgressReport"> | number
+    teacherId?: IntFilter<"ProgressReport"> | number
+    reportDate?: DateTimeFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableFilter<"ProgressReport"> | string | null
+    publications?: StringNullableFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    isVisible?: BoolFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableFilter<"ProgressReport"> | string | null
+    status?: StringFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    subject?: StringNullableFilter<"ProgressReport"> | string | null
   }
 
   export type ResourceUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -43074,6 +49474,65 @@ export namespace Prisma {
 
   export type PaymentCreateManyStudentInputEnvelope = {
     data: PaymentCreateManyStudentInput | PaymentCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProgressReportCreateWithoutStudentInput = {
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
+    Teacher: TeacherCreateNestedOneWithoutProgressReportInput
+  }
+
+  export type ProgressReportUncheckedCreateWithoutStudentInput = {
+    id?: number
+    teacherId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
+  }
+
+  export type ProgressReportCreateOrConnectWithoutStudentInput = {
+    where: ProgressReportWhereUniqueInput
+    create: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ProgressReportCreateManyStudentInputEnvelope = {
+    data: ProgressReportCreateManyStudentInput | ProgressReportCreateManyStudentInput[]
     skipDuplicates?: boolean
   }
 
@@ -43362,6 +49821,22 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Payment"> | Date | string
   }
 
+  export type ProgressReportUpsertWithWhereUniqueWithoutStudentInput = {
+    where: ProgressReportWhereUniqueInput
+    update: XOR<ProgressReportUpdateWithoutStudentInput, ProgressReportUncheckedUpdateWithoutStudentInput>
+    create: XOR<ProgressReportCreateWithoutStudentInput, ProgressReportUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ProgressReportUpdateWithWhereUniqueWithoutStudentInput = {
+    where: ProgressReportWhereUniqueInput
+    data: XOR<ProgressReportUpdateWithoutStudentInput, ProgressReportUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type ProgressReportUpdateManyWithWhereWithoutStudentInput = {
+    where: ProgressReportScalarWhereInput
+    data: XOR<ProgressReportUpdateManyMutationInput, ProgressReportUncheckedUpdateManyWithoutStudentInput>
+  }
+
   export type ParentAccountUpsertWithoutStudentsInput = {
     update: XOR<ParentAccountUpdateWithoutStudentsInput, ParentAccountUncheckedUpdateWithoutStudentsInput>
     create: XOR<ParentAccountCreateWithoutStudentsInput, ParentAccountUncheckedCreateWithoutStudentsInput>
@@ -43554,6 +50029,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -43580,6 +50056,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -43602,6 +50079,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
   }
@@ -43618,6 +50096,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -43655,6 +50134,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -43681,6 +50161,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -43709,6 +50190,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
   }
@@ -43725,6 +50207,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -43745,6 +50228,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -43771,6 +50255,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -43793,6 +50278,7 @@ export namespace Prisma {
     isActivated?: boolean
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -43809,6 +50295,7 @@ export namespace Prisma {
     isActivated?: boolean
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -43906,6 +50393,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -43932,6 +50420,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -43960,6 +50449,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -43976,6 +50466,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -44080,6 +50571,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -44106,6 +50598,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
@@ -44191,6 +50684,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -44217,6 +50711,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
@@ -44239,6 +50734,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -44265,6 +50761,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -44359,6 +50856,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -44385,6 +50883,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -44440,6 +50939,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -44456,6 +50956,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -44526,6 +51027,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -44542,6 +51044,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -44797,6 +51300,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -44823,6 +51327,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
@@ -44910,6 +51415,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -44936,6 +51442,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
@@ -44959,6 +51466,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -44985,6 +51493,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
@@ -45049,6 +51558,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -45075,6 +51585,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
@@ -45140,6 +51651,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -45156,6 +51668,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -45225,6 +51738,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -45241,6 +51755,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -45261,6 +51776,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -45287,6 +51803,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -45309,6 +51826,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -45325,6 +51843,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -45362,6 +51881,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -45388,6 +51908,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -45416,6 +51937,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -45432,6 +51954,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -45477,6 +52000,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -45503,6 +52027,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -45572,6 +52097,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -45598,6 +52124,7 @@ export namespace Prisma {
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -45622,6 +52149,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
@@ -45648,6 +52176,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -45687,6 +52216,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
@@ -45713,6 +52243,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -45736,6 +52267,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -45761,6 +52293,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -45824,6 +52357,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -45840,6 +52374,7 @@ export namespace Prisma {
     isActivated?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -45871,6 +52406,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -45887,6 +52423,467 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type GeneralEventCreateWithoutEventRegistrationInput = {
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+  }
+
+  export type GeneralEventUncheckedCreateWithoutEventRegistrationInput = {
+    id?: number
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+  }
+
+  export type GeneralEventCreateOrConnectWithoutEventRegistrationInput = {
+    where: GeneralEventWhereUniqueInput
+    create: XOR<GeneralEventCreateWithoutEventRegistrationInput, GeneralEventUncheckedCreateWithoutEventRegistrationInput>
+  }
+
+  export type GeneralEventUpsertWithoutEventRegistrationInput = {
+    update: XOR<GeneralEventUpdateWithoutEventRegistrationInput, GeneralEventUncheckedUpdateWithoutEventRegistrationInput>
+    create: XOR<GeneralEventCreateWithoutEventRegistrationInput, GeneralEventUncheckedCreateWithoutEventRegistrationInput>
+    where?: GeneralEventWhereInput
+  }
+
+  export type GeneralEventUpdateToOneWithWhereWithoutEventRegistrationInput = {
+    where?: GeneralEventWhereInput
+    data: XOR<GeneralEventUpdateWithoutEventRegistrationInput, GeneralEventUncheckedUpdateWithoutEventRegistrationInput>
+  }
+
+  export type GeneralEventUpdateWithoutEventRegistrationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type GeneralEventUncheckedUpdateWithoutEventRegistrationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type EventRegistrationCreateWithoutGeneralEventInput = {
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationUncheckedCreateWithoutGeneralEventInput = {
+    id?: number
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationCreateOrConnectWithoutGeneralEventInput = {
+    where: EventRegistrationWhereUniqueInput
+    create: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput>
+  }
+
+  export type EventRegistrationCreateManyGeneralEventInputEnvelope = {
+    data: EventRegistrationCreateManyGeneralEventInput | EventRegistrationCreateManyGeneralEventInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EventRegistrationUpsertWithWhereUniqueWithoutGeneralEventInput = {
+    where: EventRegistrationWhereUniqueInput
+    update: XOR<EventRegistrationUpdateWithoutGeneralEventInput, EventRegistrationUncheckedUpdateWithoutGeneralEventInput>
+    create: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput>
+  }
+
+  export type EventRegistrationUpdateWithWhereUniqueWithoutGeneralEventInput = {
+    where: EventRegistrationWhereUniqueInput
+    data: XOR<EventRegistrationUpdateWithoutGeneralEventInput, EventRegistrationUncheckedUpdateWithoutGeneralEventInput>
+  }
+
+  export type EventRegistrationUpdateManyWithWhereWithoutGeneralEventInput = {
+    where: EventRegistrationScalarWhereInput
+    data: XOR<EventRegistrationUpdateManyMutationInput, EventRegistrationUncheckedUpdateManyWithoutGeneralEventInput>
+  }
+
+  export type EventRegistrationScalarWhereInput = {
+    AND?: EventRegistrationScalarWhereInput | EventRegistrationScalarWhereInput[]
+    OR?: EventRegistrationScalarWhereInput[]
+    NOT?: EventRegistrationScalarWhereInput | EventRegistrationScalarWhereInput[]
+    id?: IntFilter<"EventRegistration"> | number
+    eventId?: IntFilter<"EventRegistration"> | number
+    studentName?: StringFilter<"EventRegistration"> | string
+    studentEmail?: StringFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableFilter<"EventRegistration"> | string | null
+    parentName?: StringFilter<"EventRegistration"> | string
+    parentEmail?: StringFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableFilter<"EventRegistration"> | string | null
+    notes?: StringNullableFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableFilter<"EventRegistration">
+    paymentMethod?: StringNullableFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableFilter<"EventRegistration"> | string | null
+  }
+
+  export type StudentCreateWithoutProgressReportInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutProgressReportInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutProgressReportInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutProgressReportInput, StudentUncheckedCreateWithoutProgressReportInput>
+  }
+
+  export type TeacherCreateWithoutProgressReportInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherUncheckedCreateWithoutProgressReportInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherCreateOrConnectWithoutProgressReportInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutProgressReportInput, TeacherUncheckedCreateWithoutProgressReportInput>
+  }
+
+  export type StudentUpsertWithoutProgressReportInput = {
+    update: XOR<StudentUpdateWithoutProgressReportInput, StudentUncheckedUpdateWithoutProgressReportInput>
+    create: XOR<StudentCreateWithoutProgressReportInput, StudentUncheckedCreateWithoutProgressReportInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutProgressReportInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutProgressReportInput, StudentUncheckedUpdateWithoutProgressReportInput>
+  }
+
+  export type StudentUpdateWithoutProgressReportInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutProgressReportInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type TeacherUpsertWithoutProgressReportInput = {
+    update: XOR<TeacherUpdateWithoutProgressReportInput, TeacherUncheckedUpdateWithoutProgressReportInput>
+    create: XOR<TeacherCreateWithoutProgressReportInput, TeacherUncheckedCreateWithoutProgressReportInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutProgressReportInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutProgressReportInput, TeacherUncheckedUpdateWithoutProgressReportInput>
+  }
+
+  export type TeacherUpdateWithoutProgressReportInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutProgressReportInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -45923,6 +52920,31 @@ export namespace Prisma {
     studentId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type ProgressReportCreateManyTeacherInput = {
+    id?: number
+    studentId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
   }
 
   export type ResourceCreateManyTeacherInput = {
@@ -46056,6 +53078,80 @@ export namespace Prisma {
     studentId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressReportUpdateWithoutTeacherInput = {
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    Student?: StudentUpdateOneRequiredWithoutProgressReportNestedInput
+  }
+
+  export type ProgressReportUncheckedUpdateWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProgressReportUncheckedUpdateManyWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResourceUpdateWithoutTeacherInput = {
@@ -46218,6 +53314,31 @@ export namespace Prisma {
     paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt: Date | string
+  }
+
+  export type ProgressReportCreateManyStudentInput = {
+    id?: number
+    teacherId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
   }
 
   export type StudentResourceCreateManyStudentInput = {
@@ -46469,6 +53590,80 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressReportUpdateWithoutStudentInput = {
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    Teacher?: TeacherUpdateOneRequiredWithoutProgressReportNestedInput
+  }
+
+  export type ProgressReportUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProgressReportUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StudentResourceUpdateWithoutStudentInput = {
@@ -46917,6 +54112,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -46942,6 +54138,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -46963,6 +54160,113 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type EventRegistrationCreateManyGeneralEventInput = {
+    id?: number
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationUpdateWithoutGeneralEventInput = {
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationUncheckedUpdateWithoutGeneralEventInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationUncheckedUpdateManyWithoutGeneralEventInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

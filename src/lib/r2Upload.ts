@@ -36,7 +36,7 @@ export interface UploadResult {
 /**
  * Upload a file to Cloudflare R2
  * @param file - File buffer to upload
- * @param fileName - Original file name
+ * @param fileName - File name (can include path like "event-images/file.jpg")
  * @param contentType - MIME type of the file
  * @returns Upload result with public URL, file name, and size
  */
@@ -54,13 +54,9 @@ export async function uploadToR2(
       throw new Error('R2_PUBLIC_URL is not configured');
     }
 
-    // Generate unique file name with timestamp
-    const timestamp = Date.now();
-    const uniqueFileName = `payment-receipts/${timestamp}-${fileName}`;
-
     console.log('Uploading to R2:', {
       bucket: R2_BUCKET_NAME,
-      key: uniqueFileName,
+      key: fileName,
       size: file.length,
       contentType,
     });
@@ -68,7 +64,7 @@ export async function uploadToR2(
     // Upload to R2
     const command = new PutObjectCommand({
       Bucket: R2_BUCKET_NAME,
-      Key: uniqueFileName,
+      Key: fileName,
       Body: file,
       ContentType: contentType,
     });
@@ -76,7 +72,7 @@ export async function uploadToR2(
     await r2Client.send(command);
 
     // Construct public URL
-    const fileUrl = `${R2_PUBLIC_URL}/${uniqueFileName}`;
+    const fileUrl = `${R2_PUBLIC_URL}/${fileName}`;
 
     console.log('Upload successful:', fileUrl);
 

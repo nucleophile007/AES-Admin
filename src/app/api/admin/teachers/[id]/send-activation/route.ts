@@ -75,8 +75,18 @@ export async function POST(
       });
       
       if (!emailRes.ok) {
-        const emailError = await emailRes.json();
-        throw new Error(emailError.error || 'Email service failed');
+        const contentType = emailRes.headers.get('content-type');
+        let errorMessage = 'Email service failed';
+        if (contentType && contentType.includes('application/json')) {
+          const emailError = await emailRes.json();
+          errorMessage = emailError.error || errorMessage;
+        } else {
+          const emailErrorText = await emailRes.text();
+          errorMessage = emailErrorText || errorMessage;
+          // Log the full HTML/text response for debugging
+          console.error('Email API error response:', emailErrorText);
+        }
+        throw new Error(errorMessage);
       }
       
       const emailResult = await emailRes.json();
