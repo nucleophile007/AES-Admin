@@ -5,12 +5,13 @@ import prisma from "@/lib/prisma"
 // GET /api/events/:id - Get single published event
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const event = await prisma.generalEvent.findUnique({
       where: {
-        id: parseInt(params.id),
+        id: parseInt(id),
         isPublished: true, // Only published events
       },
       select: {

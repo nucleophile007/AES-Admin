@@ -314,17 +314,33 @@ model Payment {
 }
 
 model Testimonial {
-  id         Int      @id @default(autoincrement())
-  studentId  Int
-  content    String
-  authorType String
-  authorName String
-  isApproved Boolean  @default(false)
-  isVisible  Boolean  @default(true)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime
-  videoLink  String?
-  Student    Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  id                      Int       @id @default(autoincrement())
+  studentId               Int?
+  content                 String?
+  authorType              String?
+  authorName              String?
+  isApproved              Boolean   @default(false)
+  isVisible               Boolean   @default(true)
+  createdAt               DateTime  @default(now())
+  updatedAt               DateTime
+  videoLink               String?
+  beforeAfterExpectations String?
+  consentToFeature        Boolean   @default(false)
+  experienceDescription   String?
+  grade                   String?
+  programs                String[]
+  rating                  Int?
+  school                  String?
+  studentInfo             String?
+  studentName             String?
+  submittedAt             DateTime?
+  successStory            String?
+  beforeAfterApproved     Boolean   @default(false)
+  contentApproved         Boolean   @default(false)
+  programsApproved        Boolean   @default(false)
+  ratingApproved          Boolean   @default(false)
+  successStoryApproved    Boolean   @default(false)
+  Student                 Student?  @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }
 
 model SecurityLog {
@@ -357,16 +373,40 @@ model FailedActivation {
 }
 
 model Feedback {
-  id          Int       @id @default(autoincrement())
-  parentId    Int
-  parentName  String
-  parentEmail String
-  message     String
-  rating      Int?
-  status      String    @default("new")
-  response    String?
-  createdAt   DateTime  @default(now())
-  reviewedAt  DateTime?
+  id                        Int       @id @default(autoincrement())
+  parentId                  Int?
+  parentName                String?
+  parentEmail               String?
+  status                    String    @default("new")
+  response                  String?
+  createdAt                 DateTime  @default(now())
+  reviewedAt                DateTime?
+  beforeAfterApproved       Boolean   @default(false)
+  beforeAfterExpectations   String?
+  childExperience           String?
+  childExperienceApproved   Boolean   @default(false)
+  consentToFeature          Boolean   @default(false)
+  favoriteThingToShare      String?
+  grade                     String?
+  heardAbout                String?
+  isApproved                Boolean   @default(false)
+  isVisible                 Boolean   @default(true)
+  overallExperience         String?
+  overallExperienceApproved Boolean   @default(false)
+  programs                  String[]
+  programsApproved          Boolean   @default(false)
+  schedulingRating          Int?
+  schedulingRatingApproved  Boolean   @default(false)
+  school                    String?
+  studentName               String?
+  studentRating             Int?
+  studentRatingApproved     Boolean   @default(false)
+  submittedAt               DateTime?
+  successStory              String?
+  successStoryApproved      Boolean   @default(false)
+  suggestions               String?
+  updatedAt                 DateTime  @updatedAt
+  wouldRecommend            String?
 
   @@index([createdAt])
   @@index([parentId])
@@ -432,16 +472,49 @@ model Mentor {
   experience   String?
   specialties  String[]
   achievements String[]
+  department   String   @default("General")
   bio          String
   isActive     Boolean  @default(true)
   displayOrder Int      @default(0)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-  department   String   @default("General")
   teacher      Teacher? @relation(fields: [teacherId], references: [id])
 
   @@index([isActive, displayOrder])
   @@index([teacherId])
+}
+
+model ProgressReport {
+  id                 Int      @id @default(autoincrement())
+  studentId          Int
+  teacherId          Int
+  reportDate         DateTime @default(now())
+  overallProgress    String
+  milestonesAchieved String?
+  publications       String?
+  nextSteps          String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime
+  attendanceRate     Float?
+  classParticipation String?
+  homeworkCompletion Float?
+  improvementAreas   String?
+  isVisible          Boolean  @default(true)
+  parentNotes        String?
+  progressRating     Int?
+  recommendations    String?
+  reportPeriod       String?
+  skillsImproved     String?
+  status             String   @default("draft")
+  strengthsAreas     String?
+  subject            String?
+  Student            Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  Teacher            Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+
+  @@index([studentId])
+  @@index([teacherId])
+  @@index([reportDate])
+  @@index([status])
 }
 
 model EventRegistration {
@@ -521,35 +594,35 @@ model GeneralEvent {
   @@index([status])
 }
 
-model ProgressReport {
-  id                 Int      @id @default(autoincrement())
-  studentId          Int
-  teacherId          Int
-  reportDate         DateTime @default(now())
-  overallProgress    String
-  milestonesAchieved String?
-  publications       String?
-  nextSteps          String?
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime
-  attendanceRate     Float?
-  classParticipation String?
-  homeworkCompletion Float?
-  improvementAreas   String?
-  isVisible          Boolean  @default(true)
-  parentNotes        String?
-  progressRating     Int?
-  recommendations    String?
-  reportPeriod       String?
-  skillsImproved     String?
-  status             String   @default("draft")
-  strengthsAreas     String?
-  subject            String?
-  Student            Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  Teacher            Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+model AccessRequest {
+  id         String   @id
+  name       String
+  email      String
+  createdAt  DateTime @default(now())
+  approved   Boolean  @default(false)
+  phone      String?
+  reason     String?
+  researchId String
+  Research   Research @relation(fields: [researchId], references: [id])
+}
 
-  @@index([reportDate])
-  @@index([status])
-  @@index([studentId])
-  @@index([teacherId])
+model Research {
+  id            String          @id
+  title         String
+  slug          String          @unique
+  description   String?
+  published   Boolean   @default(true)
+  author      String?
+  pdfPath       String?
+  createdAt     DateTime        @default(now())
+  AccessRequest AccessRequest[]
+  Slide         Slide[]
+}
+
+model Slide {
+  id         String   @id @default(cuid())
+  researchId String
+  imagePath  String
+  order      Int
+  Research   Research @relation(fields: [researchId], references: [id])
 }

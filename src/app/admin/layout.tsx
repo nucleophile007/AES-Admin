@@ -1,16 +1,14 @@
 import { redirect } from 'next/navigation'
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/lib/authOptions'
+import { auth } from '@/auth'
 import { allowedEmails } from '@/lib/adminConfig'
-import type { Session } from 'next-auth'
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const session = await getServerSession(authOptions) as Session | null
-  
+  const session = await auth()
+
   if (!session?.user?.email) {
     redirect('/')
   }

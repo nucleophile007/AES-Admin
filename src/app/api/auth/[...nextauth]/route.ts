@@ -1,6 +1,5 @@
-import NextAuth from 'next-auth/next'
-import { authOptions } from '@/lib/authOptions'
+import { handlers } from "@/auth"
 
-const handler = NextAuth(authOptions)
-
-export { handler as GET, handler as POST }
+// Fallback for build time when env vars might not be available
+export const GET = handlers?.GET || (() => new Response('Not configured', { status: 500 }))
+export const POST = handlers?.POST || (() => new Response('Not configured', { status: 500 }))

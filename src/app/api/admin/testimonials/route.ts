@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/lib/authOptions'
+import { auth } from '@/auth'
 import prisma from '@/lib/prisma'
 
 // @ts-ignore - Prisma extension types issue with testimonial model
@@ -9,7 +8,7 @@ const db = prisma as any
 // GET /api/admin/testimonials - Fetch all testimonials
 export async function GET() {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
 
     if (!session || session.user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -32,14 +31,25 @@ export async function GET() {
         },
       },
       orderBy: {
-        createdAt: 'desc',
+        submittedAt: 'desc',
       },
     })
 
-    // Transform Student to student for frontend compatibility
+    // Transform and merge Student relation with direct fields
     const transformedTestimonials = testimonials.map((testimonial: any) => ({
       ...testimonial,
-      student: testimonial.Student,
+      // Use linked Student data if available, otherwise use direct fields
+      student: testimonial.Student || {
+        id: null,
+        name: testimonial.studentName || 'N/A',
+        email: null,
+        grade: testimonial.grade || 'N/A',
+        schoolName: testimonial.school || 'N/A',
+        parentName: null,
+        parentEmail: null,
+        parentPhone: null,
+        program: testimonial.programs?.join(', ') || 'N/A',
+      },
       Student: undefined, // Remove uppercase field
     }))
 
@@ -56,7 +66,7 @@ export async function GET() {
 // PATCH /api/admin/testimonials - Update testimonial approval status
 export async function PATCH(request: Request) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
 
     if (!session || session.user.role !== 'admin') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -109,6 +119,42 @@ export async function PATCH(request: Request) {
     console.error('Error updating testimonial:', error)
     return NextResponse.json(
       { error: 'Failed to update testimonial' },
+      { status: 500 }
+    )
+  }
+}
+
+// DELETE /api/admin/testimonials - Delete a testimonial
+export async function DELETE(request: Request) {
+  try {
+    const session = await auth()
+
+    if (!session || session.user.role !== 'admin') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { searchParams } = new URL(request.url)
+    const testimonialId = searchParams.get('id')
+
+    if (!testimonialId) {
+      return NextResponse.json(
+        { error: 'testimonialId is required' },
+        { status: 400 }
+      )
+    }
+
+    await db.testimonial.delete({
+      where: { id: parseInt(testimonialId) },
+    })
+
+    return NextResponse.json({
+      success: true,
+      message: 'Testimonial deleted successfully',
+    })
+  } catch (error) {
+    console.error('Error deleting testimonial:', error)
+    return NextResponse.json(
+      { error: 'Failed to delete testimonial' },
       { status: 500 }
     )
   }

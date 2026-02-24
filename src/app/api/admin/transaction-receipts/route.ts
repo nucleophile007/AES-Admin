@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from '@/auth'
 import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // GET /api/admin/transaction-receipts
 export async function GET(request: NextRequest) {
   // Verify admin permissions
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return NextResponse.json({ error: "Not authorized" }, { status: 403 })
   }
