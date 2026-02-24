@@ -1,9 +1,8 @@
 import { auth } from "@/auth"
 import { NextResponse } from "next/server"
 import { allowedEmails } from "./src/lib/adminConfig"
-import type { NextRequest } from "next/server"
 
-export default auth((req) => {
+export default auth((req: any) => {
   const { pathname } = req.nextUrl
 
   // Allow access to auth and unauthorized pages without authentication

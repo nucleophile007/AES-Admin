@@ -1,26 +1,27 @@
 // src/app/api/admin/events/[id]/feature/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from '@/auth'
+import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // POST /api/admin/events/:id/feature - Feature event on homepage
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.email) {
+    const session = await auth()
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    const { id } = await params
     const body = await req.json()
     const isFeatured = body.isFeatured ?? true
 
     // If featuring, ensure event is published
     const currentEvent = await prisma.generalEvent.findUnique({
-      where: { id: parseInt(params.id) },
+      where: { id: parseInt(id) },
       select: { isPublished: true },
     })
 
@@ -32,7 +33,7 @@ export async function POST(
     }
 
     const event = await prisma.generalEvent.update({
-      where: { id: parseInt(params.id) },
+      where: { id: parseInt(id) },
       data: {
         isFeatured,
         updatedAt: new Date(),

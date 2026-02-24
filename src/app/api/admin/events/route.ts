@@ -1,14 +1,14 @@
 // src/app/api/admin/events/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from '@/auth'
+import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // GET /api/admin/events - List all events with filters
 export async function GET(req: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.email) {
+    const session = await auth()
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -88,8 +88,8 @@ export async function GET(req: NextRequest) {
 // POST /api/admin/events - Create new event
 export async function POST(req: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
-    if (!session?.user?.email) {
+    const session = await auth()
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 

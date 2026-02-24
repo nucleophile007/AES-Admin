@@ -5,10 +5,11 @@ import prisma from "@/lib/prisma"
 // POST /api/events/:id/register - Register for an event (public)
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const eventId = parseInt(params.id)
+    const { id } = await params
+    const eventId = parseInt(id)
     const body = await req.json()
 
     // Validate event exists and is published

@@ -596,94 +596,6 @@ exports.Prisma.SlideScalarFieldEnum = {
   order: 'order'
 };
 
-exports.Prisma.EventRegistrationScalarFieldEnum = {
-  id: 'id',
-  eventId: 'eventId',
-  studentName: 'studentName',
-  studentEmail: 'studentEmail',
-  studentPhone: 'studentPhone',
-  studentGrade: 'studentGrade',
-  schoolName: 'schoolName',
-  parentName: 'parentName',
-  parentEmail: 'parentEmail',
-  parentPhone: 'parentPhone',
-  registrationStatus: 'registrationStatus',
-  paymentStatus: 'paymentStatus',
-  paymentAmount: 'paymentAmount',
-  specialRequirements: 'specialRequirements',
-  howDidYouHear: 'howDidYouHear',
-  notes: 'notes',
-  checkedInAt: 'checkedInAt',
-  attendanceConfirmed: 'attendanceConfirmed',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  adminNotes: 'adminNotes',
-  certificateIssued: 'certificateIssued',
-  customFieldResponses: 'customFieldResponses',
-  paymentMethod: 'paymentMethod',
-  transactionId: 'transactionId'
-};
-
-exports.Prisma.GeneralEventScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  category: 'category',
-  eventDate: 'eventDate',
-  eventTime: 'eventTime',
-  location: 'location',
-  image: 'image',
-  maxParticipants: 'maxParticipants',
-  registrationDeadline: 'registrationDeadline',
-  status: 'status',
-  isPublished: 'isPublished',
-  isFeatured: 'isFeatured',
-  targetAudience: 'targetAudience',
-  requirements: 'requirements',
-  agenda: 'agenda',
-  speakers: 'speakers',
-  tags: 'tags',
-  contactEmail: 'contactEmail',
-  contactPhone: 'contactPhone',
-  createdBy: 'createdBy',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  customFields: 'customFields',
-  earlyBirdDeadline: 'earlyBirdDeadline',
-  earlyBirdFee: 'earlyBirdFee',
-  publishedAt: 'publishedAt',
-  publishedBy: 'publishedBy',
-  registrationFee: 'registrationFee',
-  registrationFormConfig: 'registrationFormConfig',
-  requiresPayment: 'requiresPayment'
-};
-
-exports.Prisma.ProgressReportScalarFieldEnum = {
-  id: 'id',
-  studentId: 'studentId',
-  teacherId: 'teacherId',
-  reportDate: 'reportDate',
-  overallProgress: 'overallProgress',
-  milestonesAchieved: 'milestonesAchieved',
-  publications: 'publications',
-  nextSteps: 'nextSteps',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  attendanceRate: 'attendanceRate',
-  classParticipation: 'classParticipation',
-  homeworkCompletion: 'homeworkCompletion',
-  improvementAreas: 'improvementAreas',
-  isVisible: 'isVisible',
-  parentNotes: 'parentNotes',
-  progressRating: 'progressRating',
-  recommendations: 'recommendations',
-  reportPeriod: 'reportPeriod',
-  skillsImproved: 'skillsImproved',
-  status: 'status',
-  strengthsAreas: 'strengthsAreas',
-  subject: 'subject'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -760,7 +672,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/mac/AES-Admin/generated/prisma",
+      "value": "D:\\AES-Admin\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -769,12 +681,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/mac/AES-Admin/prisma/schema.prisma",
+    "sourceFilePath": "D:\\AES-Admin\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -788,6 +700,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -836,8 +749,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
-path.join(process.cwd(), "generated/prisma/libquery_engine-darwin-arm64.dylib.node")
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "generated/prisma/query_engine-windows.dll.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "generated/prisma/schema.prisma")
