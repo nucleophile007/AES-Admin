@@ -5,7 +5,7 @@ import db from '@/lib/prisma'
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions)
@@ -15,7 +15,8 @@ export async function POST(
     }
 
     const { section } = await request.json()
-    const testimonialId = parseInt(params.id)
+    const { id } = await params
+    const testimonialId = parseInt(id)
 
     if (!section) {
       return NextResponse.json({ error: 'Section is required' }, { status: 400 })

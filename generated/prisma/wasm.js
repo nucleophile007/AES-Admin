@@ -380,11 +380,11 @@ exports.Prisma.TestimonialScalarFieldEnum = {
   studentName: 'studentName',
   submittedAt: 'submittedAt',
   successStory: 'successStory',
-  contentApproved: 'contentApproved',
-  ratingApproved: 'ratingApproved',
   beforeAfterApproved: 'beforeAfterApproved',
-  successStoryApproved: 'successStoryApproved',
-  programsApproved: 'programsApproved'
+  contentApproved: 'contentApproved',
+  programsApproved: 'programsApproved',
+  ratingApproved: 'ratingApproved',
+  successStoryApproved: 'successStoryApproved'
 };
 
 exports.Prisma.SecurityLogScalarFieldEnum = {
@@ -414,36 +414,36 @@ exports.Prisma.FeedbackScalarFieldEnum = {
   parentId: 'parentId',
   parentName: 'parentName',
   parentEmail: 'parentEmail',
-  studentName: 'studentName',
-  grade: 'grade',
-  school: 'school',
-  programs: 'programs',
-  heardAbout: 'heardAbout',
-  beforeAfterExpectations: 'beforeAfterExpectations',
-  childExperience: 'childExperience',
-  successStory: 'successStory',
-  overallExperience: 'overallExperience',
-  studentRating: 'studentRating',
-  schedulingRating: 'schedulingRating',
-  wouldRecommend: 'wouldRecommend',
-  consentToFeature: 'consentToFeature',
-  favoriteThingToShare: 'favoriteThingToShare',
-  suggestions: 'suggestions',
   status: 'status',
   response: 'response',
-  isApproved: 'isApproved',
-  isVisible: 'isVisible',
-  submittedAt: 'submittedAt',
   createdAt: 'createdAt',
   reviewedAt: 'reviewedAt',
-  updatedAt: 'updatedAt',
   beforeAfterApproved: 'beforeAfterApproved',
+  beforeAfterExpectations: 'beforeAfterExpectations',
+  childExperience: 'childExperience',
   childExperienceApproved: 'childExperienceApproved',
-  successStoryApproved: 'successStoryApproved',
+  consentToFeature: 'consentToFeature',
+  favoriteThingToShare: 'favoriteThingToShare',
+  grade: 'grade',
+  heardAbout: 'heardAbout',
+  isApproved: 'isApproved',
+  isVisible: 'isVisible',
+  overallExperience: 'overallExperience',
   overallExperienceApproved: 'overallExperienceApproved',
+  programs: 'programs',
   programsApproved: 'programsApproved',
+  schedulingRating: 'schedulingRating',
+  schedulingRatingApproved: 'schedulingRatingApproved',
+  school: 'school',
+  studentName: 'studentName',
+  studentRating: 'studentRating',
   studentRatingApproved: 'studentRatingApproved',
-  schedulingRatingApproved: 'schedulingRatingApproved'
+  submittedAt: 'submittedAt',
+  successStory: 'successStory',
+  successStoryApproved: 'successStoryApproved',
+  suggestions: 'suggestions',
+  updatedAt: 'updatedAt',
+  wouldRecommend: 'wouldRecommend'
 };
 
 exports.Prisma.ParentAccountScalarFieldEnum = {
@@ -516,7 +516,111 @@ exports.Prisma.ProgressReportScalarFieldEnum = {
   publications: 'publications',
   nextSteps: 'nextSteps',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  attendanceRate: 'attendanceRate',
+  classParticipation: 'classParticipation',
+  homeworkCompletion: 'homeworkCompletion',
+  improvementAreas: 'improvementAreas',
+  isVisible: 'isVisible',
+  parentNotes: 'parentNotes',
+  progressRating: 'progressRating',
+  recommendations: 'recommendations',
+  reportPeriod: 'reportPeriod',
+  skillsImproved: 'skillsImproved',
+  status: 'status',
+  strengthsAreas: 'strengthsAreas',
+  subject: 'subject'
+};
+
+exports.Prisma.EventRegistrationScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  studentName: 'studentName',
+  studentEmail: 'studentEmail',
+  studentPhone: 'studentPhone',
+  studentGrade: 'studentGrade',
+  schoolName: 'schoolName',
+  parentName: 'parentName',
+  parentEmail: 'parentEmail',
+  parentPhone: 'parentPhone',
+  registrationStatus: 'registrationStatus',
+  paymentStatus: 'paymentStatus',
+  paymentAmount: 'paymentAmount',
+  specialRequirements: 'specialRequirements',
+  howDidYouHear: 'howDidYouHear',
+  notes: 'notes',
+  checkedInAt: 'checkedInAt',
+  attendanceConfirmed: 'attendanceConfirmed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  adminNotes: 'adminNotes',
+  certificateIssued: 'certificateIssued',
+  customFieldResponses: 'customFieldResponses',
+  paymentMethod: 'paymentMethod',
+  transactionId: 'transactionId'
+};
+
+exports.Prisma.GeneralEventScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  eventDate: 'eventDate',
+  eventTime: 'eventTime',
+  location: 'location',
+  image: 'image',
+  maxParticipants: 'maxParticipants',
+  registrationDeadline: 'registrationDeadline',
+  status: 'status',
+  isPublished: 'isPublished',
+  isFeatured: 'isFeatured',
+  targetAudience: 'targetAudience',
+  requirements: 'requirements',
+  agenda: 'agenda',
+  speakers: 'speakers',
+  tags: 'tags',
+  contactEmail: 'contactEmail',
+  contactPhone: 'contactPhone',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  customFields: 'customFields',
+  earlyBirdDeadline: 'earlyBirdDeadline',
+  earlyBirdFee: 'earlyBirdFee',
+  publishedAt: 'publishedAt',
+  publishedBy: 'publishedBy',
+  registrationFee: 'registrationFee',
+  registrationFormConfig: 'registrationFormConfig',
+  requiresPayment: 'requiresPayment'
+};
+
+exports.Prisma.AccessRequestScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  createdAt: 'createdAt',
+  approved: 'approved',
+  phone: 'phone',
+  reason: 'reason',
+  researchId: 'researchId'
+};
+
+exports.Prisma.ResearchScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  published: 'published',
+  author: 'author',
+  pdfPath: 'pdfPath',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SlideScalarFieldEnum = {
+  id: 'id',
+  researchId: 'researchId',
+  imagePath: 'imagePath',
+  order: 'order'
 };
 
 exports.Prisma.SortOrder = {
@@ -577,7 +681,12 @@ exports.Prisma.ModelName = {
   TransactionReceipt: 'TransactionReceipt',
   PasswordResetRequest: 'PasswordResetRequest',
   Mentor: 'Mentor',
-  ProgressReport: 'ProgressReport'
+  ProgressReport: 'ProgressReport',
+  EventRegistration: 'EventRegistration',
+  GeneralEvent: 'GeneralEvent',
+  AccessRequest: 'AccessRequest',
+  Research: 'Research',
+  Slide: 'Slide'
 };
 
 /**

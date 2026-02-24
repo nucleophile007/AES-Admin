@@ -22,11 +22,19 @@
 
 // export default nextConfig;
 import type { NextConfig } from "next";
-import path from "path";
 
 const nextConfig: NextConfig = {
-  // ✅ MOVED OUT OF experimental IN NEXT 15
-  outputFileTracingRoot: path.join(__dirname),
+  // Exclude Windows system directories from output file tracing
+  outputFileTracingExcludes: {
+    '*': [
+      '**/node_modules/@swc/core-win32-x64-msvc/**',
+      '**/node_modules/@esbuild/win32-x64/**',
+      'C:/Users/*/Cookies/**',
+      'C:/Users/*/AppData/**',
+      'C:/Users/*/Application Data/**',
+      'C:/Users/*/Local Settings/**',
+    ],
+  },
 
   images: {
     remotePatterns: [
@@ -37,12 +45,48 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  webpack: (config) => {
+  // Empty Turbopack config to silence migration warning
+  turbopack: {},
+
+  webpack: (config, { isServer }) => {
     config.resolve.fallback = {
       fs: false,
       path: false,
       os: false,
     };
+    
+    // Prevent webpack from following symlinks and restrict module resolution
+    config.resolve.symlinks = false;
+    
+    // Restrict where webpack looks for modules
+    config.resolve.modules = ['node_modules', 'src'];
+    
+    // Add ignored patterns for the build process
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: [
+        '**/node_modules/**',
+        '**/.git/**',
+        '**/Cookies/**',
+        '**/AppData/**',
+        '**/Application Data/**',
+        '**/Local Settings/**',
+        '**/My Documents/**',
+        '**/NetHood/**',
+        '**/PrintHood/**',
+        '**/Recent/**',
+        '**/SendTo/**',
+        '**/Start Menu/**',
+        '**/Templates/**',
+      ],
+    };
+    
+    // Add snapshot options to prevent scanning outside project
+    if (config.snapshot) {
+      config.snapshot.managedPaths = [/^(.+?[\\/]node_modules[\\/])/];
+      config.snapshot.immutablePaths = [];
+    }
+    
     return config;
   },
 };

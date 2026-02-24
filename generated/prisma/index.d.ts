@@ -148,6 +148,31 @@ export type Mentor = $Result.DefaultSelection<Prisma.$MentorPayload>
  * 
  */
 export type ProgressReport = $Result.DefaultSelection<Prisma.$ProgressReportPayload>
+/**
+ * Model EventRegistration
+ * 
+ */
+export type EventRegistration = $Result.DefaultSelection<Prisma.$EventRegistrationPayload>
+/**
+ * Model GeneralEvent
+ * 
+ */
+export type GeneralEvent = $Result.DefaultSelection<Prisma.$GeneralEventPayload>
+/**
+ * Model AccessRequest
+ * 
+ */
+export type AccessRequest = $Result.DefaultSelection<Prisma.$AccessRequestPayload>
+/**
+ * Model Research
+ * 
+ */
+export type Research = $Result.DefaultSelection<Prisma.$ResearchPayload>
+/**
+ * Model Slide
+ * 
+ */
+export type Slide = $Result.DefaultSelection<Prisma.$SlidePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -536,6 +561,56 @@ export class PrismaClient<
     * ```
     */
   get progressReport(): Prisma.ProgressReportDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.eventRegistration`: Exposes CRUD operations for the **EventRegistration** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EventRegistrations
+    * const eventRegistrations = await prisma.eventRegistration.findMany()
+    * ```
+    */
+  get eventRegistration(): Prisma.EventRegistrationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.generalEvent`: Exposes CRUD operations for the **GeneralEvent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GeneralEvents
+    * const generalEvents = await prisma.generalEvent.findMany()
+    * ```
+    */
+  get generalEvent(): Prisma.GeneralEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.accessRequest`: Exposes CRUD operations for the **AccessRequest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AccessRequests
+    * const accessRequests = await prisma.accessRequest.findMany()
+    * ```
+    */
+  get accessRequest(): Prisma.AccessRequestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.research`: Exposes CRUD operations for the **Research** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Research
+    * const research = await prisma.research.findMany()
+    * ```
+    */
+  get research(): Prisma.ResearchDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.slide`: Exposes CRUD operations for the **Slide** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Slides
+    * const slides = await prisma.slide.findMany()
+    * ```
+    */
+  get slide(): Prisma.SlideDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1002,7 +1077,12 @@ export namespace Prisma {
     TransactionReceipt: 'TransactionReceipt',
     PasswordResetRequest: 'PasswordResetRequest',
     Mentor: 'Mentor',
-    ProgressReport: 'ProgressReport'
+    ProgressReport: 'ProgressReport',
+    EventRegistration: 'EventRegistration',
+    GeneralEvent: 'GeneralEvent',
+    AccessRequest: 'AccessRequest',
+    Research: 'Research',
+    Slide: 'Slide'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1021,7 +1101,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor" | "progressReport"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor" | "progressReport" | "eventRegistration" | "generalEvent" | "accessRequest" | "research" | "slide"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3023,6 +3103,376 @@ export namespace Prisma {
           }
         }
       }
+      EventRegistration: {
+        payload: Prisma.$EventRegistrationPayload<ExtArgs>
+        fields: Prisma.EventRegistrationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EventRegistrationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EventRegistrationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          findFirst: {
+            args: Prisma.EventRegistrationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EventRegistrationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          findMany: {
+            args: Prisma.EventRegistrationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>[]
+          }
+          create: {
+            args: Prisma.EventRegistrationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          createMany: {
+            args: Prisma.EventRegistrationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EventRegistrationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>[]
+          }
+          delete: {
+            args: Prisma.EventRegistrationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          update: {
+            args: Prisma.EventRegistrationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          deleteMany: {
+            args: Prisma.EventRegistrationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EventRegistrationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EventRegistrationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>[]
+          }
+          upsert: {
+            args: Prisma.EventRegistrationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EventRegistrationPayload>
+          }
+          aggregate: {
+            args: Prisma.EventRegistrationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEventRegistration>
+          }
+          groupBy: {
+            args: Prisma.EventRegistrationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EventRegistrationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EventRegistrationCountArgs<ExtArgs>
+            result: $Utils.Optional<EventRegistrationCountAggregateOutputType> | number
+          }
+        }
+      }
+      GeneralEvent: {
+        payload: Prisma.$GeneralEventPayload<ExtArgs>
+        fields: Prisma.GeneralEventFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GeneralEventFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GeneralEventFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          findFirst: {
+            args: Prisma.GeneralEventFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GeneralEventFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          findMany: {
+            args: Prisma.GeneralEventFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>[]
+          }
+          create: {
+            args: Prisma.GeneralEventCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          createMany: {
+            args: Prisma.GeneralEventCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GeneralEventCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>[]
+          }
+          delete: {
+            args: Prisma.GeneralEventDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          update: {
+            args: Prisma.GeneralEventUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          deleteMany: {
+            args: Prisma.GeneralEventDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GeneralEventUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GeneralEventUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>[]
+          }
+          upsert: {
+            args: Prisma.GeneralEventUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GeneralEventPayload>
+          }
+          aggregate: {
+            args: Prisma.GeneralEventAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGeneralEvent>
+          }
+          groupBy: {
+            args: Prisma.GeneralEventGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GeneralEventGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GeneralEventCountArgs<ExtArgs>
+            result: $Utils.Optional<GeneralEventCountAggregateOutputType> | number
+          }
+        }
+      }
+      AccessRequest: {
+        payload: Prisma.$AccessRequestPayload<ExtArgs>
+        fields: Prisma.AccessRequestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AccessRequestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AccessRequestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload>
+          }
+          findFirst: {
+            args: Prisma.AccessRequestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AccessRequestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload>
+          }
+          findMany: {
+            args: Prisma.AccessRequestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload>[]
+          }
+          create: {
+            args: Prisma.AccessRequestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload>
+          }
+          createMany: {
+            args: Prisma.AccessRequestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AccessRequestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload>[]
+          }
+          delete: {
+            args: Prisma.AccessRequestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload>
+          }
+          update: {
+            args: Prisma.AccessRequestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload>
+          }
+          deleteMany: {
+            args: Prisma.AccessRequestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AccessRequestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AccessRequestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload>[]
+          }
+          upsert: {
+            args: Prisma.AccessRequestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AccessRequestPayload>
+          }
+          aggregate: {
+            args: Prisma.AccessRequestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAccessRequest>
+          }
+          groupBy: {
+            args: Prisma.AccessRequestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AccessRequestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AccessRequestCountArgs<ExtArgs>
+            result: $Utils.Optional<AccessRequestCountAggregateOutputType> | number
+          }
+        }
+      }
+      Research: {
+        payload: Prisma.$ResearchPayload<ExtArgs>
+        fields: Prisma.ResearchFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ResearchFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ResearchFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload>
+          }
+          findFirst: {
+            args: Prisma.ResearchFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ResearchFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload>
+          }
+          findMany: {
+            args: Prisma.ResearchFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload>[]
+          }
+          create: {
+            args: Prisma.ResearchCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload>
+          }
+          createMany: {
+            args: Prisma.ResearchCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ResearchCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload>[]
+          }
+          delete: {
+            args: Prisma.ResearchDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload>
+          }
+          update: {
+            args: Prisma.ResearchUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload>
+          }
+          deleteMany: {
+            args: Prisma.ResearchDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ResearchUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ResearchUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload>[]
+          }
+          upsert: {
+            args: Prisma.ResearchUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResearchPayload>
+          }
+          aggregate: {
+            args: Prisma.ResearchAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateResearch>
+          }
+          groupBy: {
+            args: Prisma.ResearchGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ResearchGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ResearchCountArgs<ExtArgs>
+            result: $Utils.Optional<ResearchCountAggregateOutputType> | number
+          }
+        }
+      }
+      Slide: {
+        payload: Prisma.$SlidePayload<ExtArgs>
+        fields: Prisma.SlideFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SlideFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SlideFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
+          }
+          findFirst: {
+            args: Prisma.SlideFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SlideFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
+          }
+          findMany: {
+            args: Prisma.SlideFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload>[]
+          }
+          create: {
+            args: Prisma.SlideCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
+          }
+          createMany: {
+            args: Prisma.SlideCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SlideCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload>[]
+          }
+          delete: {
+            args: Prisma.SlideDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
+          }
+          update: {
+            args: Prisma.SlideUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
+          }
+          deleteMany: {
+            args: Prisma.SlideDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SlideUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SlideUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload>[]
+          }
+          upsert: {
+            args: Prisma.SlideUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
+          }
+          aggregate: {
+            args: Prisma.SlideAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSlide>
+          }
+          groupBy: {
+            args: Prisma.SlideGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SlideGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SlideCountArgs<ExtArgs>
+            result: $Utils.Optional<SlideCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3142,6 +3592,11 @@ export namespace Prisma {
     passwordResetRequest?: PasswordResetRequestOmit
     mentor?: MentorOmit
     progressReport?: ProgressReportOmit
+    eventRegistration?: EventRegistrationOmit
+    generalEvent?: GeneralEventOmit
+    accessRequest?: AccessRequestOmit
+    research?: ResearchOmit
+    slide?: SlideOmit
   }
 
   /* Types for Logging */
@@ -3575,6 +4030,77 @@ export namespace Prisma {
    */
   export type ParentAccountCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StudentWhereInput
+  }
+
+
+  /**
+   * Count Type GeneralEventCountOutputType
+   */
+
+  export type GeneralEventCountOutputType = {
+    EventRegistration: number
+  }
+
+  export type GeneralEventCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    EventRegistration?: boolean | GeneralEventCountOutputTypeCountEventRegistrationArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * GeneralEventCountOutputType without action
+   */
+  export type GeneralEventCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEventCountOutputType
+     */
+    select?: GeneralEventCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * GeneralEventCountOutputType without action
+   */
+  export type GeneralEventCountOutputTypeCountEventRegistrationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventRegistrationWhereInput
+  }
+
+
+  /**
+   * Count Type ResearchCountOutputType
+   */
+
+  export type ResearchCountOutputType = {
+    AccessRequest: number
+    Slide: number
+  }
+
+  export type ResearchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    AccessRequest?: boolean | ResearchCountOutputTypeCountAccessRequestArgs
+    Slide?: boolean | ResearchCountOutputTypeCountSlideArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ResearchCountOutputType without action
+   */
+  export type ResearchCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResearchCountOutputType
+     */
+    select?: ResearchCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ResearchCountOutputType without action
+   */
+  export type ResearchCountOutputTypeCountAccessRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccessRequestWhereInput
+  }
+
+  /**
+   * ResearchCountOutputType without action
+   */
+  export type ResearchCountOutputTypeCountSlideArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SlideWhereInput
   }
 
 
@@ -25033,11 +25559,11 @@ export namespace Prisma {
     studentName: string | null
     submittedAt: Date | null
     successStory: string | null
-    contentApproved: boolean | null
-    ratingApproved: boolean | null
     beforeAfterApproved: boolean | null
-    successStoryApproved: boolean | null
+    contentApproved: boolean | null
     programsApproved: boolean | null
+    ratingApproved: boolean | null
+    successStoryApproved: boolean | null
   }
 
   export type TestimonialMaxAggregateOutputType = {
@@ -25061,11 +25587,11 @@ export namespace Prisma {
     studentName: string | null
     submittedAt: Date | null
     successStory: string | null
-    contentApproved: boolean | null
-    ratingApproved: boolean | null
     beforeAfterApproved: boolean | null
-    successStoryApproved: boolean | null
+    contentApproved: boolean | null
     programsApproved: boolean | null
+    ratingApproved: boolean | null
+    successStoryApproved: boolean | null
   }
 
   export type TestimonialCountAggregateOutputType = {
@@ -25090,11 +25616,11 @@ export namespace Prisma {
     studentName: number
     submittedAt: number
     successStory: number
-    contentApproved: number
-    ratingApproved: number
     beforeAfterApproved: number
-    successStoryApproved: number
+    contentApproved: number
     programsApproved: number
+    ratingApproved: number
+    successStoryApproved: number
     _all: number
   }
 
@@ -25132,11 +25658,11 @@ export namespace Prisma {
     studentName?: true
     submittedAt?: true
     successStory?: true
-    contentApproved?: true
-    ratingApproved?: true
     beforeAfterApproved?: true
-    successStoryApproved?: true
+    contentApproved?: true
     programsApproved?: true
+    ratingApproved?: true
+    successStoryApproved?: true
   }
 
   export type TestimonialMaxAggregateInputType = {
@@ -25160,11 +25686,11 @@ export namespace Prisma {
     studentName?: true
     submittedAt?: true
     successStory?: true
-    contentApproved?: true
-    ratingApproved?: true
     beforeAfterApproved?: true
-    successStoryApproved?: true
+    contentApproved?: true
     programsApproved?: true
+    ratingApproved?: true
+    successStoryApproved?: true
   }
 
   export type TestimonialCountAggregateInputType = {
@@ -25189,11 +25715,11 @@ export namespace Prisma {
     studentName?: true
     submittedAt?: true
     successStory?: true
-    contentApproved?: true
-    ratingApproved?: true
     beforeAfterApproved?: true
-    successStoryApproved?: true
+    contentApproved?: true
     programsApproved?: true
+    ratingApproved?: true
+    successStoryApproved?: true
     _all?: true
   }
 
@@ -25305,11 +25831,11 @@ export namespace Prisma {
     studentName: string | null
     submittedAt: Date | null
     successStory: string | null
-    contentApproved: boolean
-    ratingApproved: boolean
     beforeAfterApproved: boolean
-    successStoryApproved: boolean
+    contentApproved: boolean
     programsApproved: boolean
+    ratingApproved: boolean
+    successStoryApproved: boolean
     _count: TestimonialCountAggregateOutputType | null
     _avg: TestimonialAvgAggregateOutputType | null
     _sum: TestimonialSumAggregateOutputType | null
@@ -25353,11 +25879,11 @@ export namespace Prisma {
     studentName?: boolean
     submittedAt?: boolean
     successStory?: boolean
-    contentApproved?: boolean
-    ratingApproved?: boolean
     beforeAfterApproved?: boolean
-    successStoryApproved?: boolean
+    contentApproved?: boolean
     programsApproved?: boolean
+    ratingApproved?: boolean
+    successStoryApproved?: boolean
     Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
@@ -25383,11 +25909,11 @@ export namespace Prisma {
     studentName?: boolean
     submittedAt?: boolean
     successStory?: boolean
-    contentApproved?: boolean
-    ratingApproved?: boolean
     beforeAfterApproved?: boolean
-    successStoryApproved?: boolean
+    contentApproved?: boolean
     programsApproved?: boolean
+    ratingApproved?: boolean
+    successStoryApproved?: boolean
     Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
@@ -25413,11 +25939,11 @@ export namespace Prisma {
     studentName?: boolean
     submittedAt?: boolean
     successStory?: boolean
-    contentApproved?: boolean
-    ratingApproved?: boolean
     beforeAfterApproved?: boolean
-    successStoryApproved?: boolean
+    contentApproved?: boolean
     programsApproved?: boolean
+    ratingApproved?: boolean
+    successStoryApproved?: boolean
     Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
@@ -25443,14 +25969,14 @@ export namespace Prisma {
     studentName?: boolean
     submittedAt?: boolean
     successStory?: boolean
-    contentApproved?: boolean
-    ratingApproved?: boolean
     beforeAfterApproved?: boolean
-    successStoryApproved?: boolean
+    contentApproved?: boolean
     programsApproved?: boolean
+    ratingApproved?: boolean
+    successStoryApproved?: boolean
   }
 
-  export type TestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "content" | "authorType" | "authorName" | "isApproved" | "isVisible" | "createdAt" | "updatedAt" | "videoLink" | "beforeAfterExpectations" | "consentToFeature" | "experienceDescription" | "grade" | "programs" | "rating" | "school" | "studentInfo" | "studentName" | "submittedAt" | "successStory" | "contentApproved" | "ratingApproved" | "beforeAfterApproved" | "successStoryApproved" | "programsApproved", ExtArgs["result"]["testimonial"]>
+  export type TestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "content" | "authorType" | "authorName" | "isApproved" | "isVisible" | "createdAt" | "updatedAt" | "videoLink" | "beforeAfterExpectations" | "consentToFeature" | "experienceDescription" | "grade" | "programs" | "rating" | "school" | "studentInfo" | "studentName" | "submittedAt" | "successStory" | "beforeAfterApproved" | "contentApproved" | "programsApproved" | "ratingApproved" | "successStoryApproved", ExtArgs["result"]["testimonial"]>
   export type TestimonialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }
@@ -25488,11 +26014,11 @@ export namespace Prisma {
       studentName: string | null
       submittedAt: Date | null
       successStory: string | null
-      contentApproved: boolean
-      ratingApproved: boolean
       beforeAfterApproved: boolean
-      successStoryApproved: boolean
+      contentApproved: boolean
       programsApproved: boolean
+      ratingApproved: boolean
+      successStoryApproved: boolean
     }, ExtArgs["result"]["testimonial"]>
     composites: {}
   }
@@ -25938,11 +26464,11 @@ export namespace Prisma {
     readonly studentName: FieldRef<"Testimonial", 'String'>
     readonly submittedAt: FieldRef<"Testimonial", 'DateTime'>
     readonly successStory: FieldRef<"Testimonial", 'String'>
-    readonly contentApproved: FieldRef<"Testimonial", 'Boolean'>
-    readonly ratingApproved: FieldRef<"Testimonial", 'Boolean'>
     readonly beforeAfterApproved: FieldRef<"Testimonial", 'Boolean'>
-    readonly successStoryApproved: FieldRef<"Testimonial", 'Boolean'>
+    readonly contentApproved: FieldRef<"Testimonial", 'Boolean'>
     readonly programsApproved: FieldRef<"Testimonial", 'Boolean'>
+    readonly ratingApproved: FieldRef<"Testimonial", 'Boolean'>
+    readonly successStoryApproved: FieldRef<"Testimonial", 'Boolean'>
   }
     
 
@@ -28523,15 +29049,15 @@ export namespace Prisma {
   export type FeedbackAvgAggregateOutputType = {
     id: number | null
     parentId: number | null
-    studentRating: number | null
     schedulingRating: number | null
+    studentRating: number | null
   }
 
   export type FeedbackSumAggregateOutputType = {
     id: number | null
     parentId: number | null
-    studentRating: number | null
     schedulingRating: number | null
+    studentRating: number | null
   }
 
   export type FeedbackMinAggregateOutputType = {
@@ -28539,35 +29065,35 @@ export namespace Prisma {
     parentId: number | null
     parentName: string | null
     parentEmail: string | null
-    studentName: string | null
-    grade: string | null
-    school: string | null
-    heardAbout: string | null
-    beforeAfterExpectations: string | null
-    childExperience: string | null
-    successStory: string | null
-    overallExperience: string | null
-    studentRating: number | null
-    schedulingRating: number | null
-    wouldRecommend: string | null
-    consentToFeature: boolean | null
-    favoriteThingToShare: string | null
-    suggestions: string | null
     status: string | null
     response: string | null
-    isApproved: boolean | null
-    isVisible: boolean | null
-    submittedAt: Date | null
     createdAt: Date | null
     reviewedAt: Date | null
-    updatedAt: Date | null
     beforeAfterApproved: boolean | null
+    beforeAfterExpectations: string | null
+    childExperience: string | null
     childExperienceApproved: boolean | null
-    successStoryApproved: boolean | null
+    consentToFeature: boolean | null
+    favoriteThingToShare: string | null
+    grade: string | null
+    heardAbout: string | null
+    isApproved: boolean | null
+    isVisible: boolean | null
+    overallExperience: string | null
     overallExperienceApproved: boolean | null
     programsApproved: boolean | null
-    studentRatingApproved: boolean | null
+    schedulingRating: number | null
     schedulingRatingApproved: boolean | null
+    school: string | null
+    studentName: string | null
+    studentRating: number | null
+    studentRatingApproved: boolean | null
+    submittedAt: Date | null
+    successStory: string | null
+    successStoryApproved: boolean | null
+    suggestions: string | null
+    updatedAt: Date | null
+    wouldRecommend: string | null
   }
 
   export type FeedbackMaxAggregateOutputType = {
@@ -28575,35 +29101,35 @@ export namespace Prisma {
     parentId: number | null
     parentName: string | null
     parentEmail: string | null
-    studentName: string | null
-    grade: string | null
-    school: string | null
-    heardAbout: string | null
-    beforeAfterExpectations: string | null
-    childExperience: string | null
-    successStory: string | null
-    overallExperience: string | null
-    studentRating: number | null
-    schedulingRating: number | null
-    wouldRecommend: string | null
-    consentToFeature: boolean | null
-    favoriteThingToShare: string | null
-    suggestions: string | null
     status: string | null
     response: string | null
-    isApproved: boolean | null
-    isVisible: boolean | null
-    submittedAt: Date | null
     createdAt: Date | null
     reviewedAt: Date | null
-    updatedAt: Date | null
     beforeAfterApproved: boolean | null
+    beforeAfterExpectations: string | null
+    childExperience: string | null
     childExperienceApproved: boolean | null
-    successStoryApproved: boolean | null
+    consentToFeature: boolean | null
+    favoriteThingToShare: string | null
+    grade: string | null
+    heardAbout: string | null
+    isApproved: boolean | null
+    isVisible: boolean | null
+    overallExperience: string | null
     overallExperienceApproved: boolean | null
     programsApproved: boolean | null
-    studentRatingApproved: boolean | null
+    schedulingRating: number | null
     schedulingRatingApproved: boolean | null
+    school: string | null
+    studentName: string | null
+    studentRating: number | null
+    studentRatingApproved: boolean | null
+    submittedAt: Date | null
+    successStory: string | null
+    successStoryApproved: boolean | null
+    suggestions: string | null
+    updatedAt: Date | null
+    wouldRecommend: string | null
   }
 
   export type FeedbackCountAggregateOutputType = {
@@ -28611,36 +29137,36 @@ export namespace Prisma {
     parentId: number
     parentName: number
     parentEmail: number
-    studentName: number
-    grade: number
-    school: number
-    programs: number
-    heardAbout: number
-    beforeAfterExpectations: number
-    childExperience: number
-    successStory: number
-    overallExperience: number
-    studentRating: number
-    schedulingRating: number
-    wouldRecommend: number
-    consentToFeature: number
-    favoriteThingToShare: number
-    suggestions: number
     status: number
     response: number
-    isApproved: number
-    isVisible: number
-    submittedAt: number
     createdAt: number
     reviewedAt: number
-    updatedAt: number
     beforeAfterApproved: number
+    beforeAfterExpectations: number
+    childExperience: number
     childExperienceApproved: number
-    successStoryApproved: number
+    consentToFeature: number
+    favoriteThingToShare: number
+    grade: number
+    heardAbout: number
+    isApproved: number
+    isVisible: number
+    overallExperience: number
     overallExperienceApproved: number
+    programs: number
     programsApproved: number
-    studentRatingApproved: number
+    schedulingRating: number
     schedulingRatingApproved: number
+    school: number
+    studentName: number
+    studentRating: number
+    studentRatingApproved: number
+    submittedAt: number
+    successStory: number
+    successStoryApproved: number
+    suggestions: number
+    updatedAt: number
+    wouldRecommend: number
     _all: number
   }
 
@@ -28648,15 +29174,15 @@ export namespace Prisma {
   export type FeedbackAvgAggregateInputType = {
     id?: true
     parentId?: true
-    studentRating?: true
     schedulingRating?: true
+    studentRating?: true
   }
 
   export type FeedbackSumAggregateInputType = {
     id?: true
     parentId?: true
-    studentRating?: true
     schedulingRating?: true
+    studentRating?: true
   }
 
   export type FeedbackMinAggregateInputType = {
@@ -28664,35 +29190,35 @@ export namespace Prisma {
     parentId?: true
     parentName?: true
     parentEmail?: true
-    studentName?: true
-    grade?: true
-    school?: true
-    heardAbout?: true
-    beforeAfterExpectations?: true
-    childExperience?: true
-    successStory?: true
-    overallExperience?: true
-    studentRating?: true
-    schedulingRating?: true
-    wouldRecommend?: true
-    consentToFeature?: true
-    favoriteThingToShare?: true
-    suggestions?: true
     status?: true
     response?: true
-    isApproved?: true
-    isVisible?: true
-    submittedAt?: true
     createdAt?: true
     reviewedAt?: true
-    updatedAt?: true
     beforeAfterApproved?: true
+    beforeAfterExpectations?: true
+    childExperience?: true
     childExperienceApproved?: true
-    successStoryApproved?: true
+    consentToFeature?: true
+    favoriteThingToShare?: true
+    grade?: true
+    heardAbout?: true
+    isApproved?: true
+    isVisible?: true
+    overallExperience?: true
     overallExperienceApproved?: true
     programsApproved?: true
-    studentRatingApproved?: true
+    schedulingRating?: true
     schedulingRatingApproved?: true
+    school?: true
+    studentName?: true
+    studentRating?: true
+    studentRatingApproved?: true
+    submittedAt?: true
+    successStory?: true
+    successStoryApproved?: true
+    suggestions?: true
+    updatedAt?: true
+    wouldRecommend?: true
   }
 
   export type FeedbackMaxAggregateInputType = {
@@ -28700,35 +29226,35 @@ export namespace Prisma {
     parentId?: true
     parentName?: true
     parentEmail?: true
-    studentName?: true
-    grade?: true
-    school?: true
-    heardAbout?: true
-    beforeAfterExpectations?: true
-    childExperience?: true
-    successStory?: true
-    overallExperience?: true
-    studentRating?: true
-    schedulingRating?: true
-    wouldRecommend?: true
-    consentToFeature?: true
-    favoriteThingToShare?: true
-    suggestions?: true
     status?: true
     response?: true
-    isApproved?: true
-    isVisible?: true
-    submittedAt?: true
     createdAt?: true
     reviewedAt?: true
-    updatedAt?: true
     beforeAfterApproved?: true
+    beforeAfterExpectations?: true
+    childExperience?: true
     childExperienceApproved?: true
-    successStoryApproved?: true
+    consentToFeature?: true
+    favoriteThingToShare?: true
+    grade?: true
+    heardAbout?: true
+    isApproved?: true
+    isVisible?: true
+    overallExperience?: true
     overallExperienceApproved?: true
     programsApproved?: true
-    studentRatingApproved?: true
+    schedulingRating?: true
     schedulingRatingApproved?: true
+    school?: true
+    studentName?: true
+    studentRating?: true
+    studentRatingApproved?: true
+    submittedAt?: true
+    successStory?: true
+    successStoryApproved?: true
+    suggestions?: true
+    updatedAt?: true
+    wouldRecommend?: true
   }
 
   export type FeedbackCountAggregateInputType = {
@@ -28736,36 +29262,36 @@ export namespace Prisma {
     parentId?: true
     parentName?: true
     parentEmail?: true
-    studentName?: true
-    grade?: true
-    school?: true
-    programs?: true
-    heardAbout?: true
-    beforeAfterExpectations?: true
-    childExperience?: true
-    successStory?: true
-    overallExperience?: true
-    studentRating?: true
-    schedulingRating?: true
-    wouldRecommend?: true
-    consentToFeature?: true
-    favoriteThingToShare?: true
-    suggestions?: true
     status?: true
     response?: true
-    isApproved?: true
-    isVisible?: true
-    submittedAt?: true
     createdAt?: true
     reviewedAt?: true
-    updatedAt?: true
     beforeAfterApproved?: true
+    beforeAfterExpectations?: true
+    childExperience?: true
     childExperienceApproved?: true
-    successStoryApproved?: true
+    consentToFeature?: true
+    favoriteThingToShare?: true
+    grade?: true
+    heardAbout?: true
+    isApproved?: true
+    isVisible?: true
+    overallExperience?: true
     overallExperienceApproved?: true
+    programs?: true
     programsApproved?: true
-    studentRatingApproved?: true
+    schedulingRating?: true
     schedulingRatingApproved?: true
+    school?: true
+    studentName?: true
+    studentRating?: true
+    studentRatingApproved?: true
+    submittedAt?: true
+    successStory?: true
+    successStoryApproved?: true
+    suggestions?: true
+    updatedAt?: true
+    wouldRecommend?: true
     _all?: true
   }
 
@@ -28860,36 +29386,36 @@ export namespace Prisma {
     parentId: number | null
     parentName: string | null
     parentEmail: string | null
-    studentName: string | null
-    grade: string | null
-    school: string | null
-    programs: string[]
-    heardAbout: string | null
-    beforeAfterExpectations: string | null
-    childExperience: string | null
-    successStory: string | null
-    overallExperience: string | null
-    studentRating: number | null
-    schedulingRating: number | null
-    wouldRecommend: string | null
-    consentToFeature: boolean
-    favoriteThingToShare: string | null
-    suggestions: string | null
     status: string
     response: string | null
-    isApproved: boolean
-    isVisible: boolean
-    submittedAt: Date | null
     createdAt: Date
     reviewedAt: Date | null
-    updatedAt: Date
     beforeAfterApproved: boolean
+    beforeAfterExpectations: string | null
+    childExperience: string | null
     childExperienceApproved: boolean
-    successStoryApproved: boolean
+    consentToFeature: boolean
+    favoriteThingToShare: string | null
+    grade: string | null
+    heardAbout: string | null
+    isApproved: boolean
+    isVisible: boolean
+    overallExperience: string | null
     overallExperienceApproved: boolean
+    programs: string[]
     programsApproved: boolean
-    studentRatingApproved: boolean
+    schedulingRating: number | null
     schedulingRatingApproved: boolean
+    school: string | null
+    studentName: string | null
+    studentRating: number | null
+    studentRatingApproved: boolean
+    submittedAt: Date | null
+    successStory: string | null
+    successStoryApproved: boolean
+    suggestions: string | null
+    updatedAt: Date
+    wouldRecommend: string | null
     _count: FeedbackCountAggregateOutputType | null
     _avg: FeedbackAvgAggregateOutputType | null
     _sum: FeedbackSumAggregateOutputType | null
@@ -28916,36 +29442,36 @@ export namespace Prisma {
     parentId?: boolean
     parentName?: boolean
     parentEmail?: boolean
-    studentName?: boolean
-    grade?: boolean
-    school?: boolean
-    programs?: boolean
-    heardAbout?: boolean
-    beforeAfterExpectations?: boolean
-    childExperience?: boolean
-    successStory?: boolean
-    overallExperience?: boolean
-    studentRating?: boolean
-    schedulingRating?: boolean
-    wouldRecommend?: boolean
-    consentToFeature?: boolean
-    favoriteThingToShare?: boolean
-    suggestions?: boolean
     status?: boolean
     response?: boolean
-    isApproved?: boolean
-    isVisible?: boolean
-    submittedAt?: boolean
     createdAt?: boolean
     reviewedAt?: boolean
-    updatedAt?: boolean
     beforeAfterApproved?: boolean
+    beforeAfterExpectations?: boolean
+    childExperience?: boolean
     childExperienceApproved?: boolean
-    successStoryApproved?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: boolean
+    grade?: boolean
+    heardAbout?: boolean
+    isApproved?: boolean
+    isVisible?: boolean
+    overallExperience?: boolean
     overallExperienceApproved?: boolean
+    programs?: boolean
     programsApproved?: boolean
-    studentRatingApproved?: boolean
+    schedulingRating?: boolean
     schedulingRatingApproved?: boolean
+    school?: boolean
+    studentName?: boolean
+    studentRating?: boolean
+    studentRatingApproved?: boolean
+    submittedAt?: boolean
+    successStory?: boolean
+    successStoryApproved?: boolean
+    suggestions?: boolean
+    updatedAt?: boolean
+    wouldRecommend?: boolean
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -28953,36 +29479,36 @@ export namespace Prisma {
     parentId?: boolean
     parentName?: boolean
     parentEmail?: boolean
-    studentName?: boolean
-    grade?: boolean
-    school?: boolean
-    programs?: boolean
-    heardAbout?: boolean
-    beforeAfterExpectations?: boolean
-    childExperience?: boolean
-    successStory?: boolean
-    overallExperience?: boolean
-    studentRating?: boolean
-    schedulingRating?: boolean
-    wouldRecommend?: boolean
-    consentToFeature?: boolean
-    favoriteThingToShare?: boolean
-    suggestions?: boolean
     status?: boolean
     response?: boolean
-    isApproved?: boolean
-    isVisible?: boolean
-    submittedAt?: boolean
     createdAt?: boolean
     reviewedAt?: boolean
-    updatedAt?: boolean
     beforeAfterApproved?: boolean
+    beforeAfterExpectations?: boolean
+    childExperience?: boolean
     childExperienceApproved?: boolean
-    successStoryApproved?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: boolean
+    grade?: boolean
+    heardAbout?: boolean
+    isApproved?: boolean
+    isVisible?: boolean
+    overallExperience?: boolean
     overallExperienceApproved?: boolean
+    programs?: boolean
     programsApproved?: boolean
-    studentRatingApproved?: boolean
+    schedulingRating?: boolean
     schedulingRatingApproved?: boolean
+    school?: boolean
+    studentName?: boolean
+    studentRating?: boolean
+    studentRatingApproved?: boolean
+    submittedAt?: boolean
+    successStory?: boolean
+    successStoryApproved?: boolean
+    suggestions?: boolean
+    updatedAt?: boolean
+    wouldRecommend?: boolean
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -28990,36 +29516,36 @@ export namespace Prisma {
     parentId?: boolean
     parentName?: boolean
     parentEmail?: boolean
-    studentName?: boolean
-    grade?: boolean
-    school?: boolean
-    programs?: boolean
-    heardAbout?: boolean
-    beforeAfterExpectations?: boolean
-    childExperience?: boolean
-    successStory?: boolean
-    overallExperience?: boolean
-    studentRating?: boolean
-    schedulingRating?: boolean
-    wouldRecommend?: boolean
-    consentToFeature?: boolean
-    favoriteThingToShare?: boolean
-    suggestions?: boolean
     status?: boolean
     response?: boolean
-    isApproved?: boolean
-    isVisible?: boolean
-    submittedAt?: boolean
     createdAt?: boolean
     reviewedAt?: boolean
-    updatedAt?: boolean
     beforeAfterApproved?: boolean
+    beforeAfterExpectations?: boolean
+    childExperience?: boolean
     childExperienceApproved?: boolean
-    successStoryApproved?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: boolean
+    grade?: boolean
+    heardAbout?: boolean
+    isApproved?: boolean
+    isVisible?: boolean
+    overallExperience?: boolean
     overallExperienceApproved?: boolean
+    programs?: boolean
     programsApproved?: boolean
-    studentRatingApproved?: boolean
+    schedulingRating?: boolean
     schedulingRatingApproved?: boolean
+    school?: boolean
+    studentName?: boolean
+    studentRating?: boolean
+    studentRatingApproved?: boolean
+    submittedAt?: boolean
+    successStory?: boolean
+    successStoryApproved?: boolean
+    suggestions?: boolean
+    updatedAt?: boolean
+    wouldRecommend?: boolean
   }, ExtArgs["result"]["feedback"]>
 
   export type FeedbackSelectScalar = {
@@ -29027,39 +29553,39 @@ export namespace Prisma {
     parentId?: boolean
     parentName?: boolean
     parentEmail?: boolean
-    studentName?: boolean
-    grade?: boolean
-    school?: boolean
-    programs?: boolean
-    heardAbout?: boolean
-    beforeAfterExpectations?: boolean
-    childExperience?: boolean
-    successStory?: boolean
-    overallExperience?: boolean
-    studentRating?: boolean
-    schedulingRating?: boolean
-    wouldRecommend?: boolean
-    consentToFeature?: boolean
-    favoriteThingToShare?: boolean
-    suggestions?: boolean
     status?: boolean
     response?: boolean
-    isApproved?: boolean
-    isVisible?: boolean
-    submittedAt?: boolean
     createdAt?: boolean
     reviewedAt?: boolean
-    updatedAt?: boolean
     beforeAfterApproved?: boolean
+    beforeAfterExpectations?: boolean
+    childExperience?: boolean
     childExperienceApproved?: boolean
-    successStoryApproved?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: boolean
+    grade?: boolean
+    heardAbout?: boolean
+    isApproved?: boolean
+    isVisible?: boolean
+    overallExperience?: boolean
     overallExperienceApproved?: boolean
+    programs?: boolean
     programsApproved?: boolean
-    studentRatingApproved?: boolean
+    schedulingRating?: boolean
     schedulingRatingApproved?: boolean
+    school?: boolean
+    studentName?: boolean
+    studentRating?: boolean
+    studentRatingApproved?: boolean
+    submittedAt?: boolean
+    successStory?: boolean
+    successStoryApproved?: boolean
+    suggestions?: boolean
+    updatedAt?: boolean
+    wouldRecommend?: boolean
   }
 
-  export type FeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parentId" | "parentName" | "parentEmail" | "studentName" | "grade" | "school" | "programs" | "heardAbout" | "beforeAfterExpectations" | "childExperience" | "successStory" | "overallExperience" | "studentRating" | "schedulingRating" | "wouldRecommend" | "consentToFeature" | "favoriteThingToShare" | "suggestions" | "status" | "response" | "isApproved" | "isVisible" | "submittedAt" | "createdAt" | "reviewedAt" | "updatedAt" | "beforeAfterApproved" | "childExperienceApproved" | "successStoryApproved" | "overallExperienceApproved" | "programsApproved" | "studentRatingApproved" | "schedulingRatingApproved", ExtArgs["result"]["feedback"]>
+  export type FeedbackOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "parentId" | "parentName" | "parentEmail" | "status" | "response" | "createdAt" | "reviewedAt" | "beforeAfterApproved" | "beforeAfterExpectations" | "childExperience" | "childExperienceApproved" | "consentToFeature" | "favoriteThingToShare" | "grade" | "heardAbout" | "isApproved" | "isVisible" | "overallExperience" | "overallExperienceApproved" | "programs" | "programsApproved" | "schedulingRating" | "schedulingRatingApproved" | "school" | "studentName" | "studentRating" | "studentRatingApproved" | "submittedAt" | "successStory" | "successStoryApproved" | "suggestions" | "updatedAt" | "wouldRecommend", ExtArgs["result"]["feedback"]>
 
   export type $FeedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Feedback"
@@ -29069,36 +29595,36 @@ export namespace Prisma {
       parentId: number | null
       parentName: string | null
       parentEmail: string | null
-      studentName: string | null
-      grade: string | null
-      school: string | null
-      programs: string[]
-      heardAbout: string | null
-      beforeAfterExpectations: string | null
-      childExperience: string | null
-      successStory: string | null
-      overallExperience: string | null
-      studentRating: number | null
-      schedulingRating: number | null
-      wouldRecommend: string | null
-      consentToFeature: boolean
-      favoriteThingToShare: string | null
-      suggestions: string | null
       status: string
       response: string | null
-      isApproved: boolean
-      isVisible: boolean
-      submittedAt: Date | null
       createdAt: Date
       reviewedAt: Date | null
-      updatedAt: Date
       beforeAfterApproved: boolean
+      beforeAfterExpectations: string | null
+      childExperience: string | null
       childExperienceApproved: boolean
-      successStoryApproved: boolean
+      consentToFeature: boolean
+      favoriteThingToShare: string | null
+      grade: string | null
+      heardAbout: string | null
+      isApproved: boolean
+      isVisible: boolean
+      overallExperience: string | null
       overallExperienceApproved: boolean
+      programs: string[]
       programsApproved: boolean
-      studentRatingApproved: boolean
+      schedulingRating: number | null
       schedulingRatingApproved: boolean
+      school: string | null
+      studentName: string | null
+      studentRating: number | null
+      studentRatingApproved: boolean
+      submittedAt: Date | null
+      successStory: string | null
+      successStoryApproved: boolean
+      suggestions: string | null
+      updatedAt: Date
+      wouldRecommend: string | null
     }, ExtArgs["result"]["feedback"]>
     composites: {}
   }
@@ -29526,36 +30052,36 @@ export namespace Prisma {
     readonly parentId: FieldRef<"Feedback", 'Int'>
     readonly parentName: FieldRef<"Feedback", 'String'>
     readonly parentEmail: FieldRef<"Feedback", 'String'>
-    readonly studentName: FieldRef<"Feedback", 'String'>
-    readonly grade: FieldRef<"Feedback", 'String'>
-    readonly school: FieldRef<"Feedback", 'String'>
-    readonly programs: FieldRef<"Feedback", 'String[]'>
-    readonly heardAbout: FieldRef<"Feedback", 'String'>
-    readonly beforeAfterExpectations: FieldRef<"Feedback", 'String'>
-    readonly childExperience: FieldRef<"Feedback", 'String'>
-    readonly successStory: FieldRef<"Feedback", 'String'>
-    readonly overallExperience: FieldRef<"Feedback", 'String'>
-    readonly studentRating: FieldRef<"Feedback", 'Int'>
-    readonly schedulingRating: FieldRef<"Feedback", 'Int'>
-    readonly wouldRecommend: FieldRef<"Feedback", 'String'>
-    readonly consentToFeature: FieldRef<"Feedback", 'Boolean'>
-    readonly favoriteThingToShare: FieldRef<"Feedback", 'String'>
-    readonly suggestions: FieldRef<"Feedback", 'String'>
     readonly status: FieldRef<"Feedback", 'String'>
     readonly response: FieldRef<"Feedback", 'String'>
-    readonly isApproved: FieldRef<"Feedback", 'Boolean'>
-    readonly isVisible: FieldRef<"Feedback", 'Boolean'>
-    readonly submittedAt: FieldRef<"Feedback", 'DateTime'>
     readonly createdAt: FieldRef<"Feedback", 'DateTime'>
     readonly reviewedAt: FieldRef<"Feedback", 'DateTime'>
-    readonly updatedAt: FieldRef<"Feedback", 'DateTime'>
     readonly beforeAfterApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly beforeAfterExpectations: FieldRef<"Feedback", 'String'>
+    readonly childExperience: FieldRef<"Feedback", 'String'>
     readonly childExperienceApproved: FieldRef<"Feedback", 'Boolean'>
-    readonly successStoryApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly consentToFeature: FieldRef<"Feedback", 'Boolean'>
+    readonly favoriteThingToShare: FieldRef<"Feedback", 'String'>
+    readonly grade: FieldRef<"Feedback", 'String'>
+    readonly heardAbout: FieldRef<"Feedback", 'String'>
+    readonly isApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly isVisible: FieldRef<"Feedback", 'Boolean'>
+    readonly overallExperience: FieldRef<"Feedback", 'String'>
     readonly overallExperienceApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly programs: FieldRef<"Feedback", 'String[]'>
     readonly programsApproved: FieldRef<"Feedback", 'Boolean'>
-    readonly studentRatingApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly schedulingRating: FieldRef<"Feedback", 'Int'>
     readonly schedulingRatingApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly school: FieldRef<"Feedback", 'String'>
+    readonly studentName: FieldRef<"Feedback", 'String'>
+    readonly studentRating: FieldRef<"Feedback", 'Int'>
+    readonly studentRatingApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly submittedAt: FieldRef<"Feedback", 'DateTime'>
+    readonly successStory: FieldRef<"Feedback", 'String'>
+    readonly successStoryApproved: FieldRef<"Feedback", 'Boolean'>
+    readonly suggestions: FieldRef<"Feedback", 'String'>
+    readonly updatedAt: FieldRef<"Feedback", 'DateTime'>
+    readonly wouldRecommend: FieldRef<"Feedback", 'String'>
   }
     
 
@@ -34587,12 +35113,18 @@ export namespace Prisma {
     id: number | null
     studentId: number | null
     teacherId: number | null
+    attendanceRate: number | null
+    homeworkCompletion: number | null
+    progressRating: number | null
   }
 
   export type ProgressReportSumAggregateOutputType = {
     id: number | null
     studentId: number | null
     teacherId: number | null
+    attendanceRate: number | null
+    homeworkCompletion: number | null
+    progressRating: number | null
   }
 
   export type ProgressReportMinAggregateOutputType = {
@@ -34606,6 +35138,19 @@ export namespace Prisma {
     nextSteps: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    attendanceRate: number | null
+    classParticipation: string | null
+    homeworkCompletion: number | null
+    improvementAreas: string | null
+    isVisible: boolean | null
+    parentNotes: string | null
+    progressRating: number | null
+    recommendations: string | null
+    reportPeriod: string | null
+    skillsImproved: string | null
+    status: string | null
+    strengthsAreas: string | null
+    subject: string | null
   }
 
   export type ProgressReportMaxAggregateOutputType = {
@@ -34619,6 +35164,19 @@ export namespace Prisma {
     nextSteps: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    attendanceRate: number | null
+    classParticipation: string | null
+    homeworkCompletion: number | null
+    improvementAreas: string | null
+    isVisible: boolean | null
+    parentNotes: string | null
+    progressRating: number | null
+    recommendations: string | null
+    reportPeriod: string | null
+    skillsImproved: string | null
+    status: string | null
+    strengthsAreas: string | null
+    subject: string | null
   }
 
   export type ProgressReportCountAggregateOutputType = {
@@ -34632,6 +35190,19 @@ export namespace Prisma {
     nextSteps: number
     createdAt: number
     updatedAt: number
+    attendanceRate: number
+    classParticipation: number
+    homeworkCompletion: number
+    improvementAreas: number
+    isVisible: number
+    parentNotes: number
+    progressRating: number
+    recommendations: number
+    reportPeriod: number
+    skillsImproved: number
+    status: number
+    strengthsAreas: number
+    subject: number
     _all: number
   }
 
@@ -34640,12 +35211,18 @@ export namespace Prisma {
     id?: true
     studentId?: true
     teacherId?: true
+    attendanceRate?: true
+    homeworkCompletion?: true
+    progressRating?: true
   }
 
   export type ProgressReportSumAggregateInputType = {
     id?: true
     studentId?: true
     teacherId?: true
+    attendanceRate?: true
+    homeworkCompletion?: true
+    progressRating?: true
   }
 
   export type ProgressReportMinAggregateInputType = {
@@ -34659,6 +35236,19 @@ export namespace Prisma {
     nextSteps?: true
     createdAt?: true
     updatedAt?: true
+    attendanceRate?: true
+    classParticipation?: true
+    homeworkCompletion?: true
+    improvementAreas?: true
+    isVisible?: true
+    parentNotes?: true
+    progressRating?: true
+    recommendations?: true
+    reportPeriod?: true
+    skillsImproved?: true
+    status?: true
+    strengthsAreas?: true
+    subject?: true
   }
 
   export type ProgressReportMaxAggregateInputType = {
@@ -34672,6 +35262,19 @@ export namespace Prisma {
     nextSteps?: true
     createdAt?: true
     updatedAt?: true
+    attendanceRate?: true
+    classParticipation?: true
+    homeworkCompletion?: true
+    improvementAreas?: true
+    isVisible?: true
+    parentNotes?: true
+    progressRating?: true
+    recommendations?: true
+    reportPeriod?: true
+    skillsImproved?: true
+    status?: true
+    strengthsAreas?: true
+    subject?: true
   }
 
   export type ProgressReportCountAggregateInputType = {
@@ -34685,6 +35288,19 @@ export namespace Prisma {
     nextSteps?: true
     createdAt?: true
     updatedAt?: true
+    attendanceRate?: true
+    classParticipation?: true
+    homeworkCompletion?: true
+    improvementAreas?: true
+    isVisible?: true
+    parentNotes?: true
+    progressRating?: true
+    recommendations?: true
+    reportPeriod?: true
+    skillsImproved?: true
+    status?: true
+    strengthsAreas?: true
+    subject?: true
     _all?: true
   }
 
@@ -34785,6 +35401,19 @@ export namespace Prisma {
     nextSteps: string | null
     createdAt: Date
     updatedAt: Date
+    attendanceRate: number | null
+    classParticipation: string | null
+    homeworkCompletion: number | null
+    improvementAreas: string | null
+    isVisible: boolean
+    parentNotes: string | null
+    progressRating: number | null
+    recommendations: string | null
+    reportPeriod: string | null
+    skillsImproved: string | null
+    status: string
+    strengthsAreas: string | null
+    subject: string | null
     _count: ProgressReportCountAggregateOutputType | null
     _avg: ProgressReportAvgAggregateOutputType | null
     _sum: ProgressReportSumAggregateOutputType | null
@@ -34817,6 +35446,19 @@ export namespace Prisma {
     nextSteps?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    attendanceRate?: boolean
+    classParticipation?: boolean
+    homeworkCompletion?: boolean
+    improvementAreas?: boolean
+    isVisible?: boolean
+    parentNotes?: boolean
+    progressRating?: boolean
+    recommendations?: boolean
+    reportPeriod?: boolean
+    skillsImproved?: boolean
+    status?: boolean
+    strengthsAreas?: boolean
+    subject?: boolean
     Student?: boolean | StudentDefaultArgs<ExtArgs>
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["progressReport"]>
@@ -34832,6 +35474,19 @@ export namespace Prisma {
     nextSteps?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    attendanceRate?: boolean
+    classParticipation?: boolean
+    homeworkCompletion?: boolean
+    improvementAreas?: boolean
+    isVisible?: boolean
+    parentNotes?: boolean
+    progressRating?: boolean
+    recommendations?: boolean
+    reportPeriod?: boolean
+    skillsImproved?: boolean
+    status?: boolean
+    strengthsAreas?: boolean
+    subject?: boolean
     Student?: boolean | StudentDefaultArgs<ExtArgs>
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["progressReport"]>
@@ -34847,6 +35502,19 @@ export namespace Prisma {
     nextSteps?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    attendanceRate?: boolean
+    classParticipation?: boolean
+    homeworkCompletion?: boolean
+    improvementAreas?: boolean
+    isVisible?: boolean
+    parentNotes?: boolean
+    progressRating?: boolean
+    recommendations?: boolean
+    reportPeriod?: boolean
+    skillsImproved?: boolean
+    status?: boolean
+    strengthsAreas?: boolean
+    subject?: boolean
     Student?: boolean | StudentDefaultArgs<ExtArgs>
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["progressReport"]>
@@ -34862,9 +35530,22 @@ export namespace Prisma {
     nextSteps?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    attendanceRate?: boolean
+    classParticipation?: boolean
+    homeworkCompletion?: boolean
+    improvementAreas?: boolean
+    isVisible?: boolean
+    parentNotes?: boolean
+    progressRating?: boolean
+    recommendations?: boolean
+    reportPeriod?: boolean
+    skillsImproved?: boolean
+    status?: boolean
+    strengthsAreas?: boolean
+    subject?: boolean
   }
 
-  export type ProgressReportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "teacherId" | "reportDate" | "overallProgress" | "milestonesAchieved" | "publications" | "nextSteps" | "createdAt" | "updatedAt", ExtArgs["result"]["progressReport"]>
+  export type ProgressReportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "teacherId" | "reportDate" | "overallProgress" | "milestonesAchieved" | "publications" | "nextSteps" | "createdAt" | "updatedAt" | "attendanceRate" | "classParticipation" | "homeworkCompletion" | "improvementAreas" | "isVisible" | "parentNotes" | "progressRating" | "recommendations" | "reportPeriod" | "skillsImproved" | "status" | "strengthsAreas" | "subject", ExtArgs["result"]["progressReport"]>
   export type ProgressReportInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Student?: boolean | StudentDefaultArgs<ExtArgs>
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
@@ -34895,6 +35576,19 @@ export namespace Prisma {
       nextSteps: string | null
       createdAt: Date
       updatedAt: Date
+      attendanceRate: number | null
+      classParticipation: string | null
+      homeworkCompletion: number | null
+      improvementAreas: string | null
+      isVisible: boolean
+      parentNotes: string | null
+      progressRating: number | null
+      recommendations: string | null
+      reportPeriod: string | null
+      skillsImproved: string | null
+      status: string
+      strengthsAreas: string | null
+      subject: string | null
     }, ExtArgs["result"]["progressReport"]>
     composites: {}
   }
@@ -35330,6 +36024,19 @@ export namespace Prisma {
     readonly nextSteps: FieldRef<"ProgressReport", 'String'>
     readonly createdAt: FieldRef<"ProgressReport", 'DateTime'>
     readonly updatedAt: FieldRef<"ProgressReport", 'DateTime'>
+    readonly attendanceRate: FieldRef<"ProgressReport", 'Float'>
+    readonly classParticipation: FieldRef<"ProgressReport", 'String'>
+    readonly homeworkCompletion: FieldRef<"ProgressReport", 'Float'>
+    readonly improvementAreas: FieldRef<"ProgressReport", 'String'>
+    readonly isVisible: FieldRef<"ProgressReport", 'Boolean'>
+    readonly parentNotes: FieldRef<"ProgressReport", 'String'>
+    readonly progressRating: FieldRef<"ProgressReport", 'Int'>
+    readonly recommendations: FieldRef<"ProgressReport", 'String'>
+    readonly reportPeriod: FieldRef<"ProgressReport", 'String'>
+    readonly skillsImproved: FieldRef<"ProgressReport", 'String'>
+    readonly status: FieldRef<"ProgressReport", 'String'>
+    readonly strengthsAreas: FieldRef<"ProgressReport", 'String'>
+    readonly subject: FieldRef<"ProgressReport", 'String'>
   }
     
 
@@ -35745,6 +36452,6113 @@ export namespace Prisma {
 
 
   /**
+   * Model EventRegistration
+   */
+
+  export type AggregateEventRegistration = {
+    _count: EventRegistrationCountAggregateOutputType | null
+    _avg: EventRegistrationAvgAggregateOutputType | null
+    _sum: EventRegistrationSumAggregateOutputType | null
+    _min: EventRegistrationMinAggregateOutputType | null
+    _max: EventRegistrationMaxAggregateOutputType | null
+  }
+
+  export type EventRegistrationAvgAggregateOutputType = {
+    id: number | null
+    eventId: number | null
+    paymentAmount: number | null
+  }
+
+  export type EventRegistrationSumAggregateOutputType = {
+    id: number | null
+    eventId: number | null
+    paymentAmount: number | null
+  }
+
+  export type EventRegistrationMinAggregateOutputType = {
+    id: number | null
+    eventId: number | null
+    studentName: string | null
+    studentEmail: string | null
+    studentPhone: string | null
+    studentGrade: string | null
+    schoolName: string | null
+    parentName: string | null
+    parentEmail: string | null
+    parentPhone: string | null
+    registrationStatus: string | null
+    paymentStatus: string | null
+    paymentAmount: number | null
+    specialRequirements: string | null
+    howDidYouHear: string | null
+    notes: string | null
+    checkedInAt: Date | null
+    attendanceConfirmed: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    adminNotes: string | null
+    certificateIssued: boolean | null
+    paymentMethod: string | null
+    transactionId: string | null
+  }
+
+  export type EventRegistrationMaxAggregateOutputType = {
+    id: number | null
+    eventId: number | null
+    studentName: string | null
+    studentEmail: string | null
+    studentPhone: string | null
+    studentGrade: string | null
+    schoolName: string | null
+    parentName: string | null
+    parentEmail: string | null
+    parentPhone: string | null
+    registrationStatus: string | null
+    paymentStatus: string | null
+    paymentAmount: number | null
+    specialRequirements: string | null
+    howDidYouHear: string | null
+    notes: string | null
+    checkedInAt: Date | null
+    attendanceConfirmed: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    adminNotes: string | null
+    certificateIssued: boolean | null
+    paymentMethod: string | null
+    transactionId: string | null
+  }
+
+  export type EventRegistrationCountAggregateOutputType = {
+    id: number
+    eventId: number
+    studentName: number
+    studentEmail: number
+    studentPhone: number
+    studentGrade: number
+    schoolName: number
+    parentName: number
+    parentEmail: number
+    parentPhone: number
+    registrationStatus: number
+    paymentStatus: number
+    paymentAmount: number
+    specialRequirements: number
+    howDidYouHear: number
+    notes: number
+    checkedInAt: number
+    attendanceConfirmed: number
+    createdAt: number
+    updatedAt: number
+    adminNotes: number
+    certificateIssued: number
+    customFieldResponses: number
+    paymentMethod: number
+    transactionId: number
+    _all: number
+  }
+
+
+  export type EventRegistrationAvgAggregateInputType = {
+    id?: true
+    eventId?: true
+    paymentAmount?: true
+  }
+
+  export type EventRegistrationSumAggregateInputType = {
+    id?: true
+    eventId?: true
+    paymentAmount?: true
+  }
+
+  export type EventRegistrationMinAggregateInputType = {
+    id?: true
+    eventId?: true
+    studentName?: true
+    studentEmail?: true
+    studentPhone?: true
+    studentGrade?: true
+    schoolName?: true
+    parentName?: true
+    parentEmail?: true
+    parentPhone?: true
+    registrationStatus?: true
+    paymentStatus?: true
+    paymentAmount?: true
+    specialRequirements?: true
+    howDidYouHear?: true
+    notes?: true
+    checkedInAt?: true
+    attendanceConfirmed?: true
+    createdAt?: true
+    updatedAt?: true
+    adminNotes?: true
+    certificateIssued?: true
+    paymentMethod?: true
+    transactionId?: true
+  }
+
+  export type EventRegistrationMaxAggregateInputType = {
+    id?: true
+    eventId?: true
+    studentName?: true
+    studentEmail?: true
+    studentPhone?: true
+    studentGrade?: true
+    schoolName?: true
+    parentName?: true
+    parentEmail?: true
+    parentPhone?: true
+    registrationStatus?: true
+    paymentStatus?: true
+    paymentAmount?: true
+    specialRequirements?: true
+    howDidYouHear?: true
+    notes?: true
+    checkedInAt?: true
+    attendanceConfirmed?: true
+    createdAt?: true
+    updatedAt?: true
+    adminNotes?: true
+    certificateIssued?: true
+    paymentMethod?: true
+    transactionId?: true
+  }
+
+  export type EventRegistrationCountAggregateInputType = {
+    id?: true
+    eventId?: true
+    studentName?: true
+    studentEmail?: true
+    studentPhone?: true
+    studentGrade?: true
+    schoolName?: true
+    parentName?: true
+    parentEmail?: true
+    parentPhone?: true
+    registrationStatus?: true
+    paymentStatus?: true
+    paymentAmount?: true
+    specialRequirements?: true
+    howDidYouHear?: true
+    notes?: true
+    checkedInAt?: true
+    attendanceConfirmed?: true
+    createdAt?: true
+    updatedAt?: true
+    adminNotes?: true
+    certificateIssued?: true
+    customFieldResponses?: true
+    paymentMethod?: true
+    transactionId?: true
+    _all?: true
+  }
+
+  export type EventRegistrationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EventRegistration to aggregate.
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventRegistrations to fetch.
+     */
+    orderBy?: EventRegistrationOrderByWithRelationInput | EventRegistrationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EventRegistrationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventRegistrations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventRegistrations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EventRegistrations
+    **/
+    _count?: true | EventRegistrationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EventRegistrationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EventRegistrationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EventRegistrationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EventRegistrationMaxAggregateInputType
+  }
+
+  export type GetEventRegistrationAggregateType<T extends EventRegistrationAggregateArgs> = {
+        [P in keyof T & keyof AggregateEventRegistration]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEventRegistration[P]>
+      : GetScalarType<T[P], AggregateEventRegistration[P]>
+  }
+
+
+
+
+  export type EventRegistrationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EventRegistrationWhereInput
+    orderBy?: EventRegistrationOrderByWithAggregationInput | EventRegistrationOrderByWithAggregationInput[]
+    by: EventRegistrationScalarFieldEnum[] | EventRegistrationScalarFieldEnum
+    having?: EventRegistrationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EventRegistrationCountAggregateInputType | true
+    _avg?: EventRegistrationAvgAggregateInputType
+    _sum?: EventRegistrationSumAggregateInputType
+    _min?: EventRegistrationMinAggregateInputType
+    _max?: EventRegistrationMaxAggregateInputType
+  }
+
+  export type EventRegistrationGroupByOutputType = {
+    id: number
+    eventId: number
+    studentName: string
+    studentEmail: string
+    studentPhone: string | null
+    studentGrade: string | null
+    schoolName: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone: string | null
+    registrationStatus: string
+    paymentStatus: string | null
+    paymentAmount: number | null
+    specialRequirements: string | null
+    howDidYouHear: string | null
+    notes: string | null
+    checkedInAt: Date | null
+    attendanceConfirmed: boolean
+    createdAt: Date
+    updatedAt: Date
+    adminNotes: string | null
+    certificateIssued: boolean
+    customFieldResponses: JsonValue | null
+    paymentMethod: string | null
+    transactionId: string | null
+    _count: EventRegistrationCountAggregateOutputType | null
+    _avg: EventRegistrationAvgAggregateOutputType | null
+    _sum: EventRegistrationSumAggregateOutputType | null
+    _min: EventRegistrationMinAggregateOutputType | null
+    _max: EventRegistrationMaxAggregateOutputType | null
+  }
+
+  type GetEventRegistrationGroupByPayload<T extends EventRegistrationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EventRegistrationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EventRegistrationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EventRegistrationGroupByOutputType[P]>
+            : GetScalarType<T[P], EventRegistrationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EventRegistrationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    studentName?: boolean
+    studentEmail?: boolean
+    studentPhone?: boolean
+    studentGrade?: boolean
+    schoolName?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    parentPhone?: boolean
+    registrationStatus?: boolean
+    paymentStatus?: boolean
+    paymentAmount?: boolean
+    specialRequirements?: boolean
+    howDidYouHear?: boolean
+    notes?: boolean
+    checkedInAt?: boolean
+    attendanceConfirmed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    adminNotes?: boolean
+    certificateIssued?: boolean
+    customFieldResponses?: boolean
+    paymentMethod?: boolean
+    transactionId?: boolean
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventRegistration"]>
+
+  export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    studentName?: boolean
+    studentEmail?: boolean
+    studentPhone?: boolean
+    studentGrade?: boolean
+    schoolName?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    parentPhone?: boolean
+    registrationStatus?: boolean
+    paymentStatus?: boolean
+    paymentAmount?: boolean
+    specialRequirements?: boolean
+    howDidYouHear?: boolean
+    notes?: boolean
+    checkedInAt?: boolean
+    attendanceConfirmed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    adminNotes?: boolean
+    certificateIssued?: boolean
+    customFieldResponses?: boolean
+    paymentMethod?: boolean
+    transactionId?: boolean
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventRegistration"]>
+
+  export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    eventId?: boolean
+    studentName?: boolean
+    studentEmail?: boolean
+    studentPhone?: boolean
+    studentGrade?: boolean
+    schoolName?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    parentPhone?: boolean
+    registrationStatus?: boolean
+    paymentStatus?: boolean
+    paymentAmount?: boolean
+    specialRequirements?: boolean
+    howDidYouHear?: boolean
+    notes?: boolean
+    checkedInAt?: boolean
+    attendanceConfirmed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    adminNotes?: boolean
+    certificateIssued?: boolean
+    customFieldResponses?: boolean
+    paymentMethod?: boolean
+    transactionId?: boolean
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["eventRegistration"]>
+
+  export type EventRegistrationSelectScalar = {
+    id?: boolean
+    eventId?: boolean
+    studentName?: boolean
+    studentEmail?: boolean
+    studentPhone?: boolean
+    studentGrade?: boolean
+    schoolName?: boolean
+    parentName?: boolean
+    parentEmail?: boolean
+    parentPhone?: boolean
+    registrationStatus?: boolean
+    paymentStatus?: boolean
+    paymentAmount?: boolean
+    specialRequirements?: boolean
+    howDidYouHear?: boolean
+    notes?: boolean
+    checkedInAt?: boolean
+    attendanceConfirmed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    adminNotes?: boolean
+    certificateIssued?: boolean
+    customFieldResponses?: boolean
+    paymentMethod?: boolean
+    transactionId?: boolean
+  }
+
+  export type EventRegistrationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "eventId" | "studentName" | "studentEmail" | "studentPhone" | "studentGrade" | "schoolName" | "parentName" | "parentEmail" | "parentPhone" | "registrationStatus" | "paymentStatus" | "paymentAmount" | "specialRequirements" | "howDidYouHear" | "notes" | "checkedInAt" | "attendanceConfirmed" | "createdAt" | "updatedAt" | "adminNotes" | "certificateIssued" | "customFieldResponses" | "paymentMethod" | "transactionId", ExtArgs["result"]["eventRegistration"]>
+  export type EventRegistrationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }
+  export type EventRegistrationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }
+  export type EventRegistrationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    GeneralEvent?: boolean | GeneralEventDefaultArgs<ExtArgs>
+  }
+
+  export type $EventRegistrationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EventRegistration"
+    objects: {
+      GeneralEvent: Prisma.$GeneralEventPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      eventId: number
+      studentName: string
+      studentEmail: string
+      studentPhone: string | null
+      studentGrade: string | null
+      schoolName: string | null
+      parentName: string
+      parentEmail: string
+      parentPhone: string | null
+      registrationStatus: string
+      paymentStatus: string | null
+      paymentAmount: number | null
+      specialRequirements: string | null
+      howDidYouHear: string | null
+      notes: string | null
+      checkedInAt: Date | null
+      attendanceConfirmed: boolean
+      createdAt: Date
+      updatedAt: Date
+      adminNotes: string | null
+      certificateIssued: boolean
+      customFieldResponses: Prisma.JsonValue | null
+      paymentMethod: string | null
+      transactionId: string | null
+    }, ExtArgs["result"]["eventRegistration"]>
+    composites: {}
+  }
+
+  type EventRegistrationGetPayload<S extends boolean | null | undefined | EventRegistrationDefaultArgs> = $Result.GetResult<Prisma.$EventRegistrationPayload, S>
+
+  type EventRegistrationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EventRegistrationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EventRegistrationCountAggregateInputType | true
+    }
+
+  export interface EventRegistrationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EventRegistration'], meta: { name: 'EventRegistration' } }
+    /**
+     * Find zero or one EventRegistration that matches the filter.
+     * @param {EventRegistrationFindUniqueArgs} args - Arguments to find a EventRegistration
+     * @example
+     * // Get one EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EventRegistrationFindUniqueArgs>(args: SelectSubset<T, EventRegistrationFindUniqueArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EventRegistration that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EventRegistrationFindUniqueOrThrowArgs} args - Arguments to find a EventRegistration
+     * @example
+     * // Get one EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EventRegistrationFindUniqueOrThrowArgs>(args: SelectSubset<T, EventRegistrationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EventRegistration that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationFindFirstArgs} args - Arguments to find a EventRegistration
+     * @example
+     * // Get one EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EventRegistrationFindFirstArgs>(args?: SelectSubset<T, EventRegistrationFindFirstArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EventRegistration that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationFindFirstOrThrowArgs} args - Arguments to find a EventRegistration
+     * @example
+     * // Get one EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EventRegistrationFindFirstOrThrowArgs>(args?: SelectSubset<T, EventRegistrationFindFirstOrThrowArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EventRegistrations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EventRegistrations
+     * const eventRegistrations = await prisma.eventRegistration.findMany()
+     * 
+     * // Get first 10 EventRegistrations
+     * const eventRegistrations = await prisma.eventRegistration.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const eventRegistrationWithIdOnly = await prisma.eventRegistration.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EventRegistrationFindManyArgs>(args?: SelectSubset<T, EventRegistrationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EventRegistration.
+     * @param {EventRegistrationCreateArgs} args - Arguments to create a EventRegistration.
+     * @example
+     * // Create one EventRegistration
+     * const EventRegistration = await prisma.eventRegistration.create({
+     *   data: {
+     *     // ... data to create a EventRegistration
+     *   }
+     * })
+     * 
+     */
+    create<T extends EventRegistrationCreateArgs>(args: SelectSubset<T, EventRegistrationCreateArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EventRegistrations.
+     * @param {EventRegistrationCreateManyArgs} args - Arguments to create many EventRegistrations.
+     * @example
+     * // Create many EventRegistrations
+     * const eventRegistration = await prisma.eventRegistration.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EventRegistrationCreateManyArgs>(args?: SelectSubset<T, EventRegistrationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EventRegistrations and returns the data saved in the database.
+     * @param {EventRegistrationCreateManyAndReturnArgs} args - Arguments to create many EventRegistrations.
+     * @example
+     * // Create many EventRegistrations
+     * const eventRegistration = await prisma.eventRegistration.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EventRegistrations and only return the `id`
+     * const eventRegistrationWithIdOnly = await prisma.eventRegistration.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EventRegistrationCreateManyAndReturnArgs>(args?: SelectSubset<T, EventRegistrationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EventRegistration.
+     * @param {EventRegistrationDeleteArgs} args - Arguments to delete one EventRegistration.
+     * @example
+     * // Delete one EventRegistration
+     * const EventRegistration = await prisma.eventRegistration.delete({
+     *   where: {
+     *     // ... filter to delete one EventRegistration
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EventRegistrationDeleteArgs>(args: SelectSubset<T, EventRegistrationDeleteArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EventRegistration.
+     * @param {EventRegistrationUpdateArgs} args - Arguments to update one EventRegistration.
+     * @example
+     * // Update one EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EventRegistrationUpdateArgs>(args: SelectSubset<T, EventRegistrationUpdateArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EventRegistrations.
+     * @param {EventRegistrationDeleteManyArgs} args - Arguments to filter EventRegistrations to delete.
+     * @example
+     * // Delete a few EventRegistrations
+     * const { count } = await prisma.eventRegistration.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EventRegistrationDeleteManyArgs>(args?: SelectSubset<T, EventRegistrationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EventRegistrations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EventRegistrations
+     * const eventRegistration = await prisma.eventRegistration.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EventRegistrationUpdateManyArgs>(args: SelectSubset<T, EventRegistrationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EventRegistrations and returns the data updated in the database.
+     * @param {EventRegistrationUpdateManyAndReturnArgs} args - Arguments to update many EventRegistrations.
+     * @example
+     * // Update many EventRegistrations
+     * const eventRegistration = await prisma.eventRegistration.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EventRegistrations and only return the `id`
+     * const eventRegistrationWithIdOnly = await prisma.eventRegistration.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EventRegistrationUpdateManyAndReturnArgs>(args: SelectSubset<T, EventRegistrationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EventRegistration.
+     * @param {EventRegistrationUpsertArgs} args - Arguments to update or create a EventRegistration.
+     * @example
+     * // Update or create a EventRegistration
+     * const eventRegistration = await prisma.eventRegistration.upsert({
+     *   create: {
+     *     // ... data to create a EventRegistration
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EventRegistration we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EventRegistrationUpsertArgs>(args: SelectSubset<T, EventRegistrationUpsertArgs<ExtArgs>>): Prisma__EventRegistrationClient<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EventRegistrations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationCountArgs} args - Arguments to filter EventRegistrations to count.
+     * @example
+     * // Count the number of EventRegistrations
+     * const count = await prisma.eventRegistration.count({
+     *   where: {
+     *     // ... the filter for the EventRegistrations we want to count
+     *   }
+     * })
+    **/
+    count<T extends EventRegistrationCountArgs>(
+      args?: Subset<T, EventRegistrationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EventRegistrationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EventRegistration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EventRegistrationAggregateArgs>(args: Subset<T, EventRegistrationAggregateArgs>): Prisma.PrismaPromise<GetEventRegistrationAggregateType<T>>
+
+    /**
+     * Group by EventRegistration.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EventRegistrationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EventRegistrationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EventRegistrationGroupByArgs['orderBy'] }
+        : { orderBy?: EventRegistrationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EventRegistrationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEventRegistrationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EventRegistration model
+   */
+  readonly fields: EventRegistrationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EventRegistration.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EventRegistrationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    GeneralEvent<T extends GeneralEventDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GeneralEventDefaultArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EventRegistration model
+   */
+  interface EventRegistrationFieldRefs {
+    readonly id: FieldRef<"EventRegistration", 'Int'>
+    readonly eventId: FieldRef<"EventRegistration", 'Int'>
+    readonly studentName: FieldRef<"EventRegistration", 'String'>
+    readonly studentEmail: FieldRef<"EventRegistration", 'String'>
+    readonly studentPhone: FieldRef<"EventRegistration", 'String'>
+    readonly studentGrade: FieldRef<"EventRegistration", 'String'>
+    readonly schoolName: FieldRef<"EventRegistration", 'String'>
+    readonly parentName: FieldRef<"EventRegistration", 'String'>
+    readonly parentEmail: FieldRef<"EventRegistration", 'String'>
+    readonly parentPhone: FieldRef<"EventRegistration", 'String'>
+    readonly registrationStatus: FieldRef<"EventRegistration", 'String'>
+    readonly paymentStatus: FieldRef<"EventRegistration", 'String'>
+    readonly paymentAmount: FieldRef<"EventRegistration", 'Float'>
+    readonly specialRequirements: FieldRef<"EventRegistration", 'String'>
+    readonly howDidYouHear: FieldRef<"EventRegistration", 'String'>
+    readonly notes: FieldRef<"EventRegistration", 'String'>
+    readonly checkedInAt: FieldRef<"EventRegistration", 'DateTime'>
+    readonly attendanceConfirmed: FieldRef<"EventRegistration", 'Boolean'>
+    readonly createdAt: FieldRef<"EventRegistration", 'DateTime'>
+    readonly updatedAt: FieldRef<"EventRegistration", 'DateTime'>
+    readonly adminNotes: FieldRef<"EventRegistration", 'String'>
+    readonly certificateIssued: FieldRef<"EventRegistration", 'Boolean'>
+    readonly customFieldResponses: FieldRef<"EventRegistration", 'Json'>
+    readonly paymentMethod: FieldRef<"EventRegistration", 'String'>
+    readonly transactionId: FieldRef<"EventRegistration", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EventRegistration findUnique
+   */
+  export type EventRegistrationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter, which EventRegistration to fetch.
+     */
+    where: EventRegistrationWhereUniqueInput
+  }
+
+  /**
+   * EventRegistration findUniqueOrThrow
+   */
+  export type EventRegistrationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter, which EventRegistration to fetch.
+     */
+    where: EventRegistrationWhereUniqueInput
+  }
+
+  /**
+   * EventRegistration findFirst
+   */
+  export type EventRegistrationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter, which EventRegistration to fetch.
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventRegistrations to fetch.
+     */
+    orderBy?: EventRegistrationOrderByWithRelationInput | EventRegistrationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EventRegistrations.
+     */
+    cursor?: EventRegistrationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventRegistrations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventRegistrations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EventRegistrations.
+     */
+    distinct?: EventRegistrationScalarFieldEnum | EventRegistrationScalarFieldEnum[]
+  }
+
+  /**
+   * EventRegistration findFirstOrThrow
+   */
+  export type EventRegistrationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter, which EventRegistration to fetch.
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventRegistrations to fetch.
+     */
+    orderBy?: EventRegistrationOrderByWithRelationInput | EventRegistrationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EventRegistrations.
+     */
+    cursor?: EventRegistrationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventRegistrations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventRegistrations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EventRegistrations.
+     */
+    distinct?: EventRegistrationScalarFieldEnum | EventRegistrationScalarFieldEnum[]
+  }
+
+  /**
+   * EventRegistration findMany
+   */
+  export type EventRegistrationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter, which EventRegistrations to fetch.
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EventRegistrations to fetch.
+     */
+    orderBy?: EventRegistrationOrderByWithRelationInput | EventRegistrationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EventRegistrations.
+     */
+    cursor?: EventRegistrationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EventRegistrations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EventRegistrations.
+     */
+    skip?: number
+    distinct?: EventRegistrationScalarFieldEnum | EventRegistrationScalarFieldEnum[]
+  }
+
+  /**
+   * EventRegistration create
+   */
+  export type EventRegistrationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EventRegistration.
+     */
+    data: XOR<EventRegistrationCreateInput, EventRegistrationUncheckedCreateInput>
+  }
+
+  /**
+   * EventRegistration createMany
+   */
+  export type EventRegistrationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EventRegistrations.
+     */
+    data: EventRegistrationCreateManyInput | EventRegistrationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EventRegistration createManyAndReturn
+   */
+  export type EventRegistrationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * The data used to create many EventRegistrations.
+     */
+    data: EventRegistrationCreateManyInput | EventRegistrationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EventRegistration update
+   */
+  export type EventRegistrationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EventRegistration.
+     */
+    data: XOR<EventRegistrationUpdateInput, EventRegistrationUncheckedUpdateInput>
+    /**
+     * Choose, which EventRegistration to update.
+     */
+    where: EventRegistrationWhereUniqueInput
+  }
+
+  /**
+   * EventRegistration updateMany
+   */
+  export type EventRegistrationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EventRegistrations.
+     */
+    data: XOR<EventRegistrationUpdateManyMutationInput, EventRegistrationUncheckedUpdateManyInput>
+    /**
+     * Filter which EventRegistrations to update
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * Limit how many EventRegistrations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventRegistration updateManyAndReturn
+   */
+  export type EventRegistrationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * The data used to update EventRegistrations.
+     */
+    data: XOR<EventRegistrationUpdateManyMutationInput, EventRegistrationUncheckedUpdateManyInput>
+    /**
+     * Filter which EventRegistrations to update
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * Limit how many EventRegistrations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EventRegistration upsert
+   */
+  export type EventRegistrationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EventRegistration to update in case it exists.
+     */
+    where: EventRegistrationWhereUniqueInput
+    /**
+     * In case the EventRegistration found by the `where` argument doesn't exist, create a new EventRegistration with this data.
+     */
+    create: XOR<EventRegistrationCreateInput, EventRegistrationUncheckedCreateInput>
+    /**
+     * In case the EventRegistration was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EventRegistrationUpdateInput, EventRegistrationUncheckedUpdateInput>
+  }
+
+  /**
+   * EventRegistration delete
+   */
+  export type EventRegistrationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    /**
+     * Filter which EventRegistration to delete.
+     */
+    where: EventRegistrationWhereUniqueInput
+  }
+
+  /**
+   * EventRegistration deleteMany
+   */
+  export type EventRegistrationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EventRegistrations to delete
+     */
+    where?: EventRegistrationWhereInput
+    /**
+     * Limit how many EventRegistrations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EventRegistration without action
+   */
+  export type EventRegistrationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model GeneralEvent
+   */
+
+  export type AggregateGeneralEvent = {
+    _count: GeneralEventCountAggregateOutputType | null
+    _avg: GeneralEventAvgAggregateOutputType | null
+    _sum: GeneralEventSumAggregateOutputType | null
+    _min: GeneralEventMinAggregateOutputType | null
+    _max: GeneralEventMaxAggregateOutputType | null
+  }
+
+  export type GeneralEventAvgAggregateOutputType = {
+    id: number | null
+    maxParticipants: number | null
+    earlyBirdFee: number | null
+    registrationFee: number | null
+  }
+
+  export type GeneralEventSumAggregateOutputType = {
+    id: number | null
+    maxParticipants: number | null
+    earlyBirdFee: number | null
+    registrationFee: number | null
+  }
+
+  export type GeneralEventMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    category: string | null
+    eventDate: Date | null
+    eventTime: string | null
+    location: string | null
+    image: string | null
+    maxParticipants: number | null
+    registrationDeadline: Date | null
+    status: string | null
+    isPublished: boolean | null
+    isFeatured: boolean | null
+    targetAudience: string | null
+    requirements: string | null
+    agenda: string | null
+    contactEmail: string | null
+    contactPhone: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    earlyBirdDeadline: Date | null
+    earlyBirdFee: number | null
+    publishedAt: Date | null
+    publishedBy: string | null
+    registrationFee: number | null
+    requiresPayment: boolean | null
+  }
+
+  export type GeneralEventMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    category: string | null
+    eventDate: Date | null
+    eventTime: string | null
+    location: string | null
+    image: string | null
+    maxParticipants: number | null
+    registrationDeadline: Date | null
+    status: string | null
+    isPublished: boolean | null
+    isFeatured: boolean | null
+    targetAudience: string | null
+    requirements: string | null
+    agenda: string | null
+    contactEmail: string | null
+    contactPhone: string | null
+    createdBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    earlyBirdDeadline: Date | null
+    earlyBirdFee: number | null
+    publishedAt: Date | null
+    publishedBy: string | null
+    registrationFee: number | null
+    requiresPayment: boolean | null
+  }
+
+  export type GeneralEventCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    category: number
+    eventDate: number
+    eventTime: number
+    location: number
+    image: number
+    maxParticipants: number
+    registrationDeadline: number
+    status: number
+    isPublished: number
+    isFeatured: number
+    targetAudience: number
+    requirements: number
+    agenda: number
+    speakers: number
+    tags: number
+    contactEmail: number
+    contactPhone: number
+    createdBy: number
+    createdAt: number
+    updatedAt: number
+    customFields: number
+    earlyBirdDeadline: number
+    earlyBirdFee: number
+    publishedAt: number
+    publishedBy: number
+    registrationFee: number
+    registrationFormConfig: number
+    requiresPayment: number
+    _all: number
+  }
+
+
+  export type GeneralEventAvgAggregateInputType = {
+    id?: true
+    maxParticipants?: true
+    earlyBirdFee?: true
+    registrationFee?: true
+  }
+
+  export type GeneralEventSumAggregateInputType = {
+    id?: true
+    maxParticipants?: true
+    earlyBirdFee?: true
+    registrationFee?: true
+  }
+
+  export type GeneralEventMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    category?: true
+    eventDate?: true
+    eventTime?: true
+    location?: true
+    image?: true
+    maxParticipants?: true
+    registrationDeadline?: true
+    status?: true
+    isPublished?: true
+    isFeatured?: true
+    targetAudience?: true
+    requirements?: true
+    agenda?: true
+    contactEmail?: true
+    contactPhone?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+    earlyBirdDeadline?: true
+    earlyBirdFee?: true
+    publishedAt?: true
+    publishedBy?: true
+    registrationFee?: true
+    requiresPayment?: true
+  }
+
+  export type GeneralEventMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    category?: true
+    eventDate?: true
+    eventTime?: true
+    location?: true
+    image?: true
+    maxParticipants?: true
+    registrationDeadline?: true
+    status?: true
+    isPublished?: true
+    isFeatured?: true
+    targetAudience?: true
+    requirements?: true
+    agenda?: true
+    contactEmail?: true
+    contactPhone?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+    earlyBirdDeadline?: true
+    earlyBirdFee?: true
+    publishedAt?: true
+    publishedBy?: true
+    registrationFee?: true
+    requiresPayment?: true
+  }
+
+  export type GeneralEventCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    category?: true
+    eventDate?: true
+    eventTime?: true
+    location?: true
+    image?: true
+    maxParticipants?: true
+    registrationDeadline?: true
+    status?: true
+    isPublished?: true
+    isFeatured?: true
+    targetAudience?: true
+    requirements?: true
+    agenda?: true
+    speakers?: true
+    tags?: true
+    contactEmail?: true
+    contactPhone?: true
+    createdBy?: true
+    createdAt?: true
+    updatedAt?: true
+    customFields?: true
+    earlyBirdDeadline?: true
+    earlyBirdFee?: true
+    publishedAt?: true
+    publishedBy?: true
+    registrationFee?: true
+    registrationFormConfig?: true
+    requiresPayment?: true
+    _all?: true
+  }
+
+  export type GeneralEventAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GeneralEvent to aggregate.
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralEvents to fetch.
+     */
+    orderBy?: GeneralEventOrderByWithRelationInput | GeneralEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GeneralEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GeneralEvents
+    **/
+    _count?: true | GeneralEventCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GeneralEventAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GeneralEventSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GeneralEventMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GeneralEventMaxAggregateInputType
+  }
+
+  export type GetGeneralEventAggregateType<T extends GeneralEventAggregateArgs> = {
+        [P in keyof T & keyof AggregateGeneralEvent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGeneralEvent[P]>
+      : GetScalarType<T[P], AggregateGeneralEvent[P]>
+  }
+
+
+
+
+  export type GeneralEventGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GeneralEventWhereInput
+    orderBy?: GeneralEventOrderByWithAggregationInput | GeneralEventOrderByWithAggregationInput[]
+    by: GeneralEventScalarFieldEnum[] | GeneralEventScalarFieldEnum
+    having?: GeneralEventScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GeneralEventCountAggregateInputType | true
+    _avg?: GeneralEventAvgAggregateInputType
+    _sum?: GeneralEventSumAggregateInputType
+    _min?: GeneralEventMinAggregateInputType
+    _max?: GeneralEventMaxAggregateInputType
+  }
+
+  export type GeneralEventGroupByOutputType = {
+    id: number
+    title: string
+    description: string
+    category: string
+    eventDate: Date
+    eventTime: string
+    location: string
+    image: string | null
+    maxParticipants: number | null
+    registrationDeadline: Date | null
+    status: string
+    isPublished: boolean
+    isFeatured: boolean
+    targetAudience: string | null
+    requirements: string | null
+    agenda: string | null
+    speakers: JsonValue | null
+    tags: string[]
+    contactEmail: string | null
+    contactPhone: string | null
+    createdBy: string | null
+    createdAt: Date
+    updatedAt: Date
+    customFields: JsonValue | null
+    earlyBirdDeadline: Date | null
+    earlyBirdFee: number | null
+    publishedAt: Date | null
+    publishedBy: string | null
+    registrationFee: number | null
+    registrationFormConfig: JsonValue | null
+    requiresPayment: boolean
+    _count: GeneralEventCountAggregateOutputType | null
+    _avg: GeneralEventAvgAggregateOutputType | null
+    _sum: GeneralEventSumAggregateOutputType | null
+    _min: GeneralEventMinAggregateOutputType | null
+    _max: GeneralEventMaxAggregateOutputType | null
+  }
+
+  type GetGeneralEventGroupByPayload<T extends GeneralEventGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GeneralEventGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GeneralEventGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GeneralEventGroupByOutputType[P]>
+            : GetScalarType<T[P], GeneralEventGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GeneralEventSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    location?: boolean
+    image?: boolean
+    maxParticipants?: boolean
+    registrationDeadline?: boolean
+    status?: boolean
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: boolean
+    requirements?: boolean
+    agenda?: boolean
+    speakers?: boolean
+    tags?: boolean
+    contactEmail?: boolean
+    contactPhone?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customFields?: boolean
+    earlyBirdDeadline?: boolean
+    earlyBirdFee?: boolean
+    publishedAt?: boolean
+    publishedBy?: boolean
+    registrationFee?: boolean
+    registrationFormConfig?: boolean
+    requiresPayment?: boolean
+    EventRegistration?: boolean | GeneralEvent$EventRegistrationArgs<ExtArgs>
+    _count?: boolean | GeneralEventCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["generalEvent"]>
+
+  export type GeneralEventSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    location?: boolean
+    image?: boolean
+    maxParticipants?: boolean
+    registrationDeadline?: boolean
+    status?: boolean
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: boolean
+    requirements?: boolean
+    agenda?: boolean
+    speakers?: boolean
+    tags?: boolean
+    contactEmail?: boolean
+    contactPhone?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customFields?: boolean
+    earlyBirdDeadline?: boolean
+    earlyBirdFee?: boolean
+    publishedAt?: boolean
+    publishedBy?: boolean
+    registrationFee?: boolean
+    registrationFormConfig?: boolean
+    requiresPayment?: boolean
+  }, ExtArgs["result"]["generalEvent"]>
+
+  export type GeneralEventSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    location?: boolean
+    image?: boolean
+    maxParticipants?: boolean
+    registrationDeadline?: boolean
+    status?: boolean
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: boolean
+    requirements?: boolean
+    agenda?: boolean
+    speakers?: boolean
+    tags?: boolean
+    contactEmail?: boolean
+    contactPhone?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customFields?: boolean
+    earlyBirdDeadline?: boolean
+    earlyBirdFee?: boolean
+    publishedAt?: boolean
+    publishedBy?: boolean
+    registrationFee?: boolean
+    registrationFormConfig?: boolean
+    requiresPayment?: boolean
+  }, ExtArgs["result"]["generalEvent"]>
+
+  export type GeneralEventSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    eventDate?: boolean
+    eventTime?: boolean
+    location?: boolean
+    image?: boolean
+    maxParticipants?: boolean
+    registrationDeadline?: boolean
+    status?: boolean
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: boolean
+    requirements?: boolean
+    agenda?: boolean
+    speakers?: boolean
+    tags?: boolean
+    contactEmail?: boolean
+    contactPhone?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    customFields?: boolean
+    earlyBirdDeadline?: boolean
+    earlyBirdFee?: boolean
+    publishedAt?: boolean
+    publishedBy?: boolean
+    registrationFee?: boolean
+    registrationFormConfig?: boolean
+    requiresPayment?: boolean
+  }
+
+  export type GeneralEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "eventDate" | "eventTime" | "location" | "image" | "maxParticipants" | "registrationDeadline" | "status" | "isPublished" | "isFeatured" | "targetAudience" | "requirements" | "agenda" | "speakers" | "tags" | "contactEmail" | "contactPhone" | "createdBy" | "createdAt" | "updatedAt" | "customFields" | "earlyBirdDeadline" | "earlyBirdFee" | "publishedAt" | "publishedBy" | "registrationFee" | "registrationFormConfig" | "requiresPayment", ExtArgs["result"]["generalEvent"]>
+  export type GeneralEventInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    EventRegistration?: boolean | GeneralEvent$EventRegistrationArgs<ExtArgs>
+    _count?: boolean | GeneralEventCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type GeneralEventIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type GeneralEventIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $GeneralEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GeneralEvent"
+    objects: {
+      EventRegistration: Prisma.$EventRegistrationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      description: string
+      category: string
+      eventDate: Date
+      eventTime: string
+      location: string
+      image: string | null
+      maxParticipants: number | null
+      registrationDeadline: Date | null
+      status: string
+      isPublished: boolean
+      isFeatured: boolean
+      targetAudience: string | null
+      requirements: string | null
+      agenda: string | null
+      speakers: Prisma.JsonValue | null
+      tags: string[]
+      contactEmail: string | null
+      contactPhone: string | null
+      createdBy: string | null
+      createdAt: Date
+      updatedAt: Date
+      customFields: Prisma.JsonValue | null
+      earlyBirdDeadline: Date | null
+      earlyBirdFee: number | null
+      publishedAt: Date | null
+      publishedBy: string | null
+      registrationFee: number | null
+      registrationFormConfig: Prisma.JsonValue | null
+      requiresPayment: boolean
+    }, ExtArgs["result"]["generalEvent"]>
+    composites: {}
+  }
+
+  type GeneralEventGetPayload<S extends boolean | null | undefined | GeneralEventDefaultArgs> = $Result.GetResult<Prisma.$GeneralEventPayload, S>
+
+  type GeneralEventCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GeneralEventFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GeneralEventCountAggregateInputType | true
+    }
+
+  export interface GeneralEventDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GeneralEvent'], meta: { name: 'GeneralEvent' } }
+    /**
+     * Find zero or one GeneralEvent that matches the filter.
+     * @param {GeneralEventFindUniqueArgs} args - Arguments to find a GeneralEvent
+     * @example
+     * // Get one GeneralEvent
+     * const generalEvent = await prisma.generalEvent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GeneralEventFindUniqueArgs>(args: SelectSubset<T, GeneralEventFindUniqueArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GeneralEvent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GeneralEventFindUniqueOrThrowArgs} args - Arguments to find a GeneralEvent
+     * @example
+     * // Get one GeneralEvent
+     * const generalEvent = await prisma.generalEvent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GeneralEventFindUniqueOrThrowArgs>(args: SelectSubset<T, GeneralEventFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GeneralEvent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventFindFirstArgs} args - Arguments to find a GeneralEvent
+     * @example
+     * // Get one GeneralEvent
+     * const generalEvent = await prisma.generalEvent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GeneralEventFindFirstArgs>(args?: SelectSubset<T, GeneralEventFindFirstArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GeneralEvent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventFindFirstOrThrowArgs} args - Arguments to find a GeneralEvent
+     * @example
+     * // Get one GeneralEvent
+     * const generalEvent = await prisma.generalEvent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GeneralEventFindFirstOrThrowArgs>(args?: SelectSubset<T, GeneralEventFindFirstOrThrowArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GeneralEvents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GeneralEvents
+     * const generalEvents = await prisma.generalEvent.findMany()
+     * 
+     * // Get first 10 GeneralEvents
+     * const generalEvents = await prisma.generalEvent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const generalEventWithIdOnly = await prisma.generalEvent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GeneralEventFindManyArgs>(args?: SelectSubset<T, GeneralEventFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GeneralEvent.
+     * @param {GeneralEventCreateArgs} args - Arguments to create a GeneralEvent.
+     * @example
+     * // Create one GeneralEvent
+     * const GeneralEvent = await prisma.generalEvent.create({
+     *   data: {
+     *     // ... data to create a GeneralEvent
+     *   }
+     * })
+     * 
+     */
+    create<T extends GeneralEventCreateArgs>(args: SelectSubset<T, GeneralEventCreateArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GeneralEvents.
+     * @param {GeneralEventCreateManyArgs} args - Arguments to create many GeneralEvents.
+     * @example
+     * // Create many GeneralEvents
+     * const generalEvent = await prisma.generalEvent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GeneralEventCreateManyArgs>(args?: SelectSubset<T, GeneralEventCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GeneralEvents and returns the data saved in the database.
+     * @param {GeneralEventCreateManyAndReturnArgs} args - Arguments to create many GeneralEvents.
+     * @example
+     * // Create many GeneralEvents
+     * const generalEvent = await prisma.generalEvent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GeneralEvents and only return the `id`
+     * const generalEventWithIdOnly = await prisma.generalEvent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GeneralEventCreateManyAndReturnArgs>(args?: SelectSubset<T, GeneralEventCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GeneralEvent.
+     * @param {GeneralEventDeleteArgs} args - Arguments to delete one GeneralEvent.
+     * @example
+     * // Delete one GeneralEvent
+     * const GeneralEvent = await prisma.generalEvent.delete({
+     *   where: {
+     *     // ... filter to delete one GeneralEvent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GeneralEventDeleteArgs>(args: SelectSubset<T, GeneralEventDeleteArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GeneralEvent.
+     * @param {GeneralEventUpdateArgs} args - Arguments to update one GeneralEvent.
+     * @example
+     * // Update one GeneralEvent
+     * const generalEvent = await prisma.generalEvent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GeneralEventUpdateArgs>(args: SelectSubset<T, GeneralEventUpdateArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GeneralEvents.
+     * @param {GeneralEventDeleteManyArgs} args - Arguments to filter GeneralEvents to delete.
+     * @example
+     * // Delete a few GeneralEvents
+     * const { count } = await prisma.generalEvent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GeneralEventDeleteManyArgs>(args?: SelectSubset<T, GeneralEventDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GeneralEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GeneralEvents
+     * const generalEvent = await prisma.generalEvent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GeneralEventUpdateManyArgs>(args: SelectSubset<T, GeneralEventUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GeneralEvents and returns the data updated in the database.
+     * @param {GeneralEventUpdateManyAndReturnArgs} args - Arguments to update many GeneralEvents.
+     * @example
+     * // Update many GeneralEvents
+     * const generalEvent = await prisma.generalEvent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GeneralEvents and only return the `id`
+     * const generalEventWithIdOnly = await prisma.generalEvent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GeneralEventUpdateManyAndReturnArgs>(args: SelectSubset<T, GeneralEventUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GeneralEvent.
+     * @param {GeneralEventUpsertArgs} args - Arguments to update or create a GeneralEvent.
+     * @example
+     * // Update or create a GeneralEvent
+     * const generalEvent = await prisma.generalEvent.upsert({
+     *   create: {
+     *     // ... data to create a GeneralEvent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GeneralEvent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GeneralEventUpsertArgs>(args: SelectSubset<T, GeneralEventUpsertArgs<ExtArgs>>): Prisma__GeneralEventClient<$Result.GetResult<Prisma.$GeneralEventPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GeneralEvents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventCountArgs} args - Arguments to filter GeneralEvents to count.
+     * @example
+     * // Count the number of GeneralEvents
+     * const count = await prisma.generalEvent.count({
+     *   where: {
+     *     // ... the filter for the GeneralEvents we want to count
+     *   }
+     * })
+    **/
+    count<T extends GeneralEventCountArgs>(
+      args?: Subset<T, GeneralEventCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GeneralEventCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GeneralEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GeneralEventAggregateArgs>(args: Subset<T, GeneralEventAggregateArgs>): Prisma.PrismaPromise<GetGeneralEventAggregateType<T>>
+
+    /**
+     * Group by GeneralEvent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GeneralEventGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GeneralEventGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GeneralEventGroupByArgs['orderBy'] }
+        : { orderBy?: GeneralEventGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GeneralEventGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGeneralEventGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GeneralEvent model
+   */
+  readonly fields: GeneralEventFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GeneralEvent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GeneralEventClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    EventRegistration<T extends GeneralEvent$EventRegistrationArgs<ExtArgs> = {}>(args?: Subset<T, GeneralEvent$EventRegistrationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GeneralEvent model
+   */
+  interface GeneralEventFieldRefs {
+    readonly id: FieldRef<"GeneralEvent", 'Int'>
+    readonly title: FieldRef<"GeneralEvent", 'String'>
+    readonly description: FieldRef<"GeneralEvent", 'String'>
+    readonly category: FieldRef<"GeneralEvent", 'String'>
+    readonly eventDate: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly eventTime: FieldRef<"GeneralEvent", 'String'>
+    readonly location: FieldRef<"GeneralEvent", 'String'>
+    readonly image: FieldRef<"GeneralEvent", 'String'>
+    readonly maxParticipants: FieldRef<"GeneralEvent", 'Int'>
+    readonly registrationDeadline: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly status: FieldRef<"GeneralEvent", 'String'>
+    readonly isPublished: FieldRef<"GeneralEvent", 'Boolean'>
+    readonly isFeatured: FieldRef<"GeneralEvent", 'Boolean'>
+    readonly targetAudience: FieldRef<"GeneralEvent", 'String'>
+    readonly requirements: FieldRef<"GeneralEvent", 'String'>
+    readonly agenda: FieldRef<"GeneralEvent", 'String'>
+    readonly speakers: FieldRef<"GeneralEvent", 'Json'>
+    readonly tags: FieldRef<"GeneralEvent", 'String[]'>
+    readonly contactEmail: FieldRef<"GeneralEvent", 'String'>
+    readonly contactPhone: FieldRef<"GeneralEvent", 'String'>
+    readonly createdBy: FieldRef<"GeneralEvent", 'String'>
+    readonly createdAt: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly updatedAt: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly customFields: FieldRef<"GeneralEvent", 'Json'>
+    readonly earlyBirdDeadline: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly earlyBirdFee: FieldRef<"GeneralEvent", 'Float'>
+    readonly publishedAt: FieldRef<"GeneralEvent", 'DateTime'>
+    readonly publishedBy: FieldRef<"GeneralEvent", 'String'>
+    readonly registrationFee: FieldRef<"GeneralEvent", 'Float'>
+    readonly registrationFormConfig: FieldRef<"GeneralEvent", 'Json'>
+    readonly requiresPayment: FieldRef<"GeneralEvent", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GeneralEvent findUnique
+   */
+  export type GeneralEventFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralEvent to fetch.
+     */
+    where: GeneralEventWhereUniqueInput
+  }
+
+  /**
+   * GeneralEvent findUniqueOrThrow
+   */
+  export type GeneralEventFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralEvent to fetch.
+     */
+    where: GeneralEventWhereUniqueInput
+  }
+
+  /**
+   * GeneralEvent findFirst
+   */
+  export type GeneralEventFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralEvent to fetch.
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralEvents to fetch.
+     */
+    orderBy?: GeneralEventOrderByWithRelationInput | GeneralEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GeneralEvents.
+     */
+    cursor?: GeneralEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GeneralEvents.
+     */
+    distinct?: GeneralEventScalarFieldEnum | GeneralEventScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralEvent findFirstOrThrow
+   */
+  export type GeneralEventFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralEvent to fetch.
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralEvents to fetch.
+     */
+    orderBy?: GeneralEventOrderByWithRelationInput | GeneralEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GeneralEvents.
+     */
+    cursor?: GeneralEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralEvents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GeneralEvents.
+     */
+    distinct?: GeneralEventScalarFieldEnum | GeneralEventScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralEvent findMany
+   */
+  export type GeneralEventFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter, which GeneralEvents to fetch.
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GeneralEvents to fetch.
+     */
+    orderBy?: GeneralEventOrderByWithRelationInput | GeneralEventOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GeneralEvents.
+     */
+    cursor?: GeneralEventWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GeneralEvents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GeneralEvents.
+     */
+    skip?: number
+    distinct?: GeneralEventScalarFieldEnum | GeneralEventScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralEvent create
+   */
+  export type GeneralEventCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GeneralEvent.
+     */
+    data: XOR<GeneralEventCreateInput, GeneralEventUncheckedCreateInput>
+  }
+
+  /**
+   * GeneralEvent createMany
+   */
+  export type GeneralEventCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GeneralEvents.
+     */
+    data: GeneralEventCreateManyInput | GeneralEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GeneralEvent createManyAndReturn
+   */
+  export type GeneralEventCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * The data used to create many GeneralEvents.
+     */
+    data: GeneralEventCreateManyInput | GeneralEventCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GeneralEvent update
+   */
+  export type GeneralEventUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GeneralEvent.
+     */
+    data: XOR<GeneralEventUpdateInput, GeneralEventUncheckedUpdateInput>
+    /**
+     * Choose, which GeneralEvent to update.
+     */
+    where: GeneralEventWhereUniqueInput
+  }
+
+  /**
+   * GeneralEvent updateMany
+   */
+  export type GeneralEventUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GeneralEvents.
+     */
+    data: XOR<GeneralEventUpdateManyMutationInput, GeneralEventUncheckedUpdateManyInput>
+    /**
+     * Filter which GeneralEvents to update
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * Limit how many GeneralEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralEvent updateManyAndReturn
+   */
+  export type GeneralEventUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * The data used to update GeneralEvents.
+     */
+    data: XOR<GeneralEventUpdateManyMutationInput, GeneralEventUncheckedUpdateManyInput>
+    /**
+     * Filter which GeneralEvents to update
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * Limit how many GeneralEvents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralEvent upsert
+   */
+  export type GeneralEventUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GeneralEvent to update in case it exists.
+     */
+    where: GeneralEventWhereUniqueInput
+    /**
+     * In case the GeneralEvent found by the `where` argument doesn't exist, create a new GeneralEvent with this data.
+     */
+    create: XOR<GeneralEventCreateInput, GeneralEventUncheckedCreateInput>
+    /**
+     * In case the GeneralEvent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GeneralEventUpdateInput, GeneralEventUncheckedUpdateInput>
+  }
+
+  /**
+   * GeneralEvent delete
+   */
+  export type GeneralEventDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+    /**
+     * Filter which GeneralEvent to delete.
+     */
+    where: GeneralEventWhereUniqueInput
+  }
+
+  /**
+   * GeneralEvent deleteMany
+   */
+  export type GeneralEventDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GeneralEvents to delete
+     */
+    where?: GeneralEventWhereInput
+    /**
+     * Limit how many GeneralEvents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GeneralEvent.EventRegistration
+   */
+  export type GeneralEvent$EventRegistrationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EventRegistration
+     */
+    select?: EventRegistrationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EventRegistration
+     */
+    omit?: EventRegistrationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EventRegistrationInclude<ExtArgs> | null
+    where?: EventRegistrationWhereInput
+    orderBy?: EventRegistrationOrderByWithRelationInput | EventRegistrationOrderByWithRelationInput[]
+    cursor?: EventRegistrationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EventRegistrationScalarFieldEnum | EventRegistrationScalarFieldEnum[]
+  }
+
+  /**
+   * GeneralEvent without action
+   */
+  export type GeneralEventDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GeneralEvent
+     */
+    select?: GeneralEventSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GeneralEvent
+     */
+    omit?: GeneralEventOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GeneralEventInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AccessRequest
+   */
+
+  export type AggregateAccessRequest = {
+    _count: AccessRequestCountAggregateOutputType | null
+    _min: AccessRequestMinAggregateOutputType | null
+    _max: AccessRequestMaxAggregateOutputType | null
+  }
+
+  export type AccessRequestMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    email: string | null
+    createdAt: Date | null
+    approved: boolean | null
+    phone: string | null
+    reason: string | null
+    researchId: string | null
+  }
+
+  export type AccessRequestMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    email: string | null
+    createdAt: Date | null
+    approved: boolean | null
+    phone: string | null
+    reason: string | null
+    researchId: string | null
+  }
+
+  export type AccessRequestCountAggregateOutputType = {
+    id: number
+    name: number
+    email: number
+    createdAt: number
+    approved: number
+    phone: number
+    reason: number
+    researchId: number
+    _all: number
+  }
+
+
+  export type AccessRequestMinAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    createdAt?: true
+    approved?: true
+    phone?: true
+    reason?: true
+    researchId?: true
+  }
+
+  export type AccessRequestMaxAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    createdAt?: true
+    approved?: true
+    phone?: true
+    reason?: true
+    researchId?: true
+  }
+
+  export type AccessRequestCountAggregateInputType = {
+    id?: true
+    name?: true
+    email?: true
+    createdAt?: true
+    approved?: true
+    phone?: true
+    reason?: true
+    researchId?: true
+    _all?: true
+  }
+
+  export type AccessRequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AccessRequest to aggregate.
+     */
+    where?: AccessRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccessRequests to fetch.
+     */
+    orderBy?: AccessRequestOrderByWithRelationInput | AccessRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AccessRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccessRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccessRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AccessRequests
+    **/
+    _count?: true | AccessRequestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AccessRequestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AccessRequestMaxAggregateInputType
+  }
+
+  export type GetAccessRequestAggregateType<T extends AccessRequestAggregateArgs> = {
+        [P in keyof T & keyof AggregateAccessRequest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAccessRequest[P]>
+      : GetScalarType<T[P], AggregateAccessRequest[P]>
+  }
+
+
+
+
+  export type AccessRequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AccessRequestWhereInput
+    orderBy?: AccessRequestOrderByWithAggregationInput | AccessRequestOrderByWithAggregationInput[]
+    by: AccessRequestScalarFieldEnum[] | AccessRequestScalarFieldEnum
+    having?: AccessRequestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AccessRequestCountAggregateInputType | true
+    _min?: AccessRequestMinAggregateInputType
+    _max?: AccessRequestMaxAggregateInputType
+  }
+
+  export type AccessRequestGroupByOutputType = {
+    id: string
+    name: string
+    email: string
+    createdAt: Date
+    approved: boolean
+    phone: string | null
+    reason: string | null
+    researchId: string
+    _count: AccessRequestCountAggregateOutputType | null
+    _min: AccessRequestMinAggregateOutputType | null
+    _max: AccessRequestMaxAggregateOutputType | null
+  }
+
+  type GetAccessRequestGroupByPayload<T extends AccessRequestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AccessRequestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AccessRequestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AccessRequestGroupByOutputType[P]>
+            : GetScalarType<T[P], AccessRequestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AccessRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    createdAt?: boolean
+    approved?: boolean
+    phone?: boolean
+    reason?: boolean
+    researchId?: boolean
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["accessRequest"]>
+
+  export type AccessRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    createdAt?: boolean
+    approved?: boolean
+    phone?: boolean
+    reason?: boolean
+    researchId?: boolean
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["accessRequest"]>
+
+  export type AccessRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    createdAt?: boolean
+    approved?: boolean
+    phone?: boolean
+    reason?: boolean
+    researchId?: boolean
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["accessRequest"]>
+
+  export type AccessRequestSelectScalar = {
+    id?: boolean
+    name?: boolean
+    email?: boolean
+    createdAt?: boolean
+    approved?: boolean
+    phone?: boolean
+    reason?: boolean
+    researchId?: boolean
+  }
+
+  export type AccessRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "createdAt" | "approved" | "phone" | "reason" | "researchId", ExtArgs["result"]["accessRequest"]>
+  export type AccessRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }
+  export type AccessRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }
+  export type AccessRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }
+
+  export type $AccessRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AccessRequest"
+    objects: {
+      Research: Prisma.$ResearchPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      email: string
+      createdAt: Date
+      approved: boolean
+      phone: string | null
+      reason: string | null
+      researchId: string
+    }, ExtArgs["result"]["accessRequest"]>
+    composites: {}
+  }
+
+  type AccessRequestGetPayload<S extends boolean | null | undefined | AccessRequestDefaultArgs> = $Result.GetResult<Prisma.$AccessRequestPayload, S>
+
+  type AccessRequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AccessRequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AccessRequestCountAggregateInputType | true
+    }
+
+  export interface AccessRequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AccessRequest'], meta: { name: 'AccessRequest' } }
+    /**
+     * Find zero or one AccessRequest that matches the filter.
+     * @param {AccessRequestFindUniqueArgs} args - Arguments to find a AccessRequest
+     * @example
+     * // Get one AccessRequest
+     * const accessRequest = await prisma.accessRequest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AccessRequestFindUniqueArgs>(args: SelectSubset<T, AccessRequestFindUniqueArgs<ExtArgs>>): Prisma__AccessRequestClient<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AccessRequest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AccessRequestFindUniqueOrThrowArgs} args - Arguments to find a AccessRequest
+     * @example
+     * // Get one AccessRequest
+     * const accessRequest = await prisma.accessRequest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AccessRequestFindUniqueOrThrowArgs>(args: SelectSubset<T, AccessRequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AccessRequestClient<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AccessRequest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessRequestFindFirstArgs} args - Arguments to find a AccessRequest
+     * @example
+     * // Get one AccessRequest
+     * const accessRequest = await prisma.accessRequest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AccessRequestFindFirstArgs>(args?: SelectSubset<T, AccessRequestFindFirstArgs<ExtArgs>>): Prisma__AccessRequestClient<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AccessRequest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessRequestFindFirstOrThrowArgs} args - Arguments to find a AccessRequest
+     * @example
+     * // Get one AccessRequest
+     * const accessRequest = await prisma.accessRequest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AccessRequestFindFirstOrThrowArgs>(args?: SelectSubset<T, AccessRequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__AccessRequestClient<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AccessRequests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessRequestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AccessRequests
+     * const accessRequests = await prisma.accessRequest.findMany()
+     * 
+     * // Get first 10 AccessRequests
+     * const accessRequests = await prisma.accessRequest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const accessRequestWithIdOnly = await prisma.accessRequest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AccessRequestFindManyArgs>(args?: SelectSubset<T, AccessRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AccessRequest.
+     * @param {AccessRequestCreateArgs} args - Arguments to create a AccessRequest.
+     * @example
+     * // Create one AccessRequest
+     * const AccessRequest = await prisma.accessRequest.create({
+     *   data: {
+     *     // ... data to create a AccessRequest
+     *   }
+     * })
+     * 
+     */
+    create<T extends AccessRequestCreateArgs>(args: SelectSubset<T, AccessRequestCreateArgs<ExtArgs>>): Prisma__AccessRequestClient<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AccessRequests.
+     * @param {AccessRequestCreateManyArgs} args - Arguments to create many AccessRequests.
+     * @example
+     * // Create many AccessRequests
+     * const accessRequest = await prisma.accessRequest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AccessRequestCreateManyArgs>(args?: SelectSubset<T, AccessRequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AccessRequests and returns the data saved in the database.
+     * @param {AccessRequestCreateManyAndReturnArgs} args - Arguments to create many AccessRequests.
+     * @example
+     * // Create many AccessRequests
+     * const accessRequest = await prisma.accessRequest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AccessRequests and only return the `id`
+     * const accessRequestWithIdOnly = await prisma.accessRequest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AccessRequestCreateManyAndReturnArgs>(args?: SelectSubset<T, AccessRequestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AccessRequest.
+     * @param {AccessRequestDeleteArgs} args - Arguments to delete one AccessRequest.
+     * @example
+     * // Delete one AccessRequest
+     * const AccessRequest = await prisma.accessRequest.delete({
+     *   where: {
+     *     // ... filter to delete one AccessRequest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AccessRequestDeleteArgs>(args: SelectSubset<T, AccessRequestDeleteArgs<ExtArgs>>): Prisma__AccessRequestClient<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AccessRequest.
+     * @param {AccessRequestUpdateArgs} args - Arguments to update one AccessRequest.
+     * @example
+     * // Update one AccessRequest
+     * const accessRequest = await prisma.accessRequest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AccessRequestUpdateArgs>(args: SelectSubset<T, AccessRequestUpdateArgs<ExtArgs>>): Prisma__AccessRequestClient<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AccessRequests.
+     * @param {AccessRequestDeleteManyArgs} args - Arguments to filter AccessRequests to delete.
+     * @example
+     * // Delete a few AccessRequests
+     * const { count } = await prisma.accessRequest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AccessRequestDeleteManyArgs>(args?: SelectSubset<T, AccessRequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AccessRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessRequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AccessRequests
+     * const accessRequest = await prisma.accessRequest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AccessRequestUpdateManyArgs>(args: SelectSubset<T, AccessRequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AccessRequests and returns the data updated in the database.
+     * @param {AccessRequestUpdateManyAndReturnArgs} args - Arguments to update many AccessRequests.
+     * @example
+     * // Update many AccessRequests
+     * const accessRequest = await prisma.accessRequest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AccessRequests and only return the `id`
+     * const accessRequestWithIdOnly = await prisma.accessRequest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AccessRequestUpdateManyAndReturnArgs>(args: SelectSubset<T, AccessRequestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AccessRequest.
+     * @param {AccessRequestUpsertArgs} args - Arguments to update or create a AccessRequest.
+     * @example
+     * // Update or create a AccessRequest
+     * const accessRequest = await prisma.accessRequest.upsert({
+     *   create: {
+     *     // ... data to create a AccessRequest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AccessRequest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AccessRequestUpsertArgs>(args: SelectSubset<T, AccessRequestUpsertArgs<ExtArgs>>): Prisma__AccessRequestClient<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AccessRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessRequestCountArgs} args - Arguments to filter AccessRequests to count.
+     * @example
+     * // Count the number of AccessRequests
+     * const count = await prisma.accessRequest.count({
+     *   where: {
+     *     // ... the filter for the AccessRequests we want to count
+     *   }
+     * })
+    **/
+    count<T extends AccessRequestCountArgs>(
+      args?: Subset<T, AccessRequestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AccessRequestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AccessRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AccessRequestAggregateArgs>(args: Subset<T, AccessRequestAggregateArgs>): Prisma.PrismaPromise<GetAccessRequestAggregateType<T>>
+
+    /**
+     * Group by AccessRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AccessRequestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AccessRequestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AccessRequestGroupByArgs['orderBy'] }
+        : { orderBy?: AccessRequestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AccessRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAccessRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AccessRequest model
+   */
+  readonly fields: AccessRequestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AccessRequest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AccessRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Research<T extends ResearchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResearchDefaultArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AccessRequest model
+   */
+  interface AccessRequestFieldRefs {
+    readonly id: FieldRef<"AccessRequest", 'String'>
+    readonly name: FieldRef<"AccessRequest", 'String'>
+    readonly email: FieldRef<"AccessRequest", 'String'>
+    readonly createdAt: FieldRef<"AccessRequest", 'DateTime'>
+    readonly approved: FieldRef<"AccessRequest", 'Boolean'>
+    readonly phone: FieldRef<"AccessRequest", 'String'>
+    readonly reason: FieldRef<"AccessRequest", 'String'>
+    readonly researchId: FieldRef<"AccessRequest", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AccessRequest findUnique
+   */
+  export type AccessRequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which AccessRequest to fetch.
+     */
+    where: AccessRequestWhereUniqueInput
+  }
+
+  /**
+   * AccessRequest findUniqueOrThrow
+   */
+  export type AccessRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which AccessRequest to fetch.
+     */
+    where: AccessRequestWhereUniqueInput
+  }
+
+  /**
+   * AccessRequest findFirst
+   */
+  export type AccessRequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which AccessRequest to fetch.
+     */
+    where?: AccessRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccessRequests to fetch.
+     */
+    orderBy?: AccessRequestOrderByWithRelationInput | AccessRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AccessRequests.
+     */
+    cursor?: AccessRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccessRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccessRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AccessRequests.
+     */
+    distinct?: AccessRequestScalarFieldEnum | AccessRequestScalarFieldEnum[]
+  }
+
+  /**
+   * AccessRequest findFirstOrThrow
+   */
+  export type AccessRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which AccessRequest to fetch.
+     */
+    where?: AccessRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccessRequests to fetch.
+     */
+    orderBy?: AccessRequestOrderByWithRelationInput | AccessRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AccessRequests.
+     */
+    cursor?: AccessRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccessRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccessRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AccessRequests.
+     */
+    distinct?: AccessRequestScalarFieldEnum | AccessRequestScalarFieldEnum[]
+  }
+
+  /**
+   * AccessRequest findMany
+   */
+  export type AccessRequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which AccessRequests to fetch.
+     */
+    where?: AccessRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AccessRequests to fetch.
+     */
+    orderBy?: AccessRequestOrderByWithRelationInput | AccessRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AccessRequests.
+     */
+    cursor?: AccessRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AccessRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AccessRequests.
+     */
+    skip?: number
+    distinct?: AccessRequestScalarFieldEnum | AccessRequestScalarFieldEnum[]
+  }
+
+  /**
+   * AccessRequest create
+   */
+  export type AccessRequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AccessRequest.
+     */
+    data: XOR<AccessRequestCreateInput, AccessRequestUncheckedCreateInput>
+  }
+
+  /**
+   * AccessRequest createMany
+   */
+  export type AccessRequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AccessRequests.
+     */
+    data: AccessRequestCreateManyInput | AccessRequestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AccessRequest createManyAndReturn
+   */
+  export type AccessRequestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * The data used to create many AccessRequests.
+     */
+    data: AccessRequestCreateManyInput | AccessRequestCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AccessRequest update
+   */
+  export type AccessRequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AccessRequest.
+     */
+    data: XOR<AccessRequestUpdateInput, AccessRequestUncheckedUpdateInput>
+    /**
+     * Choose, which AccessRequest to update.
+     */
+    where: AccessRequestWhereUniqueInput
+  }
+
+  /**
+   * AccessRequest updateMany
+   */
+  export type AccessRequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AccessRequests.
+     */
+    data: XOR<AccessRequestUpdateManyMutationInput, AccessRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which AccessRequests to update
+     */
+    where?: AccessRequestWhereInput
+    /**
+     * Limit how many AccessRequests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AccessRequest updateManyAndReturn
+   */
+  export type AccessRequestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * The data used to update AccessRequests.
+     */
+    data: XOR<AccessRequestUpdateManyMutationInput, AccessRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which AccessRequests to update
+     */
+    where?: AccessRequestWhereInput
+    /**
+     * Limit how many AccessRequests to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AccessRequest upsert
+   */
+  export type AccessRequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AccessRequest to update in case it exists.
+     */
+    where: AccessRequestWhereUniqueInput
+    /**
+     * In case the AccessRequest found by the `where` argument doesn't exist, create a new AccessRequest with this data.
+     */
+    create: XOR<AccessRequestCreateInput, AccessRequestUncheckedCreateInput>
+    /**
+     * In case the AccessRequest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AccessRequestUpdateInput, AccessRequestUncheckedUpdateInput>
+  }
+
+  /**
+   * AccessRequest delete
+   */
+  export type AccessRequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+    /**
+     * Filter which AccessRequest to delete.
+     */
+    where: AccessRequestWhereUniqueInput
+  }
+
+  /**
+   * AccessRequest deleteMany
+   */
+  export type AccessRequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AccessRequests to delete
+     */
+    where?: AccessRequestWhereInput
+    /**
+     * Limit how many AccessRequests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AccessRequest without action
+   */
+  export type AccessRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Research
+   */
+
+  export type AggregateResearch = {
+    _count: ResearchCountAggregateOutputType | null
+    _min: ResearchMinAggregateOutputType | null
+    _max: ResearchMaxAggregateOutputType | null
+  }
+
+  export type ResearchMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    slug: string | null
+    description: string | null
+    published: boolean | null
+    author: string | null
+    pdfPath: string | null
+    createdAt: Date | null
+  }
+
+  export type ResearchMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    slug: string | null
+    description: string | null
+    published: boolean | null
+    author: string | null
+    pdfPath: string | null
+    createdAt: Date | null
+  }
+
+  export type ResearchCountAggregateOutputType = {
+    id: number
+    title: number
+    slug: number
+    description: number
+    published: number
+    author: number
+    pdfPath: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ResearchMinAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    description?: true
+    published?: true
+    author?: true
+    pdfPath?: true
+    createdAt?: true
+  }
+
+  export type ResearchMaxAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    description?: true
+    published?: true
+    author?: true
+    pdfPath?: true
+    createdAt?: true
+  }
+
+  export type ResearchCountAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    description?: true
+    published?: true
+    author?: true
+    pdfPath?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ResearchAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Research to aggregate.
+     */
+    where?: ResearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Research to fetch.
+     */
+    orderBy?: ResearchOrderByWithRelationInput | ResearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ResearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Research from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Research.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Research
+    **/
+    _count?: true | ResearchCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ResearchMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ResearchMaxAggregateInputType
+  }
+
+  export type GetResearchAggregateType<T extends ResearchAggregateArgs> = {
+        [P in keyof T & keyof AggregateResearch]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateResearch[P]>
+      : GetScalarType<T[P], AggregateResearch[P]>
+  }
+
+
+
+
+  export type ResearchGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResearchWhereInput
+    orderBy?: ResearchOrderByWithAggregationInput | ResearchOrderByWithAggregationInput[]
+    by: ResearchScalarFieldEnum[] | ResearchScalarFieldEnum
+    having?: ResearchScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ResearchCountAggregateInputType | true
+    _min?: ResearchMinAggregateInputType
+    _max?: ResearchMaxAggregateInputType
+  }
+
+  export type ResearchGroupByOutputType = {
+    id: string
+    title: string
+    slug: string
+    description: string | null
+    published: boolean
+    author: string | null
+    pdfPath: string | null
+    createdAt: Date
+    _count: ResearchCountAggregateOutputType | null
+    _min: ResearchMinAggregateOutputType | null
+    _max: ResearchMaxAggregateOutputType | null
+  }
+
+  type GetResearchGroupByPayload<T extends ResearchGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ResearchGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ResearchGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ResearchGroupByOutputType[P]>
+            : GetScalarType<T[P], ResearchGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ResearchSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    published?: boolean
+    author?: boolean
+    pdfPath?: boolean
+    createdAt?: boolean
+    AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
+    Slide?: boolean | Research$SlideArgs<ExtArgs>
+    _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["research"]>
+
+  export type ResearchSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    published?: boolean
+    author?: boolean
+    pdfPath?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["research"]>
+
+  export type ResearchSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    published?: boolean
+    author?: boolean
+    pdfPath?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["research"]>
+
+  export type ResearchSelectScalar = {
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    published?: boolean
+    author?: boolean
+    pdfPath?: boolean
+    createdAt?: boolean
+  }
+
+  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "published" | "author" | "pdfPath" | "createdAt", ExtArgs["result"]["research"]>
+  export type ResearchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
+    Slide?: boolean | Research$SlideArgs<ExtArgs>
+    _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ResearchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ResearchIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ResearchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Research"
+    objects: {
+      AccessRequest: Prisma.$AccessRequestPayload<ExtArgs>[]
+      Slide: Prisma.$SlidePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      slug: string
+      description: string | null
+      published: boolean
+      author: string | null
+      pdfPath: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["research"]>
+    composites: {}
+  }
+
+  type ResearchGetPayload<S extends boolean | null | undefined | ResearchDefaultArgs> = $Result.GetResult<Prisma.$ResearchPayload, S>
+
+  type ResearchCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ResearchFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ResearchCountAggregateInputType | true
+    }
+
+  export interface ResearchDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Research'], meta: { name: 'Research' } }
+    /**
+     * Find zero or one Research that matches the filter.
+     * @param {ResearchFindUniqueArgs} args - Arguments to find a Research
+     * @example
+     * // Get one Research
+     * const research = await prisma.research.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ResearchFindUniqueArgs>(args: SelectSubset<T, ResearchFindUniqueArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Research that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ResearchFindUniqueOrThrowArgs} args - Arguments to find a Research
+     * @example
+     * // Get one Research
+     * const research = await prisma.research.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ResearchFindUniqueOrThrowArgs>(args: SelectSubset<T, ResearchFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Research that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResearchFindFirstArgs} args - Arguments to find a Research
+     * @example
+     * // Get one Research
+     * const research = await prisma.research.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ResearchFindFirstArgs>(args?: SelectSubset<T, ResearchFindFirstArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Research that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResearchFindFirstOrThrowArgs} args - Arguments to find a Research
+     * @example
+     * // Get one Research
+     * const research = await prisma.research.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ResearchFindFirstOrThrowArgs>(args?: SelectSubset<T, ResearchFindFirstOrThrowArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Research that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResearchFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Research
+     * const research = await prisma.research.findMany()
+     * 
+     * // Get first 10 Research
+     * const research = await prisma.research.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const researchWithIdOnly = await prisma.research.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ResearchFindManyArgs>(args?: SelectSubset<T, ResearchFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Research.
+     * @param {ResearchCreateArgs} args - Arguments to create a Research.
+     * @example
+     * // Create one Research
+     * const Research = await prisma.research.create({
+     *   data: {
+     *     // ... data to create a Research
+     *   }
+     * })
+     * 
+     */
+    create<T extends ResearchCreateArgs>(args: SelectSubset<T, ResearchCreateArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Research.
+     * @param {ResearchCreateManyArgs} args - Arguments to create many Research.
+     * @example
+     * // Create many Research
+     * const research = await prisma.research.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ResearchCreateManyArgs>(args?: SelectSubset<T, ResearchCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Research and returns the data saved in the database.
+     * @param {ResearchCreateManyAndReturnArgs} args - Arguments to create many Research.
+     * @example
+     * // Create many Research
+     * const research = await prisma.research.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Research and only return the `id`
+     * const researchWithIdOnly = await prisma.research.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ResearchCreateManyAndReturnArgs>(args?: SelectSubset<T, ResearchCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Research.
+     * @param {ResearchDeleteArgs} args - Arguments to delete one Research.
+     * @example
+     * // Delete one Research
+     * const Research = await prisma.research.delete({
+     *   where: {
+     *     // ... filter to delete one Research
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ResearchDeleteArgs>(args: SelectSubset<T, ResearchDeleteArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Research.
+     * @param {ResearchUpdateArgs} args - Arguments to update one Research.
+     * @example
+     * // Update one Research
+     * const research = await prisma.research.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ResearchUpdateArgs>(args: SelectSubset<T, ResearchUpdateArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Research.
+     * @param {ResearchDeleteManyArgs} args - Arguments to filter Research to delete.
+     * @example
+     * // Delete a few Research
+     * const { count } = await prisma.research.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ResearchDeleteManyArgs>(args?: SelectSubset<T, ResearchDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Research.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResearchUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Research
+     * const research = await prisma.research.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ResearchUpdateManyArgs>(args: SelectSubset<T, ResearchUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Research and returns the data updated in the database.
+     * @param {ResearchUpdateManyAndReturnArgs} args - Arguments to update many Research.
+     * @example
+     * // Update many Research
+     * const research = await prisma.research.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Research and only return the `id`
+     * const researchWithIdOnly = await prisma.research.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ResearchUpdateManyAndReturnArgs>(args: SelectSubset<T, ResearchUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Research.
+     * @param {ResearchUpsertArgs} args - Arguments to update or create a Research.
+     * @example
+     * // Update or create a Research
+     * const research = await prisma.research.upsert({
+     *   create: {
+     *     // ... data to create a Research
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Research we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ResearchUpsertArgs>(args: SelectSubset<T, ResearchUpsertArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Research.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResearchCountArgs} args - Arguments to filter Research to count.
+     * @example
+     * // Count the number of Research
+     * const count = await prisma.research.count({
+     *   where: {
+     *     // ... the filter for the Research we want to count
+     *   }
+     * })
+    **/
+    count<T extends ResearchCountArgs>(
+      args?: Subset<T, ResearchCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ResearchCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Research.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResearchAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ResearchAggregateArgs>(args: Subset<T, ResearchAggregateArgs>): Prisma.PrismaPromise<GetResearchAggregateType<T>>
+
+    /**
+     * Group by Research.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResearchGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ResearchGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ResearchGroupByArgs['orderBy'] }
+        : { orderBy?: ResearchGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ResearchGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetResearchGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Research model
+   */
+  readonly fields: ResearchFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Research.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ResearchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    AccessRequest<T extends Research$AccessRequestArgs<ExtArgs> = {}>(args?: Subset<T, Research$AccessRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Slide<T extends Research$SlideArgs<ExtArgs> = {}>(args?: Subset<T, Research$SlideArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Research model
+   */
+  interface ResearchFieldRefs {
+    readonly id: FieldRef<"Research", 'String'>
+    readonly title: FieldRef<"Research", 'String'>
+    readonly slug: FieldRef<"Research", 'String'>
+    readonly description: FieldRef<"Research", 'String'>
+    readonly published: FieldRef<"Research", 'Boolean'>
+    readonly author: FieldRef<"Research", 'String'>
+    readonly pdfPath: FieldRef<"Research", 'String'>
+    readonly createdAt: FieldRef<"Research", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Research findUnique
+   */
+  export type ResearchFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    /**
+     * Filter, which Research to fetch.
+     */
+    where: ResearchWhereUniqueInput
+  }
+
+  /**
+   * Research findUniqueOrThrow
+   */
+  export type ResearchFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    /**
+     * Filter, which Research to fetch.
+     */
+    where: ResearchWhereUniqueInput
+  }
+
+  /**
+   * Research findFirst
+   */
+  export type ResearchFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    /**
+     * Filter, which Research to fetch.
+     */
+    where?: ResearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Research to fetch.
+     */
+    orderBy?: ResearchOrderByWithRelationInput | ResearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Research.
+     */
+    cursor?: ResearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Research from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Research.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Research.
+     */
+    distinct?: ResearchScalarFieldEnum | ResearchScalarFieldEnum[]
+  }
+
+  /**
+   * Research findFirstOrThrow
+   */
+  export type ResearchFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    /**
+     * Filter, which Research to fetch.
+     */
+    where?: ResearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Research to fetch.
+     */
+    orderBy?: ResearchOrderByWithRelationInput | ResearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Research.
+     */
+    cursor?: ResearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Research from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Research.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Research.
+     */
+    distinct?: ResearchScalarFieldEnum | ResearchScalarFieldEnum[]
+  }
+
+  /**
+   * Research findMany
+   */
+  export type ResearchFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    /**
+     * Filter, which Research to fetch.
+     */
+    where?: ResearchWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Research to fetch.
+     */
+    orderBy?: ResearchOrderByWithRelationInput | ResearchOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Research.
+     */
+    cursor?: ResearchWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Research from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Research.
+     */
+    skip?: number
+    distinct?: ResearchScalarFieldEnum | ResearchScalarFieldEnum[]
+  }
+
+  /**
+   * Research create
+   */
+  export type ResearchCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Research.
+     */
+    data: XOR<ResearchCreateInput, ResearchUncheckedCreateInput>
+  }
+
+  /**
+   * Research createMany
+   */
+  export type ResearchCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Research.
+     */
+    data: ResearchCreateManyInput | ResearchCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Research createManyAndReturn
+   */
+  export type ResearchCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * The data used to create many Research.
+     */
+    data: ResearchCreateManyInput | ResearchCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Research update
+   */
+  export type ResearchUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Research.
+     */
+    data: XOR<ResearchUpdateInput, ResearchUncheckedUpdateInput>
+    /**
+     * Choose, which Research to update.
+     */
+    where: ResearchWhereUniqueInput
+  }
+
+  /**
+   * Research updateMany
+   */
+  export type ResearchUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Research.
+     */
+    data: XOR<ResearchUpdateManyMutationInput, ResearchUncheckedUpdateManyInput>
+    /**
+     * Filter which Research to update
+     */
+    where?: ResearchWhereInput
+    /**
+     * Limit how many Research to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Research updateManyAndReturn
+   */
+  export type ResearchUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * The data used to update Research.
+     */
+    data: XOR<ResearchUpdateManyMutationInput, ResearchUncheckedUpdateManyInput>
+    /**
+     * Filter which Research to update
+     */
+    where?: ResearchWhereInput
+    /**
+     * Limit how many Research to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Research upsert
+   */
+  export type ResearchUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Research to update in case it exists.
+     */
+    where: ResearchWhereUniqueInput
+    /**
+     * In case the Research found by the `where` argument doesn't exist, create a new Research with this data.
+     */
+    create: XOR<ResearchCreateInput, ResearchUncheckedCreateInput>
+    /**
+     * In case the Research was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ResearchUpdateInput, ResearchUncheckedUpdateInput>
+  }
+
+  /**
+   * Research delete
+   */
+  export type ResearchDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    /**
+     * Filter which Research to delete.
+     */
+    where: ResearchWhereUniqueInput
+  }
+
+  /**
+   * Research deleteMany
+   */
+  export type ResearchDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Research to delete
+     */
+    where?: ResearchWhereInput
+    /**
+     * Limit how many Research to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Research.AccessRequest
+   */
+  export type Research$AccessRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AccessRequest
+     */
+    select?: AccessRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AccessRequest
+     */
+    omit?: AccessRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AccessRequestInclude<ExtArgs> | null
+    where?: AccessRequestWhereInput
+    orderBy?: AccessRequestOrderByWithRelationInput | AccessRequestOrderByWithRelationInput[]
+    cursor?: AccessRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AccessRequestScalarFieldEnum | AccessRequestScalarFieldEnum[]
+  }
+
+  /**
+   * Research.Slide
+   */
+  export type Research$SlideArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+    where?: SlideWhereInput
+    orderBy?: SlideOrderByWithRelationInput | SlideOrderByWithRelationInput[]
+    cursor?: SlideWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SlideScalarFieldEnum | SlideScalarFieldEnum[]
+  }
+
+  /**
+   * Research without action
+   */
+  export type ResearchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Slide
+   */
+
+  export type AggregateSlide = {
+    _count: SlideCountAggregateOutputType | null
+    _avg: SlideAvgAggregateOutputType | null
+    _sum: SlideSumAggregateOutputType | null
+    _min: SlideMinAggregateOutputType | null
+    _max: SlideMaxAggregateOutputType | null
+  }
+
+  export type SlideAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type SlideSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type SlideMinAggregateOutputType = {
+    id: string | null
+    researchId: string | null
+    imagePath: string | null
+    order: number | null
+  }
+
+  export type SlideMaxAggregateOutputType = {
+    id: string | null
+    researchId: string | null
+    imagePath: string | null
+    order: number | null
+  }
+
+  export type SlideCountAggregateOutputType = {
+    id: number
+    researchId: number
+    imagePath: number
+    order: number
+    _all: number
+  }
+
+
+  export type SlideAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type SlideSumAggregateInputType = {
+    order?: true
+  }
+
+  export type SlideMinAggregateInputType = {
+    id?: true
+    researchId?: true
+    imagePath?: true
+    order?: true
+  }
+
+  export type SlideMaxAggregateInputType = {
+    id?: true
+    researchId?: true
+    imagePath?: true
+    order?: true
+  }
+
+  export type SlideCountAggregateInputType = {
+    id?: true
+    researchId?: true
+    imagePath?: true
+    order?: true
+    _all?: true
+  }
+
+  export type SlideAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Slide to aggregate.
+     */
+    where?: SlideWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Slides to fetch.
+     */
+    orderBy?: SlideOrderByWithRelationInput | SlideOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SlideWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Slides from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Slides.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Slides
+    **/
+    _count?: true | SlideCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SlideAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SlideSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SlideMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SlideMaxAggregateInputType
+  }
+
+  export type GetSlideAggregateType<T extends SlideAggregateArgs> = {
+        [P in keyof T & keyof AggregateSlide]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSlide[P]>
+      : GetScalarType<T[P], AggregateSlide[P]>
+  }
+
+
+
+
+  export type SlideGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SlideWhereInput
+    orderBy?: SlideOrderByWithAggregationInput | SlideOrderByWithAggregationInput[]
+    by: SlideScalarFieldEnum[] | SlideScalarFieldEnum
+    having?: SlideScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SlideCountAggregateInputType | true
+    _avg?: SlideAvgAggregateInputType
+    _sum?: SlideSumAggregateInputType
+    _min?: SlideMinAggregateInputType
+    _max?: SlideMaxAggregateInputType
+  }
+
+  export type SlideGroupByOutputType = {
+    id: string
+    researchId: string
+    imagePath: string
+    order: number
+    _count: SlideCountAggregateOutputType | null
+    _avg: SlideAvgAggregateOutputType | null
+    _sum: SlideSumAggregateOutputType | null
+    _min: SlideMinAggregateOutputType | null
+    _max: SlideMaxAggregateOutputType | null
+  }
+
+  type GetSlideGroupByPayload<T extends SlideGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SlideGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SlideGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SlideGroupByOutputType[P]>
+            : GetScalarType<T[P], SlideGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SlideSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    researchId?: boolean
+    imagePath?: boolean
+    order?: boolean
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["slide"]>
+
+  export type SlideSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    researchId?: boolean
+    imagePath?: boolean
+    order?: boolean
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["slide"]>
+
+  export type SlideSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    researchId?: boolean
+    imagePath?: boolean
+    order?: boolean
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["slide"]>
+
+  export type SlideSelectScalar = {
+    id?: boolean
+    researchId?: boolean
+    imagePath?: boolean
+    order?: boolean
+  }
+
+  export type SlideOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "researchId" | "imagePath" | "order", ExtArgs["result"]["slide"]>
+  export type SlideInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }
+  export type SlideIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }
+  export type SlideIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }
+
+  export type $SlidePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Slide"
+    objects: {
+      Research: Prisma.$ResearchPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      researchId: string
+      imagePath: string
+      order: number
+    }, ExtArgs["result"]["slide"]>
+    composites: {}
+  }
+
+  type SlideGetPayload<S extends boolean | null | undefined | SlideDefaultArgs> = $Result.GetResult<Prisma.$SlidePayload, S>
+
+  type SlideCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SlideFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SlideCountAggregateInputType | true
+    }
+
+  export interface SlideDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Slide'], meta: { name: 'Slide' } }
+    /**
+     * Find zero or one Slide that matches the filter.
+     * @param {SlideFindUniqueArgs} args - Arguments to find a Slide
+     * @example
+     * // Get one Slide
+     * const slide = await prisma.slide.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SlideFindUniqueArgs>(args: SelectSubset<T, SlideFindUniqueArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Slide that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SlideFindUniqueOrThrowArgs} args - Arguments to find a Slide
+     * @example
+     * // Get one Slide
+     * const slide = await prisma.slide.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SlideFindUniqueOrThrowArgs>(args: SelectSubset<T, SlideFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Slide that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SlideFindFirstArgs} args - Arguments to find a Slide
+     * @example
+     * // Get one Slide
+     * const slide = await prisma.slide.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SlideFindFirstArgs>(args?: SelectSubset<T, SlideFindFirstArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Slide that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SlideFindFirstOrThrowArgs} args - Arguments to find a Slide
+     * @example
+     * // Get one Slide
+     * const slide = await prisma.slide.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SlideFindFirstOrThrowArgs>(args?: SelectSubset<T, SlideFindFirstOrThrowArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Slides that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SlideFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Slides
+     * const slides = await prisma.slide.findMany()
+     * 
+     * // Get first 10 Slides
+     * const slides = await prisma.slide.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const slideWithIdOnly = await prisma.slide.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SlideFindManyArgs>(args?: SelectSubset<T, SlideFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Slide.
+     * @param {SlideCreateArgs} args - Arguments to create a Slide.
+     * @example
+     * // Create one Slide
+     * const Slide = await prisma.slide.create({
+     *   data: {
+     *     // ... data to create a Slide
+     *   }
+     * })
+     * 
+     */
+    create<T extends SlideCreateArgs>(args: SelectSubset<T, SlideCreateArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Slides.
+     * @param {SlideCreateManyArgs} args - Arguments to create many Slides.
+     * @example
+     * // Create many Slides
+     * const slide = await prisma.slide.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SlideCreateManyArgs>(args?: SelectSubset<T, SlideCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Slides and returns the data saved in the database.
+     * @param {SlideCreateManyAndReturnArgs} args - Arguments to create many Slides.
+     * @example
+     * // Create many Slides
+     * const slide = await prisma.slide.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Slides and only return the `id`
+     * const slideWithIdOnly = await prisma.slide.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SlideCreateManyAndReturnArgs>(args?: SelectSubset<T, SlideCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Slide.
+     * @param {SlideDeleteArgs} args - Arguments to delete one Slide.
+     * @example
+     * // Delete one Slide
+     * const Slide = await prisma.slide.delete({
+     *   where: {
+     *     // ... filter to delete one Slide
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SlideDeleteArgs>(args: SelectSubset<T, SlideDeleteArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Slide.
+     * @param {SlideUpdateArgs} args - Arguments to update one Slide.
+     * @example
+     * // Update one Slide
+     * const slide = await prisma.slide.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SlideUpdateArgs>(args: SelectSubset<T, SlideUpdateArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Slides.
+     * @param {SlideDeleteManyArgs} args - Arguments to filter Slides to delete.
+     * @example
+     * // Delete a few Slides
+     * const { count } = await prisma.slide.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SlideDeleteManyArgs>(args?: SelectSubset<T, SlideDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Slides.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SlideUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Slides
+     * const slide = await prisma.slide.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SlideUpdateManyArgs>(args: SelectSubset<T, SlideUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Slides and returns the data updated in the database.
+     * @param {SlideUpdateManyAndReturnArgs} args - Arguments to update many Slides.
+     * @example
+     * // Update many Slides
+     * const slide = await prisma.slide.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Slides and only return the `id`
+     * const slideWithIdOnly = await prisma.slide.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SlideUpdateManyAndReturnArgs>(args: SelectSubset<T, SlideUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Slide.
+     * @param {SlideUpsertArgs} args - Arguments to update or create a Slide.
+     * @example
+     * // Update or create a Slide
+     * const slide = await prisma.slide.upsert({
+     *   create: {
+     *     // ... data to create a Slide
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Slide we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SlideUpsertArgs>(args: SelectSubset<T, SlideUpsertArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Slides.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SlideCountArgs} args - Arguments to filter Slides to count.
+     * @example
+     * // Count the number of Slides
+     * const count = await prisma.slide.count({
+     *   where: {
+     *     // ... the filter for the Slides we want to count
+     *   }
+     * })
+    **/
+    count<T extends SlideCountArgs>(
+      args?: Subset<T, SlideCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SlideCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Slide.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SlideAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SlideAggregateArgs>(args: Subset<T, SlideAggregateArgs>): Prisma.PrismaPromise<GetSlideAggregateType<T>>
+
+    /**
+     * Group by Slide.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SlideGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SlideGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SlideGroupByArgs['orderBy'] }
+        : { orderBy?: SlideGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SlideGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSlideGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Slide model
+   */
+  readonly fields: SlideFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Slide.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SlideClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Research<T extends ResearchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResearchDefaultArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Slide model
+   */
+  interface SlideFieldRefs {
+    readonly id: FieldRef<"Slide", 'String'>
+    readonly researchId: FieldRef<"Slide", 'String'>
+    readonly imagePath: FieldRef<"Slide", 'String'>
+    readonly order: FieldRef<"Slide", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Slide findUnique
+   */
+  export type SlideFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+    /**
+     * Filter, which Slide to fetch.
+     */
+    where: SlideWhereUniqueInput
+  }
+
+  /**
+   * Slide findUniqueOrThrow
+   */
+  export type SlideFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+    /**
+     * Filter, which Slide to fetch.
+     */
+    where: SlideWhereUniqueInput
+  }
+
+  /**
+   * Slide findFirst
+   */
+  export type SlideFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+    /**
+     * Filter, which Slide to fetch.
+     */
+    where?: SlideWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Slides to fetch.
+     */
+    orderBy?: SlideOrderByWithRelationInput | SlideOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Slides.
+     */
+    cursor?: SlideWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Slides from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Slides.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Slides.
+     */
+    distinct?: SlideScalarFieldEnum | SlideScalarFieldEnum[]
+  }
+
+  /**
+   * Slide findFirstOrThrow
+   */
+  export type SlideFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+    /**
+     * Filter, which Slide to fetch.
+     */
+    where?: SlideWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Slides to fetch.
+     */
+    orderBy?: SlideOrderByWithRelationInput | SlideOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Slides.
+     */
+    cursor?: SlideWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Slides from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Slides.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Slides.
+     */
+    distinct?: SlideScalarFieldEnum | SlideScalarFieldEnum[]
+  }
+
+  /**
+   * Slide findMany
+   */
+  export type SlideFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+    /**
+     * Filter, which Slides to fetch.
+     */
+    where?: SlideWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Slides to fetch.
+     */
+    orderBy?: SlideOrderByWithRelationInput | SlideOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Slides.
+     */
+    cursor?: SlideWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Slides from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Slides.
+     */
+    skip?: number
+    distinct?: SlideScalarFieldEnum | SlideScalarFieldEnum[]
+  }
+
+  /**
+   * Slide create
+   */
+  export type SlideCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Slide.
+     */
+    data: XOR<SlideCreateInput, SlideUncheckedCreateInput>
+  }
+
+  /**
+   * Slide createMany
+   */
+  export type SlideCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Slides.
+     */
+    data: SlideCreateManyInput | SlideCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Slide createManyAndReturn
+   */
+  export type SlideCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * The data used to create many Slides.
+     */
+    data: SlideCreateManyInput | SlideCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Slide update
+   */
+  export type SlideUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Slide.
+     */
+    data: XOR<SlideUpdateInput, SlideUncheckedUpdateInput>
+    /**
+     * Choose, which Slide to update.
+     */
+    where: SlideWhereUniqueInput
+  }
+
+  /**
+   * Slide updateMany
+   */
+  export type SlideUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Slides.
+     */
+    data: XOR<SlideUpdateManyMutationInput, SlideUncheckedUpdateManyInput>
+    /**
+     * Filter which Slides to update
+     */
+    where?: SlideWhereInput
+    /**
+     * Limit how many Slides to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Slide updateManyAndReturn
+   */
+  export type SlideUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * The data used to update Slides.
+     */
+    data: XOR<SlideUpdateManyMutationInput, SlideUncheckedUpdateManyInput>
+    /**
+     * Filter which Slides to update
+     */
+    where?: SlideWhereInput
+    /**
+     * Limit how many Slides to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Slide upsert
+   */
+  export type SlideUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Slide to update in case it exists.
+     */
+    where: SlideWhereUniqueInput
+    /**
+     * In case the Slide found by the `where` argument doesn't exist, create a new Slide with this data.
+     */
+    create: XOR<SlideCreateInput, SlideUncheckedCreateInput>
+    /**
+     * In case the Slide was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SlideUpdateInput, SlideUncheckedUpdateInput>
+  }
+
+  /**
+   * Slide delete
+   */
+  export type SlideDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+    /**
+     * Filter which Slide to delete.
+     */
+    where: SlideWhereUniqueInput
+  }
+
+  /**
+   * Slide deleteMany
+   */
+  export type SlideDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Slides to delete
+     */
+    where?: SlideWhereInput
+    /**
+     * Limit how many Slides to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Slide without action
+   */
+  export type SlideDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Slide
+     */
+    select?: SlideSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Slide
+     */
+    omit?: SlideOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SlideInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -36072,11 +42886,11 @@ export namespace Prisma {
     studentName: 'studentName',
     submittedAt: 'submittedAt',
     successStory: 'successStory',
-    contentApproved: 'contentApproved',
-    ratingApproved: 'ratingApproved',
     beforeAfterApproved: 'beforeAfterApproved',
-    successStoryApproved: 'successStoryApproved',
-    programsApproved: 'programsApproved'
+    contentApproved: 'contentApproved',
+    programsApproved: 'programsApproved',
+    ratingApproved: 'ratingApproved',
+    successStoryApproved: 'successStoryApproved'
   };
 
   export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
@@ -36115,36 +42929,36 @@ export namespace Prisma {
     parentId: 'parentId',
     parentName: 'parentName',
     parentEmail: 'parentEmail',
-    studentName: 'studentName',
-    grade: 'grade',
-    school: 'school',
-    programs: 'programs',
-    heardAbout: 'heardAbout',
-    beforeAfterExpectations: 'beforeAfterExpectations',
-    childExperience: 'childExperience',
-    successStory: 'successStory',
-    overallExperience: 'overallExperience',
-    studentRating: 'studentRating',
-    schedulingRating: 'schedulingRating',
-    wouldRecommend: 'wouldRecommend',
-    consentToFeature: 'consentToFeature',
-    favoriteThingToShare: 'favoriteThingToShare',
-    suggestions: 'suggestions',
     status: 'status',
     response: 'response',
-    isApproved: 'isApproved',
-    isVisible: 'isVisible',
-    submittedAt: 'submittedAt',
     createdAt: 'createdAt',
     reviewedAt: 'reviewedAt',
-    updatedAt: 'updatedAt',
     beforeAfterApproved: 'beforeAfterApproved',
+    beforeAfterExpectations: 'beforeAfterExpectations',
+    childExperience: 'childExperience',
     childExperienceApproved: 'childExperienceApproved',
-    successStoryApproved: 'successStoryApproved',
+    consentToFeature: 'consentToFeature',
+    favoriteThingToShare: 'favoriteThingToShare',
+    grade: 'grade',
+    heardAbout: 'heardAbout',
+    isApproved: 'isApproved',
+    isVisible: 'isVisible',
+    overallExperience: 'overallExperience',
     overallExperienceApproved: 'overallExperienceApproved',
+    programs: 'programs',
     programsApproved: 'programsApproved',
+    schedulingRating: 'schedulingRating',
+    schedulingRatingApproved: 'schedulingRatingApproved',
+    school: 'school',
+    studentName: 'studentName',
+    studentRating: 'studentRating',
     studentRatingApproved: 'studentRatingApproved',
-    schedulingRatingApproved: 'schedulingRatingApproved'
+    submittedAt: 'submittedAt',
+    successStory: 'successStory',
+    successStoryApproved: 'successStoryApproved',
+    suggestions: 'suggestions',
+    updatedAt: 'updatedAt',
+    wouldRecommend: 'wouldRecommend'
   };
 
   export type FeedbackScalarFieldEnum = (typeof FeedbackScalarFieldEnum)[keyof typeof FeedbackScalarFieldEnum]
@@ -36232,10 +43046,129 @@ export namespace Prisma {
     publications: 'publications',
     nextSteps: 'nextSteps',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    attendanceRate: 'attendanceRate',
+    classParticipation: 'classParticipation',
+    homeworkCompletion: 'homeworkCompletion',
+    improvementAreas: 'improvementAreas',
+    isVisible: 'isVisible',
+    parentNotes: 'parentNotes',
+    progressRating: 'progressRating',
+    recommendations: 'recommendations',
+    reportPeriod: 'reportPeriod',
+    skillsImproved: 'skillsImproved',
+    status: 'status',
+    strengthsAreas: 'strengthsAreas',
+    subject: 'subject'
   };
 
   export type ProgressReportScalarFieldEnum = (typeof ProgressReportScalarFieldEnum)[keyof typeof ProgressReportScalarFieldEnum]
+
+
+  export const EventRegistrationScalarFieldEnum: {
+    id: 'id',
+    eventId: 'eventId',
+    studentName: 'studentName',
+    studentEmail: 'studentEmail',
+    studentPhone: 'studentPhone',
+    studentGrade: 'studentGrade',
+    schoolName: 'schoolName',
+    parentName: 'parentName',
+    parentEmail: 'parentEmail',
+    parentPhone: 'parentPhone',
+    registrationStatus: 'registrationStatus',
+    paymentStatus: 'paymentStatus',
+    paymentAmount: 'paymentAmount',
+    specialRequirements: 'specialRequirements',
+    howDidYouHear: 'howDidYouHear',
+    notes: 'notes',
+    checkedInAt: 'checkedInAt',
+    attendanceConfirmed: 'attendanceConfirmed',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    adminNotes: 'adminNotes',
+    certificateIssued: 'certificateIssued',
+    customFieldResponses: 'customFieldResponses',
+    paymentMethod: 'paymentMethod',
+    transactionId: 'transactionId'
+  };
+
+  export type EventRegistrationScalarFieldEnum = (typeof EventRegistrationScalarFieldEnum)[keyof typeof EventRegistrationScalarFieldEnum]
+
+
+  export const GeneralEventScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    category: 'category',
+    eventDate: 'eventDate',
+    eventTime: 'eventTime',
+    location: 'location',
+    image: 'image',
+    maxParticipants: 'maxParticipants',
+    registrationDeadline: 'registrationDeadline',
+    status: 'status',
+    isPublished: 'isPublished',
+    isFeatured: 'isFeatured',
+    targetAudience: 'targetAudience',
+    requirements: 'requirements',
+    agenda: 'agenda',
+    speakers: 'speakers',
+    tags: 'tags',
+    contactEmail: 'contactEmail',
+    contactPhone: 'contactPhone',
+    createdBy: 'createdBy',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    customFields: 'customFields',
+    earlyBirdDeadline: 'earlyBirdDeadline',
+    earlyBirdFee: 'earlyBirdFee',
+    publishedAt: 'publishedAt',
+    publishedBy: 'publishedBy',
+    registrationFee: 'registrationFee',
+    registrationFormConfig: 'registrationFormConfig',
+    requiresPayment: 'requiresPayment'
+  };
+
+  export type GeneralEventScalarFieldEnum = (typeof GeneralEventScalarFieldEnum)[keyof typeof GeneralEventScalarFieldEnum]
+
+
+  export const AccessRequestScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    email: 'email',
+    createdAt: 'createdAt',
+    approved: 'approved',
+    phone: 'phone',
+    reason: 'reason',
+    researchId: 'researchId'
+  };
+
+  export type AccessRequestScalarFieldEnum = (typeof AccessRequestScalarFieldEnum)[keyof typeof AccessRequestScalarFieldEnum]
+
+
+  export const ResearchScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    slug: 'slug',
+    description: 'description',
+    published: 'published',
+    author: 'author',
+    pdfPath: 'pdfPath',
+    createdAt: 'createdAt'
+  };
+
+  export type ResearchScalarFieldEnum = (typeof ResearchScalarFieldEnum)[keyof typeof ResearchScalarFieldEnum]
+
+
+  export const SlideScalarFieldEnum: {
+    id: 'id',
+    researchId: 'researchId',
+    imagePath: 'imagePath',
+    order: 'order'
+  };
+
+  export type SlideScalarFieldEnum = (typeof SlideScalarFieldEnum)[keyof typeof SlideScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -37975,11 +44908,11 @@ export namespace Prisma {
     studentName?: StringNullableFilter<"Testimonial"> | string | null
     submittedAt?: DateTimeNullableFilter<"Testimonial"> | Date | string | null
     successStory?: StringNullableFilter<"Testimonial"> | string | null
-    contentApproved?: BoolFilter<"Testimonial"> | boolean
-    ratingApproved?: BoolFilter<"Testimonial"> | boolean
     beforeAfterApproved?: BoolFilter<"Testimonial"> | boolean
-    successStoryApproved?: BoolFilter<"Testimonial"> | boolean
+    contentApproved?: BoolFilter<"Testimonial"> | boolean
     programsApproved?: BoolFilter<"Testimonial"> | boolean
+    ratingApproved?: BoolFilter<"Testimonial"> | boolean
+    successStoryApproved?: BoolFilter<"Testimonial"> | boolean
     Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }
 
@@ -38005,11 +44938,11 @@ export namespace Prisma {
     studentName?: SortOrderInput | SortOrder
     submittedAt?: SortOrderInput | SortOrder
     successStory?: SortOrderInput | SortOrder
-    contentApproved?: SortOrder
-    ratingApproved?: SortOrder
     beforeAfterApproved?: SortOrder
-    successStoryApproved?: SortOrder
+    contentApproved?: SortOrder
     programsApproved?: SortOrder
+    ratingApproved?: SortOrder
+    successStoryApproved?: SortOrder
     Student?: StudentOrderByWithRelationInput
   }
 
@@ -38038,11 +44971,11 @@ export namespace Prisma {
     studentName?: StringNullableFilter<"Testimonial"> | string | null
     submittedAt?: DateTimeNullableFilter<"Testimonial"> | Date | string | null
     successStory?: StringNullableFilter<"Testimonial"> | string | null
-    contentApproved?: BoolFilter<"Testimonial"> | boolean
-    ratingApproved?: BoolFilter<"Testimonial"> | boolean
     beforeAfterApproved?: BoolFilter<"Testimonial"> | boolean
-    successStoryApproved?: BoolFilter<"Testimonial"> | boolean
+    contentApproved?: BoolFilter<"Testimonial"> | boolean
     programsApproved?: BoolFilter<"Testimonial"> | boolean
+    ratingApproved?: BoolFilter<"Testimonial"> | boolean
+    successStoryApproved?: BoolFilter<"Testimonial"> | boolean
     Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }, "id">
 
@@ -38068,11 +45001,11 @@ export namespace Prisma {
     studentName?: SortOrderInput | SortOrder
     submittedAt?: SortOrderInput | SortOrder
     successStory?: SortOrderInput | SortOrder
-    contentApproved?: SortOrder
-    ratingApproved?: SortOrder
     beforeAfterApproved?: SortOrder
-    successStoryApproved?: SortOrder
+    contentApproved?: SortOrder
     programsApproved?: SortOrder
+    ratingApproved?: SortOrder
+    successStoryApproved?: SortOrder
     _count?: TestimonialCountOrderByAggregateInput
     _avg?: TestimonialAvgOrderByAggregateInput
     _max?: TestimonialMaxOrderByAggregateInput
@@ -38105,11 +45038,11 @@ export namespace Prisma {
     studentName?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
     submittedAt?: DateTimeNullableWithAggregatesFilter<"Testimonial"> | Date | string | null
     successStory?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
-    contentApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
-    ratingApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
     beforeAfterApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
-    successStoryApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
+    contentApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
     programsApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
+    ratingApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
+    successStoryApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
   }
 
   export type SecurityLogWhereInput = {
@@ -38258,36 +45191,36 @@ export namespace Prisma {
     parentId?: IntNullableFilter<"Feedback"> | number | null
     parentName?: StringNullableFilter<"Feedback"> | string | null
     parentEmail?: StringNullableFilter<"Feedback"> | string | null
-    studentName?: StringNullableFilter<"Feedback"> | string | null
-    grade?: StringNullableFilter<"Feedback"> | string | null
-    school?: StringNullableFilter<"Feedback"> | string | null
-    programs?: StringNullableListFilter<"Feedback">
-    heardAbout?: StringNullableFilter<"Feedback"> | string | null
-    beforeAfterExpectations?: StringNullableFilter<"Feedback"> | string | null
-    childExperience?: StringNullableFilter<"Feedback"> | string | null
-    successStory?: StringNullableFilter<"Feedback"> | string | null
-    overallExperience?: StringNullableFilter<"Feedback"> | string | null
-    studentRating?: IntNullableFilter<"Feedback"> | number | null
-    schedulingRating?: IntNullableFilter<"Feedback"> | number | null
-    wouldRecommend?: StringNullableFilter<"Feedback"> | string | null
-    consentToFeature?: BoolFilter<"Feedback"> | boolean
-    favoriteThingToShare?: StringNullableFilter<"Feedback"> | string | null
-    suggestions?: StringNullableFilter<"Feedback"> | string | null
     status?: StringFilter<"Feedback"> | string
     response?: StringNullableFilter<"Feedback"> | string | null
-    isApproved?: BoolFilter<"Feedback"> | boolean
-    isVisible?: BoolFilter<"Feedback"> | boolean
-    submittedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
     createdAt?: DateTimeFilter<"Feedback"> | Date | string
     reviewedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
-    updatedAt?: DateTimeFilter<"Feedback"> | Date | string
     beforeAfterApproved?: BoolFilter<"Feedback"> | boolean
+    beforeAfterExpectations?: StringNullableFilter<"Feedback"> | string | null
+    childExperience?: StringNullableFilter<"Feedback"> | string | null
     childExperienceApproved?: BoolFilter<"Feedback"> | boolean
-    successStoryApproved?: BoolFilter<"Feedback"> | boolean
+    consentToFeature?: BoolFilter<"Feedback"> | boolean
+    favoriteThingToShare?: StringNullableFilter<"Feedback"> | string | null
+    grade?: StringNullableFilter<"Feedback"> | string | null
+    heardAbout?: StringNullableFilter<"Feedback"> | string | null
+    isApproved?: BoolFilter<"Feedback"> | boolean
+    isVisible?: BoolFilter<"Feedback"> | boolean
+    overallExperience?: StringNullableFilter<"Feedback"> | string | null
     overallExperienceApproved?: BoolFilter<"Feedback"> | boolean
+    programs?: StringNullableListFilter<"Feedback">
     programsApproved?: BoolFilter<"Feedback"> | boolean
-    studentRatingApproved?: BoolFilter<"Feedback"> | boolean
+    schedulingRating?: IntNullableFilter<"Feedback"> | number | null
     schedulingRatingApproved?: BoolFilter<"Feedback"> | boolean
+    school?: StringNullableFilter<"Feedback"> | string | null
+    studentName?: StringNullableFilter<"Feedback"> | string | null
+    studentRating?: IntNullableFilter<"Feedback"> | number | null
+    studentRatingApproved?: BoolFilter<"Feedback"> | boolean
+    submittedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
+    successStory?: StringNullableFilter<"Feedback"> | string | null
+    successStoryApproved?: BoolFilter<"Feedback"> | boolean
+    suggestions?: StringNullableFilter<"Feedback"> | string | null
+    updatedAt?: DateTimeFilter<"Feedback"> | Date | string
+    wouldRecommend?: StringNullableFilter<"Feedback"> | string | null
   }
 
   export type FeedbackOrderByWithRelationInput = {
@@ -38295,36 +45228,36 @@ export namespace Prisma {
     parentId?: SortOrderInput | SortOrder
     parentName?: SortOrderInput | SortOrder
     parentEmail?: SortOrderInput | SortOrder
-    studentName?: SortOrderInput | SortOrder
-    grade?: SortOrderInput | SortOrder
-    school?: SortOrderInput | SortOrder
-    programs?: SortOrder
-    heardAbout?: SortOrderInput | SortOrder
-    beforeAfterExpectations?: SortOrderInput | SortOrder
-    childExperience?: SortOrderInput | SortOrder
-    successStory?: SortOrderInput | SortOrder
-    overallExperience?: SortOrderInput | SortOrder
-    studentRating?: SortOrderInput | SortOrder
-    schedulingRating?: SortOrderInput | SortOrder
-    wouldRecommend?: SortOrderInput | SortOrder
-    consentToFeature?: SortOrder
-    favoriteThingToShare?: SortOrderInput | SortOrder
-    suggestions?: SortOrderInput | SortOrder
     status?: SortOrder
     response?: SortOrderInput | SortOrder
-    isApproved?: SortOrder
-    isVisible?: SortOrder
-    submittedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reviewedAt?: SortOrderInput | SortOrder
-    updatedAt?: SortOrder
     beforeAfterApproved?: SortOrder
+    beforeAfterExpectations?: SortOrderInput | SortOrder
+    childExperience?: SortOrderInput | SortOrder
     childExperienceApproved?: SortOrder
-    successStoryApproved?: SortOrder
+    consentToFeature?: SortOrder
+    favoriteThingToShare?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    heardAbout?: SortOrderInput | SortOrder
+    isApproved?: SortOrder
+    isVisible?: SortOrder
+    overallExperience?: SortOrderInput | SortOrder
     overallExperienceApproved?: SortOrder
+    programs?: SortOrder
     programsApproved?: SortOrder
-    studentRatingApproved?: SortOrder
+    schedulingRating?: SortOrderInput | SortOrder
     schedulingRatingApproved?: SortOrder
+    school?: SortOrderInput | SortOrder
+    studentName?: SortOrderInput | SortOrder
+    studentRating?: SortOrderInput | SortOrder
+    studentRatingApproved?: SortOrder
+    submittedAt?: SortOrderInput | SortOrder
+    successStory?: SortOrderInput | SortOrder
+    successStoryApproved?: SortOrder
+    suggestions?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    wouldRecommend?: SortOrderInput | SortOrder
   }
 
   export type FeedbackWhereUniqueInput = Prisma.AtLeast<{
@@ -38335,36 +45268,36 @@ export namespace Prisma {
     parentId?: IntNullableFilter<"Feedback"> | number | null
     parentName?: StringNullableFilter<"Feedback"> | string | null
     parentEmail?: StringNullableFilter<"Feedback"> | string | null
-    studentName?: StringNullableFilter<"Feedback"> | string | null
-    grade?: StringNullableFilter<"Feedback"> | string | null
-    school?: StringNullableFilter<"Feedback"> | string | null
-    programs?: StringNullableListFilter<"Feedback">
-    heardAbout?: StringNullableFilter<"Feedback"> | string | null
-    beforeAfterExpectations?: StringNullableFilter<"Feedback"> | string | null
-    childExperience?: StringNullableFilter<"Feedback"> | string | null
-    successStory?: StringNullableFilter<"Feedback"> | string | null
-    overallExperience?: StringNullableFilter<"Feedback"> | string | null
-    studentRating?: IntNullableFilter<"Feedback"> | number | null
-    schedulingRating?: IntNullableFilter<"Feedback"> | number | null
-    wouldRecommend?: StringNullableFilter<"Feedback"> | string | null
-    consentToFeature?: BoolFilter<"Feedback"> | boolean
-    favoriteThingToShare?: StringNullableFilter<"Feedback"> | string | null
-    suggestions?: StringNullableFilter<"Feedback"> | string | null
     status?: StringFilter<"Feedback"> | string
     response?: StringNullableFilter<"Feedback"> | string | null
-    isApproved?: BoolFilter<"Feedback"> | boolean
-    isVisible?: BoolFilter<"Feedback"> | boolean
-    submittedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
     createdAt?: DateTimeFilter<"Feedback"> | Date | string
     reviewedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
-    updatedAt?: DateTimeFilter<"Feedback"> | Date | string
     beforeAfterApproved?: BoolFilter<"Feedback"> | boolean
+    beforeAfterExpectations?: StringNullableFilter<"Feedback"> | string | null
+    childExperience?: StringNullableFilter<"Feedback"> | string | null
     childExperienceApproved?: BoolFilter<"Feedback"> | boolean
-    successStoryApproved?: BoolFilter<"Feedback"> | boolean
+    consentToFeature?: BoolFilter<"Feedback"> | boolean
+    favoriteThingToShare?: StringNullableFilter<"Feedback"> | string | null
+    grade?: StringNullableFilter<"Feedback"> | string | null
+    heardAbout?: StringNullableFilter<"Feedback"> | string | null
+    isApproved?: BoolFilter<"Feedback"> | boolean
+    isVisible?: BoolFilter<"Feedback"> | boolean
+    overallExperience?: StringNullableFilter<"Feedback"> | string | null
     overallExperienceApproved?: BoolFilter<"Feedback"> | boolean
+    programs?: StringNullableListFilter<"Feedback">
     programsApproved?: BoolFilter<"Feedback"> | boolean
-    studentRatingApproved?: BoolFilter<"Feedback"> | boolean
+    schedulingRating?: IntNullableFilter<"Feedback"> | number | null
     schedulingRatingApproved?: BoolFilter<"Feedback"> | boolean
+    school?: StringNullableFilter<"Feedback"> | string | null
+    studentName?: StringNullableFilter<"Feedback"> | string | null
+    studentRating?: IntNullableFilter<"Feedback"> | number | null
+    studentRatingApproved?: BoolFilter<"Feedback"> | boolean
+    submittedAt?: DateTimeNullableFilter<"Feedback"> | Date | string | null
+    successStory?: StringNullableFilter<"Feedback"> | string | null
+    successStoryApproved?: BoolFilter<"Feedback"> | boolean
+    suggestions?: StringNullableFilter<"Feedback"> | string | null
+    updatedAt?: DateTimeFilter<"Feedback"> | Date | string
+    wouldRecommend?: StringNullableFilter<"Feedback"> | string | null
   }, "id">
 
   export type FeedbackOrderByWithAggregationInput = {
@@ -38372,36 +45305,36 @@ export namespace Prisma {
     parentId?: SortOrderInput | SortOrder
     parentName?: SortOrderInput | SortOrder
     parentEmail?: SortOrderInput | SortOrder
-    studentName?: SortOrderInput | SortOrder
-    grade?: SortOrderInput | SortOrder
-    school?: SortOrderInput | SortOrder
-    programs?: SortOrder
-    heardAbout?: SortOrderInput | SortOrder
-    beforeAfterExpectations?: SortOrderInput | SortOrder
-    childExperience?: SortOrderInput | SortOrder
-    successStory?: SortOrderInput | SortOrder
-    overallExperience?: SortOrderInput | SortOrder
-    studentRating?: SortOrderInput | SortOrder
-    schedulingRating?: SortOrderInput | SortOrder
-    wouldRecommend?: SortOrderInput | SortOrder
-    consentToFeature?: SortOrder
-    favoriteThingToShare?: SortOrderInput | SortOrder
-    suggestions?: SortOrderInput | SortOrder
     status?: SortOrder
     response?: SortOrderInput | SortOrder
-    isApproved?: SortOrder
-    isVisible?: SortOrder
-    submittedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     reviewedAt?: SortOrderInput | SortOrder
-    updatedAt?: SortOrder
     beforeAfterApproved?: SortOrder
+    beforeAfterExpectations?: SortOrderInput | SortOrder
+    childExperience?: SortOrderInput | SortOrder
     childExperienceApproved?: SortOrder
-    successStoryApproved?: SortOrder
+    consentToFeature?: SortOrder
+    favoriteThingToShare?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    heardAbout?: SortOrderInput | SortOrder
+    isApproved?: SortOrder
+    isVisible?: SortOrder
+    overallExperience?: SortOrderInput | SortOrder
     overallExperienceApproved?: SortOrder
+    programs?: SortOrder
     programsApproved?: SortOrder
-    studentRatingApproved?: SortOrder
+    schedulingRating?: SortOrderInput | SortOrder
     schedulingRatingApproved?: SortOrder
+    school?: SortOrderInput | SortOrder
+    studentName?: SortOrderInput | SortOrder
+    studentRating?: SortOrderInput | SortOrder
+    studentRatingApproved?: SortOrder
+    submittedAt?: SortOrderInput | SortOrder
+    successStory?: SortOrderInput | SortOrder
+    successStoryApproved?: SortOrder
+    suggestions?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    wouldRecommend?: SortOrderInput | SortOrder
     _count?: FeedbackCountOrderByAggregateInput
     _avg?: FeedbackAvgOrderByAggregateInput
     _max?: FeedbackMaxOrderByAggregateInput
@@ -38417,36 +45350,36 @@ export namespace Prisma {
     parentId?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
     parentName?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
     parentEmail?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    studentName?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    grade?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    school?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    programs?: StringNullableListFilter<"Feedback">
-    heardAbout?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    beforeAfterExpectations?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    childExperience?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    successStory?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    overallExperience?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    studentRating?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
-    schedulingRating?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
-    wouldRecommend?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    consentToFeature?: BoolWithAggregatesFilter<"Feedback"> | boolean
-    favoriteThingToShare?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    suggestions?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
     status?: StringWithAggregatesFilter<"Feedback"> | string
     response?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
-    isApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
-    isVisible?: BoolWithAggregatesFilter<"Feedback"> | boolean
-    submittedAt?: DateTimeNullableWithAggregatesFilter<"Feedback"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Feedback"> | Date | string
     reviewedAt?: DateTimeNullableWithAggregatesFilter<"Feedback"> | Date | string | null
-    updatedAt?: DateTimeWithAggregatesFilter<"Feedback"> | Date | string
     beforeAfterApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    beforeAfterExpectations?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    childExperience?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
     childExperienceApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
-    successStoryApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    consentToFeature?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    favoriteThingToShare?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    grade?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    heardAbout?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    isApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    isVisible?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    overallExperience?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
     overallExperienceApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    programs?: StringNullableListFilter<"Feedback">
     programsApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
-    studentRatingApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    schedulingRating?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
     schedulingRatingApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    school?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    studentName?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    studentRating?: IntNullableWithAggregatesFilter<"Feedback"> | number | null
+    studentRatingApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    submittedAt?: DateTimeNullableWithAggregatesFilter<"Feedback"> | Date | string | null
+    successStory?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    successStoryApproved?: BoolWithAggregatesFilter<"Feedback"> | boolean
+    suggestions?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"Feedback"> | Date | string
+    wouldRecommend?: StringNullableWithAggregatesFilter<"Feedback"> | string | null
   }
 
   export type ParentAccountWhereInput = {
@@ -38825,6 +45758,19 @@ export namespace Prisma {
     nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
     createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
     updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    isVisible?: BoolFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableFilter<"ProgressReport"> | string | null
+    status?: StringFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    subject?: StringNullableFilter<"ProgressReport"> | string | null
     Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
   }
@@ -38840,6 +45786,19 @@ export namespace Prisma {
     nextSteps?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    attendanceRate?: SortOrderInput | SortOrder
+    classParticipation?: SortOrderInput | SortOrder
+    homeworkCompletion?: SortOrderInput | SortOrder
+    improvementAreas?: SortOrderInput | SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrderInput | SortOrder
+    progressRating?: SortOrderInput | SortOrder
+    recommendations?: SortOrderInput | SortOrder
+    reportPeriod?: SortOrderInput | SortOrder
+    skillsImproved?: SortOrderInput | SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrderInput | SortOrder
+    subject?: SortOrderInput | SortOrder
     Student?: StudentOrderByWithRelationInput
     Teacher?: TeacherOrderByWithRelationInput
   }
@@ -38858,6 +45817,19 @@ export namespace Prisma {
     nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
     createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
     updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    isVisible?: BoolFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableFilter<"ProgressReport"> | string | null
+    status?: StringFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    subject?: StringNullableFilter<"ProgressReport"> | string | null
     Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
   }, "id">
@@ -38873,6 +45845,19 @@ export namespace Prisma {
     nextSteps?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    attendanceRate?: SortOrderInput | SortOrder
+    classParticipation?: SortOrderInput | SortOrder
+    homeworkCompletion?: SortOrderInput | SortOrder
+    improvementAreas?: SortOrderInput | SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrderInput | SortOrder
+    progressRating?: SortOrderInput | SortOrder
+    recommendations?: SortOrderInput | SortOrder
+    reportPeriod?: SortOrderInput | SortOrder
+    skillsImproved?: SortOrderInput | SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrderInput | SortOrder
+    subject?: SortOrderInput | SortOrder
     _count?: ProgressReportCountOrderByAggregateInput
     _avg?: ProgressReportAvgOrderByAggregateInput
     _max?: ProgressReportMaxOrderByAggregateInput
@@ -38894,6 +45879,559 @@ export namespace Prisma {
     nextSteps?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableWithAggregatesFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableWithAggregatesFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    isVisible?: BoolWithAggregatesFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableWithAggregatesFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    status?: StringWithAggregatesFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    subject?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+  }
+
+  export type EventRegistrationWhereInput = {
+    AND?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    OR?: EventRegistrationWhereInput[]
+    NOT?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    id?: IntFilter<"EventRegistration"> | number
+    eventId?: IntFilter<"EventRegistration"> | number
+    studentName?: StringFilter<"EventRegistration"> | string
+    studentEmail?: StringFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableFilter<"EventRegistration"> | string | null
+    parentName?: StringFilter<"EventRegistration"> | string
+    parentEmail?: StringFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableFilter<"EventRegistration"> | string | null
+    notes?: StringNullableFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableFilter<"EventRegistration">
+    paymentMethod?: StringNullableFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableFilter<"EventRegistration"> | string | null
+    GeneralEvent?: XOR<GeneralEventScalarRelationFilter, GeneralEventWhereInput>
+  }
+
+  export type EventRegistrationOrderByWithRelationInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrderInput | SortOrder
+    studentGrade?: SortOrderInput | SortOrder
+    schoolName?: SortOrderInput | SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrderInput | SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrderInput | SortOrder
+    paymentAmount?: SortOrderInput | SortOrder
+    specialRequirements?: SortOrderInput | SortOrder
+    howDidYouHear?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    checkedInAt?: SortOrderInput | SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrderInput | SortOrder
+    certificateIssued?: SortOrder
+    customFieldResponses?: SortOrderInput | SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    GeneralEvent?: GeneralEventOrderByWithRelationInput
+  }
+
+  export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    eventId_studentEmail?: EventRegistrationEventIdStudentEmailCompoundUniqueInput
+    AND?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    OR?: EventRegistrationWhereInput[]
+    NOT?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    eventId?: IntFilter<"EventRegistration"> | number
+    studentName?: StringFilter<"EventRegistration"> | string
+    studentEmail?: StringFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableFilter<"EventRegistration"> | string | null
+    parentName?: StringFilter<"EventRegistration"> | string
+    parentEmail?: StringFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableFilter<"EventRegistration"> | string | null
+    notes?: StringNullableFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableFilter<"EventRegistration">
+    paymentMethod?: StringNullableFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableFilter<"EventRegistration"> | string | null
+    GeneralEvent?: XOR<GeneralEventScalarRelationFilter, GeneralEventWhereInput>
+  }, "id" | "eventId_studentEmail">
+
+  export type EventRegistrationOrderByWithAggregationInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrderInput | SortOrder
+    studentGrade?: SortOrderInput | SortOrder
+    schoolName?: SortOrderInput | SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrderInput | SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrderInput | SortOrder
+    paymentAmount?: SortOrderInput | SortOrder
+    specialRequirements?: SortOrderInput | SortOrder
+    howDidYouHear?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    checkedInAt?: SortOrderInput | SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrderInput | SortOrder
+    certificateIssued?: SortOrder
+    customFieldResponses?: SortOrderInput | SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    _count?: EventRegistrationCountOrderByAggregateInput
+    _avg?: EventRegistrationAvgOrderByAggregateInput
+    _max?: EventRegistrationMaxOrderByAggregateInput
+    _min?: EventRegistrationMinOrderByAggregateInput
+    _sum?: EventRegistrationSumOrderByAggregateInput
+  }
+
+  export type EventRegistrationScalarWhereWithAggregatesInput = {
+    AND?: EventRegistrationScalarWhereWithAggregatesInput | EventRegistrationScalarWhereWithAggregatesInput[]
+    OR?: EventRegistrationScalarWhereWithAggregatesInput[]
+    NOT?: EventRegistrationScalarWhereWithAggregatesInput | EventRegistrationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"EventRegistration"> | number
+    eventId?: IntWithAggregatesFilter<"EventRegistration"> | number
+    studentName?: StringWithAggregatesFilter<"EventRegistration"> | string
+    studentEmail?: StringWithAggregatesFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    parentName?: StringWithAggregatesFilter<"EventRegistration"> | string
+    parentEmail?: StringWithAggregatesFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringWithAggregatesFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableWithAggregatesFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    notes?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableWithAggregatesFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolWithAggregatesFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolWithAggregatesFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableWithAggregatesFilter<"EventRegistration">
+    paymentMethod?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+  }
+
+  export type GeneralEventWhereInput = {
+    AND?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    OR?: GeneralEventWhereInput[]
+    NOT?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    id?: IntFilter<"GeneralEvent"> | number
+    title?: StringFilter<"GeneralEvent"> | string
+    description?: StringFilter<"GeneralEvent"> | string
+    category?: StringFilter<"GeneralEvent"> | string
+    eventDate?: DateTimeFilter<"GeneralEvent"> | Date | string
+    eventTime?: StringFilter<"GeneralEvent"> | string
+    location?: StringFilter<"GeneralEvent"> | string
+    image?: StringNullableFilter<"GeneralEvent"> | string | null
+    maxParticipants?: IntNullableFilter<"GeneralEvent"> | number | null
+    registrationDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    status?: StringFilter<"GeneralEvent"> | string
+    isPublished?: BoolFilter<"GeneralEvent"> | boolean
+    isFeatured?: BoolFilter<"GeneralEvent"> | boolean
+    targetAudience?: StringNullableFilter<"GeneralEvent"> | string | null
+    requirements?: StringNullableFilter<"GeneralEvent"> | string | null
+    agenda?: StringNullableFilter<"GeneralEvent"> | string | null
+    speakers?: JsonNullableFilter<"GeneralEvent">
+    tags?: StringNullableListFilter<"GeneralEvent">
+    contactEmail?: StringNullableFilter<"GeneralEvent"> | string | null
+    contactPhone?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    customFields?: JsonNullableFilter<"GeneralEvent">
+    earlyBirdDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    earlyBirdFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    publishedAt?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    publishedBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    registrationFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    registrationFormConfig?: JsonNullableFilter<"GeneralEvent">
+    requiresPayment?: BoolFilter<"GeneralEvent"> | boolean
+    EventRegistration?: EventRegistrationListRelationFilter
+  }
+
+  export type GeneralEventOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrderInput | SortOrder
+    maxParticipants?: SortOrderInput | SortOrder
+    registrationDeadline?: SortOrderInput | SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrderInput | SortOrder
+    requirements?: SortOrderInput | SortOrder
+    agenda?: SortOrderInput | SortOrder
+    speakers?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    contactEmail?: SortOrderInput | SortOrder
+    contactPhone?: SortOrderInput | SortOrder
+    createdBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customFields?: SortOrderInput | SortOrder
+    earlyBirdDeadline?: SortOrderInput | SortOrder
+    earlyBirdFee?: SortOrderInput | SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    publishedBy?: SortOrderInput | SortOrder
+    registrationFee?: SortOrderInput | SortOrder
+    registrationFormConfig?: SortOrderInput | SortOrder
+    requiresPayment?: SortOrder
+    EventRegistration?: EventRegistrationOrderByRelationAggregateInput
+  }
+
+  export type GeneralEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    OR?: GeneralEventWhereInput[]
+    NOT?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    title?: StringFilter<"GeneralEvent"> | string
+    description?: StringFilter<"GeneralEvent"> | string
+    category?: StringFilter<"GeneralEvent"> | string
+    eventDate?: DateTimeFilter<"GeneralEvent"> | Date | string
+    eventTime?: StringFilter<"GeneralEvent"> | string
+    location?: StringFilter<"GeneralEvent"> | string
+    image?: StringNullableFilter<"GeneralEvent"> | string | null
+    maxParticipants?: IntNullableFilter<"GeneralEvent"> | number | null
+    registrationDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    status?: StringFilter<"GeneralEvent"> | string
+    isPublished?: BoolFilter<"GeneralEvent"> | boolean
+    isFeatured?: BoolFilter<"GeneralEvent"> | boolean
+    targetAudience?: StringNullableFilter<"GeneralEvent"> | string | null
+    requirements?: StringNullableFilter<"GeneralEvent"> | string | null
+    agenda?: StringNullableFilter<"GeneralEvent"> | string | null
+    speakers?: JsonNullableFilter<"GeneralEvent">
+    tags?: StringNullableListFilter<"GeneralEvent">
+    contactEmail?: StringNullableFilter<"GeneralEvent"> | string | null
+    contactPhone?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    customFields?: JsonNullableFilter<"GeneralEvent">
+    earlyBirdDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    earlyBirdFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    publishedAt?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    publishedBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    registrationFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    registrationFormConfig?: JsonNullableFilter<"GeneralEvent">
+    requiresPayment?: BoolFilter<"GeneralEvent"> | boolean
+    EventRegistration?: EventRegistrationListRelationFilter
+  }, "id">
+
+  export type GeneralEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrderInput | SortOrder
+    maxParticipants?: SortOrderInput | SortOrder
+    registrationDeadline?: SortOrderInput | SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrderInput | SortOrder
+    requirements?: SortOrderInput | SortOrder
+    agenda?: SortOrderInput | SortOrder
+    speakers?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    contactEmail?: SortOrderInput | SortOrder
+    contactPhone?: SortOrderInput | SortOrder
+    createdBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customFields?: SortOrderInput | SortOrder
+    earlyBirdDeadline?: SortOrderInput | SortOrder
+    earlyBirdFee?: SortOrderInput | SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    publishedBy?: SortOrderInput | SortOrder
+    registrationFee?: SortOrderInput | SortOrder
+    registrationFormConfig?: SortOrderInput | SortOrder
+    requiresPayment?: SortOrder
+    _count?: GeneralEventCountOrderByAggregateInput
+    _avg?: GeneralEventAvgOrderByAggregateInput
+    _max?: GeneralEventMaxOrderByAggregateInput
+    _min?: GeneralEventMinOrderByAggregateInput
+    _sum?: GeneralEventSumOrderByAggregateInput
+  }
+
+  export type GeneralEventScalarWhereWithAggregatesInput = {
+    AND?: GeneralEventScalarWhereWithAggregatesInput | GeneralEventScalarWhereWithAggregatesInput[]
+    OR?: GeneralEventScalarWhereWithAggregatesInput[]
+    NOT?: GeneralEventScalarWhereWithAggregatesInput | GeneralEventScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GeneralEvent"> | number
+    title?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    description?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    category?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    eventDate?: DateTimeWithAggregatesFilter<"GeneralEvent"> | Date | string
+    eventTime?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    location?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    image?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    maxParticipants?: IntNullableWithAggregatesFilter<"GeneralEvent"> | number | null
+    registrationDeadline?: DateTimeNullableWithAggregatesFilter<"GeneralEvent"> | Date | string | null
+    status?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    isPublished?: BoolWithAggregatesFilter<"GeneralEvent"> | boolean
+    isFeatured?: BoolWithAggregatesFilter<"GeneralEvent"> | boolean
+    targetAudience?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    requirements?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    agenda?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    speakers?: JsonNullableWithAggregatesFilter<"GeneralEvent">
+    tags?: StringNullableListFilter<"GeneralEvent">
+    contactEmail?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    contactPhone?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    createdBy?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"GeneralEvent"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GeneralEvent"> | Date | string
+    customFields?: JsonNullableWithAggregatesFilter<"GeneralEvent">
+    earlyBirdDeadline?: DateTimeNullableWithAggregatesFilter<"GeneralEvent"> | Date | string | null
+    earlyBirdFee?: FloatNullableWithAggregatesFilter<"GeneralEvent"> | number | null
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"GeneralEvent"> | Date | string | null
+    publishedBy?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    registrationFee?: FloatNullableWithAggregatesFilter<"GeneralEvent"> | number | null
+    registrationFormConfig?: JsonNullableWithAggregatesFilter<"GeneralEvent">
+    requiresPayment?: BoolWithAggregatesFilter<"GeneralEvent"> | boolean
+  }
+
+  export type AccessRequestWhereInput = {
+    AND?: AccessRequestWhereInput | AccessRequestWhereInput[]
+    OR?: AccessRequestWhereInput[]
+    NOT?: AccessRequestWhereInput | AccessRequestWhereInput[]
+    id?: StringFilter<"AccessRequest"> | string
+    name?: StringFilter<"AccessRequest"> | string
+    email?: StringFilter<"AccessRequest"> | string
+    createdAt?: DateTimeFilter<"AccessRequest"> | Date | string
+    approved?: BoolFilter<"AccessRequest"> | boolean
+    phone?: StringNullableFilter<"AccessRequest"> | string | null
+    reason?: StringNullableFilter<"AccessRequest"> | string | null
+    researchId?: StringFilter<"AccessRequest"> | string
+    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
+  }
+
+  export type AccessRequestOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    createdAt?: SortOrder
+    approved?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    reason?: SortOrderInput | SortOrder
+    researchId?: SortOrder
+    Research?: ResearchOrderByWithRelationInput
+  }
+
+  export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AccessRequestWhereInput | AccessRequestWhereInput[]
+    OR?: AccessRequestWhereInput[]
+    NOT?: AccessRequestWhereInput | AccessRequestWhereInput[]
+    name?: StringFilter<"AccessRequest"> | string
+    email?: StringFilter<"AccessRequest"> | string
+    createdAt?: DateTimeFilter<"AccessRequest"> | Date | string
+    approved?: BoolFilter<"AccessRequest"> | boolean
+    phone?: StringNullableFilter<"AccessRequest"> | string | null
+    reason?: StringNullableFilter<"AccessRequest"> | string | null
+    researchId?: StringFilter<"AccessRequest"> | string
+    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
+  }, "id">
+
+  export type AccessRequestOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    createdAt?: SortOrder
+    approved?: SortOrder
+    phone?: SortOrderInput | SortOrder
+    reason?: SortOrderInput | SortOrder
+    researchId?: SortOrder
+    _count?: AccessRequestCountOrderByAggregateInput
+    _max?: AccessRequestMaxOrderByAggregateInput
+    _min?: AccessRequestMinOrderByAggregateInput
+  }
+
+  export type AccessRequestScalarWhereWithAggregatesInput = {
+    AND?: AccessRequestScalarWhereWithAggregatesInput | AccessRequestScalarWhereWithAggregatesInput[]
+    OR?: AccessRequestScalarWhereWithAggregatesInput[]
+    NOT?: AccessRequestScalarWhereWithAggregatesInput | AccessRequestScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AccessRequest"> | string
+    name?: StringWithAggregatesFilter<"AccessRequest"> | string
+    email?: StringWithAggregatesFilter<"AccessRequest"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"AccessRequest"> | Date | string
+    approved?: BoolWithAggregatesFilter<"AccessRequest"> | boolean
+    phone?: StringNullableWithAggregatesFilter<"AccessRequest"> | string | null
+    reason?: StringNullableWithAggregatesFilter<"AccessRequest"> | string | null
+    researchId?: StringWithAggregatesFilter<"AccessRequest"> | string
+  }
+
+  export type ResearchWhereInput = {
+    AND?: ResearchWhereInput | ResearchWhereInput[]
+    OR?: ResearchWhereInput[]
+    NOT?: ResearchWhereInput | ResearchWhereInput[]
+    id?: StringFilter<"Research"> | string
+    title?: StringFilter<"Research"> | string
+    slug?: StringFilter<"Research"> | string
+    description?: StringNullableFilter<"Research"> | string | null
+    published?: BoolFilter<"Research"> | boolean
+    author?: StringNullableFilter<"Research"> | string | null
+    pdfPath?: StringNullableFilter<"Research"> | string | null
+    createdAt?: DateTimeFilter<"Research"> | Date | string
+    AccessRequest?: AccessRequestListRelationFilter
+    Slide?: SlideListRelationFilter
+  }
+
+  export type ResearchOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    published?: SortOrder
+    author?: SortOrderInput | SortOrder
+    pdfPath?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    AccessRequest?: AccessRequestOrderByRelationAggregateInput
+    Slide?: SlideOrderByRelationAggregateInput
+  }
+
+  export type ResearchWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    slug?: string
+    AND?: ResearchWhereInput | ResearchWhereInput[]
+    OR?: ResearchWhereInput[]
+    NOT?: ResearchWhereInput | ResearchWhereInput[]
+    title?: StringFilter<"Research"> | string
+    description?: StringNullableFilter<"Research"> | string | null
+    published?: BoolFilter<"Research"> | boolean
+    author?: StringNullableFilter<"Research"> | string | null
+    pdfPath?: StringNullableFilter<"Research"> | string | null
+    createdAt?: DateTimeFilter<"Research"> | Date | string
+    AccessRequest?: AccessRequestListRelationFilter
+    Slide?: SlideListRelationFilter
+  }, "id" | "slug">
+
+  export type ResearchOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    published?: SortOrder
+    author?: SortOrderInput | SortOrder
+    pdfPath?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ResearchCountOrderByAggregateInput
+    _max?: ResearchMaxOrderByAggregateInput
+    _min?: ResearchMinOrderByAggregateInput
+  }
+
+  export type ResearchScalarWhereWithAggregatesInput = {
+    AND?: ResearchScalarWhereWithAggregatesInput | ResearchScalarWhereWithAggregatesInput[]
+    OR?: ResearchScalarWhereWithAggregatesInput[]
+    NOT?: ResearchScalarWhereWithAggregatesInput | ResearchScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Research"> | string
+    title?: StringWithAggregatesFilter<"Research"> | string
+    slug?: StringWithAggregatesFilter<"Research"> | string
+    description?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    published?: BoolWithAggregatesFilter<"Research"> | boolean
+    author?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    pdfPath?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Research"> | Date | string
+  }
+
+  export type SlideWhereInput = {
+    AND?: SlideWhereInput | SlideWhereInput[]
+    OR?: SlideWhereInput[]
+    NOT?: SlideWhereInput | SlideWhereInput[]
+    id?: StringFilter<"Slide"> | string
+    researchId?: StringFilter<"Slide"> | string
+    imagePath?: StringFilter<"Slide"> | string
+    order?: IntFilter<"Slide"> | number
+    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
+  }
+
+  export type SlideOrderByWithRelationInput = {
+    id?: SortOrder
+    researchId?: SortOrder
+    imagePath?: SortOrder
+    order?: SortOrder
+    Research?: ResearchOrderByWithRelationInput
+  }
+
+  export type SlideWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SlideWhereInput | SlideWhereInput[]
+    OR?: SlideWhereInput[]
+    NOT?: SlideWhereInput | SlideWhereInput[]
+    researchId?: StringFilter<"Slide"> | string
+    imagePath?: StringFilter<"Slide"> | string
+    order?: IntFilter<"Slide"> | number
+    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
+  }, "id">
+
+  export type SlideOrderByWithAggregationInput = {
+    id?: SortOrder
+    researchId?: SortOrder
+    imagePath?: SortOrder
+    order?: SortOrder
+    _count?: SlideCountOrderByAggregateInput
+    _avg?: SlideAvgOrderByAggregateInput
+    _max?: SlideMaxOrderByAggregateInput
+    _min?: SlideMinOrderByAggregateInput
+    _sum?: SlideSumOrderByAggregateInput
+  }
+
+  export type SlideScalarWhereWithAggregatesInput = {
+    AND?: SlideScalarWhereWithAggregatesInput | SlideScalarWhereWithAggregatesInput[]
+    OR?: SlideScalarWhereWithAggregatesInput[]
+    NOT?: SlideScalarWhereWithAggregatesInput | SlideScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Slide"> | string
+    researchId?: StringWithAggregatesFilter<"Slide"> | string
+    imagePath?: StringWithAggregatesFilter<"Slide"> | string
+    order?: IntWithAggregatesFilter<"Slide"> | number
   }
 
   export type WebinarRegistrationCreateInput = {
@@ -40603,11 +48141,11 @@ export namespace Prisma {
     studentName?: string | null
     submittedAt?: Date | string | null
     successStory?: string | null
-    contentApproved?: boolean
-    ratingApproved?: boolean
     beforeAfterApproved?: boolean
-    successStoryApproved?: boolean
+    contentApproved?: boolean
     programsApproved?: boolean
+    ratingApproved?: boolean
+    successStoryApproved?: boolean
     Student?: StudentCreateNestedOneWithoutTestimonialInput
   }
 
@@ -40633,11 +48171,11 @@ export namespace Prisma {
     studentName?: string | null
     submittedAt?: Date | string | null
     successStory?: string | null
-    contentApproved?: boolean
-    ratingApproved?: boolean
     beforeAfterApproved?: boolean
-    successStoryApproved?: boolean
+    contentApproved?: boolean
     programsApproved?: boolean
+    ratingApproved?: boolean
+    successStoryApproved?: boolean
   }
 
   export type TestimonialUpdateInput = {
@@ -40660,11 +48198,11 @@ export namespace Prisma {
     studentName?: NullableStringFieldUpdateOperationsInput | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    contentApproved?: BoolFieldUpdateOperationsInput | boolean
-    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
     Student?: StudentUpdateOneWithoutTestimonialNestedInput
   }
 
@@ -40690,11 +48228,11 @@ export namespace Prisma {
     studentName?: NullableStringFieldUpdateOperationsInput | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    contentApproved?: BoolFieldUpdateOperationsInput | boolean
-    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TestimonialCreateManyInput = {
@@ -40719,11 +48257,11 @@ export namespace Prisma {
     studentName?: string | null
     submittedAt?: Date | string | null
     successStory?: string | null
-    contentApproved?: boolean
-    ratingApproved?: boolean
     beforeAfterApproved?: boolean
-    successStoryApproved?: boolean
+    contentApproved?: boolean
     programsApproved?: boolean
+    ratingApproved?: boolean
+    successStoryApproved?: boolean
   }
 
   export type TestimonialUpdateManyMutationInput = {
@@ -40746,11 +48284,11 @@ export namespace Prisma {
     studentName?: NullableStringFieldUpdateOperationsInput | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    contentApproved?: BoolFieldUpdateOperationsInput | boolean
-    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TestimonialUncheckedUpdateManyInput = {
@@ -40775,11 +48313,11 @@ export namespace Prisma {
     studentName?: NullableStringFieldUpdateOperationsInput | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    contentApproved?: BoolFieldUpdateOperationsInput | boolean
-    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SecurityLogCreateInput = {
@@ -40934,36 +48472,36 @@ export namespace Prisma {
     parentId?: number | null
     parentName?: string | null
     parentEmail?: string | null
-    studentName?: string | null
-    grade?: string | null
-    school?: string | null
-    programs?: FeedbackCreateprogramsInput | string[]
-    heardAbout?: string | null
-    beforeAfterExpectations?: string | null
-    childExperience?: string | null
-    successStory?: string | null
-    overallExperience?: string | null
-    studentRating?: number | null
-    schedulingRating?: number | null
-    wouldRecommend?: string | null
-    consentToFeature?: boolean
-    favoriteThingToShare?: string | null
-    suggestions?: string | null
     status?: string
     response?: string | null
-    isApproved?: boolean
-    isVisible?: boolean
-    submittedAt?: Date | string | null
     createdAt?: Date | string
     reviewedAt?: Date | string | null
-    updatedAt?: Date | string
     beforeAfterApproved?: boolean
+    beforeAfterExpectations?: string | null
+    childExperience?: string | null
     childExperienceApproved?: boolean
-    successStoryApproved?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: string | null
+    grade?: string | null
+    heardAbout?: string | null
+    isApproved?: boolean
+    isVisible?: boolean
+    overallExperience?: string | null
     overallExperienceApproved?: boolean
+    programs?: FeedbackCreateprogramsInput | string[]
     programsApproved?: boolean
-    studentRatingApproved?: boolean
+    schedulingRating?: number | null
     schedulingRatingApproved?: boolean
+    school?: string | null
+    studentName?: string | null
+    studentRating?: number | null
+    studentRatingApproved?: boolean
+    submittedAt?: Date | string | null
+    successStory?: string | null
+    successStoryApproved?: boolean
+    suggestions?: string | null
+    updatedAt?: Date | string
+    wouldRecommend?: string | null
   }
 
   export type FeedbackUncheckedCreateInput = {
@@ -40971,72 +48509,72 @@ export namespace Prisma {
     parentId?: number | null
     parentName?: string | null
     parentEmail?: string | null
-    studentName?: string | null
-    grade?: string | null
-    school?: string | null
-    programs?: FeedbackCreateprogramsInput | string[]
-    heardAbout?: string | null
-    beforeAfterExpectations?: string | null
-    childExperience?: string | null
-    successStory?: string | null
-    overallExperience?: string | null
-    studentRating?: number | null
-    schedulingRating?: number | null
-    wouldRecommend?: string | null
-    consentToFeature?: boolean
-    favoriteThingToShare?: string | null
-    suggestions?: string | null
     status?: string
     response?: string | null
-    isApproved?: boolean
-    isVisible?: boolean
-    submittedAt?: Date | string | null
     createdAt?: Date | string
     reviewedAt?: Date | string | null
-    updatedAt?: Date | string
     beforeAfterApproved?: boolean
+    beforeAfterExpectations?: string | null
+    childExperience?: string | null
     childExperienceApproved?: boolean
-    successStoryApproved?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: string | null
+    grade?: string | null
+    heardAbout?: string | null
+    isApproved?: boolean
+    isVisible?: boolean
+    overallExperience?: string | null
     overallExperienceApproved?: boolean
+    programs?: FeedbackCreateprogramsInput | string[]
     programsApproved?: boolean
-    studentRatingApproved?: boolean
+    schedulingRating?: number | null
     schedulingRatingApproved?: boolean
+    school?: string | null
+    studentName?: string | null
+    studentRating?: number | null
+    studentRatingApproved?: boolean
+    submittedAt?: Date | string | null
+    successStory?: string | null
+    successStoryApproved?: boolean
+    suggestions?: string | null
+    updatedAt?: Date | string
+    wouldRecommend?: string | null
   }
 
   export type FeedbackUpdateInput = {
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
     parentName?: NullableStringFieldUpdateOperationsInput | string | null
     parentEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    studentName?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    programs?: FeedbackUpdateprogramsInput | string[]
-    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
-    successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
-    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
-    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
-    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
-    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
-    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
-    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     response?: NullableStringFieldUpdateOperationsInput | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
     childExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
     overallExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    programs?: FeedbackUpdateprogramsInput | string[]
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
-    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
     schedulingRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
+    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FeedbackUncheckedUpdateInput = {
@@ -41044,36 +48582,36 @@ export namespace Prisma {
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
     parentName?: NullableStringFieldUpdateOperationsInput | string | null
     parentEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    studentName?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    programs?: FeedbackUpdateprogramsInput | string[]
-    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
-    successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
-    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
-    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
-    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
-    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
-    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
-    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     response?: NullableStringFieldUpdateOperationsInput | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
     childExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
     overallExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    programs?: FeedbackUpdateprogramsInput | string[]
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
-    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
     schedulingRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
+    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FeedbackCreateManyInput = {
@@ -41081,72 +48619,72 @@ export namespace Prisma {
     parentId?: number | null
     parentName?: string | null
     parentEmail?: string | null
-    studentName?: string | null
-    grade?: string | null
-    school?: string | null
-    programs?: FeedbackCreateprogramsInput | string[]
-    heardAbout?: string | null
-    beforeAfterExpectations?: string | null
-    childExperience?: string | null
-    successStory?: string | null
-    overallExperience?: string | null
-    studentRating?: number | null
-    schedulingRating?: number | null
-    wouldRecommend?: string | null
-    consentToFeature?: boolean
-    favoriteThingToShare?: string | null
-    suggestions?: string | null
     status?: string
     response?: string | null
-    isApproved?: boolean
-    isVisible?: boolean
-    submittedAt?: Date | string | null
     createdAt?: Date | string
     reviewedAt?: Date | string | null
-    updatedAt?: Date | string
     beforeAfterApproved?: boolean
+    beforeAfterExpectations?: string | null
+    childExperience?: string | null
     childExperienceApproved?: boolean
-    successStoryApproved?: boolean
+    consentToFeature?: boolean
+    favoriteThingToShare?: string | null
+    grade?: string | null
+    heardAbout?: string | null
+    isApproved?: boolean
+    isVisible?: boolean
+    overallExperience?: string | null
     overallExperienceApproved?: boolean
+    programs?: FeedbackCreateprogramsInput | string[]
     programsApproved?: boolean
-    studentRatingApproved?: boolean
+    schedulingRating?: number | null
     schedulingRatingApproved?: boolean
+    school?: string | null
+    studentName?: string | null
+    studentRating?: number | null
+    studentRatingApproved?: boolean
+    submittedAt?: Date | string | null
+    successStory?: string | null
+    successStoryApproved?: boolean
+    suggestions?: string | null
+    updatedAt?: Date | string
+    wouldRecommend?: string | null
   }
 
   export type FeedbackUpdateManyMutationInput = {
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
     parentName?: NullableStringFieldUpdateOperationsInput | string | null
     parentEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    studentName?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    programs?: FeedbackUpdateprogramsInput | string[]
-    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
-    successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
-    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
-    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
-    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
-    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
-    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
-    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     response?: NullableStringFieldUpdateOperationsInput | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
     childExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
     overallExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    programs?: FeedbackUpdateprogramsInput | string[]
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
-    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
     schedulingRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
+    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FeedbackUncheckedUpdateManyInput = {
@@ -41154,36 +48692,36 @@ export namespace Prisma {
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
     parentName?: NullableStringFieldUpdateOperationsInput | string | null
     parentEmail?: NullableStringFieldUpdateOperationsInput | string | null
-    studentName?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    programs?: FeedbackUpdateprogramsInput | string[]
-    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
-    successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
-    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
-    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
-    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
-    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
-    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
-    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     response?: NullableStringFieldUpdateOperationsInput | string | null
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    isVisible?: BoolFieldUpdateOperationsInput | boolean
-    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
+    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    childExperience?: NullableStringFieldUpdateOperationsInput | string | null
     childExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    consentToFeature?: BoolFieldUpdateOperationsInput | boolean
+    favoriteThingToShare?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    heardAbout?: NullableStringFieldUpdateOperationsInput | string | null
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    overallExperience?: NullableStringFieldUpdateOperationsInput | string | null
     overallExperienceApproved?: BoolFieldUpdateOperationsInput | boolean
+    programs?: FeedbackUpdateprogramsInput | string[]
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
-    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    schedulingRating?: NullableIntFieldUpdateOperationsInput | number | null
     schedulingRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentName?: NullableStringFieldUpdateOperationsInput | string | null
+    studentRating?: NullableIntFieldUpdateOperationsInput | number | null
+    studentRatingApproved?: BoolFieldUpdateOperationsInput | boolean
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    successStory?: NullableStringFieldUpdateOperationsInput | string | null
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    suggestions?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    wouldRecommend?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ParentAccountCreateInput = {
@@ -41605,6 +49143,19 @@ export namespace Prisma {
     nextSteps?: string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
     Student: StudentCreateNestedOneWithoutProgressReportInput
     Teacher: TeacherCreateNestedOneWithoutProgressReportInput
   }
@@ -41620,6 +49171,19 @@ export namespace Prisma {
     nextSteps?: string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
   }
 
   export type ProgressReportUpdateInput = {
@@ -41630,6 +49194,19 @@ export namespace Prisma {
     nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
     Student?: StudentUpdateOneRequiredWithoutProgressReportNestedInput
     Teacher?: TeacherUpdateOneRequiredWithoutProgressReportNestedInput
   }
@@ -41645,6 +49222,19 @@ export namespace Prisma {
     nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProgressReportCreateManyInput = {
@@ -41658,6 +49248,19 @@ export namespace Prisma {
     nextSteps?: string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
   }
 
   export type ProgressReportUpdateManyMutationInput = {
@@ -41668,6 +49271,19 @@ export namespace Prisma {
     nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProgressReportUncheckedUpdateManyInput = {
@@ -41681,6 +49297,659 @@ export namespace Prisma {
     nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationCreateInput = {
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+    GeneralEvent: GeneralEventCreateNestedOneWithoutEventRegistrationInput
+  }
+
+  export type EventRegistrationUncheckedCreateInput = {
+    id?: number
+    eventId: number
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationUpdateInput = {
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    GeneralEvent?: GeneralEventUpdateOneRequiredWithoutEventRegistrationNestedInput
+  }
+
+  export type EventRegistrationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    eventId?: IntFieldUpdateOperationsInput | number
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationCreateManyInput = {
+    id?: number
+    eventId: number
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationUpdateManyMutationInput = {
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    eventId?: IntFieldUpdateOperationsInput | number
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type GeneralEventCreateInput = {
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+    EventRegistration?: EventRegistrationCreateNestedManyWithoutGeneralEventInput
+  }
+
+  export type GeneralEventUncheckedCreateInput = {
+    id?: number
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+    EventRegistration?: EventRegistrationUncheckedCreateNestedManyWithoutGeneralEventInput
+  }
+
+  export type GeneralEventUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    EventRegistration?: EventRegistrationUpdateManyWithoutGeneralEventNestedInput
+  }
+
+  export type GeneralEventUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    EventRegistration?: EventRegistrationUncheckedUpdateManyWithoutGeneralEventNestedInput
+  }
+
+  export type GeneralEventCreateManyInput = {
+    id?: number
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+  }
+
+  export type GeneralEventUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type GeneralEventUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type AccessRequestCreateInput = {
+    id: string
+    name: string
+    email: string
+    createdAt?: Date | string
+    approved?: boolean
+    phone?: string | null
+    reason?: string | null
+    Research: ResearchCreateNestedOneWithoutAccessRequestInput
+  }
+
+  export type AccessRequestUncheckedCreateInput = {
+    id: string
+    name: string
+    email: string
+    createdAt?: Date | string
+    approved?: boolean
+    phone?: string | null
+    reason?: string | null
+    researchId: string
+  }
+
+  export type AccessRequestUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    Research?: ResearchUpdateOneRequiredWithoutAccessRequestNestedInput
+  }
+
+  export type AccessRequestUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    researchId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AccessRequestCreateManyInput = {
+    id: string
+    name: string
+    email: string
+    createdAt?: Date | string
+    approved?: boolean
+    phone?: string | null
+    reason?: string | null
+    researchId: string
+  }
+
+  export type AccessRequestUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AccessRequestUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    researchId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ResearchCreateInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    published?: boolean
+    author?: string | null
+    pdfPath?: string | null
+    createdAt?: Date | string
+    AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
+    Slide?: SlideCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchUncheckedCreateInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    published?: boolean
+    author?: string | null
+    pdfPath?: string | null
+    createdAt?: Date | string
+    AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
+    Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
+    Slide?: SlideUpdateManyWithoutResearchNestedInput
+  }
+
+  export type ResearchUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
+    Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
+  }
+
+  export type ResearchCreateManyInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    published?: boolean
+    author?: string | null
+    pdfPath?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ResearchUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResearchUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SlideCreateInput = {
+    id?: string
+    imagePath: string
+    order: number
+    Research: ResearchCreateNestedOneWithoutSlideInput
+  }
+
+  export type SlideUncheckedCreateInput = {
+    id?: string
+    researchId: string
+    imagePath: string
+    order: number
+  }
+
+  export type SlideUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imagePath?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+    Research?: ResearchUpdateOneRequiredWithoutSlideNestedInput
+  }
+
+  export type SlideUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    researchId?: StringFieldUpdateOperationsInput | string
+    imagePath?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SlideCreateManyInput = {
+    id?: string
+    researchId: string
+    imagePath: string
+    order: number
+  }
+
+  export type SlideUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imagePath?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SlideUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    researchId?: StringFieldUpdateOperationsInput | string
+    imagePath?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -43088,11 +51357,11 @@ export namespace Prisma {
     studentName?: SortOrder
     submittedAt?: SortOrder
     successStory?: SortOrder
-    contentApproved?: SortOrder
-    ratingApproved?: SortOrder
     beforeAfterApproved?: SortOrder
-    successStoryApproved?: SortOrder
+    contentApproved?: SortOrder
     programsApproved?: SortOrder
+    ratingApproved?: SortOrder
+    successStoryApproved?: SortOrder
   }
 
   export type TestimonialAvgOrderByAggregateInput = {
@@ -43122,11 +51391,11 @@ export namespace Prisma {
     studentName?: SortOrder
     submittedAt?: SortOrder
     successStory?: SortOrder
-    contentApproved?: SortOrder
-    ratingApproved?: SortOrder
     beforeAfterApproved?: SortOrder
-    successStoryApproved?: SortOrder
+    contentApproved?: SortOrder
     programsApproved?: SortOrder
+    ratingApproved?: SortOrder
+    successStoryApproved?: SortOrder
   }
 
   export type TestimonialMinOrderByAggregateInput = {
@@ -43150,11 +51419,11 @@ export namespace Prisma {
     studentName?: SortOrder
     submittedAt?: SortOrder
     successStory?: SortOrder
-    contentApproved?: SortOrder
-    ratingApproved?: SortOrder
     beforeAfterApproved?: SortOrder
-    successStoryApproved?: SortOrder
+    contentApproved?: SortOrder
     programsApproved?: SortOrder
+    ratingApproved?: SortOrder
+    successStoryApproved?: SortOrder
   }
 
   export type TestimonialSumOrderByAggregateInput = {
@@ -43297,43 +51566,43 @@ export namespace Prisma {
     parentId?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
-    studentName?: SortOrder
-    grade?: SortOrder
-    school?: SortOrder
-    programs?: SortOrder
-    heardAbout?: SortOrder
-    beforeAfterExpectations?: SortOrder
-    childExperience?: SortOrder
-    successStory?: SortOrder
-    overallExperience?: SortOrder
-    studentRating?: SortOrder
-    schedulingRating?: SortOrder
-    wouldRecommend?: SortOrder
-    consentToFeature?: SortOrder
-    favoriteThingToShare?: SortOrder
-    suggestions?: SortOrder
     status?: SortOrder
     response?: SortOrder
-    isApproved?: SortOrder
-    isVisible?: SortOrder
-    submittedAt?: SortOrder
     createdAt?: SortOrder
     reviewedAt?: SortOrder
-    updatedAt?: SortOrder
     beforeAfterApproved?: SortOrder
+    beforeAfterExpectations?: SortOrder
+    childExperience?: SortOrder
     childExperienceApproved?: SortOrder
-    successStoryApproved?: SortOrder
+    consentToFeature?: SortOrder
+    favoriteThingToShare?: SortOrder
+    grade?: SortOrder
+    heardAbout?: SortOrder
+    isApproved?: SortOrder
+    isVisible?: SortOrder
+    overallExperience?: SortOrder
     overallExperienceApproved?: SortOrder
+    programs?: SortOrder
     programsApproved?: SortOrder
-    studentRatingApproved?: SortOrder
+    schedulingRating?: SortOrder
     schedulingRatingApproved?: SortOrder
+    school?: SortOrder
+    studentName?: SortOrder
+    studentRating?: SortOrder
+    studentRatingApproved?: SortOrder
+    submittedAt?: SortOrder
+    successStory?: SortOrder
+    successStoryApproved?: SortOrder
+    suggestions?: SortOrder
+    updatedAt?: SortOrder
+    wouldRecommend?: SortOrder
   }
 
   export type FeedbackAvgOrderByAggregateInput = {
     id?: SortOrder
     parentId?: SortOrder
-    studentRating?: SortOrder
     schedulingRating?: SortOrder
+    studentRating?: SortOrder
   }
 
   export type FeedbackMaxOrderByAggregateInput = {
@@ -43341,35 +51610,35 @@ export namespace Prisma {
     parentId?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
-    studentName?: SortOrder
-    grade?: SortOrder
-    school?: SortOrder
-    heardAbout?: SortOrder
-    beforeAfterExpectations?: SortOrder
-    childExperience?: SortOrder
-    successStory?: SortOrder
-    overallExperience?: SortOrder
-    studentRating?: SortOrder
-    schedulingRating?: SortOrder
-    wouldRecommend?: SortOrder
-    consentToFeature?: SortOrder
-    favoriteThingToShare?: SortOrder
-    suggestions?: SortOrder
     status?: SortOrder
     response?: SortOrder
-    isApproved?: SortOrder
-    isVisible?: SortOrder
-    submittedAt?: SortOrder
     createdAt?: SortOrder
     reviewedAt?: SortOrder
-    updatedAt?: SortOrder
     beforeAfterApproved?: SortOrder
+    beforeAfterExpectations?: SortOrder
+    childExperience?: SortOrder
     childExperienceApproved?: SortOrder
-    successStoryApproved?: SortOrder
+    consentToFeature?: SortOrder
+    favoriteThingToShare?: SortOrder
+    grade?: SortOrder
+    heardAbout?: SortOrder
+    isApproved?: SortOrder
+    isVisible?: SortOrder
+    overallExperience?: SortOrder
     overallExperienceApproved?: SortOrder
     programsApproved?: SortOrder
-    studentRatingApproved?: SortOrder
+    schedulingRating?: SortOrder
     schedulingRatingApproved?: SortOrder
+    school?: SortOrder
+    studentName?: SortOrder
+    studentRating?: SortOrder
+    studentRatingApproved?: SortOrder
+    submittedAt?: SortOrder
+    successStory?: SortOrder
+    successStoryApproved?: SortOrder
+    suggestions?: SortOrder
+    updatedAt?: SortOrder
+    wouldRecommend?: SortOrder
   }
 
   export type FeedbackMinOrderByAggregateInput = {
@@ -43377,42 +51646,42 @@ export namespace Prisma {
     parentId?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
-    studentName?: SortOrder
-    grade?: SortOrder
-    school?: SortOrder
-    heardAbout?: SortOrder
-    beforeAfterExpectations?: SortOrder
-    childExperience?: SortOrder
-    successStory?: SortOrder
-    overallExperience?: SortOrder
-    studentRating?: SortOrder
-    schedulingRating?: SortOrder
-    wouldRecommend?: SortOrder
-    consentToFeature?: SortOrder
-    favoriteThingToShare?: SortOrder
-    suggestions?: SortOrder
     status?: SortOrder
     response?: SortOrder
-    isApproved?: SortOrder
-    isVisible?: SortOrder
-    submittedAt?: SortOrder
     createdAt?: SortOrder
     reviewedAt?: SortOrder
-    updatedAt?: SortOrder
     beforeAfterApproved?: SortOrder
+    beforeAfterExpectations?: SortOrder
+    childExperience?: SortOrder
     childExperienceApproved?: SortOrder
-    successStoryApproved?: SortOrder
+    consentToFeature?: SortOrder
+    favoriteThingToShare?: SortOrder
+    grade?: SortOrder
+    heardAbout?: SortOrder
+    isApproved?: SortOrder
+    isVisible?: SortOrder
+    overallExperience?: SortOrder
     overallExperienceApproved?: SortOrder
     programsApproved?: SortOrder
-    studentRatingApproved?: SortOrder
+    schedulingRating?: SortOrder
     schedulingRatingApproved?: SortOrder
+    school?: SortOrder
+    studentName?: SortOrder
+    studentRating?: SortOrder
+    studentRatingApproved?: SortOrder
+    submittedAt?: SortOrder
+    successStory?: SortOrder
+    successStoryApproved?: SortOrder
+    suggestions?: SortOrder
+    updatedAt?: SortOrder
+    wouldRecommend?: SortOrder
   }
 
   export type FeedbackSumOrderByAggregateInput = {
     id?: SortOrder
     parentId?: SortOrder
-    studentRating?: SortOrder
     schedulingRating?: SortOrder
+    studentRating?: SortOrder
   }
 
   export type StudentListRelationFilter = {
@@ -43648,6 +51917,17 @@ export namespace Prisma {
     displayOrder?: SortOrder
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type ProgressReportCountOrderByAggregateInput = {
     id?: SortOrder
     studentId?: SortOrder
@@ -43659,12 +51939,28 @@ export namespace Prisma {
     nextSteps?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    attendanceRate?: SortOrder
+    classParticipation?: SortOrder
+    homeworkCompletion?: SortOrder
+    improvementAreas?: SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrder
+    progressRating?: SortOrder
+    recommendations?: SortOrder
+    reportPeriod?: SortOrder
+    skillsImproved?: SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrder
+    subject?: SortOrder
   }
 
   export type ProgressReportAvgOrderByAggregateInput = {
     id?: SortOrder
     studentId?: SortOrder
     teacherId?: SortOrder
+    attendanceRate?: SortOrder
+    homeworkCompletion?: SortOrder
+    progressRating?: SortOrder
   }
 
   export type ProgressReportMaxOrderByAggregateInput = {
@@ -43678,6 +51974,19 @@ export namespace Prisma {
     nextSteps?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    attendanceRate?: SortOrder
+    classParticipation?: SortOrder
+    homeworkCompletion?: SortOrder
+    improvementAreas?: SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrder
+    progressRating?: SortOrder
+    recommendations?: SortOrder
+    reportPeriod?: SortOrder
+    skillsImproved?: SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrder
+    subject?: SortOrder
   }
 
   export type ProgressReportMinOrderByAggregateInput = {
@@ -43691,12 +52000,386 @@ export namespace Prisma {
     nextSteps?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    attendanceRate?: SortOrder
+    classParticipation?: SortOrder
+    homeworkCompletion?: SortOrder
+    improvementAreas?: SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrder
+    progressRating?: SortOrder
+    recommendations?: SortOrder
+    reportPeriod?: SortOrder
+    skillsImproved?: SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrder
+    subject?: SortOrder
   }
 
   export type ProgressReportSumOrderByAggregateInput = {
     id?: SortOrder
     studentId?: SortOrder
     teacherId?: SortOrder
+    attendanceRate?: SortOrder
+    homeworkCompletion?: SortOrder
+    progressRating?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type GeneralEventScalarRelationFilter = {
+    is?: GeneralEventWhereInput
+    isNot?: GeneralEventWhereInput
+  }
+
+  export type EventRegistrationEventIdStudentEmailCompoundUniqueInput = {
+    eventId: number
+    studentEmail: string
+  }
+
+  export type EventRegistrationCountOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrder
+    studentGrade?: SortOrder
+    schoolName?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrder
+    paymentAmount?: SortOrder
+    specialRequirements?: SortOrder
+    howDidYouHear?: SortOrder
+    notes?: SortOrder
+    checkedInAt?: SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrder
+    certificateIssued?: SortOrder
+    customFieldResponses?: SortOrder
+    paymentMethod?: SortOrder
+    transactionId?: SortOrder
+  }
+
+  export type EventRegistrationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    paymentAmount?: SortOrder
+  }
+
+  export type EventRegistrationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrder
+    studentGrade?: SortOrder
+    schoolName?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrder
+    paymentAmount?: SortOrder
+    specialRequirements?: SortOrder
+    howDidYouHear?: SortOrder
+    notes?: SortOrder
+    checkedInAt?: SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrder
+    certificateIssued?: SortOrder
+    paymentMethod?: SortOrder
+    transactionId?: SortOrder
+  }
+
+  export type EventRegistrationMinOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrder
+    studentGrade?: SortOrder
+    schoolName?: SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrder
+    paymentAmount?: SortOrder
+    specialRequirements?: SortOrder
+    howDidYouHear?: SortOrder
+    notes?: SortOrder
+    checkedInAt?: SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrder
+    certificateIssued?: SortOrder
+    paymentMethod?: SortOrder
+    transactionId?: SortOrder
+  }
+
+  export type EventRegistrationSumOrderByAggregateInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    paymentAmount?: SortOrder
+  }
+
+  export type EventRegistrationListRelationFilter = {
+    every?: EventRegistrationWhereInput
+    some?: EventRegistrationWhereInput
+    none?: EventRegistrationWhereInput
+  }
+
+  export type EventRegistrationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GeneralEventCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrder
+    maxParticipants?: SortOrder
+    registrationDeadline?: SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrder
+    requirements?: SortOrder
+    agenda?: SortOrder
+    speakers?: SortOrder
+    tags?: SortOrder
+    contactEmail?: SortOrder
+    contactPhone?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customFields?: SortOrder
+    earlyBirdDeadline?: SortOrder
+    earlyBirdFee?: SortOrder
+    publishedAt?: SortOrder
+    publishedBy?: SortOrder
+    registrationFee?: SortOrder
+    registrationFormConfig?: SortOrder
+    requiresPayment?: SortOrder
+  }
+
+  export type GeneralEventAvgOrderByAggregateInput = {
+    id?: SortOrder
+    maxParticipants?: SortOrder
+    earlyBirdFee?: SortOrder
+    registrationFee?: SortOrder
+  }
+
+  export type GeneralEventMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrder
+    maxParticipants?: SortOrder
+    registrationDeadline?: SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrder
+    requirements?: SortOrder
+    agenda?: SortOrder
+    contactEmail?: SortOrder
+    contactPhone?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    earlyBirdDeadline?: SortOrder
+    earlyBirdFee?: SortOrder
+    publishedAt?: SortOrder
+    publishedBy?: SortOrder
+    registrationFee?: SortOrder
+    requiresPayment?: SortOrder
+  }
+
+  export type GeneralEventMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrder
+    maxParticipants?: SortOrder
+    registrationDeadline?: SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrder
+    requirements?: SortOrder
+    agenda?: SortOrder
+    contactEmail?: SortOrder
+    contactPhone?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    earlyBirdDeadline?: SortOrder
+    earlyBirdFee?: SortOrder
+    publishedAt?: SortOrder
+    publishedBy?: SortOrder
+    registrationFee?: SortOrder
+    requiresPayment?: SortOrder
+  }
+
+  export type GeneralEventSumOrderByAggregateInput = {
+    id?: SortOrder
+    maxParticipants?: SortOrder
+    earlyBirdFee?: SortOrder
+    registrationFee?: SortOrder
+  }
+
+  export type ResearchScalarRelationFilter = {
+    is?: ResearchWhereInput
+    isNot?: ResearchWhereInput
+  }
+
+  export type AccessRequestCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    createdAt?: SortOrder
+    approved?: SortOrder
+    phone?: SortOrder
+    reason?: SortOrder
+    researchId?: SortOrder
+  }
+
+  export type AccessRequestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    createdAt?: SortOrder
+    approved?: SortOrder
+    phone?: SortOrder
+    reason?: SortOrder
+    researchId?: SortOrder
+  }
+
+  export type AccessRequestMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    email?: SortOrder
+    createdAt?: SortOrder
+    approved?: SortOrder
+    phone?: SortOrder
+    reason?: SortOrder
+    researchId?: SortOrder
+  }
+
+  export type AccessRequestListRelationFilter = {
+    every?: AccessRequestWhereInput
+    some?: AccessRequestWhereInput
+    none?: AccessRequestWhereInput
+  }
+
+  export type SlideListRelationFilter = {
+    every?: SlideWhereInput
+    some?: SlideWhereInput
+    none?: SlideWhereInput
+  }
+
+  export type AccessRequestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SlideOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ResearchCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    published?: SortOrder
+    author?: SortOrder
+    pdfPath?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ResearchMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    published?: SortOrder
+    author?: SortOrder
+    pdfPath?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ResearchMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    published?: SortOrder
+    author?: SortOrder
+    pdfPath?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type SlideCountOrderByAggregateInput = {
+    id?: SortOrder
+    researchId?: SortOrder
+    imagePath?: SortOrder
+    order?: SortOrder
+  }
+
+  export type SlideAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type SlideMaxOrderByAggregateInput = {
+    id?: SortOrder
+    researchId?: SortOrder
+    imagePath?: SortOrder
+    order?: SortOrder
+  }
+
+  export type SlideMinOrderByAggregateInput = {
+    id?: SortOrder
+    researchId?: SortOrder
+    imagePath?: SortOrder
+    order?: SortOrder
+  }
+
+  export type SlideSumOrderByAggregateInput = {
+    order?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -45115,6 +53798,14 @@ export namespace Prisma {
     connect?: TeacherWhereUniqueInput
   }
 
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type StudentUpdateOneRequiredWithoutProgressReportNestedInput = {
     create?: XOR<StudentCreateWithoutProgressReportInput, StudentUncheckedCreateWithoutProgressReportInput>
     connectOrCreate?: StudentCreateOrConnectWithoutProgressReportInput
@@ -45129,6 +53820,183 @@ export namespace Prisma {
     upsert?: TeacherUpsertWithoutProgressReportInput
     connect?: TeacherWhereUniqueInput
     update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutProgressReportInput, TeacherUpdateWithoutProgressReportInput>, TeacherUncheckedUpdateWithoutProgressReportInput>
+  }
+
+  export type GeneralEventCreateNestedOneWithoutEventRegistrationInput = {
+    create?: XOR<GeneralEventCreateWithoutEventRegistrationInput, GeneralEventUncheckedCreateWithoutEventRegistrationInput>
+    connectOrCreate?: GeneralEventCreateOrConnectWithoutEventRegistrationInput
+    connect?: GeneralEventWhereUniqueInput
+  }
+
+  export type GeneralEventUpdateOneRequiredWithoutEventRegistrationNestedInput = {
+    create?: XOR<GeneralEventCreateWithoutEventRegistrationInput, GeneralEventUncheckedCreateWithoutEventRegistrationInput>
+    connectOrCreate?: GeneralEventCreateOrConnectWithoutEventRegistrationInput
+    upsert?: GeneralEventUpsertWithoutEventRegistrationInput
+    connect?: GeneralEventWhereUniqueInput
+    update?: XOR<XOR<GeneralEventUpdateToOneWithWhereWithoutEventRegistrationInput, GeneralEventUpdateWithoutEventRegistrationInput>, GeneralEventUncheckedUpdateWithoutEventRegistrationInput>
+  }
+
+  export type GeneralEventCreatetagsInput = {
+    set: string[]
+  }
+
+  export type EventRegistrationCreateNestedManyWithoutGeneralEventInput = {
+    create?: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput> | EventRegistrationCreateWithoutGeneralEventInput[] | EventRegistrationUncheckedCreateWithoutGeneralEventInput[]
+    connectOrCreate?: EventRegistrationCreateOrConnectWithoutGeneralEventInput | EventRegistrationCreateOrConnectWithoutGeneralEventInput[]
+    createMany?: EventRegistrationCreateManyGeneralEventInputEnvelope
+    connect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+  }
+
+  export type EventRegistrationUncheckedCreateNestedManyWithoutGeneralEventInput = {
+    create?: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput> | EventRegistrationCreateWithoutGeneralEventInput[] | EventRegistrationUncheckedCreateWithoutGeneralEventInput[]
+    connectOrCreate?: EventRegistrationCreateOrConnectWithoutGeneralEventInput | EventRegistrationCreateOrConnectWithoutGeneralEventInput[]
+    createMany?: EventRegistrationCreateManyGeneralEventInputEnvelope
+    connect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+  }
+
+  export type GeneralEventUpdatetagsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type EventRegistrationUpdateManyWithoutGeneralEventNestedInput = {
+    create?: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput> | EventRegistrationCreateWithoutGeneralEventInput[] | EventRegistrationUncheckedCreateWithoutGeneralEventInput[]
+    connectOrCreate?: EventRegistrationCreateOrConnectWithoutGeneralEventInput | EventRegistrationCreateOrConnectWithoutGeneralEventInput[]
+    upsert?: EventRegistrationUpsertWithWhereUniqueWithoutGeneralEventInput | EventRegistrationUpsertWithWhereUniqueWithoutGeneralEventInput[]
+    createMany?: EventRegistrationCreateManyGeneralEventInputEnvelope
+    set?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    disconnect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    delete?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    connect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    update?: EventRegistrationUpdateWithWhereUniqueWithoutGeneralEventInput | EventRegistrationUpdateWithWhereUniqueWithoutGeneralEventInput[]
+    updateMany?: EventRegistrationUpdateManyWithWhereWithoutGeneralEventInput | EventRegistrationUpdateManyWithWhereWithoutGeneralEventInput[]
+    deleteMany?: EventRegistrationScalarWhereInput | EventRegistrationScalarWhereInput[]
+  }
+
+  export type EventRegistrationUncheckedUpdateManyWithoutGeneralEventNestedInput = {
+    create?: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput> | EventRegistrationCreateWithoutGeneralEventInput[] | EventRegistrationUncheckedCreateWithoutGeneralEventInput[]
+    connectOrCreate?: EventRegistrationCreateOrConnectWithoutGeneralEventInput | EventRegistrationCreateOrConnectWithoutGeneralEventInput[]
+    upsert?: EventRegistrationUpsertWithWhereUniqueWithoutGeneralEventInput | EventRegistrationUpsertWithWhereUniqueWithoutGeneralEventInput[]
+    createMany?: EventRegistrationCreateManyGeneralEventInputEnvelope
+    set?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    disconnect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    delete?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    connect?: EventRegistrationWhereUniqueInput | EventRegistrationWhereUniqueInput[]
+    update?: EventRegistrationUpdateWithWhereUniqueWithoutGeneralEventInput | EventRegistrationUpdateWithWhereUniqueWithoutGeneralEventInput[]
+    updateMany?: EventRegistrationUpdateManyWithWhereWithoutGeneralEventInput | EventRegistrationUpdateManyWithWhereWithoutGeneralEventInput[]
+    deleteMany?: EventRegistrationScalarWhereInput | EventRegistrationScalarWhereInput[]
+  }
+
+  export type ResearchCreateNestedOneWithoutAccessRequestInput = {
+    create?: XOR<ResearchCreateWithoutAccessRequestInput, ResearchUncheckedCreateWithoutAccessRequestInput>
+    connectOrCreate?: ResearchCreateOrConnectWithoutAccessRequestInput
+    connect?: ResearchWhereUniqueInput
+  }
+
+  export type ResearchUpdateOneRequiredWithoutAccessRequestNestedInput = {
+    create?: XOR<ResearchCreateWithoutAccessRequestInput, ResearchUncheckedCreateWithoutAccessRequestInput>
+    connectOrCreate?: ResearchCreateOrConnectWithoutAccessRequestInput
+    upsert?: ResearchUpsertWithoutAccessRequestInput
+    connect?: ResearchWhereUniqueInput
+    update?: XOR<XOR<ResearchUpdateToOneWithWhereWithoutAccessRequestInput, ResearchUpdateWithoutAccessRequestInput>, ResearchUncheckedUpdateWithoutAccessRequestInput>
+  }
+
+  export type AccessRequestCreateNestedManyWithoutResearchInput = {
+    create?: XOR<AccessRequestCreateWithoutResearchInput, AccessRequestUncheckedCreateWithoutResearchInput> | AccessRequestCreateWithoutResearchInput[] | AccessRequestUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: AccessRequestCreateOrConnectWithoutResearchInput | AccessRequestCreateOrConnectWithoutResearchInput[]
+    createMany?: AccessRequestCreateManyResearchInputEnvelope
+    connect?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
+  }
+
+  export type SlideCreateNestedManyWithoutResearchInput = {
+    create?: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput> | SlideCreateWithoutResearchInput[] | SlideUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
+    createMany?: SlideCreateManyResearchInputEnvelope
+    connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+  }
+
+  export type AccessRequestUncheckedCreateNestedManyWithoutResearchInput = {
+    create?: XOR<AccessRequestCreateWithoutResearchInput, AccessRequestUncheckedCreateWithoutResearchInput> | AccessRequestCreateWithoutResearchInput[] | AccessRequestUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: AccessRequestCreateOrConnectWithoutResearchInput | AccessRequestCreateOrConnectWithoutResearchInput[]
+    createMany?: AccessRequestCreateManyResearchInputEnvelope
+    connect?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
+  }
+
+  export type SlideUncheckedCreateNestedManyWithoutResearchInput = {
+    create?: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput> | SlideCreateWithoutResearchInput[] | SlideUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
+    createMany?: SlideCreateManyResearchInputEnvelope
+    connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+  }
+
+  export type AccessRequestUpdateManyWithoutResearchNestedInput = {
+    create?: XOR<AccessRequestCreateWithoutResearchInput, AccessRequestUncheckedCreateWithoutResearchInput> | AccessRequestCreateWithoutResearchInput[] | AccessRequestUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: AccessRequestCreateOrConnectWithoutResearchInput | AccessRequestCreateOrConnectWithoutResearchInput[]
+    upsert?: AccessRequestUpsertWithWhereUniqueWithoutResearchInput | AccessRequestUpsertWithWhereUniqueWithoutResearchInput[]
+    createMany?: AccessRequestCreateManyResearchInputEnvelope
+    set?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
+    disconnect?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
+    delete?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
+    connect?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
+    update?: AccessRequestUpdateWithWhereUniqueWithoutResearchInput | AccessRequestUpdateWithWhereUniqueWithoutResearchInput[]
+    updateMany?: AccessRequestUpdateManyWithWhereWithoutResearchInput | AccessRequestUpdateManyWithWhereWithoutResearchInput[]
+    deleteMany?: AccessRequestScalarWhereInput | AccessRequestScalarWhereInput[]
+  }
+
+  export type SlideUpdateManyWithoutResearchNestedInput = {
+    create?: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput> | SlideCreateWithoutResearchInput[] | SlideUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
+    upsert?: SlideUpsertWithWhereUniqueWithoutResearchInput | SlideUpsertWithWhereUniqueWithoutResearchInput[]
+    createMany?: SlideCreateManyResearchInputEnvelope
+    set?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+    disconnect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+    delete?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+    connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+    update?: SlideUpdateWithWhereUniqueWithoutResearchInput | SlideUpdateWithWhereUniqueWithoutResearchInput[]
+    updateMany?: SlideUpdateManyWithWhereWithoutResearchInput | SlideUpdateManyWithWhereWithoutResearchInput[]
+    deleteMany?: SlideScalarWhereInput | SlideScalarWhereInput[]
+  }
+
+  export type AccessRequestUncheckedUpdateManyWithoutResearchNestedInput = {
+    create?: XOR<AccessRequestCreateWithoutResearchInput, AccessRequestUncheckedCreateWithoutResearchInput> | AccessRequestCreateWithoutResearchInput[] | AccessRequestUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: AccessRequestCreateOrConnectWithoutResearchInput | AccessRequestCreateOrConnectWithoutResearchInput[]
+    upsert?: AccessRequestUpsertWithWhereUniqueWithoutResearchInput | AccessRequestUpsertWithWhereUniqueWithoutResearchInput[]
+    createMany?: AccessRequestCreateManyResearchInputEnvelope
+    set?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
+    disconnect?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
+    delete?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
+    connect?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
+    update?: AccessRequestUpdateWithWhereUniqueWithoutResearchInput | AccessRequestUpdateWithWhereUniqueWithoutResearchInput[]
+    updateMany?: AccessRequestUpdateManyWithWhereWithoutResearchInput | AccessRequestUpdateManyWithWhereWithoutResearchInput[]
+    deleteMany?: AccessRequestScalarWhereInput | AccessRequestScalarWhereInput[]
+  }
+
+  export type SlideUncheckedUpdateManyWithoutResearchNestedInput = {
+    create?: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput> | SlideCreateWithoutResearchInput[] | SlideUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
+    upsert?: SlideUpsertWithWhereUniqueWithoutResearchInput | SlideUpsertWithWhereUniqueWithoutResearchInput[]
+    createMany?: SlideCreateManyResearchInputEnvelope
+    set?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+    disconnect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+    delete?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+    connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+    update?: SlideUpdateWithWhereUniqueWithoutResearchInput | SlideUpdateWithWhereUniqueWithoutResearchInput[]
+    updateMany?: SlideUpdateManyWithWhereWithoutResearchInput | SlideUpdateManyWithWhereWithoutResearchInput[]
+    deleteMany?: SlideScalarWhereInput | SlideScalarWhereInput[]
+  }
+
+  export type ResearchCreateNestedOneWithoutSlideInput = {
+    create?: XOR<ResearchCreateWithoutSlideInput, ResearchUncheckedCreateWithoutSlideInput>
+    connectOrCreate?: ResearchCreateOrConnectWithoutSlideInput
+    connect?: ResearchWhereUniqueInput
+  }
+
+  export type ResearchUpdateOneRequiredWithoutSlideNestedInput = {
+    create?: XOR<ResearchCreateWithoutSlideInput, ResearchUncheckedCreateWithoutSlideInput>
+    connectOrCreate?: ResearchCreateOrConnectWithoutSlideInput
+    upsert?: ResearchUpsertWithoutSlideInput
+    connect?: ResearchWhereUniqueInput
+    update?: XOR<XOR<ResearchUpdateToOneWithWhereWithoutSlideInput, ResearchUpdateWithoutSlideInput>, ResearchUncheckedUpdateWithoutSlideInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -45378,6 +54246,22 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
   export type AssignmentCreateWithoutTeacherInput = {
     title: string
     description: string
@@ -45516,6 +54400,19 @@ export namespace Prisma {
     nextSteps?: string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
     Student: StudentCreateNestedOneWithoutProgressReportInput
   }
 
@@ -45529,6 +54426,19 @@ export namespace Prisma {
     nextSteps?: string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
   }
 
   export type ProgressReportCreateOrConnectWithoutTeacherInput = {
@@ -45787,6 +54697,19 @@ export namespace Prisma {
     nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
     createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
     updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    isVisible?: BoolFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableFilter<"ProgressReport"> | string | null
+    status?: StringFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    subject?: StringNullableFilter<"ProgressReport"> | string | null
   }
 
   export type ResourceUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -46061,6 +54984,19 @@ export namespace Prisma {
     nextSteps?: string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
     Teacher: TeacherCreateNestedOneWithoutProgressReportInput
   }
 
@@ -46074,6 +55010,19 @@ export namespace Prisma {
     nextSteps?: string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
   }
 
   export type ProgressReportCreateOrConnectWithoutStudentInput = {
@@ -46254,11 +55203,11 @@ export namespace Prisma {
     studentName?: string | null
     submittedAt?: Date | string | null
     successStory?: string | null
-    contentApproved?: boolean
-    ratingApproved?: boolean
     beforeAfterApproved?: boolean
-    successStoryApproved?: boolean
+    contentApproved?: boolean
     programsApproved?: boolean
+    ratingApproved?: boolean
+    successStoryApproved?: boolean
   }
 
   export type TestimonialUncheckedCreateWithoutStudentInput = {
@@ -46282,11 +55231,11 @@ export namespace Prisma {
     studentName?: string | null
     submittedAt?: Date | string | null
     successStory?: string | null
-    contentApproved?: boolean
-    ratingApproved?: boolean
     beforeAfterApproved?: boolean
-    successStoryApproved?: boolean
+    contentApproved?: boolean
     programsApproved?: boolean
+    ratingApproved?: boolean
+    successStoryApproved?: boolean
   }
 
   export type TestimonialCreateOrConnectWithoutStudentInput = {
@@ -46603,11 +55552,11 @@ export namespace Prisma {
     studentName?: StringNullableFilter<"Testimonial"> | string | null
     submittedAt?: DateTimeNullableFilter<"Testimonial"> | Date | string | null
     successStory?: StringNullableFilter<"Testimonial"> | string | null
-    contentApproved?: BoolFilter<"Testimonial"> | boolean
-    ratingApproved?: BoolFilter<"Testimonial"> | boolean
     beforeAfterApproved?: BoolFilter<"Testimonial"> | boolean
-    successStoryApproved?: BoolFilter<"Testimonial"> | boolean
+    contentApproved?: BoolFilter<"Testimonial"> | boolean
     programsApproved?: BoolFilter<"Testimonial"> | boolean
+    ratingApproved?: BoolFilter<"Testimonial"> | boolean
+    successStoryApproved?: BoolFilter<"Testimonial"> | boolean
   }
 
   export type StudentCreateWithoutTeacherLinksInput = {
@@ -49227,6 +58176,502 @@ export namespace Prisma {
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
+  export type GeneralEventCreateWithoutEventRegistrationInput = {
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+  }
+
+  export type GeneralEventUncheckedCreateWithoutEventRegistrationInput = {
+    id?: number
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+  }
+
+  export type GeneralEventCreateOrConnectWithoutEventRegistrationInput = {
+    where: GeneralEventWhereUniqueInput
+    create: XOR<GeneralEventCreateWithoutEventRegistrationInput, GeneralEventUncheckedCreateWithoutEventRegistrationInput>
+  }
+
+  export type GeneralEventUpsertWithoutEventRegistrationInput = {
+    update: XOR<GeneralEventUpdateWithoutEventRegistrationInput, GeneralEventUncheckedUpdateWithoutEventRegistrationInput>
+    create: XOR<GeneralEventCreateWithoutEventRegistrationInput, GeneralEventUncheckedCreateWithoutEventRegistrationInput>
+    where?: GeneralEventWhereInput
+  }
+
+  export type GeneralEventUpdateToOneWithWhereWithoutEventRegistrationInput = {
+    where?: GeneralEventWhereInput
+    data: XOR<GeneralEventUpdateWithoutEventRegistrationInput, GeneralEventUncheckedUpdateWithoutEventRegistrationInput>
+  }
+
+  export type GeneralEventUpdateWithoutEventRegistrationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type GeneralEventUncheckedUpdateWithoutEventRegistrationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type EventRegistrationCreateWithoutGeneralEventInput = {
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationUncheckedCreateWithoutGeneralEventInput = {
+    id?: number
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationCreateOrConnectWithoutGeneralEventInput = {
+    where: EventRegistrationWhereUniqueInput
+    create: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput>
+  }
+
+  export type EventRegistrationCreateManyGeneralEventInputEnvelope = {
+    data: EventRegistrationCreateManyGeneralEventInput | EventRegistrationCreateManyGeneralEventInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EventRegistrationUpsertWithWhereUniqueWithoutGeneralEventInput = {
+    where: EventRegistrationWhereUniqueInput
+    update: XOR<EventRegistrationUpdateWithoutGeneralEventInput, EventRegistrationUncheckedUpdateWithoutGeneralEventInput>
+    create: XOR<EventRegistrationCreateWithoutGeneralEventInput, EventRegistrationUncheckedCreateWithoutGeneralEventInput>
+  }
+
+  export type EventRegistrationUpdateWithWhereUniqueWithoutGeneralEventInput = {
+    where: EventRegistrationWhereUniqueInput
+    data: XOR<EventRegistrationUpdateWithoutGeneralEventInput, EventRegistrationUncheckedUpdateWithoutGeneralEventInput>
+  }
+
+  export type EventRegistrationUpdateManyWithWhereWithoutGeneralEventInput = {
+    where: EventRegistrationScalarWhereInput
+    data: XOR<EventRegistrationUpdateManyMutationInput, EventRegistrationUncheckedUpdateManyWithoutGeneralEventInput>
+  }
+
+  export type EventRegistrationScalarWhereInput = {
+    AND?: EventRegistrationScalarWhereInput | EventRegistrationScalarWhereInput[]
+    OR?: EventRegistrationScalarWhereInput[]
+    NOT?: EventRegistrationScalarWhereInput | EventRegistrationScalarWhereInput[]
+    id?: IntFilter<"EventRegistration"> | number
+    eventId?: IntFilter<"EventRegistration"> | number
+    studentName?: StringFilter<"EventRegistration"> | string
+    studentEmail?: StringFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableFilter<"EventRegistration"> | string | null
+    parentName?: StringFilter<"EventRegistration"> | string
+    parentEmail?: StringFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableFilter<"EventRegistration"> | string | null
+    notes?: StringNullableFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableFilter<"EventRegistration">
+    paymentMethod?: StringNullableFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableFilter<"EventRegistration"> | string | null
+  }
+
+  export type ResearchCreateWithoutAccessRequestInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    published?: boolean
+    author?: string | null
+    pdfPath?: string | null
+    createdAt?: Date | string
+    Slide?: SlideCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchUncheckedCreateWithoutAccessRequestInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    published?: boolean
+    author?: string | null
+    pdfPath?: string | null
+    createdAt?: Date | string
+    Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchCreateOrConnectWithoutAccessRequestInput = {
+    where: ResearchWhereUniqueInput
+    create: XOR<ResearchCreateWithoutAccessRequestInput, ResearchUncheckedCreateWithoutAccessRequestInput>
+  }
+
+  export type ResearchUpsertWithoutAccessRequestInput = {
+    update: XOR<ResearchUpdateWithoutAccessRequestInput, ResearchUncheckedUpdateWithoutAccessRequestInput>
+    create: XOR<ResearchCreateWithoutAccessRequestInput, ResearchUncheckedCreateWithoutAccessRequestInput>
+    where?: ResearchWhereInput
+  }
+
+  export type ResearchUpdateToOneWithWhereWithoutAccessRequestInput = {
+    where?: ResearchWhereInput
+    data: XOR<ResearchUpdateWithoutAccessRequestInput, ResearchUncheckedUpdateWithoutAccessRequestInput>
+  }
+
+  export type ResearchUpdateWithoutAccessRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Slide?: SlideUpdateManyWithoutResearchNestedInput
+  }
+
+  export type ResearchUncheckedUpdateWithoutAccessRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
+  }
+
+  export type AccessRequestCreateWithoutResearchInput = {
+    id: string
+    name: string
+    email: string
+    createdAt?: Date | string
+    approved?: boolean
+    phone?: string | null
+    reason?: string | null
+  }
+
+  export type AccessRequestUncheckedCreateWithoutResearchInput = {
+    id: string
+    name: string
+    email: string
+    createdAt?: Date | string
+    approved?: boolean
+    phone?: string | null
+    reason?: string | null
+  }
+
+  export type AccessRequestCreateOrConnectWithoutResearchInput = {
+    where: AccessRequestWhereUniqueInput
+    create: XOR<AccessRequestCreateWithoutResearchInput, AccessRequestUncheckedCreateWithoutResearchInput>
+  }
+
+  export type AccessRequestCreateManyResearchInputEnvelope = {
+    data: AccessRequestCreateManyResearchInput | AccessRequestCreateManyResearchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SlideCreateWithoutResearchInput = {
+    id?: string
+    imagePath: string
+    order: number
+  }
+
+  export type SlideUncheckedCreateWithoutResearchInput = {
+    id?: string
+    imagePath: string
+    order: number
+  }
+
+  export type SlideCreateOrConnectWithoutResearchInput = {
+    where: SlideWhereUniqueInput
+    create: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput>
+  }
+
+  export type SlideCreateManyResearchInputEnvelope = {
+    data: SlideCreateManyResearchInput | SlideCreateManyResearchInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AccessRequestUpsertWithWhereUniqueWithoutResearchInput = {
+    where: AccessRequestWhereUniqueInput
+    update: XOR<AccessRequestUpdateWithoutResearchInput, AccessRequestUncheckedUpdateWithoutResearchInput>
+    create: XOR<AccessRequestCreateWithoutResearchInput, AccessRequestUncheckedCreateWithoutResearchInput>
+  }
+
+  export type AccessRequestUpdateWithWhereUniqueWithoutResearchInput = {
+    where: AccessRequestWhereUniqueInput
+    data: XOR<AccessRequestUpdateWithoutResearchInput, AccessRequestUncheckedUpdateWithoutResearchInput>
+  }
+
+  export type AccessRequestUpdateManyWithWhereWithoutResearchInput = {
+    where: AccessRequestScalarWhereInput
+    data: XOR<AccessRequestUpdateManyMutationInput, AccessRequestUncheckedUpdateManyWithoutResearchInput>
+  }
+
+  export type AccessRequestScalarWhereInput = {
+    AND?: AccessRequestScalarWhereInput | AccessRequestScalarWhereInput[]
+    OR?: AccessRequestScalarWhereInput[]
+    NOT?: AccessRequestScalarWhereInput | AccessRequestScalarWhereInput[]
+    id?: StringFilter<"AccessRequest"> | string
+    name?: StringFilter<"AccessRequest"> | string
+    email?: StringFilter<"AccessRequest"> | string
+    createdAt?: DateTimeFilter<"AccessRequest"> | Date | string
+    approved?: BoolFilter<"AccessRequest"> | boolean
+    phone?: StringNullableFilter<"AccessRequest"> | string | null
+    reason?: StringNullableFilter<"AccessRequest"> | string | null
+    researchId?: StringFilter<"AccessRequest"> | string
+  }
+
+  export type SlideUpsertWithWhereUniqueWithoutResearchInput = {
+    where: SlideWhereUniqueInput
+    update: XOR<SlideUpdateWithoutResearchInput, SlideUncheckedUpdateWithoutResearchInput>
+    create: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput>
+  }
+
+  export type SlideUpdateWithWhereUniqueWithoutResearchInput = {
+    where: SlideWhereUniqueInput
+    data: XOR<SlideUpdateWithoutResearchInput, SlideUncheckedUpdateWithoutResearchInput>
+  }
+
+  export type SlideUpdateManyWithWhereWithoutResearchInput = {
+    where: SlideScalarWhereInput
+    data: XOR<SlideUpdateManyMutationInput, SlideUncheckedUpdateManyWithoutResearchInput>
+  }
+
+  export type SlideScalarWhereInput = {
+    AND?: SlideScalarWhereInput | SlideScalarWhereInput[]
+    OR?: SlideScalarWhereInput[]
+    NOT?: SlideScalarWhereInput | SlideScalarWhereInput[]
+    id?: StringFilter<"Slide"> | string
+    researchId?: StringFilter<"Slide"> | string
+    imagePath?: StringFilter<"Slide"> | string
+    order?: IntFilter<"Slide"> | number
+  }
+
+  export type ResearchCreateWithoutSlideInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    published?: boolean
+    author?: string | null
+    pdfPath?: string | null
+    createdAt?: Date | string
+    AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchUncheckedCreateWithoutSlideInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    published?: boolean
+    author?: string | null
+    pdfPath?: string | null
+    createdAt?: Date | string
+    AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchCreateOrConnectWithoutSlideInput = {
+    where: ResearchWhereUniqueInput
+    create: XOR<ResearchCreateWithoutSlideInput, ResearchUncheckedCreateWithoutSlideInput>
+  }
+
+  export type ResearchUpsertWithoutSlideInput = {
+    update: XOR<ResearchUpdateWithoutSlideInput, ResearchUncheckedUpdateWithoutSlideInput>
+    create: XOR<ResearchCreateWithoutSlideInput, ResearchUncheckedCreateWithoutSlideInput>
+    where?: ResearchWhereInput
+  }
+
+  export type ResearchUpdateToOneWithWhereWithoutSlideInput = {
+    where?: ResearchWhereInput
+    data: XOR<ResearchUpdateWithoutSlideInput, ResearchUncheckedUpdateWithoutSlideInput>
+  }
+
+  export type ResearchUpdateWithoutSlideInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
+  }
+
+  export type ResearchUncheckedUpdateWithoutSlideInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
+  }
+
   export type AssignmentCreateManyTeacherInput = {
     id?: number
     title: string
@@ -49270,6 +58715,19 @@ export namespace Prisma {
     nextSteps?: string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
   }
 
   export type ResourceCreateManyTeacherInput = {
@@ -49413,6 +58871,19 @@ export namespace Prisma {
     nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
     Student?: StudentUpdateOneRequiredWithoutProgressReportNestedInput
   }
 
@@ -49426,6 +58897,19 @@ export namespace Prisma {
     nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProgressReportUncheckedUpdateManyWithoutTeacherInput = {
@@ -49438,6 +58922,19 @@ export namespace Prisma {
     nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResourceUpdateWithoutTeacherInput = {
@@ -49612,6 +59109,19 @@ export namespace Prisma {
     nextSteps?: string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
   }
 
   export type StudentResourceCreateManyStudentInput = {
@@ -49677,11 +59187,11 @@ export namespace Prisma {
     studentName?: string | null
     submittedAt?: Date | string | null
     successStory?: string | null
-    contentApproved?: boolean
-    ratingApproved?: boolean
     beforeAfterApproved?: boolean
-    successStoryApproved?: boolean
+    contentApproved?: boolean
     programsApproved?: boolean
+    ratingApproved?: boolean
+    successStoryApproved?: boolean
   }
 
   export type AssignmentUpdateWithoutTargetStudentInput = {
@@ -49889,6 +59399,19 @@ export namespace Prisma {
     nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
     Teacher?: TeacherUpdateOneRequiredWithoutProgressReportNestedInput
   }
 
@@ -49902,6 +59425,19 @@ export namespace Prisma {
     nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProgressReportUncheckedUpdateManyWithoutStudentInput = {
@@ -49914,6 +59450,19 @@ export namespace Prisma {
     nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StudentResourceUpdateWithoutStudentInput = {
@@ -50060,11 +59609,11 @@ export namespace Prisma {
     studentName?: NullableStringFieldUpdateOperationsInput | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    contentApproved?: BoolFieldUpdateOperationsInput | boolean
-    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TestimonialUncheckedUpdateWithoutStudentInput = {
@@ -50088,11 +59637,11 @@ export namespace Prisma {
     studentName?: NullableStringFieldUpdateOperationsInput | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    contentApproved?: BoolFieldUpdateOperationsInput | boolean
-    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TestimonialUncheckedUpdateManyWithoutStudentInput = {
@@ -50116,11 +59665,11 @@ export namespace Prisma {
     studentName?: NullableStringFieldUpdateOperationsInput | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     successStory?: NullableStringFieldUpdateOperationsInput | string | null
-    contentApproved?: BoolFieldUpdateOperationsInput | boolean
-    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     beforeAfterApproved?: BoolFieldUpdateOperationsInput | boolean
-    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    contentApproved?: BoolFieldUpdateOperationsInput | boolean
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
+    ratingApproved?: BoolFieldUpdateOperationsInput | boolean
+    successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AssignmentResourceCreateManyAssignmentInput = {
@@ -50458,6 +60007,177 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type EventRegistrationCreateManyGeneralEventInput = {
+    id?: number
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationUpdateWithoutGeneralEventInput = {
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationUncheckedUpdateWithoutGeneralEventInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationUncheckedUpdateManyWithoutGeneralEventInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AccessRequestCreateManyResearchInput = {
+    id: string
+    name: string
+    email: string
+    createdAt?: Date | string
+    approved?: boolean
+    phone?: string | null
+    reason?: string | null
+  }
+
+  export type SlideCreateManyResearchInput = {
+    id?: string
+    imagePath: string
+    order: number
+  }
+
+  export type AccessRequestUpdateWithoutResearchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AccessRequestUncheckedUpdateWithoutResearchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AccessRequestUncheckedUpdateManyWithoutResearchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approved?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SlideUpdateWithoutResearchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imagePath?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SlideUncheckedUpdateWithoutResearchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imagePath?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type SlideUncheckedUpdateManyWithoutResearchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    imagePath?: StringFieldUpdateOperationsInput | string
+    order?: IntFieldUpdateOperationsInput | number
   }
 
 
