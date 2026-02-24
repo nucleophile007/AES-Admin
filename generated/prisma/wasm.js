@@ -610,17 +610,32 @@ exports.Prisma.ResearchScalarFieldEnum = {
   title: 'title',
   slug: 'slug',
   description: 'description',
-  published: 'published',
+  createdAt: 'createdAt',
   author: 'author',
-  pdfFilename: 'pdfFilename',
-  createdAt: 'createdAt'
+  published: 'published',
+  pdfFilename: 'pdfFilename'
 };
 
 exports.Prisma.SlideScalarFieldEnum = {
   id: 'id',
   researchId: 'researchId',
-  imageFilename: 'imageFilename',
-  order: 'order'
+  order: 'order',
+  imageFilename: 'imageFilename'
+};
+
+exports.Prisma.StudentGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  teacherId: 'teacherId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StudentGroupMemberScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  studentId: 'studentId',
+  assignedAt: 'assignedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -686,7 +701,9 @@ exports.Prisma.ModelName = {
   GeneralEvent: 'GeneralEvent',
   AccessRequest: 'AccessRequest',
   Research: 'Research',
-  Slide: 'Slide'
+  Slide: 'Slide',
+  StudentGroup: 'StudentGroup',
+  StudentGroupMember: 'StudentGroupMember'
 };
 
 /**
