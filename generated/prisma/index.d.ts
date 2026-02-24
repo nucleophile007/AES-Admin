@@ -46434,6 +46434,501 @@ export namespace Prisma {
     order?: IntWithAggregatesFilter<"Slide"> | number
   }
 
+  export type EventRegistrationWhereInput = {
+    AND?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    OR?: EventRegistrationWhereInput[]
+    NOT?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    id?: IntFilter<"EventRegistration"> | number
+    eventId?: IntFilter<"EventRegistration"> | number
+    studentName?: StringFilter<"EventRegistration"> | string
+    studentEmail?: StringFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableFilter<"EventRegistration"> | string | null
+    parentName?: StringFilter<"EventRegistration"> | string
+    parentEmail?: StringFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableFilter<"EventRegistration"> | string | null
+    notes?: StringNullableFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableFilter<"EventRegistration">
+    paymentMethod?: StringNullableFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableFilter<"EventRegistration"> | string | null
+    GeneralEvent?: XOR<GeneralEventScalarRelationFilter, GeneralEventWhereInput>
+  }
+
+  export type EventRegistrationOrderByWithRelationInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrderInput | SortOrder
+    studentGrade?: SortOrderInput | SortOrder
+    schoolName?: SortOrderInput | SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrderInput | SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrderInput | SortOrder
+    paymentAmount?: SortOrderInput | SortOrder
+    specialRequirements?: SortOrderInput | SortOrder
+    howDidYouHear?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    checkedInAt?: SortOrderInput | SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrderInput | SortOrder
+    certificateIssued?: SortOrder
+    customFieldResponses?: SortOrderInput | SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    GeneralEvent?: GeneralEventOrderByWithRelationInput
+  }
+
+  export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    eventId_studentEmail?: EventRegistrationEventIdStudentEmailCompoundUniqueInput
+    AND?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    OR?: EventRegistrationWhereInput[]
+    NOT?: EventRegistrationWhereInput | EventRegistrationWhereInput[]
+    eventId?: IntFilter<"EventRegistration"> | number
+    studentName?: StringFilter<"EventRegistration"> | string
+    studentEmail?: StringFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableFilter<"EventRegistration"> | string | null
+    parentName?: StringFilter<"EventRegistration"> | string
+    parentEmail?: StringFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableFilter<"EventRegistration"> | string | null
+    notes?: StringNullableFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableFilter<"EventRegistration">
+    paymentMethod?: StringNullableFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableFilter<"EventRegistration"> | string | null
+    GeneralEvent?: XOR<GeneralEventScalarRelationFilter, GeneralEventWhereInput>
+  }, "id" | "eventId_studentEmail">
+
+  export type EventRegistrationOrderByWithAggregationInput = {
+    id?: SortOrder
+    eventId?: SortOrder
+    studentName?: SortOrder
+    studentEmail?: SortOrder
+    studentPhone?: SortOrderInput | SortOrder
+    studentGrade?: SortOrderInput | SortOrder
+    schoolName?: SortOrderInput | SortOrder
+    parentName?: SortOrder
+    parentEmail?: SortOrder
+    parentPhone?: SortOrderInput | SortOrder
+    registrationStatus?: SortOrder
+    paymentStatus?: SortOrderInput | SortOrder
+    paymentAmount?: SortOrderInput | SortOrder
+    specialRequirements?: SortOrderInput | SortOrder
+    howDidYouHear?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    checkedInAt?: SortOrderInput | SortOrder
+    attendanceConfirmed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    adminNotes?: SortOrderInput | SortOrder
+    certificateIssued?: SortOrder
+    customFieldResponses?: SortOrderInput | SortOrder
+    paymentMethod?: SortOrderInput | SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    _count?: EventRegistrationCountOrderByAggregateInput
+    _avg?: EventRegistrationAvgOrderByAggregateInput
+    _max?: EventRegistrationMaxOrderByAggregateInput
+    _min?: EventRegistrationMinOrderByAggregateInput
+    _sum?: EventRegistrationSumOrderByAggregateInput
+  }
+
+  export type EventRegistrationScalarWhereWithAggregatesInput = {
+    AND?: EventRegistrationScalarWhereWithAggregatesInput | EventRegistrationScalarWhereWithAggregatesInput[]
+    OR?: EventRegistrationScalarWhereWithAggregatesInput[]
+    NOT?: EventRegistrationScalarWhereWithAggregatesInput | EventRegistrationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"EventRegistration"> | number
+    eventId?: IntWithAggregatesFilter<"EventRegistration"> | number
+    studentName?: StringWithAggregatesFilter<"EventRegistration"> | string
+    studentEmail?: StringWithAggregatesFilter<"EventRegistration"> | string
+    studentPhone?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    studentGrade?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    schoolName?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    parentName?: StringWithAggregatesFilter<"EventRegistration"> | string
+    parentEmail?: StringWithAggregatesFilter<"EventRegistration"> | string
+    parentPhone?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    registrationStatus?: StringWithAggregatesFilter<"EventRegistration"> | string
+    paymentStatus?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    paymentAmount?: FloatNullableWithAggregatesFilter<"EventRegistration"> | number | null
+    specialRequirements?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    howDidYouHear?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    notes?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    checkedInAt?: DateTimeNullableWithAggregatesFilter<"EventRegistration"> | Date | string | null
+    attendanceConfirmed?: BoolWithAggregatesFilter<"EventRegistration"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"EventRegistration"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EventRegistration"> | Date | string
+    adminNotes?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    certificateIssued?: BoolWithAggregatesFilter<"EventRegistration"> | boolean
+    customFieldResponses?: JsonNullableWithAggregatesFilter<"EventRegistration">
+    paymentMethod?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+    transactionId?: StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
+  }
+
+  export type GeneralEventWhereInput = {
+    AND?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    OR?: GeneralEventWhereInput[]
+    NOT?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    id?: IntFilter<"GeneralEvent"> | number
+    title?: StringFilter<"GeneralEvent"> | string
+    description?: StringFilter<"GeneralEvent"> | string
+    category?: StringFilter<"GeneralEvent"> | string
+    eventDate?: DateTimeFilter<"GeneralEvent"> | Date | string
+    eventTime?: StringFilter<"GeneralEvent"> | string
+    location?: StringFilter<"GeneralEvent"> | string
+    image?: StringNullableFilter<"GeneralEvent"> | string | null
+    maxParticipants?: IntNullableFilter<"GeneralEvent"> | number | null
+    registrationDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    status?: StringFilter<"GeneralEvent"> | string
+    isPublished?: BoolFilter<"GeneralEvent"> | boolean
+    isFeatured?: BoolFilter<"GeneralEvent"> | boolean
+    targetAudience?: StringNullableFilter<"GeneralEvent"> | string | null
+    requirements?: StringNullableFilter<"GeneralEvent"> | string | null
+    agenda?: StringNullableFilter<"GeneralEvent"> | string | null
+    speakers?: JsonNullableFilter<"GeneralEvent">
+    tags?: StringNullableListFilter<"GeneralEvent">
+    contactEmail?: StringNullableFilter<"GeneralEvent"> | string | null
+    contactPhone?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    customFields?: JsonNullableFilter<"GeneralEvent">
+    earlyBirdDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    earlyBirdFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    publishedAt?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    publishedBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    registrationFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    registrationFormConfig?: JsonNullableFilter<"GeneralEvent">
+    requiresPayment?: BoolFilter<"GeneralEvent"> | boolean
+    EventRegistration?: EventRegistrationListRelationFilter
+  }
+
+  export type GeneralEventOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrderInput | SortOrder
+    maxParticipants?: SortOrderInput | SortOrder
+    registrationDeadline?: SortOrderInput | SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrderInput | SortOrder
+    requirements?: SortOrderInput | SortOrder
+    agenda?: SortOrderInput | SortOrder
+    speakers?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    contactEmail?: SortOrderInput | SortOrder
+    contactPhone?: SortOrderInput | SortOrder
+    createdBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customFields?: SortOrderInput | SortOrder
+    earlyBirdDeadline?: SortOrderInput | SortOrder
+    earlyBirdFee?: SortOrderInput | SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    publishedBy?: SortOrderInput | SortOrder
+    registrationFee?: SortOrderInput | SortOrder
+    registrationFormConfig?: SortOrderInput | SortOrder
+    requiresPayment?: SortOrder
+    EventRegistration?: EventRegistrationOrderByRelationAggregateInput
+  }
+
+  export type GeneralEventWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    OR?: GeneralEventWhereInput[]
+    NOT?: GeneralEventWhereInput | GeneralEventWhereInput[]
+    title?: StringFilter<"GeneralEvent"> | string
+    description?: StringFilter<"GeneralEvent"> | string
+    category?: StringFilter<"GeneralEvent"> | string
+    eventDate?: DateTimeFilter<"GeneralEvent"> | Date | string
+    eventTime?: StringFilter<"GeneralEvent"> | string
+    location?: StringFilter<"GeneralEvent"> | string
+    image?: StringNullableFilter<"GeneralEvent"> | string | null
+    maxParticipants?: IntNullableFilter<"GeneralEvent"> | number | null
+    registrationDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    status?: StringFilter<"GeneralEvent"> | string
+    isPublished?: BoolFilter<"GeneralEvent"> | boolean
+    isFeatured?: BoolFilter<"GeneralEvent"> | boolean
+    targetAudience?: StringNullableFilter<"GeneralEvent"> | string | null
+    requirements?: StringNullableFilter<"GeneralEvent"> | string | null
+    agenda?: StringNullableFilter<"GeneralEvent"> | string | null
+    speakers?: JsonNullableFilter<"GeneralEvent">
+    tags?: StringNullableListFilter<"GeneralEvent">
+    contactEmail?: StringNullableFilter<"GeneralEvent"> | string | null
+    contactPhone?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    createdAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    updatedAt?: DateTimeFilter<"GeneralEvent"> | Date | string
+    customFields?: JsonNullableFilter<"GeneralEvent">
+    earlyBirdDeadline?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    earlyBirdFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    publishedAt?: DateTimeNullableFilter<"GeneralEvent"> | Date | string | null
+    publishedBy?: StringNullableFilter<"GeneralEvent"> | string | null
+    registrationFee?: FloatNullableFilter<"GeneralEvent"> | number | null
+    registrationFormConfig?: JsonNullableFilter<"GeneralEvent">
+    requiresPayment?: BoolFilter<"GeneralEvent"> | boolean
+    EventRegistration?: EventRegistrationListRelationFilter
+  }, "id">
+
+  export type GeneralEventOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    eventDate?: SortOrder
+    eventTime?: SortOrder
+    location?: SortOrder
+    image?: SortOrderInput | SortOrder
+    maxParticipants?: SortOrderInput | SortOrder
+    registrationDeadline?: SortOrderInput | SortOrder
+    status?: SortOrder
+    isPublished?: SortOrder
+    isFeatured?: SortOrder
+    targetAudience?: SortOrderInput | SortOrder
+    requirements?: SortOrderInput | SortOrder
+    agenda?: SortOrderInput | SortOrder
+    speakers?: SortOrderInput | SortOrder
+    tags?: SortOrder
+    contactEmail?: SortOrderInput | SortOrder
+    contactPhone?: SortOrderInput | SortOrder
+    createdBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    customFields?: SortOrderInput | SortOrder
+    earlyBirdDeadline?: SortOrderInput | SortOrder
+    earlyBirdFee?: SortOrderInput | SortOrder
+    publishedAt?: SortOrderInput | SortOrder
+    publishedBy?: SortOrderInput | SortOrder
+    registrationFee?: SortOrderInput | SortOrder
+    registrationFormConfig?: SortOrderInput | SortOrder
+    requiresPayment?: SortOrder
+    _count?: GeneralEventCountOrderByAggregateInput
+    _avg?: GeneralEventAvgOrderByAggregateInput
+    _max?: GeneralEventMaxOrderByAggregateInput
+    _min?: GeneralEventMinOrderByAggregateInput
+    _sum?: GeneralEventSumOrderByAggregateInput
+  }
+
+  export type GeneralEventScalarWhereWithAggregatesInput = {
+    AND?: GeneralEventScalarWhereWithAggregatesInput | GeneralEventScalarWhereWithAggregatesInput[]
+    OR?: GeneralEventScalarWhereWithAggregatesInput[]
+    NOT?: GeneralEventScalarWhereWithAggregatesInput | GeneralEventScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GeneralEvent"> | number
+    title?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    description?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    category?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    eventDate?: DateTimeWithAggregatesFilter<"GeneralEvent"> | Date | string
+    eventTime?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    location?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    image?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    maxParticipants?: IntNullableWithAggregatesFilter<"GeneralEvent"> | number | null
+    registrationDeadline?: DateTimeNullableWithAggregatesFilter<"GeneralEvent"> | Date | string | null
+    status?: StringWithAggregatesFilter<"GeneralEvent"> | string
+    isPublished?: BoolWithAggregatesFilter<"GeneralEvent"> | boolean
+    isFeatured?: BoolWithAggregatesFilter<"GeneralEvent"> | boolean
+    targetAudience?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    requirements?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    agenda?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    speakers?: JsonNullableWithAggregatesFilter<"GeneralEvent">
+    tags?: StringNullableListFilter<"GeneralEvent">
+    contactEmail?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    contactPhone?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    createdBy?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"GeneralEvent"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"GeneralEvent"> | Date | string
+    customFields?: JsonNullableWithAggregatesFilter<"GeneralEvent">
+    earlyBirdDeadline?: DateTimeNullableWithAggregatesFilter<"GeneralEvent"> | Date | string | null
+    earlyBirdFee?: FloatNullableWithAggregatesFilter<"GeneralEvent"> | number | null
+    publishedAt?: DateTimeNullableWithAggregatesFilter<"GeneralEvent"> | Date | string | null
+    publishedBy?: StringNullableWithAggregatesFilter<"GeneralEvent"> | string | null
+    registrationFee?: FloatNullableWithAggregatesFilter<"GeneralEvent"> | number | null
+    registrationFormConfig?: JsonNullableWithAggregatesFilter<"GeneralEvent">
+    requiresPayment?: BoolWithAggregatesFilter<"GeneralEvent"> | boolean
+  }
+
+  export type ProgressReportWhereInput = {
+    AND?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    OR?: ProgressReportWhereInput[]
+    NOT?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    id?: IntFilter<"ProgressReport"> | number
+    studentId?: IntFilter<"ProgressReport"> | number
+    teacherId?: IntFilter<"ProgressReport"> | number
+    reportDate?: DateTimeFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableFilter<"ProgressReport"> | string | null
+    publications?: StringNullableFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    isVisible?: BoolFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableFilter<"ProgressReport"> | string | null
+    status?: StringFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    subject?: StringNullableFilter<"ProgressReport"> | string | null
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+  }
+
+  export type ProgressReportOrderByWithRelationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrderInput | SortOrder
+    publications?: SortOrderInput | SortOrder
+    nextSteps?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    attendanceRate?: SortOrderInput | SortOrder
+    classParticipation?: SortOrderInput | SortOrder
+    homeworkCompletion?: SortOrderInput | SortOrder
+    improvementAreas?: SortOrderInput | SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrderInput | SortOrder
+    progressRating?: SortOrderInput | SortOrder
+    recommendations?: SortOrderInput | SortOrder
+    reportPeriod?: SortOrderInput | SortOrder
+    skillsImproved?: SortOrderInput | SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrderInput | SortOrder
+    subject?: SortOrderInput | SortOrder
+    Student?: StudentOrderByWithRelationInput
+    Teacher?: TeacherOrderByWithRelationInput
+  }
+
+  export type ProgressReportWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    OR?: ProgressReportWhereInput[]
+    NOT?: ProgressReportWhereInput | ProgressReportWhereInput[]
+    studentId?: IntFilter<"ProgressReport"> | number
+    teacherId?: IntFilter<"ProgressReport"> | number
+    reportDate?: DateTimeFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableFilter<"ProgressReport"> | string | null
+    publications?: StringNullableFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    isVisible?: BoolFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableFilter<"ProgressReport"> | string | null
+    status?: StringFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    subject?: StringNullableFilter<"ProgressReport"> | string | null
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+  }, "id">
+
+  export type ProgressReportOrderByWithAggregationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    teacherId?: SortOrder
+    reportDate?: SortOrder
+    overallProgress?: SortOrder
+    milestonesAchieved?: SortOrderInput | SortOrder
+    publications?: SortOrderInput | SortOrder
+    nextSteps?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    attendanceRate?: SortOrderInput | SortOrder
+    classParticipation?: SortOrderInput | SortOrder
+    homeworkCompletion?: SortOrderInput | SortOrder
+    improvementAreas?: SortOrderInput | SortOrder
+    isVisible?: SortOrder
+    parentNotes?: SortOrderInput | SortOrder
+    progressRating?: SortOrderInput | SortOrder
+    recommendations?: SortOrderInput | SortOrder
+    reportPeriod?: SortOrderInput | SortOrder
+    skillsImproved?: SortOrderInput | SortOrder
+    status?: SortOrder
+    strengthsAreas?: SortOrderInput | SortOrder
+    subject?: SortOrderInput | SortOrder
+    _count?: ProgressReportCountOrderByAggregateInput
+    _avg?: ProgressReportAvgOrderByAggregateInput
+    _max?: ProgressReportMaxOrderByAggregateInput
+    _min?: ProgressReportMinOrderByAggregateInput
+    _sum?: ProgressReportSumOrderByAggregateInput
+  }
+
+  export type ProgressReportScalarWhereWithAggregatesInput = {
+    AND?: ProgressReportScalarWhereWithAggregatesInput | ProgressReportScalarWhereWithAggregatesInput[]
+    OR?: ProgressReportScalarWhereWithAggregatesInput[]
+    NOT?: ProgressReportScalarWhereWithAggregatesInput | ProgressReportScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ProgressReport"> | number
+    studentId?: IntWithAggregatesFilter<"ProgressReport"> | number
+    teacherId?: IntWithAggregatesFilter<"ProgressReport"> | number
+    reportDate?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringWithAggregatesFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    publications?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableWithAggregatesFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableWithAggregatesFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    isVisible?: BoolWithAggregatesFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableWithAggregatesFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    status?: StringWithAggregatesFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+    subject?: StringNullableWithAggregatesFilter<"ProgressReport"> | string | null
+  }
+
   export type WebinarRegistrationCreateInput = {
     email: string
     parentName: string
@@ -49950,6 +50445,614 @@ export namespace Prisma {
     researchId?: StringFieldUpdateOperationsInput | string
     imagePath?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type EventRegistrationCreateInput = {
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+    GeneralEvent: GeneralEventCreateNestedOneWithoutEventRegistrationInput
+  }
+
+  export type EventRegistrationUncheckedCreateInput = {
+    id?: number
+    eventId: number
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationUpdateInput = {
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    GeneralEvent?: GeneralEventUpdateOneRequiredWithoutEventRegistrationNestedInput
+  }
+
+  export type EventRegistrationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    eventId?: IntFieldUpdateOperationsInput | number
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationCreateManyInput = {
+    id?: number
+    eventId: number
+    studentName: string
+    studentEmail: string
+    studentPhone?: string | null
+    studentGrade?: string | null
+    schoolName?: string | null
+    parentName: string
+    parentEmail: string
+    parentPhone?: string | null
+    registrationStatus?: string
+    paymentStatus?: string | null
+    paymentAmount?: number | null
+    specialRequirements?: string | null
+    howDidYouHear?: string | null
+    notes?: string | null
+    checkedInAt?: Date | string | null
+    attendanceConfirmed?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    adminNotes?: string | null
+    certificateIssued?: boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: string | null
+    transactionId?: string | null
+  }
+
+  export type EventRegistrationUpdateManyMutationInput = {
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EventRegistrationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    eventId?: IntFieldUpdateOperationsInput | number
+    studentName?: StringFieldUpdateOperationsInput | string
+    studentEmail?: StringFieldUpdateOperationsInput | string
+    studentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    studentGrade?: NullableStringFieldUpdateOperationsInput | string | null
+    schoolName?: NullableStringFieldUpdateOperationsInput | string | null
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationStatus?: StringFieldUpdateOperationsInput | string
+    paymentStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableFloatFieldUpdateOperationsInput | number | null
+    specialRequirements?: NullableStringFieldUpdateOperationsInput | string | null
+    howDidYouHear?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    checkedInAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attendanceConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    adminNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    customFieldResponses?: NullableJsonNullValueInput | InputJsonValue
+    paymentMethod?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type GeneralEventCreateInput = {
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+    EventRegistration?: EventRegistrationCreateNestedManyWithoutGeneralEventInput
+  }
+
+  export type GeneralEventUncheckedCreateInput = {
+    id?: number
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+    EventRegistration?: EventRegistrationUncheckedCreateNestedManyWithoutGeneralEventInput
+  }
+
+  export type GeneralEventUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    EventRegistration?: EventRegistrationUpdateManyWithoutGeneralEventNestedInput
+  }
+
+  export type GeneralEventUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+    EventRegistration?: EventRegistrationUncheckedUpdateManyWithoutGeneralEventNestedInput
+  }
+
+  export type GeneralEventCreateManyInput = {
+    id?: number
+    title: string
+    description: string
+    category: string
+    eventDate: Date | string
+    eventTime: string
+    location: string
+    image?: string | null
+    maxParticipants?: number | null
+    registrationDeadline?: Date | string | null
+    status?: string
+    isPublished?: boolean
+    isFeatured?: boolean
+    targetAudience?: string | null
+    requirements?: string | null
+    agenda?: string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventCreatetagsInput | string[]
+    contactEmail?: string | null
+    contactPhone?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: Date | string | null
+    earlyBirdFee?: number | null
+    publishedAt?: Date | string | null
+    publishedBy?: string | null
+    registrationFee?: number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: boolean
+  }
+
+  export type GeneralEventUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type GeneralEventUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    eventDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    eventTime?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    maxParticipants?: NullableIntFieldUpdateOperationsInput | number | null
+    registrationDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
+    targetAudience?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: NullableStringFieldUpdateOperationsInput | string | null
+    agenda?: NullableStringFieldUpdateOperationsInput | string | null
+    speakers?: NullableJsonNullValueInput | InputJsonValue
+    tags?: GeneralEventUpdatetagsInput | string[]
+    contactEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    contactPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customFields?: NullableJsonNullValueInput | InputJsonValue
+    earlyBirdDeadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    earlyBirdFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    publishedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    publishedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    registrationFee?: NullableFloatFieldUpdateOperationsInput | number | null
+    registrationFormConfig?: NullableJsonNullValueInput | InputJsonValue
+    requiresPayment?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ProgressReportCreateInput = {
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
+    Student: StudentCreateNestedOneWithoutProgressReportInput
+    Teacher: TeacherCreateNestedOneWithoutProgressReportInput
+  }
+
+  export type ProgressReportUncheckedCreateInput = {
+    id?: number
+    studentId: number
+    teacherId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
+  }
+
+  export type ProgressReportUpdateInput = {
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+    Student?: StudentUpdateOneRequiredWithoutProgressReportNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutProgressReportNestedInput
+  }
+
+  export type ProgressReportUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProgressReportCreateManyInput = {
+    id?: number
+    studentId: number
+    teacherId: number
+    reportDate?: Date | string
+    overallProgress: string
+    milestonesAchieved?: string | null
+    publications?: string | null
+    nextSteps?: string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    attendanceRate?: number | null
+    classParticipation?: string | null
+    homeworkCompletion?: number | null
+    improvementAreas?: string | null
+    isVisible?: boolean
+    parentNotes?: string | null
+    progressRating?: number | null
+    recommendations?: string | null
+    reportPeriod?: string | null
+    skillsImproved?: string | null
+    status?: string
+    strengthsAreas?: string | null
+    subject?: string | null
+  }
+
+  export type ProgressReportUpdateManyMutationInput = {
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProgressReportUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    reportDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    overallProgress?: StringFieldUpdateOperationsInput | string
+    milestonesAchieved?: NullableStringFieldUpdateOperationsInput | string | null
+    publications?: NullableStringFieldUpdateOperationsInput | string | null
+    nextSteps?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attendanceRate?: NullableFloatFieldUpdateOperationsInput | number | null
+    classParticipation?: NullableStringFieldUpdateOperationsInput | string | null
+    homeworkCompletion?: NullableFloatFieldUpdateOperationsInput | number | null
+    improvementAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    parentNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    progressRating?: NullableIntFieldUpdateOperationsInput | number | null
+    recommendations?: NullableStringFieldUpdateOperationsInput | string | null
+    reportPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    skillsImproved?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
+    subject?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -54665,6 +55768,51 @@ export namespace Prisma {
     displayOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProgressReportUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: ProgressReportWhereUniqueInput
+    update: XOR<ProgressReportUpdateWithoutTeacherInput, ProgressReportUncheckedUpdateWithoutTeacherInput>
+    create: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type ProgressReportUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: ProgressReportWhereUniqueInput
+    data: XOR<ProgressReportUpdateWithoutTeacherInput, ProgressReportUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type ProgressReportUpdateManyWithWhereWithoutTeacherInput = {
+    where: ProgressReportScalarWhereInput
+    data: XOR<ProgressReportUpdateManyMutationInput, ProgressReportUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type ProgressReportScalarWhereInput = {
+    AND?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+    OR?: ProgressReportScalarWhereInput[]
+    NOT?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+    id?: IntFilter<"ProgressReport"> | number
+    studentId?: IntFilter<"ProgressReport"> | number
+    teacherId?: IntFilter<"ProgressReport"> | number
+    reportDate?: DateTimeFilter<"ProgressReport"> | Date | string
+    overallProgress?: StringFilter<"ProgressReport"> | string
+    milestonesAchieved?: StringNullableFilter<"ProgressReport"> | string | null
+    publications?: StringNullableFilter<"ProgressReport"> | string | null
+    nextSteps?: StringNullableFilter<"ProgressReport"> | string | null
+    createdAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    updatedAt?: DateTimeFilter<"ProgressReport"> | Date | string
+    attendanceRate?: FloatNullableFilter<"ProgressReport"> | number | null
+    classParticipation?: StringNullableFilter<"ProgressReport"> | string | null
+    homeworkCompletion?: FloatNullableFilter<"ProgressReport"> | number | null
+    improvementAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    isVisible?: BoolFilter<"ProgressReport"> | boolean
+    parentNotes?: StringNullableFilter<"ProgressReport"> | string | null
+    progressRating?: IntNullableFilter<"ProgressReport"> | number | null
+    recommendations?: StringNullableFilter<"ProgressReport"> | string | null
+    reportPeriod?: StringNullableFilter<"ProgressReport"> | string | null
+    skillsImproved?: StringNullableFilter<"ProgressReport"> | string | null
+    status?: StringFilter<"ProgressReport"> | string
+    strengthsAreas?: StringNullableFilter<"ProgressReport"> | string | null
+    subject?: StringNullableFilter<"ProgressReport"> | string | null
   }
 
   export type ProgressReportUpsertWithWhereUniqueWithoutTeacherInput = {
