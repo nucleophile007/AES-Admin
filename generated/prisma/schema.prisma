@@ -51,14 +51,15 @@ model Teacher {
   mentorProfile     Mentor?
   ProgressReport    ProgressReport[]
   resources         Resource[]
+  StudentGroup      StudentGroup[]
   submissionRemarks StudentSubmissionRemark[]
   students          TeacherStudent[]
 }
 
 model Student {
-  id                  Int                 @id @default(autoincrement())
+  id                  Int                  @id @default(autoincrement())
   name                String
-  email               String              @unique
+  email               String               @unique
   password            String?
   grade               String
   schoolName          String
@@ -66,16 +67,17 @@ model Student {
   parentEmail         String
   parentPhone         String
   program             String
-  createdAt           DateTime            @default(now())
-  updatedAt           DateTime            @updatedAt
-  isActivated         Boolean             @default(false)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  isActivated         Boolean              @default(false)
   parentAccountId     Int?
-  assignedAssignments Assignment[]        @relation("AssignedAssignments")
+  assignedAssignments Assignment[]         @relation("AssignedAssignments")
   classSchedules      ClassSchedule[]
   enrollments         Enrollment[]
   Payment             Payment[]
   ProgressReport      ProgressReport[]
-  parentAccount       ParentAccount?      @relation(fields: [parentAccountId], references: [id])
+  parentAccount       ParentAccount?       @relation(fields: [parentAccountId], references: [id])
+  StudentGroupMember  StudentGroupMember[]
   assignedResources   StudentResource[]
   studentSubmissions  StudentSubmission[]
   submissions         Submission[]
@@ -611,10 +613,10 @@ model Research {
   title         String
   slug          String          @unique
   description   String?
-  published     Boolean         @default(true)
-  author        String?
-  pdfFilename   String? // ✅ Changed from pdfPath
   createdAt     DateTime        @default(now())
+  author        String?
+  published     Boolean         @default(true)
+  pdfFilename   String?
   AccessRequest AccessRequest[]
   Slide         Slide[]
 }
@@ -622,7 +624,30 @@ model Research {
 model Slide {
   id            String   @id @default(cuid())
   researchId    String
-  imageFilename String // ✅ Changed from imagePath
   order         Int
+  imageFilename String
   Research      Research @relation(fields: [researchId], references: [id])
+}
+
+model StudentGroup {
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  teacherId          Int
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime
+  Teacher            Teacher              @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  StudentGroupMember StudentGroupMember[]
+
+  @@unique([teacherId, name])
+}
+
+model StudentGroupMember {
+  id           Int          @id @default(autoincrement())
+  groupId      Int
+  studentId    Int
+  assignedAt   DateTime     @default(now())
+  StudentGroup StudentGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  Student      Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, studentId])
 }

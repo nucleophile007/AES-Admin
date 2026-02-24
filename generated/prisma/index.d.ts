@@ -173,6 +173,16 @@ export type Research = $Result.DefaultSelection<Prisma.$ResearchPayload>
  * 
  */
 export type Slide = $Result.DefaultSelection<Prisma.$SlidePayload>
+/**
+ * Model StudentGroup
+ * 
+ */
+export type StudentGroup = $Result.DefaultSelection<Prisma.$StudentGroupPayload>
+/**
+ * Model StudentGroupMember
+ * 
+ */
+export type StudentGroupMember = $Result.DefaultSelection<Prisma.$StudentGroupMemberPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -611,6 +621,26 @@ export class PrismaClient<
     * ```
     */
   get slide(): Prisma.SlideDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.studentGroup`: Exposes CRUD operations for the **StudentGroup** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StudentGroups
+    * const studentGroups = await prisma.studentGroup.findMany()
+    * ```
+    */
+  get studentGroup(): Prisma.StudentGroupDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.studentGroupMember`: Exposes CRUD operations for the **StudentGroupMember** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StudentGroupMembers
+    * const studentGroupMembers = await prisma.studentGroupMember.findMany()
+    * ```
+    */
+  get studentGroupMember(): Prisma.StudentGroupMemberDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1082,7 +1112,9 @@ export namespace Prisma {
     GeneralEvent: 'GeneralEvent',
     AccessRequest: 'AccessRequest',
     Research: 'Research',
-    Slide: 'Slide'
+    Slide: 'Slide',
+    StudentGroup: 'StudentGroup',
+    StudentGroupMember: 'StudentGroupMember'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1101,7 +1133,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor" | "progressReport" | "eventRegistration" | "generalEvent" | "accessRequest" | "research" | "slide"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor" | "progressReport" | "eventRegistration" | "generalEvent" | "accessRequest" | "research" | "slide" | "studentGroup" | "studentGroupMember"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3473,6 +3505,154 @@ export namespace Prisma {
           }
         }
       }
+      StudentGroup: {
+        payload: Prisma.$StudentGroupPayload<ExtArgs>
+        fields: Prisma.StudentGroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StudentGroupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StudentGroupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload>
+          }
+          findFirst: {
+            args: Prisma.StudentGroupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StudentGroupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload>
+          }
+          findMany: {
+            args: Prisma.StudentGroupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload>[]
+          }
+          create: {
+            args: Prisma.StudentGroupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload>
+          }
+          createMany: {
+            args: Prisma.StudentGroupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StudentGroupCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload>[]
+          }
+          delete: {
+            args: Prisma.StudentGroupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload>
+          }
+          update: {
+            args: Prisma.StudentGroupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.StudentGroupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StudentGroupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StudentGroupUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload>[]
+          }
+          upsert: {
+            args: Prisma.StudentGroupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupPayload>
+          }
+          aggregate: {
+            args: Prisma.StudentGroupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudentGroup>
+          }
+          groupBy: {
+            args: Prisma.StudentGroupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StudentGroupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StudentGroupCountArgs<ExtArgs>
+            result: $Utils.Optional<StudentGroupCountAggregateOutputType> | number
+          }
+        }
+      }
+      StudentGroupMember: {
+        payload: Prisma.$StudentGroupMemberPayload<ExtArgs>
+        fields: Prisma.StudentGroupMemberFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StudentGroupMemberFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StudentGroupMemberFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload>
+          }
+          findFirst: {
+            args: Prisma.StudentGroupMemberFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StudentGroupMemberFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload>
+          }
+          findMany: {
+            args: Prisma.StudentGroupMemberFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload>[]
+          }
+          create: {
+            args: Prisma.StudentGroupMemberCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload>
+          }
+          createMany: {
+            args: Prisma.StudentGroupMemberCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StudentGroupMemberCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload>[]
+          }
+          delete: {
+            args: Prisma.StudentGroupMemberDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload>
+          }
+          update: {
+            args: Prisma.StudentGroupMemberUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload>
+          }
+          deleteMany: {
+            args: Prisma.StudentGroupMemberDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StudentGroupMemberUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StudentGroupMemberUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload>[]
+          }
+          upsert: {
+            args: Prisma.StudentGroupMemberUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentGroupMemberPayload>
+          }
+          aggregate: {
+            args: Prisma.StudentGroupMemberAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudentGroupMember>
+          }
+          groupBy: {
+            args: Prisma.StudentGroupMemberGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StudentGroupMemberGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StudentGroupMemberCountArgs<ExtArgs>
+            result: $Utils.Optional<StudentGroupMemberCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3597,6 +3777,8 @@ export namespace Prisma {
     accessRequest?: AccessRequestOmit
     research?: ResearchOmit
     slide?: SlideOmit
+    studentGroup?: StudentGroupOmit
+    studentGroupMember?: StudentGroupMemberOmit
   }
 
   /* Types for Logging */
@@ -3681,6 +3863,7 @@ export namespace Prisma {
     classSchedules: number
     ProgressReport: number
     resources: number
+    StudentGroup: number
     submissionRemarks: number
     students: number
   }
@@ -3690,6 +3873,7 @@ export namespace Prisma {
     classSchedules?: boolean | TeacherCountOutputTypeCountClassSchedulesArgs
     ProgressReport?: boolean | TeacherCountOutputTypeCountProgressReportArgs
     resources?: boolean | TeacherCountOutputTypeCountResourcesArgs
+    StudentGroup?: boolean | TeacherCountOutputTypeCountStudentGroupArgs
     submissionRemarks?: boolean | TeacherCountOutputTypeCountSubmissionRemarksArgs
     students?: boolean | TeacherCountOutputTypeCountStudentsArgs
   }
@@ -3736,6 +3920,13 @@ export namespace Prisma {
   /**
    * TeacherCountOutputType without action
    */
+  export type TeacherCountOutputTypeCountStudentGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentGroupWhereInput
+  }
+
+  /**
+   * TeacherCountOutputType without action
+   */
   export type TeacherCountOutputTypeCountSubmissionRemarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StudentSubmissionRemarkWhereInput
   }
@@ -3758,6 +3949,7 @@ export namespace Prisma {
     enrollments: number
     Payment: number
     ProgressReport: number
+    StudentGroupMember: number
     assignedResources: number
     studentSubmissions: number
     submissions: number
@@ -3771,6 +3963,7 @@ export namespace Prisma {
     enrollments?: boolean | StudentCountOutputTypeCountEnrollmentsArgs
     Payment?: boolean | StudentCountOutputTypeCountPaymentArgs
     ProgressReport?: boolean | StudentCountOutputTypeCountProgressReportArgs
+    StudentGroupMember?: boolean | StudentCountOutputTypeCountStudentGroupMemberArgs
     assignedResources?: boolean | StudentCountOutputTypeCountAssignedResourcesArgs
     studentSubmissions?: boolean | StudentCountOutputTypeCountStudentSubmissionsArgs
     submissions?: boolean | StudentCountOutputTypeCountSubmissionsArgs
@@ -3822,6 +4015,13 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountProgressReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProgressReportWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountStudentGroupMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentGroupMemberWhereInput
   }
 
   /**
@@ -4101,6 +4301,37 @@ export namespace Prisma {
    */
   export type ResearchCountOutputTypeCountSlideArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SlideWhereInput
+  }
+
+
+  /**
+   * Count Type StudentGroupCountOutputType
+   */
+
+  export type StudentGroupCountOutputType = {
+    StudentGroupMember: number
+  }
+
+  export type StudentGroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentGroupMember?: boolean | StudentGroupCountOutputTypeCountStudentGroupMemberArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * StudentGroupCountOutputType without action
+   */
+  export type StudentGroupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupCountOutputType
+     */
+    select?: StudentGroupCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * StudentGroupCountOutputType without action
+   */
+  export type StudentGroupCountOutputTypeCountStudentGroupMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentGroupMemberWhereInput
   }
 
 
@@ -6515,6 +6746,7 @@ export namespace Prisma {
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
     ProgressReport?: boolean | Teacher$ProgressReportArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
+    StudentGroup?: boolean | Teacher$StudentGroupArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
     students?: boolean | Teacher$studentsArgs<ExtArgs>
     _count?: boolean | TeacherCountOutputTypeDefaultArgs<ExtArgs>
@@ -6560,6 +6792,7 @@ export namespace Prisma {
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
     ProgressReport?: boolean | Teacher$ProgressReportArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
+    StudentGroup?: boolean | Teacher$StudentGroupArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
     students?: boolean | Teacher$studentsArgs<ExtArgs>
     _count?: boolean | TeacherCountOutputTypeDefaultArgs<ExtArgs>
@@ -6575,6 +6808,7 @@ export namespace Prisma {
       mentorProfile: Prisma.$MentorPayload<ExtArgs> | null
       ProgressReport: Prisma.$ProgressReportPayload<ExtArgs>[]
       resources: Prisma.$ResourcePayload<ExtArgs>[]
+      StudentGroup: Prisma.$StudentGroupPayload<ExtArgs>[]
       submissionRemarks: Prisma.$StudentSubmissionRemarkPayload<ExtArgs>[]
       students: Prisma.$TeacherStudentPayload<ExtArgs>[]
     }
@@ -6986,6 +7220,7 @@ export namespace Prisma {
     mentorProfile<T extends Teacher$mentorProfileArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$mentorProfileArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     ProgressReport<T extends Teacher$ProgressReportArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$ProgressReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     resources<T extends Teacher$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    StudentGroup<T extends Teacher$StudentGroupArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$StudentGroupArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissionRemarks<T extends Teacher$submissionRemarksArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$submissionRemarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionRemarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     students<T extends Teacher$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -7528,6 +7763,30 @@ export namespace Prisma {
   }
 
   /**
+   * Teacher.StudentGroup
+   */
+  export type Teacher$StudentGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+    where?: StudentGroupWhereInput
+    orderBy?: StudentGroupOrderByWithRelationInput | StudentGroupOrderByWithRelationInput[]
+    cursor?: StudentGroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentGroupScalarFieldEnum | StudentGroupScalarFieldEnum[]
+  }
+
+  /**
    * Teacher.submissionRemarks
    */
   export type Teacher$submissionRemarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7874,6 +8133,7 @@ export namespace Prisma {
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
     ProgressReport?: boolean | Student$ProgressReportArgs<ExtArgs>
     parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
+    StudentGroupMember?: boolean | Student$StudentGroupMemberArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
     studentSubmissions?: boolean | Student$studentSubmissionsArgs<ExtArgs>
     submissions?: boolean | Student$submissionsArgs<ExtArgs>
@@ -7943,6 +8203,7 @@ export namespace Prisma {
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
     ProgressReport?: boolean | Student$ProgressReportArgs<ExtArgs>
     parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
+    StudentGroupMember?: boolean | Student$StudentGroupMemberArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
     studentSubmissions?: boolean | Student$studentSubmissionsArgs<ExtArgs>
     submissions?: boolean | Student$submissionsArgs<ExtArgs>
@@ -7966,6 +8227,7 @@ export namespace Prisma {
       Payment: Prisma.$PaymentPayload<ExtArgs>[]
       ProgressReport: Prisma.$ProgressReportPayload<ExtArgs>[]
       parentAccount: Prisma.$ParentAccountPayload<ExtArgs> | null
+      StudentGroupMember: Prisma.$StudentGroupMemberPayload<ExtArgs>[]
       assignedResources: Prisma.$StudentResourcePayload<ExtArgs>[]
       studentSubmissions: Prisma.$StudentSubmissionPayload<ExtArgs>[]
       submissions: Prisma.$SubmissionPayload<ExtArgs>[]
@@ -8387,6 +8649,7 @@ export namespace Prisma {
     Payment<T extends Student$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Student$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ProgressReport<T extends Student$ProgressReportArgs<ExtArgs> = {}>(args?: Subset<T, Student$ProgressReportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     parentAccount<T extends Student$parentAccountArgs<ExtArgs> = {}>(args?: Subset<T, Student$parentAccountArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    StudentGroupMember<T extends Student$StudentGroupMemberArgs<ExtArgs> = {}>(args?: Subset<T, Student$StudentGroupMemberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assignedResources<T extends Student$assignedResourcesArgs<ExtArgs> = {}>(args?: Subset<T, Student$assignedResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     studentSubmissions<T extends Student$studentSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$studentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissions<T extends Student$submissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8967,6 +9230,30 @@ export namespace Prisma {
      */
     include?: ParentAccountInclude<ExtArgs> | null
     where?: ParentAccountWhereInput
+  }
+
+  /**
+   * Student.StudentGroupMember
+   */
+  export type Student$StudentGroupMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    where?: StudentGroupMemberWhereInput
+    orderBy?: StudentGroupMemberOrderByWithRelationInput | StudentGroupMemberOrderByWithRelationInput[]
+    cursor?: StudentGroupMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentGroupMemberScalarFieldEnum | StudentGroupMemberScalarFieldEnum[]
   }
 
   /**
@@ -40357,10 +40644,10 @@ export namespace Prisma {
     title: string | null
     slug: string | null
     description: string | null
-    published: boolean | null
-    author: string | null
-    pdfFilename: string | null
     createdAt: Date | null
+    author: string | null
+    published: boolean | null
+    pdfFilename: string | null
   }
 
   export type ResearchMaxAggregateOutputType = {
@@ -40368,10 +40655,10 @@ export namespace Prisma {
     title: string | null
     slug: string | null
     description: string | null
-    published: boolean | null
-    author: string | null
-    pdfFilename: string | null
     createdAt: Date | null
+    author: string | null
+    published: boolean | null
+    pdfFilename: string | null
   }
 
   export type ResearchCountAggregateOutputType = {
@@ -40379,10 +40666,10 @@ export namespace Prisma {
     title: number
     slug: number
     description: number
-    published: number
-    author: number
-    pdfFilename: number
     createdAt: number
+    author: number
+    published: number
+    pdfFilename: number
     _all: number
   }
 
@@ -40392,10 +40679,10 @@ export namespace Prisma {
     title?: true
     slug?: true
     description?: true
-    published?: true
-    author?: true
-    pdfFilename?: true
     createdAt?: true
+    author?: true
+    published?: true
+    pdfFilename?: true
   }
 
   export type ResearchMaxAggregateInputType = {
@@ -40403,10 +40690,10 @@ export namespace Prisma {
     title?: true
     slug?: true
     description?: true
-    published?: true
-    author?: true
-    pdfFilename?: true
     createdAt?: true
+    author?: true
+    published?: true
+    pdfFilename?: true
   }
 
   export type ResearchCountAggregateInputType = {
@@ -40414,10 +40701,10 @@ export namespace Prisma {
     title?: true
     slug?: true
     description?: true
-    published?: true
-    author?: true
-    pdfFilename?: true
     createdAt?: true
+    author?: true
+    published?: true
+    pdfFilename?: true
     _all?: true
   }
 
@@ -40498,10 +40785,10 @@ export namespace Prisma {
     title: string
     slug: string
     description: string | null
-    published: boolean
-    author: string | null
-    pdfFilename: string | null
     createdAt: Date
+    author: string | null
+    published: boolean
+    pdfFilename: string | null
     _count: ResearchCountAggregateOutputType | null
     _min: ResearchMinAggregateOutputType | null
     _max: ResearchMaxAggregateOutputType | null
@@ -40526,10 +40813,10 @@ export namespace Prisma {
     title?: boolean
     slug?: boolean
     description?: boolean
-    published?: boolean
-    author?: boolean
-    pdfFilename?: boolean
     createdAt?: boolean
+    author?: boolean
+    published?: boolean
+    pdfFilename?: boolean
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
     Slide?: boolean | Research$SlideArgs<ExtArgs>
     _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
@@ -40540,10 +40827,10 @@ export namespace Prisma {
     title?: boolean
     slug?: boolean
     description?: boolean
-    published?: boolean
-    author?: boolean
-    pdfFilename?: boolean
     createdAt?: boolean
+    author?: boolean
+    published?: boolean
+    pdfFilename?: boolean
   }, ExtArgs["result"]["research"]>
 
   export type ResearchSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -40551,10 +40838,10 @@ export namespace Prisma {
     title?: boolean
     slug?: boolean
     description?: boolean
-    published?: boolean
-    author?: boolean
-    pdfFilename?: boolean
     createdAt?: boolean
+    author?: boolean
+    published?: boolean
+    pdfFilename?: boolean
   }, ExtArgs["result"]["research"]>
 
   export type ResearchSelectScalar = {
@@ -40562,13 +40849,13 @@ export namespace Prisma {
     title?: boolean
     slug?: boolean
     description?: boolean
-    published?: boolean
-    author?: boolean
-    pdfFilename?: boolean
     createdAt?: boolean
+    author?: boolean
+    published?: boolean
+    pdfFilename?: boolean
   }
 
-  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "published" | "author" | "pdfFilename" | "createdAt", ExtArgs["result"]["research"]>
+  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "createdAt" | "author" | "published" | "pdfFilename", ExtArgs["result"]["research"]>
   export type ResearchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
     Slide?: boolean | Research$SlideArgs<ExtArgs>
@@ -40588,10 +40875,10 @@ export namespace Prisma {
       title: string
       slug: string
       description: string | null
-      published: boolean
-      author: string | null
-      pdfFilename: string | null
       createdAt: Date
+      author: string | null
+      published: boolean
+      pdfFilename: string | null
     }, ExtArgs["result"]["research"]>
     composites: {}
   }
@@ -41021,10 +41308,10 @@ export namespace Prisma {
     readonly title: FieldRef<"Research", 'String'>
     readonly slug: FieldRef<"Research", 'String'>
     readonly description: FieldRef<"Research", 'String'>
-    readonly published: FieldRef<"Research", 'Boolean'>
-    readonly author: FieldRef<"Research", 'String'>
-    readonly pdfFilename: FieldRef<"Research", 'String'>
     readonly createdAt: FieldRef<"Research", 'DateTime'>
+    readonly author: FieldRef<"Research", 'String'>
+    readonly published: FieldRef<"Research", 'Boolean'>
+    readonly pdfFilename: FieldRef<"Research", 'String'>
   }
     
 
@@ -41502,22 +41789,22 @@ export namespace Prisma {
   export type SlideMinAggregateOutputType = {
     id: string | null
     researchId: string | null
-    imageFilename: string | null
     order: number | null
+    imageFilename: string | null
   }
 
   export type SlideMaxAggregateOutputType = {
     id: string | null
     researchId: string | null
-    imageFilename: string | null
     order: number | null
+    imageFilename: string | null
   }
 
   export type SlideCountAggregateOutputType = {
     id: number
     researchId: number
-    imageFilename: number
     order: number
+    imageFilename: number
     _all: number
   }
 
@@ -41533,22 +41820,22 @@ export namespace Prisma {
   export type SlideMinAggregateInputType = {
     id?: true
     researchId?: true
-    imageFilename?: true
     order?: true
+    imageFilename?: true
   }
 
   export type SlideMaxAggregateInputType = {
     id?: true
     researchId?: true
-    imageFilename?: true
     order?: true
+    imageFilename?: true
   }
 
   export type SlideCountAggregateInputType = {
     id?: true
     researchId?: true
-    imageFilename?: true
     order?: true
+    imageFilename?: true
     _all?: true
   }
 
@@ -41641,8 +41928,8 @@ export namespace Prisma {
   export type SlideGroupByOutputType = {
     id: string
     researchId: string
-    imageFilename: string
     order: number
+    imageFilename: string
     _count: SlideCountAggregateOutputType | null
     _avg: SlideAvgAggregateOutputType | null
     _sum: SlideSumAggregateOutputType | null
@@ -41667,35 +41954,35 @@ export namespace Prisma {
   export type SlideSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     researchId?: boolean
-    imageFilename?: boolean
     order?: boolean
+    imageFilename?: boolean
     Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["slide"]>
 
   export type SlideSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     researchId?: boolean
-    imageFilename?: boolean
     order?: boolean
+    imageFilename?: boolean
     Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["slide"]>
 
   export type SlideSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     researchId?: boolean
-    imageFilename?: boolean
     order?: boolean
+    imageFilename?: boolean
     Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["slide"]>
 
   export type SlideSelectScalar = {
     id?: boolean
     researchId?: boolean
-    imageFilename?: boolean
     order?: boolean
+    imageFilename?: boolean
   }
 
-  export type SlideOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "researchId" | "imageFilename" | "order", ExtArgs["result"]["slide"]>
+  export type SlideOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "researchId" | "order" | "imageFilename", ExtArgs["result"]["slide"]>
   export type SlideInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }
@@ -41714,8 +42001,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       researchId: string
-      imageFilename: string
       order: number
+      imageFilename: string
     }, ExtArgs["result"]["slide"]>
     composites: {}
   }
@@ -42142,8 +42429,8 @@ export namespace Prisma {
   interface SlideFieldRefs {
     readonly id: FieldRef<"Slide", 'String'>
     readonly researchId: FieldRef<"Slide", 'String'>
-    readonly imageFilename: FieldRef<"Slide", 'String'>
     readonly order: FieldRef<"Slide", 'Int'>
+    readonly imageFilename: FieldRef<"Slide", 'String'>
   }
     
 
@@ -42555,6 +42842,2227 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: SlideInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StudentGroup
+   */
+
+  export type AggregateStudentGroup = {
+    _count: StudentGroupCountAggregateOutputType | null
+    _avg: StudentGroupAvgAggregateOutputType | null
+    _sum: StudentGroupSumAggregateOutputType | null
+    _min: StudentGroupMinAggregateOutputType | null
+    _max: StudentGroupMaxAggregateOutputType | null
+  }
+
+  export type StudentGroupAvgAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+  }
+
+  export type StudentGroupSumAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+  }
+
+  export type StudentGroupMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    teacherId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StudentGroupMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    teacherId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StudentGroupCountAggregateOutputType = {
+    id: number
+    name: number
+    teacherId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type StudentGroupAvgAggregateInputType = {
+    id?: true
+    teacherId?: true
+  }
+
+  export type StudentGroupSumAggregateInputType = {
+    id?: true
+    teacherId?: true
+  }
+
+  export type StudentGroupMinAggregateInputType = {
+    id?: true
+    name?: true
+    teacherId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StudentGroupMaxAggregateInputType = {
+    id?: true
+    name?: true
+    teacherId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StudentGroupCountAggregateInputType = {
+    id?: true
+    name?: true
+    teacherId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type StudentGroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StudentGroup to aggregate.
+     */
+    where?: StudentGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentGroups to fetch.
+     */
+    orderBy?: StudentGroupOrderByWithRelationInput | StudentGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StudentGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StudentGroups
+    **/
+    _count?: true | StudentGroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StudentGroupAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StudentGroupSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StudentGroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StudentGroupMaxAggregateInputType
+  }
+
+  export type GetStudentGroupAggregateType<T extends StudentGroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudentGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudentGroup[P]>
+      : GetScalarType<T[P], AggregateStudentGroup[P]>
+  }
+
+
+
+
+  export type StudentGroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentGroupWhereInput
+    orderBy?: StudentGroupOrderByWithAggregationInput | StudentGroupOrderByWithAggregationInput[]
+    by: StudentGroupScalarFieldEnum[] | StudentGroupScalarFieldEnum
+    having?: StudentGroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StudentGroupCountAggregateInputType | true
+    _avg?: StudentGroupAvgAggregateInputType
+    _sum?: StudentGroupSumAggregateInputType
+    _min?: StudentGroupMinAggregateInputType
+    _max?: StudentGroupMaxAggregateInputType
+  }
+
+  export type StudentGroupGroupByOutputType = {
+    id: number
+    name: string
+    teacherId: number
+    createdAt: Date
+    updatedAt: Date
+    _count: StudentGroupCountAggregateOutputType | null
+    _avg: StudentGroupAvgAggregateOutputType | null
+    _sum: StudentGroupSumAggregateOutputType | null
+    _min: StudentGroupMinAggregateOutputType | null
+    _max: StudentGroupMaxAggregateOutputType | null
+  }
+
+  type GetStudentGroupGroupByPayload<T extends StudentGroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StudentGroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StudentGroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StudentGroupGroupByOutputType[P]>
+            : GetScalarType<T[P], StudentGroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StudentGroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    teacherId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    StudentGroupMember?: boolean | StudentGroup$StudentGroupMemberArgs<ExtArgs>
+    _count?: boolean | StudentGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentGroup"]>
+
+  export type StudentGroupSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    teacherId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentGroup"]>
+
+  export type StudentGroupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    teacherId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentGroup"]>
+
+  export type StudentGroupSelectScalar = {
+    id?: boolean
+    name?: boolean
+    teacherId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type StudentGroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "teacherId" | "createdAt" | "updatedAt", ExtArgs["result"]["studentGroup"]>
+  export type StudentGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    StudentGroupMember?: boolean | StudentGroup$StudentGroupMemberArgs<ExtArgs>
+    _count?: boolean | StudentGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type StudentGroupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+  export type StudentGroupIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+
+  export type $StudentGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StudentGroup"
+    objects: {
+      Teacher: Prisma.$TeacherPayload<ExtArgs>
+      StudentGroupMember: Prisma.$StudentGroupMemberPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      teacherId: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["studentGroup"]>
+    composites: {}
+  }
+
+  type StudentGroupGetPayload<S extends boolean | null | undefined | StudentGroupDefaultArgs> = $Result.GetResult<Prisma.$StudentGroupPayload, S>
+
+  type StudentGroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StudentGroupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StudentGroupCountAggregateInputType | true
+    }
+
+  export interface StudentGroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StudentGroup'], meta: { name: 'StudentGroup' } }
+    /**
+     * Find zero or one StudentGroup that matches the filter.
+     * @param {StudentGroupFindUniqueArgs} args - Arguments to find a StudentGroup
+     * @example
+     * // Get one StudentGroup
+     * const studentGroup = await prisma.studentGroup.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StudentGroupFindUniqueArgs>(args: SelectSubset<T, StudentGroupFindUniqueArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StudentGroup that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StudentGroupFindUniqueOrThrowArgs} args - Arguments to find a StudentGroup
+     * @example
+     * // Get one StudentGroup
+     * const studentGroup = await prisma.studentGroup.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StudentGroupFindUniqueOrThrowArgs>(args: SelectSubset<T, StudentGroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StudentGroup that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupFindFirstArgs} args - Arguments to find a StudentGroup
+     * @example
+     * // Get one StudentGroup
+     * const studentGroup = await prisma.studentGroup.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StudentGroupFindFirstArgs>(args?: SelectSubset<T, StudentGroupFindFirstArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StudentGroup that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupFindFirstOrThrowArgs} args - Arguments to find a StudentGroup
+     * @example
+     * // Get one StudentGroup
+     * const studentGroup = await prisma.studentGroup.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StudentGroupFindFirstOrThrowArgs>(args?: SelectSubset<T, StudentGroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StudentGroups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StudentGroups
+     * const studentGroups = await prisma.studentGroup.findMany()
+     * 
+     * // Get first 10 StudentGroups
+     * const studentGroups = await prisma.studentGroup.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const studentGroupWithIdOnly = await prisma.studentGroup.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StudentGroupFindManyArgs>(args?: SelectSubset<T, StudentGroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StudentGroup.
+     * @param {StudentGroupCreateArgs} args - Arguments to create a StudentGroup.
+     * @example
+     * // Create one StudentGroup
+     * const StudentGroup = await prisma.studentGroup.create({
+     *   data: {
+     *     // ... data to create a StudentGroup
+     *   }
+     * })
+     * 
+     */
+    create<T extends StudentGroupCreateArgs>(args: SelectSubset<T, StudentGroupCreateArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StudentGroups.
+     * @param {StudentGroupCreateManyArgs} args - Arguments to create many StudentGroups.
+     * @example
+     * // Create many StudentGroups
+     * const studentGroup = await prisma.studentGroup.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StudentGroupCreateManyArgs>(args?: SelectSubset<T, StudentGroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StudentGroups and returns the data saved in the database.
+     * @param {StudentGroupCreateManyAndReturnArgs} args - Arguments to create many StudentGroups.
+     * @example
+     * // Create many StudentGroups
+     * const studentGroup = await prisma.studentGroup.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StudentGroups and only return the `id`
+     * const studentGroupWithIdOnly = await prisma.studentGroup.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StudentGroupCreateManyAndReturnArgs>(args?: SelectSubset<T, StudentGroupCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StudentGroup.
+     * @param {StudentGroupDeleteArgs} args - Arguments to delete one StudentGroup.
+     * @example
+     * // Delete one StudentGroup
+     * const StudentGroup = await prisma.studentGroup.delete({
+     *   where: {
+     *     // ... filter to delete one StudentGroup
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StudentGroupDeleteArgs>(args: SelectSubset<T, StudentGroupDeleteArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StudentGroup.
+     * @param {StudentGroupUpdateArgs} args - Arguments to update one StudentGroup.
+     * @example
+     * // Update one StudentGroup
+     * const studentGroup = await prisma.studentGroup.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StudentGroupUpdateArgs>(args: SelectSubset<T, StudentGroupUpdateArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StudentGroups.
+     * @param {StudentGroupDeleteManyArgs} args - Arguments to filter StudentGroups to delete.
+     * @example
+     * // Delete a few StudentGroups
+     * const { count } = await prisma.studentGroup.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StudentGroupDeleteManyArgs>(args?: SelectSubset<T, StudentGroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StudentGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StudentGroups
+     * const studentGroup = await prisma.studentGroup.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StudentGroupUpdateManyArgs>(args: SelectSubset<T, StudentGroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StudentGroups and returns the data updated in the database.
+     * @param {StudentGroupUpdateManyAndReturnArgs} args - Arguments to update many StudentGroups.
+     * @example
+     * // Update many StudentGroups
+     * const studentGroup = await prisma.studentGroup.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StudentGroups and only return the `id`
+     * const studentGroupWithIdOnly = await prisma.studentGroup.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StudentGroupUpdateManyAndReturnArgs>(args: SelectSubset<T, StudentGroupUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StudentGroup.
+     * @param {StudentGroupUpsertArgs} args - Arguments to update or create a StudentGroup.
+     * @example
+     * // Update or create a StudentGroup
+     * const studentGroup = await prisma.studentGroup.upsert({
+     *   create: {
+     *     // ... data to create a StudentGroup
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StudentGroup we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StudentGroupUpsertArgs>(args: SelectSubset<T, StudentGroupUpsertArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StudentGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupCountArgs} args - Arguments to filter StudentGroups to count.
+     * @example
+     * // Count the number of StudentGroups
+     * const count = await prisma.studentGroup.count({
+     *   where: {
+     *     // ... the filter for the StudentGroups we want to count
+     *   }
+     * })
+    **/
+    count<T extends StudentGroupCountArgs>(
+      args?: Subset<T, StudentGroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StudentGroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StudentGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StudentGroupAggregateArgs>(args: Subset<T, StudentGroupAggregateArgs>): Prisma.PrismaPromise<GetStudentGroupAggregateType<T>>
+
+    /**
+     * Group by StudentGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StudentGroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StudentGroupGroupByArgs['orderBy'] }
+        : { orderBy?: StudentGroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StudentGroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudentGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StudentGroup model
+   */
+  readonly fields: StudentGroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StudentGroup.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StudentGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    StudentGroupMember<T extends StudentGroup$StudentGroupMemberArgs<ExtArgs> = {}>(args?: Subset<T, StudentGroup$StudentGroupMemberArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StudentGroup model
+   */
+  interface StudentGroupFieldRefs {
+    readonly id: FieldRef<"StudentGroup", 'Int'>
+    readonly name: FieldRef<"StudentGroup", 'String'>
+    readonly teacherId: FieldRef<"StudentGroup", 'Int'>
+    readonly createdAt: FieldRef<"StudentGroup", 'DateTime'>
+    readonly updatedAt: FieldRef<"StudentGroup", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StudentGroup findUnique
+   */
+  export type StudentGroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentGroup to fetch.
+     */
+    where: StudentGroupWhereUniqueInput
+  }
+
+  /**
+   * StudentGroup findUniqueOrThrow
+   */
+  export type StudentGroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentGroup to fetch.
+     */
+    where: StudentGroupWhereUniqueInput
+  }
+
+  /**
+   * StudentGroup findFirst
+   */
+  export type StudentGroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentGroup to fetch.
+     */
+    where?: StudentGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentGroups to fetch.
+     */
+    orderBy?: StudentGroupOrderByWithRelationInput | StudentGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StudentGroups.
+     */
+    cursor?: StudentGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StudentGroups.
+     */
+    distinct?: StudentGroupScalarFieldEnum | StudentGroupScalarFieldEnum[]
+  }
+
+  /**
+   * StudentGroup findFirstOrThrow
+   */
+  export type StudentGroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentGroup to fetch.
+     */
+    where?: StudentGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentGroups to fetch.
+     */
+    orderBy?: StudentGroupOrderByWithRelationInput | StudentGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StudentGroups.
+     */
+    cursor?: StudentGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StudentGroups.
+     */
+    distinct?: StudentGroupScalarFieldEnum | StudentGroupScalarFieldEnum[]
+  }
+
+  /**
+   * StudentGroup findMany
+   */
+  export type StudentGroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentGroups to fetch.
+     */
+    where?: StudentGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentGroups to fetch.
+     */
+    orderBy?: StudentGroupOrderByWithRelationInput | StudentGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StudentGroups.
+     */
+    cursor?: StudentGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentGroups.
+     */
+    skip?: number
+    distinct?: StudentGroupScalarFieldEnum | StudentGroupScalarFieldEnum[]
+  }
+
+  /**
+   * StudentGroup create
+   */
+  export type StudentGroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a StudentGroup.
+     */
+    data: XOR<StudentGroupCreateInput, StudentGroupUncheckedCreateInput>
+  }
+
+  /**
+   * StudentGroup createMany
+   */
+  export type StudentGroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StudentGroups.
+     */
+    data: StudentGroupCreateManyInput | StudentGroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StudentGroup createManyAndReturn
+   */
+  export type StudentGroupCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * The data used to create many StudentGroups.
+     */
+    data: StudentGroupCreateManyInput | StudentGroupCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StudentGroup update
+   */
+  export type StudentGroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a StudentGroup.
+     */
+    data: XOR<StudentGroupUpdateInput, StudentGroupUncheckedUpdateInput>
+    /**
+     * Choose, which StudentGroup to update.
+     */
+    where: StudentGroupWhereUniqueInput
+  }
+
+  /**
+   * StudentGroup updateMany
+   */
+  export type StudentGroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StudentGroups.
+     */
+    data: XOR<StudentGroupUpdateManyMutationInput, StudentGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which StudentGroups to update
+     */
+    where?: StudentGroupWhereInput
+    /**
+     * Limit how many StudentGroups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StudentGroup updateManyAndReturn
+   */
+  export type StudentGroupUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * The data used to update StudentGroups.
+     */
+    data: XOR<StudentGroupUpdateManyMutationInput, StudentGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which StudentGroups to update
+     */
+    where?: StudentGroupWhereInput
+    /**
+     * Limit how many StudentGroups to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StudentGroup upsert
+   */
+  export type StudentGroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the StudentGroup to update in case it exists.
+     */
+    where: StudentGroupWhereUniqueInput
+    /**
+     * In case the StudentGroup found by the `where` argument doesn't exist, create a new StudentGroup with this data.
+     */
+    create: XOR<StudentGroupCreateInput, StudentGroupUncheckedCreateInput>
+    /**
+     * In case the StudentGroup was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StudentGroupUpdateInput, StudentGroupUncheckedUpdateInput>
+  }
+
+  /**
+   * StudentGroup delete
+   */
+  export type StudentGroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+    /**
+     * Filter which StudentGroup to delete.
+     */
+    where: StudentGroupWhereUniqueInput
+  }
+
+  /**
+   * StudentGroup deleteMany
+   */
+  export type StudentGroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StudentGroups to delete
+     */
+    where?: StudentGroupWhereInput
+    /**
+     * Limit how many StudentGroups to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StudentGroup.StudentGroupMember
+   */
+  export type StudentGroup$StudentGroupMemberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    where?: StudentGroupMemberWhereInput
+    orderBy?: StudentGroupMemberOrderByWithRelationInput | StudentGroupMemberOrderByWithRelationInput[]
+    cursor?: StudentGroupMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentGroupMemberScalarFieldEnum | StudentGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * StudentGroup without action
+   */
+  export type StudentGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroup
+     */
+    select?: StudentGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroup
+     */
+    omit?: StudentGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model StudentGroupMember
+   */
+
+  export type AggregateStudentGroupMember = {
+    _count: StudentGroupMemberCountAggregateOutputType | null
+    _avg: StudentGroupMemberAvgAggregateOutputType | null
+    _sum: StudentGroupMemberSumAggregateOutputType | null
+    _min: StudentGroupMemberMinAggregateOutputType | null
+    _max: StudentGroupMemberMaxAggregateOutputType | null
+  }
+
+  export type StudentGroupMemberAvgAggregateOutputType = {
+    id: number | null
+    groupId: number | null
+    studentId: number | null
+  }
+
+  export type StudentGroupMemberSumAggregateOutputType = {
+    id: number | null
+    groupId: number | null
+    studentId: number | null
+  }
+
+  export type StudentGroupMemberMinAggregateOutputType = {
+    id: number | null
+    groupId: number | null
+    studentId: number | null
+    assignedAt: Date | null
+  }
+
+  export type StudentGroupMemberMaxAggregateOutputType = {
+    id: number | null
+    groupId: number | null
+    studentId: number | null
+    assignedAt: Date | null
+  }
+
+  export type StudentGroupMemberCountAggregateOutputType = {
+    id: number
+    groupId: number
+    studentId: number
+    assignedAt: number
+    _all: number
+  }
+
+
+  export type StudentGroupMemberAvgAggregateInputType = {
+    id?: true
+    groupId?: true
+    studentId?: true
+  }
+
+  export type StudentGroupMemberSumAggregateInputType = {
+    id?: true
+    groupId?: true
+    studentId?: true
+  }
+
+  export type StudentGroupMemberMinAggregateInputType = {
+    id?: true
+    groupId?: true
+    studentId?: true
+    assignedAt?: true
+  }
+
+  export type StudentGroupMemberMaxAggregateInputType = {
+    id?: true
+    groupId?: true
+    studentId?: true
+    assignedAt?: true
+  }
+
+  export type StudentGroupMemberCountAggregateInputType = {
+    id?: true
+    groupId?: true
+    studentId?: true
+    assignedAt?: true
+    _all?: true
+  }
+
+  export type StudentGroupMemberAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StudentGroupMember to aggregate.
+     */
+    where?: StudentGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentGroupMembers to fetch.
+     */
+    orderBy?: StudentGroupMemberOrderByWithRelationInput | StudentGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StudentGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentGroupMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StudentGroupMembers
+    **/
+    _count?: true | StudentGroupMemberCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StudentGroupMemberAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StudentGroupMemberSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StudentGroupMemberMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StudentGroupMemberMaxAggregateInputType
+  }
+
+  export type GetStudentGroupMemberAggregateType<T extends StudentGroupMemberAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudentGroupMember]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudentGroupMember[P]>
+      : GetScalarType<T[P], AggregateStudentGroupMember[P]>
+  }
+
+
+
+
+  export type StudentGroupMemberGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentGroupMemberWhereInput
+    orderBy?: StudentGroupMemberOrderByWithAggregationInput | StudentGroupMemberOrderByWithAggregationInput[]
+    by: StudentGroupMemberScalarFieldEnum[] | StudentGroupMemberScalarFieldEnum
+    having?: StudentGroupMemberScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StudentGroupMemberCountAggregateInputType | true
+    _avg?: StudentGroupMemberAvgAggregateInputType
+    _sum?: StudentGroupMemberSumAggregateInputType
+    _min?: StudentGroupMemberMinAggregateInputType
+    _max?: StudentGroupMemberMaxAggregateInputType
+  }
+
+  export type StudentGroupMemberGroupByOutputType = {
+    id: number
+    groupId: number
+    studentId: number
+    assignedAt: Date
+    _count: StudentGroupMemberCountAggregateOutputType | null
+    _avg: StudentGroupMemberAvgAggregateOutputType | null
+    _sum: StudentGroupMemberSumAggregateOutputType | null
+    _min: StudentGroupMemberMinAggregateOutputType | null
+    _max: StudentGroupMemberMaxAggregateOutputType | null
+  }
+
+  type GetStudentGroupMemberGroupByPayload<T extends StudentGroupMemberGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StudentGroupMemberGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StudentGroupMemberGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StudentGroupMemberGroupByOutputType[P]>
+            : GetScalarType<T[P], StudentGroupMemberGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StudentGroupMemberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    groupId?: boolean
+    studentId?: boolean
+    assignedAt?: boolean
+    StudentGroup?: boolean | StudentGroupDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentGroupMember"]>
+
+  export type StudentGroupMemberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    groupId?: boolean
+    studentId?: boolean
+    assignedAt?: boolean
+    StudentGroup?: boolean | StudentGroupDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentGroupMember"]>
+
+  export type StudentGroupMemberSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    groupId?: boolean
+    studentId?: boolean
+    assignedAt?: boolean
+    StudentGroup?: boolean | StudentGroupDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentGroupMember"]>
+
+  export type StudentGroupMemberSelectScalar = {
+    id?: boolean
+    groupId?: boolean
+    studentId?: boolean
+    assignedAt?: boolean
+  }
+
+  export type StudentGroupMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "groupId" | "studentId" | "assignedAt", ExtArgs["result"]["studentGroupMember"]>
+  export type StudentGroupMemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentGroup?: boolean | StudentGroupDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+  export type StudentGroupMemberIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentGroup?: boolean | StudentGroupDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+  export type StudentGroupMemberIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentGroup?: boolean | StudentGroupDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+
+  export type $StudentGroupMemberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StudentGroupMember"
+    objects: {
+      StudentGroup: Prisma.$StudentGroupPayload<ExtArgs>
+      Student: Prisma.$StudentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      groupId: number
+      studentId: number
+      assignedAt: Date
+    }, ExtArgs["result"]["studentGroupMember"]>
+    composites: {}
+  }
+
+  type StudentGroupMemberGetPayload<S extends boolean | null | undefined | StudentGroupMemberDefaultArgs> = $Result.GetResult<Prisma.$StudentGroupMemberPayload, S>
+
+  type StudentGroupMemberCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StudentGroupMemberFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StudentGroupMemberCountAggregateInputType | true
+    }
+
+  export interface StudentGroupMemberDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StudentGroupMember'], meta: { name: 'StudentGroupMember' } }
+    /**
+     * Find zero or one StudentGroupMember that matches the filter.
+     * @param {StudentGroupMemberFindUniqueArgs} args - Arguments to find a StudentGroupMember
+     * @example
+     * // Get one StudentGroupMember
+     * const studentGroupMember = await prisma.studentGroupMember.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StudentGroupMemberFindUniqueArgs>(args: SelectSubset<T, StudentGroupMemberFindUniqueArgs<ExtArgs>>): Prisma__StudentGroupMemberClient<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StudentGroupMember that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StudentGroupMemberFindUniqueOrThrowArgs} args - Arguments to find a StudentGroupMember
+     * @example
+     * // Get one StudentGroupMember
+     * const studentGroupMember = await prisma.studentGroupMember.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StudentGroupMemberFindUniqueOrThrowArgs>(args: SelectSubset<T, StudentGroupMemberFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StudentGroupMemberClient<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StudentGroupMember that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupMemberFindFirstArgs} args - Arguments to find a StudentGroupMember
+     * @example
+     * // Get one StudentGroupMember
+     * const studentGroupMember = await prisma.studentGroupMember.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StudentGroupMemberFindFirstArgs>(args?: SelectSubset<T, StudentGroupMemberFindFirstArgs<ExtArgs>>): Prisma__StudentGroupMemberClient<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StudentGroupMember that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupMemberFindFirstOrThrowArgs} args - Arguments to find a StudentGroupMember
+     * @example
+     * // Get one StudentGroupMember
+     * const studentGroupMember = await prisma.studentGroupMember.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StudentGroupMemberFindFirstOrThrowArgs>(args?: SelectSubset<T, StudentGroupMemberFindFirstOrThrowArgs<ExtArgs>>): Prisma__StudentGroupMemberClient<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StudentGroupMembers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupMemberFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StudentGroupMembers
+     * const studentGroupMembers = await prisma.studentGroupMember.findMany()
+     * 
+     * // Get first 10 StudentGroupMembers
+     * const studentGroupMembers = await prisma.studentGroupMember.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const studentGroupMemberWithIdOnly = await prisma.studentGroupMember.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StudentGroupMemberFindManyArgs>(args?: SelectSubset<T, StudentGroupMemberFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StudentGroupMember.
+     * @param {StudentGroupMemberCreateArgs} args - Arguments to create a StudentGroupMember.
+     * @example
+     * // Create one StudentGroupMember
+     * const StudentGroupMember = await prisma.studentGroupMember.create({
+     *   data: {
+     *     // ... data to create a StudentGroupMember
+     *   }
+     * })
+     * 
+     */
+    create<T extends StudentGroupMemberCreateArgs>(args: SelectSubset<T, StudentGroupMemberCreateArgs<ExtArgs>>): Prisma__StudentGroupMemberClient<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StudentGroupMembers.
+     * @param {StudentGroupMemberCreateManyArgs} args - Arguments to create many StudentGroupMembers.
+     * @example
+     * // Create many StudentGroupMembers
+     * const studentGroupMember = await prisma.studentGroupMember.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StudentGroupMemberCreateManyArgs>(args?: SelectSubset<T, StudentGroupMemberCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StudentGroupMembers and returns the data saved in the database.
+     * @param {StudentGroupMemberCreateManyAndReturnArgs} args - Arguments to create many StudentGroupMembers.
+     * @example
+     * // Create many StudentGroupMembers
+     * const studentGroupMember = await prisma.studentGroupMember.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StudentGroupMembers and only return the `id`
+     * const studentGroupMemberWithIdOnly = await prisma.studentGroupMember.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StudentGroupMemberCreateManyAndReturnArgs>(args?: SelectSubset<T, StudentGroupMemberCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StudentGroupMember.
+     * @param {StudentGroupMemberDeleteArgs} args - Arguments to delete one StudentGroupMember.
+     * @example
+     * // Delete one StudentGroupMember
+     * const StudentGroupMember = await prisma.studentGroupMember.delete({
+     *   where: {
+     *     // ... filter to delete one StudentGroupMember
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StudentGroupMemberDeleteArgs>(args: SelectSubset<T, StudentGroupMemberDeleteArgs<ExtArgs>>): Prisma__StudentGroupMemberClient<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StudentGroupMember.
+     * @param {StudentGroupMemberUpdateArgs} args - Arguments to update one StudentGroupMember.
+     * @example
+     * // Update one StudentGroupMember
+     * const studentGroupMember = await prisma.studentGroupMember.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StudentGroupMemberUpdateArgs>(args: SelectSubset<T, StudentGroupMemberUpdateArgs<ExtArgs>>): Prisma__StudentGroupMemberClient<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StudentGroupMembers.
+     * @param {StudentGroupMemberDeleteManyArgs} args - Arguments to filter StudentGroupMembers to delete.
+     * @example
+     * // Delete a few StudentGroupMembers
+     * const { count } = await prisma.studentGroupMember.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StudentGroupMemberDeleteManyArgs>(args?: SelectSubset<T, StudentGroupMemberDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StudentGroupMembers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupMemberUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StudentGroupMembers
+     * const studentGroupMember = await prisma.studentGroupMember.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StudentGroupMemberUpdateManyArgs>(args: SelectSubset<T, StudentGroupMemberUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StudentGroupMembers and returns the data updated in the database.
+     * @param {StudentGroupMemberUpdateManyAndReturnArgs} args - Arguments to update many StudentGroupMembers.
+     * @example
+     * // Update many StudentGroupMembers
+     * const studentGroupMember = await prisma.studentGroupMember.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StudentGroupMembers and only return the `id`
+     * const studentGroupMemberWithIdOnly = await prisma.studentGroupMember.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StudentGroupMemberUpdateManyAndReturnArgs>(args: SelectSubset<T, StudentGroupMemberUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StudentGroupMember.
+     * @param {StudentGroupMemberUpsertArgs} args - Arguments to update or create a StudentGroupMember.
+     * @example
+     * // Update or create a StudentGroupMember
+     * const studentGroupMember = await prisma.studentGroupMember.upsert({
+     *   create: {
+     *     // ... data to create a StudentGroupMember
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StudentGroupMember we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StudentGroupMemberUpsertArgs>(args: SelectSubset<T, StudentGroupMemberUpsertArgs<ExtArgs>>): Prisma__StudentGroupMemberClient<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StudentGroupMembers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupMemberCountArgs} args - Arguments to filter StudentGroupMembers to count.
+     * @example
+     * // Count the number of StudentGroupMembers
+     * const count = await prisma.studentGroupMember.count({
+     *   where: {
+     *     // ... the filter for the StudentGroupMembers we want to count
+     *   }
+     * })
+    **/
+    count<T extends StudentGroupMemberCountArgs>(
+      args?: Subset<T, StudentGroupMemberCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StudentGroupMemberCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StudentGroupMember.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupMemberAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StudentGroupMemberAggregateArgs>(args: Subset<T, StudentGroupMemberAggregateArgs>): Prisma.PrismaPromise<GetStudentGroupMemberAggregateType<T>>
+
+    /**
+     * Group by StudentGroupMember.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentGroupMemberGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StudentGroupMemberGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StudentGroupMemberGroupByArgs['orderBy'] }
+        : { orderBy?: StudentGroupMemberGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StudentGroupMemberGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudentGroupMemberGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StudentGroupMember model
+   */
+  readonly fields: StudentGroupMemberFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StudentGroupMember.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StudentGroupMemberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    StudentGroup<T extends StudentGroupDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentGroupDefaultArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StudentGroupMember model
+   */
+  interface StudentGroupMemberFieldRefs {
+    readonly id: FieldRef<"StudentGroupMember", 'Int'>
+    readonly groupId: FieldRef<"StudentGroupMember", 'Int'>
+    readonly studentId: FieldRef<"StudentGroupMember", 'Int'>
+    readonly assignedAt: FieldRef<"StudentGroupMember", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StudentGroupMember findUnique
+   */
+  export type StudentGroupMemberFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentGroupMember to fetch.
+     */
+    where: StudentGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * StudentGroupMember findUniqueOrThrow
+   */
+  export type StudentGroupMemberFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentGroupMember to fetch.
+     */
+    where: StudentGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * StudentGroupMember findFirst
+   */
+  export type StudentGroupMemberFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentGroupMember to fetch.
+     */
+    where?: StudentGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentGroupMembers to fetch.
+     */
+    orderBy?: StudentGroupMemberOrderByWithRelationInput | StudentGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StudentGroupMembers.
+     */
+    cursor?: StudentGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentGroupMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StudentGroupMembers.
+     */
+    distinct?: StudentGroupMemberScalarFieldEnum | StudentGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * StudentGroupMember findFirstOrThrow
+   */
+  export type StudentGroupMemberFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentGroupMember to fetch.
+     */
+    where?: StudentGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentGroupMembers to fetch.
+     */
+    orderBy?: StudentGroupMemberOrderByWithRelationInput | StudentGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StudentGroupMembers.
+     */
+    cursor?: StudentGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentGroupMembers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StudentGroupMembers.
+     */
+    distinct?: StudentGroupMemberScalarFieldEnum | StudentGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * StudentGroupMember findMany
+   */
+  export type StudentGroupMemberFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentGroupMembers to fetch.
+     */
+    where?: StudentGroupMemberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentGroupMembers to fetch.
+     */
+    orderBy?: StudentGroupMemberOrderByWithRelationInput | StudentGroupMemberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StudentGroupMembers.
+     */
+    cursor?: StudentGroupMemberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentGroupMembers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentGroupMembers.
+     */
+    skip?: number
+    distinct?: StudentGroupMemberScalarFieldEnum | StudentGroupMemberScalarFieldEnum[]
+  }
+
+  /**
+   * StudentGroupMember create
+   */
+  export type StudentGroupMemberCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    /**
+     * The data needed to create a StudentGroupMember.
+     */
+    data: XOR<StudentGroupMemberCreateInput, StudentGroupMemberUncheckedCreateInput>
+  }
+
+  /**
+   * StudentGroupMember createMany
+   */
+  export type StudentGroupMemberCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StudentGroupMembers.
+     */
+    data: StudentGroupMemberCreateManyInput | StudentGroupMemberCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StudentGroupMember createManyAndReturn
+   */
+  export type StudentGroupMemberCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * The data used to create many StudentGroupMembers.
+     */
+    data: StudentGroupMemberCreateManyInput | StudentGroupMemberCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StudentGroupMember update
+   */
+  export type StudentGroupMemberUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    /**
+     * The data needed to update a StudentGroupMember.
+     */
+    data: XOR<StudentGroupMemberUpdateInput, StudentGroupMemberUncheckedUpdateInput>
+    /**
+     * Choose, which StudentGroupMember to update.
+     */
+    where: StudentGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * StudentGroupMember updateMany
+   */
+  export type StudentGroupMemberUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StudentGroupMembers.
+     */
+    data: XOR<StudentGroupMemberUpdateManyMutationInput, StudentGroupMemberUncheckedUpdateManyInput>
+    /**
+     * Filter which StudentGroupMembers to update
+     */
+    where?: StudentGroupMemberWhereInput
+    /**
+     * Limit how many StudentGroupMembers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StudentGroupMember updateManyAndReturn
+   */
+  export type StudentGroupMemberUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * The data used to update StudentGroupMembers.
+     */
+    data: XOR<StudentGroupMemberUpdateManyMutationInput, StudentGroupMemberUncheckedUpdateManyInput>
+    /**
+     * Filter which StudentGroupMembers to update
+     */
+    where?: StudentGroupMemberWhereInput
+    /**
+     * Limit how many StudentGroupMembers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StudentGroupMember upsert
+   */
+  export type StudentGroupMemberUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    /**
+     * The filter to search for the StudentGroupMember to update in case it exists.
+     */
+    where: StudentGroupMemberWhereUniqueInput
+    /**
+     * In case the StudentGroupMember found by the `where` argument doesn't exist, create a new StudentGroupMember with this data.
+     */
+    create: XOR<StudentGroupMemberCreateInput, StudentGroupMemberUncheckedCreateInput>
+    /**
+     * In case the StudentGroupMember was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StudentGroupMemberUpdateInput, StudentGroupMemberUncheckedUpdateInput>
+  }
+
+  /**
+   * StudentGroupMember delete
+   */
+  export type StudentGroupMemberDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    /**
+     * Filter which StudentGroupMember to delete.
+     */
+    where: StudentGroupMemberWhereUniqueInput
+  }
+
+  /**
+   * StudentGroupMember deleteMany
+   */
+  export type StudentGroupMemberDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StudentGroupMembers to delete
+     */
+    where?: StudentGroupMemberWhereInput
+    /**
+     * Limit how many StudentGroupMembers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StudentGroupMember without action
+   */
+  export type StudentGroupMemberDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
   }
 
 
@@ -43152,10 +45660,10 @@ export namespace Prisma {
     title: 'title',
     slug: 'slug',
     description: 'description',
-    published: 'published',
+    createdAt: 'createdAt',
     author: 'author',
-    pdfFilename: 'pdfFilename',
-    createdAt: 'createdAt'
+    published: 'published',
+    pdfFilename: 'pdfFilename'
   };
 
   export type ResearchScalarFieldEnum = (typeof ResearchScalarFieldEnum)[keyof typeof ResearchScalarFieldEnum]
@@ -43164,11 +45672,32 @@ export namespace Prisma {
   export const SlideScalarFieldEnum: {
     id: 'id',
     researchId: 'researchId',
-    imageFilename: 'imageFilename',
-    order: 'order'
+    order: 'order',
+    imageFilename: 'imageFilename'
   };
 
   export type SlideScalarFieldEnum = (typeof SlideScalarFieldEnum)[keyof typeof SlideScalarFieldEnum]
+
+
+  export const StudentGroupScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    teacherId: 'teacherId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type StudentGroupScalarFieldEnum = (typeof StudentGroupScalarFieldEnum)[keyof typeof StudentGroupScalarFieldEnum]
+
+
+  export const StudentGroupMemberScalarFieldEnum: {
+    id: 'id',
+    groupId: 'groupId',
+    studentId: 'studentId',
+    assignedAt: 'assignedAt'
+  };
+
+  export type StudentGroupMemberScalarFieldEnum = (typeof StudentGroupMemberScalarFieldEnum)[keyof typeof StudentGroupMemberScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -43480,6 +46009,7 @@ export namespace Prisma {
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
     ProgressReport?: ProgressReportListRelationFilter
     resources?: ResourceListRelationFilter
+    StudentGroup?: StudentGroupListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
     students?: TeacherStudentListRelationFilter
   }
@@ -43498,6 +46028,7 @@ export namespace Prisma {
     mentorProfile?: MentorOrderByWithRelationInput
     ProgressReport?: ProgressReportOrderByRelationAggregateInput
     resources?: ResourceOrderByRelationAggregateInput
+    StudentGroup?: StudentGroupOrderByRelationAggregateInput
     submissionRemarks?: StudentSubmissionRemarkOrderByRelationAggregateInput
     students?: TeacherStudentOrderByRelationAggregateInput
   }
@@ -43519,6 +46050,7 @@ export namespace Prisma {
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
     ProgressReport?: ProgressReportListRelationFilter
     resources?: ResourceListRelationFilter
+    StudentGroup?: StudentGroupListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
     students?: TeacherStudentListRelationFilter
   }, "id" | "email">
@@ -43577,6 +46109,7 @@ export namespace Prisma {
     Payment?: PaymentListRelationFilter
     ProgressReport?: ProgressReportListRelationFilter
     parentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
+    StudentGroupMember?: StudentGroupMemberListRelationFilter
     assignedResources?: StudentResourceListRelationFilter
     studentSubmissions?: StudentSubmissionListRelationFilter
     submissions?: SubmissionListRelationFilter
@@ -43605,6 +46138,7 @@ export namespace Prisma {
     Payment?: PaymentOrderByRelationAggregateInput
     ProgressReport?: ProgressReportOrderByRelationAggregateInput
     parentAccount?: ParentAccountOrderByWithRelationInput
+    StudentGroupMember?: StudentGroupMemberOrderByRelationAggregateInput
     assignedResources?: StudentResourceOrderByRelationAggregateInput
     studentSubmissions?: StudentSubmissionOrderByRelationAggregateInput
     submissions?: SubmissionOrderByRelationAggregateInput
@@ -43636,6 +46170,7 @@ export namespace Prisma {
     Payment?: PaymentListRelationFilter
     ProgressReport?: ProgressReportListRelationFilter
     parentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
+    StudentGroupMember?: StudentGroupMemberListRelationFilter
     assignedResources?: StudentResourceListRelationFilter
     studentSubmissions?: StudentSubmissionListRelationFilter
     submissions?: SubmissionListRelationFilter
@@ -46317,10 +48852,10 @@ export namespace Prisma {
     title?: StringFilter<"Research"> | string
     slug?: StringFilter<"Research"> | string
     description?: StringNullableFilter<"Research"> | string | null
-    published?: BoolFilter<"Research"> | boolean
-    author?: StringNullableFilter<"Research"> | string | null
-    pdfFilename?: StringNullableFilter<"Research"> | string | null
     createdAt?: DateTimeFilter<"Research"> | Date | string
+    author?: StringNullableFilter<"Research"> | string | null
+    published?: BoolFilter<"Research"> | boolean
+    pdfFilename?: StringNullableFilter<"Research"> | string | null
     AccessRequest?: AccessRequestListRelationFilter
     Slide?: SlideListRelationFilter
   }
@@ -46330,10 +48865,10 @@ export namespace Prisma {
     title?: SortOrder
     slug?: SortOrder
     description?: SortOrderInput | SortOrder
-    published?: SortOrder
-    author?: SortOrderInput | SortOrder
-    pdfFilename?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    author?: SortOrderInput | SortOrder
+    published?: SortOrder
+    pdfFilename?: SortOrderInput | SortOrder
     AccessRequest?: AccessRequestOrderByRelationAggregateInput
     Slide?: SlideOrderByRelationAggregateInput
   }
@@ -46346,10 +48881,10 @@ export namespace Prisma {
     NOT?: ResearchWhereInput | ResearchWhereInput[]
     title?: StringFilter<"Research"> | string
     description?: StringNullableFilter<"Research"> | string | null
-    published?: BoolFilter<"Research"> | boolean
-    author?: StringNullableFilter<"Research"> | string | null
-    pdfFilename?: StringNullableFilter<"Research"> | string | null
     createdAt?: DateTimeFilter<"Research"> | Date | string
+    author?: StringNullableFilter<"Research"> | string | null
+    published?: BoolFilter<"Research"> | boolean
+    pdfFilename?: StringNullableFilter<"Research"> | string | null
     AccessRequest?: AccessRequestListRelationFilter
     Slide?: SlideListRelationFilter
   }, "id" | "slug">
@@ -46359,10 +48894,10 @@ export namespace Prisma {
     title?: SortOrder
     slug?: SortOrder
     description?: SortOrderInput | SortOrder
-    published?: SortOrder
-    author?: SortOrderInput | SortOrder
-    pdfFilename?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    author?: SortOrderInput | SortOrder
+    published?: SortOrder
+    pdfFilename?: SortOrderInput | SortOrder
     _count?: ResearchCountOrderByAggregateInput
     _max?: ResearchMaxOrderByAggregateInput
     _min?: ResearchMinOrderByAggregateInput
@@ -46376,10 +48911,10 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Research"> | string
     slug?: StringWithAggregatesFilter<"Research"> | string
     description?: StringNullableWithAggregatesFilter<"Research"> | string | null
-    published?: BoolWithAggregatesFilter<"Research"> | boolean
-    author?: StringNullableWithAggregatesFilter<"Research"> | string | null
-    pdfFilename?: StringNullableWithAggregatesFilter<"Research"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Research"> | Date | string
+    author?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    published?: BoolWithAggregatesFilter<"Research"> | boolean
+    pdfFilename?: StringNullableWithAggregatesFilter<"Research"> | string | null
   }
 
   export type SlideWhereInput = {
@@ -46388,16 +48923,16 @@ export namespace Prisma {
     NOT?: SlideWhereInput | SlideWhereInput[]
     id?: StringFilter<"Slide"> | string
     researchId?: StringFilter<"Slide"> | string
-    imageFilename?: StringFilter<"Slide"> | string
     order?: IntFilter<"Slide"> | number
+    imageFilename?: StringFilter<"Slide"> | string
     Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
   }
 
   export type SlideOrderByWithRelationInput = {
     id?: SortOrder
     researchId?: SortOrder
-    imageFilename?: SortOrder
     order?: SortOrder
+    imageFilename?: SortOrder
     Research?: ResearchOrderByWithRelationInput
   }
 
@@ -46407,16 +48942,16 @@ export namespace Prisma {
     OR?: SlideWhereInput[]
     NOT?: SlideWhereInput | SlideWhereInput[]
     researchId?: StringFilter<"Slide"> | string
-    imageFilename?: StringFilter<"Slide"> | string
     order?: IntFilter<"Slide"> | number
+    imageFilename?: StringFilter<"Slide"> | string
     Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
   }, "id">
 
   export type SlideOrderByWithAggregationInput = {
     id?: SortOrder
     researchId?: SortOrder
-    imageFilename?: SortOrder
     order?: SortOrder
+    imageFilename?: SortOrder
     _count?: SlideCountOrderByAggregateInput
     _avg?: SlideAvgOrderByAggregateInput
     _max?: SlideMaxOrderByAggregateInput
@@ -46430,8 +48965,125 @@ export namespace Prisma {
     NOT?: SlideScalarWhereWithAggregatesInput | SlideScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Slide"> | string
     researchId?: StringWithAggregatesFilter<"Slide"> | string
-    imageFilename?: StringWithAggregatesFilter<"Slide"> | string
     order?: IntWithAggregatesFilter<"Slide"> | number
+    imageFilename?: StringWithAggregatesFilter<"Slide"> | string
+  }
+
+  export type StudentGroupWhereInput = {
+    AND?: StudentGroupWhereInput | StudentGroupWhereInput[]
+    OR?: StudentGroupWhereInput[]
+    NOT?: StudentGroupWhereInput | StudentGroupWhereInput[]
+    id?: IntFilter<"StudentGroup"> | number
+    name?: StringFilter<"StudentGroup"> | string
+    teacherId?: IntFilter<"StudentGroup"> | number
+    createdAt?: DateTimeFilter<"StudentGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"StudentGroup"> | Date | string
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    StudentGroupMember?: StudentGroupMemberListRelationFilter
+  }
+
+  export type StudentGroupOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    teacherId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    Teacher?: TeacherOrderByWithRelationInput
+    StudentGroupMember?: StudentGroupMemberOrderByRelationAggregateInput
+  }
+
+  export type StudentGroupWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    teacherId_name?: StudentGroupTeacherIdNameCompoundUniqueInput
+    AND?: StudentGroupWhereInput | StudentGroupWhereInput[]
+    OR?: StudentGroupWhereInput[]
+    NOT?: StudentGroupWhereInput | StudentGroupWhereInput[]
+    name?: StringFilter<"StudentGroup"> | string
+    teacherId?: IntFilter<"StudentGroup"> | number
+    createdAt?: DateTimeFilter<"StudentGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"StudentGroup"> | Date | string
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    StudentGroupMember?: StudentGroupMemberListRelationFilter
+  }, "id" | "teacherId_name">
+
+  export type StudentGroupOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    teacherId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: StudentGroupCountOrderByAggregateInput
+    _avg?: StudentGroupAvgOrderByAggregateInput
+    _max?: StudentGroupMaxOrderByAggregateInput
+    _min?: StudentGroupMinOrderByAggregateInput
+    _sum?: StudentGroupSumOrderByAggregateInput
+  }
+
+  export type StudentGroupScalarWhereWithAggregatesInput = {
+    AND?: StudentGroupScalarWhereWithAggregatesInput | StudentGroupScalarWhereWithAggregatesInput[]
+    OR?: StudentGroupScalarWhereWithAggregatesInput[]
+    NOT?: StudentGroupScalarWhereWithAggregatesInput | StudentGroupScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"StudentGroup"> | number
+    name?: StringWithAggregatesFilter<"StudentGroup"> | string
+    teacherId?: IntWithAggregatesFilter<"StudentGroup"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"StudentGroup"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"StudentGroup"> | Date | string
+  }
+
+  export type StudentGroupMemberWhereInput = {
+    AND?: StudentGroupMemberWhereInput | StudentGroupMemberWhereInput[]
+    OR?: StudentGroupMemberWhereInput[]
+    NOT?: StudentGroupMemberWhereInput | StudentGroupMemberWhereInput[]
+    id?: IntFilter<"StudentGroupMember"> | number
+    groupId?: IntFilter<"StudentGroupMember"> | number
+    studentId?: IntFilter<"StudentGroupMember"> | number
+    assignedAt?: DateTimeFilter<"StudentGroupMember"> | Date | string
+    StudentGroup?: XOR<StudentGroupScalarRelationFilter, StudentGroupWhereInput>
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+  }
+
+  export type StudentGroupMemberOrderByWithRelationInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    studentId?: SortOrder
+    assignedAt?: SortOrder
+    StudentGroup?: StudentGroupOrderByWithRelationInput
+    Student?: StudentOrderByWithRelationInput
+  }
+
+  export type StudentGroupMemberWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    groupId_studentId?: StudentGroupMemberGroupIdStudentIdCompoundUniqueInput
+    AND?: StudentGroupMemberWhereInput | StudentGroupMemberWhereInput[]
+    OR?: StudentGroupMemberWhereInput[]
+    NOT?: StudentGroupMemberWhereInput | StudentGroupMemberWhereInput[]
+    groupId?: IntFilter<"StudentGroupMember"> | number
+    studentId?: IntFilter<"StudentGroupMember"> | number
+    assignedAt?: DateTimeFilter<"StudentGroupMember"> | Date | string
+    StudentGroup?: XOR<StudentGroupScalarRelationFilter, StudentGroupWhereInput>
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+  }, "id" | "groupId_studentId">
+
+  export type StudentGroupMemberOrderByWithAggregationInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    studentId?: SortOrder
+    assignedAt?: SortOrder
+    _count?: StudentGroupMemberCountOrderByAggregateInput
+    _avg?: StudentGroupMemberAvgOrderByAggregateInput
+    _max?: StudentGroupMemberMaxOrderByAggregateInput
+    _min?: StudentGroupMemberMinOrderByAggregateInput
+    _sum?: StudentGroupMemberSumOrderByAggregateInput
+  }
+
+  export type StudentGroupMemberScalarWhereWithAggregatesInput = {
+    AND?: StudentGroupMemberScalarWhereWithAggregatesInput | StudentGroupMemberScalarWhereWithAggregatesInput[]
+    OR?: StudentGroupMemberScalarWhereWithAggregatesInput[]
+    NOT?: StudentGroupMemberScalarWhereWithAggregatesInput | StudentGroupMemberScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"StudentGroupMember"> | number
+    groupId?: IntWithAggregatesFilter<"StudentGroupMember"> | number
+    studentId?: IntWithAggregatesFilter<"StudentGroupMember"> | number
+    assignedAt?: DateTimeWithAggregatesFilter<"StudentGroupMember"> | Date | string
   }
 
   export type WebinarRegistrationCreateInput = {
@@ -46623,6 +49275,7 @@ export namespace Prisma {
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -46641,6 +49294,7 @@ export namespace Prisma {
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -46658,6 +49312,7 @@ export namespace Prisma {
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -46676,6 +49331,7 @@ export namespace Prisma {
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -46731,6 +49387,7 @@ export namespace Prisma {
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -46758,6 +49415,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -46784,6 +49442,7 @@ export namespace Prisma {
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -46811,6 +49470,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -49824,10 +52484,10 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    published?: boolean
-    author?: string | null
-    pdfFilename?: string | null
     createdAt?: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
     AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
     Slide?: SlideCreateNestedManyWithoutResearchInput
   }
@@ -49837,10 +52497,10 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    published?: boolean
-    author?: string | null
-    pdfFilename?: string | null
     createdAt?: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
     AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
     Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
   }
@@ -49850,10 +52510,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
     Slide?: SlideUpdateManyWithoutResearchNestedInput
   }
@@ -49863,10 +52523,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
     Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
   }
@@ -49876,10 +52536,10 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    published?: boolean
-    author?: string | null
-    pdfFilename?: string | null
     createdAt?: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
   }
 
   export type ResearchUpdateManyMutationInput = {
@@ -49887,10 +52547,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResearchUncheckedUpdateManyInput = {
@@ -49898,58 +52558,158 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SlideCreateInput = {
     id?: string
-    imageFilename: string
     order: number
+    imageFilename: string
     Research: ResearchCreateNestedOneWithoutSlideInput
   }
 
   export type SlideUncheckedCreateInput = {
     id?: string
     researchId: string
-    imageFilename: string
     order: number
+    imageFilename: string
   }
 
   export type SlideUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
+    imageFilename?: StringFieldUpdateOperationsInput | string
     Research?: ResearchUpdateOneRequiredWithoutSlideNestedInput
   }
 
   export type SlideUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     researchId?: StringFieldUpdateOperationsInput | string
-    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
+    imageFilename?: StringFieldUpdateOperationsInput | string
   }
 
   export type SlideCreateManyInput = {
     id?: string
     researchId: string
-    imageFilename: string
     order: number
+    imageFilename: string
   }
 
   export type SlideUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
+    imageFilename?: StringFieldUpdateOperationsInput | string
   }
 
   export type SlideUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     researchId?: StringFieldUpdateOperationsInput | string
-    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
+    imageFilename?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StudentGroupCreateInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Teacher: TeacherCreateNestedOneWithoutStudentGroupInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentGroupInput
+  }
+
+  export type StudentGroupUncheckedCreateInput = {
+    id?: number
+    name: string
+    teacherId: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentGroupInput
+  }
+
+  export type StudentGroupUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Teacher?: TeacherUpdateOneRequiredWithoutStudentGroupNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentGroupNestedInput
+  }
+
+  export type StudentGroupUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    teacherId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentGroupNestedInput
+  }
+
+  export type StudentGroupCreateManyInput = {
+    id?: number
+    name: string
+    teacherId: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type StudentGroupUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentGroupUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    teacherId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentGroupMemberCreateInput = {
+    assignedAt?: Date | string
+    StudentGroup: StudentGroupCreateNestedOneWithoutStudentGroupMemberInput
+    Student: StudentCreateNestedOneWithoutStudentGroupMemberInput
+  }
+
+  export type StudentGroupMemberUncheckedCreateInput = {
+    id?: number
+    groupId: number
+    studentId: number
+    assignedAt?: Date | string
+  }
+
+  export type StudentGroupMemberUpdateInput = {
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    StudentGroup?: StudentGroupUpdateOneRequiredWithoutStudentGroupMemberNestedInput
+    Student?: StudentUpdateOneRequiredWithoutStudentGroupMemberNestedInput
+  }
+
+  export type StudentGroupMemberUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    groupId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentGroupMemberCreateManyInput = {
+    id?: number
+    groupId: number
+    studentId: number
+    assignedAt?: Date | string
+  }
+
+  export type StudentGroupMemberUpdateManyMutationInput = {
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentGroupMemberUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    groupId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -50272,6 +53032,12 @@ export namespace Prisma {
     none?: ResourceWhereInput
   }
 
+  export type StudentGroupListRelationFilter = {
+    every?: StudentGroupWhereInput
+    some?: StudentGroupWhereInput
+    none?: StudentGroupWhereInput
+  }
+
   export type StudentSubmissionRemarkListRelationFilter = {
     every?: StudentSubmissionRemarkWhereInput
     some?: StudentSubmissionRemarkWhereInput
@@ -50297,6 +53063,10 @@ export namespace Prisma {
   }
 
   export type ResourceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StudentGroupOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -50375,6 +53145,12 @@ export namespace Prisma {
     isNot?: ParentAccountWhereInput | null
   }
 
+  export type StudentGroupMemberListRelationFilter = {
+    every?: StudentGroupMemberWhereInput
+    some?: StudentGroupMemberWhereInput
+    none?: StudentGroupMemberWhereInput
+  }
+
   export type StudentResourceListRelationFilter = {
     every?: StudentResourceWhereInput
     some?: StudentResourceWhereInput
@@ -50404,6 +53180,10 @@ export namespace Prisma {
   }
 
   export type PaymentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StudentGroupMemberOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -52325,10 +55105,10 @@ export namespace Prisma {
     title?: SortOrder
     slug?: SortOrder
     description?: SortOrder
-    published?: SortOrder
-    author?: SortOrder
-    pdfFilename?: SortOrder
     createdAt?: SortOrder
+    author?: SortOrder
+    published?: SortOrder
+    pdfFilename?: SortOrder
   }
 
   export type ResearchMaxOrderByAggregateInput = {
@@ -52336,10 +55116,10 @@ export namespace Prisma {
     title?: SortOrder
     slug?: SortOrder
     description?: SortOrder
-    published?: SortOrder
-    author?: SortOrder
-    pdfFilename?: SortOrder
     createdAt?: SortOrder
+    author?: SortOrder
+    published?: SortOrder
+    pdfFilename?: SortOrder
   }
 
   export type ResearchMinOrderByAggregateInput = {
@@ -52347,17 +55127,17 @@ export namespace Prisma {
     title?: SortOrder
     slug?: SortOrder
     description?: SortOrder
-    published?: SortOrder
-    author?: SortOrder
-    pdfFilename?: SortOrder
     createdAt?: SortOrder
+    author?: SortOrder
+    published?: SortOrder
+    pdfFilename?: SortOrder
   }
 
   export type SlideCountOrderByAggregateInput = {
     id?: SortOrder
     researchId?: SortOrder
-    imageFilename?: SortOrder
     order?: SortOrder
+    imageFilename?: SortOrder
   }
 
   export type SlideAvgOrderByAggregateInput = {
@@ -52367,19 +55147,101 @@ export namespace Prisma {
   export type SlideMaxOrderByAggregateInput = {
     id?: SortOrder
     researchId?: SortOrder
-    imageFilename?: SortOrder
     order?: SortOrder
+    imageFilename?: SortOrder
   }
 
   export type SlideMinOrderByAggregateInput = {
     id?: SortOrder
     researchId?: SortOrder
-    imageFilename?: SortOrder
     order?: SortOrder
+    imageFilename?: SortOrder
   }
 
   export type SlideSumOrderByAggregateInput = {
     order?: SortOrder
+  }
+
+  export type StudentGroupTeacherIdNameCompoundUniqueInput = {
+    teacherId: number
+    name: string
+  }
+
+  export type StudentGroupCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    teacherId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StudentGroupAvgOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+  }
+
+  export type StudentGroupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    teacherId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StudentGroupMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    teacherId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StudentGroupSumOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+  }
+
+  export type StudentGroupScalarRelationFilter = {
+    is?: StudentGroupWhereInput
+    isNot?: StudentGroupWhereInput
+  }
+
+  export type StudentGroupMemberGroupIdStudentIdCompoundUniqueInput = {
+    groupId: number
+    studentId: number
+  }
+
+  export type StudentGroupMemberCountOrderByAggregateInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    studentId?: SortOrder
+    assignedAt?: SortOrder
+  }
+
+  export type StudentGroupMemberAvgOrderByAggregateInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    studentId?: SortOrder
+  }
+
+  export type StudentGroupMemberMaxOrderByAggregateInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    studentId?: SortOrder
+    assignedAt?: SortOrder
+  }
+
+  export type StudentGroupMemberMinOrderByAggregateInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    studentId?: SortOrder
+    assignedAt?: SortOrder
+  }
+
+  export type StudentGroupMemberSumOrderByAggregateInput = {
+    id?: SortOrder
+    groupId?: SortOrder
+    studentId?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -52444,6 +55306,13 @@ export namespace Prisma {
     connect?: ResourceWhereUniqueInput | ResourceWhereUniqueInput[]
   }
 
+  export type StudentGroupCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<StudentGroupCreateWithoutTeacherInput, StudentGroupUncheckedCreateWithoutTeacherInput> | StudentGroupCreateWithoutTeacherInput[] | StudentGroupUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: StudentGroupCreateOrConnectWithoutTeacherInput | StudentGroupCreateOrConnectWithoutTeacherInput[]
+    createMany?: StudentGroupCreateManyTeacherInputEnvelope
+    connect?: StudentGroupWhereUniqueInput | StudentGroupWhereUniqueInput[]
+  }
+
   export type StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput = {
     create?: XOR<StudentSubmissionRemarkCreateWithoutTeacherInput, StudentSubmissionRemarkUncheckedCreateWithoutTeacherInput> | StudentSubmissionRemarkCreateWithoutTeacherInput[] | StudentSubmissionRemarkUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: StudentSubmissionRemarkCreateOrConnectWithoutTeacherInput | StudentSubmissionRemarkCreateOrConnectWithoutTeacherInput[]
@@ -52490,6 +55359,13 @@ export namespace Prisma {
     connectOrCreate?: ResourceCreateOrConnectWithoutTeacherInput | ResourceCreateOrConnectWithoutTeacherInput[]
     createMany?: ResourceCreateManyTeacherInputEnvelope
     connect?: ResourceWhereUniqueInput | ResourceWhereUniqueInput[]
+  }
+
+  export type StudentGroupUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<StudentGroupCreateWithoutTeacherInput, StudentGroupUncheckedCreateWithoutTeacherInput> | StudentGroupCreateWithoutTeacherInput[] | StudentGroupUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: StudentGroupCreateOrConnectWithoutTeacherInput | StudentGroupCreateOrConnectWithoutTeacherInput[]
+    createMany?: StudentGroupCreateManyTeacherInputEnvelope
+    connect?: StudentGroupWhereUniqueInput | StudentGroupWhereUniqueInput[]
   }
 
   export type StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput = {
@@ -52575,6 +55451,20 @@ export namespace Prisma {
     update?: ResourceUpdateWithWhereUniqueWithoutTeacherInput | ResourceUpdateWithWhereUniqueWithoutTeacherInput[]
     updateMany?: ResourceUpdateManyWithWhereWithoutTeacherInput | ResourceUpdateManyWithWhereWithoutTeacherInput[]
     deleteMany?: ResourceScalarWhereInput | ResourceScalarWhereInput[]
+  }
+
+  export type StudentGroupUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<StudentGroupCreateWithoutTeacherInput, StudentGroupUncheckedCreateWithoutTeacherInput> | StudentGroupCreateWithoutTeacherInput[] | StudentGroupUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: StudentGroupCreateOrConnectWithoutTeacherInput | StudentGroupCreateOrConnectWithoutTeacherInput[]
+    upsert?: StudentGroupUpsertWithWhereUniqueWithoutTeacherInput | StudentGroupUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: StudentGroupCreateManyTeacherInputEnvelope
+    set?: StudentGroupWhereUniqueInput | StudentGroupWhereUniqueInput[]
+    disconnect?: StudentGroupWhereUniqueInput | StudentGroupWhereUniqueInput[]
+    delete?: StudentGroupWhereUniqueInput | StudentGroupWhereUniqueInput[]
+    connect?: StudentGroupWhereUniqueInput | StudentGroupWhereUniqueInput[]
+    update?: StudentGroupUpdateWithWhereUniqueWithoutTeacherInput | StudentGroupUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: StudentGroupUpdateManyWithWhereWithoutTeacherInput | StudentGroupUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: StudentGroupScalarWhereInput | StudentGroupScalarWhereInput[]
   }
 
   export type StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput = {
@@ -52671,6 +55561,20 @@ export namespace Prisma {
     deleteMany?: ResourceScalarWhereInput | ResourceScalarWhereInput[]
   }
 
+  export type StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<StudentGroupCreateWithoutTeacherInput, StudentGroupUncheckedCreateWithoutTeacherInput> | StudentGroupCreateWithoutTeacherInput[] | StudentGroupUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: StudentGroupCreateOrConnectWithoutTeacherInput | StudentGroupCreateOrConnectWithoutTeacherInput[]
+    upsert?: StudentGroupUpsertWithWhereUniqueWithoutTeacherInput | StudentGroupUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: StudentGroupCreateManyTeacherInputEnvelope
+    set?: StudentGroupWhereUniqueInput | StudentGroupWhereUniqueInput[]
+    disconnect?: StudentGroupWhereUniqueInput | StudentGroupWhereUniqueInput[]
+    delete?: StudentGroupWhereUniqueInput | StudentGroupWhereUniqueInput[]
+    connect?: StudentGroupWhereUniqueInput | StudentGroupWhereUniqueInput[]
+    update?: StudentGroupUpdateWithWhereUniqueWithoutTeacherInput | StudentGroupUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: StudentGroupUpdateManyWithWhereWithoutTeacherInput | StudentGroupUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: StudentGroupScalarWhereInput | StudentGroupScalarWhereInput[]
+  }
+
   export type StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput = {
     create?: XOR<StudentSubmissionRemarkCreateWithoutTeacherInput, StudentSubmissionRemarkUncheckedCreateWithoutTeacherInput> | StudentSubmissionRemarkCreateWithoutTeacherInput[] | StudentSubmissionRemarkUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: StudentSubmissionRemarkCreateOrConnectWithoutTeacherInput | StudentSubmissionRemarkCreateOrConnectWithoutTeacherInput[]
@@ -52738,6 +55642,13 @@ export namespace Prisma {
     create?: XOR<ParentAccountCreateWithoutStudentsInput, ParentAccountUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: ParentAccountCreateOrConnectWithoutStudentsInput
     connect?: ParentAccountWhereUniqueInput
+  }
+
+  export type StudentGroupMemberCreateNestedManyWithoutStudentInput = {
+    create?: XOR<StudentGroupMemberCreateWithoutStudentInput, StudentGroupMemberUncheckedCreateWithoutStudentInput> | StudentGroupMemberCreateWithoutStudentInput[] | StudentGroupMemberUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutStudentInput | StudentGroupMemberCreateOrConnectWithoutStudentInput[]
+    createMany?: StudentGroupMemberCreateManyStudentInputEnvelope
+    connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
   }
 
   export type StudentResourceCreateNestedManyWithoutStudentInput = {
@@ -52808,6 +55719,13 @@ export namespace Prisma {
     connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
     createMany?: ProgressReportCreateManyStudentInputEnvelope
     connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+  }
+
+  export type StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<StudentGroupMemberCreateWithoutStudentInput, StudentGroupMemberUncheckedCreateWithoutStudentInput> | StudentGroupMemberCreateWithoutStudentInput[] | StudentGroupMemberUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutStudentInput | StudentGroupMemberCreateOrConnectWithoutStudentInput[]
+    createMany?: StudentGroupMemberCreateManyStudentInputEnvelope
+    connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
   }
 
   export type StudentResourceUncheckedCreateNestedManyWithoutStudentInput = {
@@ -52923,6 +55841,20 @@ export namespace Prisma {
     delete?: ParentAccountWhereInput | boolean
     connect?: ParentAccountWhereUniqueInput
     update?: XOR<XOR<ParentAccountUpdateToOneWithWhereWithoutStudentsInput, ParentAccountUpdateWithoutStudentsInput>, ParentAccountUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type StudentGroupMemberUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<StudentGroupMemberCreateWithoutStudentInput, StudentGroupMemberUncheckedCreateWithoutStudentInput> | StudentGroupMemberCreateWithoutStudentInput[] | StudentGroupMemberUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutStudentInput | StudentGroupMemberCreateOrConnectWithoutStudentInput[]
+    upsert?: StudentGroupMemberUpsertWithWhereUniqueWithoutStudentInput | StudentGroupMemberUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: StudentGroupMemberCreateManyStudentInputEnvelope
+    set?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    disconnect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    delete?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    update?: StudentGroupMemberUpdateWithWhereUniqueWithoutStudentInput | StudentGroupMemberUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: StudentGroupMemberUpdateManyWithWhereWithoutStudentInput | StudentGroupMemberUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: StudentGroupMemberScalarWhereInput | StudentGroupMemberScalarWhereInput[]
   }
 
   export type StudentResourceUpdateManyWithoutStudentNestedInput = {
@@ -53071,6 +56003,20 @@ export namespace Prisma {
     update?: ProgressReportUpdateWithWhereUniqueWithoutStudentInput | ProgressReportUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: ProgressReportUpdateManyWithWhereWithoutStudentInput | ProgressReportUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+  }
+
+  export type StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<StudentGroupMemberCreateWithoutStudentInput, StudentGroupMemberUncheckedCreateWithoutStudentInput> | StudentGroupMemberCreateWithoutStudentInput[] | StudentGroupMemberUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutStudentInput | StudentGroupMemberCreateOrConnectWithoutStudentInput[]
+    upsert?: StudentGroupMemberUpsertWithWhereUniqueWithoutStudentInput | StudentGroupMemberUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: StudentGroupMemberCreateManyStudentInputEnvelope
+    set?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    disconnect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    delete?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    update?: StudentGroupMemberUpdateWithWhereUniqueWithoutStudentInput | StudentGroupMemberUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: StudentGroupMemberUpdateManyWithWhereWithoutStudentInput | StudentGroupMemberUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: StudentGroupMemberScalarWhereInput | StudentGroupMemberScalarWhereInput[]
   }
 
   export type StudentResourceUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -53999,6 +56945,90 @@ export namespace Prisma {
     update?: XOR<XOR<ResearchUpdateToOneWithWhereWithoutSlideInput, ResearchUpdateWithoutSlideInput>, ResearchUncheckedUpdateWithoutSlideInput>
   }
 
+  export type TeacherCreateNestedOneWithoutStudentGroupInput = {
+    create?: XOR<TeacherCreateWithoutStudentGroupInput, TeacherUncheckedCreateWithoutStudentGroupInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutStudentGroupInput
+    connect?: TeacherWhereUniqueInput
+  }
+
+  export type StudentGroupMemberCreateNestedManyWithoutStudentGroupInput = {
+    create?: XOR<StudentGroupMemberCreateWithoutStudentGroupInput, StudentGroupMemberUncheckedCreateWithoutStudentGroupInput> | StudentGroupMemberCreateWithoutStudentGroupInput[] | StudentGroupMemberUncheckedCreateWithoutStudentGroupInput[]
+    connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutStudentGroupInput | StudentGroupMemberCreateOrConnectWithoutStudentGroupInput[]
+    createMany?: StudentGroupMemberCreateManyStudentGroupInputEnvelope
+    connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+  }
+
+  export type StudentGroupMemberUncheckedCreateNestedManyWithoutStudentGroupInput = {
+    create?: XOR<StudentGroupMemberCreateWithoutStudentGroupInput, StudentGroupMemberUncheckedCreateWithoutStudentGroupInput> | StudentGroupMemberCreateWithoutStudentGroupInput[] | StudentGroupMemberUncheckedCreateWithoutStudentGroupInput[]
+    connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutStudentGroupInput | StudentGroupMemberCreateOrConnectWithoutStudentGroupInput[]
+    createMany?: StudentGroupMemberCreateManyStudentGroupInputEnvelope
+    connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+  }
+
+  export type TeacherUpdateOneRequiredWithoutStudentGroupNestedInput = {
+    create?: XOR<TeacherCreateWithoutStudentGroupInput, TeacherUncheckedCreateWithoutStudentGroupInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutStudentGroupInput
+    upsert?: TeacherUpsertWithoutStudentGroupInput
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutStudentGroupInput, TeacherUpdateWithoutStudentGroupInput>, TeacherUncheckedUpdateWithoutStudentGroupInput>
+  }
+
+  export type StudentGroupMemberUpdateManyWithoutStudentGroupNestedInput = {
+    create?: XOR<StudentGroupMemberCreateWithoutStudentGroupInput, StudentGroupMemberUncheckedCreateWithoutStudentGroupInput> | StudentGroupMemberCreateWithoutStudentGroupInput[] | StudentGroupMemberUncheckedCreateWithoutStudentGroupInput[]
+    connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutStudentGroupInput | StudentGroupMemberCreateOrConnectWithoutStudentGroupInput[]
+    upsert?: StudentGroupMemberUpsertWithWhereUniqueWithoutStudentGroupInput | StudentGroupMemberUpsertWithWhereUniqueWithoutStudentGroupInput[]
+    createMany?: StudentGroupMemberCreateManyStudentGroupInputEnvelope
+    set?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    disconnect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    delete?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    update?: StudentGroupMemberUpdateWithWhereUniqueWithoutStudentGroupInput | StudentGroupMemberUpdateWithWhereUniqueWithoutStudentGroupInput[]
+    updateMany?: StudentGroupMemberUpdateManyWithWhereWithoutStudentGroupInput | StudentGroupMemberUpdateManyWithWhereWithoutStudentGroupInput[]
+    deleteMany?: StudentGroupMemberScalarWhereInput | StudentGroupMemberScalarWhereInput[]
+  }
+
+  export type StudentGroupMemberUncheckedUpdateManyWithoutStudentGroupNestedInput = {
+    create?: XOR<StudentGroupMemberCreateWithoutStudentGroupInput, StudentGroupMemberUncheckedCreateWithoutStudentGroupInput> | StudentGroupMemberCreateWithoutStudentGroupInput[] | StudentGroupMemberUncheckedCreateWithoutStudentGroupInput[]
+    connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutStudentGroupInput | StudentGroupMemberCreateOrConnectWithoutStudentGroupInput[]
+    upsert?: StudentGroupMemberUpsertWithWhereUniqueWithoutStudentGroupInput | StudentGroupMemberUpsertWithWhereUniqueWithoutStudentGroupInput[]
+    createMany?: StudentGroupMemberCreateManyStudentGroupInputEnvelope
+    set?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    disconnect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    delete?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    update?: StudentGroupMemberUpdateWithWhereUniqueWithoutStudentGroupInput | StudentGroupMemberUpdateWithWhereUniqueWithoutStudentGroupInput[]
+    updateMany?: StudentGroupMemberUpdateManyWithWhereWithoutStudentGroupInput | StudentGroupMemberUpdateManyWithWhereWithoutStudentGroupInput[]
+    deleteMany?: StudentGroupMemberScalarWhereInput | StudentGroupMemberScalarWhereInput[]
+  }
+
+  export type StudentGroupCreateNestedOneWithoutStudentGroupMemberInput = {
+    create?: XOR<StudentGroupCreateWithoutStudentGroupMemberInput, StudentGroupUncheckedCreateWithoutStudentGroupMemberInput>
+    connectOrCreate?: StudentGroupCreateOrConnectWithoutStudentGroupMemberInput
+    connect?: StudentGroupWhereUniqueInput
+  }
+
+  export type StudentCreateNestedOneWithoutStudentGroupMemberInput = {
+    create?: XOR<StudentCreateWithoutStudentGroupMemberInput, StudentUncheckedCreateWithoutStudentGroupMemberInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutStudentGroupMemberInput
+    connect?: StudentWhereUniqueInput
+  }
+
+  export type StudentGroupUpdateOneRequiredWithoutStudentGroupMemberNestedInput = {
+    create?: XOR<StudentGroupCreateWithoutStudentGroupMemberInput, StudentGroupUncheckedCreateWithoutStudentGroupMemberInput>
+    connectOrCreate?: StudentGroupCreateOrConnectWithoutStudentGroupMemberInput
+    upsert?: StudentGroupUpsertWithoutStudentGroupMemberInput
+    connect?: StudentGroupWhereUniqueInput
+    update?: XOR<XOR<StudentGroupUpdateToOneWithWhereWithoutStudentGroupMemberInput, StudentGroupUpdateWithoutStudentGroupMemberInput>, StudentGroupUncheckedUpdateWithoutStudentGroupMemberInput>
+  }
+
+  export type StudentUpdateOneRequiredWithoutStudentGroupMemberNestedInput = {
+    create?: XOR<StudentCreateWithoutStudentGroupMemberInput, StudentUncheckedCreateWithoutStudentGroupMemberInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutStudentGroupMemberInput
+    upsert?: StudentUpsertWithoutStudentGroupMemberInput
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutStudentGroupMemberInput, StudentUpdateWithoutStudentGroupMemberInput>, StudentUncheckedUpdateWithoutStudentGroupMemberInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -54498,6 +57528,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type StudentGroupCreateWithoutTeacherInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt: Date | string
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentGroupInput
+  }
+
+  export type StudentGroupUncheckedCreateWithoutTeacherInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt: Date | string
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentGroupInput
+  }
+
+  export type StudentGroupCreateOrConnectWithoutTeacherInput = {
+    where: StudentGroupWhereUniqueInput
+    create: XOR<StudentGroupCreateWithoutTeacherInput, StudentGroupUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type StudentGroupCreateManyTeacherInputEnvelope = {
+    data: StudentGroupCreateManyTeacherInput | StudentGroupCreateManyTeacherInput[]
+    skipDuplicates?: boolean
+  }
+
   export type StudentSubmissionRemarkCreateWithoutTeacherInput = {
     remark: string
     createdAt?: Date | string
@@ -54747,6 +57802,33 @@ export namespace Prisma {
     isPublic?: BoolFilter<"Resource"> | boolean
     createdAt?: DateTimeFilter<"Resource"> | Date | string
     updatedAt?: DateTimeFilter<"Resource"> | Date | string
+  }
+
+  export type StudentGroupUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: StudentGroupWhereUniqueInput
+    update: XOR<StudentGroupUpdateWithoutTeacherInput, StudentGroupUncheckedUpdateWithoutTeacherInput>
+    create: XOR<StudentGroupCreateWithoutTeacherInput, StudentGroupUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type StudentGroupUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: StudentGroupWhereUniqueInput
+    data: XOR<StudentGroupUpdateWithoutTeacherInput, StudentGroupUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type StudentGroupUpdateManyWithWhereWithoutTeacherInput = {
+    where: StudentGroupScalarWhereInput
+    data: XOR<StudentGroupUpdateManyMutationInput, StudentGroupUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type StudentGroupScalarWhereInput = {
+    AND?: StudentGroupScalarWhereInput | StudentGroupScalarWhereInput[]
+    OR?: StudentGroupScalarWhereInput[]
+    NOT?: StudentGroupScalarWhereInput | StudentGroupScalarWhereInput[]
+    id?: IntFilter<"StudentGroup"> | number
+    name?: StringFilter<"StudentGroup"> | string
+    teacherId?: IntFilter<"StudentGroup"> | number
+    createdAt?: DateTimeFilter<"StudentGroup"> | Date | string
+    updatedAt?: DateTimeFilter<"StudentGroup"> | Date | string
   }
 
   export type StudentSubmissionRemarkUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -55059,6 +58141,27 @@ export namespace Prisma {
   export type ParentAccountCreateOrConnectWithoutStudentsInput = {
     where: ParentAccountWhereUniqueInput
     create: XOR<ParentAccountCreateWithoutStudentsInput, ParentAccountUncheckedCreateWithoutStudentsInput>
+  }
+
+  export type StudentGroupMemberCreateWithoutStudentInput = {
+    assignedAt?: Date | string
+    StudentGroup: StudentGroupCreateNestedOneWithoutStudentGroupMemberInput
+  }
+
+  export type StudentGroupMemberUncheckedCreateWithoutStudentInput = {
+    id?: number
+    groupId: number
+    assignedAt?: Date | string
+  }
+
+  export type StudentGroupMemberCreateOrConnectWithoutStudentInput = {
+    where: StudentGroupMemberWhereUniqueInput
+    create: XOR<StudentGroupMemberCreateWithoutStudentInput, StudentGroupMemberUncheckedCreateWithoutStudentInput>
+  }
+
+  export type StudentGroupMemberCreateManyStudentInputEnvelope = {
+    data: StudentGroupMemberCreateManyStudentInput | StudentGroupMemberCreateManyStudentInput[]
+    skipDuplicates?: boolean
   }
 
   export type StudentResourceCreateWithoutStudentInput = {
@@ -55400,6 +58503,32 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type StudentGroupMemberUpsertWithWhereUniqueWithoutStudentInput = {
+    where: StudentGroupMemberWhereUniqueInput
+    update: XOR<StudentGroupMemberUpdateWithoutStudentInput, StudentGroupMemberUncheckedUpdateWithoutStudentInput>
+    create: XOR<StudentGroupMemberCreateWithoutStudentInput, StudentGroupMemberUncheckedCreateWithoutStudentInput>
+  }
+
+  export type StudentGroupMemberUpdateWithWhereUniqueWithoutStudentInput = {
+    where: StudentGroupMemberWhereUniqueInput
+    data: XOR<StudentGroupMemberUpdateWithoutStudentInput, StudentGroupMemberUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type StudentGroupMemberUpdateManyWithWhereWithoutStudentInput = {
+    where: StudentGroupMemberScalarWhereInput
+    data: XOR<StudentGroupMemberUpdateManyMutationInput, StudentGroupMemberUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type StudentGroupMemberScalarWhereInput = {
+    AND?: StudentGroupMemberScalarWhereInput | StudentGroupMemberScalarWhereInput[]
+    OR?: StudentGroupMemberScalarWhereInput[]
+    NOT?: StudentGroupMemberScalarWhereInput | StudentGroupMemberScalarWhereInput[]
+    id?: IntFilter<"StudentGroupMember"> | number
+    groupId?: IntFilter<"StudentGroupMember"> | number
+    studentId?: IntFilter<"StudentGroupMember"> | number
+    assignedAt?: DateTimeFilter<"StudentGroupMember"> | Date | string
+  }
+
   export type StudentResourceUpsertWithWhereUniqueWithoutStudentInput = {
     where: StudentResourceWhereUniqueInput
     update: XOR<StudentResourceUpdateWithoutStudentInput, StudentResourceUncheckedUpdateWithoutStudentInput>
@@ -55578,6 +58707,7 @@ export namespace Prisma {
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -55604,6 +58734,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -55628,6 +58759,7 @@ export namespace Prisma {
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
   }
 
@@ -55645,6 +58777,7 @@ export namespace Prisma {
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -55683,6 +58816,7 @@ export namespace Prisma {
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -55709,6 +58843,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -55739,6 +58874,7 @@ export namespace Prisma {
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
   }
 
@@ -55756,6 +58892,7 @@ export namespace Prisma {
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -55777,6 +58914,7 @@ export namespace Prisma {
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -55803,6 +58941,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -55827,6 +58966,7 @@ export namespace Prisma {
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -55844,6 +58984,7 @@ export namespace Prisma {
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -55942,6 +59083,7 @@ export namespace Prisma {
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -55968,6 +59110,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -55998,6 +59141,7 @@ export namespace Prisma {
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -56015,6 +59159,7 @@ export namespace Prisma {
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -56120,6 +59265,7 @@ export namespace Prisma {
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
@@ -56146,6 +59292,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
@@ -56233,6 +59380,7 @@ export namespace Prisma {
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
@@ -56259,6 +59407,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
@@ -56283,6 +59432,7 @@ export namespace Prisma {
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -56309,6 +59459,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -56405,6 +59556,7 @@ export namespace Prisma {
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -56431,6 +59583,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -56487,6 +59640,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -56504,6 +59658,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -56575,6 +59730,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -56592,6 +59748,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -56849,6 +60006,7 @@ export namespace Prisma {
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
@@ -56875,6 +60033,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
@@ -56964,6 +60123,7 @@ export namespace Prisma {
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
@@ -56990,6 +60150,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
@@ -57015,6 +60176,7 @@ export namespace Prisma {
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
@@ -57041,6 +60203,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
@@ -57107,6 +60270,7 @@ export namespace Prisma {
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
@@ -57133,6 +60297,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
@@ -57200,6 +60365,7 @@ export namespace Prisma {
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
@@ -57217,6 +60383,7 @@ export namespace Prisma {
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -57287,6 +60454,7 @@ export namespace Prisma {
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
 
@@ -57304,6 +60472,7 @@ export namespace Prisma {
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -57325,6 +60494,7 @@ export namespace Prisma {
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -57351,6 +60521,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -57375,6 +60546,7 @@ export namespace Prisma {
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -57392,6 +60564,7 @@ export namespace Prisma {
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -57430,6 +60603,7 @@ export namespace Prisma {
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -57456,6 +60630,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -57486,6 +60661,7 @@ export namespace Prisma {
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -57503,6 +60679,7 @@ export namespace Prisma {
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -57549,6 +60726,7 @@ export namespace Prisma {
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -57575,6 +60753,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -57646,6 +60825,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -57672,6 +60852,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -57698,6 +60879,7 @@ export namespace Prisma {
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -57724,6 +60906,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -57765,6 +60948,7 @@ export namespace Prisma {
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -57791,6 +60975,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -57815,6 +61000,7 @@ export namespace Prisma {
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -57841,6 +61027,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -57906,6 +61093,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -57923,6 +61111,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -57955,6 +61144,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -57972,6 +61162,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -57994,6 +61185,7 @@ export namespace Prisma {
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
@@ -58020,6 +61212,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
@@ -58044,6 +61237,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
@@ -58061,6 +61255,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    StudentGroup?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
@@ -58099,6 +61294,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -58125,6 +61321,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -58155,6 +61352,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
@@ -58172,6 +61370,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentGroup?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
@@ -58441,10 +61640,10 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    published?: boolean
-    author?: string | null
-    pdfFilename?: string | null
     createdAt?: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
     Slide?: SlideCreateNestedManyWithoutResearchInput
   }
 
@@ -58453,10 +61652,10 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    published?: boolean
-    author?: string | null
-    pdfFilename?: string | null
     createdAt?: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
     Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
   }
 
@@ -58481,10 +61680,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     Slide?: SlideUpdateManyWithoutResearchNestedInput
   }
 
@@ -58493,10 +61692,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
   }
 
@@ -58532,14 +61731,14 @@ export namespace Prisma {
 
   export type SlideCreateWithoutResearchInput = {
     id?: string
-    imageFilename: string
     order: number
+    imageFilename: string
   }
 
   export type SlideUncheckedCreateWithoutResearchInput = {
     id?: string
-    imageFilename: string
     order: number
+    imageFilename: string
   }
 
   export type SlideCreateOrConnectWithoutResearchInput = {
@@ -58604,8 +61803,8 @@ export namespace Prisma {
     NOT?: SlideScalarWhereInput | SlideScalarWhereInput[]
     id?: StringFilter<"Slide"> | string
     researchId?: StringFilter<"Slide"> | string
-    imageFilename?: StringFilter<"Slide"> | string
     order?: IntFilter<"Slide"> | number
+    imageFilename?: StringFilter<"Slide"> | string
   }
 
   export type ResearchCreateWithoutSlideInput = {
@@ -58613,10 +61812,10 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    published?: boolean
-    author?: string | null
-    pdfFilename?: string | null
     createdAt?: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
     AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
   }
 
@@ -58625,10 +61824,10 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    published?: boolean
-    author?: string | null
-    pdfFilename?: string | null
     createdAt?: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
     AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
   }
 
@@ -58653,10 +61852,10 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
   }
 
@@ -58665,11 +61864,302 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
+  }
+
+  export type TeacherCreateWithoutStudentGroupInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherUncheckedCreateWithoutStudentGroupInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherCreateOrConnectWithoutStudentGroupInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutStudentGroupInput, TeacherUncheckedCreateWithoutStudentGroupInput>
+  }
+
+  export type StudentGroupMemberCreateWithoutStudentGroupInput = {
+    assignedAt?: Date | string
+    Student: StudentCreateNestedOneWithoutStudentGroupMemberInput
+  }
+
+  export type StudentGroupMemberUncheckedCreateWithoutStudentGroupInput = {
+    id?: number
+    studentId: number
+    assignedAt?: Date | string
+  }
+
+  export type StudentGroupMemberCreateOrConnectWithoutStudentGroupInput = {
+    where: StudentGroupMemberWhereUniqueInput
+    create: XOR<StudentGroupMemberCreateWithoutStudentGroupInput, StudentGroupMemberUncheckedCreateWithoutStudentGroupInput>
+  }
+
+  export type StudentGroupMemberCreateManyStudentGroupInputEnvelope = {
+    data: StudentGroupMemberCreateManyStudentGroupInput | StudentGroupMemberCreateManyStudentGroupInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TeacherUpsertWithoutStudentGroupInput = {
+    update: XOR<TeacherUpdateWithoutStudentGroupInput, TeacherUncheckedUpdateWithoutStudentGroupInput>
+    create: XOR<TeacherCreateWithoutStudentGroupInput, TeacherUncheckedCreateWithoutStudentGroupInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutStudentGroupInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutStudentGroupInput, TeacherUncheckedUpdateWithoutStudentGroupInput>
+  }
+
+  export type TeacherUpdateWithoutStudentGroupInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutStudentGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type StudentGroupMemberUpsertWithWhereUniqueWithoutStudentGroupInput = {
+    where: StudentGroupMemberWhereUniqueInput
+    update: XOR<StudentGroupMemberUpdateWithoutStudentGroupInput, StudentGroupMemberUncheckedUpdateWithoutStudentGroupInput>
+    create: XOR<StudentGroupMemberCreateWithoutStudentGroupInput, StudentGroupMemberUncheckedCreateWithoutStudentGroupInput>
+  }
+
+  export type StudentGroupMemberUpdateWithWhereUniqueWithoutStudentGroupInput = {
+    where: StudentGroupMemberWhereUniqueInput
+    data: XOR<StudentGroupMemberUpdateWithoutStudentGroupInput, StudentGroupMemberUncheckedUpdateWithoutStudentGroupInput>
+  }
+
+  export type StudentGroupMemberUpdateManyWithWhereWithoutStudentGroupInput = {
+    where: StudentGroupMemberScalarWhereInput
+    data: XOR<StudentGroupMemberUpdateManyMutationInput, StudentGroupMemberUncheckedUpdateManyWithoutStudentGroupInput>
+  }
+
+  export type StudentGroupCreateWithoutStudentGroupMemberInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Teacher: TeacherCreateNestedOneWithoutStudentGroupInput
+  }
+
+  export type StudentGroupUncheckedCreateWithoutStudentGroupMemberInput = {
+    id?: number
+    name: string
+    teacherId: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type StudentGroupCreateOrConnectWithoutStudentGroupMemberInput = {
+    where: StudentGroupWhereUniqueInput
+    create: XOR<StudentGroupCreateWithoutStudentGroupMemberInput, StudentGroupUncheckedCreateWithoutStudentGroupMemberInput>
+  }
+
+  export type StudentCreateWithoutStudentGroupMemberInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutStudentGroupMemberInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutStudentGroupMemberInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutStudentGroupMemberInput, StudentUncheckedCreateWithoutStudentGroupMemberInput>
+  }
+
+  export type StudentGroupUpsertWithoutStudentGroupMemberInput = {
+    update: XOR<StudentGroupUpdateWithoutStudentGroupMemberInput, StudentGroupUncheckedUpdateWithoutStudentGroupMemberInput>
+    create: XOR<StudentGroupCreateWithoutStudentGroupMemberInput, StudentGroupUncheckedCreateWithoutStudentGroupMemberInput>
+    where?: StudentGroupWhereInput
+  }
+
+  export type StudentGroupUpdateToOneWithWhereWithoutStudentGroupMemberInput = {
+    where?: StudentGroupWhereInput
+    data: XOR<StudentGroupUpdateWithoutStudentGroupMemberInput, StudentGroupUncheckedUpdateWithoutStudentGroupMemberInput>
+  }
+
+  export type StudentGroupUpdateWithoutStudentGroupMemberInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Teacher?: TeacherUpdateOneRequiredWithoutStudentGroupNestedInput
+  }
+
+  export type StudentGroupUncheckedUpdateWithoutStudentGroupMemberInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    teacherId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentUpsertWithoutStudentGroupMemberInput = {
+    update: XOR<StudentUpdateWithoutStudentGroupMemberInput, StudentUncheckedUpdateWithoutStudentGroupMemberInput>
+    create: XOR<StudentCreateWithoutStudentGroupMemberInput, StudentUncheckedCreateWithoutStudentGroupMemberInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutStudentGroupMemberInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutStudentGroupMemberInput, StudentUncheckedUpdateWithoutStudentGroupMemberInput>
+  }
+
+  export type StudentUpdateWithoutStudentGroupMemberInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutStudentGroupMemberInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AssignmentCreateManyTeacherInput = {
@@ -58745,6 +62235,13 @@ export namespace Prisma {
     isPublic?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type StudentGroupCreateManyTeacherInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt: Date | string
   }
 
   export type StudentSubmissionRemarkCreateManyTeacherInput = {
@@ -58991,6 +62488,28 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type StudentGroupUpdateWithoutTeacherInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentGroupNestedInput
+  }
+
+  export type StudentGroupUncheckedUpdateWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentGroupNestedInput
+  }
+
+  export type StudentGroupUncheckedUpdateManyWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StudentSubmissionRemarkUpdateWithoutTeacherInput = {
     remark?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -59122,6 +62641,12 @@ export namespace Prisma {
     status?: string
     strengthsAreas?: string | null
     subject?: string | null
+  }
+
+  export type StudentGroupMemberCreateManyStudentInput = {
+    id?: number
+    groupId: number
+    assignedAt?: Date | string
   }
 
   export type StudentResourceCreateManyStudentInput = {
@@ -59463,6 +62988,23 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type StudentGroupMemberUpdateWithoutStudentInput = {
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    StudentGroup?: StudentGroupUpdateOneRequiredWithoutStudentGroupMemberNestedInput
+  }
+
+  export type StudentGroupMemberUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    groupId?: IntFieldUpdateOperationsInput | number
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentGroupMemberUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    groupId?: IntFieldUpdateOperationsInput | number
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StudentResourceUpdateWithoutStudentInput = {
@@ -59960,6 +63502,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
@@ -59986,6 +63529,7 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -60128,8 +63672,8 @@ export namespace Prisma {
 
   export type SlideCreateManyResearchInput = {
     id?: string
-    imageFilename: string
     order: number
+    imageFilename: string
   }
 
   export type AccessRequestUpdateWithoutResearchInput = {
@@ -60164,20 +63708,43 @@ export namespace Prisma {
 
   export type SlideUpdateWithoutResearchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
+    imageFilename?: StringFieldUpdateOperationsInput | string
   }
 
   export type SlideUncheckedUpdateWithoutResearchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
+    imageFilename?: StringFieldUpdateOperationsInput | string
   }
 
   export type SlideUncheckedUpdateManyWithoutResearchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
+    imageFilename?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StudentGroupMemberCreateManyStudentGroupInput = {
+    id?: number
+    studentId: number
+    assignedAt?: Date | string
+  }
+
+  export type StudentGroupMemberUpdateWithoutStudentGroupInput = {
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Student?: StudentUpdateOneRequiredWithoutStudentGroupMemberNestedInput
+  }
+
+  export type StudentGroupMemberUncheckedUpdateWithoutStudentGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentGroupMemberUncheckedUpdateManyWithoutStudentGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
