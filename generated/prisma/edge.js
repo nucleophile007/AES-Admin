@@ -671,7 +671,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\AES-Admin\\generated\\prisma",
+      "value": "/Users/mac/AES-Admin/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -680,12 +680,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\AES-Admin\\prisma\\schema.prisma",
+    "sourceFilePath": "/Users/mac/AES-Admin/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
