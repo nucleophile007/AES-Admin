@@ -5,8 +5,14 @@ import { allowedEmails } from "./src/lib/adminConfig"
 export default auth((req: any) => {
   const { pathname } = req.nextUrl
 
-  // Allow access to auth and unauthorized pages without authentication
-  if (pathname.startsWith('/auth') || pathname.startsWith('/unauthorized') || pathname.startsWith('/api/auth')) {
+  // Allow access to auth, unauthorized, API auth, and QStash job endpoints without authentication
+  if (
+    pathname.startsWith('/auth') || 
+    pathname.startsWith('/unauthorized') || 
+    pathname.startsWith('/api/auth') ||
+    pathname.startsWith('/api/jobs/') ||
+    pathname.startsWith('/api/webhooks/')
+  ) {
     return NextResponse.next()
   }
 
