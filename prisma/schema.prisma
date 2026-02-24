@@ -613,16 +613,16 @@ model Research {
   description   String?
   published   Boolean   @default(true)
   author      String?
-  pdfPath       String?
+  pdfFilename   String?         // ✅ Changed from pdfPath
   createdAt     DateTime        @default(now())
   AccessRequest AccessRequest[]
   Slide         Slide[]
 }
 
 model Slide {
-  id         String   @id @default(cuid())
-  researchId String
-  imagePath  String
-  order      Int
-  Research   Research @relation(fields: [researchId], references: [id])
+  id            String   @id @default(cuid())
+  researchId    String
+  imageFilename String   // ✅ Changed from imagePath
+  order         Int
+  Research      Research @relation(fields: [researchId], references: [id])
 }

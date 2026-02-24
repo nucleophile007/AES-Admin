@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
         slug,
         description,
         author,
-        pdfPath: null,
+        pdfFilename: null,
       },
     })
 

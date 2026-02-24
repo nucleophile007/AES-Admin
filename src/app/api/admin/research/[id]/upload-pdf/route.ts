@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import prisma from "@/lib/prisma"
 import { checkAdminAuth } from "@/lib/adminAuth"
 import { supabaseServer } from "@/lib/supabase-server"
+import { PDFDocument, rgb, degrees } from "pdf-lib"
 
 export async function POST(
   req: NextRequest,
@@ -33,11 +34,35 @@ export async function POST(
       )
     }
 
-    const filePath = `${researchId}/${Date.now()}-${file.name}`
+    // Read PDF and add watermark to each page
+    const fileBuffer = Buffer.from(await file.arrayBuffer())
+    const pdfDoc = await PDFDocument.load(fileBuffer)
+    const pages = pdfDoc.getPages()
+
+    // Add watermark to each page
+    for (const page of pages) {
+      const { width, height } = page.getSize()
+      
+      // Draw watermark text diagonally across the page
+      page.drawText("© Acharyaes.com", {
+        x: width / 2 - 150,
+        y: height / 2,
+        size: 60,
+        color: rgb(0.5, 0.5, 0.5),
+        opacity: 0.3,
+        rotate: degrees(45),
+      })
+    }
+
+    // Save watermarked PDF
+    const watermarkedPdfBytes = await pdfDoc.save()
+
+    const fileName = `${Date.now()}-${file.name}`
+    const storagePath = `${researchId}/${fileName}`
 
     const { error } = await supabaseServer.storage
       .from("research-pdf")
-      .upload(filePath, file, {
+      .upload(storagePath, watermarkedPdfBytes, {
         contentType: "application/pdf",
         upsert: true,
       })
@@ -50,16 +75,16 @@ export async function POST(
       )
     }
 
-    // Save PDF path in DB
+    // Save only filename in DB (not full path)
     await prisma.research.update({
       where: { id: researchId },
-      data: { pdfPath: filePath },
+      data: { pdfFilename: fileName },
     })
 
     return NextResponse.json({
       success: true,
       message: "PDF uploaded successfully",
-      pdfPath: filePath,
+      pdfFilename: fileName,
     })
   } catch (err) {
     console.error("Upload PDF error:", err)

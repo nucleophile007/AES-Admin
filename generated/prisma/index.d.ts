@@ -40359,7 +40359,7 @@ export namespace Prisma {
     description: string | null
     published: boolean | null
     author: string | null
-    pdfPath: string | null
+    pdfFilename: string | null
     createdAt: Date | null
   }
 
@@ -40370,7 +40370,7 @@ export namespace Prisma {
     description: string | null
     published: boolean | null
     author: string | null
-    pdfPath: string | null
+    pdfFilename: string | null
     createdAt: Date | null
   }
 
@@ -40381,7 +40381,7 @@ export namespace Prisma {
     description: number
     published: number
     author: number
-    pdfPath: number
+    pdfFilename: number
     createdAt: number
     _all: number
   }
@@ -40394,7 +40394,7 @@ export namespace Prisma {
     description?: true
     published?: true
     author?: true
-    pdfPath?: true
+    pdfFilename?: true
     createdAt?: true
   }
 
@@ -40405,7 +40405,7 @@ export namespace Prisma {
     description?: true
     published?: true
     author?: true
-    pdfPath?: true
+    pdfFilename?: true
     createdAt?: true
   }
 
@@ -40416,7 +40416,7 @@ export namespace Prisma {
     description?: true
     published?: true
     author?: true
-    pdfPath?: true
+    pdfFilename?: true
     createdAt?: true
     _all?: true
   }
@@ -40500,7 +40500,7 @@ export namespace Prisma {
     description: string | null
     published: boolean
     author: string | null
-    pdfPath: string | null
+    pdfFilename: string | null
     createdAt: Date
     _count: ResearchCountAggregateOutputType | null
     _min: ResearchMinAggregateOutputType | null
@@ -40528,7 +40528,7 @@ export namespace Prisma {
     description?: boolean
     published?: boolean
     author?: boolean
-    pdfPath?: boolean
+    pdfFilename?: boolean
     createdAt?: boolean
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
     Slide?: boolean | Research$SlideArgs<ExtArgs>
@@ -40542,7 +40542,7 @@ export namespace Prisma {
     description?: boolean
     published?: boolean
     author?: boolean
-    pdfPath?: boolean
+    pdfFilename?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["research"]>
 
@@ -40553,7 +40553,7 @@ export namespace Prisma {
     description?: boolean
     published?: boolean
     author?: boolean
-    pdfPath?: boolean
+    pdfFilename?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["research"]>
 
@@ -40564,11 +40564,11 @@ export namespace Prisma {
     description?: boolean
     published?: boolean
     author?: boolean
-    pdfPath?: boolean
+    pdfFilename?: boolean
     createdAt?: boolean
   }
 
-  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "published" | "author" | "pdfPath" | "createdAt", ExtArgs["result"]["research"]>
+  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "published" | "author" | "pdfFilename" | "createdAt", ExtArgs["result"]["research"]>
   export type ResearchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
     Slide?: boolean | Research$SlideArgs<ExtArgs>
@@ -40590,7 +40590,7 @@ export namespace Prisma {
       description: string | null
       published: boolean
       author: string | null
-      pdfPath: string | null
+      pdfFilename: string | null
       createdAt: Date
     }, ExtArgs["result"]["research"]>
     composites: {}
@@ -41023,7 +41023,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Research", 'String'>
     readonly published: FieldRef<"Research", 'Boolean'>
     readonly author: FieldRef<"Research", 'String'>
-    readonly pdfPath: FieldRef<"Research", 'String'>
+    readonly pdfFilename: FieldRef<"Research", 'String'>
     readonly createdAt: FieldRef<"Research", 'DateTime'>
   }
     
@@ -41502,21 +41502,21 @@ export namespace Prisma {
   export type SlideMinAggregateOutputType = {
     id: string | null
     researchId: string | null
-    imagePath: string | null
+    imageFilename: string | null
     order: number | null
   }
 
   export type SlideMaxAggregateOutputType = {
     id: string | null
     researchId: string | null
-    imagePath: string | null
+    imageFilename: string | null
     order: number | null
   }
 
   export type SlideCountAggregateOutputType = {
     id: number
     researchId: number
-    imagePath: number
+    imageFilename: number
     order: number
     _all: number
   }
@@ -41533,21 +41533,21 @@ export namespace Prisma {
   export type SlideMinAggregateInputType = {
     id?: true
     researchId?: true
-    imagePath?: true
+    imageFilename?: true
     order?: true
   }
 
   export type SlideMaxAggregateInputType = {
     id?: true
     researchId?: true
-    imagePath?: true
+    imageFilename?: true
     order?: true
   }
 
   export type SlideCountAggregateInputType = {
     id?: true
     researchId?: true
-    imagePath?: true
+    imageFilename?: true
     order?: true
     _all?: true
   }
@@ -41641,7 +41641,7 @@ export namespace Prisma {
   export type SlideGroupByOutputType = {
     id: string
     researchId: string
-    imagePath: string
+    imageFilename: string
     order: number
     _count: SlideCountAggregateOutputType | null
     _avg: SlideAvgAggregateOutputType | null
@@ -41667,7 +41667,7 @@ export namespace Prisma {
   export type SlideSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     researchId?: boolean
-    imagePath?: boolean
+    imageFilename?: boolean
     order?: boolean
     Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["slide"]>
@@ -41675,7 +41675,7 @@ export namespace Prisma {
   export type SlideSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     researchId?: boolean
-    imagePath?: boolean
+    imageFilename?: boolean
     order?: boolean
     Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["slide"]>
@@ -41683,7 +41683,7 @@ export namespace Prisma {
   export type SlideSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     researchId?: boolean
-    imagePath?: boolean
+    imageFilename?: boolean
     order?: boolean
     Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["slide"]>
@@ -41691,11 +41691,11 @@ export namespace Prisma {
   export type SlideSelectScalar = {
     id?: boolean
     researchId?: boolean
-    imagePath?: boolean
+    imageFilename?: boolean
     order?: boolean
   }
 
-  export type SlideOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "researchId" | "imagePath" | "order", ExtArgs["result"]["slide"]>
+  export type SlideOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "researchId" | "imageFilename" | "order", ExtArgs["result"]["slide"]>
   export type SlideInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }
@@ -41714,7 +41714,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       researchId: string
-      imagePath: string
+      imageFilename: string
       order: number
     }, ExtArgs["result"]["slide"]>
     composites: {}
@@ -42142,7 +42142,7 @@ export namespace Prisma {
   interface SlideFieldRefs {
     readonly id: FieldRef<"Slide", 'String'>
     readonly researchId: FieldRef<"Slide", 'String'>
-    readonly imagePath: FieldRef<"Slide", 'String'>
+    readonly imageFilename: FieldRef<"Slide", 'String'>
     readonly order: FieldRef<"Slide", 'Int'>
   }
     
@@ -43154,7 +43154,7 @@ export namespace Prisma {
     description: 'description',
     published: 'published',
     author: 'author',
-    pdfPath: 'pdfPath',
+    pdfFilename: 'pdfFilename',
     createdAt: 'createdAt'
   };
 
@@ -43164,7 +43164,7 @@ export namespace Prisma {
   export const SlideScalarFieldEnum: {
     id: 'id',
     researchId: 'researchId',
-    imagePath: 'imagePath',
+    imageFilename: 'imageFilename',
     order: 'order'
   };
 
@@ -46319,7 +46319,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Research"> | string | null
     published?: BoolFilter<"Research"> | boolean
     author?: StringNullableFilter<"Research"> | string | null
-    pdfPath?: StringNullableFilter<"Research"> | string | null
+    pdfFilename?: StringNullableFilter<"Research"> | string | null
     createdAt?: DateTimeFilter<"Research"> | Date | string
     AccessRequest?: AccessRequestListRelationFilter
     Slide?: SlideListRelationFilter
@@ -46332,7 +46332,7 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     published?: SortOrder
     author?: SortOrderInput | SortOrder
-    pdfPath?: SortOrderInput | SortOrder
+    pdfFilename?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     AccessRequest?: AccessRequestOrderByRelationAggregateInput
     Slide?: SlideOrderByRelationAggregateInput
@@ -46348,7 +46348,7 @@ export namespace Prisma {
     description?: StringNullableFilter<"Research"> | string | null
     published?: BoolFilter<"Research"> | boolean
     author?: StringNullableFilter<"Research"> | string | null
-    pdfPath?: StringNullableFilter<"Research"> | string | null
+    pdfFilename?: StringNullableFilter<"Research"> | string | null
     createdAt?: DateTimeFilter<"Research"> | Date | string
     AccessRequest?: AccessRequestListRelationFilter
     Slide?: SlideListRelationFilter
@@ -46361,7 +46361,7 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     published?: SortOrder
     author?: SortOrderInput | SortOrder
-    pdfPath?: SortOrderInput | SortOrder
+    pdfFilename?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: ResearchCountOrderByAggregateInput
     _max?: ResearchMaxOrderByAggregateInput
@@ -46378,7 +46378,7 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Research"> | string | null
     published?: BoolWithAggregatesFilter<"Research"> | boolean
     author?: StringNullableWithAggregatesFilter<"Research"> | string | null
-    pdfPath?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    pdfFilename?: StringNullableWithAggregatesFilter<"Research"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Research"> | Date | string
   }
 
@@ -46388,7 +46388,7 @@ export namespace Prisma {
     NOT?: SlideWhereInput | SlideWhereInput[]
     id?: StringFilter<"Slide"> | string
     researchId?: StringFilter<"Slide"> | string
-    imagePath?: StringFilter<"Slide"> | string
+    imageFilename?: StringFilter<"Slide"> | string
     order?: IntFilter<"Slide"> | number
     Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
   }
@@ -46396,7 +46396,7 @@ export namespace Prisma {
   export type SlideOrderByWithRelationInput = {
     id?: SortOrder
     researchId?: SortOrder
-    imagePath?: SortOrder
+    imageFilename?: SortOrder
     order?: SortOrder
     Research?: ResearchOrderByWithRelationInput
   }
@@ -46407,7 +46407,7 @@ export namespace Prisma {
     OR?: SlideWhereInput[]
     NOT?: SlideWhereInput | SlideWhereInput[]
     researchId?: StringFilter<"Slide"> | string
-    imagePath?: StringFilter<"Slide"> | string
+    imageFilename?: StringFilter<"Slide"> | string
     order?: IntFilter<"Slide"> | number
     Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
   }, "id">
@@ -46415,7 +46415,7 @@ export namespace Prisma {
   export type SlideOrderByWithAggregationInput = {
     id?: SortOrder
     researchId?: SortOrder
-    imagePath?: SortOrder
+    imageFilename?: SortOrder
     order?: SortOrder
     _count?: SlideCountOrderByAggregateInput
     _avg?: SlideAvgOrderByAggregateInput
@@ -46430,7 +46430,7 @@ export namespace Prisma {
     NOT?: SlideScalarWhereWithAggregatesInput | SlideScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Slide"> | string
     researchId?: StringWithAggregatesFilter<"Slide"> | string
-    imagePath?: StringWithAggregatesFilter<"Slide"> | string
+    imageFilename?: StringWithAggregatesFilter<"Slide"> | string
     order?: IntWithAggregatesFilter<"Slide"> | number
   }
 
@@ -49826,7 +49826,7 @@ export namespace Prisma {
     description?: string | null
     published?: boolean
     author?: string | null
-    pdfPath?: string | null
+    pdfFilename?: string | null
     createdAt?: Date | string
     AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
     Slide?: SlideCreateNestedManyWithoutResearchInput
@@ -49839,7 +49839,7 @@ export namespace Prisma {
     description?: string | null
     published?: boolean
     author?: string | null
-    pdfPath?: string | null
+    pdfFilename?: string | null
     createdAt?: Date | string
     AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
     Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
@@ -49852,7 +49852,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
     Slide?: SlideUpdateManyWithoutResearchNestedInput
@@ -49865,7 +49865,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
     Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
@@ -49878,7 +49878,7 @@ export namespace Prisma {
     description?: string | null
     published?: boolean
     author?: string | null
-    pdfPath?: string | null
+    pdfFilename?: string | null
     createdAt?: Date | string
   }
 
@@ -49889,7 +49889,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -49900,13 +49900,13 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SlideCreateInput = {
     id?: string
-    imagePath: string
+    imageFilename: string
     order: number
     Research: ResearchCreateNestedOneWithoutSlideInput
   }
@@ -49914,13 +49914,13 @@ export namespace Prisma {
   export type SlideUncheckedCreateInput = {
     id?: string
     researchId: string
-    imagePath: string
+    imageFilename: string
     order: number
   }
 
   export type SlideUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    imagePath?: StringFieldUpdateOperationsInput | string
+    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     Research?: ResearchUpdateOneRequiredWithoutSlideNestedInput
   }
@@ -49928,27 +49928,27 @@ export namespace Prisma {
   export type SlideUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     researchId?: StringFieldUpdateOperationsInput | string
-    imagePath?: StringFieldUpdateOperationsInput | string
+    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
   }
 
   export type SlideCreateManyInput = {
     id?: string
     researchId: string
-    imagePath: string
+    imageFilename: string
     order: number
   }
 
   export type SlideUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    imagePath?: StringFieldUpdateOperationsInput | string
+    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
   }
 
   export type SlideUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     researchId?: StringFieldUpdateOperationsInput | string
-    imagePath?: StringFieldUpdateOperationsInput | string
+    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
   }
 
@@ -52327,7 +52327,7 @@ export namespace Prisma {
     description?: SortOrder
     published?: SortOrder
     author?: SortOrder
-    pdfPath?: SortOrder
+    pdfFilename?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -52338,7 +52338,7 @@ export namespace Prisma {
     description?: SortOrder
     published?: SortOrder
     author?: SortOrder
-    pdfPath?: SortOrder
+    pdfFilename?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -52349,14 +52349,14 @@ export namespace Prisma {
     description?: SortOrder
     published?: SortOrder
     author?: SortOrder
-    pdfPath?: SortOrder
+    pdfFilename?: SortOrder
     createdAt?: SortOrder
   }
 
   export type SlideCountOrderByAggregateInput = {
     id?: SortOrder
     researchId?: SortOrder
-    imagePath?: SortOrder
+    imageFilename?: SortOrder
     order?: SortOrder
   }
 
@@ -52367,14 +52367,14 @@ export namespace Prisma {
   export type SlideMaxOrderByAggregateInput = {
     id?: SortOrder
     researchId?: SortOrder
-    imagePath?: SortOrder
+    imageFilename?: SortOrder
     order?: SortOrder
   }
 
   export type SlideMinOrderByAggregateInput = {
     id?: SortOrder
     researchId?: SortOrder
-    imagePath?: SortOrder
+    imageFilename?: SortOrder
     order?: SortOrder
   }
 
@@ -58443,7 +58443,7 @@ export namespace Prisma {
     description?: string | null
     published?: boolean
     author?: string | null
-    pdfPath?: string | null
+    pdfFilename?: string | null
     createdAt?: Date | string
     Slide?: SlideCreateNestedManyWithoutResearchInput
   }
@@ -58455,7 +58455,7 @@ export namespace Prisma {
     description?: string | null
     published?: boolean
     author?: string | null
-    pdfPath?: string | null
+    pdfFilename?: string | null
     createdAt?: Date | string
     Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
   }
@@ -58483,7 +58483,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Slide?: SlideUpdateManyWithoutResearchNestedInput
   }
@@ -58495,7 +58495,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
   }
@@ -58532,13 +58532,13 @@ export namespace Prisma {
 
   export type SlideCreateWithoutResearchInput = {
     id?: string
-    imagePath: string
+    imageFilename: string
     order: number
   }
 
   export type SlideUncheckedCreateWithoutResearchInput = {
     id?: string
-    imagePath: string
+    imageFilename: string
     order: number
   }
 
@@ -58604,7 +58604,7 @@ export namespace Prisma {
     NOT?: SlideScalarWhereInput | SlideScalarWhereInput[]
     id?: StringFilter<"Slide"> | string
     researchId?: StringFilter<"Slide"> | string
-    imagePath?: StringFilter<"Slide"> | string
+    imageFilename?: StringFilter<"Slide"> | string
     order?: IntFilter<"Slide"> | number
   }
 
@@ -58615,7 +58615,7 @@ export namespace Prisma {
     description?: string | null
     published?: boolean
     author?: string | null
-    pdfPath?: string | null
+    pdfFilename?: string | null
     createdAt?: Date | string
     AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
   }
@@ -58627,7 +58627,7 @@ export namespace Prisma {
     description?: string | null
     published?: boolean
     author?: string | null
-    pdfPath?: string | null
+    pdfFilename?: string | null
     createdAt?: Date | string
     AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
   }
@@ -58655,7 +58655,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
   }
@@ -58667,7 +58667,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    pdfPath?: NullableStringFieldUpdateOperationsInput | string | null
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
   }
@@ -60128,7 +60128,7 @@ export namespace Prisma {
 
   export type SlideCreateManyResearchInput = {
     id?: string
-    imagePath: string
+    imageFilename: string
     order: number
   }
 
@@ -60164,19 +60164,19 @@ export namespace Prisma {
 
   export type SlideUpdateWithoutResearchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    imagePath?: StringFieldUpdateOperationsInput | string
+    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
   }
 
   export type SlideUncheckedUpdateWithoutResearchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    imagePath?: StringFieldUpdateOperationsInput | string
+    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
   }
 
   export type SlideUncheckedUpdateManyWithoutResearchInput = {
     id?: StringFieldUpdateOperationsInput | string
-    imagePath?: StringFieldUpdateOperationsInput | string
+    imageFilename?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
   }
 
