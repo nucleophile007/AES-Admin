@@ -330,7 +330,7 @@ export default function MentorsPage() {
               placeholder="Search mentors..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 transition-all"
             />
           </div>
         </div>
@@ -467,7 +467,7 @@ export default function MentorsPage() {
                             }
                           }
                         }}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 bg-white transition-all"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 bg-white transition-all text-gray-900"
                       >
                         <option value="">Select a teacher (optional)</option>
                         {teachers.map(teacher => (
@@ -492,7 +492,7 @@ export default function MentorsPage() {
                             required
                             value={formData.name}
                             onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all"
+                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all text-gray-900"
                             placeholder="Dr. John Doe"
                           />
                         </div>
@@ -506,7 +506,7 @@ export default function MentorsPage() {
                             required
                             value={formData.role}
                             onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value }))}
-                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all"
+                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all text-gray-900"
                             placeholder="Founder/CEO/Research Program Director"
                           />
                         </div>
@@ -521,7 +521,7 @@ export default function MentorsPage() {
                           required
                           value={formData.workplace}
                           onChange={(e) => setFormData(prev => ({ ...prev, workplace: e.target.value }))}
-                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all"
+                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all text-gray-900"
                           placeholder="ACHARYA Educational Services"
                         />
                       </div>
@@ -536,7 +536,7 @@ export default function MentorsPage() {
                             required
                             value={formData.education}
                             onChange={(e) => setFormData(prev => ({ ...prev, education: e.target.value }))}
-                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all"
+                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all text-gray-900"
                             placeholder="Ph.D. in Computer Science"
                           />
                         </div>
@@ -550,7 +550,7 @@ export default function MentorsPage() {
                             required
                             value={formData.institution}
                             onChange={(e) => setFormData(prev => ({ ...prev, institution: e.target.value }))}
-                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all"
+                            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all text-gray-900"
                             placeholder="Indian Institute of Technology"
                           />
                         </div>
@@ -562,7 +562,7 @@ export default function MentorsPage() {
                           type="text"
                           value={formData.experience}
                           onChange={(e) => setFormData(prev => ({ ...prev, experience: e.target.value }))}
-                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all"
+                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all text-gray-900"
                           placeholder="Research, Leadership & Educational Innovation"
                         />
                       </div>
@@ -575,11 +575,12 @@ export default function MentorsPage() {
                           required
                           value={formData.department}
                           onChange={(e) => setFormData(prev => ({ ...prev, department: e.target.value }))}
-                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all bg-white"
+                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all bg-white text-gray-900"
                         >
                           <option value="engg-ai">Engineering & AI</option>
                           <option value="premed-bio-chem">Pre-Med / Bio / Chem</option>
                           <option value="law-humanities">Law & Humanities</option>
+                          <option value="tech-creative-writing">Tech & Creative Writing</option>
                           <option value="associate">Associate</option>
                         </select>
                       </div>
@@ -595,7 +596,7 @@ export default function MentorsPage() {
                               type="text"
                               value={specialty}
                               onChange={(e) => updateArrayField('specialties', index, e.target.value)}
-                              className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 bg-white transition-all"
+                              className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 bg-white transition-all text-gray-900"
                               placeholder="e.g., Mechanical Engineering, AI Research"
                             />
                             {formData.specialties.length > 1 && (
@@ -630,7 +631,7 @@ export default function MentorsPage() {
                               type="text"
                               value={achievement}
                               onChange={(e) => updateArrayField('achievements', index, e.target.value)}
-                              className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 bg-white transition-all"
+                              className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 bg-white transition-all text-gray-900"
                               placeholder="e.g., Founder & CEO, Published 50+ Papers"
                             />
                             {formData.achievements.length > 1 && (
@@ -665,7 +666,7 @@ export default function MentorsPage() {
                         rows={6}
                         value={formData.bio}
                         onChange={(e) => setFormData(prev => ({ ...prev, bio: e.target.value }))}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all resize-none"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition-all resize-none text-gray-900"
                         placeholder="Write a comprehensive biography describing the mentor's background, expertise, achievements, and passion for education..."
                       />
                       <p className="text-xs text-gray-500">
