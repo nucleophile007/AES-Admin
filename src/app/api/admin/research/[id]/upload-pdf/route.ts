@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma"
 import { checkAdminAuth } from "@/lib/adminAuth"
 import { supabaseServer } from "@/lib/supabase-server"
 import { PDFDocument, rgb, degrees } from "pdf-lib"
+import { analyzePDF } from "@/lib/pdfParser"
 
 export async function POST(
   req: NextRequest,
@@ -34,8 +35,51 @@ export async function POST(
       )
     }
 
-    // Read PDF and add watermark to each page
+    // Get research details for extraction
+    const research = await prisma.research.findUnique({
+      where: { id: researchId },
+      select: { title: true },
+    })
+
+    if (!research) {
+      return NextResponse.json(
+        { error: "Research not found" },
+        { status: 404 }
+      )
+    }
+
+    // Read PDF buffer (use original for extraction, watermarked for storage)
     const fileBuffer = Buffer.from(await file.arrayBuffer())
+    
+    // Set extraction status to pending
+    await prisma.research.update({
+      where: { id: researchId },
+      data: { extractionStatus: 'pending' },
+    })
+
+    // Step 1: Extract content from original PDF (before watermarking)
+    let extractedContent = null
+    let abstract = null
+    let keywords: string[] = []
+    let extractionStatus = 'pending'
+
+    try {
+      console.log(`Starting PDF content extraction for research: ${research.title}`)
+      const content = await analyzePDF(fileBuffer, research.title)
+      
+      extractedContent = content
+      abstract = content.abstract
+      keywords = content.keywords
+      extractionStatus = 'completed'
+      
+      console.log(`✓ Content extraction completed successfully`)
+    } catch (extractionError) {
+      console.error('Content extraction failed:', extractionError)
+      extractionStatus = 'failed'
+      // Continue with upload even if extraction fails
+    }
+
+    // Step 2: Add watermark to PDF
     const pdfDoc = await PDFDocument.load(fileBuffer)
     const pages = pdfDoc.getPages()
 
@@ -60,6 +104,7 @@ export async function POST(
     const fileName = `${Date.now()}-${file.name}`
     const storagePath = `${researchId}/${fileName}`
 
+    // Step 3: Upload to Supabase
     const { error } = await supabaseServer.storage
       .from("research-pdf")
       .upload(storagePath, watermarkedPdfBytes, {
@@ -75,16 +120,29 @@ export async function POST(
       )
     }
 
-    // Save only filename in DB (not full path)
+    // Step 4: Update database with PDF filename and extracted content
     await prisma.research.update({
       where: { id: researchId },
-      data: { pdfFilename: fileName },
+      data: {
+        pdfFilename: fileName,
+        extractedContent: extractedContent as any, // Prisma Json type
+        abstract,
+        keywords,
+        extractedAt: extractionStatus === 'completed' ? new Date() : null,
+        extractionStatus,
+      },
     })
 
     return NextResponse.json({
       success: true,
       message: "PDF uploaded successfully",
       pdfFilename: fileName,
+      extraction: {
+        status: extractionStatus,
+        sectionsCount: extractedContent?.sections?.length || 0,
+        keywordsCount: keywords.length,
+        hasAbstract: !!abstract,
+      },
     })
   } catch (err) {
     console.error("Upload PDF error:", err)

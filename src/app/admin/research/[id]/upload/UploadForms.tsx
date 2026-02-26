@@ -2,21 +2,30 @@
 
 import { useState } from "react"
 import { toast } from "sonner"
-import { Upload, FileText, Images } from "lucide-react"
+import { Upload, FileText, Images, CheckCircle, XCircle, Loader2, RefreshCw } from "lucide-react"
 
 interface UploadFormsProps {
   researchId: string
   slidesCount: number
   pdfFilename: string | null
+  extractionStatus?: string | null
+  extractedAt?: Date | null
+  sectionsCount?: number
 }
 
 export default function UploadForms({
   researchId,
   slidesCount,
   pdfFilename,
+  extractionStatus,
+  extractedAt,
+  sectionsCount = 0,
 }: UploadFormsProps) {
   const [isUploadingSlides, setIsUploadingSlides] = useState(false)
   const [isUploadingPdf, setIsUploadingPdf] = useState(false)
+  const [isReExtracting, setIsReExtracting] = useState(false)
+  const [localExtractionStatus, setLocalExtractionStatus] = useState(extractionStatus)
+  const [localSectionsCount, setLocalSectionsCount] = useState(sectionsCount)
 
   const handleSlidesUpload = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -69,6 +78,8 @@ export default function UploadForms({
         return
       }
 
+      toast.loading("Uploading PDF and extracting content...", { id: "pdf-upload" })
+
       const response = await fetch(
         `/api/admin/research/${researchId}/upload-pdf`,
         {
@@ -80,17 +91,77 @@ export default function UploadForms({
       const result = await response.json()
 
       if (response.ok) {
-        toast.success("PDF uploaded successfully with watermark! 🎉")
-        // Reload page to show updated filename
-        setTimeout(() => window.location.reload(), 1000)
+        // Update local state
+        setLocalExtractionStatus(result.extraction?.status || 'completed')
+        setLocalSectionsCount(result.extraction?.sectionsCount || 0)
+
+        if (result.extraction?.status === 'completed') {
+          toast.success(
+            `PDF uploaded successfully! Extracted ${result.extraction.sectionsCount} sections.`,
+            { id: "pdf-upload" }
+          )
+        } else if (result.extraction?.status === 'failed') {
+          toast.warning(
+            "PDF uploaded but content extraction failed. You can retry extraction below.",
+            { id: "pdf-upload" }
+          )
+        }
+        
+        // Reload page to show updated data
+        setTimeout(() => window.location.reload(), 2000)
       } else {
-        toast.error(result.error || "Failed to upload PDF")
+        toast.error(result.error || "Failed to upload PDF", { id: "pdf-upload" })
       }
     } catch (error) {
       console.error("Upload error:", error)
-      toast.error("Upload failed. Please try again.")
+      toast.error("Upload failed. Please try again.", { id: "pdf-upload" })
     } finally {
       setIsUploadingPdf(false)
+    }
+  }
+
+  const handleReExtract = async () => {
+    if (!pdfFilename) {
+      toast.error("No PDF uploaded yet")
+      return
+    }
+
+    setIsReExtracting(true)
+    setLocalExtractionStatus('pending')
+
+    try {
+      toast.loading("Re-extracting content from PDF...", { id: "re-extract" })
+
+      const response = await fetch(
+        `/api/admin/research/${researchId}/re-extract`,
+        {
+          method: "POST",
+        }
+      )
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setLocalExtractionStatus('completed')
+        setLocalSectionsCount(result.extraction?.sectionsCount || 0)
+        
+        toast.success(
+          `Content extracted successfully! Found ${result.extraction.sectionsCount} sections.`,
+          { id: "re-extract" }
+        )
+        
+        // Reload to show updated data
+        setTimeout(() => window.location.reload(), 2000)
+      } else {
+        setLocalExtractionStatus('failed')
+        toast.error(result.error || "Re-extraction failed", { id: "re-extract" })
+      }
+    } catch (error) {
+      console.error("Re-extraction error:", error)
+      setLocalExtractionStatus('failed')
+      toast.error("Re-extraction failed. Please try again.", { id: "re-extract" })
+    } finally {
+      setIsReExtracting(false)
     }
   }
 
@@ -150,7 +221,7 @@ export default function UploadForms({
         </div>
 
         <p className="text-sm text-gray-600 mb-4">
-          Optional secure technical document (PDF).
+          Upload research PDF with automatic content extraction.
         </p>
 
         <form onSubmit={handlePdfUpload}>
@@ -165,16 +236,87 @@ export default function UploadForms({
           <button
             type="submit"
             disabled={isUploadingPdf}
-            className="w-full px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
           >
-            {isUploadingPdf ? "Uploading..." : "Upload PDF"}
+            {isUploadingPdf ? "Uploading & Extracting..." : "Upload PDF"}
           </button>
         </form>
 
         {pdfFilename && (
-          <p className="text-xs text-green-600 mt-3">
-            ✔ PDF already uploaded: {pdfFilename}
-          </p>
+          <div className="mt-4 space-y-3">
+            <div className="flex items-start gap-2 text-xs text-green-600 bg-green-50 p-3 rounded-lg">
+              <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+              <div>
+                <div className="font-medium">PDF Uploaded</div>
+                <div className="text-green-700 mt-1">{pdfFilename}</div>
+              </div>
+            </div>
+
+            {/* Extraction Status */}
+            {localExtractionStatus && (
+              <div className="space-y-2">
+                {localExtractionStatus === 'completed' && (
+                  <div className="flex items-start gap-2 text-xs text-blue-600 bg-blue-50 p-3 rounded-lg">
+                    <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1">
+                      <div className="font-medium">Content Extracted</div>
+                      <div className="text-blue-700 mt-1">
+                        {localSectionsCount} sections extracted
+                        {extractedAt && (
+                          <span className="ml-2 opacity-75" suppressHydrationWarning>
+                            • {new Date(extractedAt).toLocaleDateString()}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {localExtractionStatus === 'pending' && (
+                  <div className="flex items-start gap-2 text-xs text-yellow-600 bg-yellow-50 p-3 rounded-lg">
+                    <Loader2 className="w-4 h-4 mt-0.5 flex-shrink-0 animate-spin" />
+                    <div>
+                      <div className="font-medium">Extracting Content...</div>
+                      <div className="text-yellow-700 mt-1">Please wait</div>
+                    </div>
+                  </div>
+                )}
+
+                {localExtractionStatus === 'failed' && (
+                  <div className="flex items-start gap-2 text-xs text-red-600 bg-red-50 p-3 rounded-lg">
+                    <XCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <div className="font-medium">Extraction Failed</div>
+                      <div className="text-red-700 mt-1">
+                        Content could not be extracted. Try re-extracting below.
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Re-Extract Button */}
+                {(localExtractionStatus === 'completed' || localExtractionStatus === 'failed') && (
+                  <button
+                    onClick={handleReExtract}
+                    disabled={isReExtracting}
+                    className="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium flex items-center justify-center gap-2"
+                  >
+                    {isReExtracting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Re-extracting...
+                      </>
+                    ) : (
+                      <>
+                        <RefreshCw className="w-4 h-4" />
+                        Re-extract Content
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>

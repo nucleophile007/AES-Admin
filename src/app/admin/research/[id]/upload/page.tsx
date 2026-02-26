@@ -201,6 +201,9 @@ export default async function ResearchUploadPage({ params }: Props) {
             <p className="text-sm text-gray-600">
               {research.title}
               {research.author && ` • ${research.author}`}
+              {research.grade && ` • Grade ${research.grade}`}
+              {research.school && ` • ${research.school}`}
+              {research.category && ` • ${research.category}`}
             </p>
           </div>
         </div>
@@ -210,6 +213,16 @@ export default async function ResearchUploadPage({ params }: Props) {
           researchId={research.id}
           slidesCount={research.Slide.length}
           pdfFilename={research.pdfFilename}
+          extractionStatus={research.extractionStatus}
+          extractedAt={research.extractedAt}
+          sectionsCount={
+            research.extractedContent &&
+            typeof research.extractedContent === 'object' &&
+            'sections' in research.extractedContent &&
+            Array.isArray(research.extractedContent.sections)
+              ? research.extractedContent.sections.length
+              : 0
+          }
         />
 
         {/* Footer Note */}

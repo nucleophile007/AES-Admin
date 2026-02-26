@@ -20,6 +20,10 @@ export async function GET() {
       Research: {
         select: {
           title: true,
+          author: true,
+          grade: true,
+          school: true,
+          category: true,
         },
       },
     },

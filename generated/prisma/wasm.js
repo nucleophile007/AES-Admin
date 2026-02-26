@@ -612,8 +612,17 @@ exports.Prisma.ResearchScalarFieldEnum = {
   description: 'description',
   createdAt: 'createdAt',
   author: 'author',
+  grade: 'grade',
+  school: 'school',
+  category: 'category',
+  studentId: 'studentId',
   published: 'published',
-  pdfFilename: 'pdfFilename'
+  pdfFilename: 'pdfFilename',
+  extractedContent: 'extractedContent',
+  abstract: 'abstract',
+  keywords: 'keywords',
+  extractedAt: 'extractedAt',
+  extractionStatus: 'extractionStatus'
 };
 
 exports.Prisma.SlideScalarFieldEnum = {
