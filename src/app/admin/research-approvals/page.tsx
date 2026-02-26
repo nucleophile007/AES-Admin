@@ -100,6 +100,10 @@ interface AccessRequest {
   createdAt: string
   Research: {
     title: string
+    author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
   }
 }
 
@@ -231,10 +235,20 @@ export default function ResearchApprovalsPage() {
                         </td>
 
                       <td className="px-5 py-4">
-                        <span className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                          <Lock className="w-3 h-3" />
-                          {req.Research.title}
-                        </span>
+                        <div className="flex flex-col gap-1">
+                          <span className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
+                            <Lock className="w-3 h-3" />
+                            {req.Research.title}
+                          </span>
+                          {(req.Research.author || req.Research.grade || req.Research.school || req.Research.category) && (
+                            <span className="text-xs text-gray-600">
+                              {req.Research.author && req.Research.author}
+                              {req.Research.grade && ` • Grade ${req.Research.grade}`}
+                              {req.Research.school && ` • ${req.Research.school}`}
+                              {req.Research.category && ` • ${req.Research.category}`}
+                            </span>
+                          )}
+                        </div>
                       </td>
 
                       <td className="px-5 py-4 text-sm text-gray-600">

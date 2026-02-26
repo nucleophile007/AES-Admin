@@ -83,6 +83,7 @@ model Student {
   submissions         Submission[]
   teacherLinks        TeacherStudent[]
   Testimonial         Testimonial[]
+  Research            Research[]
 }
 
 model TeacherStudent {
@@ -609,16 +610,26 @@ model AccessRequest {
 }
 
 model Research {
-  id            String          @id
-  title         String
-  slug          String          @unique
-  description   String?
-  createdAt     DateTime        @default(now())
-  author        String?
-  published     Boolean         @default(true)
-  pdfFilename   String?
-  AccessRequest AccessRequest[]
-  Slide         Slide[]
+  id               String          @id
+  title            String
+  slug             String          @unique
+  description      String?
+  createdAt        DateTime
+  author           String?
+  grade            String?
+  school           String?
+  category         String?
+  studentId        Int?
+  published        Boolean         @default(true)
+  pdfFilename      String?
+  extractedContent Json?
+  abstract         String?
+  keywords         String[]
+  extractedAt      DateTime?
+  extractionStatus String?
+  student          Student?        @relation(fields: [studentId], references: [id], onDelete: SetNull)
+  AccessRequest    AccessRequest[]
+  Slide            Slide[]
 }
 
 model Slide {

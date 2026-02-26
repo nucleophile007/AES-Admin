@@ -3955,6 +3955,7 @@ export namespace Prisma {
     submissions: number
     teacherLinks: number
     Testimonial: number
+    Research: number
   }
 
   export type StudentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3969,6 +3970,7 @@ export namespace Prisma {
     submissions?: boolean | StudentCountOutputTypeCountSubmissionsArgs
     teacherLinks?: boolean | StudentCountOutputTypeCountTeacherLinksArgs
     Testimonial?: boolean | StudentCountOutputTypeCountTestimonialArgs
+    Research?: boolean | StudentCountOutputTypeCountResearchArgs
   }
 
   // Custom InputTypes
@@ -4057,6 +4059,13 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountTestimonialArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TestimonialWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountResearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResearchWhereInput
   }
 
 
@@ -8139,6 +8148,7 @@ export namespace Prisma {
     submissions?: boolean | Student$submissionsArgs<ExtArgs>
     teacherLinks?: boolean | Student$teacherLinksArgs<ExtArgs>
     Testimonial?: boolean | Student$TestimonialArgs<ExtArgs>
+    Research?: boolean | Student$ResearchArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
@@ -8209,6 +8219,7 @@ export namespace Prisma {
     submissions?: boolean | Student$submissionsArgs<ExtArgs>
     teacherLinks?: boolean | Student$teacherLinksArgs<ExtArgs>
     Testimonial?: boolean | Student$TestimonialArgs<ExtArgs>
+    Research?: boolean | Student$ResearchArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StudentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8233,6 +8244,7 @@ export namespace Prisma {
       submissions: Prisma.$SubmissionPayload<ExtArgs>[]
       teacherLinks: Prisma.$TeacherStudentPayload<ExtArgs>[]
       Testimonial: Prisma.$TestimonialPayload<ExtArgs>[]
+      Research: Prisma.$ResearchPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -8655,6 +8667,7 @@ export namespace Prisma {
     submissions<T extends Student$submissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     teacherLinks<T extends Student$teacherLinksArgs<ExtArgs> = {}>(args?: Subset<T, Student$teacherLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Testimonial<T extends Student$TestimonialArgs<ExtArgs> = {}>(args?: Subset<T, Student$TestimonialArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestimonialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Research<T extends Student$ResearchArgs<ExtArgs> = {}>(args?: Subset<T, Student$ResearchArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9374,6 +9387,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TestimonialScalarFieldEnum | TestimonialScalarFieldEnum[]
+  }
+
+  /**
+   * Student.Research
+   */
+  export type Student$ResearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    where?: ResearchWhereInput
+    orderBy?: ResearchOrderByWithRelationInput | ResearchOrderByWithRelationInput[]
+    cursor?: ResearchWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ResearchScalarFieldEnum | ResearchScalarFieldEnum[]
   }
 
   /**
@@ -40635,8 +40672,18 @@ export namespace Prisma {
 
   export type AggregateResearch = {
     _count: ResearchCountAggregateOutputType | null
+    _avg: ResearchAvgAggregateOutputType | null
+    _sum: ResearchSumAggregateOutputType | null
     _min: ResearchMinAggregateOutputType | null
     _max: ResearchMaxAggregateOutputType | null
+  }
+
+  export type ResearchAvgAggregateOutputType = {
+    studentId: number | null
+  }
+
+  export type ResearchSumAggregateOutputType = {
+    studentId: number | null
   }
 
   export type ResearchMinAggregateOutputType = {
@@ -40646,8 +40693,15 @@ export namespace Prisma {
     description: string | null
     createdAt: Date | null
     author: string | null
+    grade: string | null
+    school: string | null
+    category: string | null
+    studentId: number | null
     published: boolean | null
     pdfFilename: string | null
+    abstract: string | null
+    extractedAt: Date | null
+    extractionStatus: string | null
   }
 
   export type ResearchMaxAggregateOutputType = {
@@ -40657,8 +40711,15 @@ export namespace Prisma {
     description: string | null
     createdAt: Date | null
     author: string | null
+    grade: string | null
+    school: string | null
+    category: string | null
+    studentId: number | null
     published: boolean | null
     pdfFilename: string | null
+    abstract: string | null
+    extractedAt: Date | null
+    extractionStatus: string | null
   }
 
   export type ResearchCountAggregateOutputType = {
@@ -40668,11 +40729,28 @@ export namespace Prisma {
     description: number
     createdAt: number
     author: number
+    grade: number
+    school: number
+    category: number
+    studentId: number
     published: number
     pdfFilename: number
+    extractedContent: number
+    abstract: number
+    keywords: number
+    extractedAt: number
+    extractionStatus: number
     _all: number
   }
 
+
+  export type ResearchAvgAggregateInputType = {
+    studentId?: true
+  }
+
+  export type ResearchSumAggregateInputType = {
+    studentId?: true
+  }
 
   export type ResearchMinAggregateInputType = {
     id?: true
@@ -40681,8 +40759,15 @@ export namespace Prisma {
     description?: true
     createdAt?: true
     author?: true
+    grade?: true
+    school?: true
+    category?: true
+    studentId?: true
     published?: true
     pdfFilename?: true
+    abstract?: true
+    extractedAt?: true
+    extractionStatus?: true
   }
 
   export type ResearchMaxAggregateInputType = {
@@ -40692,8 +40777,15 @@ export namespace Prisma {
     description?: true
     createdAt?: true
     author?: true
+    grade?: true
+    school?: true
+    category?: true
+    studentId?: true
     published?: true
     pdfFilename?: true
+    abstract?: true
+    extractedAt?: true
+    extractionStatus?: true
   }
 
   export type ResearchCountAggregateInputType = {
@@ -40703,8 +40795,17 @@ export namespace Prisma {
     description?: true
     createdAt?: true
     author?: true
+    grade?: true
+    school?: true
+    category?: true
+    studentId?: true
     published?: true
     pdfFilename?: true
+    extractedContent?: true
+    abstract?: true
+    keywords?: true
+    extractedAt?: true
+    extractionStatus?: true
     _all?: true
   }
 
@@ -40746,6 +40847,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: ResearchAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ResearchSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: ResearchMinAggregateInputType
@@ -40776,6 +40889,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ResearchCountAggregateInputType | true
+    _avg?: ResearchAvgAggregateInputType
+    _sum?: ResearchSumAggregateInputType
     _min?: ResearchMinAggregateInputType
     _max?: ResearchMaxAggregateInputType
   }
@@ -40787,9 +40902,20 @@ export namespace Prisma {
     description: string | null
     createdAt: Date
     author: string | null
+    grade: string | null
+    school: string | null
+    category: string | null
+    studentId: number | null
     published: boolean
     pdfFilename: string | null
+    extractedContent: JsonValue | null
+    abstract: string | null
+    keywords: string[]
+    extractedAt: Date | null
+    extractionStatus: string | null
     _count: ResearchCountAggregateOutputType | null
+    _avg: ResearchAvgAggregateOutputType | null
+    _sum: ResearchSumAggregateOutputType | null
     _min: ResearchMinAggregateOutputType | null
     _max: ResearchMaxAggregateOutputType | null
   }
@@ -40815,8 +40941,18 @@ export namespace Prisma {
     description?: boolean
     createdAt?: boolean
     author?: boolean
+    grade?: boolean
+    school?: boolean
+    category?: boolean
+    studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
+    extractedContent?: boolean
+    abstract?: boolean
+    keywords?: boolean
+    extractedAt?: boolean
+    extractionStatus?: boolean
+    student?: boolean | Research$studentArgs<ExtArgs>
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
     Slide?: boolean | Research$SlideArgs<ExtArgs>
     _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
@@ -40829,8 +40965,18 @@ export namespace Prisma {
     description?: boolean
     createdAt?: boolean
     author?: boolean
+    grade?: boolean
+    school?: boolean
+    category?: boolean
+    studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
+    extractedContent?: boolean
+    abstract?: boolean
+    keywords?: boolean
+    extractedAt?: boolean
+    extractionStatus?: boolean
+    student?: boolean | Research$studentArgs<ExtArgs>
   }, ExtArgs["result"]["research"]>
 
   export type ResearchSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -40840,8 +40986,18 @@ export namespace Prisma {
     description?: boolean
     createdAt?: boolean
     author?: boolean
+    grade?: boolean
+    school?: boolean
+    category?: boolean
+    studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
+    extractedContent?: boolean
+    abstract?: boolean
+    keywords?: boolean
+    extractedAt?: boolean
+    extractionStatus?: boolean
+    student?: boolean | Research$studentArgs<ExtArgs>
   }, ExtArgs["result"]["research"]>
 
   export type ResearchSelectScalar = {
@@ -40851,22 +41007,37 @@ export namespace Prisma {
     description?: boolean
     createdAt?: boolean
     author?: boolean
+    grade?: boolean
+    school?: boolean
+    category?: boolean
+    studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
+    extractedContent?: boolean
+    abstract?: boolean
+    keywords?: boolean
+    extractedAt?: boolean
+    extractionStatus?: boolean
   }
 
-  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "createdAt" | "author" | "published" | "pdfFilename", ExtArgs["result"]["research"]>
+  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "createdAt" | "author" | "grade" | "school" | "category" | "studentId" | "published" | "pdfFilename" | "extractedContent" | "abstract" | "keywords" | "extractedAt" | "extractionStatus", ExtArgs["result"]["research"]>
   export type ResearchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | Research$studentArgs<ExtArgs>
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
     Slide?: boolean | Research$SlideArgs<ExtArgs>
     _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type ResearchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type ResearchIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ResearchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | Research$studentArgs<ExtArgs>
+  }
+  export type ResearchIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | Research$studentArgs<ExtArgs>
+  }
 
   export type $ResearchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Research"
     objects: {
+      student: Prisma.$StudentPayload<ExtArgs> | null
       AccessRequest: Prisma.$AccessRequestPayload<ExtArgs>[]
       Slide: Prisma.$SlidePayload<ExtArgs>[]
     }
@@ -40877,8 +41048,17 @@ export namespace Prisma {
       description: string | null
       createdAt: Date
       author: string | null
+      grade: string | null
+      school: string | null
+      category: string | null
+      studentId: number | null
       published: boolean
       pdfFilename: string | null
+      extractedContent: Prisma.JsonValue | null
+      abstract: string | null
+      keywords: string[]
+      extractedAt: Date | null
+      extractionStatus: string | null
     }, ExtArgs["result"]["research"]>
     composites: {}
   }
@@ -41273,6 +41453,7 @@ export namespace Prisma {
    */
   export interface Prisma__ResearchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    student<T extends Research$studentArgs<ExtArgs> = {}>(args?: Subset<T, Research$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     AccessRequest<T extends Research$AccessRequestArgs<ExtArgs> = {}>(args?: Subset<T, Research$AccessRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Slide<T extends Research$SlideArgs<ExtArgs> = {}>(args?: Subset<T, Research$SlideArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -41310,8 +41491,17 @@ export namespace Prisma {
     readonly description: FieldRef<"Research", 'String'>
     readonly createdAt: FieldRef<"Research", 'DateTime'>
     readonly author: FieldRef<"Research", 'String'>
+    readonly grade: FieldRef<"Research", 'String'>
+    readonly school: FieldRef<"Research", 'String'>
+    readonly category: FieldRef<"Research", 'String'>
+    readonly studentId: FieldRef<"Research", 'Int'>
     readonly published: FieldRef<"Research", 'Boolean'>
     readonly pdfFilename: FieldRef<"Research", 'String'>
+    readonly extractedContent: FieldRef<"Research", 'Json'>
+    readonly abstract: FieldRef<"Research", 'String'>
+    readonly keywords: FieldRef<"Research", 'String[]'>
+    readonly extractedAt: FieldRef<"Research", 'DateTime'>
+    readonly extractionStatus: FieldRef<"Research", 'String'>
   }
     
 
@@ -41561,6 +41751,10 @@ export namespace Prisma {
      */
     data: ResearchCreateManyInput | ResearchCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -41631,6 +41825,10 @@ export namespace Prisma {
      * Limit how many Research to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -41697,6 +41895,25 @@ export namespace Prisma {
      * Limit how many Research to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Research.student
+   */
+  export type Research$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
   }
 
   /**
@@ -45662,8 +45879,17 @@ export namespace Prisma {
     description: 'description',
     createdAt: 'createdAt',
     author: 'author',
+    grade: 'grade',
+    school: 'school',
+    category: 'category',
+    studentId: 'studentId',
     published: 'published',
-    pdfFilename: 'pdfFilename'
+    pdfFilename: 'pdfFilename',
+    extractedContent: 'extractedContent',
+    abstract: 'abstract',
+    keywords: 'keywords',
+    extractedAt: 'extractedAt',
+    extractionStatus: 'extractionStatus'
   };
 
   export type ResearchScalarFieldEnum = (typeof ResearchScalarFieldEnum)[keyof typeof ResearchScalarFieldEnum]
@@ -46115,6 +46341,7 @@ export namespace Prisma {
     submissions?: SubmissionListRelationFilter
     teacherLinks?: TeacherStudentListRelationFilter
     Testimonial?: TestimonialListRelationFilter
+    Research?: ResearchListRelationFilter
   }
 
   export type StudentOrderByWithRelationInput = {
@@ -46144,6 +46371,7 @@ export namespace Prisma {
     submissions?: SubmissionOrderByRelationAggregateInput
     teacherLinks?: TeacherStudentOrderByRelationAggregateInput
     Testimonial?: TestimonialOrderByRelationAggregateInput
+    Research?: ResearchOrderByRelationAggregateInput
   }
 
   export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -46176,6 +46404,7 @@ export namespace Prisma {
     submissions?: SubmissionListRelationFilter
     teacherLinks?: TeacherStudentListRelationFilter
     Testimonial?: TestimonialListRelationFilter
+    Research?: ResearchListRelationFilter
   }, "id" | "email">
 
   export type StudentOrderByWithAggregationInput = {
@@ -48854,8 +49083,18 @@ export namespace Prisma {
     description?: StringNullableFilter<"Research"> | string | null
     createdAt?: DateTimeFilter<"Research"> | Date | string
     author?: StringNullableFilter<"Research"> | string | null
+    grade?: StringNullableFilter<"Research"> | string | null
+    school?: StringNullableFilter<"Research"> | string | null
+    category?: StringNullableFilter<"Research"> | string | null
+    studentId?: IntNullableFilter<"Research"> | number | null
     published?: BoolFilter<"Research"> | boolean
     pdfFilename?: StringNullableFilter<"Research"> | string | null
+    extractedContent?: JsonNullableFilter<"Research">
+    abstract?: StringNullableFilter<"Research"> | string | null
+    keywords?: StringNullableListFilter<"Research">
+    extractedAt?: DateTimeNullableFilter<"Research"> | Date | string | null
+    extractionStatus?: StringNullableFilter<"Research"> | string | null
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     AccessRequest?: AccessRequestListRelationFilter
     Slide?: SlideListRelationFilter
   }
@@ -48867,8 +49106,18 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     author?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    school?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    studentId?: SortOrderInput | SortOrder
     published?: SortOrder
     pdfFilename?: SortOrderInput | SortOrder
+    extractedContent?: SortOrderInput | SortOrder
+    abstract?: SortOrderInput | SortOrder
+    keywords?: SortOrder
+    extractedAt?: SortOrderInput | SortOrder
+    extractionStatus?: SortOrderInput | SortOrder
+    student?: StudentOrderByWithRelationInput
     AccessRequest?: AccessRequestOrderByRelationAggregateInput
     Slide?: SlideOrderByRelationAggregateInput
   }
@@ -48883,8 +49132,18 @@ export namespace Prisma {
     description?: StringNullableFilter<"Research"> | string | null
     createdAt?: DateTimeFilter<"Research"> | Date | string
     author?: StringNullableFilter<"Research"> | string | null
+    grade?: StringNullableFilter<"Research"> | string | null
+    school?: StringNullableFilter<"Research"> | string | null
+    category?: StringNullableFilter<"Research"> | string | null
+    studentId?: IntNullableFilter<"Research"> | number | null
     published?: BoolFilter<"Research"> | boolean
     pdfFilename?: StringNullableFilter<"Research"> | string | null
+    extractedContent?: JsonNullableFilter<"Research">
+    abstract?: StringNullableFilter<"Research"> | string | null
+    keywords?: StringNullableListFilter<"Research">
+    extractedAt?: DateTimeNullableFilter<"Research"> | Date | string | null
+    extractionStatus?: StringNullableFilter<"Research"> | string | null
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     AccessRequest?: AccessRequestListRelationFilter
     Slide?: SlideListRelationFilter
   }, "id" | "slug">
@@ -48896,11 +49155,22 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     author?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    school?: SortOrderInput | SortOrder
+    category?: SortOrderInput | SortOrder
+    studentId?: SortOrderInput | SortOrder
     published?: SortOrder
     pdfFilename?: SortOrderInput | SortOrder
+    extractedContent?: SortOrderInput | SortOrder
+    abstract?: SortOrderInput | SortOrder
+    keywords?: SortOrder
+    extractedAt?: SortOrderInput | SortOrder
+    extractionStatus?: SortOrderInput | SortOrder
     _count?: ResearchCountOrderByAggregateInput
+    _avg?: ResearchAvgOrderByAggregateInput
     _max?: ResearchMaxOrderByAggregateInput
     _min?: ResearchMinOrderByAggregateInput
+    _sum?: ResearchSumOrderByAggregateInput
   }
 
   export type ResearchScalarWhereWithAggregatesInput = {
@@ -48913,8 +49183,17 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Research"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Research"> | Date | string
     author?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    grade?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    school?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    category?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    studentId?: IntNullableWithAggregatesFilter<"Research"> | number | null
     published?: BoolWithAggregatesFilter<"Research"> | boolean
     pdfFilename?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    extractedContent?: JsonNullableWithAggregatesFilter<"Research">
+    abstract?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    keywords?: StringNullableListFilter<"Research">
+    extractedAt?: DateTimeNullableWithAggregatesFilter<"Research"> | Date | string | null
+    extractionStatus?: StringNullableWithAggregatesFilter<"Research"> | string | null
   }
 
   export type SlideWhereInput = {
@@ -49393,6 +49672,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateInput = {
@@ -49421,6 +49701,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUpdateInput = {
@@ -49448,6 +49729,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
@@ -49476,6 +49758,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateManyInput = {
@@ -52484,10 +52767,19 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    createdAt?: Date | string
+    createdAt: Date | string
     author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
     published?: boolean
     pdfFilename?: string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    extractedAt?: Date | string | null
+    extractionStatus?: string | null
+    student?: StudentCreateNestedOneWithoutResearchInput
     AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
     Slide?: SlideCreateNestedManyWithoutResearchInput
   }
@@ -52497,10 +52789,19 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    createdAt?: Date | string
+    createdAt: Date | string
     author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
+    studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    extractedAt?: Date | string | null
+    extractionStatus?: string | null
     AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
     Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
   }
@@ -52512,8 +52813,17 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    student?: StudentUpdateOneWithoutResearchNestedInput
     AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
     Slide?: SlideUpdateManyWithoutResearchNestedInput
   }
@@ -52525,8 +52835,17 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
     Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
   }
@@ -52536,10 +52855,19 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    createdAt?: Date | string
+    createdAt: Date | string
     author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
+    studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    extractedAt?: Date | string | null
+    extractionStatus?: string | null
   }
 
   export type ResearchUpdateManyMutationInput = {
@@ -52549,8 +52877,16 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResearchUncheckedUpdateManyInput = {
@@ -52560,8 +52896,17 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SlideCreateInput = {
@@ -53175,6 +53520,12 @@ export namespace Prisma {
     none?: TestimonialWhereInput
   }
 
+  export type ResearchListRelationFilter = {
+    every?: ResearchWhereInput
+    some?: ResearchWhereInput
+    none?: ResearchWhereInput
+  }
+
   export type EnrollmentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -53200,6 +53551,10 @@ export namespace Prisma {
   }
 
   export type TestimonialOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ResearchOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -55107,8 +55462,21 @@ export namespace Prisma {
     description?: SortOrder
     createdAt?: SortOrder
     author?: SortOrder
+    grade?: SortOrder
+    school?: SortOrder
+    category?: SortOrder
+    studentId?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
+    extractedContent?: SortOrder
+    abstract?: SortOrder
+    keywords?: SortOrder
+    extractedAt?: SortOrder
+    extractionStatus?: SortOrder
+  }
+
+  export type ResearchAvgOrderByAggregateInput = {
+    studentId?: SortOrder
   }
 
   export type ResearchMaxOrderByAggregateInput = {
@@ -55118,8 +55486,15 @@ export namespace Prisma {
     description?: SortOrder
     createdAt?: SortOrder
     author?: SortOrder
+    grade?: SortOrder
+    school?: SortOrder
+    category?: SortOrder
+    studentId?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
+    abstract?: SortOrder
+    extractedAt?: SortOrder
+    extractionStatus?: SortOrder
   }
 
   export type ResearchMinOrderByAggregateInput = {
@@ -55129,8 +55504,19 @@ export namespace Prisma {
     description?: SortOrder
     createdAt?: SortOrder
     author?: SortOrder
+    grade?: SortOrder
+    school?: SortOrder
+    category?: SortOrder
+    studentId?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
+    abstract?: SortOrder
+    extractedAt?: SortOrder
+    extractionStatus?: SortOrder
+  }
+
+  export type ResearchSumOrderByAggregateInput = {
+    studentId?: SortOrder
   }
 
   export type SlideCountOrderByAggregateInput = {
@@ -55686,6 +56072,13 @@ export namespace Prisma {
     connect?: TestimonialWhereUniqueInput | TestimonialWhereUniqueInput[]
   }
 
+  export type ResearchCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
+    createMany?: ResearchCreateManyStudentInputEnvelope
+    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+  }
+
   export type AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput = {
     create?: XOR<AssignmentCreateWithoutTargetStudentInput, AssignmentUncheckedCreateWithoutTargetStudentInput> | AssignmentCreateWithoutTargetStudentInput[] | AssignmentUncheckedCreateWithoutTargetStudentInput[]
     connectOrCreate?: AssignmentCreateOrConnectWithoutTargetStudentInput | AssignmentCreateOrConnectWithoutTargetStudentInput[]
@@ -55761,6 +56154,13 @@ export namespace Prisma {
     connectOrCreate?: TestimonialCreateOrConnectWithoutStudentInput | TestimonialCreateOrConnectWithoutStudentInput[]
     createMany?: TestimonialCreateManyStudentInputEnvelope
     connect?: TestimonialWhereUniqueInput | TestimonialWhereUniqueInput[]
+  }
+
+  export type ResearchUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
+    createMany?: ResearchCreateManyStudentInputEnvelope
+    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
   }
 
   export type AssignmentUpdateManyWithoutTargetStudentNestedInput = {
@@ -55927,6 +56327,20 @@ export namespace Prisma {
     deleteMany?: TestimonialScalarWhereInput | TestimonialScalarWhereInput[]
   }
 
+  export type ResearchUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
+    upsert?: ResearchUpsertWithWhereUniqueWithoutStudentInput | ResearchUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ResearchCreateManyStudentInputEnvelope
+    set?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    disconnect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    delete?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    update?: ResearchUpdateWithWhereUniqueWithoutStudentInput | ResearchUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ResearchUpdateManyWithWhereWithoutStudentInput | ResearchUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -56087,6 +56501,20 @@ export namespace Prisma {
     update?: TestimonialUpdateWithWhereUniqueWithoutStudentInput | TestimonialUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: TestimonialUpdateManyWithWhereWithoutStudentInput | TestimonialUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: TestimonialScalarWhereInput | TestimonialScalarWhereInput[]
+  }
+
+  export type ResearchUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
+    upsert?: ResearchUpsertWithWhereUniqueWithoutStudentInput | ResearchUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ResearchCreateManyStudentInputEnvelope
+    set?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    disconnect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    delete?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    update?: ResearchUpdateWithWhereUniqueWithoutStudentInput | ResearchUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ResearchUpdateManyWithWhereWithoutStudentInput | ResearchUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
   }
 
   export type StudentCreateNestedOneWithoutTeacherLinksInput = {
@@ -56847,6 +57275,16 @@ export namespace Prisma {
     update?: XOR<XOR<ResearchUpdateToOneWithWhereWithoutAccessRequestInput, ResearchUpdateWithoutAccessRequestInput>, ResearchUncheckedUpdateWithoutAccessRequestInput>
   }
 
+  export type ResearchCreatekeywordsInput = {
+    set: string[]
+  }
+
+  export type StudentCreateNestedOneWithoutResearchInput = {
+    create?: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutResearchInput
+    connect?: StudentWhereUniqueInput
+  }
+
   export type AccessRequestCreateNestedManyWithoutResearchInput = {
     create?: XOR<AccessRequestCreateWithoutResearchInput, AccessRequestUncheckedCreateWithoutResearchInput> | AccessRequestCreateWithoutResearchInput[] | AccessRequestUncheckedCreateWithoutResearchInput[]
     connectOrCreate?: AccessRequestCreateOrConnectWithoutResearchInput | AccessRequestCreateOrConnectWithoutResearchInput[]
@@ -56873,6 +57311,21 @@ export namespace Prisma {
     connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
     createMany?: SlideCreateManyResearchInputEnvelope
     connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+  }
+
+  export type ResearchUpdatekeywordsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type StudentUpdateOneWithoutResearchNestedInput = {
+    create?: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutResearchInput
+    upsert?: StudentUpsertWithoutResearchInput
+    disconnect?: StudentWhereInput | boolean
+    delete?: StudentWhereInput | boolean
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutResearchInput, StudentUpdateWithoutResearchInput>, StudentUncheckedUpdateWithoutResearchInput>
   }
 
   export type AccessRequestUpdateManyWithoutResearchNestedInput = {
@@ -58351,6 +58804,58 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ResearchCreateWithoutStudentInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    createdAt: Date | string
+    author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
+    published?: boolean
+    pdfFilename?: string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    extractedAt?: Date | string | null
+    extractionStatus?: string | null
+    AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
+    Slide?: SlideCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchUncheckedCreateWithoutStudentInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    createdAt: Date | string
+    author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
+    published?: boolean
+    pdfFilename?: string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    extractedAt?: Date | string | null
+    extractionStatus?: string | null
+    AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
+    Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchCreateOrConnectWithoutStudentInput = {
+    where: ResearchWhereUniqueInput
+    create: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ResearchCreateManyStudentInputEnvelope = {
+    data: ResearchCreateManyStudentInput | ResearchCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AssignmentUpsertWithWhereUniqueWithoutTargetStudentInput = {
     where: AssignmentWhereUniqueInput
     update: XOR<AssignmentUpdateWithoutTargetStudentInput, AssignmentUncheckedUpdateWithoutTargetStudentInput>
@@ -58688,6 +59193,45 @@ export namespace Prisma {
     successStoryApproved?: BoolFilter<"Testimonial"> | boolean
   }
 
+  export type ResearchUpsertWithWhereUniqueWithoutStudentInput = {
+    where: ResearchWhereUniqueInput
+    update: XOR<ResearchUpdateWithoutStudentInput, ResearchUncheckedUpdateWithoutStudentInput>
+    create: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ResearchUpdateWithWhereUniqueWithoutStudentInput = {
+    where: ResearchWhereUniqueInput
+    data: XOR<ResearchUpdateWithoutStudentInput, ResearchUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type ResearchUpdateManyWithWhereWithoutStudentInput = {
+    where: ResearchScalarWhereInput
+    data: XOR<ResearchUpdateManyMutationInput, ResearchUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type ResearchScalarWhereInput = {
+    AND?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
+    OR?: ResearchScalarWhereInput[]
+    NOT?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
+    id?: StringFilter<"Research"> | string
+    title?: StringFilter<"Research"> | string
+    slug?: StringFilter<"Research"> | string
+    description?: StringNullableFilter<"Research"> | string | null
+    createdAt?: DateTimeFilter<"Research"> | Date | string
+    author?: StringNullableFilter<"Research"> | string | null
+    grade?: StringNullableFilter<"Research"> | string | null
+    school?: StringNullableFilter<"Research"> | string | null
+    category?: StringNullableFilter<"Research"> | string | null
+    studentId?: IntNullableFilter<"Research"> | number | null
+    published?: BoolFilter<"Research"> | boolean
+    pdfFilename?: StringNullableFilter<"Research"> | string | null
+    extractedContent?: JsonNullableFilter<"Research">
+    abstract?: StringNullableFilter<"Research"> | string | null
+    keywords?: StringNullableListFilter<"Research">
+    extractedAt?: DateTimeNullableFilter<"Research"> | Date | string | null
+    extractionStatus?: StringNullableFilter<"Research"> | string | null
+  }
+
   export type StudentCreateWithoutTeacherLinksInput = {
     name: string
     email: string
@@ -58712,6 +59256,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutTeacherLinksInput = {
@@ -58739,6 +59284,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutTeacherLinksInput = {
@@ -58821,6 +59367,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutTeacherLinksInput = {
@@ -58848,6 +59395,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutStudentsInput = {
@@ -58920,6 +59468,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutAssignedAssignmentsInput = {
@@ -58947,6 +59496,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutAssignedAssignmentsInput = {
@@ -59089,6 +59639,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutAssignedAssignmentsInput = {
@@ -59116,6 +59667,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutAssignmentsInput = {
@@ -59270,6 +59822,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutSubmissionsInput = {
@@ -59297,6 +59850,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutSubmissionsInput = {
@@ -59385,6 +59939,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutSubmissionsInput = {
@@ -59412,6 +59967,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutEnrollmentsInput = {
@@ -59438,6 +59994,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutEnrollmentsInput = {
@@ -59465,6 +60022,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutEnrollmentsInput = {
@@ -59562,6 +60120,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutEnrollmentsInput = {
@@ -59589,6 +60148,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type PaymentUpsertWithWhereUniqueWithoutEnrollmentInput = {
@@ -60011,6 +60571,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutAssignedResourcesInput = {
@@ -60038,6 +60599,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutAssignedResourcesInput = {
@@ -60128,6 +60690,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutAssignedResourcesInput = {
@@ -60155,6 +60718,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutStudentSubmissionsInput = {
@@ -60181,6 +60745,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutStudentSubmissionsInput = {
@@ -60208,6 +60773,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutStudentSubmissionsInput = {
@@ -60275,6 +60841,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutStudentSubmissionsInput = {
@@ -60302,6 +60869,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentSubmissionRemarkUpsertWithWhereUniqueWithoutStudentSubmissionInput = {
@@ -60500,6 +61068,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutClassSchedulesInput = {
@@ -60527,6 +61096,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutClassSchedulesInput = {
@@ -60609,6 +61179,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutClassSchedulesInput = {
@@ -60636,6 +61207,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutClassSchedulesInput = {
@@ -60732,6 +61304,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutPaymentInput = {
@@ -60759,6 +61332,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutPaymentInput = {
@@ -60831,6 +61405,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutPaymentInput = {
@@ -60858,6 +61433,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutTestimonialInput = {
@@ -60884,6 +61460,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutTestimonialInput = {
@@ -60911,6 +61488,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutTestimonialInput = {
@@ -60953,6 +61531,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutTestimonialInput = {
@@ -60980,6 +61559,7 @@ export namespace Prisma {
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutParentAccountInput = {
@@ -61006,6 +61586,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutParentAccountInput = {
@@ -61033,6 +61614,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutParentAccountInput = {
@@ -61191,6 +61773,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutProgressReportInput = {
@@ -61218,6 +61801,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutProgressReportInput = {
@@ -61300,6 +61884,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutProgressReportInput = {
@@ -61327,6 +61912,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutProgressReportInput = {
@@ -61640,10 +62226,19 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    createdAt?: Date | string
+    createdAt: Date | string
     author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
     published?: boolean
     pdfFilename?: string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    extractedAt?: Date | string | null
+    extractionStatus?: string | null
+    student?: StudentCreateNestedOneWithoutResearchInput
     Slide?: SlideCreateNestedManyWithoutResearchInput
   }
 
@@ -61652,10 +62247,19 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    createdAt?: Date | string
+    createdAt: Date | string
     author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
+    studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    extractedAt?: Date | string | null
+    extractionStatus?: string | null
     Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
   }
 
@@ -61682,8 +62286,17 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    student?: StudentUpdateOneWithoutResearchNestedInput
     Slide?: SlideUpdateManyWithoutResearchNestedInput
   }
 
@@ -61694,9 +62307,78 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
     Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
+  }
+
+  export type StudentCreateWithoutResearchInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutResearchInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutResearchInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
   }
 
   export type AccessRequestCreateWithoutResearchInput = {
@@ -61749,6 +62431,72 @@ export namespace Prisma {
   export type SlideCreateManyResearchInputEnvelope = {
     data: SlideCreateManyResearchInput | SlideCreateManyResearchInput[]
     skipDuplicates?: boolean
+  }
+
+  export type StudentUpsertWithoutResearchInput = {
+    update: XOR<StudentUpdateWithoutResearchInput, StudentUncheckedUpdateWithoutResearchInput>
+    create: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutResearchInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutResearchInput, StudentUncheckedUpdateWithoutResearchInput>
+  }
+
+  export type StudentUpdateWithoutResearchInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutResearchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AccessRequestUpsertWithWhereUniqueWithoutResearchInput = {
@@ -61812,10 +62560,19 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    createdAt?: Date | string
+    createdAt: Date | string
     author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
     published?: boolean
     pdfFilename?: string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    extractedAt?: Date | string | null
+    extractionStatus?: string | null
+    student?: StudentCreateNestedOneWithoutResearchInput
     AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
   }
 
@@ -61824,10 +62581,19 @@ export namespace Prisma {
     title: string
     slug: string
     description?: string | null
-    createdAt?: Date | string
+    createdAt: Date | string
     author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
+    studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    extractedAt?: Date | string | null
+    extractionStatus?: string | null
     AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
   }
 
@@ -61854,8 +62620,17 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    student?: StudentUpdateOneWithoutResearchNestedInput
     AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
   }
 
@@ -61866,8 +62641,17 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
   }
 
@@ -62038,6 +62822,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutStudentGroupMemberInput = {
@@ -62065,6 +62850,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutStudentGroupMemberInput = {
@@ -62133,6 +62919,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutStudentGroupMemberInput = {
@@ -62160,6 +62947,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AssignmentCreateManyTeacherInput = {
@@ -62719,6 +63507,25 @@ export namespace Prisma {
     successStoryApproved?: boolean
   }
 
+  export type ResearchCreateManyStudentInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    createdAt: Date | string
+    author?: string | null
+    grade?: string | null
+    school?: string | null
+    category?: string | null
+    published?: boolean
+    pdfFilename?: string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    extractedAt?: Date | string | null
+    extractionStatus?: string | null
+  }
+
   export type AssignmentUpdateWithoutTargetStudentInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -63214,6 +64021,67 @@ export namespace Prisma {
     successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type ResearchUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
+    Slide?: SlideUpdateManyWithoutResearchNestedInput
+  }
+
+  export type ResearchUncheckedUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
+    Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
+  }
+
+  export type ResearchUncheckedUpdateManyWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type AssignmentResourceCreateManyAssignmentInput = {
     id?: number
     resourceId: number
@@ -63508,6 +64376,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutParentAccountInput = {
@@ -63535,6 +64404,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateManyWithoutParentAccountInput = {
