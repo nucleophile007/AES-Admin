@@ -152,7 +152,8 @@ function mapSheetRowToTestimonial(row: SheetRow, rowIndex: number) {
     programs,
     rating,
     videoLink: null,
-    beforeAfterExpectations: row['Before : What were your expectations when you first joined ACHARYA with respect to specific goals, grades, confidence and programs ?\n\nAfter: What changes did you notice after joining and how has ACHARYA made a difference with your (your child\'s future plans) ?'] || null,
+    beforeExpectations: row['Before : What were your expectations when you first joined ACHARYA with respect to specific goals, grades, confidence and programs ?'] || null,
+    afterChanges: row['After: What changes did you notice after joining and how has ACHARYA made a difference with your (your child\'s future plans) ?'] || null,
     experienceDescription: null,
     successStory: row['Please share a specific success story or milestone achieved with the help of ACHARYA.'] || null,
     consentToFeature: row['May we feature your testimonial on our website and other marketing materials (flyers, posters, social media)? '] === 'Yes',
@@ -181,6 +182,8 @@ async function syncTestimonials() {
       return
     }
 
+    console.log(`\n📊 Processing ${sheetData.length} rows from sheet...\n`)
+
     let successCount = 0
     let skipCount = 0
     let errorCount = 0
@@ -189,23 +192,22 @@ async function syncTestimonials() {
       try {
         const testimonialData = mapSheetRowToTestimonial(row, index + 1)
 
-        // Skip if no content
-        if (!testimonialData.content) {
-          console.log(`⏭️  Row ${index + 2}: Skipping (no content)`)
+        // Skip if no student name or content
+        if (!testimonialData.studentName || !testimonialData.content) {
+          console.log(`⏭️  Row ${index + 2}: Skipping (missing name or content) - Name: "${testimonialData.studentName}", Content: "${testimonialData.content?.substring(0, 30)}..."`)
           skipCount++
           continue
         }
 
-        // Check if testimonial already exists (by studentName, content, and submittedAt)
-        const existing = await prisma.$queryRaw<Array<{ count: bigint }>>`
-          SELECT COUNT(*) as count
-          FROM "Testimonial"
-          WHERE "studentName" = ${testimonialData.studentName}
-          AND "content" = ${testimonialData.content}
-          AND ABS(EXTRACT(EPOCH FROM ("submittedAt" - ${testimonialData.submittedAt}::timestamp))) < 5
-        `
+        // Check if testimonial already exists (by studentName and content for better duplicate detection)
+        const existing = await prisma.testimonial.findFirst({
+          where: {
+            studentName: testimonialData.studentName,
+            content: testimonialData.content,
+          }
+        })
         
-        if (existing && existing[0] && Number(existing[0].count) > 0) {
+        if (existing) {
           console.log(`⏭️  Row ${index + 2}: Already exists (${testimonialData.studentName})`)
           skipCount++
           continue
@@ -218,15 +220,15 @@ async function syncTestimonials() {
         const testimonial = await prisma.$queryRaw`
           INSERT INTO "Testimonial" (
             "studentName", "authorName", "authorType", "content", "grade", "school",
-            "programs", "rating", "videoLink", "beforeAfterExpectations",
+            "programs", "rating", "videoLink", "beforeExpectations", "afterChanges",
             "experienceDescription", "successStory", "consentToFeature",
             "submittedAt", "isApproved", "isVisible", "updatedAt"
           ) VALUES (
             ${dataToInsert.studentName}, ${dataToInsert.authorName}, ${dataToInsert.authorType},
             ${dataToInsert.content}, ${dataToInsert.grade}, ${dataToInsert.school},
             ${dataToInsert.programs}::text[], ${dataToInsert.rating}, ${dataToInsert.videoLink},
-            ${dataToInsert.beforeAfterExpectations}, ${dataToInsert.experienceDescription},
-            ${dataToInsert.successStory}, ${dataToInsert.consentToFeature},
+            ${dataToInsert.beforeExpectations}, ${dataToInsert.afterChanges},
+            ${dataToInsert.experienceDescription}, ${dataToInsert.successStory}, ${dataToInsert.consentToFeature},
             ${dataToInsert.submittedAt}, ${dataToInsert.isApproved}, ${dataToInsert.isVisible},
             ${dataToInsert.updatedAt}
           ) RETURNING id

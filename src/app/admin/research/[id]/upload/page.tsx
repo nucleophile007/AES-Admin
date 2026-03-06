@@ -182,29 +182,47 @@ export default async function ResearchUploadPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6 md:p-8">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="mb-8">
           <Link
             href="/admin"
-            className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
+            className="inline-flex items-center gap-2 text-sm px-4 py-2.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
-            Dashboard
+            Back to Dashboard
           </Link>
 
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">
+          <div className="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl p-8 text-white shadow-xl">
+            <h1 className="text-3xl font-bold mb-2">
               Upload Research Content
             </h1>
-            <p className="text-sm text-gray-600">
+            <p className="text-indigo-100 text-base">
               {research.title}
-              {research.author && ` • ${research.author}`}
-              {research.grade && ` • Grade ${research.grade}`}
-              {research.school && ` • ${research.school}`}
-              {research.category && ` • ${research.category}`}
             </p>
+            <div className="flex flex-wrap gap-3 mt-4 text-sm">
+              {research.author && (
+                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                  {research.author}
+                </span>
+              )}
+              {research.grade && (
+                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                  Grade {research.grade}
+                </span>
+              )}
+              {research.category && (
+                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                  {research.category}
+                </span>
+              )}
+              {research.domain && (
+                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                  {research.domain}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
@@ -226,14 +244,14 @@ export default async function ResearchUploadPage({ params }: Props) {
         />
 
         {/* Footer Note */}
-        <div className="mt-8 text-sm text-gray-500">
+        {/* <div className="mt-8 text-sm text-gray-500">
           Recommended workflow:
           <ul className="list-disc ml-6 mt-2 space-y-1">
             <li>Export PPT → images (PNG/JPG)</li>
             <li>Upload images in correct order</li>
             <li>Slides are auto-watermarked & secured</li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   )

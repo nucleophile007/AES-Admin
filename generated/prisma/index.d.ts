@@ -25873,7 +25873,8 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     videoLink: string | null
-    beforeAfterExpectations: string | null
+    beforeExpectations: string | null
+    afterChanges: string | null
     consentToFeature: boolean | null
     experienceDescription: string | null
     grade: string | null
@@ -25901,7 +25902,8 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     videoLink: string | null
-    beforeAfterExpectations: string | null
+    beforeExpectations: string | null
+    afterChanges: string | null
     consentToFeature: boolean | null
     experienceDescription: string | null
     grade: string | null
@@ -25929,7 +25931,8 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     videoLink: number
-    beforeAfterExpectations: number
+    beforeExpectations: number
+    afterChanges: number
     consentToFeature: number
     experienceDescription: number
     grade: number
@@ -25972,7 +25975,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     videoLink?: true
-    beforeAfterExpectations?: true
+    beforeExpectations?: true
+    afterChanges?: true
     consentToFeature?: true
     experienceDescription?: true
     grade?: true
@@ -26000,7 +26004,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     videoLink?: true
-    beforeAfterExpectations?: true
+    beforeExpectations?: true
+    afterChanges?: true
     consentToFeature?: true
     experienceDescription?: true
     grade?: true
@@ -26028,7 +26033,8 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     videoLink?: true
-    beforeAfterExpectations?: true
+    beforeExpectations?: true
+    afterChanges?: true
     consentToFeature?: true
     experienceDescription?: true
     grade?: true
@@ -26144,7 +26150,8 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     videoLink: string | null
-    beforeAfterExpectations: string | null
+    beforeExpectations: string | null
+    afterChanges: string | null
     consentToFeature: boolean
     experienceDescription: string | null
     grade: string | null
@@ -26192,7 +26199,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    beforeAfterExpectations?: boolean
+    beforeExpectations?: boolean
+    afterChanges?: boolean
     consentToFeature?: boolean
     experienceDescription?: boolean
     grade?: boolean
@@ -26222,7 +26230,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    beforeAfterExpectations?: boolean
+    beforeExpectations?: boolean
+    afterChanges?: boolean
     consentToFeature?: boolean
     experienceDescription?: boolean
     grade?: boolean
@@ -26252,7 +26261,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    beforeAfterExpectations?: boolean
+    beforeExpectations?: boolean
+    afterChanges?: boolean
     consentToFeature?: boolean
     experienceDescription?: boolean
     grade?: boolean
@@ -26282,7 +26292,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    beforeAfterExpectations?: boolean
+    beforeExpectations?: boolean
+    afterChanges?: boolean
     consentToFeature?: boolean
     experienceDescription?: boolean
     grade?: boolean
@@ -26300,7 +26311,7 @@ export namespace Prisma {
     successStoryApproved?: boolean
   }
 
-  export type TestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "content" | "authorType" | "authorName" | "isApproved" | "isVisible" | "createdAt" | "updatedAt" | "videoLink" | "beforeAfterExpectations" | "consentToFeature" | "experienceDescription" | "grade" | "programs" | "rating" | "school" | "studentInfo" | "studentName" | "submittedAt" | "successStory" | "beforeAfterApproved" | "contentApproved" | "programsApproved" | "ratingApproved" | "successStoryApproved", ExtArgs["result"]["testimonial"]>
+  export type TestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "content" | "authorType" | "authorName" | "isApproved" | "isVisible" | "createdAt" | "updatedAt" | "videoLink" | "beforeExpectations" | "afterChanges" | "consentToFeature" | "experienceDescription" | "grade" | "programs" | "rating" | "school" | "studentInfo" | "studentName" | "submittedAt" | "successStory" | "beforeAfterApproved" | "contentApproved" | "programsApproved" | "ratingApproved" | "successStoryApproved", ExtArgs["result"]["testimonial"]>
   export type TestimonialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }
@@ -26327,7 +26338,8 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       videoLink: string | null
-      beforeAfterExpectations: string | null
+      beforeExpectations: string | null
+      afterChanges: string | null
       consentToFeature: boolean
       experienceDescription: string | null
       grade: string | null
@@ -26777,7 +26789,8 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Testimonial", 'DateTime'>
     readonly updatedAt: FieldRef<"Testimonial", 'DateTime'>
     readonly videoLink: FieldRef<"Testimonial", 'String'>
-    readonly beforeAfterExpectations: FieldRef<"Testimonial", 'String'>
+    readonly beforeExpectations: FieldRef<"Testimonial", 'String'>
+    readonly afterChanges: FieldRef<"Testimonial", 'String'>
     readonly consentToFeature: FieldRef<"Testimonial", 'Boolean'>
     readonly experienceDescription: FieldRef<"Testimonial", 'String'>
     readonly grade: FieldRef<"Testimonial", 'String'>
@@ -40696,6 +40709,7 @@ export namespace Prisma {
     grade: string | null
     school: string | null
     category: string | null
+    domain: string | null
     studentId: number | null
     published: boolean | null
     pdfFilename: string | null
@@ -40714,6 +40728,7 @@ export namespace Prisma {
     grade: string | null
     school: string | null
     category: string | null
+    domain: string | null
     studentId: number | null
     published: boolean | null
     pdfFilename: string | null
@@ -40732,6 +40747,7 @@ export namespace Prisma {
     grade: number
     school: number
     category: number
+    domain: number
     studentId: number
     published: number
     pdfFilename: number
@@ -40762,6 +40778,7 @@ export namespace Prisma {
     grade?: true
     school?: true
     category?: true
+    domain?: true
     studentId?: true
     published?: true
     pdfFilename?: true
@@ -40780,6 +40797,7 @@ export namespace Prisma {
     grade?: true
     school?: true
     category?: true
+    domain?: true
     studentId?: true
     published?: true
     pdfFilename?: true
@@ -40798,6 +40816,7 @@ export namespace Prisma {
     grade?: true
     school?: true
     category?: true
+    domain?: true
     studentId?: true
     published?: true
     pdfFilename?: true
@@ -40905,6 +40924,7 @@ export namespace Prisma {
     grade: string | null
     school: string | null
     category: string | null
+    domain: string | null
     studentId: number | null
     published: boolean
     pdfFilename: string | null
@@ -40944,6 +40964,7 @@ export namespace Prisma {
     grade?: boolean
     school?: boolean
     category?: boolean
+    domain?: boolean
     studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
@@ -40968,6 +40989,7 @@ export namespace Prisma {
     grade?: boolean
     school?: boolean
     category?: boolean
+    domain?: boolean
     studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
@@ -40989,6 +41011,7 @@ export namespace Prisma {
     grade?: boolean
     school?: boolean
     category?: boolean
+    domain?: boolean
     studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
@@ -41010,6 +41033,7 @@ export namespace Prisma {
     grade?: boolean
     school?: boolean
     category?: boolean
+    domain?: boolean
     studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
@@ -41020,7 +41044,7 @@ export namespace Prisma {
     extractionStatus?: boolean
   }
 
-  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "createdAt" | "author" | "grade" | "school" | "category" | "studentId" | "published" | "pdfFilename" | "extractedContent" | "abstract" | "keywords" | "extractedAt" | "extractionStatus", ExtArgs["result"]["research"]>
+  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "createdAt" | "author" | "grade" | "school" | "category" | "domain" | "studentId" | "published" | "pdfFilename" | "extractedContent" | "abstract" | "keywords" | "extractedAt" | "extractionStatus", ExtArgs["result"]["research"]>
   export type ResearchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     student?: boolean | Research$studentArgs<ExtArgs>
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
@@ -41051,6 +41075,7 @@ export namespace Prisma {
       grade: string | null
       school: string | null
       category: string | null
+      domain: string | null
       studentId: number | null
       published: boolean
       pdfFilename: string | null
@@ -41494,6 +41519,7 @@ export namespace Prisma {
     readonly grade: FieldRef<"Research", 'String'>
     readonly school: FieldRef<"Research", 'String'>
     readonly category: FieldRef<"Research", 'String'>
+    readonly domain: FieldRef<"Research", 'String'>
     readonly studentId: FieldRef<"Research", 'Int'>
     readonly published: FieldRef<"Research", 'Boolean'>
     readonly pdfFilename: FieldRef<"Research", 'String'>
@@ -45600,7 +45626,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     videoLink: 'videoLink',
-    beforeAfterExpectations: 'beforeAfterExpectations',
+    beforeExpectations: 'beforeExpectations',
+    afterChanges: 'afterChanges',
     consentToFeature: 'consentToFeature',
     experienceDescription: 'experienceDescription',
     grade: 'grade',
@@ -45882,6 +45909,7 @@ export namespace Prisma {
     grade: 'grade',
     school: 'school',
     category: 'category',
+    domain: 'domain',
     studentId: 'studentId',
     published: 'published',
     pdfFilename: 'pdfFilename',
@@ -47661,7 +47689,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableFilter<"Testimonial"> | string | null
-    beforeAfterExpectations?: StringNullableFilter<"Testimonial"> | string | null
+    beforeExpectations?: StringNullableFilter<"Testimonial"> | string | null
+    afterChanges?: StringNullableFilter<"Testimonial"> | string | null
     consentToFeature?: BoolFilter<"Testimonial"> | boolean
     experienceDescription?: StringNullableFilter<"Testimonial"> | string | null
     grade?: StringNullableFilter<"Testimonial"> | string | null
@@ -47691,7 +47720,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrderInput | SortOrder
-    beforeAfterExpectations?: SortOrderInput | SortOrder
+    beforeExpectations?: SortOrderInput | SortOrder
+    afterChanges?: SortOrderInput | SortOrder
     consentToFeature?: SortOrder
     experienceDescription?: SortOrderInput | SortOrder
     grade?: SortOrderInput | SortOrder
@@ -47724,7 +47754,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableFilter<"Testimonial"> | string | null
-    beforeAfterExpectations?: StringNullableFilter<"Testimonial"> | string | null
+    beforeExpectations?: StringNullableFilter<"Testimonial"> | string | null
+    afterChanges?: StringNullableFilter<"Testimonial"> | string | null
     consentToFeature?: BoolFilter<"Testimonial"> | boolean
     experienceDescription?: StringNullableFilter<"Testimonial"> | string | null
     grade?: StringNullableFilter<"Testimonial"> | string | null
@@ -47754,7 +47785,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrderInput | SortOrder
-    beforeAfterExpectations?: SortOrderInput | SortOrder
+    beforeExpectations?: SortOrderInput | SortOrder
+    afterChanges?: SortOrderInput | SortOrder
     consentToFeature?: SortOrder
     experienceDescription?: SortOrderInput | SortOrder
     grade?: SortOrderInput | SortOrder
@@ -47791,7 +47823,8 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
-    beforeAfterExpectations?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    beforeExpectations?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    afterChanges?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
     consentToFeature?: BoolWithAggregatesFilter<"Testimonial"> | boolean
     experienceDescription?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
     grade?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
@@ -49086,6 +49119,7 @@ export namespace Prisma {
     grade?: StringNullableFilter<"Research"> | string | null
     school?: StringNullableFilter<"Research"> | string | null
     category?: StringNullableFilter<"Research"> | string | null
+    domain?: StringNullableFilter<"Research"> | string | null
     studentId?: IntNullableFilter<"Research"> | number | null
     published?: BoolFilter<"Research"> | boolean
     pdfFilename?: StringNullableFilter<"Research"> | string | null
@@ -49109,6 +49143,7 @@ export namespace Prisma {
     grade?: SortOrderInput | SortOrder
     school?: SortOrderInput | SortOrder
     category?: SortOrderInput | SortOrder
+    domain?: SortOrderInput | SortOrder
     studentId?: SortOrderInput | SortOrder
     published?: SortOrder
     pdfFilename?: SortOrderInput | SortOrder
@@ -49135,6 +49170,7 @@ export namespace Prisma {
     grade?: StringNullableFilter<"Research"> | string | null
     school?: StringNullableFilter<"Research"> | string | null
     category?: StringNullableFilter<"Research"> | string | null
+    domain?: StringNullableFilter<"Research"> | string | null
     studentId?: IntNullableFilter<"Research"> | number | null
     published?: BoolFilter<"Research"> | boolean
     pdfFilename?: StringNullableFilter<"Research"> | string | null
@@ -49158,6 +49194,7 @@ export namespace Prisma {
     grade?: SortOrderInput | SortOrder
     school?: SortOrderInput | SortOrder
     category?: SortOrderInput | SortOrder
+    domain?: SortOrderInput | SortOrder
     studentId?: SortOrderInput | SortOrder
     published?: SortOrder
     pdfFilename?: SortOrderInput | SortOrder
@@ -49186,6 +49223,7 @@ export namespace Prisma {
     grade?: StringNullableWithAggregatesFilter<"Research"> | string | null
     school?: StringNullableWithAggregatesFilter<"Research"> | string | null
     category?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    domain?: StringNullableWithAggregatesFilter<"Research"> | string | null
     studentId?: IntNullableWithAggregatesFilter<"Research"> | number | null
     published?: BoolWithAggregatesFilter<"Research"> | boolean
     pdfFilename?: StringNullableWithAggregatesFilter<"Research"> | string | null
@@ -51073,7 +51111,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeAfterExpectations?: string | null
+    beforeExpectations?: string | null
+    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -51103,7 +51142,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeAfterExpectations?: string | null
+    beforeExpectations?: string | null
+    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -51130,7 +51170,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51160,7 +51201,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51189,7 +51231,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeAfterExpectations?: string | null
+    beforeExpectations?: string | null
+    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -51216,7 +51259,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -51245,7 +51289,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -52772,6 +52817,7 @@ export namespace Prisma {
     grade?: string | null
     school?: string | null
     category?: string | null
+    domain?: string | null
     published?: boolean
     pdfFilename?: string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -52794,6 +52840,7 @@ export namespace Prisma {
     grade?: string | null
     school?: string | null
     category?: string | null
+    domain?: string | null
     studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
@@ -52816,6 +52863,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -52838,6 +52886,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
@@ -52860,6 +52909,7 @@ export namespace Prisma {
     grade?: string | null
     school?: string | null
     category?: string | null
+    domain?: string | null
     studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
@@ -52880,6 +52930,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -52899,6 +52950,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
@@ -54481,7 +54533,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrder
-    beforeAfterExpectations?: SortOrder
+    beforeExpectations?: SortOrder
+    afterChanges?: SortOrder
     consentToFeature?: SortOrder
     experienceDescription?: SortOrder
     grade?: SortOrder
@@ -54516,7 +54569,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrder
-    beforeAfterExpectations?: SortOrder
+    beforeExpectations?: SortOrder
+    afterChanges?: SortOrder
     consentToFeature?: SortOrder
     experienceDescription?: SortOrder
     grade?: SortOrder
@@ -54544,7 +54598,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrder
-    beforeAfterExpectations?: SortOrder
+    beforeExpectations?: SortOrder
+    afterChanges?: SortOrder
     consentToFeature?: SortOrder
     experienceDescription?: SortOrder
     grade?: SortOrder
@@ -55465,6 +55520,7 @@ export namespace Prisma {
     grade?: SortOrder
     school?: SortOrder
     category?: SortOrder
+    domain?: SortOrder
     studentId?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
@@ -55489,6 +55545,7 @@ export namespace Prisma {
     grade?: SortOrder
     school?: SortOrder
     category?: SortOrder
+    domain?: SortOrder
     studentId?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
@@ -55507,6 +55564,7 @@ export namespace Prisma {
     grade?: SortOrder
     school?: SortOrder
     category?: SortOrder
+    domain?: SortOrder
     studentId?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
@@ -58748,7 +58806,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeAfterExpectations?: string | null
+    beforeExpectations?: string | null
+    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -58776,7 +58835,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeAfterExpectations?: string | null
+    beforeExpectations?: string | null
+    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -58814,6 +58874,7 @@ export namespace Prisma {
     grade?: string | null
     school?: string | null
     category?: string | null
+    domain?: string | null
     published?: boolean
     pdfFilename?: string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -58835,6 +58896,7 @@ export namespace Prisma {
     grade?: string | null
     school?: string | null
     category?: string | null
+    domain?: string | null
     published?: boolean
     pdfFilename?: string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -59175,7 +59237,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableFilter<"Testimonial"> | string | null
-    beforeAfterExpectations?: StringNullableFilter<"Testimonial"> | string | null
+    beforeExpectations?: StringNullableFilter<"Testimonial"> | string | null
+    afterChanges?: StringNullableFilter<"Testimonial"> | string | null
     consentToFeature?: BoolFilter<"Testimonial"> | boolean
     experienceDescription?: StringNullableFilter<"Testimonial"> | string | null
     grade?: StringNullableFilter<"Testimonial"> | string | null
@@ -59222,6 +59285,7 @@ export namespace Prisma {
     grade?: StringNullableFilter<"Research"> | string | null
     school?: StringNullableFilter<"Research"> | string | null
     category?: StringNullableFilter<"Research"> | string | null
+    domain?: StringNullableFilter<"Research"> | string | null
     studentId?: IntNullableFilter<"Research"> | number | null
     published?: BoolFilter<"Research"> | boolean
     pdfFilename?: StringNullableFilter<"Research"> | string | null
@@ -62231,6 +62295,7 @@ export namespace Prisma {
     grade?: string | null
     school?: string | null
     category?: string | null
+    domain?: string | null
     published?: boolean
     pdfFilename?: string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -62252,6 +62317,7 @@ export namespace Prisma {
     grade?: string | null
     school?: string | null
     category?: string | null
+    domain?: string | null
     studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
@@ -62289,6 +62355,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -62310,6 +62377,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
@@ -62565,6 +62633,7 @@ export namespace Prisma {
     grade?: string | null
     school?: string | null
     category?: string | null
+    domain?: string | null
     published?: boolean
     pdfFilename?: string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -62586,6 +62655,7 @@ export namespace Prisma {
     grade?: string | null
     school?: string | null
     category?: string | null
+    domain?: string | null
     studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
@@ -62623,6 +62693,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -62644,6 +62715,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
@@ -63489,7 +63561,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeAfterExpectations?: string | null
+    beforeExpectations?: string | null
+    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -63517,6 +63590,7 @@ export namespace Prisma {
     grade?: string | null
     school?: string | null
     category?: string | null
+    domain?: string | null
     published?: boolean
     pdfFilename?: string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -63947,7 +64021,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -63975,7 +64050,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -64003,7 +64079,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeAfterExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -64031,6 +64108,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -64052,6 +64130,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -64073,6 +64152,7 @@ export namespace Prisma {
     grade?: NullableStringFieldUpdateOperationsInput | string | null
     school?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue

@@ -3,6 +3,47 @@ import prisma from "@/lib/prisma"
 import { checkAdminAuth } from "@/lib/adminAuth"
 import slugify from "slugify"
 
+export async function GET() {
+  // 🔐 Admin auth
+  const authResult = await checkAdminAuth()
+  if (!authResult.success) {
+    return NextResponse.json(
+      { error: authResult.error },
+      { status: authResult.statusCode || 403 }
+    )
+  }
+
+  try {
+    const research = await prisma.research.findMany({
+      include: {
+        _count: {
+          select: {
+            Slide: true,
+            AccessRequest: true,
+          },
+        },
+        student: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    })
+
+    return NextResponse.json({ research }, { status: 200 })
+  } catch (err) {
+    console.error("List research error:", err)
+    return NextResponse.json(
+      { error: "Failed to fetch research" },
+      { status: 500 }
+    )
+  }
+}
+
 export async function POST(req: NextRequest) {
   // 🔐 Admin auth
   const authResult = await checkAdminAuth()
@@ -15,7 +56,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json()
-    const { title, description, author, grade, school, category, createdAt, studentId } = body
+    const { title, description, author, grade, school, category, domain, createdAt, studentId } = body
 
     if (!title) {
       return NextResponse.json(
@@ -89,6 +130,7 @@ export async function POST(req: NextRequest) {
         grade: grade || null,
         school: school || null,
         category: category || null,
+        domain: domain || null,
         createdAt: parsedDate,
         studentId: studentId ? parseInt(studentId) : null,
         pdfFilename: null,

@@ -4,7 +4,7 @@ import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // GET /api/admin/students
-export async function GET() {
+export async function GET(request: NextRequest) {
   // Verify admin permissions
   const session = await auth()
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
@@ -25,12 +25,27 @@ export async function GET() {
       }, { status: 500 })
     }
 
+    // Get search parameter for filtering
+    const { searchParams } = new URL(request.url)
+    const searchTerm = searchParams.get('search')
+
     console.log("Fetching students from database...")
-    // Get all students from the database
+    
+    // Build query with optional search
+    const whereClause = searchTerm ? {
+      OR: [
+        { name: { contains: searchTerm, mode: 'insensitive' as const } },
+        { email: { contains: searchTerm, mode: 'insensitive' as const } },
+      ]
+    } : {}
+
+    // Get students from the database
     const students = await prisma.student.findMany({
+      where: whereClause,
       orderBy: {
         createdAt: "desc"
-      }
+      },
+      take: searchTerm ? 10 : undefined // Limit results when searching
     })
     
     console.log(`Successfully retrieved ${students.length} students`)

@@ -38,7 +38,7 @@ export async function POST(
     // Get research details for extraction
     const research = await prisma.research.findUnique({
       where: { id: researchId },
-      select: { title: true },
+      select: { title: true, pdfFilename: true },
     })
 
     if (!research) {
@@ -46,6 +46,23 @@ export async function POST(
         { error: "Research not found" },
         { status: 404 }
       )
+    }
+
+    // Delete old PDF from storage if it exists
+    if (research.pdfFilename) {
+      const oldPdfPath = `${researchId}/${research.pdfFilename}`
+      console.log(`Deleting old PDF from storage: ${oldPdfPath}`)
+      
+      const { error: deleteError } = await supabaseServer.storage
+        .from("research-pdf")
+        .remove([oldPdfPath])
+      
+      if (deleteError) {
+        console.warn(`Failed to delete old PDF (${oldPdfPath}):`, deleteError)
+        // Continue anyway - old file may not exist
+      } else {
+        console.log(`✓ Old PDF deleted successfully`)
+      }
     }
 
     // Read PDF buffer (use original for extraction, watermarked for storage)
