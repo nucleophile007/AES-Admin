@@ -317,33 +317,34 @@ model Payment {
 }
 
 model Testimonial {
-  id                      Int       @id @default(autoincrement())
-  studentId               Int?
-  content                 String?
-  authorType              String?
-  authorName              String?
-  isApproved              Boolean   @default(false)
-  isVisible               Boolean   @default(true)
-  createdAt               DateTime  @default(now())
-  updatedAt               DateTime
-  videoLink               String?
-  beforeAfterExpectations String?
-  consentToFeature        Boolean   @default(false)
-  experienceDescription   String?
-  grade                   String?
-  programs                String[]
-  rating                  Int?
-  school                  String?
-  studentInfo             String?
-  studentName             String?
-  submittedAt             DateTime?
-  successStory            String?
-  beforeAfterApproved     Boolean   @default(false)
-  contentApproved         Boolean   @default(false)
-  programsApproved        Boolean   @default(false)
-  ratingApproved          Boolean   @default(false)
-  successStoryApproved    Boolean   @default(false)
-  Student                 Student?  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  id                    Int       @id @default(autoincrement())
+  studentId             Int?
+  content               String?
+  authorType            String?
+  authorName            String?
+  isApproved            Boolean   @default(false)
+  isVisible             Boolean   @default(true)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime
+  videoLink             String?
+  beforeExpectations    String?
+  afterChanges          String?
+  consentToFeature      Boolean   @default(false)
+  experienceDescription String?
+  grade                 String?
+  programs              String[]
+  rating                Int?
+  school                String?
+  studentInfo           String?
+  studentName           String?
+  submittedAt           DateTime?
+  successStory          String?
+  beforeAfterApproved   Boolean   @default(false)
+  contentApproved       Boolean   @default(false)
+  programsApproved      Boolean   @default(false)
+  ratingApproved        Boolean   @default(false)
+  successStoryApproved  Boolean   @default(false)
+  Student               Student?  @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }
 
 model SecurityLog {
@@ -619,6 +620,7 @@ model Research {
   grade            String?
   school           String?
   category         String?
+  domain           String?
   studentId        Int?
   published        Boolean         @default(true)
   pdfFilename      String?

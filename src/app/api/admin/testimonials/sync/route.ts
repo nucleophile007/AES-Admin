@@ -133,7 +133,8 @@ function mapSheetRowToTestimonial(row: SheetRow) {
     programs,
     rating,
     videoLink: null,
-    beforeAfterExpectations: row['Before : What were your expectations when you first joined ACHARYA with respect to specific goals, grades, confidence and programs ?\n\nAfter: What changes did you notice after joining and how has ACHARYA made a difference with your (your child\'s future plans) ?'] || null,
+    beforeExpectations: row['Before : What were your expectations when you first joined ACHARYA with respect to specific goals, grades, confidence and programs ?'] || null,
+    afterChanges: row['After: What changes did you notice after joining and how has ACHARYA made a difference with your (your child\'s future plans) ?'] || null,
     experienceDescription: null,
     successStory: row['Please share a specific success story or milestone achieved with the help of ACHARYA.'] || null,
     consentToFeature: row['May we feature your testimonial on our website and other marketing materials (flyers, posters, social media)? '] === 'Yes',
@@ -179,7 +180,8 @@ export async function POST() {
       try {
         const testimonialData = mapSheetRowToTestimonial(row)
 
-        if (!testimonialData.content) {
+        // Skip if no student name or content
+        if (!testimonialData.studentName || !testimonialData.content) {
           skipCount++
           continue
         }

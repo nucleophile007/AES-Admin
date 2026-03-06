@@ -124,6 +124,76 @@ export async function PATCH(request: Request) {
   }
 }
 
+// PUT /api/admin/testimonials - Update any testimonial field
+export async function PUT(request: Request) {
+  try {
+    const session = await auth()
+
+    if (!session || session.user.role !== 'admin') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const body = await request.json()
+    const { testimonialId, ...updateData } = body
+
+    if (!testimonialId) {
+      return NextResponse.json(
+        { error: 'testimonialId is required' },
+        { status: 400 }
+      )
+    }
+
+    // Remove undefined and empty string values
+    const cleanedData: any = {}
+    Object.entries(updateData).forEach(([key, value]) => {
+      if (value !== undefined && value !== '') {
+        cleanedData[key] = value
+      }
+    })
+
+    // Handle updatedAt timestamp
+    cleanedData.updatedAt = new Date()
+
+    if (Object.keys(cleanedData).length === 1) { // Only updatedAt
+      return NextResponse.json(
+        { error: 'At least one field to update is required' },
+        { status: 400 }
+      )
+    }
+
+    const updatedTestimonial = await db.testimonial.update({
+      where: { id: testimonialId },
+      data: cleanedData,
+      include: {
+        Student: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            grade: true,
+            schoolName: true,
+            parentName: true,
+            parentEmail: true,
+            parentPhone: true,
+            program: true,
+          },
+        },
+      },
+    })
+
+    return NextResponse.json({
+      success: true,
+      testimonial: updatedTestimonial,
+    })
+  } catch (error) {
+    console.error('Error updating testimonial:', error)
+    return NextResponse.json(
+      { error: 'Failed to update testimonial' },
+      { status: 500 }
+    )
+  }
+}
+
 // DELETE /api/admin/testimonials - Delete a testimonial
 export async function DELETE(request: Request) {
   try {

@@ -16,6 +16,7 @@ export default function NewResearchPage() {
     grade: "",
     school: "",
     category: "",
+    domain: "",
     createdAt: new Date().toISOString().split('T')[0], // Default to today
     description: "",
     published: true,
@@ -61,6 +62,7 @@ export default function NewResearchPage() {
           grade: formData.grade || null,
           school: formData.school || null,
           category: formData.category || null,
+          domain: formData.domain || null,
           createdAt: formData.createdAt,
           studentId: selectedStudent?.id || null,
         }),
@@ -101,7 +103,7 @@ export default function NewResearchPage() {
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
           <Link
-            href="/admin"
+            href="/admin/research"
             className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -227,6 +229,26 @@ export default function NewResearchPage() {
                 <option value="IGNITE">IGNITE</option>
                 <option value="ELEVATE">ELEVATE</option>
                 <option value="TRANSFORM">TRANSFORM</option>
+              </select>
+            </div>
+
+            {/* Domain */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Domain (optional)
+              </label>
+              <select
+                value={formData.domain}
+                onChange={(e) =>
+                  setFormData({ ...formData, domain: e.target.value })
+                }
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">Select domain...</option>
+                <option value="AI/ML">AI/ML</option>
+                <option value="Pre-Med/BIO/CHEM">Pre-Med/BIO/CHEM</option>
+                <option value="Engg">Engg</option>
+                <option value="Law & Political Sciences">Law & Political Sciences</option>
               </select>
             </div>
 
