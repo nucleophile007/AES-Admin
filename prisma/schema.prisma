@@ -84,6 +84,7 @@ model Student {
   teacherLinks        TeacherStudent[]
   Testimonial         Testimonial[]
   Research            Research[]
+  Blog                Blog[]
 }
 
 model TeacherStudent {
@@ -663,4 +664,26 @@ model StudentGroupMember {
   Student      Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   @@unique([groupId, studentId])
+}
+
+model Blog {
+  id               Int       @id @default(autoincrement())
+  title            String
+  abstract         String    @db.Text
+  externalUrl      String
+  studentId        Int?
+  studentPhoto     String?   // URL to uploaded student photo
+  publicationYear  Int
+  publicationMonth Int       // 1-12 for Jan-Dec
+  isApproved       Boolean   @default(false)
+  published        Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  approvedAt       DateTime?
+  
+  student          Student?  @relation(fields: [studentId], references: [id], onDelete: SetNull)
+  
+  @@index([publicationYear, publicationMonth])
+  @@index([published])
+  @@index([studentId])
 }

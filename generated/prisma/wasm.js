@@ -649,6 +649,22 @@ exports.Prisma.StudentGroupMemberScalarFieldEnum = {
   assignedAt: 'assignedAt'
 };
 
+exports.Prisma.BlogScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  abstract: 'abstract',
+  externalUrl: 'externalUrl',
+  studentId: 'studentId',
+  studentPhoto: 'studentPhoto',
+  publicationYear: 'publicationYear',
+  publicationMonth: 'publicationMonth',
+  isApproved: 'isApproved',
+  published: 'published',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  approvedAt: 'approvedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -714,7 +730,8 @@ exports.Prisma.ModelName = {
   Research: 'Research',
   Slide: 'Slide',
   StudentGroup: 'StudentGroup',
-  StudentGroupMember: 'StudentGroupMember'
+  StudentGroupMember: 'StudentGroupMember',
+  Blog: 'Blog'
 };
 
 /**

@@ -183,6 +183,11 @@ export type StudentGroup = $Result.DefaultSelection<Prisma.$StudentGroupPayload>
  * 
  */
 export type StudentGroupMember = $Result.DefaultSelection<Prisma.$StudentGroupMemberPayload>
+/**
+ * Model Blog
+ * 
+ */
+export type Blog = $Result.DefaultSelection<Prisma.$BlogPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -641,6 +646,16 @@ export class PrismaClient<
     * ```
     */
   get studentGroupMember(): Prisma.StudentGroupMemberDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.blog`: Exposes CRUD operations for the **Blog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Blogs
+    * const blogs = await prisma.blog.findMany()
+    * ```
+    */
+  get blog(): Prisma.BlogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1114,7 +1129,8 @@ export namespace Prisma {
     Research: 'Research',
     Slide: 'Slide',
     StudentGroup: 'StudentGroup',
-    StudentGroupMember: 'StudentGroupMember'
+    StudentGroupMember: 'StudentGroupMember',
+    Blog: 'Blog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1133,7 +1149,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor" | "progressReport" | "eventRegistration" | "generalEvent" | "accessRequest" | "research" | "slide" | "studentGroup" | "studentGroupMember"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "parentAccount" | "transactionReceipt" | "passwordResetRequest" | "mentor" | "progressReport" | "eventRegistration" | "generalEvent" | "accessRequest" | "research" | "slide" | "studentGroup" | "studentGroupMember" | "blog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3653,6 +3669,80 @@ export namespace Prisma {
           }
         }
       }
+      Blog: {
+        payload: Prisma.$BlogPayload<ExtArgs>
+        fields: Prisma.BlogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BlogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BlogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload>
+          }
+          findFirst: {
+            args: Prisma.BlogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BlogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload>
+          }
+          findMany: {
+            args: Prisma.BlogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload>[]
+          }
+          create: {
+            args: Prisma.BlogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload>
+          }
+          createMany: {
+            args: Prisma.BlogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BlogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload>[]
+          }
+          delete: {
+            args: Prisma.BlogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload>
+          }
+          update: {
+            args: Prisma.BlogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload>
+          }
+          deleteMany: {
+            args: Prisma.BlogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BlogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BlogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload>[]
+          }
+          upsert: {
+            args: Prisma.BlogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlogPayload>
+          }
+          aggregate: {
+            args: Prisma.BlogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBlog>
+          }
+          groupBy: {
+            args: Prisma.BlogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BlogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BlogCountArgs<ExtArgs>
+            result: $Utils.Optional<BlogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3779,6 +3869,7 @@ export namespace Prisma {
     slide?: SlideOmit
     studentGroup?: StudentGroupOmit
     studentGroupMember?: StudentGroupMemberOmit
+    blog?: BlogOmit
   }
 
   /* Types for Logging */
@@ -3956,6 +4047,7 @@ export namespace Prisma {
     teacherLinks: number
     Testimonial: number
     Research: number
+    Blog: number
   }
 
   export type StudentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3971,6 +4063,7 @@ export namespace Prisma {
     teacherLinks?: boolean | StudentCountOutputTypeCountTeacherLinksArgs
     Testimonial?: boolean | StudentCountOutputTypeCountTestimonialArgs
     Research?: boolean | StudentCountOutputTypeCountResearchArgs
+    Blog?: boolean | StudentCountOutputTypeCountBlogArgs
   }
 
   // Custom InputTypes
@@ -4066,6 +4159,13 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountResearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ResearchWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountBlogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlogWhereInput
   }
 
 
@@ -8149,6 +8249,7 @@ export namespace Prisma {
     teacherLinks?: boolean | Student$teacherLinksArgs<ExtArgs>
     Testimonial?: boolean | Student$TestimonialArgs<ExtArgs>
     Research?: boolean | Student$ResearchArgs<ExtArgs>
+    Blog?: boolean | Student$BlogArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
@@ -8220,6 +8321,7 @@ export namespace Prisma {
     teacherLinks?: boolean | Student$teacherLinksArgs<ExtArgs>
     Testimonial?: boolean | Student$TestimonialArgs<ExtArgs>
     Research?: boolean | Student$ResearchArgs<ExtArgs>
+    Blog?: boolean | Student$BlogArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StudentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8245,6 +8347,7 @@ export namespace Prisma {
       teacherLinks: Prisma.$TeacherStudentPayload<ExtArgs>[]
       Testimonial: Prisma.$TestimonialPayload<ExtArgs>[]
       Research: Prisma.$ResearchPayload<ExtArgs>[]
+      Blog: Prisma.$BlogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -8668,6 +8771,7 @@ export namespace Prisma {
     teacherLinks<T extends Student$teacherLinksArgs<ExtArgs> = {}>(args?: Subset<T, Student$teacherLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Testimonial<T extends Student$TestimonialArgs<ExtArgs> = {}>(args?: Subset<T, Student$TestimonialArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestimonialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Research<T extends Student$ResearchArgs<ExtArgs> = {}>(args?: Subset<T, Student$ResearchArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Blog<T extends Student$BlogArgs<ExtArgs> = {}>(args?: Subset<T, Student$BlogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9411,6 +9515,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ResearchScalarFieldEnum | ResearchScalarFieldEnum[]
+  }
+
+  /**
+   * Student.Blog
+   */
+  export type Student$BlogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    where?: BlogWhereInput
+    orderBy?: BlogOrderByWithRelationInput | BlogOrderByWithRelationInput[]
+    cursor?: BlogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BlogScalarFieldEnum | BlogScalarFieldEnum[]
   }
 
   /**
@@ -45310,6 +45438,1233 @@ export namespace Prisma {
 
 
   /**
+   * Model Blog
+   */
+
+  export type AggregateBlog = {
+    _count: BlogCountAggregateOutputType | null
+    _avg: BlogAvgAggregateOutputType | null
+    _sum: BlogSumAggregateOutputType | null
+    _min: BlogMinAggregateOutputType | null
+    _max: BlogMaxAggregateOutputType | null
+  }
+
+  export type BlogAvgAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    publicationYear: number | null
+    publicationMonth: number | null
+  }
+
+  export type BlogSumAggregateOutputType = {
+    id: number | null
+    studentId: number | null
+    publicationYear: number | null
+    publicationMonth: number | null
+  }
+
+  export type BlogMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    abstract: string | null
+    externalUrl: string | null
+    studentId: number | null
+    studentPhoto: string | null
+    publicationYear: number | null
+    publicationMonth: number | null
+    isApproved: boolean | null
+    published: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    approvedAt: Date | null
+  }
+
+  export type BlogMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    abstract: string | null
+    externalUrl: string | null
+    studentId: number | null
+    studentPhoto: string | null
+    publicationYear: number | null
+    publicationMonth: number | null
+    isApproved: boolean | null
+    published: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    approvedAt: Date | null
+  }
+
+  export type BlogCountAggregateOutputType = {
+    id: number
+    title: number
+    abstract: number
+    externalUrl: number
+    studentId: number
+    studentPhoto: number
+    publicationYear: number
+    publicationMonth: number
+    isApproved: number
+    published: number
+    createdAt: number
+    updatedAt: number
+    approvedAt: number
+    _all: number
+  }
+
+
+  export type BlogAvgAggregateInputType = {
+    id?: true
+    studentId?: true
+    publicationYear?: true
+    publicationMonth?: true
+  }
+
+  export type BlogSumAggregateInputType = {
+    id?: true
+    studentId?: true
+    publicationYear?: true
+    publicationMonth?: true
+  }
+
+  export type BlogMinAggregateInputType = {
+    id?: true
+    title?: true
+    abstract?: true
+    externalUrl?: true
+    studentId?: true
+    studentPhoto?: true
+    publicationYear?: true
+    publicationMonth?: true
+    isApproved?: true
+    published?: true
+    createdAt?: true
+    updatedAt?: true
+    approvedAt?: true
+  }
+
+  export type BlogMaxAggregateInputType = {
+    id?: true
+    title?: true
+    abstract?: true
+    externalUrl?: true
+    studentId?: true
+    studentPhoto?: true
+    publicationYear?: true
+    publicationMonth?: true
+    isApproved?: true
+    published?: true
+    createdAt?: true
+    updatedAt?: true
+    approvedAt?: true
+  }
+
+  export type BlogCountAggregateInputType = {
+    id?: true
+    title?: true
+    abstract?: true
+    externalUrl?: true
+    studentId?: true
+    studentPhoto?: true
+    publicationYear?: true
+    publicationMonth?: true
+    isApproved?: true
+    published?: true
+    createdAt?: true
+    updatedAt?: true
+    approvedAt?: true
+    _all?: true
+  }
+
+  export type BlogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Blog to aggregate.
+     */
+    where?: BlogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Blogs to fetch.
+     */
+    orderBy?: BlogOrderByWithRelationInput | BlogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BlogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Blogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Blogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Blogs
+    **/
+    _count?: true | BlogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BlogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BlogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BlogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BlogMaxAggregateInputType
+  }
+
+  export type GetBlogAggregateType<T extends BlogAggregateArgs> = {
+        [P in keyof T & keyof AggregateBlog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBlog[P]>
+      : GetScalarType<T[P], AggregateBlog[P]>
+  }
+
+
+
+
+  export type BlogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlogWhereInput
+    orderBy?: BlogOrderByWithAggregationInput | BlogOrderByWithAggregationInput[]
+    by: BlogScalarFieldEnum[] | BlogScalarFieldEnum
+    having?: BlogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BlogCountAggregateInputType | true
+    _avg?: BlogAvgAggregateInputType
+    _sum?: BlogSumAggregateInputType
+    _min?: BlogMinAggregateInputType
+    _max?: BlogMaxAggregateInputType
+  }
+
+  export type BlogGroupByOutputType = {
+    id: number
+    title: string
+    abstract: string
+    externalUrl: string
+    studentId: number | null
+    studentPhoto: string | null
+    publicationYear: number
+    publicationMonth: number
+    isApproved: boolean
+    published: boolean
+    createdAt: Date
+    updatedAt: Date
+    approvedAt: Date | null
+    _count: BlogCountAggregateOutputType | null
+    _avg: BlogAvgAggregateOutputType | null
+    _sum: BlogSumAggregateOutputType | null
+    _min: BlogMinAggregateOutputType | null
+    _max: BlogMaxAggregateOutputType | null
+  }
+
+  type GetBlogGroupByPayload<T extends BlogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BlogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BlogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BlogGroupByOutputType[P]>
+            : GetScalarType<T[P], BlogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BlogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    abstract?: boolean
+    externalUrl?: boolean
+    studentId?: boolean
+    studentPhoto?: boolean
+    publicationYear?: boolean
+    publicationMonth?: boolean
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approvedAt?: boolean
+    student?: boolean | Blog$studentArgs<ExtArgs>
+  }, ExtArgs["result"]["blog"]>
+
+  export type BlogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    abstract?: boolean
+    externalUrl?: boolean
+    studentId?: boolean
+    studentPhoto?: boolean
+    publicationYear?: boolean
+    publicationMonth?: boolean
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approvedAt?: boolean
+    student?: boolean | Blog$studentArgs<ExtArgs>
+  }, ExtArgs["result"]["blog"]>
+
+  export type BlogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    abstract?: boolean
+    externalUrl?: boolean
+    studentId?: boolean
+    studentPhoto?: boolean
+    publicationYear?: boolean
+    publicationMonth?: boolean
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approvedAt?: boolean
+    student?: boolean | Blog$studentArgs<ExtArgs>
+  }, ExtArgs["result"]["blog"]>
+
+  export type BlogSelectScalar = {
+    id?: boolean
+    title?: boolean
+    abstract?: boolean
+    externalUrl?: boolean
+    studentId?: boolean
+    studentPhoto?: boolean
+    publicationYear?: boolean
+    publicationMonth?: boolean
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    approvedAt?: boolean
+  }
+
+  export type BlogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "abstract" | "externalUrl" | "studentId" | "studentPhoto" | "publicationYear" | "publicationMonth" | "isApproved" | "published" | "createdAt" | "updatedAt" | "approvedAt", ExtArgs["result"]["blog"]>
+  export type BlogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | Blog$studentArgs<ExtArgs>
+  }
+  export type BlogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | Blog$studentArgs<ExtArgs>
+  }
+  export type BlogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    student?: boolean | Blog$studentArgs<ExtArgs>
+  }
+
+  export type $BlogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Blog"
+    objects: {
+      student: Prisma.$StudentPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      abstract: string
+      externalUrl: string
+      studentId: number | null
+      studentPhoto: string | null
+      publicationYear: number
+      publicationMonth: number
+      isApproved: boolean
+      published: boolean
+      createdAt: Date
+      updatedAt: Date
+      approvedAt: Date | null
+    }, ExtArgs["result"]["blog"]>
+    composites: {}
+  }
+
+  type BlogGetPayload<S extends boolean | null | undefined | BlogDefaultArgs> = $Result.GetResult<Prisma.$BlogPayload, S>
+
+  type BlogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BlogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BlogCountAggregateInputType | true
+    }
+
+  export interface BlogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Blog'], meta: { name: 'Blog' } }
+    /**
+     * Find zero or one Blog that matches the filter.
+     * @param {BlogFindUniqueArgs} args - Arguments to find a Blog
+     * @example
+     * // Get one Blog
+     * const blog = await prisma.blog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BlogFindUniqueArgs>(args: SelectSubset<T, BlogFindUniqueArgs<ExtArgs>>): Prisma__BlogClient<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Blog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BlogFindUniqueOrThrowArgs} args - Arguments to find a Blog
+     * @example
+     * // Get one Blog
+     * const blog = await prisma.blog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BlogFindUniqueOrThrowArgs>(args: SelectSubset<T, BlogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BlogClient<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Blog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogFindFirstArgs} args - Arguments to find a Blog
+     * @example
+     * // Get one Blog
+     * const blog = await prisma.blog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BlogFindFirstArgs>(args?: SelectSubset<T, BlogFindFirstArgs<ExtArgs>>): Prisma__BlogClient<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Blog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogFindFirstOrThrowArgs} args - Arguments to find a Blog
+     * @example
+     * // Get one Blog
+     * const blog = await prisma.blog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BlogFindFirstOrThrowArgs>(args?: SelectSubset<T, BlogFindFirstOrThrowArgs<ExtArgs>>): Prisma__BlogClient<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Blogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Blogs
+     * const blogs = await prisma.blog.findMany()
+     * 
+     * // Get first 10 Blogs
+     * const blogs = await prisma.blog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const blogWithIdOnly = await prisma.blog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BlogFindManyArgs>(args?: SelectSubset<T, BlogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Blog.
+     * @param {BlogCreateArgs} args - Arguments to create a Blog.
+     * @example
+     * // Create one Blog
+     * const Blog = await prisma.blog.create({
+     *   data: {
+     *     // ... data to create a Blog
+     *   }
+     * })
+     * 
+     */
+    create<T extends BlogCreateArgs>(args: SelectSubset<T, BlogCreateArgs<ExtArgs>>): Prisma__BlogClient<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Blogs.
+     * @param {BlogCreateManyArgs} args - Arguments to create many Blogs.
+     * @example
+     * // Create many Blogs
+     * const blog = await prisma.blog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BlogCreateManyArgs>(args?: SelectSubset<T, BlogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Blogs and returns the data saved in the database.
+     * @param {BlogCreateManyAndReturnArgs} args - Arguments to create many Blogs.
+     * @example
+     * // Create many Blogs
+     * const blog = await prisma.blog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Blogs and only return the `id`
+     * const blogWithIdOnly = await prisma.blog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BlogCreateManyAndReturnArgs>(args?: SelectSubset<T, BlogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Blog.
+     * @param {BlogDeleteArgs} args - Arguments to delete one Blog.
+     * @example
+     * // Delete one Blog
+     * const Blog = await prisma.blog.delete({
+     *   where: {
+     *     // ... filter to delete one Blog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BlogDeleteArgs>(args: SelectSubset<T, BlogDeleteArgs<ExtArgs>>): Prisma__BlogClient<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Blog.
+     * @param {BlogUpdateArgs} args - Arguments to update one Blog.
+     * @example
+     * // Update one Blog
+     * const blog = await prisma.blog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BlogUpdateArgs>(args: SelectSubset<T, BlogUpdateArgs<ExtArgs>>): Prisma__BlogClient<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Blogs.
+     * @param {BlogDeleteManyArgs} args - Arguments to filter Blogs to delete.
+     * @example
+     * // Delete a few Blogs
+     * const { count } = await prisma.blog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BlogDeleteManyArgs>(args?: SelectSubset<T, BlogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Blogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Blogs
+     * const blog = await prisma.blog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BlogUpdateManyArgs>(args: SelectSubset<T, BlogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Blogs and returns the data updated in the database.
+     * @param {BlogUpdateManyAndReturnArgs} args - Arguments to update many Blogs.
+     * @example
+     * // Update many Blogs
+     * const blog = await prisma.blog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Blogs and only return the `id`
+     * const blogWithIdOnly = await prisma.blog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BlogUpdateManyAndReturnArgs>(args: SelectSubset<T, BlogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Blog.
+     * @param {BlogUpsertArgs} args - Arguments to update or create a Blog.
+     * @example
+     * // Update or create a Blog
+     * const blog = await prisma.blog.upsert({
+     *   create: {
+     *     // ... data to create a Blog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Blog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BlogUpsertArgs>(args: SelectSubset<T, BlogUpsertArgs<ExtArgs>>): Prisma__BlogClient<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Blogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogCountArgs} args - Arguments to filter Blogs to count.
+     * @example
+     * // Count the number of Blogs
+     * const count = await prisma.blog.count({
+     *   where: {
+     *     // ... the filter for the Blogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends BlogCountArgs>(
+      args?: Subset<T, BlogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BlogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Blog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BlogAggregateArgs>(args: Subset<T, BlogAggregateArgs>): Prisma.PrismaPromise<GetBlogAggregateType<T>>
+
+    /**
+     * Group by Blog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BlogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BlogGroupByArgs['orderBy'] }
+        : { orderBy?: BlogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BlogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBlogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Blog model
+   */
+  readonly fields: BlogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Blog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BlogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    student<T extends Blog$studentArgs<ExtArgs> = {}>(args?: Subset<T, Blog$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Blog model
+   */
+  interface BlogFieldRefs {
+    readonly id: FieldRef<"Blog", 'Int'>
+    readonly title: FieldRef<"Blog", 'String'>
+    readonly abstract: FieldRef<"Blog", 'String'>
+    readonly externalUrl: FieldRef<"Blog", 'String'>
+    readonly studentId: FieldRef<"Blog", 'Int'>
+    readonly studentPhoto: FieldRef<"Blog", 'String'>
+    readonly publicationYear: FieldRef<"Blog", 'Int'>
+    readonly publicationMonth: FieldRef<"Blog", 'Int'>
+    readonly isApproved: FieldRef<"Blog", 'Boolean'>
+    readonly published: FieldRef<"Blog", 'Boolean'>
+    readonly createdAt: FieldRef<"Blog", 'DateTime'>
+    readonly updatedAt: FieldRef<"Blog", 'DateTime'>
+    readonly approvedAt: FieldRef<"Blog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Blog findUnique
+   */
+  export type BlogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    /**
+     * Filter, which Blog to fetch.
+     */
+    where: BlogWhereUniqueInput
+  }
+
+  /**
+   * Blog findUniqueOrThrow
+   */
+  export type BlogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    /**
+     * Filter, which Blog to fetch.
+     */
+    where: BlogWhereUniqueInput
+  }
+
+  /**
+   * Blog findFirst
+   */
+  export type BlogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    /**
+     * Filter, which Blog to fetch.
+     */
+    where?: BlogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Blogs to fetch.
+     */
+    orderBy?: BlogOrderByWithRelationInput | BlogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Blogs.
+     */
+    cursor?: BlogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Blogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Blogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Blogs.
+     */
+    distinct?: BlogScalarFieldEnum | BlogScalarFieldEnum[]
+  }
+
+  /**
+   * Blog findFirstOrThrow
+   */
+  export type BlogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    /**
+     * Filter, which Blog to fetch.
+     */
+    where?: BlogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Blogs to fetch.
+     */
+    orderBy?: BlogOrderByWithRelationInput | BlogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Blogs.
+     */
+    cursor?: BlogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Blogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Blogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Blogs.
+     */
+    distinct?: BlogScalarFieldEnum | BlogScalarFieldEnum[]
+  }
+
+  /**
+   * Blog findMany
+   */
+  export type BlogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    /**
+     * Filter, which Blogs to fetch.
+     */
+    where?: BlogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Blogs to fetch.
+     */
+    orderBy?: BlogOrderByWithRelationInput | BlogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Blogs.
+     */
+    cursor?: BlogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Blogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Blogs.
+     */
+    skip?: number
+    distinct?: BlogScalarFieldEnum | BlogScalarFieldEnum[]
+  }
+
+  /**
+   * Blog create
+   */
+  export type BlogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Blog.
+     */
+    data: XOR<BlogCreateInput, BlogUncheckedCreateInput>
+  }
+
+  /**
+   * Blog createMany
+   */
+  export type BlogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Blogs.
+     */
+    data: BlogCreateManyInput | BlogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Blog createManyAndReturn
+   */
+  export type BlogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * The data used to create many Blogs.
+     */
+    data: BlogCreateManyInput | BlogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Blog update
+   */
+  export type BlogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Blog.
+     */
+    data: XOR<BlogUpdateInput, BlogUncheckedUpdateInput>
+    /**
+     * Choose, which Blog to update.
+     */
+    where: BlogWhereUniqueInput
+  }
+
+  /**
+   * Blog updateMany
+   */
+  export type BlogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Blogs.
+     */
+    data: XOR<BlogUpdateManyMutationInput, BlogUncheckedUpdateManyInput>
+    /**
+     * Filter which Blogs to update
+     */
+    where?: BlogWhereInput
+    /**
+     * Limit how many Blogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Blog updateManyAndReturn
+   */
+  export type BlogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * The data used to update Blogs.
+     */
+    data: XOR<BlogUpdateManyMutationInput, BlogUncheckedUpdateManyInput>
+    /**
+     * Filter which Blogs to update
+     */
+    where?: BlogWhereInput
+    /**
+     * Limit how many Blogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Blog upsert
+   */
+  export type BlogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Blog to update in case it exists.
+     */
+    where: BlogWhereUniqueInput
+    /**
+     * In case the Blog found by the `where` argument doesn't exist, create a new Blog with this data.
+     */
+    create: XOR<BlogCreateInput, BlogUncheckedCreateInput>
+    /**
+     * In case the Blog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BlogUpdateInput, BlogUncheckedUpdateInput>
+  }
+
+  /**
+   * Blog delete
+   */
+  export type BlogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    /**
+     * Filter which Blog to delete.
+     */
+    where: BlogWhereUniqueInput
+  }
+
+  /**
+   * Blog deleteMany
+   */
+  export type BlogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Blogs to delete
+     */
+    where?: BlogWhereInput
+    /**
+     * Limit how many Blogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Blog.student
+   */
+  export type Blog$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
+  }
+
+  /**
+   * Blog without action
+   */
+  export type BlogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -45954,6 +47309,25 @@ export namespace Prisma {
   export type StudentGroupMemberScalarFieldEnum = (typeof StudentGroupMemberScalarFieldEnum)[keyof typeof StudentGroupMemberScalarFieldEnum]
 
 
+  export const BlogScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    abstract: 'abstract',
+    externalUrl: 'externalUrl',
+    studentId: 'studentId',
+    studentPhoto: 'studentPhoto',
+    publicationYear: 'publicationYear',
+    publicationMonth: 'publicationMonth',
+    isApproved: 'isApproved',
+    published: 'published',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    approvedAt: 'approvedAt'
+  };
+
+  export type BlogScalarFieldEnum = (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -46370,6 +47744,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentListRelationFilter
     Testimonial?: TestimonialListRelationFilter
     Research?: ResearchListRelationFilter
+    Blog?: BlogListRelationFilter
   }
 
   export type StudentOrderByWithRelationInput = {
@@ -46400,6 +47775,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentOrderByRelationAggregateInput
     Testimonial?: TestimonialOrderByRelationAggregateInput
     Research?: ResearchOrderByRelationAggregateInput
+    Blog?: BlogOrderByRelationAggregateInput
   }
 
   export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -46433,6 +47809,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentListRelationFilter
     Testimonial?: TestimonialListRelationFilter
     Research?: ResearchListRelationFilter
+    Blog?: BlogListRelationFilter
   }, "id" | "email">
 
   export type StudentOrderByWithAggregationInput = {
@@ -49403,6 +50780,103 @@ export namespace Prisma {
     assignedAt?: DateTimeWithAggregatesFilter<"StudentGroupMember"> | Date | string
   }
 
+  export type BlogWhereInput = {
+    AND?: BlogWhereInput | BlogWhereInput[]
+    OR?: BlogWhereInput[]
+    NOT?: BlogWhereInput | BlogWhereInput[]
+    id?: IntFilter<"Blog"> | number
+    title?: StringFilter<"Blog"> | string
+    abstract?: StringFilter<"Blog"> | string
+    externalUrl?: StringFilter<"Blog"> | string
+    studentId?: IntNullableFilter<"Blog"> | number | null
+    studentPhoto?: StringNullableFilter<"Blog"> | string | null
+    publicationYear?: IntFilter<"Blog"> | number
+    publicationMonth?: IntFilter<"Blog"> | number
+    isApproved?: BoolFilter<"Blog"> | boolean
+    published?: BoolFilter<"Blog"> | boolean
+    createdAt?: DateTimeFilter<"Blog"> | Date | string
+    updatedAt?: DateTimeFilter<"Blog"> | Date | string
+    approvedAt?: DateTimeNullableFilter<"Blog"> | Date | string | null
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+  }
+
+  export type BlogOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    abstract?: SortOrder
+    externalUrl?: SortOrder
+    studentId?: SortOrderInput | SortOrder
+    studentPhoto?: SortOrderInput | SortOrder
+    publicationYear?: SortOrder
+    publicationMonth?: SortOrder
+    isApproved?: SortOrder
+    published?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approvedAt?: SortOrderInput | SortOrder
+    student?: StudentOrderByWithRelationInput
+  }
+
+  export type BlogWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: BlogWhereInput | BlogWhereInput[]
+    OR?: BlogWhereInput[]
+    NOT?: BlogWhereInput | BlogWhereInput[]
+    title?: StringFilter<"Blog"> | string
+    abstract?: StringFilter<"Blog"> | string
+    externalUrl?: StringFilter<"Blog"> | string
+    studentId?: IntNullableFilter<"Blog"> | number | null
+    studentPhoto?: StringNullableFilter<"Blog"> | string | null
+    publicationYear?: IntFilter<"Blog"> | number
+    publicationMonth?: IntFilter<"Blog"> | number
+    isApproved?: BoolFilter<"Blog"> | boolean
+    published?: BoolFilter<"Blog"> | boolean
+    createdAt?: DateTimeFilter<"Blog"> | Date | string
+    updatedAt?: DateTimeFilter<"Blog"> | Date | string
+    approvedAt?: DateTimeNullableFilter<"Blog"> | Date | string | null
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+  }, "id">
+
+  export type BlogOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    abstract?: SortOrder
+    externalUrl?: SortOrder
+    studentId?: SortOrderInput | SortOrder
+    studentPhoto?: SortOrderInput | SortOrder
+    publicationYear?: SortOrder
+    publicationMonth?: SortOrder
+    isApproved?: SortOrder
+    published?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approvedAt?: SortOrderInput | SortOrder
+    _count?: BlogCountOrderByAggregateInput
+    _avg?: BlogAvgOrderByAggregateInput
+    _max?: BlogMaxOrderByAggregateInput
+    _min?: BlogMinOrderByAggregateInput
+    _sum?: BlogSumOrderByAggregateInput
+  }
+
+  export type BlogScalarWhereWithAggregatesInput = {
+    AND?: BlogScalarWhereWithAggregatesInput | BlogScalarWhereWithAggregatesInput[]
+    OR?: BlogScalarWhereWithAggregatesInput[]
+    NOT?: BlogScalarWhereWithAggregatesInput | BlogScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Blog"> | number
+    title?: StringWithAggregatesFilter<"Blog"> | string
+    abstract?: StringWithAggregatesFilter<"Blog"> | string
+    externalUrl?: StringWithAggregatesFilter<"Blog"> | string
+    studentId?: IntNullableWithAggregatesFilter<"Blog"> | number | null
+    studentPhoto?: StringNullableWithAggregatesFilter<"Blog"> | string | null
+    publicationYear?: IntWithAggregatesFilter<"Blog"> | number
+    publicationMonth?: IntWithAggregatesFilter<"Blog"> | number
+    isApproved?: BoolWithAggregatesFilter<"Blog"> | boolean
+    published?: BoolWithAggregatesFilter<"Blog"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Blog"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Blog"> | Date | string
+    approvedAt?: DateTimeNullableWithAggregatesFilter<"Blog"> | Date | string | null
+  }
+
   export type WebinarRegistrationCreateInput = {
     email: string
     parentName: string
@@ -49711,6 +51185,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateInput = {
@@ -49740,6 +51215,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUpdateInput = {
@@ -49768,6 +51244,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
@@ -49797,6 +51274,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateManyInput = {
@@ -53109,6 +54587,114 @@ export namespace Prisma {
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type BlogCreateInput = {
+    title: string
+    abstract: string
+    externalUrl: string
+    studentPhoto?: string | null
+    publicationYear: number
+    publicationMonth: number
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approvedAt?: Date | string | null
+    student?: StudentCreateNestedOneWithoutBlogInput
+  }
+
+  export type BlogUncheckedCreateInput = {
+    id?: number
+    title: string
+    abstract: string
+    externalUrl: string
+    studentId?: number | null
+    studentPhoto?: string | null
+    publicationYear: number
+    publicationMonth: number
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approvedAt?: Date | string | null
+  }
+
+  export type BlogUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    abstract?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    publicationYear?: IntFieldUpdateOperationsInput | number
+    publicationMonth?: IntFieldUpdateOperationsInput | number
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    student?: StudentUpdateOneWithoutBlogNestedInput
+  }
+
+  export type BlogUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    abstract?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    publicationYear?: IntFieldUpdateOperationsInput | number
+    publicationMonth?: IntFieldUpdateOperationsInput | number
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type BlogCreateManyInput = {
+    id?: number
+    title: string
+    abstract: string
+    externalUrl: string
+    studentId?: number | null
+    studentPhoto?: string | null
+    publicationYear: number
+    publicationMonth: number
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approvedAt?: Date | string | null
+  }
+
+  export type BlogUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    abstract?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    publicationYear?: IntFieldUpdateOperationsInput | number
+    publicationMonth?: IntFieldUpdateOperationsInput | number
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type BlogUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    abstract?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    publicationYear?: IntFieldUpdateOperationsInput | number
+    publicationMonth?: IntFieldUpdateOperationsInput | number
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -53578,6 +55164,12 @@ export namespace Prisma {
     none?: ResearchWhereInput
   }
 
+  export type BlogListRelationFilter = {
+    every?: BlogWhereInput
+    some?: BlogWhereInput
+    none?: BlogWhereInput
+  }
+
   export type EnrollmentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -53607,6 +55199,10 @@ export namespace Prisma {
   }
 
   export type ResearchOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BlogOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -55688,6 +57284,68 @@ export namespace Prisma {
     studentId?: SortOrder
   }
 
+  export type BlogCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    abstract?: SortOrder
+    externalUrl?: SortOrder
+    studentId?: SortOrder
+    studentPhoto?: SortOrder
+    publicationYear?: SortOrder
+    publicationMonth?: SortOrder
+    isApproved?: SortOrder
+    published?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approvedAt?: SortOrder
+  }
+
+  export type BlogAvgOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    publicationYear?: SortOrder
+    publicationMonth?: SortOrder
+  }
+
+  export type BlogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    abstract?: SortOrder
+    externalUrl?: SortOrder
+    studentId?: SortOrder
+    studentPhoto?: SortOrder
+    publicationYear?: SortOrder
+    publicationMonth?: SortOrder
+    isApproved?: SortOrder
+    published?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approvedAt?: SortOrder
+  }
+
+  export type BlogMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    abstract?: SortOrder
+    externalUrl?: SortOrder
+    studentId?: SortOrder
+    studentPhoto?: SortOrder
+    publicationYear?: SortOrder
+    publicationMonth?: SortOrder
+    isApproved?: SortOrder
+    published?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    approvedAt?: SortOrder
+  }
+
+  export type BlogSumOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    publicationYear?: SortOrder
+    publicationMonth?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -56137,6 +57795,13 @@ export namespace Prisma {
     connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
   }
 
+  export type BlogCreateNestedManyWithoutStudentInput = {
+    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
+    createMany?: BlogCreateManyStudentInputEnvelope
+    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+  }
+
   export type AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput = {
     create?: XOR<AssignmentCreateWithoutTargetStudentInput, AssignmentUncheckedCreateWithoutTargetStudentInput> | AssignmentCreateWithoutTargetStudentInput[] | AssignmentUncheckedCreateWithoutTargetStudentInput[]
     connectOrCreate?: AssignmentCreateOrConnectWithoutTargetStudentInput | AssignmentCreateOrConnectWithoutTargetStudentInput[]
@@ -56219,6 +57884,13 @@ export namespace Prisma {
     connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
     createMany?: ResearchCreateManyStudentInputEnvelope
     connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+  }
+
+  export type BlogUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
+    createMany?: BlogCreateManyStudentInputEnvelope
+    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
   }
 
   export type AssignmentUpdateManyWithoutTargetStudentNestedInput = {
@@ -56399,6 +58071,20 @@ export namespace Prisma {
     deleteMany?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
   }
 
+  export type BlogUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
+    upsert?: BlogUpsertWithWhereUniqueWithoutStudentInput | BlogUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: BlogCreateManyStudentInputEnvelope
+    set?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    disconnect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    delete?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    update?: BlogUpdateWithWhereUniqueWithoutStudentInput | BlogUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: BlogUpdateManyWithWhereWithoutStudentInput | BlogUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: BlogScalarWhereInput | BlogScalarWhereInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -56573,6 +58259,20 @@ export namespace Prisma {
     update?: ResearchUpdateWithWhereUniqueWithoutStudentInput | ResearchUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: ResearchUpdateManyWithWhereWithoutStudentInput | ResearchUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
+  }
+
+  export type BlogUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
+    upsert?: BlogUpsertWithWhereUniqueWithoutStudentInput | BlogUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: BlogCreateManyStudentInputEnvelope
+    set?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    disconnect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    delete?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    update?: BlogUpdateWithWhereUniqueWithoutStudentInput | BlogUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: BlogUpdateManyWithWhereWithoutStudentInput | BlogUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: BlogScalarWhereInput | BlogScalarWhereInput[]
   }
 
   export type StudentCreateNestedOneWithoutTeacherLinksInput = {
@@ -57538,6 +59238,22 @@ export namespace Prisma {
     upsert?: StudentUpsertWithoutStudentGroupMemberInput
     connect?: StudentWhereUniqueInput
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutStudentGroupMemberInput, StudentUpdateWithoutStudentGroupMemberInput>, StudentUncheckedUpdateWithoutStudentGroupMemberInput>
+  }
+
+  export type StudentCreateNestedOneWithoutBlogInput = {
+    create?: XOR<StudentCreateWithoutBlogInput, StudentUncheckedCreateWithoutBlogInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutBlogInput
+    connect?: StudentWhereUniqueInput
+  }
+
+  export type StudentUpdateOneWithoutBlogNestedInput = {
+    create?: XOR<StudentCreateWithoutBlogInput, StudentUncheckedCreateWithoutBlogInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutBlogInput
+    upsert?: StudentUpsertWithoutBlogInput
+    disconnect?: StudentWhereInput | boolean
+    delete?: StudentWhereInput | boolean
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutBlogInput, StudentUpdateWithoutBlogInput>, StudentUncheckedUpdateWithoutBlogInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -58918,6 +60634,45 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type BlogCreateWithoutStudentInput = {
+    title: string
+    abstract: string
+    externalUrl: string
+    studentPhoto?: string | null
+    publicationYear: number
+    publicationMonth: number
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approvedAt?: Date | string | null
+  }
+
+  export type BlogUncheckedCreateWithoutStudentInput = {
+    id?: number
+    title: string
+    abstract: string
+    externalUrl: string
+    studentPhoto?: string | null
+    publicationYear: number
+    publicationMonth: number
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approvedAt?: Date | string | null
+  }
+
+  export type BlogCreateOrConnectWithoutStudentInput = {
+    where: BlogWhereUniqueInput
+    create: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput>
+  }
+
+  export type BlogCreateManyStudentInputEnvelope = {
+    data: BlogCreateManyStudentInput | BlogCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AssignmentUpsertWithWhereUniqueWithoutTargetStudentInput = {
     where: AssignmentWhereUniqueInput
     update: XOR<AssignmentUpdateWithoutTargetStudentInput, AssignmentUncheckedUpdateWithoutTargetStudentInput>
@@ -59296,6 +61051,41 @@ export namespace Prisma {
     extractionStatus?: StringNullableFilter<"Research"> | string | null
   }
 
+  export type BlogUpsertWithWhereUniqueWithoutStudentInput = {
+    where: BlogWhereUniqueInput
+    update: XOR<BlogUpdateWithoutStudentInput, BlogUncheckedUpdateWithoutStudentInput>
+    create: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput>
+  }
+
+  export type BlogUpdateWithWhereUniqueWithoutStudentInput = {
+    where: BlogWhereUniqueInput
+    data: XOR<BlogUpdateWithoutStudentInput, BlogUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type BlogUpdateManyWithWhereWithoutStudentInput = {
+    where: BlogScalarWhereInput
+    data: XOR<BlogUpdateManyMutationInput, BlogUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type BlogScalarWhereInput = {
+    AND?: BlogScalarWhereInput | BlogScalarWhereInput[]
+    OR?: BlogScalarWhereInput[]
+    NOT?: BlogScalarWhereInput | BlogScalarWhereInput[]
+    id?: IntFilter<"Blog"> | number
+    title?: StringFilter<"Blog"> | string
+    abstract?: StringFilter<"Blog"> | string
+    externalUrl?: StringFilter<"Blog"> | string
+    studentId?: IntNullableFilter<"Blog"> | number | null
+    studentPhoto?: StringNullableFilter<"Blog"> | string | null
+    publicationYear?: IntFilter<"Blog"> | number
+    publicationMonth?: IntFilter<"Blog"> | number
+    isApproved?: BoolFilter<"Blog"> | boolean
+    published?: BoolFilter<"Blog"> | boolean
+    createdAt?: DateTimeFilter<"Blog"> | Date | string
+    updatedAt?: DateTimeFilter<"Blog"> | Date | string
+    approvedAt?: DateTimeNullableFilter<"Blog"> | Date | string | null
+  }
+
   export type StudentCreateWithoutTeacherLinksInput = {
     name: string
     email: string
@@ -59321,6 +61111,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutTeacherLinksInput = {
@@ -59349,6 +61140,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutTeacherLinksInput = {
@@ -59432,6 +61224,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutTeacherLinksInput = {
@@ -59460,6 +61253,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutStudentsInput = {
@@ -59533,6 +61327,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutAssignedAssignmentsInput = {
@@ -59561,6 +61356,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutAssignedAssignmentsInput = {
@@ -59704,6 +61500,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutAssignedAssignmentsInput = {
@@ -59732,6 +61529,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutAssignmentsInput = {
@@ -59887,6 +61685,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutSubmissionsInput = {
@@ -59915,6 +61714,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutSubmissionsInput = {
@@ -60004,6 +61804,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutSubmissionsInput = {
@@ -60032,6 +61833,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutEnrollmentsInput = {
@@ -60059,6 +61861,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutEnrollmentsInput = {
@@ -60087,6 +61890,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutEnrollmentsInput = {
@@ -60185,6 +61989,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutEnrollmentsInput = {
@@ -60213,6 +62018,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type PaymentUpsertWithWhereUniqueWithoutEnrollmentInput = {
@@ -60636,6 +62442,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutAssignedResourcesInput = {
@@ -60664,6 +62471,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutAssignedResourcesInput = {
@@ -60755,6 +62563,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutAssignedResourcesInput = {
@@ -60783,6 +62592,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutStudentSubmissionsInput = {
@@ -60810,6 +62620,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutStudentSubmissionsInput = {
@@ -60838,6 +62649,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutStudentSubmissionsInput = {
@@ -60906,6 +62718,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutStudentSubmissionsInput = {
@@ -60934,6 +62747,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentSubmissionRemarkUpsertWithWhereUniqueWithoutStudentSubmissionInput = {
@@ -61133,6 +62947,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutClassSchedulesInput = {
@@ -61161,6 +62976,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutClassSchedulesInput = {
@@ -61244,6 +63060,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutClassSchedulesInput = {
@@ -61272,6 +63089,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutClassSchedulesInput = {
@@ -61369,6 +63187,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutPaymentInput = {
@@ -61397,6 +63216,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutPaymentInput = {
@@ -61470,6 +63290,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutPaymentInput = {
@@ -61498,6 +63319,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutTestimonialInput = {
@@ -61525,6 +63347,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutTestimonialInput = {
@@ -61553,6 +63376,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutTestimonialInput = {
@@ -61596,6 +63420,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutTestimonialInput = {
@@ -61624,6 +63449,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutParentAccountInput = {
@@ -61651,6 +63477,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutParentAccountInput = {
@@ -61679,6 +63506,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutParentAccountInput = {
@@ -61838,6 +63666,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutProgressReportInput = {
@@ -61866,6 +63695,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutProgressReportInput = {
@@ -61949,6 +63779,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutProgressReportInput = {
@@ -61977,6 +63808,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutProgressReportInput = {
@@ -62414,6 +64246,7 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutResearchInput = {
@@ -62442,6 +64275,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutResearchInput = {
@@ -62537,6 +64371,7 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutResearchInput = {
@@ -62565,6 +64400,7 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AccessRequestUpsertWithWhereUniqueWithoutResearchInput = {
@@ -62895,6 +64731,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutStudentGroupMemberInput = {
@@ -62923,6 +64760,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutStudentGroupMemberInput = {
@@ -62992,6 +64830,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutStudentGroupMemberInput = {
@@ -63014,6 +64853,137 @@ export namespace Prisma {
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentCreateWithoutBlogInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    StudentGroupMember?: StudentGroupMemberCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutBlogInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    ProgressReport?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    StudentGroupMember?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutBlogInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutBlogInput, StudentUncheckedCreateWithoutBlogInput>
+  }
+
+  export type StudentUpsertWithoutBlogInput = {
+    update: XOR<StudentUpdateWithoutBlogInput, StudentUncheckedUpdateWithoutBlogInput>
+    create: XOR<StudentCreateWithoutBlogInput, StudentUncheckedCreateWithoutBlogInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutBlogInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutBlogInput, StudentUncheckedUpdateWithoutBlogInput>
+  }
+
+  export type StudentUpdateWithoutBlogInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    StudentGroupMember?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutBlogInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    ProgressReport?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    StudentGroupMember?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
@@ -63600,6 +65570,21 @@ export namespace Prisma {
     extractionStatus?: string | null
   }
 
+  export type BlogCreateManyStudentInput = {
+    id?: number
+    title: string
+    abstract: string
+    externalUrl: string
+    studentPhoto?: string | null
+    publicationYear: number
+    publicationMonth: number
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approvedAt?: Date | string | null
+  }
+
   export type AssignmentUpdateWithoutTargetStudentInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -64162,6 +66147,50 @@ export namespace Prisma {
     extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type BlogUpdateWithoutStudentInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    abstract?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    publicationYear?: IntFieldUpdateOperationsInput | number
+    publicationMonth?: IntFieldUpdateOperationsInput | number
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type BlogUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    abstract?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    publicationYear?: IntFieldUpdateOperationsInput | number
+    publicationMonth?: IntFieldUpdateOperationsInput | number
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type BlogUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    abstract?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    publicationYear?: IntFieldUpdateOperationsInput | number
+    publicationMonth?: IntFieldUpdateOperationsInput | number
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type AssignmentResourceCreateManyAssignmentInput = {
     id?: number
     resourceId: number
@@ -64457,6 +66486,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutParentAccountInput = {
@@ -64485,6 +66515,7 @@ export namespace Prisma {
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateManyWithoutParentAccountInput = {
