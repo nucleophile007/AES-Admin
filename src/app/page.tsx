@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { auth } from '@/auth';
 import { allowedEmails } from '@/lib/adminConfig';
-import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquare, Receipt, MessageSquareQuote, Award, FileCheck, PlusCircle } from "lucide-react";
+import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquare, Receipt, MessageSquareQuote, Award, FileCheck, PlusCircle, FileText } from "lucide-react";
 
 export default async function HomePage() {
   const session = await auth();
@@ -204,6 +204,27 @@ export default async function HomePage() {
                 </div>
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500 text-white shadow-inner group-hover:bg-blue-600 transition-colors">
                   <MessageSquareQuote className="w-6 h-6" />
+                </div>
+              </div>
+            </Link>
+
+            <Link
+              href="/admin/blogs"
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Student Blogs</h3>
+                  <p className="text-sm text-gray-600">
+                    Manage student blog posts and publications
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600 mr-1.5" />
+                    Publications
+                  </span>
+                </div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-inner group-hover:bg-blue-700 transition-colors">
+                  <FileText className="w-6 h-6" />
                 </div>
               </div>
             </Link>
