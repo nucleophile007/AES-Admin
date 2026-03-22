@@ -14,6 +14,7 @@ import ManagePdfDialog from '@/app/admin/research/ManagePdfDialog'
 interface Student {
   id: number
   name: string
+  graduationYear?: number | null
 }
 
 interface Research {

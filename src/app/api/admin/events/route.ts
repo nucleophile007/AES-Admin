@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
     const events = await prisma.generalEvent.findMany({
       where,
       include: {
-        EventRegistration: {
+        registrations: {
           select: {
             id: true,
             registrationStatus: true,
@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
 
     // Add registration stats to each event
     const eventsWithStats = events.map((event) => {
-      const registrations = event.EventRegistration
+      const registrations = event.registrations
       const totalRegistrations = registrations.length
       const confirmedRegistrations = registrations.filter(
         (r) => r.registrationStatus === "confirmed"

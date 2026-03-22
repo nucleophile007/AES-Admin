@@ -34,6 +34,7 @@ export async function GET(req: NextRequest) {
         name: true,
         email: true,
         grade: true,
+        graduationYear: true,
         schoolName: true,
       },
       take: 10, // Limit to 10 results
