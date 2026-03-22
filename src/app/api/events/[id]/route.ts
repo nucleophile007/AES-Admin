@@ -41,7 +41,7 @@ export async function GET(
         registrationFormConfig: true,
         _count: {
           select: {
-            EventRegistration: true,
+            registrations: true,
           },
         },
       },
@@ -59,13 +59,13 @@ export async function GET(
 
     const isFull =
       event.maxParticipants !== null &&
-      event._count.EventRegistration >= event.maxParticipants
+      event._count.registrations >= event.maxParticipants
 
     return NextResponse.json({
       ...event,
-      registrationCount: event._count.EventRegistration,
+      registrationCount: event._count.registrations,
       spotsRemaining: event.maxParticipants
-        ? event.maxParticipants - event._count.EventRegistration
+        ? event.maxParticipants - event._count.registrations
         : null,
       isFull,
       registrationOpen: registrationOpen && !isFull,

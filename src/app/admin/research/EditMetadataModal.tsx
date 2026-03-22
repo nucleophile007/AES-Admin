@@ -7,6 +7,7 @@ import { toast } from 'sonner'
 interface Student {
   id: number
   name: string
+  graduationYear?: number | null
 }
 
 interface Research {

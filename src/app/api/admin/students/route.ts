@@ -68,10 +68,28 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const normalizeGraduationYear = (value: unknown) => {
+      if (value === undefined || value === null || value === "") {
+        return { value: null as number | null }
+      }
+
+      const parsed = Number(value)
+      if (!Number.isInteger(parsed)) {
+        return { error: "Graduation year must be a whole number" }
+      }
+
+      if (parsed < 2000 || parsed > 2100) {
+        return { error: "Graduation year must be between 2000 and 2100" }
+      }
+
+      return { value: parsed }
+    }
+
     const { 
       name, 
       email, 
       grade, 
+      graduationYear,
       schoolName, 
       program, 
       parentName, 
@@ -85,6 +103,14 @@ export async function POST(request: NextRequest) {
     if (!name || !email || !grade || !schoolName || !program || !parentName || !parentEmail || !parentPhone || !subject || !teacherId) {
       return NextResponse.json(
         { error: "All fields are required including subject and teacher" },
+        { status: 400 }
+      )
+    }
+
+    const graduationYearResult = normalizeGraduationYear(graduationYear)
+    if (graduationYearResult.error) {
+      return NextResponse.json(
+        { error: graduationYearResult.error },
         { status: 400 }
       )
     }
@@ -114,7 +140,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create student, enrollment, and teacher-student link in a transaction
-    console.log("Creating student with data:", { name, email, grade, schoolName, program, subject, teacherId })
+    console.log("Creating student with data:", { name, email, grade, graduationYear: graduationYearResult.value, schoolName, program, subject, teacherId })
     
     const result = await prisma.$transaction(async (tx) => {
       // 1. Create or update parent account (one per email)
@@ -146,6 +172,7 @@ export async function POST(request: NextRequest) {
           name,
           email,
           grade,
+          graduationYear: graduationYearResult.value,
           schoolName,
           program,
           parentName,

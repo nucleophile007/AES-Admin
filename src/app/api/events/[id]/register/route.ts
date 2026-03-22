@@ -17,7 +17,7 @@ export async function POST(
       where: { id: eventId, isPublished: true },
       include: {
         _count: {
-          select: { EventRegistration: true },
+          select: { registrations: true },
         },
       },
     })
@@ -40,7 +40,7 @@ export async function POST(
     // Check if event is full
     if (
       event.maxParticipants &&
-      event._count.EventRegistration >= event.maxParticipants
+      event._count.registrations >= event.maxParticipants
     ) {
       return NextResponse.json({ error: "Event is full" }, { status: 400 })
     }

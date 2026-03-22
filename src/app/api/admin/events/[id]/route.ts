@@ -20,7 +20,7 @@ export async function GET(
     const event = await prisma.generalEvent.findUnique({
       where: { id: parseInt(id) },
       include: {
-        EventRegistration: {
+        registrations: {
           orderBy: { createdAt: "desc" },
         },
       },

@@ -14,6 +14,7 @@ interface Student {
   name: string
   email: string
   grade: string
+  graduationYear?: number | null
   schoolName: string
 }
 
