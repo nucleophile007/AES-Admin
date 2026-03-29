@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { X, Upload, Trash2, Image as ImageIcon, Move } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -23,12 +23,25 @@ export default function ManageSlidesDialog({ researchId, onClose, onUpdate }: Ma
   const [imageUrls, setImageUrls] = useState<Record<string, string>>({})
   const [uploadFiles, setUploadFiles] = useState<File[]>([])
   const [uploading, setUploading] = useState(false)
+  const [pptFile, setPptFile] = useState<File | null>(null)
+  const [pptUploading, setPptUploading] = useState(false)
   const [reorderMode, setReorderMode] = useState(false)
   const [reorderedSlides, setReorderedSlides] = useState<Slide[]>([])
+  const pptInputRef = useRef<HTMLInputElement>(null)
+  const pptFinalizeStarted = useRef(false)
+  const pptPollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     fetchSlides()
   }, [researchId])
+
+  useEffect(() => {
+    return () => {
+      if (pptPollTimeout.current) {
+        clearTimeout(pptPollTimeout.current)
+      }
+    }
+  }, [])
 
   useEffect(() => {
     // Generate signed URLs for slide images
@@ -79,6 +92,26 @@ export default function ManageSlidesDialog({ researchId, onClose, onUpdate }: Ma
     setUploadFiles(imageFiles)
   }
 
+  const handlePptSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null
+    if (!file) {
+      setPptFile(null)
+      return
+    }
+
+    const name = file.name.toLowerCase()
+    if (!name.endsWith('.ppt') && !name.endsWith('.pptx')) {
+      toast.error('Only PPT or PPTX files are allowed')
+      setPptFile(null)
+      if (pptInputRef.current) {
+        pptInputRef.current.value = ''
+      }
+      return
+    }
+
+    setPptFile(file)
+  }
+
   const uploadNewSlides = async () => {
     if (uploadFiles.length === 0) {
       toast.error('Please select at least one image')
@@ -110,6 +143,102 @@ export default function ManageSlidesDialog({ researchId, onClose, onUpdate }: Ma
       toast.error(err instanceof Error ? err.message : 'Failed to upload slides', { id: loadingToast })
     } finally {
       setUploading(false)
+    }
+  }
+
+  const uploadPptSlides = async () => {
+    if (!pptFile) {
+      toast.error('Please select a PPT or PPTX file')
+      return
+    }
+
+    setPptUploading(true)
+    const loadingToast = toast.loading('Starting PPT conversion...')
+
+    try {
+      const formData = new FormData()
+      formData.append('file', pptFile)
+
+      const response = await fetch(`/api/admin/research/${researchId}/slides/convert-ppt`, {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.error || 'Failed to convert PPT')
+      }
+
+      toast.success('Conversion started. Monitoring progress...', { id: loadingToast })
+      pptFinalizeStarted.current = false
+      pollPptStatus()
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Failed to convert PPT', { id: loadingToast })
+    } finally {
+      setPptUploading(false)
+    }
+  }
+
+  const pollPptStatus = async () => {
+    if (pptPollTimeout.current) {
+      clearTimeout(pptPollTimeout.current)
+    }
+
+    try {
+      const response = await fetch(`/api/admin/research/${researchId}/slides/convert-ppt`, {
+        method: 'GET',
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.error || 'Failed to fetch conversion status')
+      }
+
+      const data = await response.json()
+      const job = data.job
+
+      if (job.status === 'failed') {
+        toast.error(job.error || 'PPT conversion failed')
+        return
+      }
+
+      if (job.status === 'finished' && !pptFinalizeStarted.current) {
+        pptFinalizeStarted.current = true
+        toast.loading('Finalizing slides...', { id: 'ppt-finalize' })
+
+        const finalizeResponse = await fetch(`/api/admin/research/${researchId}/slides/convert-ppt`, {
+          method: 'PUT',
+        })
+
+        if (!finalizeResponse.ok) {
+          const error = await finalizeResponse.json()
+          throw new Error(error.error || 'Failed to finalize slides')
+        }
+
+        toast.success('Slides generated successfully', { id: 'ppt-finalize' })
+        setPptFile(null)
+        if (pptInputRef.current) {
+          pptInputRef.current.value = ''
+        }
+        await fetchSlides()
+        onUpdate()
+        return
+      }
+
+      if (job.status === 'completed') {
+        toast.success('Slides generated successfully', { id: 'ppt-finalize' })
+        setPptFile(null)
+        if (pptInputRef.current) {
+          pptInputRef.current.value = ''
+        }
+        await fetchSlides()
+        onUpdate()
+        return
+      }
+
+      pptPollTimeout.current = setTimeout(pollPptStatus, 3000)
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Failed to check conversion status')
     }
   }
 
@@ -275,6 +404,36 @@ export default function ManageSlidesDialog({ researchId, onClose, onUpdate }: Ma
                   >
                     <Upload className="w-4 h-4" />
                     {uploading ? 'Uploading...' : 'Upload'}
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="mb-6 p-4 border-2 border-dashed border-gray-300 rounded-lg">
+            <h4 className="text-md font-semibold text-gray-900 mb-3">Upload PPT/PPTX</h4>
+            <div className="flex flex-col gap-3">
+              <input
+                ref={pptInputRef}
+                type="file"
+                accept=".ppt,.pptx,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                onChange={handlePptSelect}
+                className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                disabled={pptUploading}
+              />
+              <p className="text-xs text-gray-500">Max 20 slides, up to 100MB</p>
+              {pptFile && (
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-gray-600">
+                    {pptFile.name}
+                  </p>
+                  <button
+                    onClick={uploadPptSlides}
+                    disabled={pptUploading}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
+                  >
+                    <Upload className="w-4 h-4" />
+                    {pptUploading ? 'Converting...' : 'Convert to slides'}
                   </button>
                 </div>
               )}

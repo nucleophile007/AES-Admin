@@ -249,7 +249,7 @@ export default function EditMetadataModal({ research, onClose, onSave }: EditMet
                     <option value="">None</option>
                     <option value="AI/ML">AI/ML</option>
                     <option value="Pre-Med/BIO/CHEM">Pre-Med/BIO/CHEM</option>
-                    <option value="Engg">Engg</option>
+                    <option value="Engineering">Engineering</option>
                     <option value="Law & Political Sciences">Law & Political Sciences</option>
                   </select>
                 </div>

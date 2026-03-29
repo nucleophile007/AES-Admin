@@ -189,6 +189,11 @@ export type Research = $Result.DefaultSelection<Prisma.$ResearchPayload>
  */
 export type Slide = $Result.DefaultSelection<Prisma.$SlidePayload>
 /**
+ * Model PptConversionJob
+ * 
+ */
+export type PptConversionJob = $Result.DefaultSelection<Prisma.$PptConversionJobPayload>
+/**
  * Model Blog
  * 
  */
@@ -661,6 +666,16 @@ export class PrismaClient<
     * ```
     */
   get slide(): Prisma.SlideDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.pptConversionJob`: Exposes CRUD operations for the **PptConversionJob** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PptConversionJobs
+    * const pptConversionJobs = await prisma.pptConversionJob.findMany()
+    * ```
+    */
+  get pptConversionJob(): Prisma.PptConversionJobDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.blog`: Exposes CRUD operations for the **Blog** model.
@@ -1146,6 +1161,7 @@ export namespace Prisma {
     AccessRequest: 'AccessRequest',
     Research: 'Research',
     Slide: 'Slide',
+    PptConversionJob: 'PptConversionJob',
     Blog: 'Blog'
   };
 
@@ -1165,7 +1181,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "slide" | "blog"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "slide" | "pptConversionJob" | "blog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3759,6 +3775,80 @@ export namespace Prisma {
           }
         }
       }
+      PptConversionJob: {
+        payload: Prisma.$PptConversionJobPayload<ExtArgs>
+        fields: Prisma.PptConversionJobFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PptConversionJobFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PptConversionJobFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
+          }
+          findFirst: {
+            args: Prisma.PptConversionJobFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PptConversionJobFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
+          }
+          findMany: {
+            args: Prisma.PptConversionJobFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>[]
+          }
+          create: {
+            args: Prisma.PptConversionJobCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
+          }
+          createMany: {
+            args: Prisma.PptConversionJobCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PptConversionJobCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>[]
+          }
+          delete: {
+            args: Prisma.PptConversionJobDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
+          }
+          update: {
+            args: Prisma.PptConversionJobUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
+          }
+          deleteMany: {
+            args: Prisma.PptConversionJobDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PptConversionJobUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PptConversionJobUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>[]
+          }
+          upsert: {
+            args: Prisma.PptConversionJobUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
+          }
+          aggregate: {
+            args: Prisma.PptConversionJobAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePptConversionJob>
+          }
+          groupBy: {
+            args: Prisma.PptConversionJobGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PptConversionJobGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PptConversionJobCountArgs<ExtArgs>
+            result: $Utils.Optional<PptConversionJobCountAggregateOutputType> | number
+          }
+        }
+      }
       Blog: {
         payload: Prisma.$BlogPayload<ExtArgs>
         fields: Prisma.BlogFieldRefs
@@ -3960,6 +4050,7 @@ export namespace Prisma {
     accessRequest?: AccessRequestOmit
     research?: ResearchOmit
     slide?: SlideOmit
+    pptConversionJob?: PptConversionJobOmit
     blog?: BlogOmit
   }
 
@@ -4127,34 +4218,34 @@ export namespace Prisma {
 
   export type StudentCountOutputType = {
     assignedAssignments: number
+    Blog: number
     classSchedules: number
     enrollments: number
     Payment: number
     progressReports: number
+    Research: number
     groupMemberships: number
     assignedResources: number
     studentSubmissions: number
     submissions: number
     teacherLinks: number
     Testimonial: number
-    Research: number
-    Blog: number
   }
 
   export type StudentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignedAssignments?: boolean | StudentCountOutputTypeCountAssignedAssignmentsArgs
+    Blog?: boolean | StudentCountOutputTypeCountBlogArgs
     classSchedules?: boolean | StudentCountOutputTypeCountClassSchedulesArgs
     enrollments?: boolean | StudentCountOutputTypeCountEnrollmentsArgs
     Payment?: boolean | StudentCountOutputTypeCountPaymentArgs
     progressReports?: boolean | StudentCountOutputTypeCountProgressReportsArgs
+    Research?: boolean | StudentCountOutputTypeCountResearchArgs
     groupMemberships?: boolean | StudentCountOutputTypeCountGroupMembershipsArgs
     assignedResources?: boolean | StudentCountOutputTypeCountAssignedResourcesArgs
     studentSubmissions?: boolean | StudentCountOutputTypeCountStudentSubmissionsArgs
     submissions?: boolean | StudentCountOutputTypeCountSubmissionsArgs
     teacherLinks?: boolean | StudentCountOutputTypeCountTeacherLinksArgs
     Testimonial?: boolean | StudentCountOutputTypeCountTestimonialArgs
-    Research?: boolean | StudentCountOutputTypeCountResearchArgs
-    Blog?: boolean | StudentCountOutputTypeCountBlogArgs
   }
 
   // Custom InputTypes
@@ -4173,6 +4264,13 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountAssignedAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AssignmentWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountBlogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlogWhereInput
   }
 
   /**
@@ -4201,6 +4299,13 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountProgressReportsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProgressReportWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountResearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResearchWhereInput
   }
 
   /**
@@ -4245,33 +4350,19 @@ export namespace Prisma {
     where?: TestimonialWhereInput
   }
 
-  /**
-   * StudentCountOutputType without action
-   */
-  export type StudentCountOutputTypeCountResearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ResearchWhereInput
-  }
-
-  /**
-   * StudentCountOutputType without action
-   */
-  export type StudentCountOutputTypeCountBlogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BlogWhereInput
-  }
-
 
   /**
    * Count Type StudentGroupCountOutputType
    */
 
   export type StudentGroupCountOutputType = {
-    members: number
     classSchedules: number
+    members: number
   }
 
   export type StudentGroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    members?: boolean | StudentGroupCountOutputTypeCountMembersArgs
     classSchedules?: boolean | StudentGroupCountOutputTypeCountClassSchedulesArgs
+    members?: boolean | StudentGroupCountOutputTypeCountMembersArgs
   }
 
   // Custom InputTypes
@@ -4288,15 +4379,15 @@ export namespace Prisma {
   /**
    * StudentGroupCountOutputType without action
    */
-  export type StudentGroupCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StudentGroupMemberWhereInput
+  export type StudentGroupCountOutputTypeCountClassSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ClassScheduleWhereInput
   }
 
   /**
    * StudentGroupCountOutputType without action
    */
-  export type StudentGroupCountOutputTypeCountClassSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ClassScheduleWhereInput
+  export type StudentGroupCountOutputTypeCountMembersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentGroupMemberWhereInput
   }
 
 
@@ -4511,11 +4602,13 @@ export namespace Prisma {
   export type ResearchCountOutputType = {
     AccessRequest: number
     Slide: number
+    pptConversionJobs: number
   }
 
   export type ResearchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     AccessRequest?: boolean | ResearchCountOutputTypeCountAccessRequestArgs
     Slide?: boolean | ResearchCountOutputTypeCountSlideArgs
+    pptConversionJobs?: boolean | ResearchCountOutputTypeCountPptConversionJobsArgs
   }
 
   // Custom InputTypes
@@ -4541,6 +4634,13 @@ export namespace Prisma {
    */
   export type ResearchCountOutputTypeCountSlideArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SlideWhereInput
+  }
+
+  /**
+   * ResearchCountOutputType without action
+   */
+  export type ResearchCountOutputTypeCountPptConversionJobsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PptConversionJobWhereInput
   }
 
 
@@ -5704,33 +5804,33 @@ export namespace Prisma {
   export type AvailabilityDayMinAggregateOutputType = {
     id: number | null
     date: string | null
-    timezone: string | null
     program: string | null
     adminEmail: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    timezone: string | null
   }
 
   export type AvailabilityDayMaxAggregateOutputType = {
     id: number | null
     date: string | null
-    timezone: string | null
     program: string | null
     adminEmail: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    timezone: string | null
   }
 
   export type AvailabilityDayCountAggregateOutputType = {
     id: number
     date: number
     times: number
-    timesUTC: number
-    timezone: number
     program: number
     adminEmail: number
     createdAt: number
     updatedAt: number
+    timesUTC: number
+    timezone: number
     _all: number
   }
 
@@ -5746,33 +5846,33 @@ export namespace Prisma {
   export type AvailabilityDayMinAggregateInputType = {
     id?: true
     date?: true
-    timezone?: true
     program?: true
     adminEmail?: true
     createdAt?: true
     updatedAt?: true
+    timezone?: true
   }
 
   export type AvailabilityDayMaxAggregateInputType = {
     id?: true
     date?: true
-    timezone?: true
     program?: true
     adminEmail?: true
     createdAt?: true
     updatedAt?: true
+    timezone?: true
   }
 
   export type AvailabilityDayCountAggregateInputType = {
     id?: true
     date?: true
     times?: true
-    timesUTC?: true
-    timezone?: true
     program?: true
     adminEmail?: true
     createdAt?: true
     updatedAt?: true
+    timesUTC?: true
+    timezone?: true
     _all?: true
   }
 
@@ -5866,12 +5966,12 @@ export namespace Prisma {
     id: number
     date: string
     times: JsonValue
-    timesUTC: JsonValue | null
-    timezone: string | null
     program: string
     adminEmail: string
     createdAt: Date
     updatedAt: Date
+    timesUTC: JsonValue | null
+    timezone: string | null
     _count: AvailabilityDayCountAggregateOutputType | null
     _avg: AvailabilityDayAvgAggregateOutputType | null
     _sum: AvailabilityDaySumAggregateOutputType | null
@@ -5897,51 +5997,51 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     times?: boolean
-    timesUTC?: boolean
-    timezone?: boolean
     program?: boolean
     adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    timesUTC?: boolean
+    timezone?: boolean
   }, ExtArgs["result"]["availabilityDay"]>
 
   export type AvailabilityDaySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     date?: boolean
     times?: boolean
-    timesUTC?: boolean
-    timezone?: boolean
     program?: boolean
     adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    timesUTC?: boolean
+    timezone?: boolean
   }, ExtArgs["result"]["availabilityDay"]>
 
   export type AvailabilityDaySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     date?: boolean
     times?: boolean
-    timesUTC?: boolean
-    timezone?: boolean
     program?: boolean
     adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    timesUTC?: boolean
+    timezone?: boolean
   }, ExtArgs["result"]["availabilityDay"]>
 
   export type AvailabilityDaySelectScalar = {
     id?: boolean
     date?: boolean
     times?: boolean
-    timesUTC?: boolean
-    timezone?: boolean
     program?: boolean
     adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    timesUTC?: boolean
+    timezone?: boolean
   }
 
-  export type AvailabilityDayOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "times" | "timesUTC" | "timezone" | "program" | "adminEmail" | "createdAt" | "updatedAt", ExtArgs["result"]["availabilityDay"]>
+  export type AvailabilityDayOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "times" | "program" | "adminEmail" | "createdAt" | "updatedAt" | "timesUTC" | "timezone", ExtArgs["result"]["availabilityDay"]>
 
   export type $AvailabilityDayPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AvailabilityDay"
@@ -5950,12 +6050,12 @@ export namespace Prisma {
       id: number
       date: string
       times: Prisma.JsonValue
-      timesUTC: Prisma.JsonValue | null
-      timezone: string | null
       program: string
       adminEmail: string
       createdAt: Date
       updatedAt: Date
+      timesUTC: Prisma.JsonValue | null
+      timezone: string | null
     }, ExtArgs["result"]["availabilityDay"]>
     composites: {}
   }
@@ -6382,12 +6482,12 @@ export namespace Prisma {
     readonly id: FieldRef<"AvailabilityDay", 'Int'>
     readonly date: FieldRef<"AvailabilityDay", 'String'>
     readonly times: FieldRef<"AvailabilityDay", 'Json'>
-    readonly timesUTC: FieldRef<"AvailabilityDay", 'Json'>
-    readonly timezone: FieldRef<"AvailabilityDay", 'String'>
     readonly program: FieldRef<"AvailabilityDay", 'String'>
     readonly adminEmail: FieldRef<"AvailabilityDay", 'String'>
     readonly createdAt: FieldRef<"AvailabilityDay", 'DateTime'>
     readonly updatedAt: FieldRef<"AvailabilityDay", 'DateTime'>
+    readonly timesUTC: FieldRef<"AvailabilityDay", 'Json'>
+    readonly timezone: FieldRef<"AvailabilityDay", 'String'>
   }
     
 
@@ -6783,9 +6883,9 @@ export namespace Prisma {
     updatedAt: Date | null
     isActivated: boolean | null
     googleAccessToken: string | null
+    googleCalendarConnected: boolean | null
     googleRefreshToken: string | null
     googleTokenExpiry: Date | null
-    googleCalendarConnected: boolean | null
   }
 
   export type TeacherMaxAggregateOutputType = {
@@ -6797,9 +6897,9 @@ export namespace Prisma {
     updatedAt: Date | null
     isActivated: boolean | null
     googleAccessToken: string | null
+    googleCalendarConnected: boolean | null
     googleRefreshToken: string | null
     googleTokenExpiry: Date | null
-    googleCalendarConnected: boolean | null
   }
 
   export type TeacherCountAggregateOutputType = {
@@ -6812,9 +6912,9 @@ export namespace Prisma {
     updatedAt: number
     isActivated: number
     googleAccessToken: number
+    googleCalendarConnected: number
     googleRefreshToken: number
     googleTokenExpiry: number
-    googleCalendarConnected: number
     _all: number
   }
 
@@ -6836,9 +6936,9 @@ export namespace Prisma {
     updatedAt?: true
     isActivated?: true
     googleAccessToken?: true
+    googleCalendarConnected?: true
     googleRefreshToken?: true
     googleTokenExpiry?: true
-    googleCalendarConnected?: true
   }
 
   export type TeacherMaxAggregateInputType = {
@@ -6850,9 +6950,9 @@ export namespace Prisma {
     updatedAt?: true
     isActivated?: true
     googleAccessToken?: true
+    googleCalendarConnected?: true
     googleRefreshToken?: true
     googleTokenExpiry?: true
-    googleCalendarConnected?: true
   }
 
   export type TeacherCountAggregateInputType = {
@@ -6865,9 +6965,9 @@ export namespace Prisma {
     updatedAt?: true
     isActivated?: true
     googleAccessToken?: true
+    googleCalendarConnected?: true
     googleRefreshToken?: true
     googleTokenExpiry?: true
-    googleCalendarConnected?: true
     _all?: true
   }
 
@@ -6967,9 +7067,9 @@ export namespace Prisma {
     updatedAt: Date
     isActivated: boolean
     googleAccessToken: string | null
+    googleCalendarConnected: boolean
     googleRefreshToken: string | null
     googleTokenExpiry: Date | null
-    googleCalendarConnected: boolean
     _count: TeacherCountAggregateOutputType | null
     _avg: TeacherAvgAggregateOutputType | null
     _sum: TeacherSumAggregateOutputType | null
@@ -7001,9 +7101,9 @@ export namespace Prisma {
     updatedAt?: boolean
     isActivated?: boolean
     googleAccessToken?: boolean
+    googleCalendarConnected?: boolean
     googleRefreshToken?: boolean
     googleTokenExpiry?: boolean
-    googleCalendarConnected?: boolean
     assignments?: boolean | Teacher$assignmentsArgs<ExtArgs>
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
@@ -7025,9 +7125,9 @@ export namespace Prisma {
     updatedAt?: boolean
     isActivated?: boolean
     googleAccessToken?: boolean
+    googleCalendarConnected?: boolean
     googleRefreshToken?: boolean
     googleTokenExpiry?: boolean
-    googleCalendarConnected?: boolean
   }, ExtArgs["result"]["teacher"]>
 
   export type TeacherSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7040,9 +7140,9 @@ export namespace Prisma {
     updatedAt?: boolean
     isActivated?: boolean
     googleAccessToken?: boolean
+    googleCalendarConnected?: boolean
     googleRefreshToken?: boolean
     googleTokenExpiry?: boolean
-    googleCalendarConnected?: boolean
   }, ExtArgs["result"]["teacher"]>
 
   export type TeacherSelectScalar = {
@@ -7055,12 +7155,12 @@ export namespace Prisma {
     updatedAt?: boolean
     isActivated?: boolean
     googleAccessToken?: boolean
+    googleCalendarConnected?: boolean
     googleRefreshToken?: boolean
     googleTokenExpiry?: boolean
-    googleCalendarConnected?: boolean
   }
 
-  export type TeacherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "programs" | "createdAt" | "updatedAt" | "isActivated" | "googleAccessToken" | "googleRefreshToken" | "googleTokenExpiry" | "googleCalendarConnected", ExtArgs["result"]["teacher"]>
+  export type TeacherOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "programs" | "createdAt" | "updatedAt" | "isActivated" | "googleAccessToken" | "googleCalendarConnected" | "googleRefreshToken" | "googleTokenExpiry", ExtArgs["result"]["teacher"]>
   export type TeacherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignments?: boolean | Teacher$assignmentsArgs<ExtArgs>
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
@@ -7097,9 +7197,9 @@ export namespace Prisma {
       updatedAt: Date
       isActivated: boolean
       googleAccessToken: string | null
+      googleCalendarConnected: boolean
       googleRefreshToken: string | null
       googleTokenExpiry: Date | null
-      googleCalendarConnected: boolean
     }, ExtArgs["result"]["teacher"]>
     composites: {}
   }
@@ -7540,9 +7640,9 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"Teacher", 'DateTime'>
     readonly isActivated: FieldRef<"Teacher", 'Boolean'>
     readonly googleAccessToken: FieldRef<"Teacher", 'String'>
+    readonly googleCalendarConnected: FieldRef<"Teacher", 'Boolean'>
     readonly googleRefreshToken: FieldRef<"Teacher", 'String'>
     readonly googleTokenExpiry: FieldRef<"Teacher", 'DateTime'>
-    readonly googleCalendarConnected: FieldRef<"Teacher", 'Boolean'>
   }
     
 
@@ -8150,14 +8250,14 @@ export namespace Prisma {
 
   export type StudentAvgAggregateOutputType = {
     id: number | null
-    graduationYear: number | null
     parentAccountId: number | null
+    graduationYear: number | null
   }
 
   export type StudentSumAggregateOutputType = {
     id: number | null
-    graduationYear: number | null
     parentAccountId: number | null
+    graduationYear: number | null
   }
 
   export type StudentMinAggregateOutputType = {
@@ -8166,7 +8266,6 @@ export namespace Prisma {
     email: string | null
     password: string | null
     grade: string | null
-    graduationYear: number | null
     schoolName: string | null
     parentName: string | null
     parentEmail: string | null
@@ -8176,6 +8275,7 @@ export namespace Prisma {
     updatedAt: Date | null
     isActivated: boolean | null
     parentAccountId: number | null
+    graduationYear: number | null
   }
 
   export type StudentMaxAggregateOutputType = {
@@ -8184,7 +8284,6 @@ export namespace Prisma {
     email: string | null
     password: string | null
     grade: string | null
-    graduationYear: number | null
     schoolName: string | null
     parentName: string | null
     parentEmail: string | null
@@ -8194,6 +8293,7 @@ export namespace Prisma {
     updatedAt: Date | null
     isActivated: boolean | null
     parentAccountId: number | null
+    graduationYear: number | null
   }
 
   export type StudentCountAggregateOutputType = {
@@ -8202,7 +8302,6 @@ export namespace Prisma {
     email: number
     password: number
     grade: number
-    graduationYear: number
     schoolName: number
     parentName: number
     parentEmail: number
@@ -8212,20 +8311,21 @@ export namespace Prisma {
     updatedAt: number
     isActivated: number
     parentAccountId: number
+    graduationYear: number
     _all: number
   }
 
 
   export type StudentAvgAggregateInputType = {
     id?: true
-    graduationYear?: true
     parentAccountId?: true
+    graduationYear?: true
   }
 
   export type StudentSumAggregateInputType = {
     id?: true
-    graduationYear?: true
     parentAccountId?: true
+    graduationYear?: true
   }
 
   export type StudentMinAggregateInputType = {
@@ -8234,7 +8334,6 @@ export namespace Prisma {
     email?: true
     password?: true
     grade?: true
-    graduationYear?: true
     schoolName?: true
     parentName?: true
     parentEmail?: true
@@ -8244,6 +8343,7 @@ export namespace Prisma {
     updatedAt?: true
     isActivated?: true
     parentAccountId?: true
+    graduationYear?: true
   }
 
   export type StudentMaxAggregateInputType = {
@@ -8252,7 +8352,6 @@ export namespace Prisma {
     email?: true
     password?: true
     grade?: true
-    graduationYear?: true
     schoolName?: true
     parentName?: true
     parentEmail?: true
@@ -8262,6 +8361,7 @@ export namespace Prisma {
     updatedAt?: true
     isActivated?: true
     parentAccountId?: true
+    graduationYear?: true
   }
 
   export type StudentCountAggregateInputType = {
@@ -8270,7 +8370,6 @@ export namespace Prisma {
     email?: true
     password?: true
     grade?: true
-    graduationYear?: true
     schoolName?: true
     parentName?: true
     parentEmail?: true
@@ -8280,6 +8379,7 @@ export namespace Prisma {
     updatedAt?: true
     isActivated?: true
     parentAccountId?: true
+    graduationYear?: true
     _all?: true
   }
 
@@ -8375,7 +8475,6 @@ export namespace Prisma {
     email: string
     password: string | null
     grade: string
-    graduationYear: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -8385,6 +8484,7 @@ export namespace Prisma {
     updatedAt: Date
     isActivated: boolean
     parentAccountId: number | null
+    graduationYear: number | null
     _count: StudentCountAggregateOutputType | null
     _avg: StudentAvgAggregateOutputType | null
     _sum: StudentSumAggregateOutputType | null
@@ -8412,7 +8512,6 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     grade?: boolean
-    graduationYear?: boolean
     schoolName?: boolean
     parentName?: boolean
     parentEmail?: boolean
@@ -8422,11 +8521,14 @@ export namespace Prisma {
     updatedAt?: boolean
     isActivated?: boolean
     parentAccountId?: boolean
+    graduationYear?: boolean
     assignedAssignments?: boolean | Student$assignedAssignmentsArgs<ExtArgs>
+    Blog?: boolean | Student$BlogArgs<ExtArgs>
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
     progressReports?: boolean | Student$progressReportsArgs<ExtArgs>
+    Research?: boolean | Student$ResearchArgs<ExtArgs>
     parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
     groupMemberships?: boolean | Student$groupMembershipsArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
@@ -8434,8 +8536,6 @@ export namespace Prisma {
     submissions?: boolean | Student$submissionsArgs<ExtArgs>
     teacherLinks?: boolean | Student$teacherLinksArgs<ExtArgs>
     Testimonial?: boolean | Student$TestimonialArgs<ExtArgs>
-    Research?: boolean | Student$ResearchArgs<ExtArgs>
-    Blog?: boolean | Student$BlogArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
@@ -8445,7 +8545,6 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     grade?: boolean
-    graduationYear?: boolean
     schoolName?: boolean
     parentName?: boolean
     parentEmail?: boolean
@@ -8455,6 +8554,7 @@ export namespace Prisma {
     updatedAt?: boolean
     isActivated?: boolean
     parentAccountId?: boolean
+    graduationYear?: boolean
     parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
@@ -8464,7 +8564,6 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     grade?: boolean
-    graduationYear?: boolean
     schoolName?: boolean
     parentName?: boolean
     parentEmail?: boolean
@@ -8474,6 +8573,7 @@ export namespace Prisma {
     updatedAt?: boolean
     isActivated?: boolean
     parentAccountId?: boolean
+    graduationYear?: boolean
     parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
@@ -8483,7 +8583,6 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     grade?: boolean
-    graduationYear?: boolean
     schoolName?: boolean
     parentName?: boolean
     parentEmail?: boolean
@@ -8493,15 +8592,18 @@ export namespace Prisma {
     updatedAt?: boolean
     isActivated?: boolean
     parentAccountId?: boolean
+    graduationYear?: boolean
   }
 
-  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "grade" | "graduationYear" | "schoolName" | "parentName" | "parentEmail" | "parentPhone" | "program" | "createdAt" | "updatedAt" | "isActivated" | "parentAccountId", ExtArgs["result"]["student"]>
+  export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "grade" | "schoolName" | "parentName" | "parentEmail" | "parentPhone" | "program" | "createdAt" | "updatedAt" | "isActivated" | "parentAccountId" | "graduationYear", ExtArgs["result"]["student"]>
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignedAssignments?: boolean | Student$assignedAssignmentsArgs<ExtArgs>
+    Blog?: boolean | Student$BlogArgs<ExtArgs>
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
     progressReports?: boolean | Student$progressReportsArgs<ExtArgs>
+    Research?: boolean | Student$ResearchArgs<ExtArgs>
     parentAccount?: boolean | Student$parentAccountArgs<ExtArgs>
     groupMemberships?: boolean | Student$groupMembershipsArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
@@ -8509,8 +8611,6 @@ export namespace Prisma {
     submissions?: boolean | Student$submissionsArgs<ExtArgs>
     teacherLinks?: boolean | Student$teacherLinksArgs<ExtArgs>
     Testimonial?: boolean | Student$TestimonialArgs<ExtArgs>
-    Research?: boolean | Student$ResearchArgs<ExtArgs>
-    Blog?: boolean | Student$BlogArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StudentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8524,10 +8624,12 @@ export namespace Prisma {
     name: "Student"
     objects: {
       assignedAssignments: Prisma.$AssignmentPayload<ExtArgs>[]
+      Blog: Prisma.$BlogPayload<ExtArgs>[]
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
       Payment: Prisma.$PaymentPayload<ExtArgs>[]
       progressReports: Prisma.$ProgressReportPayload<ExtArgs>[]
+      Research: Prisma.$ResearchPayload<ExtArgs>[]
       parentAccount: Prisma.$ParentAccountPayload<ExtArgs> | null
       groupMemberships: Prisma.$StudentGroupMemberPayload<ExtArgs>[]
       assignedResources: Prisma.$StudentResourcePayload<ExtArgs>[]
@@ -8535,8 +8637,6 @@ export namespace Prisma {
       submissions: Prisma.$SubmissionPayload<ExtArgs>[]
       teacherLinks: Prisma.$TeacherStudentPayload<ExtArgs>[]
       Testimonial: Prisma.$TestimonialPayload<ExtArgs>[]
-      Research: Prisma.$ResearchPayload<ExtArgs>[]
-      Blog: Prisma.$BlogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -8544,7 +8644,6 @@ export namespace Prisma {
       email: string
       password: string | null
       grade: string
-      graduationYear: number | null
       schoolName: string
       parentName: string
       parentEmail: string
@@ -8554,6 +8653,7 @@ export namespace Prisma {
       updatedAt: Date
       isActivated: boolean
       parentAccountId: number | null
+      graduationYear: number | null
     }, ExtArgs["result"]["student"]>
     composites: {}
   }
@@ -8949,10 +9049,12 @@ export namespace Prisma {
   export interface Prisma__StudentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     assignedAssignments<T extends Student$assignedAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Student$assignedAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Blog<T extends Student$BlogArgs<ExtArgs> = {}>(args?: Subset<T, Student$BlogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     classSchedules<T extends Student$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Student$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     enrollments<T extends Student$enrollmentsArgs<ExtArgs> = {}>(args?: Subset<T, Student$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Payment<T extends Student$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Student$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     progressReports<T extends Student$progressReportsArgs<ExtArgs> = {}>(args?: Subset<T, Student$progressReportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Research<T extends Student$ResearchArgs<ExtArgs> = {}>(args?: Subset<T, Student$ResearchArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     parentAccount<T extends Student$parentAccountArgs<ExtArgs> = {}>(args?: Subset<T, Student$parentAccountArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     groupMemberships<T extends Student$groupMembershipsArgs<ExtArgs> = {}>(args?: Subset<T, Student$groupMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assignedResources<T extends Student$assignedResourcesArgs<ExtArgs> = {}>(args?: Subset<T, Student$assignedResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8960,8 +9062,6 @@ export namespace Prisma {
     submissions<T extends Student$submissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     teacherLinks<T extends Student$teacherLinksArgs<ExtArgs> = {}>(args?: Subset<T, Student$teacherLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Testimonial<T extends Student$TestimonialArgs<ExtArgs> = {}>(args?: Subset<T, Student$TestimonialArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestimonialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Research<T extends Student$ResearchArgs<ExtArgs> = {}>(args?: Subset<T, Student$ResearchArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Blog<T extends Student$BlogArgs<ExtArgs> = {}>(args?: Subset<T, Student$BlogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8996,7 +9096,6 @@ export namespace Prisma {
     readonly email: FieldRef<"Student", 'String'>
     readonly password: FieldRef<"Student", 'String'>
     readonly grade: FieldRef<"Student", 'String'>
-    readonly graduationYear: FieldRef<"Student", 'Int'>
     readonly schoolName: FieldRef<"Student", 'String'>
     readonly parentName: FieldRef<"Student", 'String'>
     readonly parentEmail: FieldRef<"Student", 'String'>
@@ -9006,6 +9105,7 @@ export namespace Prisma {
     readonly updatedAt: FieldRef<"Student", 'DateTime'>
     readonly isActivated: FieldRef<"Student", 'Boolean'>
     readonly parentAccountId: FieldRef<"Student", 'Int'>
+    readonly graduationYear: FieldRef<"Student", 'Int'>
   }
     
 
@@ -9426,6 +9526,30 @@ export namespace Prisma {
   }
 
   /**
+   * Student.Blog
+   */
+  export type Student$BlogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blog
+     */
+    select?: BlogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blog
+     */
+    omit?: BlogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogInclude<ExtArgs> | null
+    where?: BlogWhereInput
+    orderBy?: BlogOrderByWithRelationInput | BlogOrderByWithRelationInput[]
+    cursor?: BlogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BlogScalarFieldEnum | BlogScalarFieldEnum[]
+  }
+
+  /**
    * Student.classSchedules
    */
   export type Student$classSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9519,6 +9643,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProgressReportScalarFieldEnum | ProgressReportScalarFieldEnum[]
+  }
+
+  /**
+   * Student.Research
+   */
+  export type Student$ResearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Research
+     */
+    select?: ResearchSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Research
+     */
+    omit?: ResearchOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResearchInclude<ExtArgs> | null
+    where?: ResearchWhereInput
+    orderBy?: ResearchOrderByWithRelationInput | ResearchOrderByWithRelationInput[]
+    cursor?: ResearchWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ResearchScalarFieldEnum | ResearchScalarFieldEnum[]
   }
 
   /**
@@ -9682,54 +9830,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TestimonialScalarFieldEnum | TestimonialScalarFieldEnum[]
-  }
-
-  /**
-   * Student.Research
-   */
-  export type Student$ResearchArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Research
-     */
-    select?: ResearchSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Research
-     */
-    omit?: ResearchOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ResearchInclude<ExtArgs> | null
-    where?: ResearchWhereInput
-    orderBy?: ResearchOrderByWithRelationInput | ResearchOrderByWithRelationInput[]
-    cursor?: ResearchWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ResearchScalarFieldEnum | ResearchScalarFieldEnum[]
-  }
-
-  /**
-   * Student.Blog
-   */
-  export type Student$BlogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Blog
-     */
-    select?: BlogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Blog
-     */
-    omit?: BlogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BlogInclude<ExtArgs> | null
-    where?: BlogWhereInput
-    orderBy?: BlogOrderByWithRelationInput | BlogOrderByWithRelationInput[]
-    cursor?: BlogWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: BlogScalarFieldEnum | BlogScalarFieldEnum[]
   }
 
   /**
@@ -11061,9 +11161,9 @@ export namespace Prisma {
     teacherId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    classSchedules?: boolean | StudentGroup$classSchedulesArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     members?: boolean | StudentGroup$membersArgs<ExtArgs>
-    classSchedules?: boolean | StudentGroup$classSchedulesArgs<ExtArgs>
     _count?: boolean | StudentGroupCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentGroup"]>
 
@@ -11095,9 +11195,9 @@ export namespace Prisma {
 
   export type StudentGroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "teacherId" | "createdAt" | "updatedAt", ExtArgs["result"]["studentGroup"]>
   export type StudentGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    classSchedules?: boolean | StudentGroup$classSchedulesArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     members?: boolean | StudentGroup$membersArgs<ExtArgs>
-    classSchedules?: boolean | StudentGroup$classSchedulesArgs<ExtArgs>
     _count?: boolean | StudentGroupCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StudentGroupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11110,9 +11210,9 @@ export namespace Prisma {
   export type $StudentGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "StudentGroup"
     objects: {
+      classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       teacher: Prisma.$TeacherPayload<ExtArgs>
       members: Prisma.$StudentGroupMemberPayload<ExtArgs>[]
-      classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -11514,9 +11614,9 @@ export namespace Prisma {
    */
   export interface Prisma__StudentGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    classSchedules<T extends StudentGroup$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, StudentGroup$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     members<T extends StudentGroup$membersArgs<ExtArgs> = {}>(args?: Subset<T, StudentGroup$membersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    classSchedules<T extends StudentGroup$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, StudentGroup$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -11947,30 +12047,6 @@ export namespace Prisma {
   }
 
   /**
-   * StudentGroup.members
-   */
-  export type StudentGroup$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the StudentGroupMember
-     */
-    select?: StudentGroupMemberSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the StudentGroupMember
-     */
-    omit?: StudentGroupMemberOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StudentGroupMemberInclude<ExtArgs> | null
-    where?: StudentGroupMemberWhereInput
-    orderBy?: StudentGroupMemberOrderByWithRelationInput | StudentGroupMemberOrderByWithRelationInput[]
-    cursor?: StudentGroupMemberWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StudentGroupMemberScalarFieldEnum | StudentGroupMemberScalarFieldEnum[]
-  }
-
-  /**
    * StudentGroup.classSchedules
    */
   export type StudentGroup$classSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11992,6 +12068,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ClassScheduleScalarFieldEnum | ClassScheduleScalarFieldEnum[]
+  }
+
+  /**
+   * StudentGroup.members
+   */
+  export type StudentGroup$membersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentGroupMember
+     */
+    select?: StudentGroupMemberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentGroupMember
+     */
+    omit?: StudentGroupMemberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentGroupMemberInclude<ExtArgs> | null
+    where?: StudentGroupMemberWhereInput
+    orderBy?: StudentGroupMemberOrderByWithRelationInput | StudentGroupMemberOrderByWithRelationInput[]
+    cursor?: StudentGroupMemberWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentGroupMemberScalarFieldEnum | StudentGroupMemberScalarFieldEnum[]
   }
 
   /**
@@ -13142,7 +13242,6 @@ export namespace Prisma {
     program: string | null
     subject: string | null
     dueDate: Date | null
-    dueDateTimezone: string | null
     totalPoints: number | null
     isActive: boolean | null
     allowLateSubmission: boolean | null
@@ -13150,6 +13249,7 @@ export namespace Prisma {
     targetStudentId: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    dueDateTimezone: string | null
   }
 
   export type AssignmentMaxAggregateOutputType = {
@@ -13160,7 +13260,6 @@ export namespace Prisma {
     program: string | null
     subject: string | null
     dueDate: Date | null
-    dueDateTimezone: string | null
     totalPoints: number | null
     isActive: boolean | null
     allowLateSubmission: boolean | null
@@ -13168,6 +13267,7 @@ export namespace Prisma {
     targetStudentId: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    dueDateTimezone: string | null
   }
 
   export type AssignmentCountAggregateOutputType = {
@@ -13178,7 +13278,6 @@ export namespace Prisma {
     program: number
     subject: number
     dueDate: number
-    dueDateTimezone: number
     totalPoints: number
     isActive: number
     allowLateSubmission: number
@@ -13186,6 +13285,7 @@ export namespace Prisma {
     targetStudentId: number
     createdAt: number
     updatedAt: number
+    dueDateTimezone: number
     _all: number
   }
 
@@ -13212,7 +13312,6 @@ export namespace Prisma {
     program?: true
     subject?: true
     dueDate?: true
-    dueDateTimezone?: true
     totalPoints?: true
     isActive?: true
     allowLateSubmission?: true
@@ -13220,6 +13319,7 @@ export namespace Prisma {
     targetStudentId?: true
     createdAt?: true
     updatedAt?: true
+    dueDateTimezone?: true
   }
 
   export type AssignmentMaxAggregateInputType = {
@@ -13230,7 +13330,6 @@ export namespace Prisma {
     program?: true
     subject?: true
     dueDate?: true
-    dueDateTimezone?: true
     totalPoints?: true
     isActive?: true
     allowLateSubmission?: true
@@ -13238,6 +13337,7 @@ export namespace Prisma {
     targetStudentId?: true
     createdAt?: true
     updatedAt?: true
+    dueDateTimezone?: true
   }
 
   export type AssignmentCountAggregateInputType = {
@@ -13248,7 +13348,6 @@ export namespace Prisma {
     program?: true
     subject?: true
     dueDate?: true
-    dueDateTimezone?: true
     totalPoints?: true
     isActive?: true
     allowLateSubmission?: true
@@ -13256,6 +13355,7 @@ export namespace Prisma {
     targetStudentId?: true
     createdAt?: true
     updatedAt?: true
+    dueDateTimezone?: true
     _all?: true
   }
 
@@ -13353,7 +13453,6 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date
-    dueDateTimezone: string | null
     totalPoints: number
     isActive: boolean
     allowLateSubmission: boolean
@@ -13361,6 +13460,7 @@ export namespace Prisma {
     targetStudentId: number | null
     createdAt: Date
     updatedAt: Date
+    dueDateTimezone: string | null
     _count: AssignmentCountAggregateOutputType | null
     _avg: AssignmentAvgAggregateOutputType | null
     _sum: AssignmentSumAggregateOutputType | null
@@ -13390,7 +13490,6 @@ export namespace Prisma {
     program?: boolean
     subject?: boolean
     dueDate?: boolean
-    dueDateTimezone?: boolean
     totalPoints?: boolean
     isActive?: boolean
     allowLateSubmission?: boolean
@@ -13398,6 +13497,7 @@ export namespace Prisma {
     targetStudentId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    dueDateTimezone?: boolean
     targetStudent?: boolean | Assignment$targetStudentArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     resources?: boolean | Assignment$resourcesArgs<ExtArgs>
@@ -13413,7 +13513,6 @@ export namespace Prisma {
     program?: boolean
     subject?: boolean
     dueDate?: boolean
-    dueDateTimezone?: boolean
     totalPoints?: boolean
     isActive?: boolean
     allowLateSubmission?: boolean
@@ -13421,6 +13520,7 @@ export namespace Prisma {
     targetStudentId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    dueDateTimezone?: boolean
     targetStudent?: boolean | Assignment$targetStudentArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignment"]>
@@ -13433,7 +13533,6 @@ export namespace Prisma {
     program?: boolean
     subject?: boolean
     dueDate?: boolean
-    dueDateTimezone?: boolean
     totalPoints?: boolean
     isActive?: boolean
     allowLateSubmission?: boolean
@@ -13441,6 +13540,7 @@ export namespace Prisma {
     targetStudentId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    dueDateTimezone?: boolean
     targetStudent?: boolean | Assignment$targetStudentArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignment"]>
@@ -13453,7 +13553,6 @@ export namespace Prisma {
     program?: boolean
     subject?: boolean
     dueDate?: boolean
-    dueDateTimezone?: boolean
     totalPoints?: boolean
     isActive?: boolean
     allowLateSubmission?: boolean
@@ -13461,9 +13560,10 @@ export namespace Prisma {
     targetStudentId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    dueDateTimezone?: boolean
   }
 
-  export type AssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "instructions" | "program" | "subject" | "dueDate" | "dueDateTimezone" | "totalPoints" | "isActive" | "allowLateSubmission" | "teacherId" | "targetStudentId" | "createdAt" | "updatedAt", ExtArgs["result"]["assignment"]>
+  export type AssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "instructions" | "program" | "subject" | "dueDate" | "totalPoints" | "isActive" | "allowLateSubmission" | "teacherId" | "targetStudentId" | "createdAt" | "updatedAt" | "dueDateTimezone", ExtArgs["result"]["assignment"]>
   export type AssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     targetStudent?: boolean | Assignment$targetStudentArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
@@ -13496,7 +13596,6 @@ export namespace Prisma {
       program: string
       subject: string
       dueDate: Date
-      dueDateTimezone: string | null
       totalPoints: number
       isActive: boolean
       allowLateSubmission: boolean
@@ -13504,6 +13603,7 @@ export namespace Prisma {
       targetStudentId: number | null
       createdAt: Date
       updatedAt: Date
+      dueDateTimezone: string | null
     }, ExtArgs["result"]["assignment"]>
     composites: {}
   }
@@ -13938,7 +14038,6 @@ export namespace Prisma {
     readonly program: FieldRef<"Assignment", 'String'>
     readonly subject: FieldRef<"Assignment", 'String'>
     readonly dueDate: FieldRef<"Assignment", 'DateTime'>
-    readonly dueDateTimezone: FieldRef<"Assignment", 'String'>
     readonly totalPoints: FieldRef<"Assignment", 'Int'>
     readonly isActive: FieldRef<"Assignment", 'Boolean'>
     readonly allowLateSubmission: FieldRef<"Assignment", 'Boolean'>
@@ -13946,6 +14045,7 @@ export namespace Prisma {
     readonly targetStudentId: FieldRef<"Assignment", 'Int'>
     readonly createdAt: FieldRef<"Assignment", 'DateTime'>
     readonly updatedAt: FieldRef<"Assignment", 'DateTime'>
+    readonly dueDateTimezone: FieldRef<"Assignment", 'String'>
   }
     
 
@@ -23753,25 +23853,25 @@ export namespace Prisma {
     date: Date | null
     startTime: string | null
     endTime: string | null
-    startDateTime: Date | null
-    endDateTime: Date | null
-    timezone: string | null
     subject: string | null
     description: string | null
-    meetingMinutes: string | null
     location: string | null
     meetingLink: string | null
     status: string | null
     color: string | null
     studentId: number | null
     teacherId: number | null
-    groupId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    endDateTime: Date | null
     googleCalendarEventId: string | null
+    groupId: number | null
+    meetingMinutes: string | null
     reminderJobId: string | null
     reminderScheduledFor: Date | null
     reminderSentAt: Date | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    startDateTime: Date | null
+    timezone: string | null
   }
 
   export type ClassScheduleMaxAggregateOutputType = {
@@ -23780,25 +23880,25 @@ export namespace Prisma {
     date: Date | null
     startTime: string | null
     endTime: string | null
-    startDateTime: Date | null
-    endDateTime: Date | null
-    timezone: string | null
     subject: string | null
     description: string | null
-    meetingMinutes: string | null
     location: string | null
     meetingLink: string | null
     status: string | null
     color: string | null
     studentId: number | null
     teacherId: number | null
-    groupId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    endDateTime: Date | null
     googleCalendarEventId: string | null
+    groupId: number | null
+    meetingMinutes: string | null
     reminderJobId: string | null
     reminderScheduledFor: Date | null
     reminderSentAt: Date | null
-    createdAt: Date | null
-    updatedAt: Date | null
+    startDateTime: Date | null
+    timezone: string | null
   }
 
   export type ClassScheduleCountAggregateOutputType = {
@@ -23807,25 +23907,25 @@ export namespace Prisma {
     date: number
     startTime: number
     endTime: number
-    startDateTime: number
-    endDateTime: number
-    timezone: number
     subject: number
     description: number
-    meetingMinutes: number
     location: number
     meetingLink: number
     status: number
     color: number
     studentId: number
     teacherId: number
-    groupId: number
+    createdAt: number
+    updatedAt: number
+    endDateTime: number
     googleCalendarEventId: number
+    groupId: number
+    meetingMinutes: number
     reminderJobId: number
     reminderScheduledFor: number
     reminderSentAt: number
-    createdAt: number
-    updatedAt: number
+    startDateTime: number
+    timezone: number
     _all: number
   }
 
@@ -23850,25 +23950,25 @@ export namespace Prisma {
     date?: true
     startTime?: true
     endTime?: true
-    startDateTime?: true
-    endDateTime?: true
-    timezone?: true
     subject?: true
     description?: true
-    meetingMinutes?: true
     location?: true
     meetingLink?: true
     status?: true
     color?: true
     studentId?: true
     teacherId?: true
-    groupId?: true
+    createdAt?: true
+    updatedAt?: true
+    endDateTime?: true
     googleCalendarEventId?: true
+    groupId?: true
+    meetingMinutes?: true
     reminderJobId?: true
     reminderScheduledFor?: true
     reminderSentAt?: true
-    createdAt?: true
-    updatedAt?: true
+    startDateTime?: true
+    timezone?: true
   }
 
   export type ClassScheduleMaxAggregateInputType = {
@@ -23877,25 +23977,25 @@ export namespace Prisma {
     date?: true
     startTime?: true
     endTime?: true
-    startDateTime?: true
-    endDateTime?: true
-    timezone?: true
     subject?: true
     description?: true
-    meetingMinutes?: true
     location?: true
     meetingLink?: true
     status?: true
     color?: true
     studentId?: true
     teacherId?: true
-    groupId?: true
+    createdAt?: true
+    updatedAt?: true
+    endDateTime?: true
     googleCalendarEventId?: true
+    groupId?: true
+    meetingMinutes?: true
     reminderJobId?: true
     reminderScheduledFor?: true
     reminderSentAt?: true
-    createdAt?: true
-    updatedAt?: true
+    startDateTime?: true
+    timezone?: true
   }
 
   export type ClassScheduleCountAggregateInputType = {
@@ -23904,25 +24004,25 @@ export namespace Prisma {
     date?: true
     startTime?: true
     endTime?: true
-    startDateTime?: true
-    endDateTime?: true
-    timezone?: true
     subject?: true
     description?: true
-    meetingMinutes?: true
     location?: true
     meetingLink?: true
     status?: true
     color?: true
     studentId?: true
     teacherId?: true
-    groupId?: true
+    createdAt?: true
+    updatedAt?: true
+    endDateTime?: true
     googleCalendarEventId?: true
+    groupId?: true
+    meetingMinutes?: true
     reminderJobId?: true
     reminderScheduledFor?: true
     reminderSentAt?: true
-    createdAt?: true
-    updatedAt?: true
+    startDateTime?: true
+    timezone?: true
     _all?: true
   }
 
@@ -24018,25 +24118,25 @@ export namespace Prisma {
     date: Date
     startTime: string
     endTime: string
-    startDateTime: Date | null
-    endDateTime: Date | null
-    timezone: string | null
     subject: string
     description: string | null
-    meetingMinutes: string | null
     location: string | null
     meetingLink: string | null
     status: string
     color: string | null
     studentId: number
     teacherId: number
-    groupId: number | null
+    createdAt: Date
+    updatedAt: Date
+    endDateTime: Date | null
     googleCalendarEventId: string | null
+    groupId: number | null
+    meetingMinutes: string | null
     reminderJobId: string | null
     reminderScheduledFor: Date | null
     reminderSentAt: Date | null
-    createdAt: Date
-    updatedAt: Date
+    startDateTime: Date | null
+    timezone: string | null
     _count: ClassScheduleCountAggregateOutputType | null
     _avg: ClassScheduleAvgAggregateOutputType | null
     _sum: ClassScheduleSumAggregateOutputType | null
@@ -24064,28 +24164,28 @@ export namespace Prisma {
     date?: boolean
     startTime?: boolean
     endTime?: boolean
-    startDateTime?: boolean
-    endDateTime?: boolean
-    timezone?: boolean
     subject?: boolean
     description?: boolean
-    meetingMinutes?: boolean
     location?: boolean
     meetingLink?: boolean
     status?: boolean
     color?: boolean
     studentId?: boolean
     teacherId?: boolean
-    groupId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    endDateTime?: boolean
     googleCalendarEventId?: boolean
+    groupId?: boolean
+    meetingMinutes?: boolean
     reminderJobId?: boolean
     reminderScheduledFor?: boolean
     reminderSentAt?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    startDateTime?: boolean
+    timezone?: boolean
+    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
   }, ExtArgs["result"]["classSchedule"]>
 
   export type ClassScheduleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -24094,28 +24194,28 @@ export namespace Prisma {
     date?: boolean
     startTime?: boolean
     endTime?: boolean
-    startDateTime?: boolean
-    endDateTime?: boolean
-    timezone?: boolean
     subject?: boolean
     description?: boolean
-    meetingMinutes?: boolean
     location?: boolean
     meetingLink?: boolean
     status?: boolean
     color?: boolean
     studentId?: boolean
     teacherId?: boolean
-    groupId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    endDateTime?: boolean
     googleCalendarEventId?: boolean
+    groupId?: boolean
+    meetingMinutes?: boolean
     reminderJobId?: boolean
     reminderScheduledFor?: boolean
     reminderSentAt?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    startDateTime?: boolean
+    timezone?: boolean
+    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
   }, ExtArgs["result"]["classSchedule"]>
 
   export type ClassScheduleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -24124,28 +24224,28 @@ export namespace Prisma {
     date?: boolean
     startTime?: boolean
     endTime?: boolean
-    startDateTime?: boolean
-    endDateTime?: boolean
-    timezone?: boolean
     subject?: boolean
     description?: boolean
-    meetingMinutes?: boolean
     location?: boolean
     meetingLink?: boolean
     status?: boolean
     color?: boolean
     studentId?: boolean
     teacherId?: boolean
-    groupId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    endDateTime?: boolean
     googleCalendarEventId?: boolean
+    groupId?: boolean
+    meetingMinutes?: boolean
     reminderJobId?: boolean
     reminderScheduledFor?: boolean
     reminderSentAt?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    startDateTime?: boolean
+    timezone?: boolean
+    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
   }, ExtArgs["result"]["classSchedule"]>
 
   export type ClassScheduleSelectScalar = {
@@ -24154,50 +24254,50 @@ export namespace Prisma {
     date?: boolean
     startTime?: boolean
     endTime?: boolean
-    startDateTime?: boolean
-    endDateTime?: boolean
-    timezone?: boolean
     subject?: boolean
     description?: boolean
-    meetingMinutes?: boolean
     location?: boolean
     meetingLink?: boolean
     status?: boolean
     color?: boolean
     studentId?: boolean
     teacherId?: boolean
-    groupId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    endDateTime?: boolean
     googleCalendarEventId?: boolean
+    groupId?: boolean
+    meetingMinutes?: boolean
     reminderJobId?: boolean
     reminderScheduledFor?: boolean
     reminderSentAt?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
+    startDateTime?: boolean
+    timezone?: boolean
   }
 
-  export type ClassScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "date" | "startTime" | "endTime" | "startDateTime" | "endDateTime" | "timezone" | "subject" | "description" | "meetingMinutes" | "location" | "meetingLink" | "status" | "color" | "studentId" | "teacherId" | "groupId" | "googleCalendarEventId" | "reminderJobId" | "reminderScheduledFor" | "reminderSentAt" | "createdAt" | "updatedAt", ExtArgs["result"]["classSchedule"]>
+  export type ClassScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "date" | "startTime" | "endTime" | "subject" | "description" | "location" | "meetingLink" | "status" | "color" | "studentId" | "teacherId" | "createdAt" | "updatedAt" | "endDateTime" | "googleCalendarEventId" | "groupId" | "meetingMinutes" | "reminderJobId" | "reminderScheduledFor" | "reminderSentAt" | "startDateTime" | "timezone", ExtArgs["result"]["classSchedule"]>
   export type ClassScheduleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
   }
   export type ClassScheduleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
   }
   export type ClassScheduleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
-    group?: boolean | ClassSchedule$groupArgs<ExtArgs>
   }
 
   export type $ClassSchedulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ClassSchedule"
     objects: {
+      group: Prisma.$StudentGroupPayload<ExtArgs> | null
       student: Prisma.$StudentPayload<ExtArgs>
       teacher: Prisma.$TeacherPayload<ExtArgs>
-      group: Prisma.$StudentGroupPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -24205,25 +24305,25 @@ export namespace Prisma {
       date: Date
       startTime: string
       endTime: string
-      startDateTime: Date | null
-      endDateTime: Date | null
-      timezone: string | null
       subject: string
       description: string | null
-      meetingMinutes: string | null
       location: string | null
       meetingLink: string | null
       status: string
       color: string | null
       studentId: number
       teacherId: number
-      groupId: number | null
+      createdAt: Date
+      updatedAt: Date
+      endDateTime: Date | null
       googleCalendarEventId: string | null
+      groupId: number | null
+      meetingMinutes: string | null
       reminderJobId: string | null
       reminderScheduledFor: Date | null
       reminderSentAt: Date | null
-      createdAt: Date
-      updatedAt: Date
+      startDateTime: Date | null
+      timezone: string | null
     }, ExtArgs["result"]["classSchedule"]>
     composites: {}
   }
@@ -24618,9 +24718,9 @@ export namespace Prisma {
    */
   export interface Prisma__ClassScheduleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    group<T extends ClassSchedule$groupArgs<ExtArgs> = {}>(args?: Subset<T, ClassSchedule$groupArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    group<T extends ClassSchedule$groupArgs<ExtArgs> = {}>(args?: Subset<T, ClassSchedule$groupArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -24655,25 +24755,25 @@ export namespace Prisma {
     readonly date: FieldRef<"ClassSchedule", 'DateTime'>
     readonly startTime: FieldRef<"ClassSchedule", 'String'>
     readonly endTime: FieldRef<"ClassSchedule", 'String'>
-    readonly startDateTime: FieldRef<"ClassSchedule", 'DateTime'>
-    readonly endDateTime: FieldRef<"ClassSchedule", 'DateTime'>
-    readonly timezone: FieldRef<"ClassSchedule", 'String'>
     readonly subject: FieldRef<"ClassSchedule", 'String'>
     readonly description: FieldRef<"ClassSchedule", 'String'>
-    readonly meetingMinutes: FieldRef<"ClassSchedule", 'String'>
     readonly location: FieldRef<"ClassSchedule", 'String'>
     readonly meetingLink: FieldRef<"ClassSchedule", 'String'>
     readonly status: FieldRef<"ClassSchedule", 'String'>
     readonly color: FieldRef<"ClassSchedule", 'String'>
     readonly studentId: FieldRef<"ClassSchedule", 'Int'>
     readonly teacherId: FieldRef<"ClassSchedule", 'Int'>
-    readonly groupId: FieldRef<"ClassSchedule", 'Int'>
+    readonly createdAt: FieldRef<"ClassSchedule", 'DateTime'>
+    readonly updatedAt: FieldRef<"ClassSchedule", 'DateTime'>
+    readonly endDateTime: FieldRef<"ClassSchedule", 'DateTime'>
     readonly googleCalendarEventId: FieldRef<"ClassSchedule", 'String'>
+    readonly groupId: FieldRef<"ClassSchedule", 'Int'>
+    readonly meetingMinutes: FieldRef<"ClassSchedule", 'String'>
     readonly reminderJobId: FieldRef<"ClassSchedule", 'String'>
     readonly reminderScheduledFor: FieldRef<"ClassSchedule", 'DateTime'>
     readonly reminderSentAt: FieldRef<"ClassSchedule", 'DateTime'>
-    readonly createdAt: FieldRef<"ClassSchedule", 'DateTime'>
-    readonly updatedAt: FieldRef<"ClassSchedule", 'DateTime'>
+    readonly startDateTime: FieldRef<"ClassSchedule", 'DateTime'>
+    readonly timezone: FieldRef<"ClassSchedule", 'String'>
   }
     
 
@@ -28359,8 +28459,6 @@ export namespace Prisma {
     paymentInfo: string | null
     amount: string | null
     dueDate: string | null
-    dueDateUTC: Date | null
-    dueDateTimezone: string | null
     fileUrl: string | null
     fileName: string | null
     fileSize: number | null
@@ -28369,6 +28467,8 @@ export namespace Prisma {
     paidAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    dueDateTimezone: string | null
+    dueDateUTC: Date | null
   }
 
   export type PaymentMaxAggregateOutputType = {
@@ -28385,8 +28485,6 @@ export namespace Prisma {
     paymentInfo: string | null
     amount: string | null
     dueDate: string | null
-    dueDateUTC: Date | null
-    dueDateTimezone: string | null
     fileUrl: string | null
     fileName: string | null
     fileSize: number | null
@@ -28395,6 +28493,8 @@ export namespace Prisma {
     paidAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
+    dueDateTimezone: string | null
+    dueDateUTC: Date | null
   }
 
   export type PaymentCountAggregateOutputType = {
@@ -28411,8 +28511,6 @@ export namespace Prisma {
     paymentInfo: number
     amount: number
     dueDate: number
-    dueDateUTC: number
-    dueDateTimezone: number
     fileUrl: number
     fileName: number
     fileSize: number
@@ -28421,6 +28519,8 @@ export namespace Prisma {
     paidAt: number
     createdAt: number
     updatedAt: number
+    dueDateTimezone: number
+    dueDateUTC: number
     _all: number
   }
 
@@ -28453,8 +28553,6 @@ export namespace Prisma {
     paymentInfo?: true
     amount?: true
     dueDate?: true
-    dueDateUTC?: true
-    dueDateTimezone?: true
     fileUrl?: true
     fileName?: true
     fileSize?: true
@@ -28463,6 +28561,8 @@ export namespace Prisma {
     paidAt?: true
     createdAt?: true
     updatedAt?: true
+    dueDateTimezone?: true
+    dueDateUTC?: true
   }
 
   export type PaymentMaxAggregateInputType = {
@@ -28479,8 +28579,6 @@ export namespace Prisma {
     paymentInfo?: true
     amount?: true
     dueDate?: true
-    dueDateUTC?: true
-    dueDateTimezone?: true
     fileUrl?: true
     fileName?: true
     fileSize?: true
@@ -28489,6 +28587,8 @@ export namespace Prisma {
     paidAt?: true
     createdAt?: true
     updatedAt?: true
+    dueDateTimezone?: true
+    dueDateUTC?: true
   }
 
   export type PaymentCountAggregateInputType = {
@@ -28505,8 +28605,6 @@ export namespace Prisma {
     paymentInfo?: true
     amount?: true
     dueDate?: true
-    dueDateUTC?: true
-    dueDateTimezone?: true
     fileUrl?: true
     fileName?: true
     fileSize?: true
@@ -28515,6 +28613,8 @@ export namespace Prisma {
     paidAt?: true
     createdAt?: true
     updatedAt?: true
+    dueDateTimezone?: true
+    dueDateUTC?: true
     _all?: true
   }
 
@@ -28618,8 +28718,6 @@ export namespace Prisma {
     paymentInfo: string
     amount: string | null
     dueDate: string
-    dueDateUTC: Date | null
-    dueDateTimezone: string | null
     fileUrl: string | null
     fileName: string | null
     fileSize: number | null
@@ -28628,6 +28726,8 @@ export namespace Prisma {
     paidAt: Date | null
     createdAt: Date
     updatedAt: Date
+    dueDateTimezone: string | null
+    dueDateUTC: Date | null
     _count: PaymentCountAggregateOutputType | null
     _avg: PaymentAvgAggregateOutputType | null
     _sum: PaymentSumAggregateOutputType | null
@@ -28663,8 +28763,6 @@ export namespace Prisma {
     paymentInfo?: boolean
     amount?: boolean
     dueDate?: boolean
-    dueDateUTC?: boolean
-    dueDateTimezone?: boolean
     fileUrl?: boolean
     fileName?: boolean
     fileSize?: boolean
@@ -28673,6 +28771,8 @@ export namespace Prisma {
     paidAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    dueDateTimezone?: boolean
+    dueDateUTC?: boolean
     Enrollment?: boolean | EnrollmentDefaultArgs<ExtArgs>
     Student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
@@ -28691,8 +28791,6 @@ export namespace Prisma {
     paymentInfo?: boolean
     amount?: boolean
     dueDate?: boolean
-    dueDateUTC?: boolean
-    dueDateTimezone?: boolean
     fileUrl?: boolean
     fileName?: boolean
     fileSize?: boolean
@@ -28701,6 +28799,8 @@ export namespace Prisma {
     paidAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    dueDateTimezone?: boolean
+    dueDateUTC?: boolean
     Enrollment?: boolean | EnrollmentDefaultArgs<ExtArgs>
     Student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
@@ -28719,8 +28819,6 @@ export namespace Prisma {
     paymentInfo?: boolean
     amount?: boolean
     dueDate?: boolean
-    dueDateUTC?: boolean
-    dueDateTimezone?: boolean
     fileUrl?: boolean
     fileName?: boolean
     fileSize?: boolean
@@ -28729,6 +28827,8 @@ export namespace Prisma {
     paidAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    dueDateTimezone?: boolean
+    dueDateUTC?: boolean
     Enrollment?: boolean | EnrollmentDefaultArgs<ExtArgs>
     Student?: boolean | StudentDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
@@ -28747,8 +28847,6 @@ export namespace Prisma {
     paymentInfo?: boolean
     amount?: boolean
     dueDate?: boolean
-    dueDateUTC?: boolean
-    dueDateTimezone?: boolean
     fileUrl?: boolean
     fileName?: boolean
     fileSize?: boolean
@@ -28757,9 +28855,11 @@ export namespace Prisma {
     paidAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    dueDateTimezone?: boolean
+    dueDateUTC?: boolean
   }
 
-  export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "enrollmentId" | "studentId" | "studentEmail" | "studentName" | "parentName" | "parentEmail" | "parentPhone" | "program" | "subject" | "paymentInfo" | "amount" | "dueDate" | "dueDateUTC" | "dueDateTimezone" | "fileUrl" | "fileName" | "fileSize" | "status" | "sentAt" | "paidAt" | "createdAt" | "updatedAt", ExtArgs["result"]["payment"]>
+  export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "enrollmentId" | "studentId" | "studentEmail" | "studentName" | "parentName" | "parentEmail" | "parentPhone" | "program" | "subject" | "paymentInfo" | "amount" | "dueDate" | "fileUrl" | "fileName" | "fileSize" | "status" | "sentAt" | "paidAt" | "createdAt" | "updatedAt" | "dueDateTimezone" | "dueDateUTC", ExtArgs["result"]["payment"]>
   export type PaymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Enrollment?: boolean | EnrollmentDefaultArgs<ExtArgs>
     Student?: boolean | StudentDefaultArgs<ExtArgs>
@@ -28793,8 +28893,6 @@ export namespace Prisma {
       paymentInfo: string
       amount: string | null
       dueDate: string
-      dueDateUTC: Date | null
-      dueDateTimezone: string | null
       fileUrl: string | null
       fileName: string | null
       fileSize: number | null
@@ -28803,6 +28901,8 @@ export namespace Prisma {
       paidAt: Date | null
       createdAt: Date
       updatedAt: Date
+      dueDateTimezone: string | null
+      dueDateUTC: Date | null
     }, ExtArgs["result"]["payment"]>
     composites: {}
   }
@@ -29241,8 +29341,6 @@ export namespace Prisma {
     readonly paymentInfo: FieldRef<"Payment", 'String'>
     readonly amount: FieldRef<"Payment", 'String'>
     readonly dueDate: FieldRef<"Payment", 'String'>
-    readonly dueDateUTC: FieldRef<"Payment", 'DateTime'>
-    readonly dueDateTimezone: FieldRef<"Payment", 'String'>
     readonly fileUrl: FieldRef<"Payment", 'String'>
     readonly fileName: FieldRef<"Payment", 'String'>
     readonly fileSize: FieldRef<"Payment", 'Int'>
@@ -29251,6 +29349,8 @@ export namespace Prisma {
     readonly paidAt: FieldRef<"Payment", 'DateTime'>
     readonly createdAt: FieldRef<"Payment", 'DateTime'>
     readonly updatedAt: FieldRef<"Payment", 'DateTime'>
+    readonly dueDateTimezone: FieldRef<"Payment", 'String'>
+    readonly dueDateUTC: FieldRef<"Payment", 'DateTime'>
   }
     
 
@@ -29700,8 +29800,6 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     videoLink: string | null
-    beforeExpectations: string | null
-    afterChanges: string | null
     consentToFeature: boolean | null
     experienceDescription: string | null
     grade: string | null
@@ -29716,6 +29814,8 @@ export namespace Prisma {
     programsApproved: boolean | null
     ratingApproved: boolean | null
     successStoryApproved: boolean | null
+    afterChanges: string | null
+    beforeExpectations: string | null
   }
 
   export type TestimonialMaxAggregateOutputType = {
@@ -29729,8 +29829,6 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     videoLink: string | null
-    beforeExpectations: string | null
-    afterChanges: string | null
     consentToFeature: boolean | null
     experienceDescription: string | null
     grade: string | null
@@ -29745,6 +29843,8 @@ export namespace Prisma {
     programsApproved: boolean | null
     ratingApproved: boolean | null
     successStoryApproved: boolean | null
+    afterChanges: string | null
+    beforeExpectations: string | null
   }
 
   export type TestimonialCountAggregateOutputType = {
@@ -29758,8 +29858,6 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     videoLink: number
-    beforeExpectations: number
-    afterChanges: number
     consentToFeature: number
     experienceDescription: number
     grade: number
@@ -29775,6 +29873,8 @@ export namespace Prisma {
     programsApproved: number
     ratingApproved: number
     successStoryApproved: number
+    afterChanges: number
+    beforeExpectations: number
     _all: number
   }
 
@@ -29802,8 +29902,6 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     videoLink?: true
-    beforeExpectations?: true
-    afterChanges?: true
     consentToFeature?: true
     experienceDescription?: true
     grade?: true
@@ -29818,6 +29916,8 @@ export namespace Prisma {
     programsApproved?: true
     ratingApproved?: true
     successStoryApproved?: true
+    afterChanges?: true
+    beforeExpectations?: true
   }
 
   export type TestimonialMaxAggregateInputType = {
@@ -29831,8 +29931,6 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     videoLink?: true
-    beforeExpectations?: true
-    afterChanges?: true
     consentToFeature?: true
     experienceDescription?: true
     grade?: true
@@ -29847,6 +29945,8 @@ export namespace Prisma {
     programsApproved?: true
     ratingApproved?: true
     successStoryApproved?: true
+    afterChanges?: true
+    beforeExpectations?: true
   }
 
   export type TestimonialCountAggregateInputType = {
@@ -29860,8 +29960,6 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     videoLink?: true
-    beforeExpectations?: true
-    afterChanges?: true
     consentToFeature?: true
     experienceDescription?: true
     grade?: true
@@ -29877,6 +29975,8 @@ export namespace Prisma {
     programsApproved?: true
     ratingApproved?: true
     successStoryApproved?: true
+    afterChanges?: true
+    beforeExpectations?: true
     _all?: true
   }
 
@@ -29977,8 +30077,6 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     videoLink: string | null
-    beforeExpectations: string | null
-    afterChanges: string | null
     consentToFeature: boolean
     experienceDescription: string | null
     grade: string | null
@@ -29994,6 +30092,8 @@ export namespace Prisma {
     programsApproved: boolean
     ratingApproved: boolean
     successStoryApproved: boolean
+    afterChanges: string | null
+    beforeExpectations: string | null
     _count: TestimonialCountAggregateOutputType | null
     _avg: TestimonialAvgAggregateOutputType | null
     _sum: TestimonialSumAggregateOutputType | null
@@ -30026,8 +30126,6 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    beforeExpectations?: boolean
-    afterChanges?: boolean
     consentToFeature?: boolean
     experienceDescription?: boolean
     grade?: boolean
@@ -30043,6 +30141,8 @@ export namespace Prisma {
     programsApproved?: boolean
     ratingApproved?: boolean
     successStoryApproved?: boolean
+    afterChanges?: boolean
+    beforeExpectations?: boolean
     Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
@@ -30057,8 +30157,6 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    beforeExpectations?: boolean
-    afterChanges?: boolean
     consentToFeature?: boolean
     experienceDescription?: boolean
     grade?: boolean
@@ -30074,6 +30172,8 @@ export namespace Prisma {
     programsApproved?: boolean
     ratingApproved?: boolean
     successStoryApproved?: boolean
+    afterChanges?: boolean
+    beforeExpectations?: boolean
     Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
@@ -30088,8 +30188,6 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    beforeExpectations?: boolean
-    afterChanges?: boolean
     consentToFeature?: boolean
     experienceDescription?: boolean
     grade?: boolean
@@ -30105,6 +30203,8 @@ export namespace Prisma {
     programsApproved?: boolean
     ratingApproved?: boolean
     successStoryApproved?: boolean
+    afterChanges?: boolean
+    beforeExpectations?: boolean
     Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }, ExtArgs["result"]["testimonial"]>
 
@@ -30119,8 +30219,6 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     videoLink?: boolean
-    beforeExpectations?: boolean
-    afterChanges?: boolean
     consentToFeature?: boolean
     experienceDescription?: boolean
     grade?: boolean
@@ -30136,9 +30234,11 @@ export namespace Prisma {
     programsApproved?: boolean
     ratingApproved?: boolean
     successStoryApproved?: boolean
+    afterChanges?: boolean
+    beforeExpectations?: boolean
   }
 
-  export type TestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "content" | "authorType" | "authorName" | "isApproved" | "isVisible" | "createdAt" | "updatedAt" | "videoLink" | "beforeExpectations" | "afterChanges" | "consentToFeature" | "experienceDescription" | "grade" | "programs" | "rating" | "school" | "studentInfo" | "studentName" | "submittedAt" | "successStory" | "beforeAfterApproved" | "contentApproved" | "programsApproved" | "ratingApproved" | "successStoryApproved", ExtArgs["result"]["testimonial"]>
+  export type TestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "content" | "authorType" | "authorName" | "isApproved" | "isVisible" | "createdAt" | "updatedAt" | "videoLink" | "consentToFeature" | "experienceDescription" | "grade" | "programs" | "rating" | "school" | "studentInfo" | "studentName" | "submittedAt" | "successStory" | "beforeAfterApproved" | "contentApproved" | "programsApproved" | "ratingApproved" | "successStoryApproved" | "afterChanges" | "beforeExpectations", ExtArgs["result"]["testimonial"]>
   export type TestimonialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Student?: boolean | Testimonial$StudentArgs<ExtArgs>
   }
@@ -30165,8 +30265,6 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       videoLink: string | null
-      beforeExpectations: string | null
-      afterChanges: string | null
       consentToFeature: boolean
       experienceDescription: string | null
       grade: string | null
@@ -30182,6 +30280,8 @@ export namespace Prisma {
       programsApproved: boolean
       ratingApproved: boolean
       successStoryApproved: boolean
+      afterChanges: string | null
+      beforeExpectations: string | null
     }, ExtArgs["result"]["testimonial"]>
     composites: {}
   }
@@ -30616,8 +30716,6 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Testimonial", 'DateTime'>
     readonly updatedAt: FieldRef<"Testimonial", 'DateTime'>
     readonly videoLink: FieldRef<"Testimonial", 'String'>
-    readonly beforeExpectations: FieldRef<"Testimonial", 'String'>
-    readonly afterChanges: FieldRef<"Testimonial", 'String'>
     readonly consentToFeature: FieldRef<"Testimonial", 'Boolean'>
     readonly experienceDescription: FieldRef<"Testimonial", 'String'>
     readonly grade: FieldRef<"Testimonial", 'String'>
@@ -30633,6 +30731,8 @@ export namespace Prisma {
     readonly programsApproved: FieldRef<"Testimonial", 'Boolean'>
     readonly ratingApproved: FieldRef<"Testimonial", 'Boolean'>
     readonly successStoryApproved: FieldRef<"Testimonial", 'Boolean'>
+    readonly afterChanges: FieldRef<"Testimonial", 'String'>
+    readonly beforeExpectations: FieldRef<"Testimonial", 'String'>
   }
     
 
@@ -44646,16 +44746,16 @@ export namespace Prisma {
     description: string | null
     createdAt: Date | null
     author: string | null
-    grade: string | null
-    school: string | null
-    category: string | null
-    domain: string | null
-    studentId: number | null
     published: boolean | null
     pdfFilename: string | null
     abstract: string | null
     extractedAt: Date | null
     extractionStatus: string | null
+    category: string | null
+    grade: string | null
+    school: string | null
+    studentId: number | null
+    domain: string | null
   }
 
   export type ResearchMaxAggregateOutputType = {
@@ -44665,16 +44765,16 @@ export namespace Prisma {
     description: string | null
     createdAt: Date | null
     author: string | null
-    grade: string | null
-    school: string | null
-    category: string | null
-    domain: string | null
-    studentId: number | null
     published: boolean | null
     pdfFilename: string | null
     abstract: string | null
     extractedAt: Date | null
     extractionStatus: string | null
+    category: string | null
+    grade: string | null
+    school: string | null
+    studentId: number | null
+    domain: string | null
   }
 
   export type ResearchCountAggregateOutputType = {
@@ -44684,18 +44784,18 @@ export namespace Prisma {
     description: number
     createdAt: number
     author: number
-    grade: number
-    school: number
-    category: number
-    domain: number
-    studentId: number
     published: number
     pdfFilename: number
-    extractedContent: number
     abstract: number
-    keywords: number
     extractedAt: number
+    extractedContent: number
     extractionStatus: number
+    keywords: number
+    category: number
+    grade: number
+    school: number
+    studentId: number
+    domain: number
     _all: number
   }
 
@@ -44715,16 +44815,16 @@ export namespace Prisma {
     description?: true
     createdAt?: true
     author?: true
-    grade?: true
-    school?: true
-    category?: true
-    domain?: true
-    studentId?: true
     published?: true
     pdfFilename?: true
     abstract?: true
     extractedAt?: true
     extractionStatus?: true
+    category?: true
+    grade?: true
+    school?: true
+    studentId?: true
+    domain?: true
   }
 
   export type ResearchMaxAggregateInputType = {
@@ -44734,16 +44834,16 @@ export namespace Prisma {
     description?: true
     createdAt?: true
     author?: true
-    grade?: true
-    school?: true
-    category?: true
-    domain?: true
-    studentId?: true
     published?: true
     pdfFilename?: true
     abstract?: true
     extractedAt?: true
     extractionStatus?: true
+    category?: true
+    grade?: true
+    school?: true
+    studentId?: true
+    domain?: true
   }
 
   export type ResearchCountAggregateInputType = {
@@ -44753,18 +44853,18 @@ export namespace Prisma {
     description?: true
     createdAt?: true
     author?: true
-    grade?: true
-    school?: true
-    category?: true
-    domain?: true
-    studentId?: true
     published?: true
     pdfFilename?: true
-    extractedContent?: true
     abstract?: true
-    keywords?: true
     extractedAt?: true
+    extractedContent?: true
     extractionStatus?: true
+    keywords?: true
+    category?: true
+    grade?: true
+    school?: true
+    studentId?: true
+    domain?: true
     _all?: true
   }
 
@@ -44861,18 +44961,18 @@ export namespace Prisma {
     description: string | null
     createdAt: Date
     author: string | null
-    grade: string | null
-    school: string | null
-    category: string | null
-    domain: string | null
-    studentId: number | null
     published: boolean
     pdfFilename: string | null
-    extractedContent: JsonValue | null
     abstract: string | null
-    keywords: string[]
     extractedAt: Date | null
+    extractedContent: JsonValue | null
     extractionStatus: string | null
+    keywords: string[]
+    category: string | null
+    grade: string | null
+    school: string | null
+    studentId: number | null
+    domain: string | null
     _count: ResearchCountAggregateOutputType | null
     _avg: ResearchAvgAggregateOutputType | null
     _sum: ResearchSumAggregateOutputType | null
@@ -44901,21 +45001,22 @@ export namespace Prisma {
     description?: boolean
     createdAt?: boolean
     author?: boolean
-    grade?: boolean
-    school?: boolean
-    category?: boolean
-    domain?: boolean
-    studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
-    extractedContent?: boolean
     abstract?: boolean
-    keywords?: boolean
     extractedAt?: boolean
+    extractedContent?: boolean
     extractionStatus?: boolean
-    student?: boolean | Research$studentArgs<ExtArgs>
+    keywords?: boolean
+    category?: boolean
+    grade?: boolean
+    school?: boolean
+    studentId?: boolean
+    domain?: boolean
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
+    student?: boolean | Research$studentArgs<ExtArgs>
     Slide?: boolean | Research$SlideArgs<ExtArgs>
+    pptConversionJobs?: boolean | Research$pptConversionJobsArgs<ExtArgs>
     _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["research"]>
 
@@ -44926,18 +45027,18 @@ export namespace Prisma {
     description?: boolean
     createdAt?: boolean
     author?: boolean
-    grade?: boolean
-    school?: boolean
-    category?: boolean
-    domain?: boolean
-    studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
-    extractedContent?: boolean
     abstract?: boolean
-    keywords?: boolean
     extractedAt?: boolean
+    extractedContent?: boolean
     extractionStatus?: boolean
+    keywords?: boolean
+    category?: boolean
+    grade?: boolean
+    school?: boolean
+    studentId?: boolean
+    domain?: boolean
     student?: boolean | Research$studentArgs<ExtArgs>
   }, ExtArgs["result"]["research"]>
 
@@ -44948,18 +45049,18 @@ export namespace Prisma {
     description?: boolean
     createdAt?: boolean
     author?: boolean
-    grade?: boolean
-    school?: boolean
-    category?: boolean
-    domain?: boolean
-    studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
-    extractedContent?: boolean
     abstract?: boolean
-    keywords?: boolean
     extractedAt?: boolean
+    extractedContent?: boolean
     extractionStatus?: boolean
+    keywords?: boolean
+    category?: boolean
+    grade?: boolean
+    school?: boolean
+    studentId?: boolean
+    domain?: boolean
     student?: boolean | Research$studentArgs<ExtArgs>
   }, ExtArgs["result"]["research"]>
 
@@ -44970,25 +45071,26 @@ export namespace Prisma {
     description?: boolean
     createdAt?: boolean
     author?: boolean
-    grade?: boolean
-    school?: boolean
-    category?: boolean
-    domain?: boolean
-    studentId?: boolean
     published?: boolean
     pdfFilename?: boolean
-    extractedContent?: boolean
     abstract?: boolean
-    keywords?: boolean
     extractedAt?: boolean
+    extractedContent?: boolean
     extractionStatus?: boolean
+    keywords?: boolean
+    category?: boolean
+    grade?: boolean
+    school?: boolean
+    studentId?: boolean
+    domain?: boolean
   }
 
-  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "createdAt" | "author" | "grade" | "school" | "category" | "domain" | "studentId" | "published" | "pdfFilename" | "extractedContent" | "abstract" | "keywords" | "extractedAt" | "extractionStatus", ExtArgs["result"]["research"]>
+  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "createdAt" | "author" | "published" | "pdfFilename" | "abstract" | "extractedAt" | "extractedContent" | "extractionStatus" | "keywords" | "category" | "grade" | "school" | "studentId" | "domain", ExtArgs["result"]["research"]>
   export type ResearchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    student?: boolean | Research$studentArgs<ExtArgs>
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
+    student?: boolean | Research$studentArgs<ExtArgs>
     Slide?: boolean | Research$SlideArgs<ExtArgs>
+    pptConversionJobs?: boolean | Research$pptConversionJobsArgs<ExtArgs>
     _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ResearchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -45001,9 +45103,10 @@ export namespace Prisma {
   export type $ResearchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Research"
     objects: {
-      student: Prisma.$StudentPayload<ExtArgs> | null
       AccessRequest: Prisma.$AccessRequestPayload<ExtArgs>[]
+      student: Prisma.$StudentPayload<ExtArgs> | null
       Slide: Prisma.$SlidePayload<ExtArgs>[]
+      pptConversionJobs: Prisma.$PptConversionJobPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -45012,18 +45115,18 @@ export namespace Prisma {
       description: string | null
       createdAt: Date
       author: string | null
-      grade: string | null
-      school: string | null
-      category: string | null
-      domain: string | null
-      studentId: number | null
       published: boolean
       pdfFilename: string | null
-      extractedContent: Prisma.JsonValue | null
       abstract: string | null
-      keywords: string[]
       extractedAt: Date | null
+      extractedContent: Prisma.JsonValue | null
       extractionStatus: string | null
+      keywords: string[]
+      category: string | null
+      grade: string | null
+      school: string | null
+      studentId: number | null
+      domain: string | null
     }, ExtArgs["result"]["research"]>
     composites: {}
   }
@@ -45418,9 +45521,10 @@ export namespace Prisma {
    */
   export interface Prisma__ResearchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    student<T extends Research$studentArgs<ExtArgs> = {}>(args?: Subset<T, Research$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     AccessRequest<T extends Research$AccessRequestArgs<ExtArgs> = {}>(args?: Subset<T, Research$AccessRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    student<T extends Research$studentArgs<ExtArgs> = {}>(args?: Subset<T, Research$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Slide<T extends Research$SlideArgs<ExtArgs> = {}>(args?: Subset<T, Research$SlideArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    pptConversionJobs<T extends Research$pptConversionJobsArgs<ExtArgs> = {}>(args?: Subset<T, Research$pptConversionJobsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -45456,18 +45560,18 @@ export namespace Prisma {
     readonly description: FieldRef<"Research", 'String'>
     readonly createdAt: FieldRef<"Research", 'DateTime'>
     readonly author: FieldRef<"Research", 'String'>
-    readonly grade: FieldRef<"Research", 'String'>
-    readonly school: FieldRef<"Research", 'String'>
-    readonly category: FieldRef<"Research", 'String'>
-    readonly domain: FieldRef<"Research", 'String'>
-    readonly studentId: FieldRef<"Research", 'Int'>
     readonly published: FieldRef<"Research", 'Boolean'>
     readonly pdfFilename: FieldRef<"Research", 'String'>
-    readonly extractedContent: FieldRef<"Research", 'Json'>
     readonly abstract: FieldRef<"Research", 'String'>
-    readonly keywords: FieldRef<"Research", 'String[]'>
     readonly extractedAt: FieldRef<"Research", 'DateTime'>
+    readonly extractedContent: FieldRef<"Research", 'Json'>
     readonly extractionStatus: FieldRef<"Research", 'String'>
+    readonly keywords: FieldRef<"Research", 'String[]'>
+    readonly category: FieldRef<"Research", 'String'>
+    readonly grade: FieldRef<"Research", 'String'>
+    readonly school: FieldRef<"Research", 'String'>
+    readonly studentId: FieldRef<"Research", 'Int'>
+    readonly domain: FieldRef<"Research", 'String'>
   }
     
 
@@ -45864,25 +45968,6 @@ export namespace Prisma {
   }
 
   /**
-   * Research.student
-   */
-  export type Research$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Student
-     */
-    select?: StudentSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Student
-     */
-    omit?: StudentOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StudentInclude<ExtArgs> | null
-    where?: StudentWhereInput
-  }
-
-  /**
    * Research.AccessRequest
    */
   export type Research$AccessRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -45907,6 +45992,25 @@ export namespace Prisma {
   }
 
   /**
+   * Research.student
+   */
+  export type Research$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
+  }
+
+  /**
    * Research.Slide
    */
   export type Research$SlideArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -45928,6 +46032,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SlideScalarFieldEnum | SlideScalarFieldEnum[]
+  }
+
+  /**
+   * Research.pptConversionJobs
+   */
+  export type Research$pptConversionJobsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
+    where?: PptConversionJobWhereInput
+    orderBy?: PptConversionJobOrderByWithRelationInput | PptConversionJobOrderByWithRelationInput[]
+    cursor?: PptConversionJobWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PptConversionJobScalarFieldEnum | PptConversionJobScalarFieldEnum[]
   }
 
   /**
@@ -47025,6 +47153,1154 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: SlideInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PptConversionJob
+   */
+
+  export type AggregatePptConversionJob = {
+    _count: PptConversionJobCountAggregateOutputType | null
+    _avg: PptConversionJobAvgAggregateOutputType | null
+    _sum: PptConversionJobSumAggregateOutputType | null
+    _min: PptConversionJobMinAggregateOutputType | null
+    _max: PptConversionJobMaxAggregateOutputType | null
+  }
+
+  export type PptConversionJobAvgAggregateOutputType = {
+    totalSlides: number | null
+    processedSlides: number | null
+  }
+
+  export type PptConversionJobSumAggregateOutputType = {
+    totalSlides: number | null
+    processedSlides: number | null
+  }
+
+  export type PptConversionJobMinAggregateOutputType = {
+    id: string | null
+    researchId: string | null
+    cloudConvertJobId: string | null
+    status: string | null
+    totalSlides: number | null
+    processedSlides: number | null
+    error: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PptConversionJobMaxAggregateOutputType = {
+    id: string | null
+    researchId: string | null
+    cloudConvertJobId: string | null
+    status: string | null
+    totalSlides: number | null
+    processedSlides: number | null
+    error: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PptConversionJobCountAggregateOutputType = {
+    id: number
+    researchId: number
+    cloudConvertJobId: number
+    status: number
+    totalSlides: number
+    processedSlides: number
+    error: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PptConversionJobAvgAggregateInputType = {
+    totalSlides?: true
+    processedSlides?: true
+  }
+
+  export type PptConversionJobSumAggregateInputType = {
+    totalSlides?: true
+    processedSlides?: true
+  }
+
+  export type PptConversionJobMinAggregateInputType = {
+    id?: true
+    researchId?: true
+    cloudConvertJobId?: true
+    status?: true
+    totalSlides?: true
+    processedSlides?: true
+    error?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PptConversionJobMaxAggregateInputType = {
+    id?: true
+    researchId?: true
+    cloudConvertJobId?: true
+    status?: true
+    totalSlides?: true
+    processedSlides?: true
+    error?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PptConversionJobCountAggregateInputType = {
+    id?: true
+    researchId?: true
+    cloudConvertJobId?: true
+    status?: true
+    totalSlides?: true
+    processedSlides?: true
+    error?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PptConversionJobAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PptConversionJob to aggregate.
+     */
+    where?: PptConversionJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PptConversionJobs to fetch.
+     */
+    orderBy?: PptConversionJobOrderByWithRelationInput | PptConversionJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PptConversionJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PptConversionJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PptConversionJobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PptConversionJobs
+    **/
+    _count?: true | PptConversionJobCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PptConversionJobAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PptConversionJobSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PptConversionJobMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PptConversionJobMaxAggregateInputType
+  }
+
+  export type GetPptConversionJobAggregateType<T extends PptConversionJobAggregateArgs> = {
+        [P in keyof T & keyof AggregatePptConversionJob]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePptConversionJob[P]>
+      : GetScalarType<T[P], AggregatePptConversionJob[P]>
+  }
+
+
+
+
+  export type PptConversionJobGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PptConversionJobWhereInput
+    orderBy?: PptConversionJobOrderByWithAggregationInput | PptConversionJobOrderByWithAggregationInput[]
+    by: PptConversionJobScalarFieldEnum[] | PptConversionJobScalarFieldEnum
+    having?: PptConversionJobScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PptConversionJobCountAggregateInputType | true
+    _avg?: PptConversionJobAvgAggregateInputType
+    _sum?: PptConversionJobSumAggregateInputType
+    _min?: PptConversionJobMinAggregateInputType
+    _max?: PptConversionJobMaxAggregateInputType
+  }
+
+  export type PptConversionJobGroupByOutputType = {
+    id: string
+    researchId: string
+    cloudConvertJobId: string
+    status: string
+    totalSlides: number | null
+    processedSlides: number
+    error: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: PptConversionJobCountAggregateOutputType | null
+    _avg: PptConversionJobAvgAggregateOutputType | null
+    _sum: PptConversionJobSumAggregateOutputType | null
+    _min: PptConversionJobMinAggregateOutputType | null
+    _max: PptConversionJobMaxAggregateOutputType | null
+  }
+
+  type GetPptConversionJobGroupByPayload<T extends PptConversionJobGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PptConversionJobGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PptConversionJobGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PptConversionJobGroupByOutputType[P]>
+            : GetScalarType<T[P], PptConversionJobGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PptConversionJobSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    researchId?: boolean
+    cloudConvertJobId?: boolean
+    status?: boolean
+    totalSlides?: boolean
+    processedSlides?: boolean
+    error?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pptConversionJob"]>
+
+  export type PptConversionJobSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    researchId?: boolean
+    cloudConvertJobId?: boolean
+    status?: boolean
+    totalSlides?: boolean
+    processedSlides?: boolean
+    error?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pptConversionJob"]>
+
+  export type PptConversionJobSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    researchId?: boolean
+    cloudConvertJobId?: boolean
+    status?: boolean
+    totalSlides?: boolean
+    processedSlides?: boolean
+    error?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pptConversionJob"]>
+
+  export type PptConversionJobSelectScalar = {
+    id?: boolean
+    researchId?: boolean
+    cloudConvertJobId?: boolean
+    status?: boolean
+    totalSlides?: boolean
+    processedSlides?: boolean
+    error?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PptConversionJobOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "researchId" | "cloudConvertJobId" | "status" | "totalSlides" | "processedSlides" | "error" | "createdAt" | "updatedAt", ExtArgs["result"]["pptConversionJob"]>
+  export type PptConversionJobInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }
+  export type PptConversionJobIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }
+  export type PptConversionJobIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
+  }
+
+  export type $PptConversionJobPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PptConversionJob"
+    objects: {
+      Research: Prisma.$ResearchPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      researchId: string
+      cloudConvertJobId: string
+      status: string
+      totalSlides: number | null
+      processedSlides: number
+      error: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["pptConversionJob"]>
+    composites: {}
+  }
+
+  type PptConversionJobGetPayload<S extends boolean | null | undefined | PptConversionJobDefaultArgs> = $Result.GetResult<Prisma.$PptConversionJobPayload, S>
+
+  type PptConversionJobCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PptConversionJobFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PptConversionJobCountAggregateInputType | true
+    }
+
+  export interface PptConversionJobDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PptConversionJob'], meta: { name: 'PptConversionJob' } }
+    /**
+     * Find zero or one PptConversionJob that matches the filter.
+     * @param {PptConversionJobFindUniqueArgs} args - Arguments to find a PptConversionJob
+     * @example
+     * // Get one PptConversionJob
+     * const pptConversionJob = await prisma.pptConversionJob.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PptConversionJobFindUniqueArgs>(args: SelectSubset<T, PptConversionJobFindUniqueArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PptConversionJob that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PptConversionJobFindUniqueOrThrowArgs} args - Arguments to find a PptConversionJob
+     * @example
+     * // Get one PptConversionJob
+     * const pptConversionJob = await prisma.pptConversionJob.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PptConversionJobFindUniqueOrThrowArgs>(args: SelectSubset<T, PptConversionJobFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PptConversionJob that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PptConversionJobFindFirstArgs} args - Arguments to find a PptConversionJob
+     * @example
+     * // Get one PptConversionJob
+     * const pptConversionJob = await prisma.pptConversionJob.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PptConversionJobFindFirstArgs>(args?: SelectSubset<T, PptConversionJobFindFirstArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PptConversionJob that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PptConversionJobFindFirstOrThrowArgs} args - Arguments to find a PptConversionJob
+     * @example
+     * // Get one PptConversionJob
+     * const pptConversionJob = await prisma.pptConversionJob.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PptConversionJobFindFirstOrThrowArgs>(args?: SelectSubset<T, PptConversionJobFindFirstOrThrowArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PptConversionJobs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PptConversionJobFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PptConversionJobs
+     * const pptConversionJobs = await prisma.pptConversionJob.findMany()
+     * 
+     * // Get first 10 PptConversionJobs
+     * const pptConversionJobs = await prisma.pptConversionJob.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const pptConversionJobWithIdOnly = await prisma.pptConversionJob.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PptConversionJobFindManyArgs>(args?: SelectSubset<T, PptConversionJobFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PptConversionJob.
+     * @param {PptConversionJobCreateArgs} args - Arguments to create a PptConversionJob.
+     * @example
+     * // Create one PptConversionJob
+     * const PptConversionJob = await prisma.pptConversionJob.create({
+     *   data: {
+     *     // ... data to create a PptConversionJob
+     *   }
+     * })
+     * 
+     */
+    create<T extends PptConversionJobCreateArgs>(args: SelectSubset<T, PptConversionJobCreateArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PptConversionJobs.
+     * @param {PptConversionJobCreateManyArgs} args - Arguments to create many PptConversionJobs.
+     * @example
+     * // Create many PptConversionJobs
+     * const pptConversionJob = await prisma.pptConversionJob.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PptConversionJobCreateManyArgs>(args?: SelectSubset<T, PptConversionJobCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PptConversionJobs and returns the data saved in the database.
+     * @param {PptConversionJobCreateManyAndReturnArgs} args - Arguments to create many PptConversionJobs.
+     * @example
+     * // Create many PptConversionJobs
+     * const pptConversionJob = await prisma.pptConversionJob.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PptConversionJobs and only return the `id`
+     * const pptConversionJobWithIdOnly = await prisma.pptConversionJob.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PptConversionJobCreateManyAndReturnArgs>(args?: SelectSubset<T, PptConversionJobCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PptConversionJob.
+     * @param {PptConversionJobDeleteArgs} args - Arguments to delete one PptConversionJob.
+     * @example
+     * // Delete one PptConversionJob
+     * const PptConversionJob = await prisma.pptConversionJob.delete({
+     *   where: {
+     *     // ... filter to delete one PptConversionJob
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PptConversionJobDeleteArgs>(args: SelectSubset<T, PptConversionJobDeleteArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PptConversionJob.
+     * @param {PptConversionJobUpdateArgs} args - Arguments to update one PptConversionJob.
+     * @example
+     * // Update one PptConversionJob
+     * const pptConversionJob = await prisma.pptConversionJob.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PptConversionJobUpdateArgs>(args: SelectSubset<T, PptConversionJobUpdateArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PptConversionJobs.
+     * @param {PptConversionJobDeleteManyArgs} args - Arguments to filter PptConversionJobs to delete.
+     * @example
+     * // Delete a few PptConversionJobs
+     * const { count } = await prisma.pptConversionJob.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PptConversionJobDeleteManyArgs>(args?: SelectSubset<T, PptConversionJobDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PptConversionJobs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PptConversionJobUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PptConversionJobs
+     * const pptConversionJob = await prisma.pptConversionJob.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PptConversionJobUpdateManyArgs>(args: SelectSubset<T, PptConversionJobUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PptConversionJobs and returns the data updated in the database.
+     * @param {PptConversionJobUpdateManyAndReturnArgs} args - Arguments to update many PptConversionJobs.
+     * @example
+     * // Update many PptConversionJobs
+     * const pptConversionJob = await prisma.pptConversionJob.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PptConversionJobs and only return the `id`
+     * const pptConversionJobWithIdOnly = await prisma.pptConversionJob.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PptConversionJobUpdateManyAndReturnArgs>(args: SelectSubset<T, PptConversionJobUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PptConversionJob.
+     * @param {PptConversionJobUpsertArgs} args - Arguments to update or create a PptConversionJob.
+     * @example
+     * // Update or create a PptConversionJob
+     * const pptConversionJob = await prisma.pptConversionJob.upsert({
+     *   create: {
+     *     // ... data to create a PptConversionJob
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PptConversionJob we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PptConversionJobUpsertArgs>(args: SelectSubset<T, PptConversionJobUpsertArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PptConversionJobs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PptConversionJobCountArgs} args - Arguments to filter PptConversionJobs to count.
+     * @example
+     * // Count the number of PptConversionJobs
+     * const count = await prisma.pptConversionJob.count({
+     *   where: {
+     *     // ... the filter for the PptConversionJobs we want to count
+     *   }
+     * })
+    **/
+    count<T extends PptConversionJobCountArgs>(
+      args?: Subset<T, PptConversionJobCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PptConversionJobCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PptConversionJob.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PptConversionJobAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PptConversionJobAggregateArgs>(args: Subset<T, PptConversionJobAggregateArgs>): Prisma.PrismaPromise<GetPptConversionJobAggregateType<T>>
+
+    /**
+     * Group by PptConversionJob.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PptConversionJobGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PptConversionJobGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PptConversionJobGroupByArgs['orderBy'] }
+        : { orderBy?: PptConversionJobGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PptConversionJobGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPptConversionJobGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PptConversionJob model
+   */
+  readonly fields: PptConversionJobFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PptConversionJob.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PptConversionJobClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Research<T extends ResearchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResearchDefaultArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PptConversionJob model
+   */
+  interface PptConversionJobFieldRefs {
+    readonly id: FieldRef<"PptConversionJob", 'String'>
+    readonly researchId: FieldRef<"PptConversionJob", 'String'>
+    readonly cloudConvertJobId: FieldRef<"PptConversionJob", 'String'>
+    readonly status: FieldRef<"PptConversionJob", 'String'>
+    readonly totalSlides: FieldRef<"PptConversionJob", 'Int'>
+    readonly processedSlides: FieldRef<"PptConversionJob", 'Int'>
+    readonly error: FieldRef<"PptConversionJob", 'String'>
+    readonly createdAt: FieldRef<"PptConversionJob", 'DateTime'>
+    readonly updatedAt: FieldRef<"PptConversionJob", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PptConversionJob findUnique
+   */
+  export type PptConversionJobFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
+    /**
+     * Filter, which PptConversionJob to fetch.
+     */
+    where: PptConversionJobWhereUniqueInput
+  }
+
+  /**
+   * PptConversionJob findUniqueOrThrow
+   */
+  export type PptConversionJobFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
+    /**
+     * Filter, which PptConversionJob to fetch.
+     */
+    where: PptConversionJobWhereUniqueInput
+  }
+
+  /**
+   * PptConversionJob findFirst
+   */
+  export type PptConversionJobFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
+    /**
+     * Filter, which PptConversionJob to fetch.
+     */
+    where?: PptConversionJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PptConversionJobs to fetch.
+     */
+    orderBy?: PptConversionJobOrderByWithRelationInput | PptConversionJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PptConversionJobs.
+     */
+    cursor?: PptConversionJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PptConversionJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PptConversionJobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PptConversionJobs.
+     */
+    distinct?: PptConversionJobScalarFieldEnum | PptConversionJobScalarFieldEnum[]
+  }
+
+  /**
+   * PptConversionJob findFirstOrThrow
+   */
+  export type PptConversionJobFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
+    /**
+     * Filter, which PptConversionJob to fetch.
+     */
+    where?: PptConversionJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PptConversionJobs to fetch.
+     */
+    orderBy?: PptConversionJobOrderByWithRelationInput | PptConversionJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PptConversionJobs.
+     */
+    cursor?: PptConversionJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PptConversionJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PptConversionJobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PptConversionJobs.
+     */
+    distinct?: PptConversionJobScalarFieldEnum | PptConversionJobScalarFieldEnum[]
+  }
+
+  /**
+   * PptConversionJob findMany
+   */
+  export type PptConversionJobFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
+    /**
+     * Filter, which PptConversionJobs to fetch.
+     */
+    where?: PptConversionJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PptConversionJobs to fetch.
+     */
+    orderBy?: PptConversionJobOrderByWithRelationInput | PptConversionJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PptConversionJobs.
+     */
+    cursor?: PptConversionJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PptConversionJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PptConversionJobs.
+     */
+    skip?: number
+    distinct?: PptConversionJobScalarFieldEnum | PptConversionJobScalarFieldEnum[]
+  }
+
+  /**
+   * PptConversionJob create
+   */
+  export type PptConversionJobCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PptConversionJob.
+     */
+    data: XOR<PptConversionJobCreateInput, PptConversionJobUncheckedCreateInput>
+  }
+
+  /**
+   * PptConversionJob createMany
+   */
+  export type PptConversionJobCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PptConversionJobs.
+     */
+    data: PptConversionJobCreateManyInput | PptConversionJobCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PptConversionJob createManyAndReturn
+   */
+  export type PptConversionJobCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * The data used to create many PptConversionJobs.
+     */
+    data: PptConversionJobCreateManyInput | PptConversionJobCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PptConversionJob update
+   */
+  export type PptConversionJobUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PptConversionJob.
+     */
+    data: XOR<PptConversionJobUpdateInput, PptConversionJobUncheckedUpdateInput>
+    /**
+     * Choose, which PptConversionJob to update.
+     */
+    where: PptConversionJobWhereUniqueInput
+  }
+
+  /**
+   * PptConversionJob updateMany
+   */
+  export type PptConversionJobUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PptConversionJobs.
+     */
+    data: XOR<PptConversionJobUpdateManyMutationInput, PptConversionJobUncheckedUpdateManyInput>
+    /**
+     * Filter which PptConversionJobs to update
+     */
+    where?: PptConversionJobWhereInput
+    /**
+     * Limit how many PptConversionJobs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PptConversionJob updateManyAndReturn
+   */
+  export type PptConversionJobUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * The data used to update PptConversionJobs.
+     */
+    data: XOR<PptConversionJobUpdateManyMutationInput, PptConversionJobUncheckedUpdateManyInput>
+    /**
+     * Filter which PptConversionJobs to update
+     */
+    where?: PptConversionJobWhereInput
+    /**
+     * Limit how many PptConversionJobs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PptConversionJob upsert
+   */
+  export type PptConversionJobUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PptConversionJob to update in case it exists.
+     */
+    where: PptConversionJobWhereUniqueInput
+    /**
+     * In case the PptConversionJob found by the `where` argument doesn't exist, create a new PptConversionJob with this data.
+     */
+    create: XOR<PptConversionJobCreateInput, PptConversionJobUncheckedCreateInput>
+    /**
+     * In case the PptConversionJob was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PptConversionJobUpdateInput, PptConversionJobUncheckedUpdateInput>
+  }
+
+  /**
+   * PptConversionJob delete
+   */
+  export type PptConversionJobDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
+    /**
+     * Filter which PptConversionJob to delete.
+     */
+    where: PptConversionJobWhereUniqueInput
+  }
+
+  /**
+   * PptConversionJob deleteMany
+   */
+  export type PptConversionJobDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PptConversionJobs to delete
+     */
+    where?: PptConversionJobWhereInput
+    /**
+     * Limit how many PptConversionJobs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PptConversionJob without action
+   */
+  export type PptConversionJobDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PptConversionJob
+     */
+    select?: PptConversionJobSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PptConversionJob
+     */
+    omit?: PptConversionJobOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PptConversionJobInclude<ExtArgs> | null
   }
 
 
@@ -48292,12 +49568,12 @@ export namespace Prisma {
     id: 'id',
     date: 'date',
     times: 'times',
-    timesUTC: 'timesUTC',
-    timezone: 'timezone',
     program: 'program',
     adminEmail: 'adminEmail',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    timesUTC: 'timesUTC',
+    timezone: 'timezone'
   };
 
   export type AvailabilityDayScalarFieldEnum = (typeof AvailabilityDayScalarFieldEnum)[keyof typeof AvailabilityDayScalarFieldEnum]
@@ -48313,9 +49589,9 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     isActivated: 'isActivated',
     googleAccessToken: 'googleAccessToken',
+    googleCalendarConnected: 'googleCalendarConnected',
     googleRefreshToken: 'googleRefreshToken',
-    googleTokenExpiry: 'googleTokenExpiry',
-    googleCalendarConnected: 'googleCalendarConnected'
+    googleTokenExpiry: 'googleTokenExpiry'
   };
 
   export type TeacherScalarFieldEnum = (typeof TeacherScalarFieldEnum)[keyof typeof TeacherScalarFieldEnum]
@@ -48327,7 +49603,6 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     grade: 'grade',
-    graduationYear: 'graduationYear',
     schoolName: 'schoolName',
     parentName: 'parentName',
     parentEmail: 'parentEmail',
@@ -48336,7 +49611,8 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isActivated: 'isActivated',
-    parentAccountId: 'parentAccountId'
+    parentAccountId: 'parentAccountId',
+    graduationYear: 'graduationYear'
   };
 
   export type StudentScalarFieldEnum = (typeof StudentScalarFieldEnum)[keyof typeof StudentScalarFieldEnum]
@@ -48382,14 +49658,14 @@ export namespace Prisma {
     program: 'program',
     subject: 'subject',
     dueDate: 'dueDate',
-    dueDateTimezone: 'dueDateTimezone',
     totalPoints: 'totalPoints',
     isActive: 'isActive',
     allowLateSubmission: 'allowLateSubmission',
     teacherId: 'teacherId',
     targetStudentId: 'targetStudentId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    dueDateTimezone: 'dueDateTimezone'
   };
 
   export type AssignmentScalarFieldEnum = (typeof AssignmentScalarFieldEnum)[keyof typeof AssignmentScalarFieldEnum]
@@ -48520,25 +49796,25 @@ export namespace Prisma {
     date: 'date',
     startTime: 'startTime',
     endTime: 'endTime',
-    startDateTime: 'startDateTime',
-    endDateTime: 'endDateTime',
-    timezone: 'timezone',
     subject: 'subject',
     description: 'description',
-    meetingMinutes: 'meetingMinutes',
     location: 'location',
     meetingLink: 'meetingLink',
     status: 'status',
     color: 'color',
     studentId: 'studentId',
     teacherId: 'teacherId',
-    groupId: 'groupId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    endDateTime: 'endDateTime',
     googleCalendarEventId: 'googleCalendarEventId',
+    groupId: 'groupId',
+    meetingMinutes: 'meetingMinutes',
     reminderJobId: 'reminderJobId',
     reminderScheduledFor: 'reminderScheduledFor',
     reminderSentAt: 'reminderSentAt',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    startDateTime: 'startDateTime',
+    timezone: 'timezone'
   };
 
   export type ClassScheduleScalarFieldEnum = (typeof ClassScheduleScalarFieldEnum)[keyof typeof ClassScheduleScalarFieldEnum]
@@ -48600,8 +49876,6 @@ export namespace Prisma {
     paymentInfo: 'paymentInfo',
     amount: 'amount',
     dueDate: 'dueDate',
-    dueDateUTC: 'dueDateUTC',
-    dueDateTimezone: 'dueDateTimezone',
     fileUrl: 'fileUrl',
     fileName: 'fileName',
     fileSize: 'fileSize',
@@ -48609,7 +49883,9 @@ export namespace Prisma {
     sentAt: 'sentAt',
     paidAt: 'paidAt',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    dueDateTimezone: 'dueDateTimezone',
+    dueDateUTC: 'dueDateUTC'
   };
 
   export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
@@ -48626,8 +49902,6 @@ export namespace Prisma {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     videoLink: 'videoLink',
-    beforeExpectations: 'beforeExpectations',
-    afterChanges: 'afterChanges',
     consentToFeature: 'consentToFeature',
     experienceDescription: 'experienceDescription',
     grade: 'grade',
@@ -48642,7 +49916,9 @@ export namespace Prisma {
     contentApproved: 'contentApproved',
     programsApproved: 'programsApproved',
     ratingApproved: 'ratingApproved',
-    successStoryApproved: 'successStoryApproved'
+    successStoryApproved: 'successStoryApproved',
+    afterChanges: 'afterChanges',
+    beforeExpectations: 'beforeExpectations'
   };
 
   export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
@@ -48915,18 +50191,18 @@ export namespace Prisma {
     description: 'description',
     createdAt: 'createdAt',
     author: 'author',
-    grade: 'grade',
-    school: 'school',
-    category: 'category',
-    domain: 'domain',
-    studentId: 'studentId',
     published: 'published',
     pdfFilename: 'pdfFilename',
-    extractedContent: 'extractedContent',
     abstract: 'abstract',
-    keywords: 'keywords',
     extractedAt: 'extractedAt',
-    extractionStatus: 'extractionStatus'
+    extractedContent: 'extractedContent',
+    extractionStatus: 'extractionStatus',
+    keywords: 'keywords',
+    category: 'category',
+    grade: 'grade',
+    school: 'school',
+    studentId: 'studentId',
+    domain: 'domain'
   };
 
   export type ResearchScalarFieldEnum = (typeof ResearchScalarFieldEnum)[keyof typeof ResearchScalarFieldEnum]
@@ -48940,6 +50216,21 @@ export namespace Prisma {
   };
 
   export type SlideScalarFieldEnum = (typeof SlideScalarFieldEnum)[keyof typeof SlideScalarFieldEnum]
+
+
+  export const PptConversionJobScalarFieldEnum: {
+    id: 'id',
+    researchId: 'researchId',
+    cloudConvertJobId: 'cloudConvertJobId',
+    status: 'status',
+    totalSlides: 'totalSlides',
+    processedSlides: 'processedSlides',
+    error: 'error',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PptConversionJobScalarFieldEnum = (typeof PptConversionJobScalarFieldEnum)[keyof typeof PptConversionJobScalarFieldEnum]
 
 
   export const BlogScalarFieldEnum: {
@@ -49195,24 +50486,24 @@ export namespace Prisma {
     id?: IntFilter<"AvailabilityDay"> | number
     date?: StringFilter<"AvailabilityDay"> | string
     times?: JsonFilter<"AvailabilityDay">
-    timesUTC?: JsonNullableFilter<"AvailabilityDay">
-    timezone?: StringNullableFilter<"AvailabilityDay"> | string | null
     program?: StringFilter<"AvailabilityDay"> | string
     adminEmail?: StringFilter<"AvailabilityDay"> | string
     createdAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
     updatedAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
+    timesUTC?: JsonNullableFilter<"AvailabilityDay">
+    timezone?: StringNullableFilter<"AvailabilityDay"> | string | null
   }
 
   export type AvailabilityDayOrderByWithRelationInput = {
     id?: SortOrder
     date?: SortOrder
     times?: SortOrder
-    timesUTC?: SortOrderInput | SortOrder
-    timezone?: SortOrderInput | SortOrder
     program?: SortOrder
     adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    timesUTC?: SortOrderInput | SortOrder
+    timezone?: SortOrderInput | SortOrder
   }
 
   export type AvailabilityDayWhereUniqueInput = Prisma.AtLeast<{
@@ -49223,24 +50514,24 @@ export namespace Prisma {
     NOT?: AvailabilityDayWhereInput | AvailabilityDayWhereInput[]
     date?: StringFilter<"AvailabilityDay"> | string
     times?: JsonFilter<"AvailabilityDay">
-    timesUTC?: JsonNullableFilter<"AvailabilityDay">
-    timezone?: StringNullableFilter<"AvailabilityDay"> | string | null
     program?: StringFilter<"AvailabilityDay"> | string
     adminEmail?: StringFilter<"AvailabilityDay"> | string
     createdAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
     updatedAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
+    timesUTC?: JsonNullableFilter<"AvailabilityDay">
+    timezone?: StringNullableFilter<"AvailabilityDay"> | string | null
   }, "id" | "date_program_adminEmail">
 
   export type AvailabilityDayOrderByWithAggregationInput = {
     id?: SortOrder
     date?: SortOrder
     times?: SortOrder
-    timesUTC?: SortOrderInput | SortOrder
-    timezone?: SortOrderInput | SortOrder
     program?: SortOrder
     adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    timesUTC?: SortOrderInput | SortOrder
+    timezone?: SortOrderInput | SortOrder
     _count?: AvailabilityDayCountOrderByAggregateInput
     _avg?: AvailabilityDayAvgOrderByAggregateInput
     _max?: AvailabilityDayMaxOrderByAggregateInput
@@ -49255,12 +50546,12 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"AvailabilityDay"> | number
     date?: StringWithAggregatesFilter<"AvailabilityDay"> | string
     times?: JsonWithAggregatesFilter<"AvailabilityDay">
-    timesUTC?: JsonNullableWithAggregatesFilter<"AvailabilityDay">
-    timezone?: StringNullableWithAggregatesFilter<"AvailabilityDay"> | string | null
     program?: StringWithAggregatesFilter<"AvailabilityDay"> | string
     adminEmail?: StringWithAggregatesFilter<"AvailabilityDay"> | string
     createdAt?: DateTimeWithAggregatesFilter<"AvailabilityDay"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AvailabilityDay"> | Date | string
+    timesUTC?: JsonNullableWithAggregatesFilter<"AvailabilityDay">
+    timezone?: StringNullableWithAggregatesFilter<"AvailabilityDay"> | string | null
   }
 
   export type TeacherWhereInput = {
@@ -49276,9 +50567,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Teacher"> | Date | string
     isActivated?: BoolFilter<"Teacher"> | boolean
     googleAccessToken?: StringNullableFilter<"Teacher"> | string | null
+    googleCalendarConnected?: BoolFilter<"Teacher"> | boolean
     googleRefreshToken?: StringNullableFilter<"Teacher"> | string | null
     googleTokenExpiry?: DateTimeNullableFilter<"Teacher"> | Date | string | null
-    googleCalendarConnected?: BoolFilter<"Teacher"> | boolean
     assignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
@@ -49299,9 +50590,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isActivated?: SortOrder
     googleAccessToken?: SortOrderInput | SortOrder
+    googleCalendarConnected?: SortOrder
     googleRefreshToken?: SortOrderInput | SortOrder
     googleTokenExpiry?: SortOrderInput | SortOrder
-    googleCalendarConnected?: SortOrder
     assignments?: AssignmentOrderByRelationAggregateInput
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     mentorProfile?: MentorOrderByWithRelationInput
@@ -49325,9 +50616,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Teacher"> | Date | string
     isActivated?: BoolFilter<"Teacher"> | boolean
     googleAccessToken?: StringNullableFilter<"Teacher"> | string | null
+    googleCalendarConnected?: BoolFilter<"Teacher"> | boolean
     googleRefreshToken?: StringNullableFilter<"Teacher"> | string | null
     googleTokenExpiry?: DateTimeNullableFilter<"Teacher"> | Date | string | null
-    googleCalendarConnected?: BoolFilter<"Teacher"> | boolean
     assignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
@@ -49348,9 +50639,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isActivated?: SortOrder
     googleAccessToken?: SortOrderInput | SortOrder
+    googleCalendarConnected?: SortOrder
     googleRefreshToken?: SortOrderInput | SortOrder
     googleTokenExpiry?: SortOrderInput | SortOrder
-    googleCalendarConnected?: SortOrder
     _count?: TeacherCountOrderByAggregateInput
     _avg?: TeacherAvgOrderByAggregateInput
     _max?: TeacherMaxOrderByAggregateInput
@@ -49371,9 +50662,9 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Teacher"> | Date | string
     isActivated?: BoolWithAggregatesFilter<"Teacher"> | boolean
     googleAccessToken?: StringNullableWithAggregatesFilter<"Teacher"> | string | null
+    googleCalendarConnected?: BoolWithAggregatesFilter<"Teacher"> | boolean
     googleRefreshToken?: StringNullableWithAggregatesFilter<"Teacher"> | string | null
     googleTokenExpiry?: DateTimeNullableWithAggregatesFilter<"Teacher"> | Date | string | null
-    googleCalendarConnected?: BoolWithAggregatesFilter<"Teacher"> | boolean
   }
 
   export type StudentWhereInput = {
@@ -49385,7 +50676,6 @@ export namespace Prisma {
     email?: StringFilter<"Student"> | string
     password?: StringNullableFilter<"Student"> | string | null
     grade?: StringFilter<"Student"> | string
-    graduationYear?: IntNullableFilter<"Student"> | number | null
     schoolName?: StringFilter<"Student"> | string
     parentName?: StringFilter<"Student"> | string
     parentEmail?: StringFilter<"Student"> | string
@@ -49395,11 +50685,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Student"> | Date | string
     isActivated?: BoolFilter<"Student"> | boolean
     parentAccountId?: IntNullableFilter<"Student"> | number | null
+    graduationYear?: IntNullableFilter<"Student"> | number | null
     assignedAssignments?: AssignmentListRelationFilter
+    Blog?: BlogListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     Payment?: PaymentListRelationFilter
     progressReports?: ProgressReportListRelationFilter
+    Research?: ResearchListRelationFilter
     parentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
     groupMemberships?: StudentGroupMemberListRelationFilter
     assignedResources?: StudentResourceListRelationFilter
@@ -49407,8 +50700,6 @@ export namespace Prisma {
     submissions?: SubmissionListRelationFilter
     teacherLinks?: TeacherStudentListRelationFilter
     Testimonial?: TestimonialListRelationFilter
-    Research?: ResearchListRelationFilter
-    Blog?: BlogListRelationFilter
   }
 
   export type StudentOrderByWithRelationInput = {
@@ -49417,7 +50708,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrderInput | SortOrder
     grade?: SortOrder
-    graduationYear?: SortOrderInput | SortOrder
     schoolName?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
@@ -49427,11 +50717,14 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isActivated?: SortOrder
     parentAccountId?: SortOrderInput | SortOrder
+    graduationYear?: SortOrderInput | SortOrder
     assignedAssignments?: AssignmentOrderByRelationAggregateInput
+    Blog?: BlogOrderByRelationAggregateInput
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     enrollments?: EnrollmentOrderByRelationAggregateInput
     Payment?: PaymentOrderByRelationAggregateInput
     progressReports?: ProgressReportOrderByRelationAggregateInput
+    Research?: ResearchOrderByRelationAggregateInput
     parentAccount?: ParentAccountOrderByWithRelationInput
     groupMemberships?: StudentGroupMemberOrderByRelationAggregateInput
     assignedResources?: StudentResourceOrderByRelationAggregateInput
@@ -49439,8 +50732,6 @@ export namespace Prisma {
     submissions?: SubmissionOrderByRelationAggregateInput
     teacherLinks?: TeacherStudentOrderByRelationAggregateInput
     Testimonial?: TestimonialOrderByRelationAggregateInput
-    Research?: ResearchOrderByRelationAggregateInput
-    Blog?: BlogOrderByRelationAggregateInput
   }
 
   export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -49452,7 +50743,6 @@ export namespace Prisma {
     name?: StringFilter<"Student"> | string
     password?: StringNullableFilter<"Student"> | string | null
     grade?: StringFilter<"Student"> | string
-    graduationYear?: IntNullableFilter<"Student"> | number | null
     schoolName?: StringFilter<"Student"> | string
     parentName?: StringFilter<"Student"> | string
     parentEmail?: StringFilter<"Student"> | string
@@ -49462,11 +50752,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Student"> | Date | string
     isActivated?: BoolFilter<"Student"> | boolean
     parentAccountId?: IntNullableFilter<"Student"> | number | null
+    graduationYear?: IntNullableFilter<"Student"> | number | null
     assignedAssignments?: AssignmentListRelationFilter
+    Blog?: BlogListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     Payment?: PaymentListRelationFilter
     progressReports?: ProgressReportListRelationFilter
+    Research?: ResearchListRelationFilter
     parentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
     groupMemberships?: StudentGroupMemberListRelationFilter
     assignedResources?: StudentResourceListRelationFilter
@@ -49474,8 +50767,6 @@ export namespace Prisma {
     submissions?: SubmissionListRelationFilter
     teacherLinks?: TeacherStudentListRelationFilter
     Testimonial?: TestimonialListRelationFilter
-    Research?: ResearchListRelationFilter
-    Blog?: BlogListRelationFilter
   }, "id" | "email">
 
   export type StudentOrderByWithAggregationInput = {
@@ -49484,7 +50775,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrderInput | SortOrder
     grade?: SortOrder
-    graduationYear?: SortOrderInput | SortOrder
     schoolName?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
@@ -49494,6 +50784,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isActivated?: SortOrder
     parentAccountId?: SortOrderInput | SortOrder
+    graduationYear?: SortOrderInput | SortOrder
     _count?: StudentCountOrderByAggregateInput
     _avg?: StudentAvgOrderByAggregateInput
     _max?: StudentMaxOrderByAggregateInput
@@ -49510,7 +50801,6 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Student"> | string
     password?: StringNullableWithAggregatesFilter<"Student"> | string | null
     grade?: StringWithAggregatesFilter<"Student"> | string
-    graduationYear?: IntNullableWithAggregatesFilter<"Student"> | number | null
     schoolName?: StringWithAggregatesFilter<"Student"> | string
     parentName?: StringWithAggregatesFilter<"Student"> | string
     parentEmail?: StringWithAggregatesFilter<"Student"> | string
@@ -49520,6 +50810,7 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Student"> | Date | string
     isActivated?: BoolWithAggregatesFilter<"Student"> | boolean
     parentAccountId?: IntNullableWithAggregatesFilter<"Student"> | number | null
+    graduationYear?: IntNullableWithAggregatesFilter<"Student"> | number | null
   }
 
   export type TeacherStudentWhereInput = {
@@ -49592,9 +50883,9 @@ export namespace Prisma {
     teacherId?: IntFilter<"StudentGroup"> | number
     createdAt?: DateTimeFilter<"StudentGroup"> | Date | string
     updatedAt?: DateTimeFilter<"StudentGroup"> | Date | string
+    classSchedules?: ClassScheduleListRelationFilter
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     members?: StudentGroupMemberListRelationFilter
-    classSchedules?: ClassScheduleListRelationFilter
   }
 
   export type StudentGroupOrderByWithRelationInput = {
@@ -49603,9 +50894,9 @@ export namespace Prisma {
     teacherId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    classSchedules?: ClassScheduleOrderByRelationAggregateInput
     teacher?: TeacherOrderByWithRelationInput
     members?: StudentGroupMemberOrderByRelationAggregateInput
-    classSchedules?: ClassScheduleOrderByRelationAggregateInput
   }
 
   export type StudentGroupWhereUniqueInput = Prisma.AtLeast<{
@@ -49618,9 +50909,9 @@ export namespace Prisma {
     teacherId?: IntFilter<"StudentGroup"> | number
     createdAt?: DateTimeFilter<"StudentGroup"> | Date | string
     updatedAt?: DateTimeFilter<"StudentGroup"> | Date | string
+    classSchedules?: ClassScheduleListRelationFilter
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     members?: StudentGroupMemberListRelationFilter
-    classSchedules?: ClassScheduleListRelationFilter
   }, "id" | "teacherId_name">
 
   export type StudentGroupOrderByWithAggregationInput = {
@@ -49714,7 +51005,6 @@ export namespace Prisma {
     program?: StringFilter<"Assignment"> | string
     subject?: StringFilter<"Assignment"> | string
     dueDate?: DateTimeFilter<"Assignment"> | Date | string
-    dueDateTimezone?: StringNullableFilter<"Assignment"> | string | null
     totalPoints?: IntFilter<"Assignment"> | number
     isActive?: BoolFilter<"Assignment"> | boolean
     allowLateSubmission?: BoolFilter<"Assignment"> | boolean
@@ -49722,6 +51012,7 @@ export namespace Prisma {
     targetStudentId?: IntNullableFilter<"Assignment"> | number | null
     createdAt?: DateTimeFilter<"Assignment"> | Date | string
     updatedAt?: DateTimeFilter<"Assignment"> | Date | string
+    dueDateTimezone?: StringNullableFilter<"Assignment"> | string | null
     targetStudent?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     resources?: AssignmentResourceListRelationFilter
@@ -49736,7 +51027,6 @@ export namespace Prisma {
     program?: SortOrder
     subject?: SortOrder
     dueDate?: SortOrder
-    dueDateTimezone?: SortOrderInput | SortOrder
     totalPoints?: SortOrder
     isActive?: SortOrder
     allowLateSubmission?: SortOrder
@@ -49744,6 +51034,7 @@ export namespace Prisma {
     targetStudentId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    dueDateTimezone?: SortOrderInput | SortOrder
     targetStudent?: StudentOrderByWithRelationInput
     teacher?: TeacherOrderByWithRelationInput
     resources?: AssignmentResourceOrderByRelationAggregateInput
@@ -49761,7 +51052,6 @@ export namespace Prisma {
     program?: StringFilter<"Assignment"> | string
     subject?: StringFilter<"Assignment"> | string
     dueDate?: DateTimeFilter<"Assignment"> | Date | string
-    dueDateTimezone?: StringNullableFilter<"Assignment"> | string | null
     totalPoints?: IntFilter<"Assignment"> | number
     isActive?: BoolFilter<"Assignment"> | boolean
     allowLateSubmission?: BoolFilter<"Assignment"> | boolean
@@ -49769,6 +51059,7 @@ export namespace Prisma {
     targetStudentId?: IntNullableFilter<"Assignment"> | number | null
     createdAt?: DateTimeFilter<"Assignment"> | Date | string
     updatedAt?: DateTimeFilter<"Assignment"> | Date | string
+    dueDateTimezone?: StringNullableFilter<"Assignment"> | string | null
     targetStudent?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     resources?: AssignmentResourceListRelationFilter
@@ -49783,7 +51074,6 @@ export namespace Prisma {
     program?: SortOrder
     subject?: SortOrder
     dueDate?: SortOrder
-    dueDateTimezone?: SortOrderInput | SortOrder
     totalPoints?: SortOrder
     isActive?: SortOrder
     allowLateSubmission?: SortOrder
@@ -49791,6 +51081,7 @@ export namespace Prisma {
     targetStudentId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    dueDateTimezone?: SortOrderInput | SortOrder
     _count?: AssignmentCountOrderByAggregateInput
     _avg?: AssignmentAvgOrderByAggregateInput
     _max?: AssignmentMaxOrderByAggregateInput
@@ -49809,7 +51100,6 @@ export namespace Prisma {
     program?: StringWithAggregatesFilter<"Assignment"> | string
     subject?: StringWithAggregatesFilter<"Assignment"> | string
     dueDate?: DateTimeWithAggregatesFilter<"Assignment"> | Date | string
-    dueDateTimezone?: StringNullableWithAggregatesFilter<"Assignment"> | string | null
     totalPoints?: IntWithAggregatesFilter<"Assignment"> | number
     isActive?: BoolWithAggregatesFilter<"Assignment"> | boolean
     allowLateSubmission?: BoolWithAggregatesFilter<"Assignment"> | boolean
@@ -49817,6 +51107,7 @@ export namespace Prisma {
     targetStudentId?: IntNullableWithAggregatesFilter<"Assignment"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Assignment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Assignment"> | Date | string
+    dueDateTimezone?: StringNullableWithAggregatesFilter<"Assignment"> | string | null
   }
 
   export type SubmissionWhereInput = {
@@ -50465,28 +51756,28 @@ export namespace Prisma {
     date?: DateTimeFilter<"ClassSchedule"> | Date | string
     startTime?: StringFilter<"ClassSchedule"> | string
     endTime?: StringFilter<"ClassSchedule"> | string
-    startDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
-    endDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
-    timezone?: StringNullableFilter<"ClassSchedule"> | string | null
     subject?: StringFilter<"ClassSchedule"> | string
     description?: StringNullableFilter<"ClassSchedule"> | string | null
-    meetingMinutes?: StringNullableFilter<"ClassSchedule"> | string | null
     location?: StringNullableFilter<"ClassSchedule"> | string | null
     meetingLink?: StringNullableFilter<"ClassSchedule"> | string | null
     status?: StringFilter<"ClassSchedule"> | string
     color?: StringNullableFilter<"ClassSchedule"> | string | null
     studentId?: IntFilter<"ClassSchedule"> | number
     teacherId?: IntFilter<"ClassSchedule"> | number
-    groupId?: IntNullableFilter<"ClassSchedule"> | number | null
+    createdAt?: DateTimeFilter<"ClassSchedule"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassSchedule"> | Date | string
+    endDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
     googleCalendarEventId?: StringNullableFilter<"ClassSchedule"> | string | null
+    groupId?: IntNullableFilter<"ClassSchedule"> | number | null
+    meetingMinutes?: StringNullableFilter<"ClassSchedule"> | string | null
     reminderJobId?: StringNullableFilter<"ClassSchedule"> | string | null
     reminderScheduledFor?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
     reminderSentAt?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
-    createdAt?: DateTimeFilter<"ClassSchedule"> | Date | string
-    updatedAt?: DateTimeFilter<"ClassSchedule"> | Date | string
+    startDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
+    timezone?: StringNullableFilter<"ClassSchedule"> | string | null
+    group?: XOR<StudentGroupNullableScalarRelationFilter, StudentGroupWhereInput> | null
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
-    group?: XOR<StudentGroupNullableScalarRelationFilter, StudentGroupWhereInput> | null
   }
 
   export type ClassScheduleOrderByWithRelationInput = {
@@ -50495,28 +51786,28 @@ export namespace Prisma {
     date?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
-    startDateTime?: SortOrderInput | SortOrder
-    endDateTime?: SortOrderInput | SortOrder
-    timezone?: SortOrderInput | SortOrder
     subject?: SortOrder
     description?: SortOrderInput | SortOrder
-    meetingMinutes?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     meetingLink?: SortOrderInput | SortOrder
     status?: SortOrder
     color?: SortOrderInput | SortOrder
     studentId?: SortOrder
     teacherId?: SortOrder
-    groupId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    endDateTime?: SortOrderInput | SortOrder
     googleCalendarEventId?: SortOrderInput | SortOrder
+    groupId?: SortOrderInput | SortOrder
+    meetingMinutes?: SortOrderInput | SortOrder
     reminderJobId?: SortOrderInput | SortOrder
     reminderScheduledFor?: SortOrderInput | SortOrder
     reminderSentAt?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    startDateTime?: SortOrderInput | SortOrder
+    timezone?: SortOrderInput | SortOrder
+    group?: StudentGroupOrderByWithRelationInput
     student?: StudentOrderByWithRelationInput
     teacher?: TeacherOrderByWithRelationInput
-    group?: StudentGroupOrderByWithRelationInput
   }
 
   export type ClassScheduleWhereUniqueInput = Prisma.AtLeast<{
@@ -50528,28 +51819,28 @@ export namespace Prisma {
     date?: DateTimeFilter<"ClassSchedule"> | Date | string
     startTime?: StringFilter<"ClassSchedule"> | string
     endTime?: StringFilter<"ClassSchedule"> | string
-    startDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
-    endDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
-    timezone?: StringNullableFilter<"ClassSchedule"> | string | null
     subject?: StringFilter<"ClassSchedule"> | string
     description?: StringNullableFilter<"ClassSchedule"> | string | null
-    meetingMinutes?: StringNullableFilter<"ClassSchedule"> | string | null
     location?: StringNullableFilter<"ClassSchedule"> | string | null
     meetingLink?: StringNullableFilter<"ClassSchedule"> | string | null
     status?: StringFilter<"ClassSchedule"> | string
     color?: StringNullableFilter<"ClassSchedule"> | string | null
     studentId?: IntFilter<"ClassSchedule"> | number
     teacherId?: IntFilter<"ClassSchedule"> | number
-    groupId?: IntNullableFilter<"ClassSchedule"> | number | null
+    createdAt?: DateTimeFilter<"ClassSchedule"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassSchedule"> | Date | string
+    endDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
     googleCalendarEventId?: StringNullableFilter<"ClassSchedule"> | string | null
+    groupId?: IntNullableFilter<"ClassSchedule"> | number | null
+    meetingMinutes?: StringNullableFilter<"ClassSchedule"> | string | null
     reminderJobId?: StringNullableFilter<"ClassSchedule"> | string | null
     reminderScheduledFor?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
     reminderSentAt?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
-    createdAt?: DateTimeFilter<"ClassSchedule"> | Date | string
-    updatedAt?: DateTimeFilter<"ClassSchedule"> | Date | string
+    startDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
+    timezone?: StringNullableFilter<"ClassSchedule"> | string | null
+    group?: XOR<StudentGroupNullableScalarRelationFilter, StudentGroupWhereInput> | null
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
-    group?: XOR<StudentGroupNullableScalarRelationFilter, StudentGroupWhereInput> | null
   }, "id">
 
   export type ClassScheduleOrderByWithAggregationInput = {
@@ -50558,25 +51849,25 @@ export namespace Prisma {
     date?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
-    startDateTime?: SortOrderInput | SortOrder
-    endDateTime?: SortOrderInput | SortOrder
-    timezone?: SortOrderInput | SortOrder
     subject?: SortOrder
     description?: SortOrderInput | SortOrder
-    meetingMinutes?: SortOrderInput | SortOrder
     location?: SortOrderInput | SortOrder
     meetingLink?: SortOrderInput | SortOrder
     status?: SortOrder
     color?: SortOrderInput | SortOrder
     studentId?: SortOrder
     teacherId?: SortOrder
-    groupId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    endDateTime?: SortOrderInput | SortOrder
     googleCalendarEventId?: SortOrderInput | SortOrder
+    groupId?: SortOrderInput | SortOrder
+    meetingMinutes?: SortOrderInput | SortOrder
     reminderJobId?: SortOrderInput | SortOrder
     reminderScheduledFor?: SortOrderInput | SortOrder
     reminderSentAt?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    startDateTime?: SortOrderInput | SortOrder
+    timezone?: SortOrderInput | SortOrder
     _count?: ClassScheduleCountOrderByAggregateInput
     _avg?: ClassScheduleAvgOrderByAggregateInput
     _max?: ClassScheduleMaxOrderByAggregateInput
@@ -50593,25 +51884,25 @@ export namespace Prisma {
     date?: DateTimeWithAggregatesFilter<"ClassSchedule"> | Date | string
     startTime?: StringWithAggregatesFilter<"ClassSchedule"> | string
     endTime?: StringWithAggregatesFilter<"ClassSchedule"> | string
-    startDateTime?: DateTimeNullableWithAggregatesFilter<"ClassSchedule"> | Date | string | null
-    endDateTime?: DateTimeNullableWithAggregatesFilter<"ClassSchedule"> | Date | string | null
-    timezone?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
     subject?: StringWithAggregatesFilter<"ClassSchedule"> | string
     description?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
-    meetingMinutes?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
     location?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
     meetingLink?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
     status?: StringWithAggregatesFilter<"ClassSchedule"> | string
     color?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
     studentId?: IntWithAggregatesFilter<"ClassSchedule"> | number
     teacherId?: IntWithAggregatesFilter<"ClassSchedule"> | number
-    groupId?: IntNullableWithAggregatesFilter<"ClassSchedule"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"ClassSchedule"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ClassSchedule"> | Date | string
+    endDateTime?: DateTimeNullableWithAggregatesFilter<"ClassSchedule"> | Date | string | null
     googleCalendarEventId?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
+    groupId?: IntNullableWithAggregatesFilter<"ClassSchedule"> | number | null
+    meetingMinutes?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
     reminderJobId?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
     reminderScheduledFor?: DateTimeNullableWithAggregatesFilter<"ClassSchedule"> | Date | string | null
     reminderSentAt?: DateTimeNullableWithAggregatesFilter<"ClassSchedule"> | Date | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"ClassSchedule"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"ClassSchedule"> | Date | string
+    startDateTime?: DateTimeNullableWithAggregatesFilter<"ClassSchedule"> | Date | string | null
+    timezone?: StringNullableWithAggregatesFilter<"ClassSchedule"> | string | null
   }
 
   export type ActivationRequestWhereInput = {
@@ -50839,8 +52130,6 @@ export namespace Prisma {
     paymentInfo?: StringFilter<"Payment"> | string
     amount?: StringNullableFilter<"Payment"> | string | null
     dueDate?: StringFilter<"Payment"> | string
-    dueDateUTC?: DateTimeNullableFilter<"Payment"> | Date | string | null
-    dueDateTimezone?: StringNullableFilter<"Payment"> | string | null
     fileUrl?: StringNullableFilter<"Payment"> | string | null
     fileName?: StringNullableFilter<"Payment"> | string | null
     fileSize?: IntNullableFilter<"Payment"> | number | null
@@ -50849,6 +52138,8 @@ export namespace Prisma {
     paidAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     updatedAt?: DateTimeFilter<"Payment"> | Date | string
+    dueDateTimezone?: StringNullableFilter<"Payment"> | string | null
+    dueDateUTC?: DateTimeNullableFilter<"Payment"> | Date | string | null
     Enrollment?: XOR<EnrollmentScalarRelationFilter, EnrollmentWhereInput>
     Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }
@@ -50867,8 +52158,6 @@ export namespace Prisma {
     paymentInfo?: SortOrder
     amount?: SortOrderInput | SortOrder
     dueDate?: SortOrder
-    dueDateUTC?: SortOrderInput | SortOrder
-    dueDateTimezone?: SortOrderInput | SortOrder
     fileUrl?: SortOrderInput | SortOrder
     fileName?: SortOrderInput | SortOrder
     fileSize?: SortOrderInput | SortOrder
@@ -50877,6 +52166,8 @@ export namespace Prisma {
     paidAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    dueDateTimezone?: SortOrderInput | SortOrder
+    dueDateUTC?: SortOrderInput | SortOrder
     Enrollment?: EnrollmentOrderByWithRelationInput
     Student?: StudentOrderByWithRelationInput
   }
@@ -50898,8 +52189,6 @@ export namespace Prisma {
     paymentInfo?: StringFilter<"Payment"> | string
     amount?: StringNullableFilter<"Payment"> | string | null
     dueDate?: StringFilter<"Payment"> | string
-    dueDateUTC?: DateTimeNullableFilter<"Payment"> | Date | string | null
-    dueDateTimezone?: StringNullableFilter<"Payment"> | string | null
     fileUrl?: StringNullableFilter<"Payment"> | string | null
     fileName?: StringNullableFilter<"Payment"> | string | null
     fileSize?: IntNullableFilter<"Payment"> | number | null
@@ -50908,6 +52197,8 @@ export namespace Prisma {
     paidAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     updatedAt?: DateTimeFilter<"Payment"> | Date | string
+    dueDateTimezone?: StringNullableFilter<"Payment"> | string | null
+    dueDateUTC?: DateTimeNullableFilter<"Payment"> | Date | string | null
     Enrollment?: XOR<EnrollmentScalarRelationFilter, EnrollmentWhereInput>
     Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
   }, "id">
@@ -50926,8 +52217,6 @@ export namespace Prisma {
     paymentInfo?: SortOrder
     amount?: SortOrderInput | SortOrder
     dueDate?: SortOrder
-    dueDateUTC?: SortOrderInput | SortOrder
-    dueDateTimezone?: SortOrderInput | SortOrder
     fileUrl?: SortOrderInput | SortOrder
     fileName?: SortOrderInput | SortOrder
     fileSize?: SortOrderInput | SortOrder
@@ -50936,6 +52225,8 @@ export namespace Prisma {
     paidAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    dueDateTimezone?: SortOrderInput | SortOrder
+    dueDateUTC?: SortOrderInput | SortOrder
     _count?: PaymentCountOrderByAggregateInput
     _avg?: PaymentAvgOrderByAggregateInput
     _max?: PaymentMaxOrderByAggregateInput
@@ -50960,8 +52251,6 @@ export namespace Prisma {
     paymentInfo?: StringWithAggregatesFilter<"Payment"> | string
     amount?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     dueDate?: StringWithAggregatesFilter<"Payment"> | string
-    dueDateUTC?: DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
-    dueDateTimezone?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     fileUrl?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     fileName?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     fileSize?: IntNullableWithAggregatesFilter<"Payment"> | number | null
@@ -50970,6 +52259,8 @@ export namespace Prisma {
     paidAt?: DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
+    dueDateTimezone?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    dueDateUTC?: DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
   }
 
   export type TestimonialWhereInput = {
@@ -50986,8 +52277,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableFilter<"Testimonial"> | string | null
-    beforeExpectations?: StringNullableFilter<"Testimonial"> | string | null
-    afterChanges?: StringNullableFilter<"Testimonial"> | string | null
     consentToFeature?: BoolFilter<"Testimonial"> | boolean
     experienceDescription?: StringNullableFilter<"Testimonial"> | string | null
     grade?: StringNullableFilter<"Testimonial"> | string | null
@@ -51003,6 +52292,8 @@ export namespace Prisma {
     programsApproved?: BoolFilter<"Testimonial"> | boolean
     ratingApproved?: BoolFilter<"Testimonial"> | boolean
     successStoryApproved?: BoolFilter<"Testimonial"> | boolean
+    afterChanges?: StringNullableFilter<"Testimonial"> | string | null
+    beforeExpectations?: StringNullableFilter<"Testimonial"> | string | null
     Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }
 
@@ -51017,8 +52308,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrderInput | SortOrder
-    beforeExpectations?: SortOrderInput | SortOrder
-    afterChanges?: SortOrderInput | SortOrder
     consentToFeature?: SortOrder
     experienceDescription?: SortOrderInput | SortOrder
     grade?: SortOrderInput | SortOrder
@@ -51034,6 +52323,8 @@ export namespace Prisma {
     programsApproved?: SortOrder
     ratingApproved?: SortOrder
     successStoryApproved?: SortOrder
+    afterChanges?: SortOrderInput | SortOrder
+    beforeExpectations?: SortOrderInput | SortOrder
     Student?: StudentOrderByWithRelationInput
   }
 
@@ -51051,8 +52342,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableFilter<"Testimonial"> | string | null
-    beforeExpectations?: StringNullableFilter<"Testimonial"> | string | null
-    afterChanges?: StringNullableFilter<"Testimonial"> | string | null
     consentToFeature?: BoolFilter<"Testimonial"> | boolean
     experienceDescription?: StringNullableFilter<"Testimonial"> | string | null
     grade?: StringNullableFilter<"Testimonial"> | string | null
@@ -51068,6 +52357,8 @@ export namespace Prisma {
     programsApproved?: BoolFilter<"Testimonial"> | boolean
     ratingApproved?: BoolFilter<"Testimonial"> | boolean
     successStoryApproved?: BoolFilter<"Testimonial"> | boolean
+    afterChanges?: StringNullableFilter<"Testimonial"> | string | null
+    beforeExpectations?: StringNullableFilter<"Testimonial"> | string | null
     Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }, "id">
 
@@ -51082,8 +52373,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrderInput | SortOrder
-    beforeExpectations?: SortOrderInput | SortOrder
-    afterChanges?: SortOrderInput | SortOrder
     consentToFeature?: SortOrder
     experienceDescription?: SortOrderInput | SortOrder
     grade?: SortOrderInput | SortOrder
@@ -51099,6 +52388,8 @@ export namespace Prisma {
     programsApproved?: SortOrder
     ratingApproved?: SortOrder
     successStoryApproved?: SortOrder
+    afterChanges?: SortOrderInput | SortOrder
+    beforeExpectations?: SortOrderInput | SortOrder
     _count?: TestimonialCountOrderByAggregateInput
     _avg?: TestimonialAvgOrderByAggregateInput
     _max?: TestimonialMaxOrderByAggregateInput
@@ -51120,8 +52411,6 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
-    beforeExpectations?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
-    afterChanges?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
     consentToFeature?: BoolWithAggregatesFilter<"Testimonial"> | boolean
     experienceDescription?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
     grade?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
@@ -51137,6 +52426,8 @@ export namespace Prisma {
     programsApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
     ratingApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
     successStoryApproved?: BoolWithAggregatesFilter<"Testimonial"> | boolean
+    afterChanges?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
+    beforeExpectations?: StringNullableWithAggregatesFilter<"Testimonial"> | string | null
   }
 
   export type SecurityLogWhereInput = {
@@ -52458,21 +53749,22 @@ export namespace Prisma {
     description?: StringNullableFilter<"Research"> | string | null
     createdAt?: DateTimeFilter<"Research"> | Date | string
     author?: StringNullableFilter<"Research"> | string | null
-    grade?: StringNullableFilter<"Research"> | string | null
-    school?: StringNullableFilter<"Research"> | string | null
-    category?: StringNullableFilter<"Research"> | string | null
-    domain?: StringNullableFilter<"Research"> | string | null
-    studentId?: IntNullableFilter<"Research"> | number | null
     published?: BoolFilter<"Research"> | boolean
     pdfFilename?: StringNullableFilter<"Research"> | string | null
-    extractedContent?: JsonNullableFilter<"Research">
     abstract?: StringNullableFilter<"Research"> | string | null
-    keywords?: StringNullableListFilter<"Research">
     extractedAt?: DateTimeNullableFilter<"Research"> | Date | string | null
+    extractedContent?: JsonNullableFilter<"Research">
     extractionStatus?: StringNullableFilter<"Research"> | string | null
-    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+    keywords?: StringNullableListFilter<"Research">
+    category?: StringNullableFilter<"Research"> | string | null
+    grade?: StringNullableFilter<"Research"> | string | null
+    school?: StringNullableFilter<"Research"> | string | null
+    studentId?: IntNullableFilter<"Research"> | number | null
+    domain?: StringNullableFilter<"Research"> | string | null
     AccessRequest?: AccessRequestListRelationFilter
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     Slide?: SlideListRelationFilter
+    pptConversionJobs?: PptConversionJobListRelationFilter
   }
 
   export type ResearchOrderByWithRelationInput = {
@@ -52482,21 +53774,22 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     author?: SortOrderInput | SortOrder
-    grade?: SortOrderInput | SortOrder
-    school?: SortOrderInput | SortOrder
-    category?: SortOrderInput | SortOrder
-    domain?: SortOrderInput | SortOrder
-    studentId?: SortOrderInput | SortOrder
     published?: SortOrder
     pdfFilename?: SortOrderInput | SortOrder
-    extractedContent?: SortOrderInput | SortOrder
     abstract?: SortOrderInput | SortOrder
-    keywords?: SortOrder
     extractedAt?: SortOrderInput | SortOrder
+    extractedContent?: SortOrderInput | SortOrder
     extractionStatus?: SortOrderInput | SortOrder
-    student?: StudentOrderByWithRelationInput
+    keywords?: SortOrder
+    category?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    school?: SortOrderInput | SortOrder
+    studentId?: SortOrderInput | SortOrder
+    domain?: SortOrderInput | SortOrder
     AccessRequest?: AccessRequestOrderByRelationAggregateInput
+    student?: StudentOrderByWithRelationInput
     Slide?: SlideOrderByRelationAggregateInput
+    pptConversionJobs?: PptConversionJobOrderByRelationAggregateInput
   }
 
   export type ResearchWhereUniqueInput = Prisma.AtLeast<{
@@ -52509,21 +53802,22 @@ export namespace Prisma {
     description?: StringNullableFilter<"Research"> | string | null
     createdAt?: DateTimeFilter<"Research"> | Date | string
     author?: StringNullableFilter<"Research"> | string | null
-    grade?: StringNullableFilter<"Research"> | string | null
-    school?: StringNullableFilter<"Research"> | string | null
-    category?: StringNullableFilter<"Research"> | string | null
-    domain?: StringNullableFilter<"Research"> | string | null
-    studentId?: IntNullableFilter<"Research"> | number | null
     published?: BoolFilter<"Research"> | boolean
     pdfFilename?: StringNullableFilter<"Research"> | string | null
-    extractedContent?: JsonNullableFilter<"Research">
     abstract?: StringNullableFilter<"Research"> | string | null
-    keywords?: StringNullableListFilter<"Research">
     extractedAt?: DateTimeNullableFilter<"Research"> | Date | string | null
+    extractedContent?: JsonNullableFilter<"Research">
     extractionStatus?: StringNullableFilter<"Research"> | string | null
-    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+    keywords?: StringNullableListFilter<"Research">
+    category?: StringNullableFilter<"Research"> | string | null
+    grade?: StringNullableFilter<"Research"> | string | null
+    school?: StringNullableFilter<"Research"> | string | null
+    studentId?: IntNullableFilter<"Research"> | number | null
+    domain?: StringNullableFilter<"Research"> | string | null
     AccessRequest?: AccessRequestListRelationFilter
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     Slide?: SlideListRelationFilter
+    pptConversionJobs?: PptConversionJobListRelationFilter
   }, "id" | "slug">
 
   export type ResearchOrderByWithAggregationInput = {
@@ -52533,18 +53827,18 @@ export namespace Prisma {
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     author?: SortOrderInput | SortOrder
-    grade?: SortOrderInput | SortOrder
-    school?: SortOrderInput | SortOrder
-    category?: SortOrderInput | SortOrder
-    domain?: SortOrderInput | SortOrder
-    studentId?: SortOrderInput | SortOrder
     published?: SortOrder
     pdfFilename?: SortOrderInput | SortOrder
-    extractedContent?: SortOrderInput | SortOrder
     abstract?: SortOrderInput | SortOrder
-    keywords?: SortOrder
     extractedAt?: SortOrderInput | SortOrder
+    extractedContent?: SortOrderInput | SortOrder
     extractionStatus?: SortOrderInput | SortOrder
+    keywords?: SortOrder
+    category?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    school?: SortOrderInput | SortOrder
+    studentId?: SortOrderInput | SortOrder
+    domain?: SortOrderInput | SortOrder
     _count?: ResearchCountOrderByAggregateInput
     _avg?: ResearchAvgOrderByAggregateInput
     _max?: ResearchMaxOrderByAggregateInput
@@ -52562,18 +53856,18 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Research"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Research"> | Date | string
     author?: StringNullableWithAggregatesFilter<"Research"> | string | null
-    grade?: StringNullableWithAggregatesFilter<"Research"> | string | null
-    school?: StringNullableWithAggregatesFilter<"Research"> | string | null
-    category?: StringNullableWithAggregatesFilter<"Research"> | string | null
-    domain?: StringNullableWithAggregatesFilter<"Research"> | string | null
-    studentId?: IntNullableWithAggregatesFilter<"Research"> | number | null
     published?: BoolWithAggregatesFilter<"Research"> | boolean
     pdfFilename?: StringNullableWithAggregatesFilter<"Research"> | string | null
-    extractedContent?: JsonNullableWithAggregatesFilter<"Research">
     abstract?: StringNullableWithAggregatesFilter<"Research"> | string | null
-    keywords?: StringNullableListFilter<"Research">
     extractedAt?: DateTimeNullableWithAggregatesFilter<"Research"> | Date | string | null
+    extractedContent?: JsonNullableWithAggregatesFilter<"Research">
     extractionStatus?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    keywords?: StringNullableListFilter<"Research">
+    category?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    grade?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    school?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    studentId?: IntNullableWithAggregatesFilter<"Research"> | number | null
+    domain?: StringNullableWithAggregatesFilter<"Research"> | string | null
   }
 
   export type SlideWhereInput = {
@@ -52626,6 +53920,83 @@ export namespace Prisma {
     researchId?: StringWithAggregatesFilter<"Slide"> | string
     order?: IntWithAggregatesFilter<"Slide"> | number
     imageFilename?: StringWithAggregatesFilter<"Slide"> | string
+  }
+
+  export type PptConversionJobWhereInput = {
+    AND?: PptConversionJobWhereInput | PptConversionJobWhereInput[]
+    OR?: PptConversionJobWhereInput[]
+    NOT?: PptConversionJobWhereInput | PptConversionJobWhereInput[]
+    id?: StringFilter<"PptConversionJob"> | string
+    researchId?: StringFilter<"PptConversionJob"> | string
+    cloudConvertJobId?: StringFilter<"PptConversionJob"> | string
+    status?: StringFilter<"PptConversionJob"> | string
+    totalSlides?: IntNullableFilter<"PptConversionJob"> | number | null
+    processedSlides?: IntFilter<"PptConversionJob"> | number
+    error?: StringNullableFilter<"PptConversionJob"> | string | null
+    createdAt?: DateTimeFilter<"PptConversionJob"> | Date | string
+    updatedAt?: DateTimeFilter<"PptConversionJob"> | Date | string
+    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
+  }
+
+  export type PptConversionJobOrderByWithRelationInput = {
+    id?: SortOrder
+    researchId?: SortOrder
+    cloudConvertJobId?: SortOrder
+    status?: SortOrder
+    totalSlides?: SortOrderInput | SortOrder
+    processedSlides?: SortOrder
+    error?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    Research?: ResearchOrderByWithRelationInput
+  }
+
+  export type PptConversionJobWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    cloudConvertJobId?: string
+    AND?: PptConversionJobWhereInput | PptConversionJobWhereInput[]
+    OR?: PptConversionJobWhereInput[]
+    NOT?: PptConversionJobWhereInput | PptConversionJobWhereInput[]
+    researchId?: StringFilter<"PptConversionJob"> | string
+    status?: StringFilter<"PptConversionJob"> | string
+    totalSlides?: IntNullableFilter<"PptConversionJob"> | number | null
+    processedSlides?: IntFilter<"PptConversionJob"> | number
+    error?: StringNullableFilter<"PptConversionJob"> | string | null
+    createdAt?: DateTimeFilter<"PptConversionJob"> | Date | string
+    updatedAt?: DateTimeFilter<"PptConversionJob"> | Date | string
+    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
+  }, "id" | "cloudConvertJobId">
+
+  export type PptConversionJobOrderByWithAggregationInput = {
+    id?: SortOrder
+    researchId?: SortOrder
+    cloudConvertJobId?: SortOrder
+    status?: SortOrder
+    totalSlides?: SortOrderInput | SortOrder
+    processedSlides?: SortOrder
+    error?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PptConversionJobCountOrderByAggregateInput
+    _avg?: PptConversionJobAvgOrderByAggregateInput
+    _max?: PptConversionJobMaxOrderByAggregateInput
+    _min?: PptConversionJobMinOrderByAggregateInput
+    _sum?: PptConversionJobSumOrderByAggregateInput
+  }
+
+  export type PptConversionJobScalarWhereWithAggregatesInput = {
+    AND?: PptConversionJobScalarWhereWithAggregatesInput | PptConversionJobScalarWhereWithAggregatesInput[]
+    OR?: PptConversionJobScalarWhereWithAggregatesInput[]
+    NOT?: PptConversionJobScalarWhereWithAggregatesInput | PptConversionJobScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PptConversionJob"> | string
+    researchId?: StringWithAggregatesFilter<"PptConversionJob"> | string
+    cloudConvertJobId?: StringWithAggregatesFilter<"PptConversionJob"> | string
+    status?: StringWithAggregatesFilter<"PptConversionJob"> | string
+    totalSlides?: IntNullableWithAggregatesFilter<"PptConversionJob"> | number | null
+    processedSlides?: IntWithAggregatesFilter<"PptConversionJob"> | number
+    error?: StringNullableWithAggregatesFilter<"PptConversionJob"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"PptConversionJob"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PptConversionJob"> | Date | string
   }
 
   export type BlogWhereInput = {
@@ -52837,82 +54208,82 @@ export namespace Prisma {
   export type AvailabilityDayCreateInput = {
     date: string
     times: JsonNullValueInput | InputJsonValue
-    timesUTC?: NullableJsonNullValueInput | InputJsonValue
-    timezone?: string | null
     program: string
     adminEmail?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    timesUTC?: NullableJsonNullValueInput | InputJsonValue
+    timezone?: string | null
   }
 
   export type AvailabilityDayUncheckedCreateInput = {
     id?: number
     date: string
     times: JsonNullValueInput | InputJsonValue
-    timesUTC?: NullableJsonNullValueInput | InputJsonValue
-    timezone?: string | null
     program: string
     adminEmail?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    timesUTC?: NullableJsonNullValueInput | InputJsonValue
+    timezone?: string | null
   }
 
   export type AvailabilityDayUpdateInput = {
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
-    timesUTC?: NullableJsonNullValueInput | InputJsonValue
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     program?: StringFieldUpdateOperationsInput | string
     adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timesUTC?: NullableJsonNullValueInput | InputJsonValue
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AvailabilityDayUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
-    timesUTC?: NullableJsonNullValueInput | InputJsonValue
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     program?: StringFieldUpdateOperationsInput | string
     adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timesUTC?: NullableJsonNullValueInput | InputJsonValue
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AvailabilityDayCreateManyInput = {
     id?: number
     date: string
     times: JsonNullValueInput | InputJsonValue
-    timesUTC?: NullableJsonNullValueInput | InputJsonValue
-    timezone?: string | null
     program: string
     adminEmail?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    timesUTC?: NullableJsonNullValueInput | InputJsonValue
+    timezone?: string | null
   }
 
   export type AvailabilityDayUpdateManyMutationInput = {
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
-    timesUTC?: NullableJsonNullValueInput | InputJsonValue
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     program?: StringFieldUpdateOperationsInput | string
     adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timesUTC?: NullableJsonNullValueInput | InputJsonValue
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AvailabilityDayUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
-    timesUTC?: NullableJsonNullValueInput | InputJsonValue
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     program?: StringFieldUpdateOperationsInput | string
     adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timesUTC?: NullableJsonNullValueInput | InputJsonValue
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TeacherCreateInput = {
@@ -52924,9 +54295,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
@@ -52947,9 +54318,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
@@ -52969,9 +54340,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
@@ -52992,9 +54363,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
@@ -53015,9 +54386,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
   }
 
   export type TeacherUpdateManyMutationInput = {
@@ -53029,9 +54400,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TeacherUncheckedUpdateManyInput = {
@@ -53044,9 +54415,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StudentCreateInput = {
@@ -53054,7 +54425,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -53063,11 +54433,14 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
@@ -53075,8 +54448,6 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateInput = {
@@ -53085,7 +54456,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -53095,19 +54465,20 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUpdateInput = {
@@ -53115,7 +54486,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -53124,11 +54494,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
@@ -53136,8 +54509,6 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
@@ -53146,7 +54517,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -53156,19 +54526,20 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateManyInput = {
@@ -53177,7 +54548,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -53187,6 +54557,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
   }
 
   export type StudentUpdateManyMutationInput = {
@@ -53194,7 +54565,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -53203,6 +54573,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type StudentUncheckedUpdateManyInput = {
@@ -53211,7 +54582,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -53221,6 +54591,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type TeacherStudentCreateInput = {
@@ -53278,9 +54649,9 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    classSchedules?: ClassScheduleCreateNestedManyWithoutGroupInput
     teacher: TeacherCreateNestedOneWithoutStudentGroupsInput
     members?: StudentGroupMemberCreateNestedManyWithoutGroupInput
-    classSchedules?: ClassScheduleCreateNestedManyWithoutGroupInput
   }
 
   export type StudentGroupUncheckedCreateInput = {
@@ -53289,17 +54660,17 @@ export namespace Prisma {
     teacherId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    members?: StudentGroupMemberUncheckedCreateNestedManyWithoutGroupInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutGroupInput
+    members?: StudentGroupMemberUncheckedCreateNestedManyWithoutGroupInput
   }
 
   export type StudentGroupUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    classSchedules?: ClassScheduleUpdateManyWithoutGroupNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutStudentGroupsNestedInput
     members?: StudentGroupMemberUpdateManyWithoutGroupNestedInput
-    classSchedules?: ClassScheduleUpdateManyWithoutGroupNestedInput
   }
 
   export type StudentGroupUncheckedUpdateInput = {
@@ -53308,8 +54679,8 @@ export namespace Prisma {
     teacherId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    members?: StudentGroupMemberUncheckedUpdateManyWithoutGroupNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutGroupNestedInput
+    members?: StudentGroupMemberUncheckedUpdateManyWithoutGroupNestedInput
   }
 
   export type StudentGroupCreateManyInput = {
@@ -53385,12 +54756,12 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
     targetStudent?: StudentCreateNestedOneWithoutAssignedAssignmentsInput
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
@@ -53405,7 +54776,6 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
@@ -53413,6 +54783,7 @@ export namespace Prisma {
     targetStudentId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
   }
@@ -53424,12 +54795,12 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     targetStudent?: StudentUpdateOneWithoutAssignedAssignmentsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
@@ -53444,7 +54815,6 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
@@ -53452,6 +54822,7 @@ export namespace Prisma {
     targetStudentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
   }
@@ -53464,7 +54835,6 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
@@ -53472,6 +54842,7 @@ export namespace Prisma {
     targetStudentId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
   }
 
   export type AssignmentUpdateManyMutationInput = {
@@ -53481,12 +54852,12 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AssignmentUncheckedUpdateManyInput = {
@@ -53497,7 +54868,6 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
@@ -53505,6 +54875,7 @@ export namespace Prisma {
     targetStudentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SubmissionCreateInput = {
@@ -54161,25 +55532,25 @@ export namespace Prisma {
     date: Date | string
     startTime: string
     endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
     subject: string
     description?: string | null
-    meetingMinutes?: string | null
     location?: string | null
     meetingLink?: string | null
     status?: string
     color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
     googleCalendarEventId?: string | null
+    meetingMinutes?: string | null
     reminderJobId?: string | null
     reminderScheduledFor?: Date | string | null
     reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startDateTime?: Date | string | null
+    timezone?: string | null
+    group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
     student: StudentCreateNestedOneWithoutClassSchedulesInput
     teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
-    group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
   }
 
   export type ClassScheduleUncheckedCreateInput = {
@@ -54188,25 +55559,25 @@ export namespace Prisma {
     date: Date | string
     startTime: string
     endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
     subject: string
     description?: string | null
-    meetingMinutes?: string | null
     location?: string | null
     meetingLink?: string | null
     status?: string
     color?: string | null
     studentId: number
     teacherId: number
-    groupId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
     googleCalendarEventId?: string | null
+    groupId?: number | null
+    meetingMinutes?: string | null
     reminderJobId?: string | null
     reminderScheduledFor?: Date | string | null
     reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startDateTime?: Date | string | null
+    timezone?: string | null
   }
 
   export type ClassScheduleUpdateInput = {
@@ -54214,25 +55585,25 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
     reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
+    group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
     student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
-    group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateInput = {
@@ -54241,25 +55612,25 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: IntFieldUpdateOperationsInput | number
     teacherId?: IntFieldUpdateOperationsInput | number
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
     reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClassScheduleCreateManyInput = {
@@ -54268,25 +55639,25 @@ export namespace Prisma {
     date: Date | string
     startTime: string
     endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
     subject: string
     description?: string | null
-    meetingMinutes?: string | null
     location?: string | null
     meetingLink?: string | null
     status?: string
     color?: string | null
     studentId: number
     teacherId: number
-    groupId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
     googleCalendarEventId?: string | null
+    groupId?: number | null
+    meetingMinutes?: string | null
     reminderJobId?: string | null
     reminderScheduledFor?: Date | string | null
     reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startDateTime?: Date | string | null
+    timezone?: string | null
   }
 
   export type ClassScheduleUpdateManyMutationInput = {
@@ -54294,22 +55665,22 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
     reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClassScheduleUncheckedUpdateManyInput = {
@@ -54318,25 +55689,25 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: IntFieldUpdateOperationsInput | number
     teacherId?: IntFieldUpdateOperationsInput | number
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
     reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ActivationRequestCreateInput = {
@@ -54572,8 +55943,6 @@ export namespace Prisma {
     paymentInfo: string
     amount?: string | null
     dueDate: string
-    dueDateUTC?: Date | string | null
-    dueDateTimezone?: string | null
     fileUrl?: string | null
     fileName?: string | null
     fileSize?: number | null
@@ -54582,6 +55951,8 @@ export namespace Prisma {
     paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    dueDateTimezone?: string | null
+    dueDateUTC?: Date | string | null
     Enrollment: EnrollmentCreateNestedOneWithoutPaymentInput
     Student: StudentCreateNestedOneWithoutPaymentInput
   }
@@ -54600,8 +55971,6 @@ export namespace Prisma {
     paymentInfo: string
     amount?: string | null
     dueDate: string
-    dueDateUTC?: Date | string | null
-    dueDateTimezone?: string | null
     fileUrl?: string | null
     fileName?: string | null
     fileSize?: number | null
@@ -54610,6 +55979,8 @@ export namespace Prisma {
     paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    dueDateTimezone?: string | null
+    dueDateUTC?: Date | string | null
   }
 
   export type PaymentUpdateInput = {
@@ -54623,8 +55994,6 @@ export namespace Prisma {
     paymentInfo?: StringFieldUpdateOperationsInput | string
     amount?: NullableStringFieldUpdateOperationsInput | string | null
     dueDate?: StringFieldUpdateOperationsInput | string
-    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
@@ -54633,6 +56002,8 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Enrollment?: EnrollmentUpdateOneRequiredWithoutPaymentNestedInput
     Student?: StudentUpdateOneRequiredWithoutPaymentNestedInput
   }
@@ -54651,8 +56022,6 @@ export namespace Prisma {
     paymentInfo?: StringFieldUpdateOperationsInput | string
     amount?: NullableStringFieldUpdateOperationsInput | string | null
     dueDate?: StringFieldUpdateOperationsInput | string
-    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
@@ -54661,6 +56030,8 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type PaymentCreateManyInput = {
@@ -54677,8 +56048,6 @@ export namespace Prisma {
     paymentInfo: string
     amount?: string | null
     dueDate: string
-    dueDateUTC?: Date | string | null
-    dueDateTimezone?: string | null
     fileUrl?: string | null
     fileName?: string | null
     fileSize?: number | null
@@ -54687,6 +56056,8 @@ export namespace Prisma {
     paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    dueDateTimezone?: string | null
+    dueDateUTC?: Date | string | null
   }
 
   export type PaymentUpdateManyMutationInput = {
@@ -54700,8 +56071,6 @@ export namespace Prisma {
     paymentInfo?: StringFieldUpdateOperationsInput | string
     amount?: NullableStringFieldUpdateOperationsInput | string | null
     dueDate?: StringFieldUpdateOperationsInput | string
-    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
@@ -54710,6 +56079,8 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type PaymentUncheckedUpdateManyInput = {
@@ -54726,8 +56097,6 @@ export namespace Prisma {
     paymentInfo?: StringFieldUpdateOperationsInput | string
     amount?: NullableStringFieldUpdateOperationsInput | string | null
     dueDate?: StringFieldUpdateOperationsInput | string
-    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
@@ -54736,6 +56105,8 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type TestimonialCreateInput = {
@@ -54747,8 +56118,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeExpectations?: string | null
-    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -54764,6 +56133,8 @@ export namespace Prisma {
     programsApproved?: boolean
     ratingApproved?: boolean
     successStoryApproved?: boolean
+    afterChanges?: string | null
+    beforeExpectations?: string | null
     Student?: StudentCreateNestedOneWithoutTestimonialInput
   }
 
@@ -54778,8 +56149,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeExpectations?: string | null
-    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -54795,6 +56164,8 @@ export namespace Prisma {
     programsApproved?: boolean
     ratingApproved?: boolean
     successStoryApproved?: boolean
+    afterChanges?: string | null
+    beforeExpectations?: string | null
   }
 
   export type TestimonialUpdateInput = {
@@ -54806,8 +56177,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -54823,6 +56192,8 @@ export namespace Prisma {
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
     ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
     Student?: StudentUpdateOneWithoutTestimonialNestedInput
   }
 
@@ -54837,8 +56208,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -54854,6 +56223,8 @@ export namespace Prisma {
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
     ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TestimonialCreateManyInput = {
@@ -54867,8 +56238,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeExpectations?: string | null
-    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -54884,6 +56253,8 @@ export namespace Prisma {
     programsApproved?: boolean
     ratingApproved?: boolean
     successStoryApproved?: boolean
+    afterChanges?: string | null
+    beforeExpectations?: string | null
   }
 
   export type TestimonialUpdateManyMutationInput = {
@@ -54895,8 +56266,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -54912,6 +56281,8 @@ export namespace Prisma {
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
     ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TestimonialUncheckedUpdateManyInput = {
@@ -54925,8 +56296,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -54942,6 +56311,8 @@ export namespace Prisma {
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
     ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SecurityLogCreateInput = {
@@ -56513,20 +57884,21 @@ export namespace Prisma {
     description?: string | null
     createdAt: Date | string
     author?: string | null
-    grade?: string | null
-    school?: string | null
-    category?: string | null
-    domain?: string | null
     published?: boolean
     pdfFilename?: string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
     extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: string | null
-    student?: StudentCreateNestedOneWithoutResearchInput
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    domain?: string | null
     AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
+    student?: StudentCreateNestedOneWithoutResearchInput
     Slide?: SlideCreateNestedManyWithoutResearchInput
+    pptConversionJobs?: PptConversionJobCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchUncheckedCreateInput = {
@@ -56536,20 +57908,21 @@ export namespace Prisma {
     description?: string | null
     createdAt: Date | string
     author?: string | null
-    grade?: string | null
-    school?: string | null
-    category?: string | null
-    domain?: string | null
-    studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
     extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    studentId?: number | null
+    domain?: string | null
     AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
     Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
+    pptConversionJobs?: PptConversionJobUncheckedCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchUpdateInput = {
@@ -56559,20 +57932,21 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
-    student?: StudentUpdateOneWithoutResearchNestedInput
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
+    student?: StudentUpdateOneWithoutResearchNestedInput
     Slide?: SlideUpdateManyWithoutResearchNestedInput
+    pptConversionJobs?: PptConversionJobUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchUncheckedUpdateInput = {
@@ -56582,20 +57956,21 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
     Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
+    pptConversionJobs?: PptConversionJobUncheckedUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchCreateManyInput = {
@@ -56605,18 +57980,18 @@ export namespace Prisma {
     description?: string | null
     createdAt: Date | string
     author?: string | null
-    grade?: string | null
-    school?: string | null
-    category?: string | null
-    domain?: string | null
-    studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
     extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    studentId?: number | null
+    domain?: string | null
   }
 
   export type ResearchUpdateManyMutationInput = {
@@ -56626,17 +58001,17 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResearchUncheckedUpdateManyInput = {
@@ -56646,18 +58021,18 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SlideCreateInput = {
@@ -56706,6 +58081,89 @@ export namespace Prisma {
     researchId?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     imageFilename?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PptConversionJobCreateInput = {
+    id?: string
+    cloudConvertJobId: string
+    status?: string
+    totalSlides?: number | null
+    processedSlides?: number
+    error?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Research: ResearchCreateNestedOneWithoutPptConversionJobsInput
+  }
+
+  export type PptConversionJobUncheckedCreateInput = {
+    id?: string
+    researchId: string
+    cloudConvertJobId: string
+    status?: string
+    totalSlides?: number | null
+    processedSlides?: number
+    error?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PptConversionJobUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
+    processedSlides?: IntFieldUpdateOperationsInput | number
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Research?: ResearchUpdateOneRequiredWithoutPptConversionJobsNestedInput
+  }
+
+  export type PptConversionJobUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    researchId?: StringFieldUpdateOperationsInput | string
+    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
+    processedSlides?: IntFieldUpdateOperationsInput | number
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PptConversionJobCreateManyInput = {
+    id?: string
+    researchId: string
+    cloudConvertJobId: string
+    status?: string
+    totalSlides?: number | null
+    processedSlides?: number
+    error?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PptConversionJobUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
+    processedSlides?: IntFieldUpdateOperationsInput | number
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PptConversionJobUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    researchId?: StringFieldUpdateOperationsInput | string
+    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
+    processedSlides?: IntFieldUpdateOperationsInput | number
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BlogCreateInput = {
@@ -57064,12 +58522,12 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     times?: SortOrder
-    timesUTC?: SortOrder
-    timezone?: SortOrder
     program?: SortOrder
     adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    timesUTC?: SortOrder
+    timezone?: SortOrder
   }
 
   export type AvailabilityDayAvgOrderByAggregateInput = {
@@ -57079,21 +58537,21 @@ export namespace Prisma {
   export type AvailabilityDayMaxOrderByAggregateInput = {
     id?: SortOrder
     date?: SortOrder
-    timezone?: SortOrder
     program?: SortOrder
     adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    timezone?: SortOrder
   }
 
   export type AvailabilityDayMinOrderByAggregateInput = {
     id?: SortOrder
     date?: SortOrder
-    timezone?: SortOrder
     program?: SortOrder
     adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    timezone?: SortOrder
   }
 
   export type AvailabilityDaySumOrderByAggregateInput = {
@@ -57256,9 +58714,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isActivated?: SortOrder
     googleAccessToken?: SortOrder
+    googleCalendarConnected?: SortOrder
     googleRefreshToken?: SortOrder
     googleTokenExpiry?: SortOrder
-    googleCalendarConnected?: SortOrder
   }
 
   export type TeacherAvgOrderByAggregateInput = {
@@ -57274,9 +58732,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isActivated?: SortOrder
     googleAccessToken?: SortOrder
+    googleCalendarConnected?: SortOrder
     googleRefreshToken?: SortOrder
     googleTokenExpiry?: SortOrder
-    googleCalendarConnected?: SortOrder
   }
 
   export type TeacherMinOrderByAggregateInput = {
@@ -57288,9 +58746,9 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isActivated?: SortOrder
     googleAccessToken?: SortOrder
+    googleCalendarConnected?: SortOrder
     googleRefreshToken?: SortOrder
     googleTokenExpiry?: SortOrder
-    googleCalendarConnected?: SortOrder
   }
 
   export type TeacherSumOrderByAggregateInput = {
@@ -57322,6 +58780,12 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type BlogListRelationFilter = {
+    every?: BlogWhereInput
+    some?: BlogWhereInput
+    none?: BlogWhereInput
+  }
+
   export type EnrollmentListRelationFilter = {
     every?: EnrollmentWhereInput
     some?: EnrollmentWhereInput
@@ -57332,6 +58796,12 @@ export namespace Prisma {
     every?: PaymentWhereInput
     some?: PaymentWhereInput
     none?: PaymentWhereInput
+  }
+
+  export type ResearchListRelationFilter = {
+    every?: ResearchWhereInput
+    some?: ResearchWhereInput
+    none?: ResearchWhereInput
   }
 
   export type ParentAccountNullableScalarRelationFilter = {
@@ -57369,16 +58839,8 @@ export namespace Prisma {
     none?: TestimonialWhereInput
   }
 
-  export type ResearchListRelationFilter = {
-    every?: ResearchWhereInput
-    some?: ResearchWhereInput
-    none?: ResearchWhereInput
-  }
-
-  export type BlogListRelationFilter = {
-    every?: BlogWhereInput
-    some?: BlogWhereInput
-    none?: BlogWhereInput
+  export type BlogOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type EnrollmentOrderByRelationAggregateInput = {
@@ -57386,6 +58848,10 @@ export namespace Prisma {
   }
 
   export type PaymentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ResearchOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -57409,21 +58875,12 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type ResearchOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type BlogOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type StudentCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     password?: SortOrder
     grade?: SortOrder
-    graduationYear?: SortOrder
     schoolName?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
@@ -57433,12 +58890,13 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isActivated?: SortOrder
     parentAccountId?: SortOrder
+    graduationYear?: SortOrder
   }
 
   export type StudentAvgOrderByAggregateInput = {
     id?: SortOrder
-    graduationYear?: SortOrder
     parentAccountId?: SortOrder
+    graduationYear?: SortOrder
   }
 
   export type StudentMaxOrderByAggregateInput = {
@@ -57447,7 +58905,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     grade?: SortOrder
-    graduationYear?: SortOrder
     schoolName?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
@@ -57457,6 +58914,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isActivated?: SortOrder
     parentAccountId?: SortOrder
+    graduationYear?: SortOrder
   }
 
   export type StudentMinOrderByAggregateInput = {
@@ -57465,7 +58923,6 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     grade?: SortOrder
-    graduationYear?: SortOrder
     schoolName?: SortOrder
     parentName?: SortOrder
     parentEmail?: SortOrder
@@ -57475,12 +58932,13 @@ export namespace Prisma {
     updatedAt?: SortOrder
     isActivated?: SortOrder
     parentAccountId?: SortOrder
+    graduationYear?: SortOrder
   }
 
   export type StudentSumOrderByAggregateInput = {
     id?: SortOrder
-    graduationYear?: SortOrder
     parentAccountId?: SortOrder
+    graduationYear?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -57656,7 +59114,6 @@ export namespace Prisma {
     program?: SortOrder
     subject?: SortOrder
     dueDate?: SortOrder
-    dueDateTimezone?: SortOrder
     totalPoints?: SortOrder
     isActive?: SortOrder
     allowLateSubmission?: SortOrder
@@ -57664,6 +59121,7 @@ export namespace Prisma {
     targetStudentId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    dueDateTimezone?: SortOrder
   }
 
   export type AssignmentAvgOrderByAggregateInput = {
@@ -57681,7 +59139,6 @@ export namespace Prisma {
     program?: SortOrder
     subject?: SortOrder
     dueDate?: SortOrder
-    dueDateTimezone?: SortOrder
     totalPoints?: SortOrder
     isActive?: SortOrder
     allowLateSubmission?: SortOrder
@@ -57689,6 +59146,7 @@ export namespace Prisma {
     targetStudentId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    dueDateTimezone?: SortOrder
   }
 
   export type AssignmentMinOrderByAggregateInput = {
@@ -57699,7 +59157,6 @@ export namespace Prisma {
     program?: SortOrder
     subject?: SortOrder
     dueDate?: SortOrder
-    dueDateTimezone?: SortOrder
     totalPoints?: SortOrder
     isActive?: SortOrder
     allowLateSubmission?: SortOrder
@@ -57707,6 +59164,7 @@ export namespace Prisma {
     targetStudentId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    dueDateTimezone?: SortOrder
   }
 
   export type AssignmentSumOrderByAggregateInput = {
@@ -58159,25 +59617,25 @@ export namespace Prisma {
     date?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
-    startDateTime?: SortOrder
-    endDateTime?: SortOrder
-    timezone?: SortOrder
     subject?: SortOrder
     description?: SortOrder
-    meetingMinutes?: SortOrder
     location?: SortOrder
     meetingLink?: SortOrder
     status?: SortOrder
     color?: SortOrder
     studentId?: SortOrder
     teacherId?: SortOrder
-    groupId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    endDateTime?: SortOrder
     googleCalendarEventId?: SortOrder
+    groupId?: SortOrder
+    meetingMinutes?: SortOrder
     reminderJobId?: SortOrder
     reminderScheduledFor?: SortOrder
     reminderSentAt?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    startDateTime?: SortOrder
+    timezone?: SortOrder
   }
 
   export type ClassScheduleAvgOrderByAggregateInput = {
@@ -58193,25 +59651,25 @@ export namespace Prisma {
     date?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
-    startDateTime?: SortOrder
-    endDateTime?: SortOrder
-    timezone?: SortOrder
     subject?: SortOrder
     description?: SortOrder
-    meetingMinutes?: SortOrder
     location?: SortOrder
     meetingLink?: SortOrder
     status?: SortOrder
     color?: SortOrder
     studentId?: SortOrder
     teacherId?: SortOrder
-    groupId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    endDateTime?: SortOrder
     googleCalendarEventId?: SortOrder
+    groupId?: SortOrder
+    meetingMinutes?: SortOrder
     reminderJobId?: SortOrder
     reminderScheduledFor?: SortOrder
     reminderSentAt?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    startDateTime?: SortOrder
+    timezone?: SortOrder
   }
 
   export type ClassScheduleMinOrderByAggregateInput = {
@@ -58220,25 +59678,25 @@ export namespace Prisma {
     date?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
-    startDateTime?: SortOrder
-    endDateTime?: SortOrder
-    timezone?: SortOrder
     subject?: SortOrder
     description?: SortOrder
-    meetingMinutes?: SortOrder
     location?: SortOrder
     meetingLink?: SortOrder
     status?: SortOrder
     color?: SortOrder
     studentId?: SortOrder
     teacherId?: SortOrder
-    groupId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    endDateTime?: SortOrder
     googleCalendarEventId?: SortOrder
+    groupId?: SortOrder
+    meetingMinutes?: SortOrder
     reminderJobId?: SortOrder
     reminderScheduledFor?: SortOrder
     reminderSentAt?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
+    startDateTime?: SortOrder
+    timezone?: SortOrder
   }
 
   export type ClassScheduleSumOrderByAggregateInput = {
@@ -58399,8 +59857,6 @@ export namespace Prisma {
     paymentInfo?: SortOrder
     amount?: SortOrder
     dueDate?: SortOrder
-    dueDateUTC?: SortOrder
-    dueDateTimezone?: SortOrder
     fileUrl?: SortOrder
     fileName?: SortOrder
     fileSize?: SortOrder
@@ -58409,6 +59865,8 @@ export namespace Prisma {
     paidAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    dueDateTimezone?: SortOrder
+    dueDateUTC?: SortOrder
   }
 
   export type PaymentAvgOrderByAggregateInput = {
@@ -58432,8 +59890,6 @@ export namespace Prisma {
     paymentInfo?: SortOrder
     amount?: SortOrder
     dueDate?: SortOrder
-    dueDateUTC?: SortOrder
-    dueDateTimezone?: SortOrder
     fileUrl?: SortOrder
     fileName?: SortOrder
     fileSize?: SortOrder
@@ -58442,6 +59898,8 @@ export namespace Prisma {
     paidAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    dueDateTimezone?: SortOrder
+    dueDateUTC?: SortOrder
   }
 
   export type PaymentMinOrderByAggregateInput = {
@@ -58458,8 +59916,6 @@ export namespace Prisma {
     paymentInfo?: SortOrder
     amount?: SortOrder
     dueDate?: SortOrder
-    dueDateUTC?: SortOrder
-    dueDateTimezone?: SortOrder
     fileUrl?: SortOrder
     fileName?: SortOrder
     fileSize?: SortOrder
@@ -58468,6 +59924,8 @@ export namespace Prisma {
     paidAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    dueDateTimezone?: SortOrder
+    dueDateUTC?: SortOrder
   }
 
   export type PaymentSumOrderByAggregateInput = {
@@ -58488,8 +59946,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrder
-    beforeExpectations?: SortOrder
-    afterChanges?: SortOrder
     consentToFeature?: SortOrder
     experienceDescription?: SortOrder
     grade?: SortOrder
@@ -58505,6 +59961,8 @@ export namespace Prisma {
     programsApproved?: SortOrder
     ratingApproved?: SortOrder
     successStoryApproved?: SortOrder
+    afterChanges?: SortOrder
+    beforeExpectations?: SortOrder
   }
 
   export type TestimonialAvgOrderByAggregateInput = {
@@ -58524,8 +59982,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrder
-    beforeExpectations?: SortOrder
-    afterChanges?: SortOrder
     consentToFeature?: SortOrder
     experienceDescription?: SortOrder
     grade?: SortOrder
@@ -58540,6 +59996,8 @@ export namespace Prisma {
     programsApproved?: SortOrder
     ratingApproved?: SortOrder
     successStoryApproved?: SortOrder
+    afterChanges?: SortOrder
+    beforeExpectations?: SortOrder
   }
 
   export type TestimonialMinOrderByAggregateInput = {
@@ -58553,8 +60011,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     videoLink?: SortOrder
-    beforeExpectations?: SortOrder
-    afterChanges?: SortOrder
     consentToFeature?: SortOrder
     experienceDescription?: SortOrder
     grade?: SortOrder
@@ -58569,6 +60025,8 @@ export namespace Prisma {
     programsApproved?: SortOrder
     ratingApproved?: SortOrder
     successStoryApproved?: SortOrder
+    afterChanges?: SortOrder
+    beforeExpectations?: SortOrder
   }
 
   export type TestimonialSumOrderByAggregateInput = {
@@ -59433,11 +60891,21 @@ export namespace Prisma {
     none?: SlideWhereInput
   }
 
+  export type PptConversionJobListRelationFilter = {
+    every?: PptConversionJobWhereInput
+    some?: PptConversionJobWhereInput
+    none?: PptConversionJobWhereInput
+  }
+
   export type AccessRequestOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type SlideOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PptConversionJobOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -59448,18 +60916,18 @@ export namespace Prisma {
     description?: SortOrder
     createdAt?: SortOrder
     author?: SortOrder
-    grade?: SortOrder
-    school?: SortOrder
-    category?: SortOrder
-    domain?: SortOrder
-    studentId?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
-    extractedContent?: SortOrder
     abstract?: SortOrder
-    keywords?: SortOrder
     extractedAt?: SortOrder
+    extractedContent?: SortOrder
     extractionStatus?: SortOrder
+    keywords?: SortOrder
+    category?: SortOrder
+    grade?: SortOrder
+    school?: SortOrder
+    studentId?: SortOrder
+    domain?: SortOrder
   }
 
   export type ResearchAvgOrderByAggregateInput = {
@@ -59473,16 +60941,16 @@ export namespace Prisma {
     description?: SortOrder
     createdAt?: SortOrder
     author?: SortOrder
-    grade?: SortOrder
-    school?: SortOrder
-    category?: SortOrder
-    domain?: SortOrder
-    studentId?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
     abstract?: SortOrder
     extractedAt?: SortOrder
     extractionStatus?: SortOrder
+    category?: SortOrder
+    grade?: SortOrder
+    school?: SortOrder
+    studentId?: SortOrder
+    domain?: SortOrder
   }
 
   export type ResearchMinOrderByAggregateInput = {
@@ -59492,16 +60960,16 @@ export namespace Prisma {
     description?: SortOrder
     createdAt?: SortOrder
     author?: SortOrder
-    grade?: SortOrder
-    school?: SortOrder
-    category?: SortOrder
-    domain?: SortOrder
-    studentId?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
     abstract?: SortOrder
     extractedAt?: SortOrder
     extractionStatus?: SortOrder
+    category?: SortOrder
+    grade?: SortOrder
+    school?: SortOrder
+    studentId?: SortOrder
+    domain?: SortOrder
   }
 
   export type ResearchSumOrderByAggregateInput = {
@@ -59535,6 +61003,52 @@ export namespace Prisma {
 
   export type SlideSumOrderByAggregateInput = {
     order?: SortOrder
+  }
+
+  export type PptConversionJobCountOrderByAggregateInput = {
+    id?: SortOrder
+    researchId?: SortOrder
+    cloudConvertJobId?: SortOrder
+    status?: SortOrder
+    totalSlides?: SortOrder
+    processedSlides?: SortOrder
+    error?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PptConversionJobAvgOrderByAggregateInput = {
+    totalSlides?: SortOrder
+    processedSlides?: SortOrder
+  }
+
+  export type PptConversionJobMaxOrderByAggregateInput = {
+    id?: SortOrder
+    researchId?: SortOrder
+    cloudConvertJobId?: SortOrder
+    status?: SortOrder
+    totalSlides?: SortOrder
+    processedSlides?: SortOrder
+    error?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PptConversionJobMinOrderByAggregateInput = {
+    id?: SortOrder
+    researchId?: SortOrder
+    cloudConvertJobId?: SortOrder
+    status?: SortOrder
+    totalSlides?: SortOrder
+    processedSlides?: SortOrder
+    error?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PptConversionJobSumOrderByAggregateInput = {
+    totalSlides?: SortOrder
+    processedSlides?: SortOrder
   }
 
   export type BlogCountOrderByAggregateInput = {
@@ -59969,6 +61483,13 @@ export namespace Prisma {
     connect?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
   }
 
+  export type BlogCreateNestedManyWithoutStudentInput = {
+    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
+    createMany?: BlogCreateManyStudentInputEnvelope
+    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+  }
+
   export type ClassScheduleCreateNestedManyWithoutStudentInput = {
     create?: XOR<ClassScheduleCreateWithoutStudentInput, ClassScheduleUncheckedCreateWithoutStudentInput> | ClassScheduleCreateWithoutStudentInput[] | ClassScheduleUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: ClassScheduleCreateOrConnectWithoutStudentInput | ClassScheduleCreateOrConnectWithoutStudentInput[]
@@ -59995,6 +61516,13 @@ export namespace Prisma {
     connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
     createMany?: ProgressReportCreateManyStudentInputEnvelope
     connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+  }
+
+  export type ResearchCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
+    createMany?: ResearchCreateManyStudentInputEnvelope
+    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
   }
 
   export type ParentAccountCreateNestedOneWithoutStudentsInput = {
@@ -60045,25 +61573,18 @@ export namespace Prisma {
     connect?: TestimonialWhereUniqueInput | TestimonialWhereUniqueInput[]
   }
 
-  export type ResearchCreateNestedManyWithoutStudentInput = {
-    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
-    createMany?: ResearchCreateManyStudentInputEnvelope
-    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
-  }
-
-  export type BlogCreateNestedManyWithoutStudentInput = {
-    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
-    createMany?: BlogCreateManyStudentInputEnvelope
-    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-  }
-
   export type AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput = {
     create?: XOR<AssignmentCreateWithoutTargetStudentInput, AssignmentUncheckedCreateWithoutTargetStudentInput> | AssignmentCreateWithoutTargetStudentInput[] | AssignmentUncheckedCreateWithoutTargetStudentInput[]
     connectOrCreate?: AssignmentCreateOrConnectWithoutTargetStudentInput | AssignmentCreateOrConnectWithoutTargetStudentInput[]
     createMany?: AssignmentCreateManyTargetStudentInputEnvelope
     connect?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+  }
+
+  export type BlogUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
+    createMany?: BlogCreateManyStudentInputEnvelope
+    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
   }
 
   export type ClassScheduleUncheckedCreateNestedManyWithoutStudentInput = {
@@ -60092,6 +61613,13 @@ export namespace Prisma {
     connectOrCreate?: ProgressReportCreateOrConnectWithoutStudentInput | ProgressReportCreateOrConnectWithoutStudentInput[]
     createMany?: ProgressReportCreateManyStudentInputEnvelope
     connect?: ProgressReportWhereUniqueInput | ProgressReportWhereUniqueInput[]
+  }
+
+  export type ResearchUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
+    createMany?: ResearchCreateManyStudentInputEnvelope
+    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
   }
 
   export type StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput = {
@@ -60136,20 +61664,6 @@ export namespace Prisma {
     connect?: TestimonialWhereUniqueInput | TestimonialWhereUniqueInput[]
   }
 
-  export type ResearchUncheckedCreateNestedManyWithoutStudentInput = {
-    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
-    createMany?: ResearchCreateManyStudentInputEnvelope
-    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
-  }
-
-  export type BlogUncheckedCreateNestedManyWithoutStudentInput = {
-    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
-    createMany?: BlogCreateManyStudentInputEnvelope
-    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-  }
-
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -60170,6 +61684,20 @@ export namespace Prisma {
     update?: AssignmentUpdateWithWhereUniqueWithoutTargetStudentInput | AssignmentUpdateWithWhereUniqueWithoutTargetStudentInput[]
     updateMany?: AssignmentUpdateManyWithWhereWithoutTargetStudentInput | AssignmentUpdateManyWithWhereWithoutTargetStudentInput[]
     deleteMany?: AssignmentScalarWhereInput | AssignmentScalarWhereInput[]
+  }
+
+  export type BlogUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
+    upsert?: BlogUpsertWithWhereUniqueWithoutStudentInput | BlogUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: BlogCreateManyStudentInputEnvelope
+    set?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    disconnect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    delete?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    update?: BlogUpdateWithWhereUniqueWithoutStudentInput | BlogUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: BlogUpdateManyWithWhereWithoutStudentInput | BlogUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: BlogScalarWhereInput | BlogScalarWhereInput[]
   }
 
   export type ClassScheduleUpdateManyWithoutStudentNestedInput = {
@@ -60226,6 +61754,20 @@ export namespace Prisma {
     update?: ProgressReportUpdateWithWhereUniqueWithoutStudentInput | ProgressReportUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: ProgressReportUpdateManyWithWhereWithoutStudentInput | ProgressReportUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+  }
+
+  export type ResearchUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
+    upsert?: ResearchUpsertWithWhereUniqueWithoutStudentInput | ResearchUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ResearchCreateManyStudentInputEnvelope
+    set?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    disconnect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    delete?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    update?: ResearchUpdateWithWhereUniqueWithoutStudentInput | ResearchUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ResearchUpdateManyWithWhereWithoutStudentInput | ResearchUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
   }
 
   export type ParentAccountUpdateOneWithoutStudentsNestedInput = {
@@ -60322,34 +61864,6 @@ export namespace Prisma {
     deleteMany?: TestimonialScalarWhereInput | TestimonialScalarWhereInput[]
   }
 
-  export type ResearchUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
-    upsert?: ResearchUpsertWithWhereUniqueWithoutStudentInput | ResearchUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: ResearchCreateManyStudentInputEnvelope
-    set?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
-    disconnect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
-    delete?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
-    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
-    update?: ResearchUpdateWithWhereUniqueWithoutStudentInput | ResearchUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: ResearchUpdateManyWithWhereWithoutStudentInput | ResearchUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
-  }
-
-  export type BlogUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
-    upsert?: BlogUpsertWithWhereUniqueWithoutStudentInput | BlogUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: BlogCreateManyStudentInputEnvelope
-    set?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    disconnect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    delete?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    update?: BlogUpdateWithWhereUniqueWithoutStudentInput | BlogUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: BlogUpdateManyWithWhereWithoutStudentInput | BlogUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: BlogScalarWhereInput | BlogScalarWhereInput[]
-  }
-
   export type AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput = {
     create?: XOR<AssignmentCreateWithoutTargetStudentInput, AssignmentUncheckedCreateWithoutTargetStudentInput> | AssignmentCreateWithoutTargetStudentInput[] | AssignmentUncheckedCreateWithoutTargetStudentInput[]
     connectOrCreate?: AssignmentCreateOrConnectWithoutTargetStudentInput | AssignmentCreateOrConnectWithoutTargetStudentInput[]
@@ -60362,6 +61876,20 @@ export namespace Prisma {
     update?: AssignmentUpdateWithWhereUniqueWithoutTargetStudentInput | AssignmentUpdateWithWhereUniqueWithoutTargetStudentInput[]
     updateMany?: AssignmentUpdateManyWithWhereWithoutTargetStudentInput | AssignmentUpdateManyWithWhereWithoutTargetStudentInput[]
     deleteMany?: AssignmentScalarWhereInput | AssignmentScalarWhereInput[]
+  }
+
+  export type BlogUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
+    upsert?: BlogUpsertWithWhereUniqueWithoutStudentInput | BlogUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: BlogCreateManyStudentInputEnvelope
+    set?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    disconnect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    delete?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
+    update?: BlogUpdateWithWhereUniqueWithoutStudentInput | BlogUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: BlogUpdateManyWithWhereWithoutStudentInput | BlogUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: BlogScalarWhereInput | BlogScalarWhereInput[]
   }
 
   export type ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -60418,6 +61946,20 @@ export namespace Prisma {
     update?: ProgressReportUpdateWithWhereUniqueWithoutStudentInput | ProgressReportUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: ProgressReportUpdateManyWithWhereWithoutStudentInput | ProgressReportUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: ProgressReportScalarWhereInput | ProgressReportScalarWhereInput[]
+  }
+
+  export type ResearchUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
+    upsert?: ResearchUpsertWithWhereUniqueWithoutStudentInput | ResearchUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ResearchCreateManyStudentInputEnvelope
+    set?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    disconnect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    delete?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
+    update?: ResearchUpdateWithWhereUniqueWithoutStudentInput | ResearchUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ResearchUpdateManyWithWhereWithoutStudentInput | ResearchUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
   }
 
   export type StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -60504,34 +62046,6 @@ export namespace Prisma {
     deleteMany?: TestimonialScalarWhereInput | TestimonialScalarWhereInput[]
   }
 
-  export type ResearchUncheckedUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput> | ResearchCreateWithoutStudentInput[] | ResearchUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: ResearchCreateOrConnectWithoutStudentInput | ResearchCreateOrConnectWithoutStudentInput[]
-    upsert?: ResearchUpsertWithWhereUniqueWithoutStudentInput | ResearchUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: ResearchCreateManyStudentInputEnvelope
-    set?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
-    disconnect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
-    delete?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
-    connect?: ResearchWhereUniqueInput | ResearchWhereUniqueInput[]
-    update?: ResearchUpdateWithWhereUniqueWithoutStudentInput | ResearchUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: ResearchUpdateManyWithWhereWithoutStudentInput | ResearchUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
-  }
-
-  export type BlogUncheckedUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
-    upsert?: BlogUpsertWithWhereUniqueWithoutStudentInput | BlogUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: BlogCreateManyStudentInputEnvelope
-    set?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    disconnect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    delete?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    connect?: BlogWhereUniqueInput | BlogWhereUniqueInput[]
-    update?: BlogUpdateWithWhereUniqueWithoutStudentInput | BlogUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: BlogUpdateManyWithWhereWithoutStudentInput | BlogUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: BlogScalarWhereInput | BlogScalarWhereInput[]
-  }
-
   export type StudentCreateNestedOneWithoutTeacherLinksInput = {
     create?: XOR<StudentCreateWithoutTeacherLinksInput, StudentUncheckedCreateWithoutTeacherLinksInput>
     connectOrCreate?: StudentCreateOrConnectWithoutTeacherLinksInput
@@ -60560,6 +62074,13 @@ export namespace Prisma {
     update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutStudentsInput, TeacherUpdateWithoutStudentsInput>, TeacherUncheckedUpdateWithoutStudentsInput>
   }
 
+  export type ClassScheduleCreateNestedManyWithoutGroupInput = {
+    create?: XOR<ClassScheduleCreateWithoutGroupInput, ClassScheduleUncheckedCreateWithoutGroupInput> | ClassScheduleCreateWithoutGroupInput[] | ClassScheduleUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: ClassScheduleCreateOrConnectWithoutGroupInput | ClassScheduleCreateOrConnectWithoutGroupInput[]
+    createMany?: ClassScheduleCreateManyGroupInputEnvelope
+    connect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+  }
+
   export type TeacherCreateNestedOneWithoutStudentGroupsInput = {
     create?: XOR<TeacherCreateWithoutStudentGroupsInput, TeacherUncheckedCreateWithoutStudentGroupsInput>
     connectOrCreate?: TeacherCreateOrConnectWithoutStudentGroupsInput
@@ -60573,7 +62094,7 @@ export namespace Prisma {
     connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
   }
 
-  export type ClassScheduleCreateNestedManyWithoutGroupInput = {
+  export type ClassScheduleUncheckedCreateNestedManyWithoutGroupInput = {
     create?: XOR<ClassScheduleCreateWithoutGroupInput, ClassScheduleUncheckedCreateWithoutGroupInput> | ClassScheduleCreateWithoutGroupInput[] | ClassScheduleUncheckedCreateWithoutGroupInput[]
     connectOrCreate?: ClassScheduleCreateOrConnectWithoutGroupInput | ClassScheduleCreateOrConnectWithoutGroupInput[]
     createMany?: ClassScheduleCreateManyGroupInputEnvelope
@@ -60585,35 +62106,6 @@ export namespace Prisma {
     connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutGroupInput | StudentGroupMemberCreateOrConnectWithoutGroupInput[]
     createMany?: StudentGroupMemberCreateManyGroupInputEnvelope
     connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
-  }
-
-  export type ClassScheduleUncheckedCreateNestedManyWithoutGroupInput = {
-    create?: XOR<ClassScheduleCreateWithoutGroupInput, ClassScheduleUncheckedCreateWithoutGroupInput> | ClassScheduleCreateWithoutGroupInput[] | ClassScheduleUncheckedCreateWithoutGroupInput[]
-    connectOrCreate?: ClassScheduleCreateOrConnectWithoutGroupInput | ClassScheduleCreateOrConnectWithoutGroupInput[]
-    createMany?: ClassScheduleCreateManyGroupInputEnvelope
-    connect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
-  }
-
-  export type TeacherUpdateOneRequiredWithoutStudentGroupsNestedInput = {
-    create?: XOR<TeacherCreateWithoutStudentGroupsInput, TeacherUncheckedCreateWithoutStudentGroupsInput>
-    connectOrCreate?: TeacherCreateOrConnectWithoutStudentGroupsInput
-    upsert?: TeacherUpsertWithoutStudentGroupsInput
-    connect?: TeacherWhereUniqueInput
-    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutStudentGroupsInput, TeacherUpdateWithoutStudentGroupsInput>, TeacherUncheckedUpdateWithoutStudentGroupsInput>
-  }
-
-  export type StudentGroupMemberUpdateManyWithoutGroupNestedInput = {
-    create?: XOR<StudentGroupMemberCreateWithoutGroupInput, StudentGroupMemberUncheckedCreateWithoutGroupInput> | StudentGroupMemberCreateWithoutGroupInput[] | StudentGroupMemberUncheckedCreateWithoutGroupInput[]
-    connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutGroupInput | StudentGroupMemberCreateOrConnectWithoutGroupInput[]
-    upsert?: StudentGroupMemberUpsertWithWhereUniqueWithoutGroupInput | StudentGroupMemberUpsertWithWhereUniqueWithoutGroupInput[]
-    createMany?: StudentGroupMemberCreateManyGroupInputEnvelope
-    set?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
-    disconnect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
-    delete?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
-    connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
-    update?: StudentGroupMemberUpdateWithWhereUniqueWithoutGroupInput | StudentGroupMemberUpdateWithWhereUniqueWithoutGroupInput[]
-    updateMany?: StudentGroupMemberUpdateManyWithWhereWithoutGroupInput | StudentGroupMemberUpdateManyWithWhereWithoutGroupInput[]
-    deleteMany?: StudentGroupMemberScalarWhereInput | StudentGroupMemberScalarWhereInput[]
   }
 
   export type ClassScheduleUpdateManyWithoutGroupNestedInput = {
@@ -60630,7 +62122,15 @@ export namespace Prisma {
     deleteMany?: ClassScheduleScalarWhereInput | ClassScheduleScalarWhereInput[]
   }
 
-  export type StudentGroupMemberUncheckedUpdateManyWithoutGroupNestedInput = {
+  export type TeacherUpdateOneRequiredWithoutStudentGroupsNestedInput = {
+    create?: XOR<TeacherCreateWithoutStudentGroupsInput, TeacherUncheckedCreateWithoutStudentGroupsInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutStudentGroupsInput
+    upsert?: TeacherUpsertWithoutStudentGroupsInput
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutStudentGroupsInput, TeacherUpdateWithoutStudentGroupsInput>, TeacherUncheckedUpdateWithoutStudentGroupsInput>
+  }
+
+  export type StudentGroupMemberUpdateManyWithoutGroupNestedInput = {
     create?: XOR<StudentGroupMemberCreateWithoutGroupInput, StudentGroupMemberUncheckedCreateWithoutGroupInput> | StudentGroupMemberCreateWithoutGroupInput[] | StudentGroupMemberUncheckedCreateWithoutGroupInput[]
     connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutGroupInput | StudentGroupMemberCreateOrConnectWithoutGroupInput[]
     upsert?: StudentGroupMemberUpsertWithWhereUniqueWithoutGroupInput | StudentGroupMemberUpsertWithWhereUniqueWithoutGroupInput[]
@@ -60656,6 +62156,20 @@ export namespace Prisma {
     update?: ClassScheduleUpdateWithWhereUniqueWithoutGroupInput | ClassScheduleUpdateWithWhereUniqueWithoutGroupInput[]
     updateMany?: ClassScheduleUpdateManyWithWhereWithoutGroupInput | ClassScheduleUpdateManyWithWhereWithoutGroupInput[]
     deleteMany?: ClassScheduleScalarWhereInput | ClassScheduleScalarWhereInput[]
+  }
+
+  export type StudentGroupMemberUncheckedUpdateManyWithoutGroupNestedInput = {
+    create?: XOR<StudentGroupMemberCreateWithoutGroupInput, StudentGroupMemberUncheckedCreateWithoutGroupInput> | StudentGroupMemberCreateWithoutGroupInput[] | StudentGroupMemberUncheckedCreateWithoutGroupInput[]
+    connectOrCreate?: StudentGroupMemberCreateOrConnectWithoutGroupInput | StudentGroupMemberCreateOrConnectWithoutGroupInput[]
+    upsert?: StudentGroupMemberUpsertWithWhereUniqueWithoutGroupInput | StudentGroupMemberUpsertWithWhereUniqueWithoutGroupInput[]
+    createMany?: StudentGroupMemberCreateManyGroupInputEnvelope
+    set?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    disconnect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    delete?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    connect?: StudentGroupMemberWhereUniqueInput | StudentGroupMemberWhereUniqueInput[]
+    update?: StudentGroupMemberUpdateWithWhereUniqueWithoutGroupInput | StudentGroupMemberUpdateWithWhereUniqueWithoutGroupInput[]
+    updateMany?: StudentGroupMemberUpdateManyWithWhereWithoutGroupInput | StudentGroupMemberUpdateManyWithWhereWithoutGroupInput[]
+    deleteMany?: StudentGroupMemberScalarWhereInput | StudentGroupMemberScalarWhereInput[]
   }
 
   export type StudentGroupCreateNestedOneWithoutMembersInput = {
@@ -61131,6 +62645,12 @@ export namespace Prisma {
     update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutSubmissionRemarksInput, TeacherUpdateWithoutSubmissionRemarksInput>, TeacherUncheckedUpdateWithoutSubmissionRemarksInput>
   }
 
+  export type StudentGroupCreateNestedOneWithoutClassSchedulesInput = {
+    create?: XOR<StudentGroupCreateWithoutClassSchedulesInput, StudentGroupUncheckedCreateWithoutClassSchedulesInput>
+    connectOrCreate?: StudentGroupCreateOrConnectWithoutClassSchedulesInput
+    connect?: StudentGroupWhereUniqueInput
+  }
+
   export type StudentCreateNestedOneWithoutClassSchedulesInput = {
     create?: XOR<StudentCreateWithoutClassSchedulesInput, StudentUncheckedCreateWithoutClassSchedulesInput>
     connectOrCreate?: StudentCreateOrConnectWithoutClassSchedulesInput
@@ -61143,10 +62663,14 @@ export namespace Prisma {
     connect?: TeacherWhereUniqueInput
   }
 
-  export type StudentGroupCreateNestedOneWithoutClassSchedulesInput = {
+  export type StudentGroupUpdateOneWithoutClassSchedulesNestedInput = {
     create?: XOR<StudentGroupCreateWithoutClassSchedulesInput, StudentGroupUncheckedCreateWithoutClassSchedulesInput>
     connectOrCreate?: StudentGroupCreateOrConnectWithoutClassSchedulesInput
+    upsert?: StudentGroupUpsertWithoutClassSchedulesInput
+    disconnect?: StudentGroupWhereInput | boolean
+    delete?: StudentGroupWhereInput | boolean
     connect?: StudentGroupWhereUniqueInput
+    update?: XOR<XOR<StudentGroupUpdateToOneWithWhereWithoutClassSchedulesInput, StudentGroupUpdateWithoutClassSchedulesInput>, StudentGroupUncheckedUpdateWithoutClassSchedulesInput>
   }
 
   export type StudentUpdateOneRequiredWithoutClassSchedulesNestedInput = {
@@ -61163,16 +62687,6 @@ export namespace Prisma {
     upsert?: TeacherUpsertWithoutClassSchedulesInput
     connect?: TeacherWhereUniqueInput
     update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutClassSchedulesInput, TeacherUpdateWithoutClassSchedulesInput>, TeacherUncheckedUpdateWithoutClassSchedulesInput>
-  }
-
-  export type StudentGroupUpdateOneWithoutClassSchedulesNestedInput = {
-    create?: XOR<StudentGroupCreateWithoutClassSchedulesInput, StudentGroupUncheckedCreateWithoutClassSchedulesInput>
-    connectOrCreate?: StudentGroupCreateOrConnectWithoutClassSchedulesInput
-    upsert?: StudentGroupUpsertWithoutClassSchedulesInput
-    disconnect?: StudentGroupWhereInput | boolean
-    delete?: StudentGroupWhereInput | boolean
-    connect?: StudentGroupWhereUniqueInput
-    update?: XOR<XOR<StudentGroupUpdateToOneWithWhereWithoutClassSchedulesInput, StudentGroupUpdateWithoutClassSchedulesInput>, StudentGroupUncheckedUpdateWithoutClassSchedulesInput>
   }
 
   export type EnrollmentCreateNestedOneWithoutPaymentInput = {
@@ -61432,12 +62946,6 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type StudentCreateNestedOneWithoutResearchInput = {
-    create?: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutResearchInput
-    connect?: StudentWhereUniqueInput
-  }
-
   export type AccessRequestCreateNestedManyWithoutResearchInput = {
     create?: XOR<AccessRequestCreateWithoutResearchInput, AccessRequestUncheckedCreateWithoutResearchInput> | AccessRequestCreateWithoutResearchInput[] | AccessRequestUncheckedCreateWithoutResearchInput[]
     connectOrCreate?: AccessRequestCreateOrConnectWithoutResearchInput | AccessRequestCreateOrConnectWithoutResearchInput[]
@@ -61445,11 +62953,24 @@ export namespace Prisma {
     connect?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
   }
 
+  export type StudentCreateNestedOneWithoutResearchInput = {
+    create?: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutResearchInput
+    connect?: StudentWhereUniqueInput
+  }
+
   export type SlideCreateNestedManyWithoutResearchInput = {
     create?: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput> | SlideCreateWithoutResearchInput[] | SlideUncheckedCreateWithoutResearchInput[]
     connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
     createMany?: SlideCreateManyResearchInputEnvelope
     connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
+  }
+
+  export type PptConversionJobCreateNestedManyWithoutResearchInput = {
+    create?: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput> | PptConversionJobCreateWithoutResearchInput[] | PptConversionJobUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: PptConversionJobCreateOrConnectWithoutResearchInput | PptConversionJobCreateOrConnectWithoutResearchInput[]
+    createMany?: PptConversionJobCreateManyResearchInputEnvelope
+    connect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
   }
 
   export type AccessRequestUncheckedCreateNestedManyWithoutResearchInput = {
@@ -61466,19 +62987,16 @@ export namespace Prisma {
     connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
   }
 
+  export type PptConversionJobUncheckedCreateNestedManyWithoutResearchInput = {
+    create?: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput> | PptConversionJobCreateWithoutResearchInput[] | PptConversionJobUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: PptConversionJobCreateOrConnectWithoutResearchInput | PptConversionJobCreateOrConnectWithoutResearchInput[]
+    createMany?: PptConversionJobCreateManyResearchInputEnvelope
+    connect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
+  }
+
   export type ResearchUpdatekeywordsInput = {
     set?: string[]
     push?: string | string[]
-  }
-
-  export type StudentUpdateOneWithoutResearchNestedInput = {
-    create?: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
-    connectOrCreate?: StudentCreateOrConnectWithoutResearchInput
-    upsert?: StudentUpsertWithoutResearchInput
-    disconnect?: StudentWhereInput | boolean
-    delete?: StudentWhereInput | boolean
-    connect?: StudentWhereUniqueInput
-    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutResearchInput, StudentUpdateWithoutResearchInput>, StudentUncheckedUpdateWithoutResearchInput>
   }
 
   export type AccessRequestUpdateManyWithoutResearchNestedInput = {
@@ -61495,6 +63013,16 @@ export namespace Prisma {
     deleteMany?: AccessRequestScalarWhereInput | AccessRequestScalarWhereInput[]
   }
 
+  export type StudentUpdateOneWithoutResearchNestedInput = {
+    create?: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutResearchInput
+    upsert?: StudentUpsertWithoutResearchInput
+    disconnect?: StudentWhereInput | boolean
+    delete?: StudentWhereInput | boolean
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutResearchInput, StudentUpdateWithoutResearchInput>, StudentUncheckedUpdateWithoutResearchInput>
+  }
+
   export type SlideUpdateManyWithoutResearchNestedInput = {
     create?: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput> | SlideCreateWithoutResearchInput[] | SlideUncheckedCreateWithoutResearchInput[]
     connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
@@ -61507,6 +63035,20 @@ export namespace Prisma {
     update?: SlideUpdateWithWhereUniqueWithoutResearchInput | SlideUpdateWithWhereUniqueWithoutResearchInput[]
     updateMany?: SlideUpdateManyWithWhereWithoutResearchInput | SlideUpdateManyWithWhereWithoutResearchInput[]
     deleteMany?: SlideScalarWhereInput | SlideScalarWhereInput[]
+  }
+
+  export type PptConversionJobUpdateManyWithoutResearchNestedInput = {
+    create?: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput> | PptConversionJobCreateWithoutResearchInput[] | PptConversionJobUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: PptConversionJobCreateOrConnectWithoutResearchInput | PptConversionJobCreateOrConnectWithoutResearchInput[]
+    upsert?: PptConversionJobUpsertWithWhereUniqueWithoutResearchInput | PptConversionJobUpsertWithWhereUniqueWithoutResearchInput[]
+    createMany?: PptConversionJobCreateManyResearchInputEnvelope
+    set?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
+    disconnect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
+    delete?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
+    connect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
+    update?: PptConversionJobUpdateWithWhereUniqueWithoutResearchInput | PptConversionJobUpdateWithWhereUniqueWithoutResearchInput[]
+    updateMany?: PptConversionJobUpdateManyWithWhereWithoutResearchInput | PptConversionJobUpdateManyWithWhereWithoutResearchInput[]
+    deleteMany?: PptConversionJobScalarWhereInput | PptConversionJobScalarWhereInput[]
   }
 
   export type AccessRequestUncheckedUpdateManyWithoutResearchNestedInput = {
@@ -61537,6 +63079,20 @@ export namespace Prisma {
     deleteMany?: SlideScalarWhereInput | SlideScalarWhereInput[]
   }
 
+  export type PptConversionJobUncheckedUpdateManyWithoutResearchNestedInput = {
+    create?: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput> | PptConversionJobCreateWithoutResearchInput[] | PptConversionJobUncheckedCreateWithoutResearchInput[]
+    connectOrCreate?: PptConversionJobCreateOrConnectWithoutResearchInput | PptConversionJobCreateOrConnectWithoutResearchInput[]
+    upsert?: PptConversionJobUpsertWithWhereUniqueWithoutResearchInput | PptConversionJobUpsertWithWhereUniqueWithoutResearchInput[]
+    createMany?: PptConversionJobCreateManyResearchInputEnvelope
+    set?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
+    disconnect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
+    delete?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
+    connect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
+    update?: PptConversionJobUpdateWithWhereUniqueWithoutResearchInput | PptConversionJobUpdateWithWhereUniqueWithoutResearchInput[]
+    updateMany?: PptConversionJobUpdateManyWithWhereWithoutResearchInput | PptConversionJobUpdateManyWithWhereWithoutResearchInput[]
+    deleteMany?: PptConversionJobScalarWhereInput | PptConversionJobScalarWhereInput[]
+  }
+
   export type ResearchCreateNestedOneWithoutSlideInput = {
     create?: XOR<ResearchCreateWithoutSlideInput, ResearchUncheckedCreateWithoutSlideInput>
     connectOrCreate?: ResearchCreateOrConnectWithoutSlideInput
@@ -61549,6 +63105,20 @@ export namespace Prisma {
     upsert?: ResearchUpsertWithoutSlideInput
     connect?: ResearchWhereUniqueInput
     update?: XOR<XOR<ResearchUpdateToOneWithWhereWithoutSlideInput, ResearchUpdateWithoutSlideInput>, ResearchUncheckedUpdateWithoutSlideInput>
+  }
+
+  export type ResearchCreateNestedOneWithoutPptConversionJobsInput = {
+    create?: XOR<ResearchCreateWithoutPptConversionJobsInput, ResearchUncheckedCreateWithoutPptConversionJobsInput>
+    connectOrCreate?: ResearchCreateOrConnectWithoutPptConversionJobsInput
+    connect?: ResearchWhereUniqueInput
+  }
+
+  export type ResearchUpdateOneRequiredWithoutPptConversionJobsNestedInput = {
+    create?: XOR<ResearchCreateWithoutPptConversionJobsInput, ResearchUncheckedCreateWithoutPptConversionJobsInput>
+    connectOrCreate?: ResearchCreateOrConnectWithoutPptConversionJobsInput
+    upsert?: ResearchUpsertWithoutPptConversionJobsInput
+    connect?: ResearchWhereUniqueInput
+    update?: XOR<XOR<ResearchUpdateToOneWithWhereWithoutPptConversionJobsInput, ResearchUpdateWithoutPptConversionJobsInput>, ResearchUncheckedUpdateWithoutPptConversionJobsInput>
   }
 
   export type StudentCreateNestedOneWithoutBlogInput = {
@@ -61837,12 +63407,12 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
     targetStudent?: StudentCreateNestedOneWithoutAssignedAssignmentsInput
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
@@ -61856,13 +63426,13 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
     targetStudentId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
   }
@@ -61882,24 +63452,24 @@ export namespace Prisma {
     date: Date | string
     startTime: string
     endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
     subject: string
     description?: string | null
-    meetingMinutes?: string | null
     location?: string | null
     meetingLink?: string | null
     status?: string
     color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
     googleCalendarEventId?: string | null
+    meetingMinutes?: string | null
     reminderJobId?: string | null
     reminderScheduledFor?: Date | string | null
     reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    student: StudentCreateNestedOneWithoutClassSchedulesInput
+    startDateTime?: Date | string | null
+    timezone?: string | null
     group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
+    student: StudentCreateNestedOneWithoutClassSchedulesInput
   }
 
   export type ClassScheduleUncheckedCreateWithoutTeacherInput = {
@@ -61908,24 +63478,24 @@ export namespace Prisma {
     date: Date | string
     startTime: string
     endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
     subject: string
     description?: string | null
-    meetingMinutes?: string | null
     location?: string | null
     meetingLink?: string | null
     status?: string
     color?: string | null
     studentId: number
-    groupId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
     googleCalendarEventId?: string | null
+    groupId?: number | null
+    meetingMinutes?: string | null
     reminderJobId?: string | null
     reminderScheduledFor?: Date | string | null
     reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startDateTime?: Date | string | null
+    timezone?: string | null
   }
 
   export type ClassScheduleCreateOrConnectWithoutTeacherInput = {
@@ -62090,8 +63660,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    members?: StudentGroupMemberCreateNestedManyWithoutGroupInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutGroupInput
+    members?: StudentGroupMemberCreateNestedManyWithoutGroupInput
   }
 
   export type StudentGroupUncheckedCreateWithoutTeacherInput = {
@@ -62099,8 +63669,8 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    members?: StudentGroupMemberUncheckedCreateNestedManyWithoutGroupInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutGroupInput
+    members?: StudentGroupMemberUncheckedCreateNestedManyWithoutGroupInput
   }
 
   export type StudentGroupCreateOrConnectWithoutTeacherInput = {
@@ -62188,7 +63758,6 @@ export namespace Prisma {
     program?: StringFilter<"Assignment"> | string
     subject?: StringFilter<"Assignment"> | string
     dueDate?: DateTimeFilter<"Assignment"> | Date | string
-    dueDateTimezone?: StringNullableFilter<"Assignment"> | string | null
     totalPoints?: IntFilter<"Assignment"> | number
     isActive?: BoolFilter<"Assignment"> | boolean
     allowLateSubmission?: BoolFilter<"Assignment"> | boolean
@@ -62196,6 +63765,7 @@ export namespace Prisma {
     targetStudentId?: IntNullableFilter<"Assignment"> | number | null
     createdAt?: DateTimeFilter<"Assignment"> | Date | string
     updatedAt?: DateTimeFilter<"Assignment"> | Date | string
+    dueDateTimezone?: StringNullableFilter<"Assignment"> | string | null
   }
 
   export type ClassScheduleUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -62223,25 +63793,25 @@ export namespace Prisma {
     date?: DateTimeFilter<"ClassSchedule"> | Date | string
     startTime?: StringFilter<"ClassSchedule"> | string
     endTime?: StringFilter<"ClassSchedule"> | string
-    startDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
-    endDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
-    timezone?: StringNullableFilter<"ClassSchedule"> | string | null
     subject?: StringFilter<"ClassSchedule"> | string
     description?: StringNullableFilter<"ClassSchedule"> | string | null
-    meetingMinutes?: StringNullableFilter<"ClassSchedule"> | string | null
     location?: StringNullableFilter<"ClassSchedule"> | string | null
     meetingLink?: StringNullableFilter<"ClassSchedule"> | string | null
     status?: StringFilter<"ClassSchedule"> | string
     color?: StringNullableFilter<"ClassSchedule"> | string | null
     studentId?: IntFilter<"ClassSchedule"> | number
     teacherId?: IntFilter<"ClassSchedule"> | number
-    groupId?: IntNullableFilter<"ClassSchedule"> | number | null
+    createdAt?: DateTimeFilter<"ClassSchedule"> | Date | string
+    updatedAt?: DateTimeFilter<"ClassSchedule"> | Date | string
+    endDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
     googleCalendarEventId?: StringNullableFilter<"ClassSchedule"> | string | null
+    groupId?: IntNullableFilter<"ClassSchedule"> | number | null
+    meetingMinutes?: StringNullableFilter<"ClassSchedule"> | string | null
     reminderJobId?: StringNullableFilter<"ClassSchedule"> | string | null
     reminderScheduledFor?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
     reminderSentAt?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
-    createdAt?: DateTimeFilter<"ClassSchedule"> | Date | string
-    updatedAt?: DateTimeFilter<"ClassSchedule"> | Date | string
+    startDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
+    timezone?: StringNullableFilter<"ClassSchedule"> | string | null
   }
 
   export type MentorUpsertWithoutTeacherInput = {
@@ -62463,12 +64033,12 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
@@ -62482,13 +64052,13 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
     teacherId?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
   }
@@ -62503,29 +64073,68 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type BlogCreateWithoutStudentInput = {
+    title: string
+    abstract: string
+    externalUrl: string
+    studentPhoto?: string | null
+    publicationYear: number
+    publicationMonth: number
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approvedAt?: Date | string | null
+  }
+
+  export type BlogUncheckedCreateWithoutStudentInput = {
+    id?: number
+    title: string
+    abstract: string
+    externalUrl: string
+    studentPhoto?: string | null
+    publicationYear: number
+    publicationMonth: number
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approvedAt?: Date | string | null
+  }
+
+  export type BlogCreateOrConnectWithoutStudentInput = {
+    where: BlogWhereUniqueInput
+    create: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput>
+  }
+
+  export type BlogCreateManyStudentInputEnvelope = {
+    data: BlogCreateManyStudentInput | BlogCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ClassScheduleCreateWithoutStudentInput = {
     title: string
     date: Date | string
     startTime: string
     endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
     subject: string
     description?: string | null
-    meetingMinutes?: string | null
     location?: string | null
     meetingLink?: string | null
     status?: string
     color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
     googleCalendarEventId?: string | null
+    meetingMinutes?: string | null
     reminderJobId?: string | null
     reminderScheduledFor?: Date | string | null
     reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
+    startDateTime?: Date | string | null
+    timezone?: string | null
     group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
+    teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
   }
 
   export type ClassScheduleUncheckedCreateWithoutStudentInput = {
@@ -62534,24 +64143,24 @@ export namespace Prisma {
     date: Date | string
     startTime: string
     endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
     subject: string
     description?: string | null
-    meetingMinutes?: string | null
     location?: string | null
     meetingLink?: string | null
     status?: string
     color?: string | null
     teacherId: number
-    groupId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
     googleCalendarEventId?: string | null
+    groupId?: number | null
+    meetingMinutes?: string | null
     reminderJobId?: string | null
     reminderScheduledFor?: Date | string | null
     reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startDateTime?: Date | string | null
+    timezone?: string | null
   }
 
   export type ClassScheduleCreateOrConnectWithoutStudentInput = {
@@ -62604,8 +64213,6 @@ export namespace Prisma {
     paymentInfo: string
     amount?: string | null
     dueDate: string
-    dueDateUTC?: Date | string | null
-    dueDateTimezone?: string | null
     fileUrl?: string | null
     fileName?: string | null
     fileSize?: number | null
@@ -62614,6 +64221,8 @@ export namespace Prisma {
     paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    dueDateTimezone?: string | null
+    dueDateUTC?: Date | string | null
     Enrollment: EnrollmentCreateNestedOneWithoutPaymentInput
   }
 
@@ -62630,8 +64239,6 @@ export namespace Prisma {
     paymentInfo: string
     amount?: string | null
     dueDate: string
-    dueDateUTC?: Date | string | null
-    dueDateTimezone?: string | null
     fileUrl?: string | null
     fileName?: string | null
     fileSize?: number | null
@@ -62640,6 +64247,8 @@ export namespace Prisma {
     paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    dueDateTimezone?: string | null
+    dueDateUTC?: Date | string | null
   }
 
   export type PaymentCreateOrConnectWithoutStudentInput = {
@@ -62708,6 +64317,62 @@ export namespace Prisma {
 
   export type ProgressReportCreateManyStudentInputEnvelope = {
     data: ProgressReportCreateManyStudentInput | ProgressReportCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ResearchCreateWithoutStudentInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    createdAt: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
+    abstract?: string | null
+    extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    extractionStatus?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    domain?: string | null
+    AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
+    Slide?: SlideCreateNestedManyWithoutResearchInput
+    pptConversionJobs?: PptConversionJobCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchUncheckedCreateWithoutStudentInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    createdAt: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
+    abstract?: string | null
+    extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    extractionStatus?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    domain?: string | null
+    AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
+    Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
+    pptConversionJobs?: PptConversionJobUncheckedCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchCreateOrConnectWithoutStudentInput = {
+    where: ResearchWhereUniqueInput
+    create: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ResearchCreateManyStudentInputEnvelope = {
+    data: ResearchCreateManyStudentInput | ResearchCreateManyStudentInput[]
     skipDuplicates?: boolean
   }
 
@@ -62889,8 +64554,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeExpectations?: string | null
-    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -62906,6 +64569,8 @@ export namespace Prisma {
     programsApproved?: boolean
     ratingApproved?: boolean
     successStoryApproved?: boolean
+    afterChanges?: string | null
+    beforeExpectations?: string | null
   }
 
   export type TestimonialUncheckedCreateWithoutStudentInput = {
@@ -62918,8 +64583,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeExpectations?: string | null
-    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -62935,6 +64598,8 @@ export namespace Prisma {
     programsApproved?: boolean
     ratingApproved?: boolean
     successStoryApproved?: boolean
+    afterChanges?: string | null
+    beforeExpectations?: string | null
   }
 
   export type TestimonialCreateOrConnectWithoutStudentInput = {
@@ -62944,99 +64609,6 @@ export namespace Prisma {
 
   export type TestimonialCreateManyStudentInputEnvelope = {
     data: TestimonialCreateManyStudentInput | TestimonialCreateManyStudentInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ResearchCreateWithoutStudentInput = {
-    id: string
-    title: string
-    slug: string
-    description?: string | null
-    createdAt: Date | string
-    author?: string | null
-    grade?: string | null
-    school?: string | null
-    category?: string | null
-    domain?: string | null
-    published?: boolean
-    pdfFilename?: string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    abstract?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
-    extractedAt?: Date | string | null
-    extractionStatus?: string | null
-    AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
-    Slide?: SlideCreateNestedManyWithoutResearchInput
-  }
-
-  export type ResearchUncheckedCreateWithoutStudentInput = {
-    id: string
-    title: string
-    slug: string
-    description?: string | null
-    createdAt: Date | string
-    author?: string | null
-    grade?: string | null
-    school?: string | null
-    category?: string | null
-    domain?: string | null
-    published?: boolean
-    pdfFilename?: string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    abstract?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
-    extractedAt?: Date | string | null
-    extractionStatus?: string | null
-    AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
-    Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
-  }
-
-  export type ResearchCreateOrConnectWithoutStudentInput = {
-    where: ResearchWhereUniqueInput
-    create: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput>
-  }
-
-  export type ResearchCreateManyStudentInputEnvelope = {
-    data: ResearchCreateManyStudentInput | ResearchCreateManyStudentInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type BlogCreateWithoutStudentInput = {
-    title: string
-    abstract: string
-    externalUrl: string
-    studentPhoto?: string | null
-    publicationYear: number
-    publicationMonth: number
-    isApproved?: boolean
-    published?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    approvedAt?: Date | string | null
-  }
-
-  export type BlogUncheckedCreateWithoutStudentInput = {
-    id?: number
-    title: string
-    abstract: string
-    externalUrl: string
-    studentPhoto?: string | null
-    publicationYear: number
-    publicationMonth: number
-    isApproved?: boolean
-    published?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    approvedAt?: Date | string | null
-  }
-
-  export type BlogCreateOrConnectWithoutStudentInput = {
-    where: BlogWhereUniqueInput
-    create: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput>
-  }
-
-  export type BlogCreateManyStudentInputEnvelope = {
-    data: BlogCreateManyStudentInput | BlogCreateManyStudentInput[]
     skipDuplicates?: boolean
   }
 
@@ -63054,6 +64626,41 @@ export namespace Prisma {
   export type AssignmentUpdateManyWithWhereWithoutTargetStudentInput = {
     where: AssignmentScalarWhereInput
     data: XOR<AssignmentUpdateManyMutationInput, AssignmentUncheckedUpdateManyWithoutTargetStudentInput>
+  }
+
+  export type BlogUpsertWithWhereUniqueWithoutStudentInput = {
+    where: BlogWhereUniqueInput
+    update: XOR<BlogUpdateWithoutStudentInput, BlogUncheckedUpdateWithoutStudentInput>
+    create: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput>
+  }
+
+  export type BlogUpdateWithWhereUniqueWithoutStudentInput = {
+    where: BlogWhereUniqueInput
+    data: XOR<BlogUpdateWithoutStudentInput, BlogUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type BlogUpdateManyWithWhereWithoutStudentInput = {
+    where: BlogScalarWhereInput
+    data: XOR<BlogUpdateManyMutationInput, BlogUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type BlogScalarWhereInput = {
+    AND?: BlogScalarWhereInput | BlogScalarWhereInput[]
+    OR?: BlogScalarWhereInput[]
+    NOT?: BlogScalarWhereInput | BlogScalarWhereInput[]
+    id?: IntFilter<"Blog"> | number
+    title?: StringFilter<"Blog"> | string
+    abstract?: StringFilter<"Blog"> | string
+    externalUrl?: StringFilter<"Blog"> | string
+    studentId?: IntNullableFilter<"Blog"> | number | null
+    studentPhoto?: StringNullableFilter<"Blog"> | string | null
+    publicationYear?: IntFilter<"Blog"> | number
+    publicationMonth?: IntFilter<"Blog"> | number
+    isApproved?: BoolFilter<"Blog"> | boolean
+    published?: BoolFilter<"Blog"> | boolean
+    createdAt?: DateTimeFilter<"Blog"> | Date | string
+    updatedAt?: DateTimeFilter<"Blog"> | Date | string
+    approvedAt?: DateTimeNullableFilter<"Blog"> | Date | string | null
   }
 
   export type ClassScheduleUpsertWithWhereUniqueWithoutStudentInput = {
@@ -63134,8 +64741,6 @@ export namespace Prisma {
     paymentInfo?: StringFilter<"Payment"> | string
     amount?: StringNullableFilter<"Payment"> | string | null
     dueDate?: StringFilter<"Payment"> | string
-    dueDateUTC?: DateTimeNullableFilter<"Payment"> | Date | string | null
-    dueDateTimezone?: StringNullableFilter<"Payment"> | string | null
     fileUrl?: StringNullableFilter<"Payment"> | string | null
     fileName?: StringNullableFilter<"Payment"> | string | null
     fileSize?: IntNullableFilter<"Payment"> | number | null
@@ -63144,6 +64749,8 @@ export namespace Prisma {
     paidAt?: DateTimeNullableFilter<"Payment"> | Date | string | null
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     updatedAt?: DateTimeFilter<"Payment"> | Date | string
+    dueDateTimezone?: StringNullableFilter<"Payment"> | string | null
+    dueDateUTC?: DateTimeNullableFilter<"Payment"> | Date | string | null
   }
 
   export type ProgressReportUpsertWithWhereUniqueWithoutStudentInput = {
@@ -63160,6 +64767,46 @@ export namespace Prisma {
   export type ProgressReportUpdateManyWithWhereWithoutStudentInput = {
     where: ProgressReportScalarWhereInput
     data: XOR<ProgressReportUpdateManyMutationInput, ProgressReportUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type ResearchUpsertWithWhereUniqueWithoutStudentInput = {
+    where: ResearchWhereUniqueInput
+    update: XOR<ResearchUpdateWithoutStudentInput, ResearchUncheckedUpdateWithoutStudentInput>
+    create: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ResearchUpdateWithWhereUniqueWithoutStudentInput = {
+    where: ResearchWhereUniqueInput
+    data: XOR<ResearchUpdateWithoutStudentInput, ResearchUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type ResearchUpdateManyWithWhereWithoutStudentInput = {
+    where: ResearchScalarWhereInput
+    data: XOR<ResearchUpdateManyMutationInput, ResearchUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type ResearchScalarWhereInput = {
+    AND?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
+    OR?: ResearchScalarWhereInput[]
+    NOT?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
+    id?: StringFilter<"Research"> | string
+    title?: StringFilter<"Research"> | string
+    slug?: StringFilter<"Research"> | string
+    description?: StringNullableFilter<"Research"> | string | null
+    createdAt?: DateTimeFilter<"Research"> | Date | string
+    author?: StringNullableFilter<"Research"> | string | null
+    published?: BoolFilter<"Research"> | boolean
+    pdfFilename?: StringNullableFilter<"Research"> | string | null
+    abstract?: StringNullableFilter<"Research"> | string | null
+    extractedAt?: DateTimeNullableFilter<"Research"> | Date | string | null
+    extractedContent?: JsonNullableFilter<"Research">
+    extractionStatus?: StringNullableFilter<"Research"> | string | null
+    keywords?: StringNullableListFilter<"Research">
+    category?: StringNullableFilter<"Research"> | string | null
+    grade?: StringNullableFilter<"Research"> | string | null
+    school?: StringNullableFilter<"Research"> | string | null
+    studentId?: IntNullableFilter<"Research"> | number | null
+    domain?: StringNullableFilter<"Research"> | string | null
   }
 
   export type ParentAccountUpsertWithoutStudentsInput = {
@@ -63361,8 +65008,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Testimonial"> | Date | string
     updatedAt?: DateTimeFilter<"Testimonial"> | Date | string
     videoLink?: StringNullableFilter<"Testimonial"> | string | null
-    beforeExpectations?: StringNullableFilter<"Testimonial"> | string | null
-    afterChanges?: StringNullableFilter<"Testimonial"> | string | null
     consentToFeature?: BoolFilter<"Testimonial"> | boolean
     experienceDescription?: StringNullableFilter<"Testimonial"> | string | null
     grade?: StringNullableFilter<"Testimonial"> | string | null
@@ -63378,81 +65023,8 @@ export namespace Prisma {
     programsApproved?: BoolFilter<"Testimonial"> | boolean
     ratingApproved?: BoolFilter<"Testimonial"> | boolean
     successStoryApproved?: BoolFilter<"Testimonial"> | boolean
-  }
-
-  export type ResearchUpsertWithWhereUniqueWithoutStudentInput = {
-    where: ResearchWhereUniqueInput
-    update: XOR<ResearchUpdateWithoutStudentInput, ResearchUncheckedUpdateWithoutStudentInput>
-    create: XOR<ResearchCreateWithoutStudentInput, ResearchUncheckedCreateWithoutStudentInput>
-  }
-
-  export type ResearchUpdateWithWhereUniqueWithoutStudentInput = {
-    where: ResearchWhereUniqueInput
-    data: XOR<ResearchUpdateWithoutStudentInput, ResearchUncheckedUpdateWithoutStudentInput>
-  }
-
-  export type ResearchUpdateManyWithWhereWithoutStudentInput = {
-    where: ResearchScalarWhereInput
-    data: XOR<ResearchUpdateManyMutationInput, ResearchUncheckedUpdateManyWithoutStudentInput>
-  }
-
-  export type ResearchScalarWhereInput = {
-    AND?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
-    OR?: ResearchScalarWhereInput[]
-    NOT?: ResearchScalarWhereInput | ResearchScalarWhereInput[]
-    id?: StringFilter<"Research"> | string
-    title?: StringFilter<"Research"> | string
-    slug?: StringFilter<"Research"> | string
-    description?: StringNullableFilter<"Research"> | string | null
-    createdAt?: DateTimeFilter<"Research"> | Date | string
-    author?: StringNullableFilter<"Research"> | string | null
-    grade?: StringNullableFilter<"Research"> | string | null
-    school?: StringNullableFilter<"Research"> | string | null
-    category?: StringNullableFilter<"Research"> | string | null
-    domain?: StringNullableFilter<"Research"> | string | null
-    studentId?: IntNullableFilter<"Research"> | number | null
-    published?: BoolFilter<"Research"> | boolean
-    pdfFilename?: StringNullableFilter<"Research"> | string | null
-    extractedContent?: JsonNullableFilter<"Research">
-    abstract?: StringNullableFilter<"Research"> | string | null
-    keywords?: StringNullableListFilter<"Research">
-    extractedAt?: DateTimeNullableFilter<"Research"> | Date | string | null
-    extractionStatus?: StringNullableFilter<"Research"> | string | null
-  }
-
-  export type BlogUpsertWithWhereUniqueWithoutStudentInput = {
-    where: BlogWhereUniqueInput
-    update: XOR<BlogUpdateWithoutStudentInput, BlogUncheckedUpdateWithoutStudentInput>
-    create: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput>
-  }
-
-  export type BlogUpdateWithWhereUniqueWithoutStudentInput = {
-    where: BlogWhereUniqueInput
-    data: XOR<BlogUpdateWithoutStudentInput, BlogUncheckedUpdateWithoutStudentInput>
-  }
-
-  export type BlogUpdateManyWithWhereWithoutStudentInput = {
-    where: BlogScalarWhereInput
-    data: XOR<BlogUpdateManyMutationInput, BlogUncheckedUpdateManyWithoutStudentInput>
-  }
-
-  export type BlogScalarWhereInput = {
-    AND?: BlogScalarWhereInput | BlogScalarWhereInput[]
-    OR?: BlogScalarWhereInput[]
-    NOT?: BlogScalarWhereInput | BlogScalarWhereInput[]
-    id?: IntFilter<"Blog"> | number
-    title?: StringFilter<"Blog"> | string
-    abstract?: StringFilter<"Blog"> | string
-    externalUrl?: StringFilter<"Blog"> | string
-    studentId?: IntNullableFilter<"Blog"> | number | null
-    studentPhoto?: StringNullableFilter<"Blog"> | string | null
-    publicationYear?: IntFilter<"Blog"> | number
-    publicationMonth?: IntFilter<"Blog"> | number
-    isApproved?: BoolFilter<"Blog"> | boolean
-    published?: BoolFilter<"Blog"> | boolean
-    createdAt?: DateTimeFilter<"Blog"> | Date | string
-    updatedAt?: DateTimeFilter<"Blog"> | Date | string
-    approvedAt?: DateTimeNullableFilter<"Blog"> | Date | string | null
+    afterChanges?: StringNullableFilter<"Testimonial"> | string | null
+    beforeExpectations?: StringNullableFilter<"Testimonial"> | string | null
   }
 
   export type StudentCreateWithoutTeacherLinksInput = {
@@ -63460,7 +65032,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -63469,19 +65040,20 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutTeacherLinksInput = {
@@ -63490,7 +65062,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -63500,18 +65071,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutTeacherLinksInput = {
@@ -63528,9 +65100,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
@@ -63550,9 +65122,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
@@ -63583,7 +65155,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -63592,19 +65163,20 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutTeacherLinksInput = {
@@ -63613,7 +65185,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -63623,18 +65194,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutStudentsInput = {
@@ -63657,9 +65229,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
@@ -63679,9 +65251,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
@@ -63689,6 +65261,67 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type ClassScheduleCreateWithoutGroupInput = {
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    subject: string
+    description?: string | null
+    location?: string | null
+    meetingLink?: string | null
+    status?: string
+    color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
+    googleCalendarEventId?: string | null
+    meetingMinutes?: string | null
+    reminderJobId?: string | null
+    reminderScheduledFor?: Date | string | null
+    reminderSentAt?: Date | string | null
+    startDateTime?: Date | string | null
+    timezone?: string | null
+    student: StudentCreateNestedOneWithoutClassSchedulesInput
+    teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
+  }
+
+  export type ClassScheduleUncheckedCreateWithoutGroupInput = {
+    id?: number
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    subject: string
+    description?: string | null
+    location?: string | null
+    meetingLink?: string | null
+    status?: string
+    color?: string | null
+    studentId: number
+    teacherId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
+    googleCalendarEventId?: string | null
+    meetingMinutes?: string | null
+    reminderJobId?: string | null
+    reminderScheduledFor?: Date | string | null
+    reminderSentAt?: Date | string | null
+    startDateTime?: Date | string | null
+    timezone?: string | null
+  }
+
+  export type ClassScheduleCreateOrConnectWithoutGroupInput = {
+    where: ClassScheduleWhereUniqueInput
+    create: XOR<ClassScheduleCreateWithoutGroupInput, ClassScheduleUncheckedCreateWithoutGroupInput>
+  }
+
+  export type ClassScheduleCreateManyGroupInputEnvelope = {
+    data: ClassScheduleCreateManyGroupInput | ClassScheduleCreateManyGroupInput[]
+    skipDuplicates?: boolean
   }
 
   export type TeacherCreateWithoutStudentGroupsInput = {
@@ -63700,9 +65333,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
@@ -63722,9 +65355,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
@@ -63760,65 +65393,20 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ClassScheduleCreateWithoutGroupInput = {
-    title: string
-    date: Date | string
-    startTime: string
-    endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
-    subject: string
-    description?: string | null
-    meetingMinutes?: string | null
-    location?: string | null
-    meetingLink?: string | null
-    status?: string
-    color?: string | null
-    googleCalendarEventId?: string | null
-    reminderJobId?: string | null
-    reminderScheduledFor?: Date | string | null
-    reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    student: StudentCreateNestedOneWithoutClassSchedulesInput
-    teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
-  }
-
-  export type ClassScheduleUncheckedCreateWithoutGroupInput = {
-    id?: number
-    title: string
-    date: Date | string
-    startTime: string
-    endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
-    subject: string
-    description?: string | null
-    meetingMinutes?: string | null
-    location?: string | null
-    meetingLink?: string | null
-    status?: string
-    color?: string | null
-    studentId: number
-    teacherId: number
-    googleCalendarEventId?: string | null
-    reminderJobId?: string | null
-    reminderScheduledFor?: Date | string | null
-    reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type ClassScheduleCreateOrConnectWithoutGroupInput = {
+  export type ClassScheduleUpsertWithWhereUniqueWithoutGroupInput = {
     where: ClassScheduleWhereUniqueInput
+    update: XOR<ClassScheduleUpdateWithoutGroupInput, ClassScheduleUncheckedUpdateWithoutGroupInput>
     create: XOR<ClassScheduleCreateWithoutGroupInput, ClassScheduleUncheckedCreateWithoutGroupInput>
   }
 
-  export type ClassScheduleCreateManyGroupInputEnvelope = {
-    data: ClassScheduleCreateManyGroupInput | ClassScheduleCreateManyGroupInput[]
-    skipDuplicates?: boolean
+  export type ClassScheduleUpdateWithWhereUniqueWithoutGroupInput = {
+    where: ClassScheduleWhereUniqueInput
+    data: XOR<ClassScheduleUpdateWithoutGroupInput, ClassScheduleUncheckedUpdateWithoutGroupInput>
+  }
+
+  export type ClassScheduleUpdateManyWithWhereWithoutGroupInput = {
+    where: ClassScheduleScalarWhereInput
+    data: XOR<ClassScheduleUpdateManyMutationInput, ClassScheduleUncheckedUpdateManyWithoutGroupInput>
   }
 
   export type TeacherUpsertWithoutStudentGroupsInput = {
@@ -63841,9 +65429,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
@@ -63863,9 +65451,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
@@ -63891,28 +65479,12 @@ export namespace Prisma {
     data: XOR<StudentGroupMemberUpdateManyMutationInput, StudentGroupMemberUncheckedUpdateManyWithoutGroupInput>
   }
 
-  export type ClassScheduleUpsertWithWhereUniqueWithoutGroupInput = {
-    where: ClassScheduleWhereUniqueInput
-    update: XOR<ClassScheduleUpdateWithoutGroupInput, ClassScheduleUncheckedUpdateWithoutGroupInput>
-    create: XOR<ClassScheduleCreateWithoutGroupInput, ClassScheduleUncheckedCreateWithoutGroupInput>
-  }
-
-  export type ClassScheduleUpdateWithWhereUniqueWithoutGroupInput = {
-    where: ClassScheduleWhereUniqueInput
-    data: XOR<ClassScheduleUpdateWithoutGroupInput, ClassScheduleUncheckedUpdateWithoutGroupInput>
-  }
-
-  export type ClassScheduleUpdateManyWithWhereWithoutGroupInput = {
-    where: ClassScheduleScalarWhereInput
-    data: XOR<ClassScheduleUpdateManyMutationInput, ClassScheduleUncheckedUpdateManyWithoutGroupInput>
-  }
-
   export type StudentGroupCreateWithoutMembersInput = {
     name: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    teacher: TeacherCreateNestedOneWithoutStudentGroupsInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutGroupInput
+    teacher: TeacherCreateNestedOneWithoutStudentGroupsInput
   }
 
   export type StudentGroupUncheckedCreateWithoutMembersInput = {
@@ -63934,7 +65506,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -63943,19 +65514,20 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutGroupMembershipsInput = {
@@ -63964,7 +65536,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -63974,18 +65545,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutGroupMembershipsInput = {
@@ -64008,8 +65580,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    teacher?: TeacherUpdateOneRequiredWithoutStudentGroupsNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutGroupNestedInput
+    teacher?: TeacherUpdateOneRequiredWithoutStudentGroupsNestedInput
   }
 
   export type StudentGroupUncheckedUpdateWithoutMembersInput = {
@@ -64037,7 +65609,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -64046,19 +65617,20 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutGroupMembershipsInput = {
@@ -64067,7 +65639,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -64077,18 +65648,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutAssignedAssignmentsInput = {
@@ -64096,7 +65668,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -64105,10 +65676,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
@@ -64116,8 +65690,6 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutAssignedAssignmentsInput = {
@@ -64126,7 +65698,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -64136,18 +65707,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutAssignedAssignmentsInput = {
@@ -64164,9 +65736,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
@@ -64186,9 +65758,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
@@ -64279,7 +65851,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -64288,10 +65859,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
@@ -64299,8 +65873,6 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutAssignedAssignmentsInput = {
@@ -64309,7 +65881,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -64319,18 +65890,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutAssignmentsInput = {
@@ -64353,9 +65925,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
@@ -64375,9 +65947,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
@@ -64436,12 +66008,12 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
     targetStudent?: StudentCreateNestedOneWithoutAssignedAssignmentsInput
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
@@ -64455,7 +66027,6 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
@@ -64463,6 +66034,7 @@ export namespace Prisma {
     targetStudentId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
@@ -64476,7 +66048,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -64485,19 +66056,20 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutSubmissionsInput = {
@@ -64506,7 +66078,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -64516,18 +66087,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutSubmissionsInput = {
@@ -64553,12 +66125,12 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     targetStudent?: StudentUpdateOneWithoutAssignedAssignmentsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
@@ -64572,7 +66144,6 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
@@ -64580,6 +66151,7 @@ export namespace Prisma {
     targetStudentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -64599,7 +66171,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -64608,19 +66179,20 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutSubmissionsInput = {
@@ -64629,7 +66201,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -64639,18 +66210,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutEnrollmentsInput = {
@@ -64658,7 +66230,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -64667,10 +66238,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
@@ -64678,8 +66252,6 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutEnrollmentsInput = {
@@ -64688,7 +66260,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -64698,18 +66269,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutEnrollmentsInput = {
@@ -64728,8 +66300,6 @@ export namespace Prisma {
     paymentInfo: string
     amount?: string | null
     dueDate: string
-    dueDateUTC?: Date | string | null
-    dueDateTimezone?: string | null
     fileUrl?: string | null
     fileName?: string | null
     fileSize?: number | null
@@ -64738,6 +66308,8 @@ export namespace Prisma {
     paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    dueDateTimezone?: string | null
+    dueDateUTC?: Date | string | null
     Student: StudentCreateNestedOneWithoutPaymentInput
   }
 
@@ -64754,8 +66326,6 @@ export namespace Prisma {
     paymentInfo: string
     amount?: string | null
     dueDate: string
-    dueDateUTC?: Date | string | null
-    dueDateTimezone?: string | null
     fileUrl?: string | null
     fileName?: string | null
     fileSize?: number | null
@@ -64764,6 +66334,8 @@ export namespace Prisma {
     paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    dueDateTimezone?: string | null
+    dueDateUTC?: Date | string | null
   }
 
   export type PaymentCreateOrConnectWithoutEnrollmentInput = {
@@ -64792,7 +66364,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -64801,10 +66372,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
@@ -64812,8 +66386,6 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutEnrollmentsInput = {
@@ -64822,7 +66394,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -64832,18 +66403,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type PaymentUpsertWithWhereUniqueWithoutEnrollmentInput = {
@@ -64892,9 +66464,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
@@ -64914,9 +66486,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
@@ -64990,9 +66562,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
@@ -65012,9 +66584,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
@@ -65047,12 +66619,12 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
     targetStudent?: StudentCreateNestedOneWithoutAssignedAssignmentsInput
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
@@ -65066,7 +66638,6 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
@@ -65074,6 +66645,7 @@ export namespace Prisma {
     targetStudentId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
@@ -65142,12 +66714,12 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     targetStudent?: StudentUpdateOneWithoutAssignedAssignmentsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
@@ -65161,7 +66733,6 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
@@ -65169,6 +66740,7 @@ export namespace Prisma {
     targetStudentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -65267,7 +66839,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -65276,19 +66847,20 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutAssignedResourcesInput = {
@@ -65297,7 +66869,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -65307,18 +66878,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutAssignedResourcesInput = {
@@ -65390,7 +66962,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -65399,19 +66970,20 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutAssignedResourcesInput = {
@@ -65420,7 +66992,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -65430,18 +67001,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutStudentSubmissionsInput = {
@@ -65449,7 +67021,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -65458,19 +67029,20 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutStudentSubmissionsInput = {
@@ -65479,7 +67051,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -65489,18 +67060,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutStudentSubmissionsInput = {
@@ -65549,7 +67121,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -65558,19 +67129,20 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutStudentSubmissionsInput = {
@@ -65579,7 +67151,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -65589,18 +67160,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentSubmissionRemarkUpsertWithWhereUniqueWithoutStudentSubmissionInput = {
@@ -65660,9 +67232,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
@@ -65682,9 +67254,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
@@ -65757,9 +67329,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
@@ -65779,9 +67351,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
@@ -65789,118 +67361,6 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
-  }
-
-  export type StudentCreateWithoutClassSchedulesInput = {
-    name: string
-    email: string
-    password?: string | null
-    grade: string
-    graduationYear?: number | null
-    schoolName: string
-    parentName: string
-    parentEmail: string
-    parentPhone: string
-    program: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isActivated?: boolean
-    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
-    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
-    Payment?: PaymentCreateNestedManyWithoutStudentInput
-    progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
-    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
-    groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
-    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
-    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
-    submissions?: SubmissionCreateNestedManyWithoutStudentInput
-    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
-    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
-  }
-
-  export type StudentUncheckedCreateWithoutClassSchedulesInput = {
-    id?: number
-    name: string
-    email: string
-    password?: string | null
-    grade: string
-    graduationYear?: number | null
-    schoolName: string
-    parentName: string
-    parentEmail: string
-    parentPhone: string
-    program: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isActivated?: boolean
-    parentAccountId?: number | null
-    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
-    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
-    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
-    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
-    groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
-    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
-    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
-    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
-    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
-    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
-  }
-
-  export type StudentCreateOrConnectWithoutClassSchedulesInput = {
-    where: StudentWhereUniqueInput
-    create: XOR<StudentCreateWithoutClassSchedulesInput, StudentUncheckedCreateWithoutClassSchedulesInput>
-  }
-
-  export type TeacherCreateWithoutClassSchedulesInput = {
-    name: string
-    email: string
-    password?: string | null
-    programs?: TeacherCreateprogramsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isActivated?: boolean
-    googleAccessToken?: string | null
-    googleRefreshToken?: string | null
-    googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
-    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
-    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
-    progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
-    resources?: ResourceCreateNestedManyWithoutTeacherInput
-    studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
-    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
-    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
-  }
-
-  export type TeacherUncheckedCreateWithoutClassSchedulesInput = {
-    id?: number
-    name: string
-    email: string
-    password?: string | null
-    programs?: TeacherCreateprogramsInput | string[]
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isActivated?: boolean
-    googleAccessToken?: string | null
-    googleRefreshToken?: string | null
-    googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
-    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
-    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
-    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
-    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
-    studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
-    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
-    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
-  }
-
-  export type TeacherCreateOrConnectWithoutClassSchedulesInput = {
-    where: TeacherWhereUniqueInput
-    create: XOR<TeacherCreateWithoutClassSchedulesInput, TeacherUncheckedCreateWithoutClassSchedulesInput>
   }
 
   export type StudentGroupCreateWithoutClassSchedulesInput = {
@@ -65925,128 +67385,116 @@ export namespace Prisma {
     create: XOR<StudentGroupCreateWithoutClassSchedulesInput, StudentGroupUncheckedCreateWithoutClassSchedulesInput>
   }
 
-  export type StudentUpsertWithoutClassSchedulesInput = {
-    update: XOR<StudentUpdateWithoutClassSchedulesInput, StudentUncheckedUpdateWithoutClassSchedulesInput>
+  export type StudentCreateWithoutClassSchedulesInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutClassSchedulesInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutClassSchedulesInput = {
+    where: StudentWhereUniqueInput
     create: XOR<StudentCreateWithoutClassSchedulesInput, StudentUncheckedCreateWithoutClassSchedulesInput>
-    where?: StudentWhereInput
   }
 
-  export type StudentUpdateToOneWithWhereWithoutClassSchedulesInput = {
-    where?: StudentWhereInput
-    data: XOR<StudentUpdateWithoutClassSchedulesInput, StudentUncheckedUpdateWithoutClassSchedulesInput>
+  export type TeacherCreateWithoutClassSchedulesInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
-  export type StudentUpdateWithoutClassSchedulesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
-    schoolName?: StringFieldUpdateOperationsInput | string
-    parentName?: StringFieldUpdateOperationsInput | string
-    parentEmail?: StringFieldUpdateOperationsInput | string
-    parentPhone?: StringFieldUpdateOperationsInput | string
-    program?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isActivated?: BoolFieldUpdateOperationsInput | boolean
-    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
-    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
-    Payment?: PaymentUpdateManyWithoutStudentNestedInput
-    progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
-    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
-    groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
-    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
-    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
-    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
-    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
-    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
+  export type TeacherUncheckedCreateWithoutClassSchedulesInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
-  export type StudentUncheckedUpdateWithoutClassSchedulesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
-    schoolName?: StringFieldUpdateOperationsInput | string
-    parentName?: StringFieldUpdateOperationsInput | string
-    parentEmail?: StringFieldUpdateOperationsInput | string
-    parentPhone?: StringFieldUpdateOperationsInput | string
-    program?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isActivated?: BoolFieldUpdateOperationsInput | boolean
-    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
-    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
-    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
-    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
-    progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
-    groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
-    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
-    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
-    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
-    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
-    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
-  }
-
-  export type TeacherUpsertWithoutClassSchedulesInput = {
-    update: XOR<TeacherUpdateWithoutClassSchedulesInput, TeacherUncheckedUpdateWithoutClassSchedulesInput>
+  export type TeacherCreateOrConnectWithoutClassSchedulesInput = {
+    where: TeacherWhereUniqueInput
     create: XOR<TeacherCreateWithoutClassSchedulesInput, TeacherUncheckedCreateWithoutClassSchedulesInput>
-    where?: TeacherWhereInput
-  }
-
-  export type TeacherUpdateToOneWithWhereWithoutClassSchedulesInput = {
-    where?: TeacherWhereInput
-    data: XOR<TeacherUpdateWithoutClassSchedulesInput, TeacherUncheckedUpdateWithoutClassSchedulesInput>
-  }
-
-  export type TeacherUpdateWithoutClassSchedulesInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    programs?: TeacherUpdateprogramsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isActivated?: BoolFieldUpdateOperationsInput | boolean
-    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
-    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
-    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
-    progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
-    resources?: ResourceUpdateManyWithoutTeacherNestedInput
-    studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
-    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
-    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
-  }
-
-  export type TeacherUncheckedUpdateWithoutClassSchedulesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    programs?: TeacherUpdateprogramsInput | string[]
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isActivated?: BoolFieldUpdateOperationsInput | boolean
-    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
-    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
-    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
-    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
-    progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
-    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
-    studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
-    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
-    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
   export type StudentGroupUpsertWithoutClassSchedulesInput = {
@@ -66075,6 +67523,130 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     members?: StudentGroupMemberUncheckedUpdateManyWithoutGroupNestedInput
+  }
+
+  export type StudentUpsertWithoutClassSchedulesInput = {
+    update: XOR<StudentUpdateWithoutClassSchedulesInput, StudentUncheckedUpdateWithoutClassSchedulesInput>
+    create: XOR<StudentCreateWithoutClassSchedulesInput, StudentUncheckedCreateWithoutClassSchedulesInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutClassSchedulesInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutClassSchedulesInput, StudentUncheckedUpdateWithoutClassSchedulesInput>
+  }
+
+  export type StudentUpdateWithoutClassSchedulesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutClassSchedulesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type TeacherUpsertWithoutClassSchedulesInput = {
+    update: XOR<TeacherUpdateWithoutClassSchedulesInput, TeacherUncheckedUpdateWithoutClassSchedulesInput>
+    create: XOR<TeacherCreateWithoutClassSchedulesInput, TeacherUncheckedCreateWithoutClassSchedulesInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutClassSchedulesInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutClassSchedulesInput, TeacherUncheckedUpdateWithoutClassSchedulesInput>
+  }
+
+  export type TeacherUpdateWithoutClassSchedulesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutClassSchedulesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
   export type EnrollmentCreateWithoutPaymentInput = {
@@ -66106,7 +67678,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -66115,10 +67686,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
@@ -66126,8 +67700,6 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutPaymentInput = {
@@ -66136,7 +67708,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -66146,18 +67717,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutPaymentInput = {
@@ -66211,7 +67783,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -66220,10 +67791,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
@@ -66231,8 +67805,6 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutPaymentInput = {
@@ -66241,7 +67813,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -66251,18 +67822,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutTestimonialInput = {
@@ -66270,7 +67842,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -66279,19 +67850,20 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutTestimonialInput = {
@@ -66300,7 +67872,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -66310,18 +67881,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutTestimonialInput = {
@@ -66345,7 +67917,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -66354,19 +67925,20 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutTestimonialInput = {
@@ -66375,7 +67947,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -66385,18 +67956,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutParentAccountInput = {
@@ -66404,7 +67976,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -66413,19 +67984,20 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutParentAccountInput = {
@@ -66434,7 +68006,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -66443,19 +68014,20 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutParentAccountInput = {
@@ -66493,7 +68065,6 @@ export namespace Prisma {
     email?: StringFilter<"Student"> | string
     password?: StringNullableFilter<"Student"> | string | null
     grade?: StringFilter<"Student"> | string
-    graduationYear?: IntNullableFilter<"Student"> | number | null
     schoolName?: StringFilter<"Student"> | string
     parentName?: StringFilter<"Student"> | string
     parentEmail?: StringFilter<"Student"> | string
@@ -66503,6 +68074,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Student"> | Date | string
     isActivated?: BoolFilter<"Student"> | boolean
     parentAccountId?: IntNullableFilter<"Student"> | number | null
+    graduationYear?: IntNullableFilter<"Student"> | number | null
   }
 
   export type TeacherCreateWithoutMentorProfileInput = {
@@ -66514,9 +68086,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
@@ -66536,9 +68108,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
@@ -66573,9 +68145,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
@@ -66595,9 +68167,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
@@ -66612,7 +68184,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -66621,10 +68192,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
@@ -66632,8 +68206,6 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutProgressReportsInput = {
@@ -66642,7 +68214,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -66652,18 +68223,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutProgressReportsInput = {
@@ -66680,9 +68252,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
@@ -66702,9 +68274,9 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
-    googleCalendarConnected?: boolean
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
@@ -66735,7 +68307,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -66744,10 +68315,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
@@ -66755,8 +68329,6 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutProgressReportsInput = {
@@ -66765,7 +68337,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -66775,18 +68346,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type TeacherUpsertWithoutProgressReportsInput = {
@@ -66809,9 +68381,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
@@ -66831,9 +68403,9 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
@@ -67110,19 +68682,20 @@ export namespace Prisma {
     description?: string | null
     createdAt: Date | string
     author?: string | null
-    grade?: string | null
-    school?: string | null
-    category?: string | null
-    domain?: string | null
     published?: boolean
     pdfFilename?: string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
     extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    domain?: string | null
     student?: StudentCreateNestedOneWithoutResearchInput
     Slide?: SlideCreateNestedManyWithoutResearchInput
+    pptConversionJobs?: PptConversionJobCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchUncheckedCreateWithoutAccessRequestInput = {
@@ -67132,19 +68705,20 @@ export namespace Prisma {
     description?: string | null
     createdAt: Date | string
     author?: string | null
-    grade?: string | null
-    school?: string | null
-    category?: string | null
-    domain?: string | null
-    studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
     extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    studentId?: number | null
+    domain?: string | null
     Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
+    pptConversionJobs?: PptConversionJobUncheckedCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchCreateOrConnectWithoutAccessRequestInput = {
@@ -67170,19 +68744,20 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     student?: StudentUpdateOneWithoutResearchNestedInput
     Slide?: SlideUpdateManyWithoutResearchNestedInput
+    pptConversionJobs?: PptConversionJobUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchUncheckedUpdateWithoutAccessRequestInput = {
@@ -67192,83 +68767,20 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
-  }
-
-  export type StudentCreateWithoutResearchInput = {
-    name: string
-    email: string
-    password?: string | null
-    grade: string
-    graduationYear?: number | null
-    schoolName: string
-    parentName: string
-    parentEmail: string
-    parentPhone: string
-    program: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isActivated?: boolean
-    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
-    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
-    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
-    Payment?: PaymentCreateNestedManyWithoutStudentInput
-    progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
-    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
-    groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
-    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
-    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
-    submissions?: SubmissionCreateNestedManyWithoutStudentInput
-    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
-    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Blog?: BlogCreateNestedManyWithoutStudentInput
-  }
-
-  export type StudentUncheckedCreateWithoutResearchInput = {
-    id?: number
-    name: string
-    email: string
-    password?: string | null
-    grade: string
-    graduationYear?: number | null
-    schoolName: string
-    parentName: string
-    parentEmail: string
-    parentPhone: string
-    program: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    isActivated?: boolean
-    parentAccountId?: number | null
-    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
-    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
-    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
-    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
-    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
-    groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
-    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
-    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
-    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
-    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
-    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
-  }
-
-  export type StudentCreateOrConnectWithoutResearchInput = {
-    where: StudentWhereUniqueInput
-    create: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
+    pptConversionJobs?: PptConversionJobUncheckedUpdateManyWithoutResearchNestedInput
   }
 
   export type AccessRequestCreateWithoutResearchInput = {
@@ -67301,6 +68813,70 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type StudentCreateWithoutResearchInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutResearchInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutResearchInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
+  }
+
   export type SlideCreateWithoutResearchInput = {
     id?: string
     order: number
@@ -67323,74 +68899,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type StudentUpsertWithoutResearchInput = {
-    update: XOR<StudentUpdateWithoutResearchInput, StudentUncheckedUpdateWithoutResearchInput>
-    create: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
-    where?: StudentWhereInput
+  export type PptConversionJobCreateWithoutResearchInput = {
+    id?: string
+    cloudConvertJobId: string
+    status?: string
+    totalSlides?: number | null
+    processedSlides?: number
+    error?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type StudentUpdateToOneWithWhereWithoutResearchInput = {
-    where?: StudentWhereInput
-    data: XOR<StudentUpdateWithoutResearchInput, StudentUncheckedUpdateWithoutResearchInput>
+  export type PptConversionJobUncheckedCreateWithoutResearchInput = {
+    id?: string
+    cloudConvertJobId: string
+    status?: string
+    totalSlides?: number | null
+    processedSlides?: number
+    error?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type StudentUpdateWithoutResearchInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
-    schoolName?: StringFieldUpdateOperationsInput | string
-    parentName?: StringFieldUpdateOperationsInput | string
-    parentEmail?: StringFieldUpdateOperationsInput | string
-    parentPhone?: StringFieldUpdateOperationsInput | string
-    program?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isActivated?: BoolFieldUpdateOperationsInput | boolean
-    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
-    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
-    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
-    Payment?: PaymentUpdateManyWithoutStudentNestedInput
-    progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
-    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
-    groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
-    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
-    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
-    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
-    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
-    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
+  export type PptConversionJobCreateOrConnectWithoutResearchInput = {
+    where: PptConversionJobWhereUniqueInput
+    create: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput>
   }
 
-  export type StudentUncheckedUpdateWithoutResearchInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
-    schoolName?: StringFieldUpdateOperationsInput | string
-    parentName?: StringFieldUpdateOperationsInput | string
-    parentEmail?: StringFieldUpdateOperationsInput | string
-    parentPhone?: StringFieldUpdateOperationsInput | string
-    program?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isActivated?: BoolFieldUpdateOperationsInput | boolean
-    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
-    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
-    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
-    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
-    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
-    progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
-    groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
-    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
-    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
-    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
-    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
-    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
+  export type PptConversionJobCreateManyResearchInputEnvelope = {
+    data: PptConversionJobCreateManyResearchInput | PptConversionJobCreateManyResearchInput[]
+    skipDuplicates?: boolean
   }
 
   export type AccessRequestUpsertWithWhereUniqueWithoutResearchInput = {
@@ -67423,6 +68961,76 @@ export namespace Prisma {
     researchId?: StringFilter<"AccessRequest"> | string
   }
 
+  export type StudentUpsertWithoutResearchInput = {
+    update: XOR<StudentUpdateWithoutResearchInput, StudentUncheckedUpdateWithoutResearchInput>
+    create: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutResearchInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutResearchInput, StudentUncheckedUpdateWithoutResearchInput>
+  }
+
+  export type StudentUpdateWithoutResearchInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutResearchInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
   export type SlideUpsertWithWhereUniqueWithoutResearchInput = {
     where: SlideWhereUniqueInput
     update: XOR<SlideUpdateWithoutResearchInput, SlideUncheckedUpdateWithoutResearchInput>
@@ -67449,6 +69057,37 @@ export namespace Prisma {
     imageFilename?: StringFilter<"Slide"> | string
   }
 
+  export type PptConversionJobUpsertWithWhereUniqueWithoutResearchInput = {
+    where: PptConversionJobWhereUniqueInput
+    update: XOR<PptConversionJobUpdateWithoutResearchInput, PptConversionJobUncheckedUpdateWithoutResearchInput>
+    create: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput>
+  }
+
+  export type PptConversionJobUpdateWithWhereUniqueWithoutResearchInput = {
+    where: PptConversionJobWhereUniqueInput
+    data: XOR<PptConversionJobUpdateWithoutResearchInput, PptConversionJobUncheckedUpdateWithoutResearchInput>
+  }
+
+  export type PptConversionJobUpdateManyWithWhereWithoutResearchInput = {
+    where: PptConversionJobScalarWhereInput
+    data: XOR<PptConversionJobUpdateManyMutationInput, PptConversionJobUncheckedUpdateManyWithoutResearchInput>
+  }
+
+  export type PptConversionJobScalarWhereInput = {
+    AND?: PptConversionJobScalarWhereInput | PptConversionJobScalarWhereInput[]
+    OR?: PptConversionJobScalarWhereInput[]
+    NOT?: PptConversionJobScalarWhereInput | PptConversionJobScalarWhereInput[]
+    id?: StringFilter<"PptConversionJob"> | string
+    researchId?: StringFilter<"PptConversionJob"> | string
+    cloudConvertJobId?: StringFilter<"PptConversionJob"> | string
+    status?: StringFilter<"PptConversionJob"> | string
+    totalSlides?: IntNullableFilter<"PptConversionJob"> | number | null
+    processedSlides?: IntFilter<"PptConversionJob"> | number
+    error?: StringNullableFilter<"PptConversionJob"> | string | null
+    createdAt?: DateTimeFilter<"PptConversionJob"> | Date | string
+    updatedAt?: DateTimeFilter<"PptConversionJob"> | Date | string
+  }
+
   export type ResearchCreateWithoutSlideInput = {
     id: string
     title: string
@@ -67456,19 +69095,20 @@ export namespace Prisma {
     description?: string | null
     createdAt: Date | string
     author?: string | null
-    grade?: string | null
-    school?: string | null
-    category?: string | null
-    domain?: string | null
     published?: boolean
     pdfFilename?: string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
     extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: string | null
-    student?: StudentCreateNestedOneWithoutResearchInput
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    domain?: string | null
     AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
+    student?: StudentCreateNestedOneWithoutResearchInput
+    pptConversionJobs?: PptConversionJobCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchUncheckedCreateWithoutSlideInput = {
@@ -67478,19 +69118,20 @@ export namespace Prisma {
     description?: string | null
     createdAt: Date | string
     author?: string | null
-    grade?: string | null
-    school?: string | null
-    category?: string | null
-    domain?: string | null
-    studentId?: number | null
     published?: boolean
     pdfFilename?: string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
     extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    studentId?: number | null
+    domain?: string | null
     AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
+    pptConversionJobs?: PptConversionJobUncheckedCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchCreateOrConnectWithoutSlideInput = {
@@ -67516,19 +69157,20 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
-    student?: StudentUpdateOneWithoutResearchNestedInput
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
+    student?: StudentUpdateOneWithoutResearchNestedInput
+    pptConversionJobs?: PptConversionJobUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchUncheckedUpdateWithoutSlideInput = {
@@ -67538,19 +69180,128 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
     extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
+    pptConversionJobs?: PptConversionJobUncheckedUpdateManyWithoutResearchNestedInput
+  }
+
+  export type ResearchCreateWithoutPptConversionJobsInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    createdAt: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
+    abstract?: string | null
+    extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    extractionStatus?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    domain?: string | null
+    AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
+    student?: StudentCreateNestedOneWithoutResearchInput
+    Slide?: SlideCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchUncheckedCreateWithoutPptConversionJobsInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    createdAt: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
+    abstract?: string | null
+    extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    extractionStatus?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    studentId?: number | null
+    domain?: string | null
+    AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
+    Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
+  }
+
+  export type ResearchCreateOrConnectWithoutPptConversionJobsInput = {
+    where: ResearchWhereUniqueInput
+    create: XOR<ResearchCreateWithoutPptConversionJobsInput, ResearchUncheckedCreateWithoutPptConversionJobsInput>
+  }
+
+  export type ResearchUpsertWithoutPptConversionJobsInput = {
+    update: XOR<ResearchUpdateWithoutPptConversionJobsInput, ResearchUncheckedUpdateWithoutPptConversionJobsInput>
+    create: XOR<ResearchCreateWithoutPptConversionJobsInput, ResearchUncheckedCreateWithoutPptConversionJobsInput>
+    where?: ResearchWhereInput
+  }
+
+  export type ResearchUpdateToOneWithWhereWithoutPptConversionJobsInput = {
+    where?: ResearchWhereInput
+    data: XOR<ResearchUpdateWithoutPptConversionJobsInput, ResearchUncheckedUpdateWithoutPptConversionJobsInput>
+  }
+
+  export type ResearchUpdateWithoutPptConversionJobsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
+    student?: StudentUpdateOneWithoutResearchNestedInput
+    Slide?: SlideUpdateManyWithoutResearchNestedInput
+  }
+
+  export type ResearchUncheckedUpdateWithoutPptConversionJobsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
+    Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
   }
 
   export type StudentCreateWithoutBlogInput = {
@@ -67558,7 +69309,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -67567,11 +69317,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
@@ -67579,7 +69331,6 @@ export namespace Prisma {
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
-    Research?: ResearchCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutBlogInput = {
@@ -67588,7 +69339,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -67598,18 +69348,19 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     parentAccountId?: number | null
+    graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
-    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutBlogInput = {
@@ -67633,7 +69384,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -67642,11 +69392,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
@@ -67654,7 +69406,6 @@ export namespace Prisma {
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutBlogInput = {
@@ -67663,7 +69414,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -67673,18 +69423,19 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AssignmentCreateManyTeacherInput = {
@@ -67695,13 +69446,13 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
     targetStudentId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
   }
 
   export type ClassScheduleCreateManyTeacherInput = {
@@ -67710,24 +69461,24 @@ export namespace Prisma {
     date: Date | string
     startTime: string
     endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
     subject: string
     description?: string | null
-    meetingMinutes?: string | null
     location?: string | null
     meetingLink?: string | null
     status?: string
     color?: string | null
     studentId: number
-    groupId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
     googleCalendarEventId?: string | null
+    groupId?: number | null
+    meetingMinutes?: string | null
     reminderJobId?: string | null
     reminderScheduledFor?: Date | string | null
     reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startDateTime?: Date | string | null
+    timezone?: string | null
   }
 
   export type ProgressReportCreateManyTeacherInput = {
@@ -67801,12 +69552,12 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     targetStudent?: StudentUpdateOneWithoutAssignedAssignmentsNestedInput
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
@@ -67820,13 +69571,13 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
     targetStudentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
   }
@@ -67839,13 +69590,13 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
     targetStudentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClassScheduleUpdateWithoutTeacherInput = {
@@ -67853,24 +69604,24 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
     reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
+    student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateWithoutTeacherInput = {
@@ -67879,24 +69630,24 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: IntFieldUpdateOperationsInput | number
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
     reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClassScheduleUncheckedUpdateManyWithoutTeacherInput = {
@@ -67905,24 +69656,24 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: IntFieldUpdateOperationsInput | number
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
     reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProgressReportUpdateWithoutTeacherInput = {
@@ -68057,8 +69808,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    members?: StudentGroupMemberUpdateManyWithoutGroupNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutGroupNestedInput
+    members?: StudentGroupMemberUpdateManyWithoutGroupNestedInput
   }
 
   export type StudentGroupUncheckedUpdateWithoutTeacherInput = {
@@ -68066,8 +69817,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    members?: StudentGroupMemberUncheckedUpdateManyWithoutGroupNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutGroupNestedInput
+    members?: StudentGroupMemberUncheckedUpdateManyWithoutGroupNestedInput
   }
 
   export type StudentGroupUncheckedUpdateManyWithoutTeacherInput = {
@@ -68128,13 +69879,28 @@ export namespace Prisma {
     program: string
     subject: string
     dueDate: Date | string
-    dueDateTimezone?: string | null
     totalPoints?: number
     isActive?: boolean
     allowLateSubmission?: boolean
     teacherId?: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    dueDateTimezone?: string | null
+  }
+
+  export type BlogCreateManyStudentInput = {
+    id?: number
+    title: string
+    abstract: string
+    externalUrl: string
+    studentPhoto?: string | null
+    publicationYear: number
+    publicationMonth: number
+    isApproved?: boolean
+    published?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    approvedAt?: Date | string | null
   }
 
   export type ClassScheduleCreateManyStudentInput = {
@@ -68143,24 +69909,24 @@ export namespace Prisma {
     date: Date | string
     startTime: string
     endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
     subject: string
     description?: string | null
-    meetingMinutes?: string | null
     location?: string | null
     meetingLink?: string | null
     status?: string
     color?: string | null
     teacherId: number
-    groupId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
     googleCalendarEventId?: string | null
+    groupId?: number | null
+    meetingMinutes?: string | null
     reminderJobId?: string | null
     reminderScheduledFor?: Date | string | null
     reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startDateTime?: Date | string | null
+    timezone?: string | null
   }
 
   export type EnrollmentCreateManyStudentInput = {
@@ -68185,8 +69951,6 @@ export namespace Prisma {
     paymentInfo: string
     amount?: string | null
     dueDate: string
-    dueDateUTC?: Date | string | null
-    dueDateTimezone?: string | null
     fileUrl?: string | null
     fileName?: string | null
     fileSize?: number | null
@@ -68195,6 +69959,8 @@ export namespace Prisma {
     paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    dueDateTimezone?: string | null
+    dueDateUTC?: Date | string | null
   }
 
   export type ProgressReportCreateManyStudentInput = {
@@ -68220,6 +69986,26 @@ export namespace Prisma {
     status?: string
     strengthsAreas?: string | null
     subject?: string | null
+  }
+
+  export type ResearchCreateManyStudentInput = {
+    id: string
+    title: string
+    slug: string
+    description?: string | null
+    createdAt: Date | string
+    author?: string | null
+    published?: boolean
+    pdfFilename?: string | null
+    abstract?: string | null
+    extractedAt?: Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    extractionStatus?: string | null
+    keywords?: ResearchCreatekeywordsInput | string[]
+    category?: string | null
+    grade?: string | null
+    school?: string | null
+    domain?: string | null
   }
 
   export type StudentGroupMemberCreateManyStudentInput = {
@@ -68280,8 +70066,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     videoLink?: string | null
-    beforeExpectations?: string | null
-    afterChanges?: string | null
     consentToFeature?: boolean
     experienceDescription?: string | null
     grade?: string | null
@@ -68297,41 +70081,8 @@ export namespace Prisma {
     programsApproved?: boolean
     ratingApproved?: boolean
     successStoryApproved?: boolean
-  }
-
-  export type ResearchCreateManyStudentInput = {
-    id: string
-    title: string
-    slug: string
-    description?: string | null
-    createdAt: Date | string
-    author?: string | null
-    grade?: string | null
-    school?: string | null
-    category?: string | null
-    domain?: string | null
-    published?: boolean
-    pdfFilename?: string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    abstract?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
-    extractedAt?: Date | string | null
-    extractionStatus?: string | null
-  }
-
-  export type BlogCreateManyStudentInput = {
-    id?: number
-    title: string
-    abstract: string
-    externalUrl: string
-    studentPhoto?: string | null
-    publicationYear: number
-    publicationMonth: number
-    isApproved?: boolean
-    published?: boolean
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    approvedAt?: Date | string | null
+    afterChanges?: string | null
+    beforeExpectations?: string | null
   }
 
   export type AssignmentUpdateWithoutTargetStudentInput = {
@@ -68341,12 +70092,12 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
@@ -68360,13 +70111,13 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
     teacherId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
   }
@@ -68379,13 +70130,57 @@ export namespace Prisma {
     program?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     totalPoints?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
     teacherId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type BlogUpdateWithoutStudentInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    abstract?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    publicationYear?: IntFieldUpdateOperationsInput | number
+    publicationMonth?: IntFieldUpdateOperationsInput | number
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type BlogUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    abstract?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    publicationYear?: IntFieldUpdateOperationsInput | number
+    publicationMonth?: IntFieldUpdateOperationsInput | number
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type BlogUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    abstract?: StringFieldUpdateOperationsInput | string
+    externalUrl?: StringFieldUpdateOperationsInput | string
+    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
+    publicationYear?: IntFieldUpdateOperationsInput | number
+    publicationMonth?: IntFieldUpdateOperationsInput | number
+    isApproved?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ClassScheduleUpdateWithoutStudentInput = {
@@ -68393,24 +70188,24 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
     reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
+    teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateWithoutStudentInput = {
@@ -68419,24 +70214,24 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     teacherId?: IntFieldUpdateOperationsInput | number
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
     reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClassScheduleUncheckedUpdateManyWithoutStudentInput = {
@@ -68445,24 +70240,24 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     location?: NullableStringFieldUpdateOperationsInput | string | null
     meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     color?: NullableStringFieldUpdateOperationsInput | string | null
     teacherId?: IntFieldUpdateOperationsInput | number
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
     reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
     reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EnrollmentUpdateWithoutStudentInput = {
@@ -68504,8 +70299,6 @@ export namespace Prisma {
     paymentInfo?: StringFieldUpdateOperationsInput | string
     amount?: NullableStringFieldUpdateOperationsInput | string | null
     dueDate?: StringFieldUpdateOperationsInput | string
-    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
@@ -68514,6 +70307,8 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Enrollment?: EnrollmentUpdateOneRequiredWithoutPaymentNestedInput
   }
 
@@ -68530,8 +70325,6 @@ export namespace Prisma {
     paymentInfo?: StringFieldUpdateOperationsInput | string
     amount?: NullableStringFieldUpdateOperationsInput | string | null
     dueDate?: StringFieldUpdateOperationsInput | string
-    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
@@ -68540,6 +70333,8 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type PaymentUncheckedUpdateManyWithoutStudentInput = {
@@ -68555,8 +70350,6 @@ export namespace Prisma {
     paymentInfo?: StringFieldUpdateOperationsInput | string
     amount?: NullableStringFieldUpdateOperationsInput | string | null
     dueDate?: StringFieldUpdateOperationsInput | string
-    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
@@ -68565,6 +70358,8 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ProgressReportUpdateWithoutStudentInput = {
@@ -68639,6 +70434,72 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     strengthsAreas?: NullableStringFieldUpdateOperationsInput | string | null
     subject?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ResearchUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
+    Slide?: SlideUpdateManyWithoutResearchNestedInput
+    pptConversionJobs?: PptConversionJobUpdateManyWithoutResearchNestedInput
+  }
+
+  export type ResearchUncheckedUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
+    AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
+    Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
+    pptConversionJobs?: PptConversionJobUncheckedUpdateManyWithoutResearchNestedInput
+  }
+
+  export type ResearchUncheckedUpdateManyWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    published?: BoolFieldUpdateOperationsInput | boolean
+    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    abstract?: NullableStringFieldUpdateOperationsInput | string | null
+    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    extractedContent?: NullableJsonNullValueInput | InputJsonValue
+    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
+    keywords?: ResearchUpdatekeywordsInput | string[]
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    school?: NullableStringFieldUpdateOperationsInput | string | null
+    domain?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StudentGroupMemberUpdateWithoutStudentInput = {
@@ -68791,8 +70652,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -68808,6 +70667,8 @@ export namespace Prisma {
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
     ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TestimonialUncheckedUpdateWithoutStudentInput = {
@@ -68820,8 +70681,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -68837,6 +70696,8 @@ export namespace Prisma {
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
     ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TestimonialUncheckedUpdateManyWithoutStudentInput = {
@@ -68849,8 +70710,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     videoLink?: NullableStringFieldUpdateOperationsInput | string | null
-    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
-    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
     consentToFeature?: BoolFieldUpdateOperationsInput | boolean
     experienceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: NullableStringFieldUpdateOperationsInput | string | null
@@ -68866,120 +70725,8 @@ export namespace Prisma {
     programsApproved?: BoolFieldUpdateOperationsInput | boolean
     ratingApproved?: BoolFieldUpdateOperationsInput | boolean
     successStoryApproved?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type ResearchUpdateWithoutStudentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
-    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
-    AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
-    Slide?: SlideUpdateManyWithoutResearchNestedInput
-  }
-
-  export type ResearchUncheckedUpdateWithoutStudentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
-    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
-    AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
-    Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
-  }
-
-  export type ResearchUncheckedUpdateManyWithoutStudentInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
-    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type BlogUpdateWithoutStudentInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    abstract?: StringFieldUpdateOperationsInput | string
-    externalUrl?: StringFieldUpdateOperationsInput | string
-    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
-    publicationYear?: IntFieldUpdateOperationsInput | number
-    publicationMonth?: IntFieldUpdateOperationsInput | number
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    published?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type BlogUncheckedUpdateWithoutStudentInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    abstract?: StringFieldUpdateOperationsInput | string
-    externalUrl?: StringFieldUpdateOperationsInput | string
-    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
-    publicationYear?: IntFieldUpdateOperationsInput | number
-    publicationMonth?: IntFieldUpdateOperationsInput | number
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    published?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type BlogUncheckedUpdateManyWithoutStudentInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    abstract?: StringFieldUpdateOperationsInput | string
-    externalUrl?: StringFieldUpdateOperationsInput | string
-    studentPhoto?: NullableStringFieldUpdateOperationsInput | string | null
-    publicationYear?: IntFieldUpdateOperationsInput | number
-    publicationMonth?: IntFieldUpdateOperationsInput | number
-    isApproved?: BoolFieldUpdateOperationsInput | boolean
-    published?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type StudentGroupMemberCreateManyGroupInput = {
-    id?: number
-    studentId: number
-    assignedAt?: Date | string
+    afterChanges?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeExpectations?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ClassScheduleCreateManyGroupInput = {
@@ -68988,24 +70735,107 @@ export namespace Prisma {
     date: Date | string
     startTime: string
     endTime: string
-    startDateTime?: Date | string | null
-    endDateTime?: Date | string | null
-    timezone?: string | null
     subject: string
     description?: string | null
-    meetingMinutes?: string | null
     location?: string | null
     meetingLink?: string | null
     status?: string
     color?: string | null
     studentId: number
     teacherId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
     googleCalendarEventId?: string | null
+    meetingMinutes?: string | null
     reminderJobId?: string | null
     reminderScheduledFor?: Date | string | null
     reminderSentAt?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
+    startDateTime?: Date | string | null
+    timezone?: string | null
+  }
+
+  export type StudentGroupMemberCreateManyGroupInput = {
+    id?: number
+    studentId: number
+    assignedAt?: Date | string
+  }
+
+  export type ClassScheduleUpdateWithoutGroupInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
+    student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
+    teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
+  }
+
+  export type ClassScheduleUncheckedUpdateWithoutGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ClassScheduleUncheckedUpdateManyWithoutGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StudentGroupMemberUpdateWithoutGroupInput = {
@@ -69023,83 +70853,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     studentId?: IntFieldUpdateOperationsInput | number
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ClassScheduleUpdateWithoutGroupInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: StringFieldUpdateOperationsInput | string
-    endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
-    subject?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
-    reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
-    reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
-    teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
-  }
-
-  export type ClassScheduleUncheckedUpdateWithoutGroupInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: StringFieldUpdateOperationsInput | string
-    endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
-    subject?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    studentId?: IntFieldUpdateOperationsInput | number
-    teacherId?: IntFieldUpdateOperationsInput | number
-    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
-    reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
-    reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ClassScheduleUncheckedUpdateManyWithoutGroupInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    startTime?: StringFieldUpdateOperationsInput | string
-    endTime?: StringFieldUpdateOperationsInput | string
-    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    timezone?: NullableStringFieldUpdateOperationsInput | string | null
-    subject?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
-    location?: NullableStringFieldUpdateOperationsInput | string | null
-    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
-    color?: NullableStringFieldUpdateOperationsInput | string | null
-    studentId?: IntFieldUpdateOperationsInput | number
-    teacherId?: IntFieldUpdateOperationsInput | number
-    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
-    reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
-    reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AssignmentResourceCreateManyAssignmentInput = {
@@ -69197,8 +70950,6 @@ export namespace Prisma {
     paymentInfo: string
     amount?: string | null
     dueDate: string
-    dueDateUTC?: Date | string | null
-    dueDateTimezone?: string | null
     fileUrl?: string | null
     fileName?: string | null
     fileSize?: number | null
@@ -69207,6 +70958,8 @@ export namespace Prisma {
     paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt: Date | string
+    dueDateTimezone?: string | null
+    dueDateUTC?: Date | string | null
   }
 
   export type PaymentUpdateWithoutEnrollmentInput = {
@@ -69220,8 +70973,6 @@ export namespace Prisma {
     paymentInfo?: StringFieldUpdateOperationsInput | string
     amount?: NullableStringFieldUpdateOperationsInput | string | null
     dueDate?: StringFieldUpdateOperationsInput | string
-    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
@@ -69230,6 +70981,8 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Student?: StudentUpdateOneRequiredWithoutPaymentNestedInput
   }
 
@@ -69246,8 +70999,6 @@ export namespace Prisma {
     paymentInfo?: StringFieldUpdateOperationsInput | string
     amount?: NullableStringFieldUpdateOperationsInput | string | null
     dueDate?: StringFieldUpdateOperationsInput | string
-    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
@@ -69256,6 +71007,8 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type PaymentUncheckedUpdateManyWithoutEnrollmentInput = {
@@ -69271,8 +71024,6 @@ export namespace Prisma {
     paymentInfo?: StringFieldUpdateOperationsInput | string
     amount?: NullableStringFieldUpdateOperationsInput | string | null
     dueDate?: StringFieldUpdateOperationsInput | string
-    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
@@ -69281,6 +71032,8 @@ export namespace Prisma {
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    dueDateUTC?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type AssignmentResourceCreateManyResourceInput = {
@@ -69370,7 +71123,6 @@ export namespace Prisma {
     email: string
     password?: string | null
     grade: string
-    graduationYear?: number | null
     schoolName: string
     parentName: string
     parentEmail: string
@@ -69379,6 +71131,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     isActivated?: boolean
+    graduationYear?: number | null
   }
 
   export type StudentUpdateWithoutParentAccountInput = {
@@ -69386,7 +71139,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -69395,19 +71147,20 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutParentAccountInput = {
@@ -69416,7 +71169,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -69425,19 +71177,20 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
-    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateManyWithoutParentAccountInput = {
@@ -69446,7 +71199,6 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     grade?: StringFieldUpdateOperationsInput | string
-    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     schoolName?: StringFieldUpdateOperationsInput | string
     parentName?: StringFieldUpdateOperationsInput | string
     parentEmail?: StringFieldUpdateOperationsInput | string
@@ -69455,6 +71207,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type EventRegistrationCreateManyEventInput = {
@@ -69580,6 +71333,17 @@ export namespace Prisma {
     imageFilename: string
   }
 
+  export type PptConversionJobCreateManyResearchInput = {
+    id?: string
+    cloudConvertJobId: string
+    status?: string
+    totalSlides?: number | null
+    processedSlides?: number
+    error?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type AccessRequestUpdateWithoutResearchInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -69626,6 +71390,39 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     order?: IntFieldUpdateOperationsInput | number
     imageFilename?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PptConversionJobUpdateWithoutResearchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
+    processedSlides?: IntFieldUpdateOperationsInput | number
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PptConversionJobUncheckedUpdateWithoutResearchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
+    processedSlides?: IntFieldUpdateOperationsInput | number
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PptConversionJobUncheckedUpdateManyWithoutResearchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
+    processedSlides?: IntFieldUpdateOperationsInput | number
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
