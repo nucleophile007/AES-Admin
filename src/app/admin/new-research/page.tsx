@@ -247,7 +247,7 @@ export default function NewResearchPage() {
                 <option value="">Select domain...</option>
                 <option value="AI/ML">AI/ML</option>
                 <option value="Pre-Med/BIO/CHEM">Pre-Med/BIO/CHEM</option>
-                <option value="Engg">Engg</option>
+                <option value="Engineering">Engineering</option>
                 <option value="Law & Political Sciences">Law & Political Sciences</option>
               </select>
             </div>

@@ -140,12 +140,12 @@ exports.Prisma.AvailabilityDayScalarFieldEnum = {
   id: 'id',
   date: 'date',
   times: 'times',
-  timesUTC: 'timesUTC',
-  timezone: 'timezone',
   program: 'program',
   adminEmail: 'adminEmail',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  timesUTC: 'timesUTC',
+  timezone: 'timezone'
 };
 
 exports.Prisma.TeacherScalarFieldEnum = {
@@ -158,9 +158,9 @@ exports.Prisma.TeacherScalarFieldEnum = {
   updatedAt: 'updatedAt',
   isActivated: 'isActivated',
   googleAccessToken: 'googleAccessToken',
+  googleCalendarConnected: 'googleCalendarConnected',
   googleRefreshToken: 'googleRefreshToken',
-  googleTokenExpiry: 'googleTokenExpiry',
-  googleCalendarConnected: 'googleCalendarConnected'
+  googleTokenExpiry: 'googleTokenExpiry'
 };
 
 exports.Prisma.StudentScalarFieldEnum = {
@@ -169,7 +169,6 @@ exports.Prisma.StudentScalarFieldEnum = {
   email: 'email',
   password: 'password',
   grade: 'grade',
-  graduationYear: 'graduationYear',
   schoolName: 'schoolName',
   parentName: 'parentName',
   parentEmail: 'parentEmail',
@@ -178,7 +177,8 @@ exports.Prisma.StudentScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isActivated: 'isActivated',
-  parentAccountId: 'parentAccountId'
+  parentAccountId: 'parentAccountId',
+  graduationYear: 'graduationYear'
 };
 
 exports.Prisma.TeacherStudentScalarFieldEnum = {
@@ -212,14 +212,14 @@ exports.Prisma.AssignmentScalarFieldEnum = {
   program: 'program',
   subject: 'subject',
   dueDate: 'dueDate',
-  dueDateTimezone: 'dueDateTimezone',
   totalPoints: 'totalPoints',
   isActive: 'isActive',
   allowLateSubmission: 'allowLateSubmission',
   teacherId: 'teacherId',
   targetStudentId: 'targetStudentId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  dueDateTimezone: 'dueDateTimezone'
 };
 
 exports.Prisma.SubmissionScalarFieldEnum = {
@@ -323,25 +323,25 @@ exports.Prisma.ClassScheduleScalarFieldEnum = {
   date: 'date',
   startTime: 'startTime',
   endTime: 'endTime',
-  startDateTime: 'startDateTime',
-  endDateTime: 'endDateTime',
-  timezone: 'timezone',
   subject: 'subject',
   description: 'description',
-  meetingMinutes: 'meetingMinutes',
   location: 'location',
   meetingLink: 'meetingLink',
   status: 'status',
   color: 'color',
   studentId: 'studentId',
   teacherId: 'teacherId',
-  groupId: 'groupId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  endDateTime: 'endDateTime',
   googleCalendarEventId: 'googleCalendarEventId',
+  groupId: 'groupId',
+  meetingMinutes: 'meetingMinutes',
   reminderJobId: 'reminderJobId',
   reminderScheduledFor: 'reminderScheduledFor',
   reminderSentAt: 'reminderSentAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  startDateTime: 'startDateTime',
+  timezone: 'timezone'
 };
 
 exports.Prisma.ActivationRequestScalarFieldEnum = {
@@ -391,8 +391,6 @@ exports.Prisma.PaymentScalarFieldEnum = {
   paymentInfo: 'paymentInfo',
   amount: 'amount',
   dueDate: 'dueDate',
-  dueDateUTC: 'dueDateUTC',
-  dueDateTimezone: 'dueDateTimezone',
   fileUrl: 'fileUrl',
   fileName: 'fileName',
   fileSize: 'fileSize',
@@ -400,7 +398,9 @@ exports.Prisma.PaymentScalarFieldEnum = {
   sentAt: 'sentAt',
   paidAt: 'paidAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  dueDateTimezone: 'dueDateTimezone',
+  dueDateUTC: 'dueDateUTC'
 };
 
 exports.Prisma.TestimonialScalarFieldEnum = {
@@ -414,8 +414,6 @@ exports.Prisma.TestimonialScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   videoLink: 'videoLink',
-  beforeExpectations: 'beforeExpectations',
-  afterChanges: 'afterChanges',
   consentToFeature: 'consentToFeature',
   experienceDescription: 'experienceDescription',
   grade: 'grade',
@@ -430,7 +428,9 @@ exports.Prisma.TestimonialScalarFieldEnum = {
   contentApproved: 'contentApproved',
   programsApproved: 'programsApproved',
   ratingApproved: 'ratingApproved',
-  successStoryApproved: 'successStoryApproved'
+  successStoryApproved: 'successStoryApproved',
+  afterChanges: 'afterChanges',
+  beforeExpectations: 'beforeExpectations'
 };
 
 exports.Prisma.SecurityLogScalarFieldEnum = {
@@ -667,18 +667,18 @@ exports.Prisma.ResearchScalarFieldEnum = {
   description: 'description',
   createdAt: 'createdAt',
   author: 'author',
-  grade: 'grade',
-  school: 'school',
-  category: 'category',
-  domain: 'domain',
-  studentId: 'studentId',
   published: 'published',
   pdfFilename: 'pdfFilename',
-  extractedContent: 'extractedContent',
   abstract: 'abstract',
-  keywords: 'keywords',
   extractedAt: 'extractedAt',
-  extractionStatus: 'extractionStatus'
+  extractedContent: 'extractedContent',
+  extractionStatus: 'extractionStatus',
+  keywords: 'keywords',
+  category: 'category',
+  grade: 'grade',
+  school: 'school',
+  studentId: 'studentId',
+  domain: 'domain'
 };
 
 exports.Prisma.SlideScalarFieldEnum = {
@@ -686,6 +686,18 @@ exports.Prisma.SlideScalarFieldEnum = {
   researchId: 'researchId',
   order: 'order',
   imageFilename: 'imageFilename'
+};
+
+exports.Prisma.PptConversionJobScalarFieldEnum = {
+  id: 'id',
+  researchId: 'researchId',
+  cloudConvertJobId: 'cloudConvertJobId',
+  status: 'status',
+  totalSlides: 'totalSlides',
+  processedSlides: 'processedSlides',
+  error: 'error',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.BlogScalarFieldEnum = {
@@ -771,6 +783,7 @@ exports.Prisma.ModelName = {
   AccessRequest: 'AccessRequest',
   Research: 'Research',
   Slide: 'Slide',
+  PptConversionJob: 'PptConversionJob',
   Blog: 'Blog'
 };
 

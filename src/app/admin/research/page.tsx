@@ -44,7 +44,7 @@ export default function ResearchAdminPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [categoryFilter, setCategoryFilter] = useState<'all' | 'IGNITE' | 'ELEVATE' | 'TRANSFORM'>('all')
-  const [domainFilter, setDomainFilter] = useState<'all' | 'AI/ML' | 'Pre-Med/BIO/CHEM' | 'Engg' | 'Law & Political Sciences'>('all')
+  const [domainFilter, setDomainFilter] = useState<'all' | 'AI/ML' | 'Pre-Med/BIO/CHEM' | 'Engineering' | 'Law & Political Sciences'>('all')
   const [searchTerm, setSearchTerm] = useState('')
   
   // Modal states
@@ -348,14 +348,14 @@ export default function ResearchAdminPage() {
                   Pre-Med/BIO/CHEM
                 </button>
                 <button
-                  onClick={() => setDomainFilter('Engg')}
+                  onClick={() => setDomainFilter('Engineering')}
                   className={`px-3 py-2 rounded-lg font-medium transition-colors text-sm ${
-                    domainFilter === 'Engg'
+                    domainFilter === 'Engineering'
                       ? 'bg-indigo-600 text-white'
                       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                   }`}
                 >
-                  Engg
+                  Engineering
                 </button>
                 <button
                   onClick={() => setDomainFilter('Law & Political Sciences')}
