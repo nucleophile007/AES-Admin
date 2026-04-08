@@ -111,8 +111,7 @@ export default function AdminAPITestPage() {
           <button
             onClick={() => testAPI('/api/admin/availability', 'POST', { 
               date: '2025-01-20', 
-              times: ['10:00 AM', '2:00 PM'],
-              program: 'Mathematics Tutoring'
+              times: ['10:00 AM', '2:00 PM']
             })}
             disabled={loading['/api/admin/availability']}
             className="bg-green-600 text-white py-3 px-4 rounded-lg hover:bg-green-700 disabled:opacity-50"

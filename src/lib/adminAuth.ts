@@ -1,5 +1,4 @@
-import { getServerSession } from 'next-auth/next'
-import { authOptions } from '@/lib/authOptions'
+import { auth } from '@/auth'
 import { allowedEmails } from '@/lib/adminConfig'
 import type { Session } from 'next-auth'
 
@@ -16,10 +15,11 @@ export interface AdminAuthResult {
  */
 export async function checkAdminAuth(): Promise<AdminAuthResult> {
   try {
-    const session = await getServerSession(authOptions) as Session | null
+    const session = await auth()
 
     // Check if session exists and has valid user
-    if (!session?.user?.email) {      return {
+    if (!session?.user?.email) {
+      return {
         success: false,
         error: 'Not authenticated - please sign in',
         statusCode: 401
@@ -56,7 +56,7 @@ export async function checkAdminAuth(): Promise<AdminAuthResult> {
 export function withAdminAuth(handler: (session: Session, ...args: any[]) => Promise<Response>) {
   return async (...args: any[]): Promise<Response> => {
     const authResult = await checkAdminAuth()
-    
+
     if (!authResult.success) {
       return Response.json(
         { error: authResult.error },

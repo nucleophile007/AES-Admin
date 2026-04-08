@@ -1,85 +1,46 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ChevronLeft, ChevronRight, ArrowLeft, CheckCircle2, Calendar } from "lucide-react"
+import { ChevronLeft, ChevronRight, ArrowLeft, Calendar } from "lucide-react"
 import Link from "next/link"
 
-// Helper to get interval (in minutes) for a program
-function getIntervalForProgram(program: string) {
-  if (program === 'Academic Tutoring' || program === 'SAT Coaching') return 30;
-  return 60;
-}
-
-// Convert time string to minutes since midnight
-function timeToMinutes(timeStr: string): number {
-  const [time, period] = timeStr.split(' ')
-  const [hours, minutes] = time.split(':').map(Number)
-  let totalHours = hours
-  
-  if (period === 'PM' && hours !== 12) {
-    totalHours += 12
-  } else if (period === 'AM' && hours === 12) {
-    totalHours = 0
-  }
-  
-  return totalHours * 60 + minutes
-}
-
-// Check if two time slots overlap or one includes the other
-function timeSlotsOverlap(time1: string, duration1: number, time2: string, duration2: number): boolean {
-  const start1 = timeToMinutes(time1)
-  const end1 = start1 + duration1
-  const start2 = timeToMinutes(time2)
-  const end2 = start2 + duration2
-  
-  // Check for overlap: start1 < end2 AND start2 < end1
-  return start1 < end2 && start2 < end1
-}
-
-// Generate time slots for a day based on interval (full 24 hours)
 function generateTimeSlots(interval: number) {
-  const slots: string[] = [];
-  let hour = 0;
-  let minute = 0;
+  const slots: string[] = []
+  let hour = 0
+  let minute = 0
+
   while (hour < 24) {
-    const ampm = hour < 12 ? 'AM' : 'PM';
-    const displayHour = hour % 12 === 0 ? 12 : hour % 12;
-    const displayMinute = minute.toString().padStart(2, '0');
-    slots.push(`${displayHour}:${displayMinute} ${ampm}`);
-    minute += interval;
+    const ampm = hour < 12 ? "AM" : "PM"
+    const displayHour = hour % 12 === 0 ? 12 : hour % 12
+    const displayMinute = minute.toString().padStart(2, "0")
+    slots.push(`${displayHour}:${displayMinute} ${ampm}`)
+
+    minute += interval
     if (minute >= 60) {
-      hour += 1;
-      minute = 0;
+      hour += 1
+      minute = 0
     }
   }
-  return slots;
+
+  return slots
 }
 
-// Available programs
-const PROGRAMS = [
-  'Academic Tutoring',
-  'College Prep', 
-  'SAT Coaching',
-  'Research Program',
-  'Olympiads',
-  'Parent Meet'
-]
+const SLOT_INTERVAL_MINUTES = 30
 
 export default function AdminAvailabilityPage() {
-  const [selectedProgram, setSelectedProgram] = useState<string>(PROGRAMS[0])
   const [selectedDate, setSelectedDate] = useState<string>("")
   const [selectedTimes, setSelectedTimes] = useState<string[]>([])
   const [loading, setLoading] = useState(false)
   const [initialLoading, setInitialLoading] = useState(true)
-  const [allAvailability, setAllAvailability] = useState<Record<string, Record<string, string[]>>>({}) // program -> date -> times
-  const [draftChanges, setDraftChanges] = useState<Record<string, Record<string, string[]>>>({}) // program -> date -> times
-  const [dirtyKeys, setDirtyKeys] = useState<Set<string>>(new Set()) // "program-date" keys
+  const [allAvailability, setAllAvailability] = useState<Record<string, string[]>>({})
+  const [draftChanges, setDraftChanges] = useState<Record<string, string[]>>({})
+  const [dirtyDates, setDirtyDates] = useState<Set<string>>(new Set())
 
   // Calendar state & helpers
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date())
-  const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  
+
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear()
     const month = date.getMonth()
@@ -94,7 +55,8 @@ export default function AdminAvailabilityPage() {
   }
 
   const navigateMonth = (direction: "prev" | "next", e: React.MouseEvent) => {
-    e.preventDefault(); e.stopPropagation()
+    e.preventDefault()
+    e.stopPropagation()
     setCurrentMonth((prev) => {
       const n = new Date(prev)
       n.setMonth(prev.getMonth() + (direction === "next" ? 1 : -1))
@@ -109,182 +71,136 @@ export default function AdminAvailabilityPage() {
   }
 
   const isSelectedDate = (day: number) => selectedDate === formatDate(day)
-  
+
+  const getCurrentTimesForDate = (date: string): string[] => {
+    if (draftChanges[date] !== undefined) {
+      return draftChanges[date]
+    }
+    return allAvailability[date] || []
+  }
+
   const dayHasAvailability = (day: number) => {
     const date = formatDate(day)
-    if (!selectedProgram) return false
-    const times = getCurrentTimesForProgramDate(selectedProgram, date)
-    return times.length > 0
+    return getCurrentTimesForDate(date).length > 0
   }
 
   const calendarDays = getDaysInMonth(currentMonth)
 
-  // Helper to get current times for a program-date combination (including draft changes)
-  const getCurrentTimesForProgramDate = (program: string, date: string): string[] => {
-    if (draftChanges[program]?.[date] !== undefined) {
-      return draftChanges[program][date]
-    }
-    return allAvailability[program]?.[date] || []
-  }
-
-  // Load all availability data
   const loadAllAvailability = async () => {
     setInitialLoading(true)
     try {
-      const data: Record<string, Record<string, string[]>> = {}
-      
-      for (const program of PROGRAMS) {
-        const res = await fetch(`/api/admin/availability?program=${encodeURIComponent(program)}`)
-        if (res.ok) {
-          const json = await res.json()
-          const programData: Record<string, string[]> = {}
-          for (const d of json.days || []) {
-            programData[d.date] = d.times || []
+      const res = await fetch("/api/admin/availability")
+      if (!res.ok) {
+        throw new Error("Failed to load availability")
+      }
+
+      const json = await res.json()
+      const dataSets: Record<string, Set<string>> = {}
+      for (const d of json.days || []) {
+        if (!d?.date) continue
+        if (!dataSets[d.date]) {
+          dataSets[d.date] = new Set<string>()
+        }
+        const times = Array.isArray(d.times) ? d.times : []
+        for (const t of times) {
+          if (typeof t === "string" && t.trim()) {
+            dataSets[d.date].add(t.trim())
           }
-          data[program] = programData
-        } else {
-          data[program] = {}
         }
       }
-      
+      const data: Record<string, string[]> = {}
+      for (const [date, times] of Object.entries(dataSets)) {
+        data[date] = Array.from(times).sort((a, b) => a.localeCompare(b))
+      }
+
       setAllAvailability(data)
       setDraftChanges({})
-      setDirtyKeys(new Set())
+      setDirtyDates(new Set())
     } catch (error) {
-      console.error('Failed to load availability:', error)
-      const emptyData: Record<string, Record<string, string[]>> = {}
-      PROGRAMS.forEach(p => emptyData[p] = {})
-      setAllAvailability(emptyData)
+      console.error("Failed to load availability:", error)
+      setAllAvailability({})
       setDraftChanges({})
+      setDirtyDates(new Set())
     } finally {
       setInitialLoading(false)
     }
   }
 
-  // Initial load
   useEffect(() => {
     loadAllAvailability()
   }, [])
 
-  // Update selected times when date or program changes
-  const updateSelectedTimes = () => {
-    if (!selectedDate || !selectedProgram) {
+  useEffect(() => {
+    if (!selectedDate) {
       setSelectedTimes([])
       return
     }
-    setSelectedTimes(getCurrentTimesForProgramDate(selectedProgram, selectedDate))
+    setSelectedTimes(getCurrentTimesForDate(selectedDate))
+  }, [selectedDate, allAvailability, draftChanges])
+
+  const markDirty = (date: string) => {
+    const newDirtyDates = new Set(dirtyDates)
+    newDirtyDates.add(date)
+    setDirtyDates(newDirtyDates)
   }
 
-  useEffect(() => {
-    updateSelectedTimes()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedDate, selectedProgram, allAvailability, draftChanges])
-
-  // Select a program (only one at a time)
-  const selectProgram = (program: string) => {
-    setSelectedProgram(program)
-  }
-
-  // Mark dirty key
-  const markDirty = (program: string, date: string) => {
-    const newDirtyKeys = new Set(dirtyKeys)
-    newDirtyKeys.add(`${program}-${date}`)
-    setDirtyKeys(newDirtyKeys)
-  }
-
-  // Check if a time slot overlaps with any existing slots in other programs
-  const checkTimeOverlap = (time: string, currentProgram: string, date: string): { hasOverlap: boolean; conflictingProgram?: string } => {
-    const currentDuration = getIntervalForProgram(currentProgram)
-    
-    // Check against all other programs
-    for (const program of PROGRAMS) {
-      if (program === currentProgram) continue
-      
-      const otherTimes = getCurrentTimesForProgramDate(program, date)
-      const otherDuration = getIntervalForProgram(program)
-      
-      for (const otherTime of otherTimes) {
-        if (timeSlotsOverlap(time, currentDuration, otherTime, otherDuration)) {
-          return { hasOverlap: true, conflictingProgram: program }
-        }
-      }
-    }
-    
-    return { hasOverlap: false }
-  }
-
-  // Toggle time slot for selected program
   const toggleTime = (time: string) => {
-    if (!selectedDate || !selectedProgram) return
-
-    // If adding a time slot, check for overlaps
-    if (!selectedTimes.includes(time)) {
-      const overlap = checkTimeOverlap(time, selectedProgram, selectedDate)
-      if (overlap.hasOverlap) {
-        alert(`Time slot ${time} overlaps with an existing slot in ${overlap.conflictingProgram}. Please choose a different time slot or remove the conflicting slot first.`)
-        return
-      }
-    }
+    if (!selectedDate) return
 
     const newTimes = selectedTimes.includes(time)
-      ? selectedTimes.filter(t => t !== time)
+      ? selectedTimes.filter((t) => t !== time)
       : [...selectedTimes, time].sort()
 
     setSelectedTimes(newTimes)
 
-    // Update draft changes for selected program
-    setDraftChanges(prev => {
-      const next = { ...prev }
-      if (!next[selectedProgram]) next[selectedProgram] = {}
-      next[selectedProgram][selectedDate] = newTimes
-      return next
-    })
+    setDraftChanges((prev) => ({
+      ...prev,
+      [selectedDate]: newTimes
+    }))
 
-    markDirty(selectedProgram, selectedDate)
+    markDirty(selectedDate)
   }
 
-  // Save all changes
   const saveAll = async () => {
-    if (dirtyKeys.size === 0) return
+    if (dirtyDates.size === 0) return
 
     setLoading(true)
     try {
-      const payload: Array<{ date: string; times: string[]; program: string }> = []
+      const payload: Array<{ date: string; times: string[] }> = []
 
-      // Build payload from dirty keys
-      for (const dirtyKey of dirtyKeys) {
-        const [program, date] = dirtyKey.split('-')
-        const times = draftChanges[program]?.[date] ?? []
+      for (const date of dirtyDates) {
+        const times = draftChanges[date] ?? []
         payload.push({
           date,
-          times: times.slice().sort((a, b) => a.localeCompare(b)),
-          program
+          times: times.slice().sort((a, b) => a.localeCompare(b))
         })
       }
 
-      const res = await fetch('/api/admin/availability', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/admin/availability", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       })
-      if (!res.ok) throw new Error('Save failed')
+      if (!res.ok) throw new Error("Save failed")
       await loadAllAvailability()
     } catch (e) {
       console.error(e)
-      alert('Failed to save availability')
+      alert("Failed to save availability")
     } finally {
       setLoading(false)
     }
   }
 
-  if (initialLoading) return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="text-center">
-        <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
-        <p className="mt-4 text-gray-600">Loading availability...</p>
+  if (initialLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
+          <p className="mt-4 text-gray-600">Loading availability...</p>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -297,8 +213,8 @@ export default function AdminAvailabilityPage() {
                 <Calendar className="h-6 w-6 text-yellow-300" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Manage Program Availability</h1>
-                <p className="text-sm text-gray-700">Set available time slots for multiple programs at once</p>
+                <h1 className="text-2xl font-bold text-gray-900">Manage Availability Slots</h1>
+                <p className="text-sm text-gray-700">Select only date and time slots</p>
               </div>
             </div>
             <Link
@@ -313,201 +229,141 @@ export default function AdminAvailabilityPage() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-
-        {/* Program Selection */}
-        <div className="mb-6">
-          <h2 className="text-lg font-semibold mb-3 text-gray-900">Select Program</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {PROGRAMS.map((program) => (
-            <button
-              key={program}
-              onClick={() => selectProgram(program)}
-              className={`p-3 rounded-lg border text-sm font-medium transition-all ${
-                selectedProgram === program
-                  ? 'bg-blue-600 text-white border-blue-600 shadow-lg'
-                  : 'bg-white text-gray-700 border-gray-200 hover:bg-blue-50 hover:border-blue-300'
-              }`}
-            >
-              {program}
-              {selectedProgram === program && (
-                <CheckCircle2 className="w-4 h-4 ml-2 inline-block" />
-              )}
-            </button>
-          ))}
-        </div>
-      </div>
-
-        {/* Selected Program Info */}
-        {selectedProgram && (
-          <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="font-semibold text-blue-900">
-                  Managing: {selectedProgram}
-                </h3>
-                <p className="text-sm text-blue-700">
-                  Set available time slots for this program
-                </p>
-              </div>
-              <div className="flex items-center gap-3 text-sm text-blue-600">
+        <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="font-semibold text-blue-900">Slot Availability</h3>
+              <p className="text-sm text-blue-700">Choose date first, then select one or more time slots</p>
+            </div>
+            <div className="flex items-center gap-3 text-sm text-blue-600">
+              <span className="inline-flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-green-500" /> has slots
+              </span>
+              {dirtyDates.size > 0 && (
                 <span className="inline-flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-green-500"/> has slots
+                  <span className="w-2 h-2 rounded-full bg-yellow-400" /> unsaved changes ({dirtyDates.size})
                 </span>
-                {dirtyKeys.size > 0 && (
-                  <span className="inline-flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-yellow-400"/> unsaved changes ({dirtyKeys.size})
-                  </span>
-                )}
-              </div>
+              )}
             </div>
           </div>
-        )}
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Calendar column */}
           <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-6">
             <div className="flex items-center justify-between mb-6">
-            <button 
-              className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
-              type="button" 
-              onClick={(e: React.MouseEvent)=>navigateMonth('prev', e)}
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <h4 className="text-xl font-semibold text-gray-900">
-              {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
-            </h4>
-            <button 
-              className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
-              type="button" 
-              onClick={(e: React.MouseEvent)=>navigateMonth('next', e)}
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
+              <button
+                className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
+                type="button"
+                onClick={(e: React.MouseEvent) => navigateMonth("prev", e)}
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <h4 className="text-xl font-semibold text-gray-900">
+                {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+              </h4>
+              <button
+                className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
+                type="button"
+                onClick={(e: React.MouseEvent) => navigateMonth("next", e)}
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
             </div>
-          
+
             <div className="grid grid-cols-7 gap-2 mb-3">
-            {daysOfWeek.map(d => (
-              <div key={d} className="text-center text-sm font-semibold text-gray-700 py-2">
-                {d}
-              </div>
-            ))}
+              {daysOfWeek.map((d) => (
+                <div key={d} className="text-center text-sm font-semibold text-gray-700 py-2">
+                  {d}
+                </div>
+              ))}
             </div>
-          
+
             <div className="grid grid-cols-7 gap-2">
-            {calendarDays.map((day, idx) => (
-              <div key={idx} className="aspect-square flex items-center justify-center">
-                {day && (
-                  <button
-                    type="button"
-                    onClick={() => setSelectedDate(formatDate(day))}
-                    className={`w-12 h-12 rounded-full text-sm font-semibold transition-all ${
-                      isSelectedDate(day)
-                        ? 'bg-blue-600 text-white shadow-lg ring-2 ring-blue-300'
-                        : 'bg-white text-gray-700 border border-gray-200 hover:bg-blue-50 hover:border-blue-300'
-                    }`}
-                    disabled={!selectedProgram}
-                  >
-                    <span className="relative">
-                      {day}
-                      {dayHasAvailability(day) && (
-                        <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-green-500 rounded-full" />
-                      )}
-                    </span>
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
+              {calendarDays.map((day, idx) => (
+                <div key={idx} className="aspect-square flex items-center justify-center">
+                  {day && (
+                    <button
+                      type="button"
+                      onClick={() => setSelectedDate(formatDate(day))}
+                      className={`w-12 h-12 rounded-full text-sm font-semibold transition-all ${
+                        isSelectedDate(day)
+                          ? "bg-blue-600 text-white shadow-lg ring-2 ring-blue-300"
+                          : "bg-white text-gray-700 border border-gray-200 hover:bg-blue-50 hover:border-blue-300"
+                      }`}
+                    >
+                      <span className="relative">
+                        {day}
+                        {dayHasAvailability(day) && (
+                          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-green-500 rounded-full" />
+                        )}
+                      </span>
+                    </button>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Times column */}
           <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-6">
             <div className="flex items-center justify-between mb-4">
-            <div>
-              <h2 className="text-xl font-semibold text-gray-900">Time Slots</h2>
-              <p className="text-sm text-gray-600">
-                {selectedDate 
-                  ? `Selected: ${selectedDate} | ${selectedProgram}`
-                  : !selectedProgram
-                    ? 'Select program first'
-                    : 'Select a date from calendar'
-                }
-              </p>
-            </div>
-              <button 
-                onClick={saveAll} 
-                disabled={loading || dirtyKeys.size === 0}
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900">Time Slots</h2>
+                <p className="text-sm text-gray-600">
+                  {selectedDate ? `Selected: ${selectedDate}` : "Select a date from calendar"}
+                </p>
+              </div>
+              <button
+                onClick={saveAll}
+                disabled={loading || dirtyDates.size === 0}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
-                {loading ? 'Saving...' : `Save All ${dirtyKeys.size > 0 ? `(${dirtyKeys.size})` : ''}`}
+                {loading ? "Saving..." : `Save All ${dirtyDates.size > 0 ? `(${dirtyDates.size})` : ""}`}
               </button>
             </div>
 
             {/* Legend */}
             <div className="mb-4 flex flex-wrap gap-4 text-xs bg-blue-50 p-3 rounded-lg border border-blue-100">
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-blue-500 border border-blue-500 rounded"></span>
-              <span className="text-gray-700">Selected for this program</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-red-50 border border-red-200 rounded relative">
-                <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-red-500 rounded-full"></span>
-              </span>
-              <span className="text-gray-700">Overlaps with another program</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-4 h-4 bg-white border border-gray-200 rounded"></span>
-              <span className="text-gray-700">Available to select</span>
-            </div>
+              <div className="flex items-center gap-2">
+                <span className="w-4 h-4 bg-blue-500 border border-blue-500 rounded"></span>
+                <span className="text-gray-700">Selected slot</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-4 h-4 bg-white border border-gray-200 rounded"></span>
+                <span className="text-gray-700">Available to select</span>
+              </div>
             </div>
 
             <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
-            {generateTimeSlots(getIntervalForProgram(selectedProgram)).map((time) => {
-              const active = selectedTimes.includes(time)
-              const overlap = selectedDate ? checkTimeOverlap(time, selectedProgram, selectedDate) : { hasOverlap: false }
-              const isBlocked = overlap.hasOverlap && !active
-              
-              return (
-                <button
-                  key={time}
-                  type="button"
-                  onClick={() => toggleTime(time)}
-                  className={`p-2 rounded border text-xs font-medium transition-all relative ${
-                    active
-                      ? 'bg-blue-500 text-white border-blue-500 shadow'
-                      : isBlocked
-                      ? 'bg-red-50 text-red-400 border-red-200 cursor-not-allowed line-through'
-                      : 'bg-white text-gray-700 border-gray-200 hover:bg-blue-50 hover:border-blue-300'
-                  }`}
-                  disabled={!selectedDate || !selectedProgram || isBlocked}
-                  title={isBlocked ? `Overlaps with ${overlap.conflictingProgram}` : ''}
-                >
-                  {time}
-                  {isBlocked && (
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full" />
-                  )}
-                </button>
-              )
-            })}
+              {generateTimeSlots(SLOT_INTERVAL_MINUTES).map((time) => {
+                const active = selectedTimes.includes(time)
+
+                return (
+                  <button
+                    key={time}
+                    type="button"
+                    onClick={() => toggleTime(time)}
+                    className={`p-2 rounded border text-xs font-medium transition-all ${
+                      active
+                        ? "bg-blue-500 text-white border-blue-500 shadow"
+                        : "bg-white text-gray-700 border-gray-200 hover:bg-blue-50 hover:border-blue-300"
+                    }`}
+                    disabled={!selectedDate}
+                  >
+                    {time}
+                  </button>
+                )
+              })}
             </div>
 
-            {selectedDate && selectedProgram && (
+            {selectedDate && (
               <div className="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-                <h3 className="font-semibold mb-3 text-gray-900">
-                  Selected Times for {selectedDate}
-                  <span className="ml-2 text-sm font-normal text-blue-600">
-                    ({selectedProgram})
-                  </span>
-                </h3>
+                <h3 className="font-semibold mb-3 text-gray-900">Selected Times for {selectedDate}</h3>
                 <div className="flex flex-wrap gap-2">
                   {selectedTimes.length > 0 ? (
-                    selectedTimes.sort((a,b)=>a.localeCompare(b)).map(t => (
-                      <span 
-                        key={t} 
-                        className="px-3 py-1 text-sm rounded-full font-medium bg-blue-100 text-blue-800"
-                      >
+                    [...selectedTimes].sort((a, b) => a.localeCompare(b)).map((t) => (
+                      <span key={t} className="px-3 py-1 text-sm rounded-full font-medium bg-blue-100 text-blue-800">
                         {t}
                       </span>
                     ))
@@ -518,6 +374,7 @@ export default function AdminAvailabilityPage() {
               </div>
             )}
           </div>
+        </div>
       </div>
     </div>
   )

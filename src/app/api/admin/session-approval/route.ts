@@ -32,9 +32,23 @@ export async function GET() {
     const adminAvailability = await prisma.availabilityDay.findMany({
       where: { adminEmail }
     })
+    const availabilityByDate = new Map<string, Set<string>>()
+    for (const day of adminAvailability) {
+      const dateKey = day.date
+      if (!availabilityByDate.has(dateKey)) {
+        availabilityByDate.set(dateKey, new Set())
+      }
+      const set = availabilityByDate.get(dateKey)!
+      const times = Array.isArray(day.times) ? day.times : []
+      for (const time of times) {
+        if (typeof time === 'string' && time.trim()) {
+          set.add(time.trim())
+        }
+      }
+    }
 
     // Filter registrations to only show those where:
-    // 1. The admin has availability for that date/time/program, OR
+    // 1. The admin has availability for that date/time, OR
     // 2. The admin has already approved this registration
     const relevantRegistrations = allRegistrations.filter((reg: any) => {
       // If admin already approved it, always show it
@@ -44,22 +58,18 @@ export async function GET() {
 
       // Parse the registration's preferred time
       const { date, time } = parsePreferred(reg.preferredTime)
-      if (!date || !time || !reg.program) {
+      if (!date || !time) {
         return false
       }
 
-      // Check if admin has availability for this date/time/program
-      const availabilityDay = adminAvailability.find((day: any) => 
-        day.date === date && day.program === reg.program
-      )
-
-      if (!availabilityDay) {
+      // Check if admin has availability for this date/time
+      const availableTimes = availabilityByDate.get(date)
+      if (!availableTimes) {
         return false
       }
 
       // Check if the specific time slot is available
-      const availableTimes = (availabilityDay.times as string[]) || []
-      return availableTimes.includes(time)
+      return availableTimes.has(time)
     })
 
     const totalCount = relevantRegistrations.length

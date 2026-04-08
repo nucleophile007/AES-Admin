@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from '@/auth'
 import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // GET /api/admin/students
 export async function GET() {
   // Verify admin permissions
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return NextResponse.json({ error: "Not authorized" }, { status: 403 })
   }
@@ -29,6 +28,15 @@ export async function GET() {
     console.log("Fetching students from database...")
     // Get all students from the database
     const students = await prisma.student.findMany({
+      include: {
+        parentAccount: {
+          select: {
+            id: true,
+            email: true,
+            isActivated: true
+          }
+        }
+      },
       orderBy: {
         createdAt: "desc"
       }
@@ -48,7 +56,7 @@ export async function GET() {
 // POST /api/admin/students
 export async function POST(request: NextRequest) {
   // Verify admin permissions
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return NextResponse.json({ error: "Not authorized" }, { status: 403 })
   }

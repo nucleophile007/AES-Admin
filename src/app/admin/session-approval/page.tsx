@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useDeferredValue, useEffect, useMemo, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
@@ -28,12 +28,39 @@ export default function SessionApprovalPage() {
   const router = useRouter()
   
   const [data, setData] = useState<SessionApproval[]>([])
-  const [filteredData, setFilteredData] = useState<SessionApproval[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
+  const deferredSearchTerm = useDeferredValue(searchTerm)
   const [selectedProgram, setSelectedProgram] = useState("all")
   const [approving, setApproving] = useState<Set<number>>(new Set())
+  const normalizedSearchTerm = useMemo(
+    () => deferredSearchTerm.trim().toLowerCase(),
+    [deferredSearchTerm],
+  )
+  const programs = useMemo(
+    () => [...new Set(data.map((reg) => reg.program))],
+    [data],
+  )
+  const filteredData = useMemo(() => {
+    let filtered = data
+
+    if (normalizedSearchTerm) {
+      filtered = filtered.filter(
+        (reg) =>
+          reg.studentName.toLowerCase().includes(normalizedSearchTerm) ||
+          reg.parentName.toLowerCase().includes(normalizedSearchTerm) ||
+          reg.email.toLowerCase().includes(normalizedSearchTerm) ||
+          reg.schoolName.toLowerCase().includes(normalizedSearchTerm),
+      )
+    }
+
+    if (selectedProgram !== "all") {
+      filtered = filtered.filter((reg) => reg.program === selectedProgram)
+    }
+
+    return filtered
+  }, [data, normalizedSearchTerm, selectedProgram])
 
   // Check admin access and redirect if needed
   useEffect(() => {
@@ -81,22 +108,6 @@ export default function SessionApprovalPage() {
       })
   }, [session, status])
 
-  useEffect(() => {
-    let filtered = data.filter(
-      (reg) =>
-        reg.studentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        reg.parentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        reg.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        reg.schoolName.toLowerCase().includes(searchTerm.toLowerCase()),
-    )
-
-    if (selectedProgram !== "all") {
-      filtered = filtered.filter((reg) => reg.program === selectedProgram)
-    }
-
-    setFilteredData(filtered)
-  }, [searchTerm, selectedProgram, data])
-
   // Check admin access before rendering dashboard
   if (status === 'loading') {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>
@@ -111,8 +122,6 @@ export default function SessionApprovalPage() {
   if (!session.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return null // Will redirect to unauthorized via useEffect
   }
-
-  const programs = [...new Set(data.map((reg) => reg.program))]
 
   const approve = async (id: number) => {
     setApproving(prev => new Set(prev).add(id))

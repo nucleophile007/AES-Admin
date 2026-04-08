@@ -140,10 +140,11 @@ exports.Prisma.AvailabilityDayScalarFieldEnum = {
   id: 'id',
   date: 'date',
   times: 'times',
-  program: 'program',
   adminEmail: 'adminEmail',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  timesUTC: 'timesUTC',
+  timezone: 'timezone'
 };
 
 exports.Prisma.TeacherScalarFieldEnum = {
@@ -154,7 +155,11 @@ exports.Prisma.TeacherScalarFieldEnum = {
   programs: 'programs',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  isActivated: 'isActivated'
+  isActivated: 'isActivated',
+  googleAccessToken: 'googleAccessToken',
+  googleCalendarConnected: 'googleCalendarConnected',
+  googleRefreshToken: 'googleRefreshToken',
+  googleTokenExpiry: 'googleTokenExpiry'
 };
 
 exports.Prisma.StudentScalarFieldEnum = {
@@ -171,7 +176,8 @@ exports.Prisma.StudentScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   isActivated: 'isActivated',
-  parentAccountId: 'parentAccountId'
+  parentAccountId: 'parentAccountId',
+  graduationYear: 'graduationYear'
 };
 
 exports.Prisma.TeacherStudentScalarFieldEnum = {
@@ -179,6 +185,21 @@ exports.Prisma.TeacherStudentScalarFieldEnum = {
   teacherId: 'teacherId',
   studentId: 'studentId',
   program: 'program',
+  assignedAt: 'assignedAt'
+};
+
+exports.Prisma.StudentGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  teacherId: 'teacherId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StudentGroupMemberScalarFieldEnum = {
+  id: 'id',
+  groupId: 'groupId',
+  studentId: 'studentId',
   assignedAt: 'assignedAt'
 };
 
@@ -196,7 +217,8 @@ exports.Prisma.AssignmentScalarFieldEnum = {
   teacherId: 'teacherId',
   targetStudentId: 'targetStudentId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  dueDateTimezone: 'dueDateTimezone'
 };
 
 exports.Prisma.SubmissionScalarFieldEnum = {
@@ -309,7 +331,16 @@ exports.Prisma.ClassScheduleScalarFieldEnum = {
   studentId: 'studentId',
   teacherId: 'teacherId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  endDateTime: 'endDateTime',
+  googleCalendarEventId: 'googleCalendarEventId',
+  groupId: 'groupId',
+  meetingMinutes: 'meetingMinutes',
+  reminderJobId: 'reminderJobId',
+  reminderScheduledFor: 'reminderScheduledFor',
+  reminderSentAt: 'reminderSentAt',
+  startDateTime: 'startDateTime',
+  timezone: 'timezone'
 };
 
 exports.Prisma.ActivationRequestScalarFieldEnum = {
@@ -318,6 +349,17 @@ exports.Prisma.ActivationRequestScalarFieldEnum = {
   role: 'role',
   token: 'token',
   userId: 'userId',
+  expiresAt: 'expiresAt',
+  isUsed: 'isUsed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PasswordResetRequestScalarFieldEnum = {
+  id: 'id',
+  role: 'role',
+  userId: 'userId',
+  tokenHash: 'tokenHash',
   expiresAt: 'expiresAt',
   isUsed: 'isUsed',
   createdAt: 'createdAt',
@@ -355,7 +397,9 @@ exports.Prisma.PaymentScalarFieldEnum = {
   sentAt: 'sentAt',
   paidAt: 'paidAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  dueDateTimezone: 'dueDateTimezone',
+  dueDateUTC: 'dueDateUTC'
 };
 
 exports.Prisma.TestimonialScalarFieldEnum = {
@@ -368,7 +412,24 @@ exports.Prisma.TestimonialScalarFieldEnum = {
   isVisible: 'isVisible',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  videoLink: 'videoLink'
+  videoLink: 'videoLink',
+  beforeAfterApproved: 'beforeAfterApproved',
+  consentToFeature: 'consentToFeature',
+  contentApproved: 'contentApproved',
+  experienceDescription: 'experienceDescription',
+  grade: 'grade',
+  programs: 'programs',
+  programsApproved: 'programsApproved',
+  rating: 'rating',
+  ratingApproved: 'ratingApproved',
+  school: 'school',
+  studentInfo: 'studentInfo',
+  studentName: 'studentName',
+  submittedAt: 'submittedAt',
+  successStory: 'successStory',
+  successStoryApproved: 'successStoryApproved',
+  afterChanges: 'afterChanges',
+  beforeExpectations: 'beforeExpectations'
 };
 
 exports.Prisma.SecurityLogScalarFieldEnum = {
@@ -398,12 +459,56 @@ exports.Prisma.FeedbackScalarFieldEnum = {
   parentId: 'parentId',
   parentName: 'parentName',
   parentEmail: 'parentEmail',
-  message: 'message',
-  rating: 'rating',
   status: 'status',
   response: 'response',
   createdAt: 'createdAt',
-  reviewedAt: 'reviewedAt'
+  reviewedAt: 'reviewedAt',
+  beforeAfterApproved: 'beforeAfterApproved',
+  beforeAfterExpectations: 'beforeAfterExpectations',
+  childExperience: 'childExperience',
+  childExperienceApproved: 'childExperienceApproved',
+  consentToFeature: 'consentToFeature',
+  favoriteThingToShare: 'favoriteThingToShare',
+  grade: 'grade',
+  heardAbout: 'heardAbout',
+  isApproved: 'isApproved',
+  isVisible: 'isVisible',
+  overallExperience: 'overallExperience',
+  overallExperienceApproved: 'overallExperienceApproved',
+  programs: 'programs',
+  programsApproved: 'programsApproved',
+  schedulingRating: 'schedulingRating',
+  schedulingRatingApproved: 'schedulingRatingApproved',
+  school: 'school',
+  studentName: 'studentName',
+  studentRating: 'studentRating',
+  studentRatingApproved: 'studentRatingApproved',
+  submittedAt: 'submittedAt',
+  successStory: 'successStory',
+  successStoryApproved: 'successStoryApproved',
+  suggestions: 'suggestions',
+  updatedAt: 'updatedAt',
+  wouldRecommend: 'wouldRecommend'
+};
+
+exports.Prisma.ContactSubmissionScalarFieldEnum = {
+  id: 'id',
+  fullName: 'fullName',
+  email: 'email',
+  phone: 'phone',
+  role: 'role',
+  programInterest: 'programInterest',
+  subject: 'subject',
+  message: 'message',
+  preferredContact: 'preferredContact',
+  studentName: 'studentName',
+  studentGrade: 'studentGrade',
+  status: 'status',
+  source: 'source',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.ParentAccountScalarFieldEnum = {
@@ -435,17 +540,6 @@ exports.Prisma.TransactionReceiptScalarFieldEnum = {
   reviewedAt: 'reviewedAt'
 };
 
-exports.Prisma.PasswordResetRequestScalarFieldEnum = {
-  id: 'id',
-  role: 'role',
-  userId: 'userId',
-  tokenHash: 'tokenHash',
-  expiresAt: 'expiresAt',
-  isUsed: 'isUsed',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.MentorScalarFieldEnum = {
   id: 'id',
   teacherId: 'teacherId',
@@ -466,32 +560,30 @@ exports.Prisma.MentorScalarFieldEnum = {
   department: 'department'
 };
 
-exports.Prisma.EventRegistrationScalarFieldEnum = {
+exports.Prisma.ProgressReportScalarFieldEnum = {
   id: 'id',
-  eventId: 'eventId',
-  studentName: 'studentName',
-  studentEmail: 'studentEmail',
-  studentPhone: 'studentPhone',
-  studentGrade: 'studentGrade',
-  schoolName: 'schoolName',
-  parentName: 'parentName',
-  parentEmail: 'parentEmail',
-  parentPhone: 'parentPhone',
-  registrationStatus: 'registrationStatus',
-  paymentStatus: 'paymentStatus',
-  paymentAmount: 'paymentAmount',
-  specialRequirements: 'specialRequirements',
-  howDidYouHear: 'howDidYouHear',
-  notes: 'notes',
-  checkedInAt: 'checkedInAt',
-  attendanceConfirmed: 'attendanceConfirmed',
+  studentId: 'studentId',
+  teacherId: 'teacherId',
+  reportDate: 'reportDate',
+  overallProgress: 'overallProgress',
+  milestonesAchieved: 'milestonesAchieved',
+  publications: 'publications',
+  nextSteps: 'nextSteps',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  adminNotes: 'adminNotes',
-  certificateIssued: 'certificateIssued',
-  customFieldResponses: 'customFieldResponses',
-  paymentMethod: 'paymentMethod',
-  transactionId: 'transactionId'
+  attendanceRate: 'attendanceRate',
+  classParticipation: 'classParticipation',
+  homeworkCompletion: 'homeworkCompletion',
+  improvementAreas: 'improvementAreas',
+  isVisible: 'isVisible',
+  parentNotes: 'parentNotes',
+  progressRating: 'progressRating',
+  recommendations: 'recommendations',
+  reportPeriod: 'reportPeriod',
+  skillsImproved: 'skillsImproved',
+  status: 'status',
+  strengthsAreas: 'strengthsAreas',
+  subject: 'subject'
 };
 
 exports.Prisma.GeneralEventScalarFieldEnum = {
@@ -528,30 +620,99 @@ exports.Prisma.GeneralEventScalarFieldEnum = {
   requiresPayment: 'requiresPayment'
 };
 
-exports.Prisma.ProgressReportScalarFieldEnum = {
+exports.Prisma.EventRegistrationScalarFieldEnum = {
   id: 'id',
-  studentId: 'studentId',
-  teacherId: 'teacherId',
-  reportDate: 'reportDate',
-  overallProgress: 'overallProgress',
-  milestonesAchieved: 'milestonesAchieved',
-  publications: 'publications',
-  nextSteps: 'nextSteps',
+  eventId: 'eventId',
+  studentName: 'studentName',
+  studentEmail: 'studentEmail',
+  studentPhone: 'studentPhone',
+  studentGrade: 'studentGrade',
+  schoolName: 'schoolName',
+  parentName: 'parentName',
+  parentEmail: 'parentEmail',
+  parentPhone: 'parentPhone',
+  registrationStatus: 'registrationStatus',
+  paymentStatus: 'paymentStatus',
+  paymentAmount: 'paymentAmount',
+  specialRequirements: 'specialRequirements',
+  howDidYouHear: 'howDidYouHear',
+  notes: 'notes',
+  checkedInAt: 'checkedInAt',
+  attendanceConfirmed: 'attendanceConfirmed',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  attendanceRate: 'attendanceRate',
-  classParticipation: 'classParticipation',
-  homeworkCompletion: 'homeworkCompletion',
-  improvementAreas: 'improvementAreas',
-  isVisible: 'isVisible',
-  parentNotes: 'parentNotes',
-  progressRating: 'progressRating',
-  recommendations: 'recommendations',
-  reportPeriod: 'reportPeriod',
-  skillsImproved: 'skillsImproved',
+  adminNotes: 'adminNotes',
+  certificateIssued: 'certificateIssued',
+  customFieldResponses: 'customFieldResponses',
+  paymentMethod: 'paymentMethod',
+  transactionId: 'transactionId'
+};
+
+exports.Prisma.AccessRequestScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  createdAt: 'createdAt',
+  approved: 'approved',
+  phone: 'phone',
+  reason: 'reason',
+  researchId: 'researchId'
+};
+
+exports.Prisma.ResearchScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  published: 'published',
+  author: 'author',
+  createdAt: 'createdAt',
+  pdfFilename: 'pdfFilename',
+  abstract: 'abstract',
+  category: 'category',
+  extractedAt: 'extractedAt',
+  extractedContent: 'extractedContent',
+  extractionStatus: 'extractionStatus',
+  grade: 'grade',
+  keywords: 'keywords',
+  school: 'school',
+  studentId: 'studentId',
+  domain: 'domain'
+};
+
+exports.Prisma.SlideScalarFieldEnum = {
+  id: 'id',
+  researchId: 'researchId',
+  order: 'order',
+  imageFilename: 'imageFilename'
+};
+
+exports.Prisma.BlogScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  abstract: 'abstract',
+  externalUrl: 'externalUrl',
+  studentId: 'studentId',
+  studentPhoto: 'studentPhoto',
+  publicationYear: 'publicationYear',
+  publicationMonth: 'publicationMonth',
+  isApproved: 'isApproved',
+  published: 'published',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  approvedAt: 'approvedAt'
+};
+
+exports.Prisma.PptConversionJobScalarFieldEnum = {
+  id: 'id',
+  researchId: 'researchId',
+  cloudConvertJobId: 'cloudConvertJobId',
   status: 'status',
-  strengthsAreas: 'strengthsAreas',
-  subject: 'subject'
+  totalSlides: 'totalSlides',
+  processedSlides: 'processedSlides',
+  error: 'error',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -591,6 +752,8 @@ exports.Prisma.ModelName = {
   Teacher: 'Teacher',
   Student: 'Student',
   TeacherStudent: 'TeacherStudent',
+  StudentGroup: 'StudentGroup',
+  StudentGroupMember: 'StudentGroupMember',
   Assignment: 'Assignment',
   Submission: 'Submission',
   Enrollment: 'Enrollment',
@@ -602,19 +765,25 @@ exports.Prisma.ModelName = {
   Message: 'Message',
   ClassSchedule: 'ClassSchedule',
   ActivationRequest: 'ActivationRequest',
+  PasswordResetRequest: 'PasswordResetRequest',
   Admin: 'Admin',
   Payment: 'Payment',
   Testimonial: 'Testimonial',
   SecurityLog: 'SecurityLog',
   FailedActivation: 'FailedActivation',
   Feedback: 'Feedback',
+  ContactSubmission: 'ContactSubmission',
   ParentAccount: 'ParentAccount',
   TransactionReceipt: 'TransactionReceipt',
-  PasswordResetRequest: 'PasswordResetRequest',
   Mentor: 'Mentor',
-  EventRegistration: 'EventRegistration',
+  ProgressReport: 'ProgressReport',
   GeneralEvent: 'GeneralEvent',
-  ProgressReport: 'ProgressReport'
+  EventRegistration: 'EventRegistration',
+  AccessRequest: 'AccessRequest',
+  Research: 'Research',
+  Slide: 'Slide',
+  Blog: 'Blog',
+  PptConversionJob: 'PptConversionJob'
 };
 
 /**

@@ -10,6 +10,18 @@ const qstash = new Client({
   token: process.env.QSTASH_TOKEN!,
 })
 
+function normalizeUniqueTimes(times: unknown): string[] {
+  if (!Array.isArray(times)) return []
+  return Array.from(
+    new Set(
+      times
+        .filter((t): t is string => typeof t === 'string')
+        .map((t) => t.trim())
+        .filter(Boolean)
+    )
+  ).sort((a, b) => a.localeCompare(b))
+}
+
 export async function PATCH(
   req: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -75,81 +87,88 @@ export async function PATCH(
     const updatedReg = transactionResult
 
     // If approving and it wasn't approved before, remove the time slot from availability
-    if (approved && !existingReg.approved && existingReg.preferredTime && existingReg.program) {
+    if (approved && !existingReg.approved && existingReg.preferredTime) {
       const parts = existingReg.preferredTime.split(' at ')
       if (parts.length === 2) {
         const [date, time] = parts
         
-        const day = await prisma.availabilityDay.findUnique({ 
-          where: { 
-            date_program_adminEmail: {
-              date: date,
-              program: existingReg.program,
-              adminEmail: adminEmail
-            }
-          } 
+        const days = await prisma.availabilityDay.findMany({
+          where: {
+            date: date,
+            adminEmail: adminEmail
+          },
+          orderBy: { id: 'asc' }
         })
-        if (day) {
-          const currentTimes = (day.times as string[]) || []
-          const nextTimes = currentTimes.filter((t) => t !== time)
-          
+
+        if (days.length > 0) {
+          const [keep, ...dupes] = days
+          const mergedTimes = normalizeUniqueTimes(days.flatMap((d) => d.times as string[]))
+          const nextTimes = mergedTimes.filter((t) => t !== time)
+
           if (nextTimes.length > 0) {
-            await prisma.availabilityDay.update({ 
-              where: { id: day.id }, 
-              data: { times: nextTimes } 
+            await prisma.availabilityDay.update({
+              where: { id: keep.id },
+              data: { times: nextTimes }
             })
+
+            if (dupes.length > 0) {
+              await prisma.availabilityDay.deleteMany({
+                where: { id: { in: dupes.map((d) => d.id) } }
+              })
+            }
           } else {
-            await prisma.availabilityDay.delete({ where: { id: day.id } })
+            await prisma.availabilityDay.deleteMany({
+              where: {
+                date,
+                adminEmail
+              }
+            })
           }
         }
       }
     }
 
     // If un-approving and it was approved before, add the time slot back to availability
-    if (!approved && existingReg.approved && existingReg.preferredTime && existingReg.program && existingReg.adminEmail) {
+    if (!approved && existingReg.approved && existingReg.preferredTime && existingReg.adminEmail) {
       const parts = existingReg.preferredTime.split(' at ')
       if (parts.length === 2) {
         const [date, time] = parts
         // Use the admin email from the existing registration (who originally approved it)
         const originalAdminEmail = existingReg.adminEmail
         
-        const day = await prisma.availabilityDay.findUnique({ 
-          where: { 
-            date_program_adminEmail: {
-              date: date,
-              program: existingReg.program,
-              adminEmail: originalAdminEmail
-            }
-          } 
+        const days = await prisma.availabilityDay.findMany({
+          where: {
+            date: date,
+            adminEmail: originalAdminEmail
+          },
+          orderBy: { id: 'asc' }
         })
-        if (day) {
-          const currentTimes = (day.times as string[]) || []
-          if (!currentTimes.includes(time)) {
-            await prisma.availabilityDay.update({ 
-              where: { id: day.id }, 
-              data: { times: [...currentTimes, time].sort() } 
-            })
-          }
-        } else {
-          // Use upsert to handle potential race conditions when creating availability
-          await prisma.availabilityDay.upsert({
-            where: {
-              date_program_adminEmail: {
-                date,
-                program: existingReg.program,
-                adminEmail: originalAdminEmail
-              }
-            },
-            update: {
-              times: [time]
-            },
-            create: { 
-              date, 
-              times: [time], 
-              program: existingReg.program,
+
+        if (days.length === 0) {
+          await prisma.availabilityDay.create({
+            data: {
+              date,
+              times: [time],
               adminEmail: originalAdminEmail
             }
           })
+        } else {
+          const [keep, ...dupes] = days
+          const mergedTimes = normalizeUniqueTimes([
+            ...days.flatMap((d) => d.times as string[]),
+            time
+          ])
+
+          await prisma.availabilityDay.update({
+            where: { id: keep.id },
+            data: { times: mergedTimes }
+          })
+
+          if (dupes.length > 0) {
+            await prisma.availabilityDay.deleteMany({
+              where: { id: { in: dupes.map((d) => d.id) } }
+            })
+          }
         }
       }
     }

@@ -19,6 +19,18 @@ function parsePreferred(preferredTime: string): { date: string | null; time: str
   return { date, time }
 }
 
+function normalizeUniqueTimes(times: unknown): string[] {
+  if (!Array.isArray(times)) return []
+  return Array.from(
+    new Set(
+      times
+        .filter((t): t is string => typeof t === 'string')
+        .map((t) => t.trim())
+        .filter(Boolean)
+    )
+  ).sort((a, b) => a.localeCompare(b))
+}
+
 export async function POST(
   req: NextRequest,
   context: { params: Promise<{ id: string }> }
@@ -68,28 +80,40 @@ export async function POST(
 
     // Remove the booked slot from availability
     const { date, time } = parsePreferred(reg.preferredTime)
-    if (date && time && reg.program) {
+    if (date && time) {
       // Only remove from availability if this registration wasn't already approved by this admin
       if (!reg.approved || reg.adminEmail !== adminEmail) {
-        const day = await prisma.availabilityDay.findUnique({ 
-          where: { 
-            date_program_adminEmail: {
-              date: date,
-              program: reg.program,
-              adminEmail: adminEmail
-            }
-          } 
+        const days = await prisma.availabilityDay.findMany({
+          where: {
+            date,
+            adminEmail
+          },
+          orderBy: { id: 'asc' }
         })
-        if (day) {
-          const currentTimes = (day.times as string[]) || []
-          const nextTimes = currentTimes.filter((t) => t !== time)
+
+        if (days.length > 0) {
+          const [keep, ...dupes] = days
+          const mergedTimes = normalizeUniqueTimes(days.flatMap((d) => d.times as string[]))
+          const nextTimes = mergedTimes.filter((t) => t !== time)
+
           if (nextTimes.length > 0) {
-            await prisma.availabilityDay.update({ 
-              where: { id: day.id }, 
-              data: { times: nextTimes } 
+            await prisma.availabilityDay.update({
+              where: { id: keep.id },
+              data: { times: nextTimes }
             })
+
+            if (dupes.length > 0) {
+              await prisma.availabilityDay.deleteMany({
+                where: { id: { in: dupes.map((d) => d.id) } }
+              })
+            }
           } else {
-            await prisma.availabilityDay.delete({ where: { id: day.id } })
+            await prisma.availabilityDay.deleteMany({
+              where: {
+                date,
+                adminEmail
+              }
+            })
           }
         }
       }
