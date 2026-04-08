@@ -29,14 +29,13 @@ model AvailabilityDay {
   id         Int      @id @default(autoincrement())
   date       String
   times      Json
-  program    String
   adminEmail String   @default("acharya.folsom@gmail.com")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   timesUTC   Json?
   timezone   String?
 
-  @@unique([date, program, adminEmail])
+  @@unique([date, adminEmail])
 }
 
 model Teacher {
