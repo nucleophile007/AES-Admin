@@ -29,36 +29,42 @@ model AvailabilityDay {
   id         Int      @id @default(autoincrement())
   date       String
   times      Json
-  program    String
   adminEmail String   @default("acharya.folsom@gmail.com")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  timesUTC   Json?
+  timezone   String?
 
-  @@unique([date, program, adminEmail])
+  @@unique([date, adminEmail])
 }
 
 model Teacher {
-  id                Int                       @id @default(autoincrement())
-  name              String
-  email             String                    @unique
-  password          String?
-  programs          String[]
-  createdAt         DateTime                  @default(now())
-  updatedAt         DateTime                  @updatedAt
-  isActivated       Boolean                   @default(false)
-  assignments       Assignment[]
-  classSchedules    ClassSchedule[]
-  mentorProfile     Mentor?
-  ProgressReport    ProgressReport[]
-  resources         Resource[]
-  submissionRemarks StudentSubmissionRemark[]
-  students          TeacherStudent[]
+  id                      Int                       @id @default(autoincrement())
+  name                    String
+  email                   String                    @unique
+  password                String?
+  programs                String[]
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @updatedAt
+  isActivated             Boolean                   @default(false)
+  googleAccessToken       String?
+  googleCalendarConnected Boolean                   @default(false)
+  googleRefreshToken      String?
+  googleTokenExpiry       DateTime?
+  assignments             Assignment[]
+  classSchedules          ClassSchedule[]
+  mentorProfile           Mentor?
+  progressReports         ProgressReport[]
+  resources               Resource[]
+  studentGroups           StudentGroup[]
+  submissionRemarks       StudentSubmissionRemark[]
+  students                TeacherStudent[]
 }
 
 model Student {
-  id                  Int                 @id @default(autoincrement())
+  id                  Int                  @id @default(autoincrement())
   name                String
-  email               String              @unique
+  email               String               @unique
   password            String?
   grade               String
   schoolName          String
@@ -66,16 +72,20 @@ model Student {
   parentEmail         String
   parentPhone         String
   program             String
-  createdAt           DateTime            @default(now())
-  updatedAt           DateTime            @updatedAt
-  isActivated         Boolean             @default(false)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  isActivated         Boolean              @default(false)
   parentAccountId     Int?
-  assignedAssignments Assignment[]        @relation("AssignedAssignments")
+  graduationYear      Int?
+  assignedAssignments Assignment[]         @relation("AssignedAssignments")
+  Blog                Blog[]
   classSchedules      ClassSchedule[]
   enrollments         Enrollment[]
   Payment             Payment[]
-  ProgressReport      ProgressReport[]
-  parentAccount       ParentAccount?      @relation(fields: [parentAccountId], references: [id])
+  progressReports     ProgressReport[]
+  Research            Research[]
+  parentAccount       ParentAccount?       @relation(fields: [parentAccountId], references: [id])
+  groupMemberships    StudentGroupMember[]
   assignedResources   StudentResource[]
   studentSubmissions  StudentSubmission[]
   submissions         Submission[]
@@ -95,6 +105,30 @@ model TeacherStudent {
   @@unique([teacherId, studentId, program])
 }
 
+model StudentGroup {
+  id             Int                  @id @default(autoincrement())
+  name           String
+  teacherId      Int
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  classSchedules ClassSchedule[]
+  teacher        Teacher              @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  members        StudentGroupMember[]
+
+  @@unique([teacherId, name])
+}
+
+model StudentGroupMember {
+  id         Int          @id @default(autoincrement())
+  groupId    Int
+  studentId  Int
+  assignedAt DateTime     @default(now())
+  group      StudentGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  student    Student      @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, studentId])
+}
+
 model Assignment {
   id                  Int                  @id @default(autoincrement())
   title               String
@@ -110,6 +144,7 @@ model Assignment {
   targetStudentId     Int?
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
+  dueDateTimezone     String?
   targetStudent       Student?             @relation("AssignedAssignments", fields: [targetStudentId], references: [id])
   teacher             Teacher              @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   resources           AssignmentResource[]
@@ -241,26 +276,38 @@ model Message {
 }
 
 model ClassSchedule {
-  id          Int      @id @default(autoincrement())
-  title       String
-  date        DateTime
-  startTime   String
-  endTime     String
-  subject     String
-  description String?
-  location    String?
-  meetingLink String?
-  status      String   @default("upcoming")
-  color       String?
-  studentId   Int
-  teacherId   Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  teacher     Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  id                    Int           @id @default(autoincrement())
+  title                 String
+  date                  DateTime
+  startTime             String
+  endTime               String
+  subject               String
+  description           String?
+  location              String?
+  meetingLink           String?
+  status                String        @default("upcoming")
+  color                 String?
+  studentId             Int
+  teacherId             Int
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @updatedAt
+  endDateTime           DateTime?
+  googleCalendarEventId String?
+  groupId               Int?
+  meetingMinutes        String?
+  reminderJobId         String?
+  reminderScheduledFor  DateTime?
+  reminderSentAt        DateTime?
+  startDateTime         DateTime?
+  timezone              String?
+  group                 StudentGroup? @relation(fields: [groupId], references: [id])
+  student               Student       @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  teacher               Teacher       @relation(fields: [teacherId], references: [id], onDelete: Cascade)
 
   @@index([teacherId])
   @@index([studentId])
+  @@index([startDateTime, reminderSentAt])
+  @@index([reminderJobId])
 }
 
 model ActivationRequest {
@@ -277,6 +324,20 @@ model ActivationRequest {
   @@unique([email, role])
 }
 
+model PasswordResetRequest {
+  id        Int      @id @default(autoincrement())
+  role      String
+  userId    Int
+  tokenHash String   @unique
+  expiresAt DateTime
+  isUsed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([role, userId])
+  @@index([expiresAt])
+}
+
 model Admin {
   id        Int      @id @default(autoincrement())
   name      String
@@ -288,59 +349,62 @@ model Admin {
 }
 
 model Payment {
-  id           Int        @id @default(autoincrement())
-  enrollmentId Int
-  studentId    Int
-  studentEmail String
-  studentName  String
-  parentName   String
-  parentEmail  String
-  parentPhone  String
-  program      String
-  subject      String
-  paymentInfo  String
-  amount       String?
-  dueDate      String
-  fileUrl      String?
-  fileName     String?
-  fileSize     Int?
-  status       String     @default("pending")
-  sentAt       DateTime   @default(now())
-  paidAt       DateTime?
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime
-  Enrollment   Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
-  Student      Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  id              Int        @id @default(autoincrement())
+  enrollmentId    Int
+  studentId       Int
+  studentEmail    String
+  studentName     String
+  parentName      String
+  parentEmail     String
+  parentPhone     String
+  program         String
+  subject         String
+  paymentInfo     String
+  amount          String?
+  dueDate         String
+  fileUrl         String?
+  fileName        String?
+  fileSize        Int?
+  status          String     @default("pending")
+  sentAt          DateTime   @default(now())
+  paidAt          DateTime?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime
+  dueDateTimezone String?
+  dueDateUTC      DateTime?
+  Enrollment      Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  Student         Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }
 
 model Testimonial {
-  id                      Int       @id @default(autoincrement())
-  studentId               Int?
-  content                 String?
-  authorType              String?
-  authorName              String?
-  isApproved              Boolean   @default(false)
-  isVisible               Boolean   @default(true)
-  createdAt               DateTime  @default(now())
-  updatedAt               DateTime
-  videoLink               String?
-  beforeAfterExpectations String?
-  consentToFeature        Boolean   @default(false)
-  experienceDescription   String?
-  grade                   String?
-  programs                String[]
-  rating                  Int?
-  school                  String?
-  studentInfo             String?
-  studentName             String?
-  submittedAt             DateTime?
-  successStory            String?
-  beforeAfterApproved     Boolean   @default(false)
-  contentApproved         Boolean   @default(false)
-  programsApproved        Boolean   @default(false)
-  ratingApproved          Boolean   @default(false)
-  successStoryApproved    Boolean   @default(false)
-  Student                 Student?  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  id                    Int       @id @default(autoincrement())
+  studentId             Int?
+  content               String?
+  authorType            String?
+  authorName            String?
+  isApproved            Boolean   @default(false)
+  isVisible             Boolean   @default(true)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  videoLink             String?
+  beforeAfterApproved   Boolean   @default(false)
+  consentToFeature      Boolean   @default(false)
+  contentApproved       Boolean   @default(false)
+  experienceDescription String?
+  grade                 String?
+  programs              String[]
+  programsApproved      Boolean   @default(false)
+  rating                Int?
+  ratingApproved        Boolean   @default(false)
+  school                String?
+  studentInfo           String?
+  studentName           String?
+  submittedAt           DateTime?
+  successStory          String?
+  successStoryApproved  Boolean   @default(false)
+  afterChanges          String?
+  beforeExpectations    String?
+  Student               Student?  @relation(fields: [studentId], references: [id], onDelete: Cascade)
 }
 
 model SecurityLog {
@@ -405,11 +469,35 @@ model Feedback {
   successStory              String?
   successStoryApproved      Boolean   @default(false)
   suggestions               String?
-  updatedAt                 DateTime  @updatedAt
+  updatedAt                 DateTime
   wouldRecommend            String?
 
   @@index([createdAt])
   @@index([parentId])
+}
+
+model ContactSubmission {
+  id               Int      @id @default(autoincrement())
+  fullName         String
+  email            String
+  phone            String?
+  role             String?
+  programInterest  String?
+  subject          String
+  message          String
+  preferredContact String?
+  studentName      String?
+  studentGrade     String?
+  status           String   @default("new")
+  source           String   @default("contact_page")
+  ipAddress        String?
+  userAgent        String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([createdAt])
+  @@index([email])
+  @@index([status])
 }
 
 model ParentAccount {
@@ -446,20 +534,6 @@ model TransactionReceipt {
   @@index([status])
 }
 
-model PasswordResetRequest {
-  id        Int      @id @default(autoincrement())
-  role      String
-  userId    Int
-  tokenHash String   @unique
-  expiresAt DateTime
-  isUsed    Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime
-
-  @@index([expiresAt])
-  @@index([role, userId])
-}
-
 model Mentor {
   id           Int      @id @default(autoincrement())
   teacherId    Int?     @unique
@@ -472,12 +546,12 @@ model Mentor {
   experience   String?
   specialties  String[]
   achievements String[]
-  department   String   @default("General")
   bio          String
   isActive     Boolean  @default(true)
   displayOrder Int      @default(0)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  department   String   @default("General")
   teacher      Teacher? @relation(fields: [teacherId], references: [id])
 
   @@index([isActive, displayOrder])
@@ -494,7 +568,7 @@ model ProgressReport {
   publications       String?
   nextSteps          String?
   createdAt          DateTime @default(now())
-  updatedAt          DateTime
+  updatedAt          DateTime @updatedAt
   attendanceRate     Float?
   classParticipation String?
   homeworkCompletion Float?
@@ -508,49 +582,13 @@ model ProgressReport {
   status             String   @default("draft")
   strengthsAreas     String?
   subject            String?
-  Student            Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  Teacher            Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  student            Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  teacher            Teacher  @relation(fields: [teacherId], references: [id], onDelete: Cascade)
 
   @@index([studentId])
   @@index([teacherId])
   @@index([reportDate])
   @@index([status])
-}
-
-model EventRegistration {
-  id                   Int          @id @default(autoincrement())
-  eventId              Int
-  studentName          String
-  studentEmail         String
-  studentPhone         String?
-  studentGrade         String?
-  schoolName           String?
-  parentName           String
-  parentEmail          String
-  parentPhone          String?
-  registrationStatus   String       @default("pending")
-  paymentStatus        String?      @default("pending")
-  paymentAmount        Float?       @default(0)
-  specialRequirements  String?
-  howDidYouHear        String?
-  notes                String?
-  checkedInAt          DateTime?
-  attendanceConfirmed  Boolean      @default(false)
-  createdAt            DateTime     @default(now())
-  updatedAt            DateTime
-  adminNotes           String?
-  certificateIssued    Boolean      @default(false)
-  customFieldResponses Json?
-  paymentMethod        String?
-  transactionId        String?
-  GeneralEvent         GeneralEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
-
-  @@unique([eventId, studentEmail])
-  @@index([eventId])
-  @@index([parentEmail])
-  @@index([paymentStatus])
-  @@index([registrationStatus])
-  @@index([studentEmail])
 }
 
 model GeneralEvent {
@@ -576,7 +614,7 @@ model GeneralEvent {
   contactPhone           String?
   createdBy              String?
   createdAt              DateTime            @default(now())
-  updatedAt              DateTime
+  updatedAt              DateTime            @updatedAt
   customFields           Json?
   earlyBirdDeadline      DateTime?
   earlyBirdFee           Float?
@@ -585,17 +623,53 @@ model GeneralEvent {
   registrationFee        Float?              @default(0)
   registrationFormConfig Json?
   requiresPayment        Boolean             @default(false)
-  EventRegistration      EventRegistration[]
+  registrations          EventRegistration[]
 
-  @@index([category])
   @@index([eventDate])
-  @@index([isFeatured])
-  @@index([isPublished])
   @@index([status])
+  @@index([isPublished])
+  @@index([isFeatured])
+  @@index([category])
+}
+
+model EventRegistration {
+  id                   Int          @id @default(autoincrement())
+  eventId              Int
+  studentName          String
+  studentEmail         String
+  studentPhone         String?
+  studentGrade         String?
+  schoolName           String?
+  parentName           String
+  parentEmail          String
+  parentPhone          String?
+  registrationStatus   String       @default("pending")
+  paymentStatus        String?      @default("pending")
+  paymentAmount        Float?       @default(0)
+  specialRequirements  String?
+  howDidYouHear        String?
+  notes                String?
+  checkedInAt          DateTime?
+  attendanceConfirmed  Boolean      @default(false)
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+  adminNotes           String?
+  certificateIssued    Boolean      @default(false)
+  customFieldResponses Json?
+  paymentMethod        String?
+  transactionId        String?
+  event                GeneralEvent @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@unique([eventId, studentEmail])
+  @@index([eventId])
+  @@index([studentEmail])
+  @@index([parentEmail])
+  @@index([registrationStatus])
+  @@index([paymentStatus])
 }
 
 model AccessRequest {
-  id         String   @id
+  id         String   @id @default(cuid())
   name       String
   email      String
   createdAt  DateTime @default(now())
@@ -603,26 +677,75 @@ model AccessRequest {
   phone      String?
   reason     String?
   researchId String
-  Research   Research @relation(fields: [researchId], references: [id])
+  research   Research @relation(fields: [researchId], references: [id])
 }
 
 model Research {
-  id            String          @id
-  title         String
-  slug          String          @unique
-  description   String?
-  published   Boolean   @default(true)
-  author      String?
-  pdfPath       String?
-  createdAt     DateTime        @default(now())
-  AccessRequest AccessRequest[]
-  Slide         Slide[]
+  id               String             @id @default(cuid())
+  title            String
+  slug             String             @unique
+  description      String?
+  published        Boolean            @default(true)
+  author           String?
+  createdAt        DateTime
+  pdfFilename      String?
+  abstract         String?
+  category         String?
+  extractedAt      DateTime?
+  extractedContent Json?
+  extractionStatus String?
+  grade            String?
+  keywords         String[]
+  school           String?
+  studentId        Int?
+  domain           String?
+  accessRequests   AccessRequest[]
+  PptConversionJob PptConversionJob[]
+  Student          Student?           @relation(fields: [studentId], references: [id])
+  slides           Slide[]
 }
 
 model Slide {
-  id         String   @id @default(cuid())
-  researchId String
-  imagePath  String
-  order      Int
-  Research   Research @relation(fields: [researchId], references: [id])
+  id            String   @id @default(cuid())
+  researchId    String
+  order         Int
+  imageFilename String
+  research      Research @relation(fields: [researchId], references: [id])
+}
+
+model Blog {
+  id               Int       @id @default(autoincrement())
+  title            String
+  abstract         String
+  externalUrl      String
+  studentId        Int?
+  studentPhoto     String?
+  publicationYear  Int
+  publicationMonth Int
+  isApproved       Boolean   @default(false)
+  published        Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime
+  approvedAt       DateTime?
+  Student          Student?  @relation(fields: [studentId], references: [id])
+
+  @@index([publicationYear, publicationMonth])
+  @@index([published])
+  @@index([studentId])
+}
+
+model PptConversionJob {
+  id                String   @id
+  researchId        String
+  cloudConvertJobId String   @unique
+  status            String   @default("queued")
+  totalSlides       Int?
+  processedSlides   Int      @default(0)
+  error             String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime
+  Research          Research @relation(fields: [researchId], references: [id], onDelete: Cascade)
+
+  @@index([researchId])
+  @@index([status])
 }

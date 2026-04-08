@@ -1,10 +1,11 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useDeferredValue, useEffect, useMemo, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Search, GraduationCap, Filter, CheckCircle, Loader2, X, Plus, Mail } from "lucide-react"
+import TablePagination from "@/components/ui/table-pagination"
 
 interface Student {
   id: number
@@ -17,6 +18,11 @@ interface Student {
   parentPhone: string
   program: string
   isActivated: boolean
+  parentAccount?: {
+    id: number
+    email: string
+    isActivated: boolean
+  } | null
   createdAt: string
   updatedAt: string
 }
@@ -27,16 +33,18 @@ const PROGRAM_OPTIONS = [
   "MATH Competitions",
   "Research",
 ] as const
+const PAGE_SIZE = 50
 
 export default function StudentsPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
   
   const [data, setData] = useState<Student[]>([])
-  const [filteredData, setFilteredData] = useState<Student[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
+  const deferredSearchTerm = useDeferredValue(searchTerm)
   const [selectedProgram, setSelectedProgram] = useState("all")
+  const [currentPage, setCurrentPage] = useState(1)
   const [actionLoading, setActionLoading] = useState<Record<string, boolean>>({})
 
   // Form states for new student
@@ -68,6 +76,41 @@ export default function StudentsPage() {
   })
   const [enrollmentLoading, setEnrollmentLoading] = useState(false)
   const [enrollmentError, setEnrollmentError] = useState<string | null>(null)
+  const normalizedSearchTerm = useMemo(
+    () => deferredSearchTerm.trim().toLowerCase(),
+    [deferredSearchTerm],
+  )
+  const programs = useMemo(
+    () => Array.from(new Set(data.map((student) => student.program))),
+    [data],
+  )
+  const filteredData = useMemo(() => {
+    let filtered = data
+
+    if (normalizedSearchTerm) {
+      filtered = filtered.filter(
+        (student) =>
+          student.name.toLowerCase().includes(normalizedSearchTerm) ||
+          student.email.toLowerCase().includes(normalizedSearchTerm) ||
+          student.parentName.toLowerCase().includes(normalizedSearchTerm) ||
+          student.schoolName.toLowerCase().includes(normalizedSearchTerm),
+      )
+    }
+
+    if (selectedProgram !== "all") {
+      filtered = filtered.filter((student) => student.program === selectedProgram)
+    }
+
+    return filtered
+  }, [data, normalizedSearchTerm, selectedProgram])
+  const totalPages = useMemo(
+    () => Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE)),
+    [filteredData.length],
+  )
+  const paginatedData = useMemo(() => {
+    const start = (currentPage - 1) * PAGE_SIZE
+    return filteredData.slice(start, start + PAGE_SIZE)
+  }, [currentPage, filteredData])
 
   // Check admin access and redirect if needed
   useEffect(() => {
@@ -98,6 +141,16 @@ export default function StudentsPage() {
     fetchStudents()
     fetchTeachers()
   }, [session, status])
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchTerm, selectedProgram])
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages)
+    }
+  }, [currentPage, totalPages])
 
   const fetchStudents = async () => {
     setLoading(true)
@@ -134,28 +187,6 @@ export default function StudentsPage() {
     }
   }
 
-  useEffect(() => {
-    let filtered = data
-    
-    if (searchTerm) {
-      filtered = filtered.filter(
-        (student) =>
-          student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          student.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          student.parentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          student.schoolName.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    }
-
-    if (selectedProgram !== "all") {
-      filtered = filtered.filter((student) => 
-        student.program === selectedProgram
-      )
-    }
-
-    setFilteredData(filtered)
-  }, [searchTerm, selectedProgram, data])
-
   const sendActivationEmail = async (id: number, email: string) => {
     setActionLoading(prev => ({ ...prev, [`activate-${id}`]: true }))
     
@@ -180,6 +211,33 @@ export default function StudentsPage() {
       alert(e.message)
     } finally {
       setActionLoading(prev => ({ ...prev, [`activate-${id}`]: false }))
+    }
+  }
+
+  const sendParentActivationEmail = async (student: Student) => {
+    setActionLoading(prev => ({ ...prev, [`activate-parent-${student.id}`]: true }))
+
+    try {
+      const res = await fetch(`/api/admin/students/${student.id}/send-parent-activation`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (!res.ok) {
+        const errorData = await res.json()
+        throw new Error(errorData.error || errorData.message || 'Failed to send parent activation email')
+      }
+
+      const result = await res.json()
+      alert(result.message || 'Parent activation email sent successfully')
+      await fetchStudents()
+    } catch (e: any) {
+      console.error(e)
+      alert(e.message)
+    } finally {
+      setActionLoading(prev => ({ ...prev, [`activate-parent-${student.id}`]: false }))
     }
   }
 
@@ -216,7 +274,10 @@ export default function StudentsPage() {
       const newStudent = await res.json()
       
       // Add to our data and reset form
-      setData(prev => [newStudent.student, ...prev])
+      setData(prev => [{
+        ...newStudent.student,
+        parentAccount: newStudent.parentAccount ?? null
+      }, ...prev])
       setFormData({
         name: "",
         email: "",
@@ -323,9 +384,6 @@ export default function StudentsPage() {
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return null // Will redirect to unauthorized via useEffect
   }
-
-  // Get all unique programs from student data
-  const programs = Array.from(new Set(data.map(student => student.program)))
 
   if (loading) {
     return (
@@ -756,7 +814,7 @@ export default function StudentsPage() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredData.map((student, idx) => (
+                  {paginatedData.map((student, idx) => (
                     <tr key={student.id} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                       <td className="px-4 py-4">
                         <div className="font-medium text-gray-900">{student.name}</div>
@@ -778,16 +836,29 @@ export default function StudentsPage() {
                         </span>
                       </td>
                       <td className="px-4 py-4">
-                        {student.isActivated ? (
-                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                            <CheckCircle className="w-3 h-3" />
-                            Activated
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">
-                            Pending Activation
-                          </span>
-                        )}
+                        <div className="flex flex-col gap-2">
+                          {student.isActivated ? (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium w-fit">
+                              <CheckCircle className="w-3 h-3" />
+                              Student Activated
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium w-fit">
+                              Student Pending
+                            </span>
+                          )}
+
+                          {student.parentAccount?.isActivated ? (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium w-fit">
+                              <CheckCircle className="w-3 h-3" />
+                              Parent Activated
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium w-fit">
+                              Parent Pending
+                            </span>
+                          )}
+                        </div>
                       </td>
                       <td className="px-4 py-4">
                         <div className="flex items-center gap-2 flex-wrap">
@@ -802,7 +873,23 @@ export default function StudentsPage() {
                               ) : (
                                 <div className="flex items-center gap-1">
                                   <Mail className="w-3 h-3" />
-                                  Send Activation
+                                  Send Student Activation
+                                </div>
+                              )}
+                            </button>
+                          )}
+                          {!student.parentAccount?.isActivated && (
+                            <button
+                              onClick={() => sendParentActivationEmail(student)}
+                              disabled={actionLoading[`activate-parent-${student.id}`]}
+                              className="px-3 py-1 rounded-lg text-xs font-medium bg-amber-100 text-amber-800 hover:bg-amber-200"
+                            >
+                              {actionLoading[`activate-parent-${student.id}`] ? (
+                                <Loader2 className="w-3 h-3 animate-spin" />
+                              ) : (
+                                <div className="flex items-center gap-1">
+                                  <Mail className="w-3 h-3" />
+                                  Send Parent Activation
                                 </div>
                               )}
                             </button>
@@ -824,6 +911,13 @@ export default function StudentsPage() {
               </table>
             </div>
           )}
+          <TablePagination
+            currentPage={currentPage}
+            pageSize={PAGE_SIZE}
+            totalItems={filteredData.length}
+            itemLabel="students"
+            onPageChange={setCurrentPage}
+          />
         </div>
       </div>
     </div>

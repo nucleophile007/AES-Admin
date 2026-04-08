@@ -30,7 +30,7 @@ async function checkTestimonials() {
       console.log('programs:', t.programs)
       console.log('rating:', t.rating)
       console.log('content:', t.content?.substring(0, 100) + '...')
-      console.log('beforeAfterExpectations:', t.beforeAfterExpectations?.substring(0, 100) + '...')
+      console.log('beforeExpectations:', t.beforeExpectations?.substring(0, 100) + '...')
       console.log('successStory:', t.successStory?.substring(0, 100) + '...')
       console.log('consentToFeature:', t.consentToFeature)
       console.log('submittedAt:', t.submittedAt)

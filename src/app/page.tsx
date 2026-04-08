@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { auth } from '@/auth';
 import { allowedEmails } from '@/lib/adminConfig';
-import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquare, Receipt, MessageSquareQuote, Award, FileCheck, PlusCircle } from "lucide-react";
+import { Calendar, Users, GraduationCap, UserCircle, BookOpen, MessageSquare, Receipt, MessageSquareQuote, Award, FileCheck, PlusCircle, Inbox } from "lucide-react";
 
 export default async function HomePage() {
   const session = await auth();
@@ -14,7 +14,7 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-yellow-50 p-8">
       <div className="max-w-6xl mx-auto">
-        <div className="bg-white/90 backdrop-blur rounded-2xl shadow-lg border border-blue-100 p-8">
+        <div className="bg-white rounded-2xl shadow-sm border border-blue-100 p-8">
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center justify-between gap-4">
@@ -42,13 +42,14 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
               href="/admin/availability"
-              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-gray-900">Manage Availability</h3>
                   <p className="text-sm text-gray-600">
-                    Set available time slots for all programs
+                    Set available date and time slots
                   </p>
                   <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
                     <span className="h-1.5 w-1.5 rounded-full bg-blue-600 mr-1.5" />
@@ -63,7 +64,8 @@ export default async function HomePage() {
 
             <Link
               href="/admin/session-approval"
-              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -84,7 +86,8 @@ export default async function HomePage() {
 
             <Link
               href="/admin/students"
-              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -105,7 +108,8 @@ export default async function HomePage() {
 
             <Link
               href="/admin/teachers"
-              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -126,7 +130,8 @@ export default async function HomePage() {
 
             <Link
               href="/admin/enrollments"
-              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -147,7 +152,8 @@ export default async function HomePage() {
 
             <Link
               href="/admin/feedback"
-              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -167,8 +173,31 @@ export default async function HomePage() {
             </Link>
 
             <Link
+              href="/admin/contact-submissions"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Contact Submissions</h3>
+                  <p className="text-sm text-gray-600">
+                    View public contact form inquiries
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600 mr-1.5" />
+                    Inbox
+                  </span>
+                </div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-inner group-hover:bg-blue-700 transition-colors">
+                  <Inbox className="w-6 h-6" />
+                </div>
+              </div>
+            </Link>
+
+            <Link
               href="/admin/transaction-receipts"
-              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -189,7 +218,8 @@ export default async function HomePage() {
 
             <Link
               href="/admin/testimonials"
-              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -210,7 +240,8 @@ export default async function HomePage() {
 
             <Link
               href="/admin/mentors"
-              className="group block rounded-xl p-6 bg-white border border-purple-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-purple-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -232,7 +263,8 @@ export default async function HomePage() {
             {/* Research Access Approvals */}
             <Link
               href="/admin/research-approvals"
-              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -256,7 +288,8 @@ export default async function HomePage() {
             {/* Add New Research */}
             <Link
               href="/admin/new-research"
-              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
             >
               <div className="flex items-center justify-between">
                 <div>

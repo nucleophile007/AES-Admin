@@ -768,7 +768,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/mac/AES-Admin/generated/prisma",
+      "value": "/Users/mac/AES-Admin/generated/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -782,12 +782,12 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/mac/AES-Admin/prisma/schema.prisma",
+    "sourceFilePath": "/Users/mac/AES-Admin/generated/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
     "rootEnvPath": null,
-    "schemaEnvPath": "../../.env"
+    "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../prisma",
   "clientVersion": "6.14.0",
@@ -796,6 +796,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

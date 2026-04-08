@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useDeferredValue, useEffect, useMemo, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
@@ -29,15 +29,32 @@ export default function TransactionReceiptsPage() {
   const router = useRouter()
   
   const [data, setData] = useState<TransactionReceipt[]>([])
-  const [filteredData, setFilteredData] = useState<TransactionReceipt[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
+  const deferredSearchTerm = useDeferredValue(searchTerm)
   const [selectedStatus, setSelectedStatus] = useState("all")
   const [actionLoading, setActionLoading] = useState<Record<string, boolean>>({})
   const [selectedReceipt, setSelectedReceipt] = useState<TransactionReceipt | null>(null)
   const [adminNotes, setAdminNotes] = useState("")
   const [showReviewModal, setShowReviewModal] = useState(false)
   const [reviewAction, setReviewAction] = useState<"verify" | "reject" | null>(null)
+  const normalizedSearchTerm = useMemo(
+    () => deferredSearchTerm.trim().toLowerCase(),
+    [deferredSearchTerm],
+  )
+  const filteredData = useMemo(() => {
+    if (!normalizedSearchTerm) {
+      return data
+    }
+
+    return data.filter(
+      (receipt) =>
+        receipt.parentName.toLowerCase().includes(normalizedSearchTerm) ||
+        receipt.parentEmail.toLowerCase().includes(normalizedSearchTerm) ||
+        receipt.transactionId?.toLowerCase().includes(normalizedSearchTerm) ||
+        receipt.amount.toLowerCase().includes(normalizedSearchTerm),
+    )
+  }, [data, normalizedSearchTerm])
 
   // Check admin access and redirect if needed
   useEffect(() => {
@@ -88,22 +105,6 @@ export default function TransactionReceiptsPage() {
       setLoading(false)
     }
   }
-
-  useEffect(() => {
-    let filtered = data
-    
-    if (searchTerm) {
-      filtered = filtered.filter(
-        (receipt) =>
-          receipt.parentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          receipt.parentEmail.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          receipt.transactionId?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          receipt.amount.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    }
-
-    setFilteredData(filtered)
-  }, [searchTerm, data])
 
   const updateReceiptStatus = async (id: number, newStatus: string, notes?: string) => {
     setActionLoading(prev => ({ ...prev, [`status-${id}`]: true }))
@@ -434,4 +435,3 @@ export default function TransactionReceiptsPage() {
     </div>
   )
 }
-

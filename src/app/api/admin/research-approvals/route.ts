@@ -17,7 +17,7 @@ export async function GET() {
       approved: false,
     },
     include: {
-      Research: {
+      research: {
         select: {
           title: true,
         },

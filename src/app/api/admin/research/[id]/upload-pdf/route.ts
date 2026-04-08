@@ -53,13 +53,13 @@ export async function POST(
     // Save PDF path in DB
     await prisma.research.update({
       where: { id: researchId },
-      data: { pdfPath: filePath },
+      data: { pdfFilename: filePath },
     })
 
     return NextResponse.json({
       success: true,
       message: "PDF uploaded successfully",
-      pdfPath: filePath,
+      pdfFilename: filePath,
     })
   } catch (err) {
     console.error("Upload PDF error:", err)

@@ -28,6 +28,15 @@ export async function GET() {
     console.log("Fetching students from database...")
     // Get all students from the database
     const students = await prisma.student.findMany({
+      include: {
+        parentAccount: {
+          select: {
+            id: true,
+            email: true,
+            isActivated: true
+          }
+        }
+      },
       orderBy: {
         createdAt: "desc"
       }

@@ -1,10 +1,11 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useDeferredValue, useEffect, useMemo, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Search, User, Filter, CheckCircle, Loader2, X, Plus, Mail } from "lucide-react"
+import TablePagination from "@/components/ui/table-pagination"
 
 interface Teacher {
   id: number
@@ -23,16 +24,18 @@ const PROGRAM_OPTIONS = [
   "MATH Competitions",
   "Research",
 ] as const
+const PAGE_SIZE = 50
 
 export default function TeachersPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
   
   const [data, setData] = useState<Teacher[]>([])
-  const [filteredData, setFilteredData] = useState<Teacher[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
+  const deferredSearchTerm = useDeferredValue(searchTerm)
   const [selectedProgram, setSelectedProgram] = useState("all")
+  const [currentPage, setCurrentPage] = useState(1)
   const [actionLoading, setActionLoading] = useState<Record<string, boolean>>({})
 
   // Form states for new teacher
@@ -44,6 +47,39 @@ export default function TeachersPage() {
   })
   const [formLoading, setFormLoading] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
+  const normalizedSearchTerm = useMemo(
+    () => deferredSearchTerm.trim().toLowerCase(),
+    [deferredSearchTerm],
+  )
+  const programs = useMemo(
+    () => Array.from(new Set(data.flatMap((teacher) => teacher.programs))),
+    [data],
+  )
+  const filteredData = useMemo(() => {
+    let filtered = data
+
+    if (normalizedSearchTerm) {
+      filtered = filtered.filter(
+        (teacher) =>
+          teacher.name.toLowerCase().includes(normalizedSearchTerm) ||
+          teacher.email.toLowerCase().includes(normalizedSearchTerm),
+      )
+    }
+
+    if (selectedProgram !== "all") {
+      filtered = filtered.filter((teacher) => teacher.programs.includes(selectedProgram))
+    }
+
+    return filtered
+  }, [data, normalizedSearchTerm, selectedProgram])
+  const totalPages = useMemo(
+    () => Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE)),
+    [filteredData.length],
+  )
+  const paginatedData = useMemo(() => {
+    const start = (currentPage - 1) * PAGE_SIZE
+    return filteredData.slice(start, start + PAGE_SIZE)
+  }, [currentPage, filteredData])
 
   // Check admin access and redirect if needed
   useEffect(() => {
@@ -74,6 +110,16 @@ export default function TeachersPage() {
     fetchTeachers()
   }, [session, status])
 
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchTerm, selectedProgram])
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages)
+    }
+  }, [currentPage, totalPages])
+
   const fetchTeachers = async () => {
     setLoading(true)
     try {
@@ -93,26 +139,6 @@ export default function TeachersPage() {
       setLoading(false)
     }
   }
-
-  useEffect(() => {
-    let filtered = data
-    
-    if (searchTerm) {
-      filtered = filtered.filter(
-        (teacher) =>
-          teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          teacher.email.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    }
-
-    if (selectedProgram !== "all") {
-      filtered = filtered.filter((teacher) => 
-        teacher.programs.includes(selectedProgram)
-      )
-    }
-
-    setFilteredData(filtered)
-  }, [searchTerm, selectedProgram, data])
 
   const toggleTeacherStatus = async (id: number, newStatus: boolean) => {
     setActionLoading(prev => ({ ...prev, [`status-${id}`]: true }))
@@ -270,9 +296,6 @@ export default function TeachersPage() {
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return null // Will redirect to unauthorized via useEffect
   }
-
-  // Get all unique programs from teachers data
-  const programs = Array.from(new Set(data.flatMap(teacher => teacher.programs)))
 
   if (loading) {
     return (
@@ -496,7 +519,7 @@ export default function TeachersPage() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredData.map((teacher, idx) => (
+                  {paginatedData.map((teacher, idx) => (
                     <tr key={teacher.id} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                       <td className="px-4 py-4">
                         <div className="font-medium text-gray-900">{teacher.name}</div>
@@ -583,6 +606,13 @@ export default function TeachersPage() {
               </table>
             </div>
           )}
+          <TablePagination
+            currentPage={currentPage}
+            pageSize={PAGE_SIZE}
+            totalItems={filteredData.length}
+            itemLabel="teachers"
+            onPageChange={setCurrentPage}
+          />
         </div>
       </div>
     </div>

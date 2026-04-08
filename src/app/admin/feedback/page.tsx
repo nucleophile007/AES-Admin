@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useDeferredValue, useEffect, useMemo, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
@@ -42,15 +42,42 @@ export default function FeedbackPage() {
   const router = useRouter()
   
   const [data, setData] = useState<Feedback[]>([])
-  const [filteredData, setFilteredData] = useState<Feedback[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
+  const deferredSearchTerm = useDeferredValue(searchTerm)
   const [selectedStatus, setSelectedStatus] = useState("all")
   const [actionLoading, setActionLoading] = useState<Record<string, boolean>>({})
   const [viewingContent, setViewingContent] = useState<{ title: string; content: string } | null>(null)
   const [syncing, setSyncing] = useState(false)
   const [syncMessage, setSyncMessage] = useState('')
   const [expandedPrograms, setExpandedPrograms] = useState<Record<number, boolean>>({})
+  const normalizedSearchTerm = useMemo(
+    () => deferredSearchTerm.trim().toLowerCase(),
+    [deferredSearchTerm],
+  )
+  const filteredData = useMemo(() => {
+    let filtered = data
+
+    if (selectedStatus !== "all") {
+      if (selectedStatus === "approved") {
+        filtered = filtered.filter((feedback) => feedback.isApproved)
+      } else if (selectedStatus === "pending") {
+        filtered = filtered.filter((feedback) => !feedback.isApproved)
+      }
+    }
+
+    if (normalizedSearchTerm) {
+      filtered = filtered.filter(
+        (feedback) =>
+          (feedback.parentName && feedback.parentName.toLowerCase().includes(normalizedSearchTerm)) ||
+          (feedback.studentName && feedback.studentName.toLowerCase().includes(normalizedSearchTerm)) ||
+          (feedback.childExperience && feedback.childExperience.toLowerCase().includes(normalizedSearchTerm)) ||
+          (feedback.school && feedback.school.toLowerCase().includes(normalizedSearchTerm)),
+      )
+    }
+
+    return filtered
+  }, [data, normalizedSearchTerm, selectedStatus])
 
   // Check admin access and redirect if needed
   useEffect(() => {
@@ -129,32 +156,6 @@ export default function FeedbackPage() {
       setLoading(false)
     }
   }
-
-  useEffect(() => {
-    let filtered = data
-    
-    // Filter by status
-    if (selectedStatus !== "all") {
-      if (selectedStatus === "approved") {
-        filtered = filtered.filter(f => f.isApproved)
-      } else if (selectedStatus === "pending") {
-        filtered = filtered.filter(f => !f.isApproved)
-      }
-    }
-    
-    // Filter by search term
-    if (searchTerm) {
-      filtered = filtered.filter(
-        (feedback) =>
-          (feedback.parentName && feedback.parentName.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          (feedback.studentName && feedback.studentName.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          (feedback.childExperience && feedback.childExperience.toLowerCase().includes(searchTerm.toLowerCase())) ||
-          (feedback.school && feedback.school.toLowerCase().includes(searchTerm.toLowerCase()))
-      )
-    }
-
-    setFilteredData(filtered)
-  }, [searchTerm, data, selectedStatus])
 
   const updateFeedbackStatus = async (id: number, isApproved: boolean) => {
     setActionLoading(prev => ({ ...prev, [`status-${id}`]: true }))
@@ -568,4 +569,3 @@ export default function FeedbackPage() {
     </div>
   )
 }
-

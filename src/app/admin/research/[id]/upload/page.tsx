@@ -124,7 +124,7 @@
 //               </button>
 //             </form>
 
-//             {research.pdfPath && (
+//             {research.pdfFilename && (
 //               <p className="text-xs text-green-600 mt-3">
 //                 ✔ PDF already uploaded
 //               </p>
@@ -170,7 +170,7 @@ export default async function ResearchUploadPage({ params }: Props) {
   // 🔍 Fetch research
   const research = await prisma.research.findUnique({
     where: { id: params.id },
-    include: { Slide: true },
+    include: { slides: true },
   })
 
   if (!research) {
@@ -239,9 +239,9 @@ export default async function ResearchUploadPage({ params }: Props) {
               </button>
             </form>
 
-            {research.Slide.length > 0 && (
+            {research.slides.length > 0 && (
               <p className="text-xs text-green-600 mt-3">
-                ✔ {research.Slide.length} slides already uploaded
+                ✔ {research.slides.length} slides already uploaded
               </p>
             )}
           </div>
@@ -276,7 +276,7 @@ export default async function ResearchUploadPage({ params }: Props) {
               </button>
             </form>
 
-            {research.pdfPath && (
+            {research.pdfFilename && (
               <p className="text-xs text-green-600 mt-3">
                 ✔ PDF already uploaded
               </p>

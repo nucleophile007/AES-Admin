@@ -74,14 +74,10 @@ export async function POST(
           upsert: true,
         })
 
-      const { data } = supabaseServer.storage
-        .from("research-slides")
-        .getPublicUrl(storagePath)
-
       await prisma.slide.create({
         data: {
           researchId,
-          imagePath: data.publicUrl,
+          imageFilename: storagePath,
           order,
         },
       })

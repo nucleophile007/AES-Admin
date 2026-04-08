@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
       const accessRequest = await tx.accessRequest.findUnique({
         where: { id: requestId },
         include: {
-          Research: {
+          research: {
             select: {
               title: true,
               slug: true,
@@ -92,8 +92,8 @@ export async function POST(req: NextRequest) {
           body: {
             email: approvedRequest.email,
             name: approvedRequest.name,
-            researchTitle: approvedRequest.Research.title,
-            researchSlug: approvedRequest.Research.slug,
+            researchTitle: approvedRequest.research.title,
+            researchSlug: approvedRequest.research.slug,
           },
         })
       } catch (emailError) {

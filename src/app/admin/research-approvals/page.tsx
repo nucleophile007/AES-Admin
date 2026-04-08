@@ -98,7 +98,7 @@ interface AccessRequest {
   email: string
   reason?: string | null
   createdAt: string
-  Research: {
+  research: {
     title: string
   }
 }
@@ -233,7 +233,7 @@ export default function ResearchApprovalsPage() {
                       <td className="px-5 py-4">
                         <span className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
                           <Lock className="w-3 h-3" />
-                          {req.Research.title}
+                          {req.research.title}
                         </span>
                       </td>
 

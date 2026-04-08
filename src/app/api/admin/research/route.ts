@@ -47,9 +47,10 @@ export async function POST(req: NextRequest) {
         id: crypto.randomUUID(),
         title,
         slug,
+        createdAt: new Date(),
         description,
         author,
-        pdfPath: null,
+        pdfFilename: null,
       },
     })
 
