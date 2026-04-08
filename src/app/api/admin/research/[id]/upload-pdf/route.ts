@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from "next/server"
 import prisma from "@/lib/prisma"
 import { checkAdminAuth } from "@/lib/adminAuth"
 import { supabaseServer } from "@/lib/supabase-server"
-import { PDFDocument, rgb, degrees } from "pdf-lib"
+import { PDFDocument } from "pdf-lib"
 import { analyzePDF } from "@/lib/pdfParser"
+import { applyTiledWatermark } from "@/lib/pdfWatermark"
 
 export async function POST(
   req: NextRequest,
@@ -98,22 +99,7 @@ export async function POST(
 
     // Step 2: Add watermark to PDF
     const pdfDoc = await PDFDocument.load(fileBuffer)
-    const pages = pdfDoc.getPages()
-
-    // Add watermark to each page
-    for (const page of pages) {
-      const { width, height } = page.getSize()
-      
-      // Draw watermark text diagonally across the page
-      page.drawText("© Acharyaes.com", {
-        x: width / 2 - 150,
-        y: height / 2,
-        size: 60,
-        color: rgb(0.5, 0.5, 0.5),
-        opacity: 0.3,
-        rotate: degrees(45),
-      })
-    }
+    await applyTiledWatermark(pdfDoc)
 
     // Save watermarked PDF
     const watermarkedPdfBytes = await pdfDoc.save()

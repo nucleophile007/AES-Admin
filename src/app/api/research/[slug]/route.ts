@@ -11,16 +11,6 @@ export async function GET(
     // Fetch research by slug
     const research = await prisma.research.findUnique({
       where: { slug },
-      include: {
-        Slide: {
-          orderBy: { order: 'asc' },
-          select: {
-            id: true,
-            order: true,
-            imageFilename: true,
-          },
-        },
-      },
     })
 
     // Return 404 if not found
@@ -62,15 +52,11 @@ export async function GET(
         createdAt: research.createdAt,
         published: research.published,
         meta: {
-          slidesCount: research.Slide.length,
+          hasPresentationPdf: !!research.presentationPdfFilename,
           hasPDF: !!research.pdfFilename,
           hasExtractedContent: !!research.extractedContent,
         },
-        slides: research.Slide.map(slide => ({
-          id: slide.id,
-          order: slide.order,
-          imageFilename: slide.imageFilename,
-        })),
+        presentationPdfFilename: research.presentationPdfFilename,
       },
     }
 

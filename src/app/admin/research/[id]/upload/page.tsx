@@ -174,7 +174,6 @@ export default async function ResearchUploadPage({ params }: Props) {
   // 🔍 Fetch research
   const research = await prisma.research.findUnique({
     where: { id },
-    include: { Slide: true },
   })
 
   if (!research) {
@@ -229,13 +228,13 @@ export default async function ResearchUploadPage({ params }: Props) {
         {/* Upload Forms */}
         <UploadForms
           researchId={research.id}
-          slidesCount={research.Slide.length}
+          presentationPdfFilename={research.presentationPdfFilename}
           pdfFilename={research.pdfFilename}
           extractionStatus={research.extractionStatus}
           extractedAt={research.extractedAt}
           sectionsCount={
-            research.extractedContent &&
             typeof research.extractedContent === 'object' &&
+            research.extractedContent !== null &&
             'sections' in research.extractedContent &&
             Array.isArray(research.extractedContent.sections)
               ? research.extractedContent.sections.length

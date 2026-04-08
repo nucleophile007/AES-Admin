@@ -2,11 +2,11 @@
 
 import { useState, useRef } from "react"
 import { toast } from "sonner"
-import { Upload, FileText, Images, CheckCircle, XCircle, Loader2, RefreshCw, Sparkles, X } from "lucide-react"
+import { Upload, FileText, CheckCircle, XCircle, Loader2, RefreshCw, Sparkles, X } from "lucide-react"
 
 interface UploadFormsProps {
   researchId: string
-  slidesCount: number
+  presentationPdfFilename: string | null
   pdfFilename: string | null
   extractionStatus?: string | null
   extractedAt?: Date | null
@@ -15,27 +15,27 @@ interface UploadFormsProps {
 
 export default function UploadForms({
   researchId,
-  slidesCount,
+  presentationPdfFilename,
   pdfFilename,
   extractionStatus,
   extractedAt,
   sectionsCount = 0,
 }: UploadFormsProps) {
-  const [activeTab, setActiveTab] = useState<'slides' | 'pdf'>('slides')
-  const [isUploadingSlides, setIsUploadingSlides] = useState(false)
+  const [activeTab, setActiveTab] = useState<'presentation' | 'report'>('presentation')
+  const [isUploadingPresentation, setIsUploadingPresentation] = useState(false)
   const [isUploadingPdf, setIsUploadingPdf] = useState(false)
   const [isReExtracting, setIsReExtracting] = useState(false)
   const [localExtractionStatus, setLocalExtractionStatus] = useState(extractionStatus)
   const [localSectionsCount, setLocalSectionsCount] = useState(sectionsCount)
   const [dragActive, setDragActive] = useState(false)
-  const [selectedSlides, setSelectedSlides] = useState<File[]>([])
   const [selectedPdf, setSelectedPdf] = useState<File | null>(null)
-  const slidesInputRef = useRef<HTMLInputElement>(null)
+  const [selectedPresentation, setSelectedPresentation] = useState<File | null>(null)
   const pdfInputRef = useRef<HTMLInputElement>(null)
+  const presentationInputRef = useRef<HTMLInputElement>(null)
 
-  const handleSlidesFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || [])
-    setSelectedSlides(files)
+  const handlePresentationFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null
+    setSelectedPresentation(file)
   }
 
   const handlePdfFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,15 +43,11 @@ export default function UploadForms({
     setSelectedPdf(file)
   }
 
-  const clearSelectedSlides = () => {
-    setSelectedSlides([])
-    if (slidesInputRef.current) {
-      slidesInputRef.current.value = ''
+  const clearSelectedPresentation = () => {
+    setSelectedPresentation(null)
+    if (presentationInputRef.current) {
+      presentationInputRef.current.value = ''
     }
-  }
-
-  const removeSlide = (indexToRemove: number) => {
-    setSelectedSlides(prev => prev.filter((_, index) => index !== indexToRemove))
   }
 
   const clearSelectedPdf = () => {
@@ -61,21 +57,23 @@ export default function UploadForms({
     }
   }
 
-  const handleSlidesUpload = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handlePresentationUpload = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsUploadingSlides(true)
+    setIsUploadingPresentation(true)
 
     try {
       const formData = new FormData(e.currentTarget)
-      const files = formData.getAll("files")
+      const file = formData.get("file")
 
-      if (files.length === 0) {
-        toast.error("Please select at least one image file")
+      if (!file || !(file instanceof File) || file.size === 0) {
+        toast.error("Please select a PDF file")
         return
       }
 
+      toast.loading("Uploading presentation PDF...", { id: "presentation-upload" })
+
       const response = await fetch(
-        `/api/admin/research/${researchId}/upload-slides`,
+        `/api/admin/research/${researchId}/upload-presentation-pdf`,
         {
           method: "POST",
           body: formData,
@@ -85,18 +83,18 @@ export default function UploadForms({
       const result = await response.json()
 
       if (response.ok) {
-        toast.success("Slides uploaded successfully! 🎉")
-        clearSelectedSlides()
-        // Reload page to show updated count
-        setTimeout(() => window.location.reload(), 1000)
+        clearSelectedPresentation()
+        toast.success("Presentation PDF uploaded successfully!", { id: "presentation-upload" })
+        // Reload page to show updated data
+        setTimeout(() => window.location.reload(), 2000)
       } else {
-        toast.error(result.error || "Failed to upload slides")
+        toast.error(result.error || "Failed to upload presentation PDF", { id: "presentation-upload" })
       }
     } catch (error) {
       console.error("Upload error:", error)
-      toast.error("Upload failed. Please try again.")
+      toast.error("Upload failed. Please try again.", { id: "presentation-upload" })
     } finally {
-      setIsUploadingSlides(false)
+      setIsUploadingPresentation(false)
     }
   }
 
@@ -207,32 +205,30 @@ export default function UploadForms({
       <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
         <div className="flex border-b border-slate-200">
           <button
-            onClick={() => setActiveTab('slides')}
+            onClick={() => setActiveTab('presentation')}
             className={`flex-1 px-6 py-4 text-sm font-medium transition-all relative ${
-              activeTab === 'slides'
+              activeTab === 'presentation'
                 ? 'text-indigo-600 bg-indigo-50'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
             }`}
           >
             <div className="flex items-center justify-center gap-2">
-              <Images className="w-5 h-5" />
-              <span>Presentation Slides</span>
-              {slidesCount > 0 && (
-                <span className="ml-2 px-2 py-0.5 text-xs rounded-full bg-green-100 text-green-700 font-semibold">
-                  {slidesCount}
-                </span>
+              <FileText className="w-5 h-5" />
+              <span>Presentation PDF</span>
+              {presentationPdfFilename && (
+                <span className="ml-2 w-2 h-2 rounded-full bg-green-500" />
               )}
             </div>
-            {activeTab === 'slides' && (
+            {activeTab === 'presentation' && (
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-600 to-violet-600" />
             )}
           </button>
 
           <button
-            onClick={() => setActiveTab('pdf')}
+            onClick={() => setActiveTab('report')}
             className={`flex-1 px-6 py-4 text-sm font-medium transition-all relative ${
-              activeTab === 'pdf'
-                ? 'text-indigo-600 bg-indigo-50'
+              activeTab === 'report'
+                ? 'text-violet-600 bg-violet-50'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
             }`}
           >
@@ -243,27 +239,32 @@ export default function UploadForms({
                 <span className="ml-2 w-2 h-2 rounded-full bg-green-500" />
               )}
             </div>
-            {activeTab === 'pdf' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-600 to-violet-600" />
+            {activeTab === 'report' && (
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-violet-600 to-fuchsia-600" />
             )}
           </button>
         </div>
 
         {/* Tab Content */}
         <div className="p-8">
-          {activeTab === 'slides' && (
+          {activeTab === 'presentation' && (
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                  Upload Presentation Slides
+                  Upload Presentation PDF
                 </h3>
-                <p className="text-sm text-slate-600">
-                  Upload slide images in PNG or JPG format. 
-                  <span className="font-medium text-slate-700"> Upload order determines slide sequence.</span>
+                <p className="text-sm text-slate-600 mb-3">
+                  Upload the presentation PDF. It will be watermarked automatically.
                 </p>
+                <div className="flex items-start gap-2 text-xs text-indigo-700 bg-indigo-50 border border-indigo-100 p-3 rounded-lg">
+                  <Sparkles className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-semibold">Viewer Note:</span> Client-side viewer will display first 2 pages with remaining pages locked for preview
+                  </div>
+                </div>
               </div>
 
-              <form onSubmit={handleSlidesUpload}>
+              <form onSubmit={handlePresentationUpload}>
                 <div
                   className={`relative border-2 border-dashed rounded-xl p-12 text-center transition-all ${
                     dragActive
@@ -279,16 +280,14 @@ export default function UploadForms({
                   }}
                 >
                   <input
-                    ref={slidesInputRef}
+                    ref={presentationInputRef}
                     type="file"
-                    name="files"
-                    accept="image/png,image/jpeg"
-                    multiple
-                    required
-                    disabled={isUploadingSlides}
-                    onChange={handleSlidesFileChange}
+                    name="file"
+                    accept=".pdf"
+                    disabled={isUploadingPresentation}
+                    onChange={handlePresentationFileChange}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
-                    id="slides-input"
+                    id="presentation-input"
                   />
                   
                   <div className="pointer-events-none">
@@ -296,82 +295,75 @@ export default function UploadForms({
                       <Upload className="w-8 h-8 text-white" />
                     </div>
                     <p className="text-base font-medium text-slate-900 mb-1">
-                      Choose files or drag & drop
+                      Choose PDF or drag & drop
                     </p>
                     <p className="text-sm text-slate-500">
-                      PNG, JPG up to 50MB each
+                      PDF up to 50MB
                     </p>
                   </div>
                 </div>
 
-                {/* Selected Files Preview */}
-                {selectedSlides.length > 0 && (
+                {/* Selected File Preview */}
+                {selectedPresentation && (
                   <div className="mt-4 p-4 bg-indigo-50 border border-indigo-200 rounded-xl">
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between mb-2">
                       <p className="text-sm font-medium text-indigo-900">
-                        {selectedSlides.length} file{selectedSlides.length > 1 ? 's' : ''} selected
+                        File selected
                       </p>
                       <button
-                        onClick={clearSelectedSlides}
+                        onClick={clearSelectedPresentation}
                         type="button"
                         className="text-xs text-indigo-600 hover:text-indigo-800 font-medium"
                       >
-                        Clear all
+                        Clear
                       </button>
                     </div>
-                    <div className="space-y-2 max-h-40 overflow-y-auto">
-                      {selectedSlides.map((file, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-2 text-xs text-indigo-700 bg-white px-3 py-2 rounded-lg group"
-                        >
-                          <Images className="w-3.5 h-3.5 flex-shrink-0" />
-                          <span className="flex-1 truncate">{file.name}</span>
-                          <span className="text-indigo-500">
-                            {(file.size / 1024 / 1024).toFixed(2)} MB
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => removeSlide(index)}
-                            className="ml-1 p-1 hover:bg-red-100 rounded transition-colors"
-                            title="Remove file"
-                          >
-                            <X className="w-3.5 h-3.5 text-slate-400 hover:text-red-600" />
-                          </button>
-                        </div>
-                      ))}
+                    <div className="flex items-center gap-2 text-xs text-indigo-700 bg-white px-3 py-2 rounded-lg">
+                      <FileText className="w-3.5 h-3.5 flex-shrink-0" />
+                      <span className="flex-1 truncate">{selectedPresentation.name}</span>
+                      <span className="text-indigo-500">
+                        {(selectedPresentation.size / 1024 / 1024).toFixed(2)} MB
+                      </span>
+                      <button
+                        type="button"
+                        onClick={clearSelectedPresentation}
+                        className="ml-1 p-1 hover:bg-red-100 rounded transition-colors"
+                        title="Remove file"
+                      >
+                        <X className="w-3.5 h-3.5 text-slate-400 hover:text-red-600" />
+                      </button>
                     </div>
                   </div>
                 )}
 
                 <button
                   type="submit"
-                  disabled={isUploadingSlides || selectedSlides.length === 0}
+                  disabled={isUploadingPresentation || !selectedPresentation}
                   className="mt-6 w-full px-6 py-3.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-xl hover:from-indigo-700 hover:to-violet-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-lg shadow-indigo-500/30 transition-all flex items-center justify-center gap-2"
                 >
-                  {isUploadingSlides ? (
+                  {isUploadingPresentation ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      Uploading Slides...
+                      Uploading PDF...
                     </>
                   ) : (
                     <>
                       <Upload className="w-5 h-5" />
-                      {selectedSlides.length > 0 ? `Upload ${selectedSlides.length} Slide${selectedSlides.length > 1 ? 's' : ''}` : 'Upload Slides'}
+                      {selectedPresentation ? 'Upload Presentation PDF' : 'Select PDF File'}
                     </>
                   )}
                 </button>
               </form>
 
-              {slidesCount > 0 && (
+              {presentationPdfFilename && (
                 <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-xl">
                   <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
                   <div className="flex-1">
                     <p className="text-sm font-medium text-green-900">
-                      {slidesCount} slide{slidesCount > 1 ? 's' : ''} uploaded successfully
+                      Presentation PDF Uploaded Successfully
                     </p>
-                    <p className="text-xs text-green-700 mt-0.5">
-                      Ready for presentation
+                    <p className="text-xs text-green-700 mt-1 truncate">
+                      {presentationPdfFilename}
                     </p>
                   </div>
                 </div>
@@ -379,7 +371,7 @@ export default function UploadForms({
             </div>
           )}
 
-          {activeTab === 'pdf' && (
+          {activeTab === 'report' && (
             <div className="space-y-6">
               <div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">
@@ -388,7 +380,7 @@ export default function UploadForms({
                 <p className="text-sm text-slate-600 mb-3">
                   Upload the research PDF. Content will be automatically extracted and watermarked.
                 </p>
-                <div className="flex items-start gap-2 text-xs text-indigo-700 bg-indigo-50 border border-indigo-100 p-3 rounded-lg">
+                <div className="flex items-start gap-2 text-xs text-violet-700 bg-violet-50 border border-violet-100 p-3 rounded-lg">
                   <Sparkles className="w-4 h-4 flex-shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold">For Google Docs:</span> Download as PDF 

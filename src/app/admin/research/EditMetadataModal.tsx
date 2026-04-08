@@ -24,10 +24,10 @@ interface Research {
   createdAt: string
   abstract: string | null
   keywords: string[]
+  presentationPdfFilename: string | null
   pdfFilename: string | null
   student: Student | null
   _count: {
-    Slide: number
     AccessRequest: number
   }
 }

@@ -2,35 +2,28 @@ import { NextRequest, NextResponse } from "next/server"
 import prisma from "@/lib/prisma"
 import { supabaseServer } from "@/lib/supabase-server"
 
-// GET /api/research/[slug]/slides?slideNumber=1
+// GET /api/research/[slug]/presentation-pdf
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
     const { slug } = await params
-    const { searchParams } = new URL(req.url)
-    const slideNumber = parseInt(searchParams.get("slideNumber") || "1")
 
     // Find research by slug
     const research = await prisma.research.findUnique({
       where: { slug, published: true },
-      include: {
-        Slide: {
-          where: { order: slideNumber },
-        },
-      },
     })
 
-    if (!research || !research.Slide.length) {
+    if (!research || !research.presentationPdfFilename) {
       return NextResponse.json(
-        { error: "Slide not found" },
+        { error: "Presentation PDF not found" },
         { status: 404 }
       )
     }
 
     // TODO: Add your access verification logic here
-    // For example: Check if user has AccessRequest approved
+    // For example: Check if user has AccessRequest approved or is logged in
     // const hasAccess = await prisma.accessRequest.findFirst({
     //   where: {
     //     researchId: research.id,
@@ -42,12 +35,11 @@ export async function GET(
     //   return NextResponse.json({ error: "Access denied" }, { status: 403 })
     // }
 
-    const slide = research.Slide[0]
-    const storagePath = `${research.id}/${slide.imageFilename}`
+    const storagePath = `${research.id}/${research.presentationPdfFilename}`
 
     // Generate signed URL (expires in 1 hour)
     const { data, error } = await supabaseServer.storage
-      .from("research-slides")
+      .from("research-ppt")
       .createSignedUrl(storagePath, 3600) // 1 hour
 
     if (error || !data) {
@@ -60,13 +52,15 @@ export async function GET(
 
     return NextResponse.json({
       url: data.signedUrl,
-      slideNumber,
-      totalSlides: await prisma.slide.count({
-        where: { researchId: research.id },
-      }),
+      title: research.title,
+      author: research.author,
+      metadata: {
+        previewPages: 2,
+        locked: true,
+      },
     })
   } catch (error) {
-    console.error("Error fetching slide:", error)
+    console.error("Error fetching presentation PDF:", error)
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

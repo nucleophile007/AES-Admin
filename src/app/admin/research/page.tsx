@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { 
-  FileText, Image, Users, CheckCircle, XCircle, Eye, EyeOff, 
+  FileText, Users, CheckCircle, XCircle, Eye, EyeOff,
   Edit, Trash2, FolderOpen, Search, ArrowLeft 
 } from 'lucide-react'
 import { toast } from 'sonner'
 import EditMetadataModal from '@/app/admin/research/EditMetadataModal'
-import ManageSlidesDialog from '@/app/admin/research/ManageSlidesDialog'
 import ManagePdfDialog from '@/app/admin/research/ManagePdfDialog'
+import ManagePresentationDialog from '@/app/admin/research/ManagePresentationDialog'
 
 interface Student {
   id: number
@@ -31,10 +31,11 @@ interface Research {
   createdAt: string
   abstract: string | null
   keywords: string[]
+  presentationPdfFilename: string | null
   pdfFilename: string | null
+  pendingAccessRequestCount: number
   student: Student | null
   _count: {
-    Slide: number
     AccessRequest: number
   }
 }
@@ -49,8 +50,8 @@ export default function ResearchAdminPage() {
   
   // Modal states
   const [editingResearch, setEditingResearch] = useState<Research | null>(null)
-  const [managingSlidesId, setManagingSlidesId] = useState<string | null>(null)
   const [managingPdfId, setManagingPdfId] = useState<string | null>(null)
+  const [managingPresentationId, setManagingPresentationId] = useState<string | null>(null)
 
   useEffect(() => {
     fetchResearch()
@@ -92,8 +93,8 @@ export default function ResearchAdminPage() {
 
   const deleteResearch = async (item: Research) => {
     const warningMessage = item.published
-      ? `⚠️ WARNING: This research is PUBLISHED and visible to users.\n\nAre you sure you want to delete "${item.title}"?\n\nThis will permanently delete:\n- The research entry\n- All ${item._count?.Slide || 0} slide images\n- The PDF file\n- All ${item._count?.AccessRequest || 0} access requests\n\nThis action cannot be undone.`
-      : `Are you sure you want to delete "${item.title}"?\n\nThis will permanently delete:\n- The research entry\n- All ${item._count?.Slide || 0} slide images\n- The PDF file (if exists)\n- All ${item._count?.AccessRequest || 0} access requests\n\nThis action cannot be undone.`
+      ? `⚠️ WARNING: This research is PUBLISHED and visible to users.\n\nAre you sure you want to delete "${item.title}"?\n\nThis will permanently delete:\n- The research entry\n- Presentation PDF (if exists)\n- Technical report PDF (if exists)\n- All ${item._count?.AccessRequest || 0} access requests\n\nThis action cannot be undone.`
+      : `Are you sure you want to delete "${item.title}"?\n\nThis will permanently delete:\n- The research entry\n- Presentation PDF (if exists)\n- Technical report PDF (if exists)\n- All ${item._count?.AccessRequest || 0} access requests\n\nThis action cannot be undone.`
 
     const confirmed = window.confirm(warningMessage)
     if (!confirmed) return
@@ -122,11 +123,6 @@ export default function ResearchAdminPage() {
     setEditingResearch(null)
   }
 
-  const handleSlidesUpdated = () => {
-    // Refresh the research list to get updated slide counts
-    fetchResearch()
-  }
-
   const handlePdfUpdated = () => {
     // Refresh the research list
     fetchResearch()
@@ -149,7 +145,7 @@ export default function ResearchAdminPage() {
     total: research.length,
     published: research.filter(r => r.published).length,
     draft: research.filter(r => !r.published).length,
-    totalSlides: research.reduce((sum, r) => sum + (r._count?.Slide || 0), 0),
+    withPresentation: research.filter(r => r.presentationPdfFilename).length,
     withPdf: research.filter(r => r.pdfFilename).length,
   }
 
@@ -181,7 +177,7 @@ export default function ResearchAdminPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Research Management</h1>
-              <p className="text-gray-600">Manage all research papers, slides, and PDFs</p>
+              <p className="text-gray-600">Manage all research papers, presentation PDFs, and report PDFs</p>
             </div>
             <a
               href="/admin/new-research"
@@ -231,10 +227,10 @@ export default function ResearchAdminPage() {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total Slides</p>
-                <p className="text-2xl font-bold text-purple-600">{stats.totalSlides}</p>
+                <p className="text-sm text-gray-600">With Presentation</p>
+                <p className="text-2xl font-bold text-purple-600">{stats.withPresentation}</p>
               </div>
-              <Image className="w-8 h-8 text-purple-500" />
+              <FolderOpen className="w-8 h-8 text-purple-500" />
             </div>
           </div>
           <div className="bg-white rounded-lg shadow p-6">
@@ -477,9 +473,9 @@ export default function ResearchAdminPage() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex flex-col gap-1">
                           <div className="flex items-center gap-2">
-                            <Image className="w-4 h-4 text-purple-500" />
+                            <FolderOpen className="w-4 h-4 text-purple-500" />
                             <span className="text-sm text-gray-900">
-                              {item._count?.Slide || 0} slides
+                              {item.presentationPdfFilename ? 'Presentation PDF' : 'No Presentation PDF'}
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
@@ -491,12 +487,17 @@ export default function ResearchAdminPage() {
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center gap-2">
+                        <Link
+                          href={`/admin/research/${item.id}/access-requests`}
+                          className="relative inline-flex items-center gap-2 rounded-lg px-2 py-1 text-sm text-gray-900 hover:bg-gray-100 transition-colors"
+                          title="View access requests"
+                        >
                           <Users className="w-4 h-4 text-gray-500" />
-                          <span className="text-sm text-gray-900">
-                            {item._count?.AccessRequest || 0}
-                          </span>
-                        </div>
+                          <span>{item._count?.AccessRequest || 0}</span>
+                          {item.pendingAccessRequestCount > 0 && (
+                            <span className="absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full bg-red-600 ring-2 ring-white" aria-label={`${item.pendingAccessRequestCount} pending access requests`} />
+                          )}
+                        </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <div className="flex justify-end gap-2">
@@ -508,16 +509,16 @@ export default function ResearchAdminPage() {
                             <Edit className="w-4 h-4" />
                           </button>
                           <button
-                            onClick={() => setManagingSlidesId(item.id)}
-                            className="text-purple-600 hover:text-purple-900"
-                            title="Manage slides"
+                            onClick={() => setManagingPresentationId(item.id)}
+                            className="text-indigo-600 hover:text-indigo-900"
+                            title="Manage presentation PDF"
                           >
-                            <Image className="w-4 h-4" />
+                            <FolderOpen className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => setManagingPdfId(item.id)}
-                            className="text-indigo-600 hover:text-indigo-900"
-                            title="Manage PDF"
+                            className="text-red-600 hover:text-red-900"
+                            title="Manage report PDF"
                           >
                             <FileText className="w-4 h-4" />
                           </button>
@@ -548,18 +549,18 @@ export default function ResearchAdminPage() {
         />
       )}
 
-      {managingSlidesId && (
-        <ManageSlidesDialog
-          researchId={managingSlidesId}
-          onClose={() => setManagingSlidesId(null)}
-          onUpdate={handleSlidesUpdated}
-        />
-      )}
-
       {managingPdfId && (
         <ManagePdfDialog
           researchId={managingPdfId}
           onClose={() => setManagingPdfId(null)}
+          onUpdate={handlePdfUpdated}
+        />
+      )}
+
+      {managingPresentationId && (
+        <ManagePresentationDialog
+          researchId={managingPresentationId}
+          onClose={() => setManagingPresentationId(null)}
           onUpdate={handlePdfUpdated}
         />
       )}
