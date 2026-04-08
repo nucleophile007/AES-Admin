@@ -1,13 +1,12 @@
 // src/app/api/admin/events/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from "@/auth"
 import prisma from "@/lib/prisma"
 
 // GET /api/admin/events - List all events with filters
 export async function GET(req: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
@@ -35,7 +34,7 @@ export async function GET(req: NextRequest) {
     const events = await prisma.generalEvent.findMany({
       where,
       include: {
-        EventRegistration: {
+        registrations: {
           select: {
             id: true,
             registrationStatus: true,
@@ -49,7 +48,7 @@ export async function GET(req: NextRequest) {
 
     // Add registration stats to each event
     const eventsWithStats = events.map((event) => {
-      const registrations = event.EventRegistration
+      const registrations = event.registrations
       const totalRegistrations = registrations.length
       const confirmedRegistrations = registrations.filter(
         (r) => r.registrationStatus === "confirmed"
@@ -88,7 +87,7 @@ export async function GET(req: NextRequest) {
 // POST /api/admin/events - Create new event
 export async function POST(req: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }

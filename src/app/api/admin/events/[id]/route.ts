@@ -1,24 +1,25 @@
 // src/app/api/admin/events/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from "@/auth"
 import prisma from "@/lib/prisma"
 
 // GET /api/admin/events/:id - Get single event with registrations
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    const { id } = await params
+
     const event = await prisma.generalEvent.findUnique({
-      where: { id: parseInt(params.id) },
+      where: { id: parseInt(id) },
       include: {
-        EventRegistration: {
+        registrations: {
           orderBy: { createdAt: "desc" },
         },
       },
@@ -41,18 +42,20 @@ export async function GET(
 // PUT /api/admin/events/:id - Update event
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    const { id } = await params
+
     const body = await req.json()
 
     const event = await prisma.generalEvent.update({
-      where: { id: parseInt(params.id) },
+      where: { id: parseInt(id) },
       data: {
         ...(body.title && { title: body.title }),
         ...(body.description && { description: body.description }),
@@ -126,16 +129,18 @@ export async function PUT(
 // DELETE /api/admin/events/:id - Delete event
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    const { id } = await params
+
     await prisma.generalEvent.delete({
-      where: { id: parseInt(params.id) },
+      where: { id: parseInt(id) },
     })
 
     return NextResponse.json({ message: "Event deleted successfully" })

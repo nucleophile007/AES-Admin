@@ -1,30 +1,31 @@
 // src/app/api/admin/events/[id]/registrations/export/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from "@/auth"
 import prisma from "@/lib/prisma"
 
 // GET /api/admin/events/:id/registrations/export - Export registrations
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
+
+    const { id } = await params
 
     const { searchParams } = new URL(req.url)
     const format = searchParams.get("format") || "json"
 
     const registrations = await prisma.eventRegistration.findMany({
-      where: { eventId: parseInt(params.id) },
+      where: { eventId: parseInt(id) },
       orderBy: { createdAt: "desc" },
     })
 
     const event = await prisma.generalEvent.findUnique({
-      where: { id: parseInt(params.id) },
+      where: { id: parseInt(id) },
       select: { title: true },
     })
 

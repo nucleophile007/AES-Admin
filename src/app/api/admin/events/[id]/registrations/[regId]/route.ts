@@ -1,24 +1,25 @@
 // src/app/api/admin/events/[id]/registrations/[regId]/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from "@/auth"
 import prisma from "@/lib/prisma"
 
 // PUT /api/admin/events/:id/registrations/:regId - Update registration
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string; regId: string } }
+  { params }: { params: Promise<{ id: string; regId: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    const { regId } = await params
+
     const body = await req.json()
 
     const registration = await prisma.eventRegistration.update({
-      where: { id: parseInt(params.regId) },
+      where: { id: parseInt(regId) },
       data: {
         ...(body.registrationStatus && {
           registrationStatus: body.registrationStatus,
@@ -51,16 +52,18 @@ export async function PUT(
 // DELETE /api/admin/events/:id/registrations/:regId - Delete registration
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string; regId: string } }
+  { params }: { params: Promise<{ id: string; regId: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    const { regId } = await params
+
     await prisma.eventRegistration.delete({
-      where: { id: parseInt(params.regId) },
+      where: { id: parseInt(regId) },
     })
 
     return NextResponse.json({

@@ -1,22 +1,23 @@
 // src/app/api/admin/events/[id]/registrations/[regId]/check-in/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/lib/authOptions"
+import { auth } from "@/auth"
 import prisma from "@/lib/prisma"
 
 // POST /api/admin/events/:id/registrations/:regId/check-in - Check-in attendee
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string; regId: string } }
+  { params }: { params: Promise<{ id: string; regId: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
+    const { regId } = await params
+
     const registration = await prisma.eventRegistration.update({
-      where: { id: parseInt(params.regId) },
+      where: { id: parseInt(regId) },
       data: {
         attendanceConfirmed: true,
         checkedInAt: new Date(),

@@ -54,7 +54,7 @@ export async function GET(req: NextRequest) {
         registrationFormConfig: true,
         _count: {
           select: {
-            EventRegistration: true,
+            registrations: true,
           },
         },
       },
@@ -65,13 +65,13 @@ export async function GET(req: NextRequest) {
     // Add spots remaining to each event
     const eventsWithAvailability = events.map((event) => ({
       ...event,
-      registrationCount: event._count.EventRegistration,
+      registrationCount: event._count.registrations,
       spotsRemaining: event.maxParticipants
-        ? event.maxParticipants - event._count.EventRegistration
+        ? event.maxParticipants - event._count.registrations
         : null,
       isFull:
         event.maxParticipants !== null &&
-        event._count.EventRegistration >= event.maxParticipants,
+        event._count.registrations >= event.maxParticipants,
     }))
 
     return NextResponse.json(eventsWithAvailability)

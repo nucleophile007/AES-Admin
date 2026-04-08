@@ -5,10 +5,11 @@ import prisma from "@/lib/prisma"
 // POST /api/events/:id/register - Register for an event (public)
 export async function POST(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const eventId = parseInt(params.id)
+    const { id } = await params
+    const eventId = parseInt(id)
     const body = await req.json()
 
     // Validate event exists and is published
@@ -16,7 +17,7 @@ export async function POST(
       where: { id: eventId, isPublished: true },
       include: {
         _count: {
-          select: { EventRegistration: true },
+          select: { registrations: true },
         },
       },
     })
@@ -39,7 +40,7 @@ export async function POST(
     // Check if event is full
     if (
       event.maxParticipants &&
-      event._count.EventRegistration >= event.maxParticipants
+      event._count.registrations >= event.maxParticipants
     ) {
       return NextResponse.json({ error: "Event is full" }, { status: 400 })
     }

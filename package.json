@@ -16,9 +16,6 @@
     "testimonials:sync-parents": "npx tsx scripts/sync-parent-testimonials-from-sheet.ts",
     "testimonials:test-webhook": "node scripts/test-testimonials-webhook.mjs"
   },
-  "prisma": {
-    "schema": "generated/prisma/schema.prisma"
-  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.922.0",
     "@prisma/client": "^6.14.0",

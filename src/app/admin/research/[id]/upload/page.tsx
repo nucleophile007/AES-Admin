@@ -170,7 +170,6 @@ export default async function ResearchUploadPage({ params }: Props) {
   // 🔍 Fetch research
   const research = await prisma.research.findUnique({
     where: { id: params.id },
-    include: { slides: true },
   })
 
   if (!research) {
@@ -239,11 +238,9 @@ export default async function ResearchUploadPage({ params }: Props) {
               </button>
             </form>
 
-            {research.slides.length > 0 && (
-              <p className="text-xs text-green-600 mt-3">
-                ✔ {research.slides.length} slides already uploaded
-              </p>
-            )}
+            <p className="text-xs text-gray-500 mt-3">
+              Uploaded slides are stored in secure storage.
+            </p>
           </div>
 
           {/* PDF Upload */}

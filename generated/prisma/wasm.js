@@ -677,14 +677,8 @@ exports.Prisma.ResearchScalarFieldEnum = {
   keywords: 'keywords',
   school: 'school',
   studentId: 'studentId',
-  domain: 'domain'
-};
-
-exports.Prisma.SlideScalarFieldEnum = {
-  id: 'id',
-  researchId: 'researchId',
-  order: 'order',
-  imageFilename: 'imageFilename'
+  domain: 'domain',
+  presentationPdfFilename: 'presentationPdfFilename'
 };
 
 exports.Prisma.BlogScalarFieldEnum = {
@@ -701,18 +695,6 @@ exports.Prisma.BlogScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   approvedAt: 'approvedAt'
-};
-
-exports.Prisma.PptConversionJobScalarFieldEnum = {
-  id: 'id',
-  researchId: 'researchId',
-  cloudConvertJobId: 'cloudConvertJobId',
-  status: 'status',
-  totalSlides: 'totalSlides',
-  processedSlides: 'processedSlides',
-  error: 'error',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -781,9 +763,7 @@ exports.Prisma.ModelName = {
   EventRegistration: 'EventRegistration',
   AccessRequest: 'AccessRequest',
   Research: 'Research',
-  Slide: 'Slide',
-  Blog: 'Blog',
-  PptConversionJob: 'PptConversionJob'
+  Blog: 'Blog'
 };
 
 /**

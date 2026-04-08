@@ -5,12 +5,14 @@ import prisma from "@/lib/prisma"
 // GET /api/events/:id - Get single published event
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
+
     const event = await prisma.generalEvent.findUnique({
       where: {
-        id: parseInt(params.id),
+        id: parseInt(id),
         isPublished: true, // Only published events
       },
       select: {
@@ -40,7 +42,7 @@ export async function GET(
         registrationFormConfig: true,
         _count: {
           select: {
-            EventRegistration: true,
+            registrations: true,
           },
         },
       },
@@ -58,13 +60,13 @@ export async function GET(
 
     const isFull =
       event.maxParticipants !== null &&
-      event._count.EventRegistration >= event.maxParticipants
+      event._count.registrations >= event.maxParticipants
 
     return NextResponse.json({
       ...event,
-      registrationCount: event._count.EventRegistration,
+      registrationCount: event._count.registrations,
       spotsRemaining: event.maxParticipants
-        ? event.maxParticipants - event._count.EventRegistration
+        ? event.maxParticipants - event._count.registrations
         : null,
       isFull,
       registrationOpen: registrationOpen && !isFull,
