@@ -140,7 +140,6 @@ exports.Prisma.AvailabilityDayScalarFieldEnum = {
   id: 'id',
   date: 'date',
   times: 'times',
-  program: 'program',
   adminEmail: 'adminEmail',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
