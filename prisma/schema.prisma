@@ -682,52 +682,27 @@ model AccessRequest {
 }
 
 model Research {
-  id               String          @id
-  title            String
-  slug             String          @unique
-  description      String?
-  createdAt        DateTime
-  author           String?
-  published        Boolean         @default(true)
-  pdfFilename      String?
-  abstract         String?
-  extractedAt      DateTime?
-  extractedContent Json?
-  extractionStatus String?
-  keywords         String[]
-  category         String?
-  grade            String?
-  school           String?
-  studentId        Int?
-  domain           String?
-  AccessRequest    AccessRequest[]
-  student          Student?        @relation(fields: [studentId], references: [id])
-  Slide            Slide[]
-  pptConversionJobs PptConversionJob[]
-}
-
-model Slide {
-  id            String   @id @default(cuid())
-  researchId    String
-  order         Int
-  imageFilename String
-  Research      Research @relation(fields: [researchId], references: [id])
-}
-
-model PptConversionJob {
-  id                 String   @id @default(cuid())
-  researchId         String
-  cloudConvertJobId  String   @unique
-  status             String   @default("queued")
-  totalSlides        Int?
-  processedSlides    Int      @default(0)
-  error              String?
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
-  Research           Research @relation(fields: [researchId], references: [id], onDelete: Cascade)
-
-  @@index([researchId])
-  @@index([status])
+  id                      String          @id
+  title                   String
+  slug                    String          @unique
+  description             String?
+  createdAt               DateTime
+  author                  String?
+  published               Boolean         @default(true)
+  pdfFilename             String?
+  presentationPdfFilename String?
+  abstract                String?
+  extractedAt             DateTime?
+  extractedContent        Json?
+  extractionStatus        String?
+  keywords                String[]
+  category                String?
+  grade                   String?
+  school                  String?
+  studentId               Int?
+  domain                  String?
+  AccessRequest           AccessRequest[]
+  student                 Student?        @relation(fields: [studentId], references: [id])
 }
 
 model Blog {

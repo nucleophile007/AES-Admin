@@ -23,11 +23,6 @@ export async function GET(
     const research = await prisma.research.findUnique({
       where: { id },
       include: {
-        Slide: {
-          orderBy: {
-            order: "asc",
-          },
-        },
         student: {
           select: {
             id: true,
@@ -164,11 +159,6 @@ export async function PATCH(
       where: { id },
       data: updateData,
       include: {
-        Slide: {
-          orderBy: {
-            order: "asc",
-          },
-        },
         student: {
           select: {
             id: true,
@@ -204,12 +194,9 @@ export async function DELETE(
   try {
     const { id } = await params
 
-    // Fetch research with all slides
+    // Fetch research for file cleanup
     const research = await prisma.research.findUnique({
       where: { id },
-      include: {
-        Slide: true,
-      },
     })
 
     if (!research) {
@@ -226,27 +213,7 @@ export async function DELETE(
       where: { researchId: id },
     })
 
-    // Step 2: Delete slide images from Supabase storage
-    if (research.Slide.length > 0) {
-      const slidePaths = research.Slide.map(
-        (slide) => `${id}/${slide.imageFilename}`
-      )
-      const { error: slideDeleteError } = await supabaseServer.storage
-        .from("research-slides")
-        .remove(slidePaths)
-
-      if (slideDeleteError) {
-        console.error("Error deleting slide images from storage:", slideDeleteError)
-        // Continue with deletion even if storage delete fails
-      }
-    }
-
-    // Step 3: Delete all Slide records from DB
-    await prisma.slide.deleteMany({
-      where: { researchId: id },
-    })
-
-    // Step 4: Delete PDF from Supabase storage (if exists)
+    // Step 2: Delete technical report PDF from storage (if exists)
     if (research.pdfFilename) {
       const pdfPath = `${id}/${research.pdfFilename}`
       const { error: pdfDeleteError } = await supabaseServer.storage
@@ -259,7 +226,20 @@ export async function DELETE(
       }
     }
 
-    // Step 5: Delete research record
+    // Step 3: Delete presentation PDF from storage (if exists)
+    if (research.presentationPdfFilename) {
+      const presentationPath = `${id}/${research.presentationPdfFilename}`
+      const { error: presentationDeleteError } = await supabaseServer.storage
+        .from("research-ppt")
+        .remove([presentationPath])
+
+      if (presentationDeleteError) {
+        console.error("Error deleting presentation PDF from storage:", presentationDeleteError)
+        // Continue with deletion even if storage delete fails
+      }
+    }
+
+    // Step 4: Delete research record
     await prisma.research.delete({
       where: { id },
     })

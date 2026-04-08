@@ -184,16 +184,6 @@ export type AccessRequest = $Result.DefaultSelection<Prisma.$AccessRequestPayloa
  */
 export type Research = $Result.DefaultSelection<Prisma.$ResearchPayload>
 /**
- * Model Slide
- * 
- */
-export type Slide = $Result.DefaultSelection<Prisma.$SlidePayload>
-/**
- * Model PptConversionJob
- * 
- */
-export type PptConversionJob = $Result.DefaultSelection<Prisma.$PptConversionJobPayload>
-/**
  * Model Blog
  * 
  */
@@ -656,26 +646,6 @@ export class PrismaClient<
     * ```
     */
   get research(): Prisma.ResearchDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.slide`: Exposes CRUD operations for the **Slide** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Slides
-    * const slides = await prisma.slide.findMany()
-    * ```
-    */
-  get slide(): Prisma.SlideDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.pptConversionJob`: Exposes CRUD operations for the **PptConversionJob** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more PptConversionJobs
-    * const pptConversionJobs = await prisma.pptConversionJob.findMany()
-    * ```
-    */
-  get pptConversionJob(): Prisma.PptConversionJobDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.blog`: Exposes CRUD operations for the **Blog** model.
@@ -1160,8 +1130,6 @@ export namespace Prisma {
     EventRegistration: 'EventRegistration',
     AccessRequest: 'AccessRequest',
     Research: 'Research',
-    Slide: 'Slide',
-    PptConversionJob: 'PptConversionJob',
     Blog: 'Blog'
   };
 
@@ -1181,7 +1149,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "slide" | "pptConversionJob" | "blog"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3701,154 +3669,6 @@ export namespace Prisma {
           }
         }
       }
-      Slide: {
-        payload: Prisma.$SlidePayload<ExtArgs>
-        fields: Prisma.SlideFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.SlideFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.SlideFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
-          }
-          findFirst: {
-            args: Prisma.SlideFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.SlideFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
-          }
-          findMany: {
-            args: Prisma.SlideFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload>[]
-          }
-          create: {
-            args: Prisma.SlideCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
-          }
-          createMany: {
-            args: Prisma.SlideCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.SlideCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload>[]
-          }
-          delete: {
-            args: Prisma.SlideDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
-          }
-          update: {
-            args: Prisma.SlideUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
-          }
-          deleteMany: {
-            args: Prisma.SlideDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.SlideUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.SlideUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload>[]
-          }
-          upsert: {
-            args: Prisma.SlideUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SlidePayload>
-          }
-          aggregate: {
-            args: Prisma.SlideAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSlide>
-          }
-          groupBy: {
-            args: Prisma.SlideGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SlideGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.SlideCountArgs<ExtArgs>
-            result: $Utils.Optional<SlideCountAggregateOutputType> | number
-          }
-        }
-      }
-      PptConversionJob: {
-        payload: Prisma.$PptConversionJobPayload<ExtArgs>
-        fields: Prisma.PptConversionJobFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PptConversionJobFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PptConversionJobFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
-          }
-          findFirst: {
-            args: Prisma.PptConversionJobFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PptConversionJobFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
-          }
-          findMany: {
-            args: Prisma.PptConversionJobFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>[]
-          }
-          create: {
-            args: Prisma.PptConversionJobCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
-          }
-          createMany: {
-            args: Prisma.PptConversionJobCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.PptConversionJobCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>[]
-          }
-          delete: {
-            args: Prisma.PptConversionJobDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
-          }
-          update: {
-            args: Prisma.PptConversionJobUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
-          }
-          deleteMany: {
-            args: Prisma.PptConversionJobDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PptConversionJobUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.PptConversionJobUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>[]
-          }
-          upsert: {
-            args: Prisma.PptConversionJobUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PptConversionJobPayload>
-          }
-          aggregate: {
-            args: Prisma.PptConversionJobAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePptConversionJob>
-          }
-          groupBy: {
-            args: Prisma.PptConversionJobGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PptConversionJobGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PptConversionJobCountArgs<ExtArgs>
-            result: $Utils.Optional<PptConversionJobCountAggregateOutputType> | number
-          }
-        }
-      }
       Blog: {
         payload: Prisma.$BlogPayload<ExtArgs>
         fields: Prisma.BlogFieldRefs
@@ -4049,8 +3869,6 @@ export namespace Prisma {
     eventRegistration?: EventRegistrationOmit
     accessRequest?: AccessRequestOmit
     research?: ResearchOmit
-    slide?: SlideOmit
-    pptConversionJob?: PptConversionJobOmit
     blog?: BlogOmit
   }
 
@@ -4601,14 +4419,10 @@ export namespace Prisma {
 
   export type ResearchCountOutputType = {
     AccessRequest: number
-    Slide: number
-    pptConversionJobs: number
   }
 
   export type ResearchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     AccessRequest?: boolean | ResearchCountOutputTypeCountAccessRequestArgs
-    Slide?: boolean | ResearchCountOutputTypeCountSlideArgs
-    pptConversionJobs?: boolean | ResearchCountOutputTypeCountPptConversionJobsArgs
   }
 
   // Custom InputTypes
@@ -4627,20 +4441,6 @@ export namespace Prisma {
    */
   export type ResearchCountOutputTypeCountAccessRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AccessRequestWhereInput
-  }
-
-  /**
-   * ResearchCountOutputType without action
-   */
-  export type ResearchCountOutputTypeCountSlideArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SlideWhereInput
-  }
-
-  /**
-   * ResearchCountOutputType without action
-   */
-  export type ResearchCountOutputTypeCountPptConversionJobsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PptConversionJobWhereInput
   }
 
 
@@ -44748,6 +44548,7 @@ export namespace Prisma {
     author: string | null
     published: boolean | null
     pdfFilename: string | null
+    presentationPdfFilename: string | null
     abstract: string | null
     extractedAt: Date | null
     extractionStatus: string | null
@@ -44767,6 +44568,7 @@ export namespace Prisma {
     author: string | null
     published: boolean | null
     pdfFilename: string | null
+    presentationPdfFilename: string | null
     abstract: string | null
     extractedAt: Date | null
     extractionStatus: string | null
@@ -44786,6 +44588,7 @@ export namespace Prisma {
     author: number
     published: number
     pdfFilename: number
+    presentationPdfFilename: number
     abstract: number
     extractedAt: number
     extractedContent: number
@@ -44817,6 +44620,7 @@ export namespace Prisma {
     author?: true
     published?: true
     pdfFilename?: true
+    presentationPdfFilename?: true
     abstract?: true
     extractedAt?: true
     extractionStatus?: true
@@ -44836,6 +44640,7 @@ export namespace Prisma {
     author?: true
     published?: true
     pdfFilename?: true
+    presentationPdfFilename?: true
     abstract?: true
     extractedAt?: true
     extractionStatus?: true
@@ -44855,6 +44660,7 @@ export namespace Prisma {
     author?: true
     published?: true
     pdfFilename?: true
+    presentationPdfFilename?: true
     abstract?: true
     extractedAt?: true
     extractedContent?: true
@@ -44963,6 +44769,7 @@ export namespace Prisma {
     author: string | null
     published: boolean
     pdfFilename: string | null
+    presentationPdfFilename: string | null
     abstract: string | null
     extractedAt: Date | null
     extractedContent: JsonValue | null
@@ -45003,6 +44810,7 @@ export namespace Prisma {
     author?: boolean
     published?: boolean
     pdfFilename?: boolean
+    presentationPdfFilename?: boolean
     abstract?: boolean
     extractedAt?: boolean
     extractedContent?: boolean
@@ -45015,8 +44823,6 @@ export namespace Prisma {
     domain?: boolean
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
     student?: boolean | Research$studentArgs<ExtArgs>
-    Slide?: boolean | Research$SlideArgs<ExtArgs>
-    pptConversionJobs?: boolean | Research$pptConversionJobsArgs<ExtArgs>
     _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["research"]>
 
@@ -45029,6 +44835,7 @@ export namespace Prisma {
     author?: boolean
     published?: boolean
     pdfFilename?: boolean
+    presentationPdfFilename?: boolean
     abstract?: boolean
     extractedAt?: boolean
     extractedContent?: boolean
@@ -45051,6 +44858,7 @@ export namespace Prisma {
     author?: boolean
     published?: boolean
     pdfFilename?: boolean
+    presentationPdfFilename?: boolean
     abstract?: boolean
     extractedAt?: boolean
     extractedContent?: boolean
@@ -45073,6 +44881,7 @@ export namespace Prisma {
     author?: boolean
     published?: boolean
     pdfFilename?: boolean
+    presentationPdfFilename?: boolean
     abstract?: boolean
     extractedAt?: boolean
     extractedContent?: boolean
@@ -45085,12 +44894,10 @@ export namespace Prisma {
     domain?: boolean
   }
 
-  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "createdAt" | "author" | "published" | "pdfFilename" | "abstract" | "extractedAt" | "extractedContent" | "extractionStatus" | "keywords" | "category" | "grade" | "school" | "studentId" | "domain", ExtArgs["result"]["research"]>
+  export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "createdAt" | "author" | "published" | "pdfFilename" | "presentationPdfFilename" | "abstract" | "extractedAt" | "extractedContent" | "extractionStatus" | "keywords" | "category" | "grade" | "school" | "studentId" | "domain", ExtArgs["result"]["research"]>
   export type ResearchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
     student?: boolean | Research$studentArgs<ExtArgs>
-    Slide?: boolean | Research$SlideArgs<ExtArgs>
-    pptConversionJobs?: boolean | Research$pptConversionJobsArgs<ExtArgs>
     _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ResearchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -45105,8 +44912,6 @@ export namespace Prisma {
     objects: {
       AccessRequest: Prisma.$AccessRequestPayload<ExtArgs>[]
       student: Prisma.$StudentPayload<ExtArgs> | null
-      Slide: Prisma.$SlidePayload<ExtArgs>[]
-      pptConversionJobs: Prisma.$PptConversionJobPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -45117,6 +44922,7 @@ export namespace Prisma {
       author: string | null
       published: boolean
       pdfFilename: string | null
+      presentationPdfFilename: string | null
       abstract: string | null
       extractedAt: Date | null
       extractedContent: Prisma.JsonValue | null
@@ -45523,8 +45329,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     AccessRequest<T extends Research$AccessRequestArgs<ExtArgs> = {}>(args?: Subset<T, Research$AccessRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     student<T extends Research$studentArgs<ExtArgs> = {}>(args?: Subset<T, Research$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    Slide<T extends Research$SlideArgs<ExtArgs> = {}>(args?: Subset<T, Research$SlideArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    pptConversionJobs<T extends Research$pptConversionJobsArgs<ExtArgs> = {}>(args?: Subset<T, Research$pptConversionJobsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -45562,6 +45366,7 @@ export namespace Prisma {
     readonly author: FieldRef<"Research", 'String'>
     readonly published: FieldRef<"Research", 'Boolean'>
     readonly pdfFilename: FieldRef<"Research", 'String'>
+    readonly presentationPdfFilename: FieldRef<"Research", 'String'>
     readonly abstract: FieldRef<"Research", 'String'>
     readonly extractedAt: FieldRef<"Research", 'DateTime'>
     readonly extractedContent: FieldRef<"Research", 'Json'>
@@ -46011,54 +45816,6 @@ export namespace Prisma {
   }
 
   /**
-   * Research.Slide
-   */
-  export type Research$SlideArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-    where?: SlideWhereInput
-    orderBy?: SlideOrderByWithRelationInput | SlideOrderByWithRelationInput[]
-    cursor?: SlideWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SlideScalarFieldEnum | SlideScalarFieldEnum[]
-  }
-
-  /**
-   * Research.pptConversionJobs
-   */
-  export type Research$pptConversionJobsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
-    where?: PptConversionJobWhereInput
-    orderBy?: PptConversionJobOrderByWithRelationInput | PptConversionJobOrderByWithRelationInput[]
-    cursor?: PptConversionJobWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PptConversionJobScalarFieldEnum | PptConversionJobScalarFieldEnum[]
-  }
-
-  /**
    * Research without action
    */
   export type ResearchDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -46074,2233 +45831,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ResearchInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Slide
-   */
-
-  export type AggregateSlide = {
-    _count: SlideCountAggregateOutputType | null
-    _avg: SlideAvgAggregateOutputType | null
-    _sum: SlideSumAggregateOutputType | null
-    _min: SlideMinAggregateOutputType | null
-    _max: SlideMaxAggregateOutputType | null
-  }
-
-  export type SlideAvgAggregateOutputType = {
-    order: number | null
-  }
-
-  export type SlideSumAggregateOutputType = {
-    order: number | null
-  }
-
-  export type SlideMinAggregateOutputType = {
-    id: string | null
-    researchId: string | null
-    order: number | null
-    imageFilename: string | null
-  }
-
-  export type SlideMaxAggregateOutputType = {
-    id: string | null
-    researchId: string | null
-    order: number | null
-    imageFilename: string | null
-  }
-
-  export type SlideCountAggregateOutputType = {
-    id: number
-    researchId: number
-    order: number
-    imageFilename: number
-    _all: number
-  }
-
-
-  export type SlideAvgAggregateInputType = {
-    order?: true
-  }
-
-  export type SlideSumAggregateInputType = {
-    order?: true
-  }
-
-  export type SlideMinAggregateInputType = {
-    id?: true
-    researchId?: true
-    order?: true
-    imageFilename?: true
-  }
-
-  export type SlideMaxAggregateInputType = {
-    id?: true
-    researchId?: true
-    order?: true
-    imageFilename?: true
-  }
-
-  export type SlideCountAggregateInputType = {
-    id?: true
-    researchId?: true
-    order?: true
-    imageFilename?: true
-    _all?: true
-  }
-
-  export type SlideAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Slide to aggregate.
-     */
-    where?: SlideWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Slides to fetch.
-     */
-    orderBy?: SlideOrderByWithRelationInput | SlideOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: SlideWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Slides from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Slides.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Slides
-    **/
-    _count?: true | SlideCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: SlideAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: SlideSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: SlideMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: SlideMaxAggregateInputType
-  }
-
-  export type GetSlideAggregateType<T extends SlideAggregateArgs> = {
-        [P in keyof T & keyof AggregateSlide]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateSlide[P]>
-      : GetScalarType<T[P], AggregateSlide[P]>
-  }
-
-
-
-
-  export type SlideGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SlideWhereInput
-    orderBy?: SlideOrderByWithAggregationInput | SlideOrderByWithAggregationInput[]
-    by: SlideScalarFieldEnum[] | SlideScalarFieldEnum
-    having?: SlideScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: SlideCountAggregateInputType | true
-    _avg?: SlideAvgAggregateInputType
-    _sum?: SlideSumAggregateInputType
-    _min?: SlideMinAggregateInputType
-    _max?: SlideMaxAggregateInputType
-  }
-
-  export type SlideGroupByOutputType = {
-    id: string
-    researchId: string
-    order: number
-    imageFilename: string
-    _count: SlideCountAggregateOutputType | null
-    _avg: SlideAvgAggregateOutputType | null
-    _sum: SlideSumAggregateOutputType | null
-    _min: SlideMinAggregateOutputType | null
-    _max: SlideMaxAggregateOutputType | null
-  }
-
-  type GetSlideGroupByPayload<T extends SlideGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<SlideGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof SlideGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], SlideGroupByOutputType[P]>
-            : GetScalarType<T[P], SlideGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type SlideSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    researchId?: boolean
-    order?: boolean
-    imageFilename?: boolean
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["slide"]>
-
-  export type SlideSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    researchId?: boolean
-    order?: boolean
-    imageFilename?: boolean
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["slide"]>
-
-  export type SlideSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    researchId?: boolean
-    order?: boolean
-    imageFilename?: boolean
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["slide"]>
-
-  export type SlideSelectScalar = {
-    id?: boolean
-    researchId?: boolean
-    order?: boolean
-    imageFilename?: boolean
-  }
-
-  export type SlideOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "researchId" | "order" | "imageFilename", ExtArgs["result"]["slide"]>
-  export type SlideInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }
-  export type SlideIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }
-  export type SlideIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }
-
-  export type $SlidePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Slide"
-    objects: {
-      Research: Prisma.$ResearchPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      researchId: string
-      order: number
-      imageFilename: string
-    }, ExtArgs["result"]["slide"]>
-    composites: {}
-  }
-
-  type SlideGetPayload<S extends boolean | null | undefined | SlideDefaultArgs> = $Result.GetResult<Prisma.$SlidePayload, S>
-
-  type SlideCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SlideFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SlideCountAggregateInputType | true
-    }
-
-  export interface SlideDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Slide'], meta: { name: 'Slide' } }
-    /**
-     * Find zero or one Slide that matches the filter.
-     * @param {SlideFindUniqueArgs} args - Arguments to find a Slide
-     * @example
-     * // Get one Slide
-     * const slide = await prisma.slide.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends SlideFindUniqueArgs>(args: SelectSubset<T, SlideFindUniqueArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Slide that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {SlideFindUniqueOrThrowArgs} args - Arguments to find a Slide
-     * @example
-     * // Get one Slide
-     * const slide = await prisma.slide.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends SlideFindUniqueOrThrowArgs>(args: SelectSubset<T, SlideFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Slide that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SlideFindFirstArgs} args - Arguments to find a Slide
-     * @example
-     * // Get one Slide
-     * const slide = await prisma.slide.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends SlideFindFirstArgs>(args?: SelectSubset<T, SlideFindFirstArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Slide that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SlideFindFirstOrThrowArgs} args - Arguments to find a Slide
-     * @example
-     * // Get one Slide
-     * const slide = await prisma.slide.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends SlideFindFirstOrThrowArgs>(args?: SelectSubset<T, SlideFindFirstOrThrowArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Slides that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SlideFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Slides
-     * const slides = await prisma.slide.findMany()
-     * 
-     * // Get first 10 Slides
-     * const slides = await prisma.slide.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const slideWithIdOnly = await prisma.slide.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends SlideFindManyArgs>(args?: SelectSubset<T, SlideFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Slide.
-     * @param {SlideCreateArgs} args - Arguments to create a Slide.
-     * @example
-     * // Create one Slide
-     * const Slide = await prisma.slide.create({
-     *   data: {
-     *     // ... data to create a Slide
-     *   }
-     * })
-     * 
-     */
-    create<T extends SlideCreateArgs>(args: SelectSubset<T, SlideCreateArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Slides.
-     * @param {SlideCreateManyArgs} args - Arguments to create many Slides.
-     * @example
-     * // Create many Slides
-     * const slide = await prisma.slide.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends SlideCreateManyArgs>(args?: SelectSubset<T, SlideCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Slides and returns the data saved in the database.
-     * @param {SlideCreateManyAndReturnArgs} args - Arguments to create many Slides.
-     * @example
-     * // Create many Slides
-     * const slide = await prisma.slide.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Slides and only return the `id`
-     * const slideWithIdOnly = await prisma.slide.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends SlideCreateManyAndReturnArgs>(args?: SelectSubset<T, SlideCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Slide.
-     * @param {SlideDeleteArgs} args - Arguments to delete one Slide.
-     * @example
-     * // Delete one Slide
-     * const Slide = await prisma.slide.delete({
-     *   where: {
-     *     // ... filter to delete one Slide
-     *   }
-     * })
-     * 
-     */
-    delete<T extends SlideDeleteArgs>(args: SelectSubset<T, SlideDeleteArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Slide.
-     * @param {SlideUpdateArgs} args - Arguments to update one Slide.
-     * @example
-     * // Update one Slide
-     * const slide = await prisma.slide.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends SlideUpdateArgs>(args: SelectSubset<T, SlideUpdateArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Slides.
-     * @param {SlideDeleteManyArgs} args - Arguments to filter Slides to delete.
-     * @example
-     * // Delete a few Slides
-     * const { count } = await prisma.slide.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends SlideDeleteManyArgs>(args?: SelectSubset<T, SlideDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Slides.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SlideUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Slides
-     * const slide = await prisma.slide.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends SlideUpdateManyArgs>(args: SelectSubset<T, SlideUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Slides and returns the data updated in the database.
-     * @param {SlideUpdateManyAndReturnArgs} args - Arguments to update many Slides.
-     * @example
-     * // Update many Slides
-     * const slide = await prisma.slide.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Slides and only return the `id`
-     * const slideWithIdOnly = await prisma.slide.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends SlideUpdateManyAndReturnArgs>(args: SelectSubset<T, SlideUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Slide.
-     * @param {SlideUpsertArgs} args - Arguments to update or create a Slide.
-     * @example
-     * // Update or create a Slide
-     * const slide = await prisma.slide.upsert({
-     *   create: {
-     *     // ... data to create a Slide
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Slide we want to update
-     *   }
-     * })
-     */
-    upsert<T extends SlideUpsertArgs>(args: SelectSubset<T, SlideUpsertArgs<ExtArgs>>): Prisma__SlideClient<$Result.GetResult<Prisma.$SlidePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Slides.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SlideCountArgs} args - Arguments to filter Slides to count.
-     * @example
-     * // Count the number of Slides
-     * const count = await prisma.slide.count({
-     *   where: {
-     *     // ... the filter for the Slides we want to count
-     *   }
-     * })
-    **/
-    count<T extends SlideCountArgs>(
-      args?: Subset<T, SlideCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], SlideCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Slide.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SlideAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends SlideAggregateArgs>(args: Subset<T, SlideAggregateArgs>): Prisma.PrismaPromise<GetSlideAggregateType<T>>
-
-    /**
-     * Group by Slide.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SlideGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends SlideGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SlideGroupByArgs['orderBy'] }
-        : { orderBy?: SlideGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, SlideGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSlideGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Slide model
-   */
-  readonly fields: SlideFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Slide.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__SlideClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Research<T extends ResearchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResearchDefaultArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Slide model
-   */
-  interface SlideFieldRefs {
-    readonly id: FieldRef<"Slide", 'String'>
-    readonly researchId: FieldRef<"Slide", 'String'>
-    readonly order: FieldRef<"Slide", 'Int'>
-    readonly imageFilename: FieldRef<"Slide", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Slide findUnique
-   */
-  export type SlideFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-    /**
-     * Filter, which Slide to fetch.
-     */
-    where: SlideWhereUniqueInput
-  }
-
-  /**
-   * Slide findUniqueOrThrow
-   */
-  export type SlideFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-    /**
-     * Filter, which Slide to fetch.
-     */
-    where: SlideWhereUniqueInput
-  }
-
-  /**
-   * Slide findFirst
-   */
-  export type SlideFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-    /**
-     * Filter, which Slide to fetch.
-     */
-    where?: SlideWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Slides to fetch.
-     */
-    orderBy?: SlideOrderByWithRelationInput | SlideOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Slides.
-     */
-    cursor?: SlideWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Slides from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Slides.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Slides.
-     */
-    distinct?: SlideScalarFieldEnum | SlideScalarFieldEnum[]
-  }
-
-  /**
-   * Slide findFirstOrThrow
-   */
-  export type SlideFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-    /**
-     * Filter, which Slide to fetch.
-     */
-    where?: SlideWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Slides to fetch.
-     */
-    orderBy?: SlideOrderByWithRelationInput | SlideOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Slides.
-     */
-    cursor?: SlideWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Slides from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Slides.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Slides.
-     */
-    distinct?: SlideScalarFieldEnum | SlideScalarFieldEnum[]
-  }
-
-  /**
-   * Slide findMany
-   */
-  export type SlideFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-    /**
-     * Filter, which Slides to fetch.
-     */
-    where?: SlideWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Slides to fetch.
-     */
-    orderBy?: SlideOrderByWithRelationInput | SlideOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Slides.
-     */
-    cursor?: SlideWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Slides from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Slides.
-     */
-    skip?: number
-    distinct?: SlideScalarFieldEnum | SlideScalarFieldEnum[]
-  }
-
-  /**
-   * Slide create
-   */
-  export type SlideCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Slide.
-     */
-    data: XOR<SlideCreateInput, SlideUncheckedCreateInput>
-  }
-
-  /**
-   * Slide createMany
-   */
-  export type SlideCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Slides.
-     */
-    data: SlideCreateManyInput | SlideCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Slide createManyAndReturn
-   */
-  export type SlideCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * The data used to create many Slides.
-     */
-    data: SlideCreateManyInput | SlideCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Slide update
-   */
-  export type SlideUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Slide.
-     */
-    data: XOR<SlideUpdateInput, SlideUncheckedUpdateInput>
-    /**
-     * Choose, which Slide to update.
-     */
-    where: SlideWhereUniqueInput
-  }
-
-  /**
-   * Slide updateMany
-   */
-  export type SlideUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Slides.
-     */
-    data: XOR<SlideUpdateManyMutationInput, SlideUncheckedUpdateManyInput>
-    /**
-     * Filter which Slides to update
-     */
-    where?: SlideWhereInput
-    /**
-     * Limit how many Slides to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Slide updateManyAndReturn
-   */
-  export type SlideUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * The data used to update Slides.
-     */
-    data: XOR<SlideUpdateManyMutationInput, SlideUncheckedUpdateManyInput>
-    /**
-     * Filter which Slides to update
-     */
-    where?: SlideWhereInput
-    /**
-     * Limit how many Slides to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Slide upsert
-   */
-  export type SlideUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Slide to update in case it exists.
-     */
-    where: SlideWhereUniqueInput
-    /**
-     * In case the Slide found by the `where` argument doesn't exist, create a new Slide with this data.
-     */
-    create: XOR<SlideCreateInput, SlideUncheckedCreateInput>
-    /**
-     * In case the Slide was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<SlideUpdateInput, SlideUncheckedUpdateInput>
-  }
-
-  /**
-   * Slide delete
-   */
-  export type SlideDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-    /**
-     * Filter which Slide to delete.
-     */
-    where: SlideWhereUniqueInput
-  }
-
-  /**
-   * Slide deleteMany
-   */
-  export type SlideDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Slides to delete
-     */
-    where?: SlideWhereInput
-    /**
-     * Limit how many Slides to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Slide without action
-   */
-  export type SlideDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Slide
-     */
-    select?: SlideSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Slide
-     */
-    omit?: SlideOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SlideInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model PptConversionJob
-   */
-
-  export type AggregatePptConversionJob = {
-    _count: PptConversionJobCountAggregateOutputType | null
-    _avg: PptConversionJobAvgAggregateOutputType | null
-    _sum: PptConversionJobSumAggregateOutputType | null
-    _min: PptConversionJobMinAggregateOutputType | null
-    _max: PptConversionJobMaxAggregateOutputType | null
-  }
-
-  export type PptConversionJobAvgAggregateOutputType = {
-    totalSlides: number | null
-    processedSlides: number | null
-  }
-
-  export type PptConversionJobSumAggregateOutputType = {
-    totalSlides: number | null
-    processedSlides: number | null
-  }
-
-  export type PptConversionJobMinAggregateOutputType = {
-    id: string | null
-    researchId: string | null
-    cloudConvertJobId: string | null
-    status: string | null
-    totalSlides: number | null
-    processedSlides: number | null
-    error: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type PptConversionJobMaxAggregateOutputType = {
-    id: string | null
-    researchId: string | null
-    cloudConvertJobId: string | null
-    status: string | null
-    totalSlides: number | null
-    processedSlides: number | null
-    error: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type PptConversionJobCountAggregateOutputType = {
-    id: number
-    researchId: number
-    cloudConvertJobId: number
-    status: number
-    totalSlides: number
-    processedSlides: number
-    error: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type PptConversionJobAvgAggregateInputType = {
-    totalSlides?: true
-    processedSlides?: true
-  }
-
-  export type PptConversionJobSumAggregateInputType = {
-    totalSlides?: true
-    processedSlides?: true
-  }
-
-  export type PptConversionJobMinAggregateInputType = {
-    id?: true
-    researchId?: true
-    cloudConvertJobId?: true
-    status?: true
-    totalSlides?: true
-    processedSlides?: true
-    error?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type PptConversionJobMaxAggregateInputType = {
-    id?: true
-    researchId?: true
-    cloudConvertJobId?: true
-    status?: true
-    totalSlides?: true
-    processedSlides?: true
-    error?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type PptConversionJobCountAggregateInputType = {
-    id?: true
-    researchId?: true
-    cloudConvertJobId?: true
-    status?: true
-    totalSlides?: true
-    processedSlides?: true
-    error?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type PptConversionJobAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PptConversionJob to aggregate.
-     */
-    where?: PptConversionJobWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PptConversionJobs to fetch.
-     */
-    orderBy?: PptConversionJobOrderByWithRelationInput | PptConversionJobOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PptConversionJobWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PptConversionJobs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PptConversionJobs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned PptConversionJobs
-    **/
-    _count?: true | PptConversionJobCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PptConversionJobAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PptConversionJobSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PptConversionJobMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PptConversionJobMaxAggregateInputType
-  }
-
-  export type GetPptConversionJobAggregateType<T extends PptConversionJobAggregateArgs> = {
-        [P in keyof T & keyof AggregatePptConversionJob]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePptConversionJob[P]>
-      : GetScalarType<T[P], AggregatePptConversionJob[P]>
-  }
-
-
-
-
-  export type PptConversionJobGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PptConversionJobWhereInput
-    orderBy?: PptConversionJobOrderByWithAggregationInput | PptConversionJobOrderByWithAggregationInput[]
-    by: PptConversionJobScalarFieldEnum[] | PptConversionJobScalarFieldEnum
-    having?: PptConversionJobScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PptConversionJobCountAggregateInputType | true
-    _avg?: PptConversionJobAvgAggregateInputType
-    _sum?: PptConversionJobSumAggregateInputType
-    _min?: PptConversionJobMinAggregateInputType
-    _max?: PptConversionJobMaxAggregateInputType
-  }
-
-  export type PptConversionJobGroupByOutputType = {
-    id: string
-    researchId: string
-    cloudConvertJobId: string
-    status: string
-    totalSlides: number | null
-    processedSlides: number
-    error: string | null
-    createdAt: Date
-    updatedAt: Date
-    _count: PptConversionJobCountAggregateOutputType | null
-    _avg: PptConversionJobAvgAggregateOutputType | null
-    _sum: PptConversionJobSumAggregateOutputType | null
-    _min: PptConversionJobMinAggregateOutputType | null
-    _max: PptConversionJobMaxAggregateOutputType | null
-  }
-
-  type GetPptConversionJobGroupByPayload<T extends PptConversionJobGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PptConversionJobGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PptConversionJobGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PptConversionJobGroupByOutputType[P]>
-            : GetScalarType<T[P], PptConversionJobGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PptConversionJobSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    researchId?: boolean
-    cloudConvertJobId?: boolean
-    status?: boolean
-    totalSlides?: boolean
-    processedSlides?: boolean
-    error?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pptConversionJob"]>
-
-  export type PptConversionJobSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    researchId?: boolean
-    cloudConvertJobId?: boolean
-    status?: boolean
-    totalSlides?: boolean
-    processedSlides?: boolean
-    error?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pptConversionJob"]>
-
-  export type PptConversionJobSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    researchId?: boolean
-    cloudConvertJobId?: boolean
-    status?: boolean
-    totalSlides?: boolean
-    processedSlides?: boolean
-    error?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pptConversionJob"]>
-
-  export type PptConversionJobSelectScalar = {
-    id?: boolean
-    researchId?: boolean
-    cloudConvertJobId?: boolean
-    status?: boolean
-    totalSlides?: boolean
-    processedSlides?: boolean
-    error?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type PptConversionJobOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "researchId" | "cloudConvertJobId" | "status" | "totalSlides" | "processedSlides" | "error" | "createdAt" | "updatedAt", ExtArgs["result"]["pptConversionJob"]>
-  export type PptConversionJobInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }
-  export type PptConversionJobIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }
-  export type PptConversionJobIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Research?: boolean | ResearchDefaultArgs<ExtArgs>
-  }
-
-  export type $PptConversionJobPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "PptConversionJob"
-    objects: {
-      Research: Prisma.$ResearchPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      researchId: string
-      cloudConvertJobId: string
-      status: string
-      totalSlides: number | null
-      processedSlides: number
-      error: string | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["pptConversionJob"]>
-    composites: {}
-  }
-
-  type PptConversionJobGetPayload<S extends boolean | null | undefined | PptConversionJobDefaultArgs> = $Result.GetResult<Prisma.$PptConversionJobPayload, S>
-
-  type PptConversionJobCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PptConversionJobFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PptConversionJobCountAggregateInputType | true
-    }
-
-  export interface PptConversionJobDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PptConversionJob'], meta: { name: 'PptConversionJob' } }
-    /**
-     * Find zero or one PptConversionJob that matches the filter.
-     * @param {PptConversionJobFindUniqueArgs} args - Arguments to find a PptConversionJob
-     * @example
-     * // Get one PptConversionJob
-     * const pptConversionJob = await prisma.pptConversionJob.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PptConversionJobFindUniqueArgs>(args: SelectSubset<T, PptConversionJobFindUniqueArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one PptConversionJob that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PptConversionJobFindUniqueOrThrowArgs} args - Arguments to find a PptConversionJob
-     * @example
-     * // Get one PptConversionJob
-     * const pptConversionJob = await prisma.pptConversionJob.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PptConversionJobFindUniqueOrThrowArgs>(args: SelectSubset<T, PptConversionJobFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first PptConversionJob that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PptConversionJobFindFirstArgs} args - Arguments to find a PptConversionJob
-     * @example
-     * // Get one PptConversionJob
-     * const pptConversionJob = await prisma.pptConversionJob.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PptConversionJobFindFirstArgs>(args?: SelectSubset<T, PptConversionJobFindFirstArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first PptConversionJob that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PptConversionJobFindFirstOrThrowArgs} args - Arguments to find a PptConversionJob
-     * @example
-     * // Get one PptConversionJob
-     * const pptConversionJob = await prisma.pptConversionJob.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PptConversionJobFindFirstOrThrowArgs>(args?: SelectSubset<T, PptConversionJobFindFirstOrThrowArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more PptConversionJobs that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PptConversionJobFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all PptConversionJobs
-     * const pptConversionJobs = await prisma.pptConversionJob.findMany()
-     * 
-     * // Get first 10 PptConversionJobs
-     * const pptConversionJobs = await prisma.pptConversionJob.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const pptConversionJobWithIdOnly = await prisma.pptConversionJob.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PptConversionJobFindManyArgs>(args?: SelectSubset<T, PptConversionJobFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a PptConversionJob.
-     * @param {PptConversionJobCreateArgs} args - Arguments to create a PptConversionJob.
-     * @example
-     * // Create one PptConversionJob
-     * const PptConversionJob = await prisma.pptConversionJob.create({
-     *   data: {
-     *     // ... data to create a PptConversionJob
-     *   }
-     * })
-     * 
-     */
-    create<T extends PptConversionJobCreateArgs>(args: SelectSubset<T, PptConversionJobCreateArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many PptConversionJobs.
-     * @param {PptConversionJobCreateManyArgs} args - Arguments to create many PptConversionJobs.
-     * @example
-     * // Create many PptConversionJobs
-     * const pptConversionJob = await prisma.pptConversionJob.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PptConversionJobCreateManyArgs>(args?: SelectSubset<T, PptConversionJobCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many PptConversionJobs and returns the data saved in the database.
-     * @param {PptConversionJobCreateManyAndReturnArgs} args - Arguments to create many PptConversionJobs.
-     * @example
-     * // Create many PptConversionJobs
-     * const pptConversionJob = await prisma.pptConversionJob.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many PptConversionJobs and only return the `id`
-     * const pptConversionJobWithIdOnly = await prisma.pptConversionJob.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PptConversionJobCreateManyAndReturnArgs>(args?: SelectSubset<T, PptConversionJobCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a PptConversionJob.
-     * @param {PptConversionJobDeleteArgs} args - Arguments to delete one PptConversionJob.
-     * @example
-     * // Delete one PptConversionJob
-     * const PptConversionJob = await prisma.pptConversionJob.delete({
-     *   where: {
-     *     // ... filter to delete one PptConversionJob
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PptConversionJobDeleteArgs>(args: SelectSubset<T, PptConversionJobDeleteArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one PptConversionJob.
-     * @param {PptConversionJobUpdateArgs} args - Arguments to update one PptConversionJob.
-     * @example
-     * // Update one PptConversionJob
-     * const pptConversionJob = await prisma.pptConversionJob.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PptConversionJobUpdateArgs>(args: SelectSubset<T, PptConversionJobUpdateArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more PptConversionJobs.
-     * @param {PptConversionJobDeleteManyArgs} args - Arguments to filter PptConversionJobs to delete.
-     * @example
-     * // Delete a few PptConversionJobs
-     * const { count } = await prisma.pptConversionJob.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PptConversionJobDeleteManyArgs>(args?: SelectSubset<T, PptConversionJobDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PptConversionJobs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PptConversionJobUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many PptConversionJobs
-     * const pptConversionJob = await prisma.pptConversionJob.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PptConversionJobUpdateManyArgs>(args: SelectSubset<T, PptConversionJobUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more PptConversionJobs and returns the data updated in the database.
-     * @param {PptConversionJobUpdateManyAndReturnArgs} args - Arguments to update many PptConversionJobs.
-     * @example
-     * // Update many PptConversionJobs
-     * const pptConversionJob = await prisma.pptConversionJob.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more PptConversionJobs and only return the `id`
-     * const pptConversionJobWithIdOnly = await prisma.pptConversionJob.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends PptConversionJobUpdateManyAndReturnArgs>(args: SelectSubset<T, PptConversionJobUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one PptConversionJob.
-     * @param {PptConversionJobUpsertArgs} args - Arguments to update or create a PptConversionJob.
-     * @example
-     * // Update or create a PptConversionJob
-     * const pptConversionJob = await prisma.pptConversionJob.upsert({
-     *   create: {
-     *     // ... data to create a PptConversionJob
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the PptConversionJob we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PptConversionJobUpsertArgs>(args: SelectSubset<T, PptConversionJobUpsertArgs<ExtArgs>>): Prisma__PptConversionJobClient<$Result.GetResult<Prisma.$PptConversionJobPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of PptConversionJobs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PptConversionJobCountArgs} args - Arguments to filter PptConversionJobs to count.
-     * @example
-     * // Count the number of PptConversionJobs
-     * const count = await prisma.pptConversionJob.count({
-     *   where: {
-     *     // ... the filter for the PptConversionJobs we want to count
-     *   }
-     * })
-    **/
-    count<T extends PptConversionJobCountArgs>(
-      args?: Subset<T, PptConversionJobCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PptConversionJobCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a PptConversionJob.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PptConversionJobAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PptConversionJobAggregateArgs>(args: Subset<T, PptConversionJobAggregateArgs>): Prisma.PrismaPromise<GetPptConversionJobAggregateType<T>>
-
-    /**
-     * Group by PptConversionJob.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PptConversionJobGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PptConversionJobGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PptConversionJobGroupByArgs['orderBy'] }
-        : { orderBy?: PptConversionJobGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PptConversionJobGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPptConversionJobGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the PptConversionJob model
-   */
-  readonly fields: PptConversionJobFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for PptConversionJob.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PptConversionJobClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Research<T extends ResearchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResearchDefaultArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the PptConversionJob model
-   */
-  interface PptConversionJobFieldRefs {
-    readonly id: FieldRef<"PptConversionJob", 'String'>
-    readonly researchId: FieldRef<"PptConversionJob", 'String'>
-    readonly cloudConvertJobId: FieldRef<"PptConversionJob", 'String'>
-    readonly status: FieldRef<"PptConversionJob", 'String'>
-    readonly totalSlides: FieldRef<"PptConversionJob", 'Int'>
-    readonly processedSlides: FieldRef<"PptConversionJob", 'Int'>
-    readonly error: FieldRef<"PptConversionJob", 'String'>
-    readonly createdAt: FieldRef<"PptConversionJob", 'DateTime'>
-    readonly updatedAt: FieldRef<"PptConversionJob", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * PptConversionJob findUnique
-   */
-  export type PptConversionJobFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
-    /**
-     * Filter, which PptConversionJob to fetch.
-     */
-    where: PptConversionJobWhereUniqueInput
-  }
-
-  /**
-   * PptConversionJob findUniqueOrThrow
-   */
-  export type PptConversionJobFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
-    /**
-     * Filter, which PptConversionJob to fetch.
-     */
-    where: PptConversionJobWhereUniqueInput
-  }
-
-  /**
-   * PptConversionJob findFirst
-   */
-  export type PptConversionJobFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
-    /**
-     * Filter, which PptConversionJob to fetch.
-     */
-    where?: PptConversionJobWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PptConversionJobs to fetch.
-     */
-    orderBy?: PptConversionJobOrderByWithRelationInput | PptConversionJobOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PptConversionJobs.
-     */
-    cursor?: PptConversionJobWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PptConversionJobs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PptConversionJobs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PptConversionJobs.
-     */
-    distinct?: PptConversionJobScalarFieldEnum | PptConversionJobScalarFieldEnum[]
-  }
-
-  /**
-   * PptConversionJob findFirstOrThrow
-   */
-  export type PptConversionJobFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
-    /**
-     * Filter, which PptConversionJob to fetch.
-     */
-    where?: PptConversionJobWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PptConversionJobs to fetch.
-     */
-    orderBy?: PptConversionJobOrderByWithRelationInput | PptConversionJobOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for PptConversionJobs.
-     */
-    cursor?: PptConversionJobWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PptConversionJobs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PptConversionJobs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of PptConversionJobs.
-     */
-    distinct?: PptConversionJobScalarFieldEnum | PptConversionJobScalarFieldEnum[]
-  }
-
-  /**
-   * PptConversionJob findMany
-   */
-  export type PptConversionJobFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
-    /**
-     * Filter, which PptConversionJobs to fetch.
-     */
-    where?: PptConversionJobWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of PptConversionJobs to fetch.
-     */
-    orderBy?: PptConversionJobOrderByWithRelationInput | PptConversionJobOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing PptConversionJobs.
-     */
-    cursor?: PptConversionJobWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` PptConversionJobs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` PptConversionJobs.
-     */
-    skip?: number
-    distinct?: PptConversionJobScalarFieldEnum | PptConversionJobScalarFieldEnum[]
-  }
-
-  /**
-   * PptConversionJob create
-   */
-  export type PptConversionJobCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
-    /**
-     * The data needed to create a PptConversionJob.
-     */
-    data: XOR<PptConversionJobCreateInput, PptConversionJobUncheckedCreateInput>
-  }
-
-  /**
-   * PptConversionJob createMany
-   */
-  export type PptConversionJobCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many PptConversionJobs.
-     */
-    data: PptConversionJobCreateManyInput | PptConversionJobCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * PptConversionJob createManyAndReturn
-   */
-  export type PptConversionJobCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * The data used to create many PptConversionJobs.
-     */
-    data: PptConversionJobCreateManyInput | PptConversionJobCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * PptConversionJob update
-   */
-  export type PptConversionJobUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
-    /**
-     * The data needed to update a PptConversionJob.
-     */
-    data: XOR<PptConversionJobUpdateInput, PptConversionJobUncheckedUpdateInput>
-    /**
-     * Choose, which PptConversionJob to update.
-     */
-    where: PptConversionJobWhereUniqueInput
-  }
-
-  /**
-   * PptConversionJob updateMany
-   */
-  export type PptConversionJobUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update PptConversionJobs.
-     */
-    data: XOR<PptConversionJobUpdateManyMutationInput, PptConversionJobUncheckedUpdateManyInput>
-    /**
-     * Filter which PptConversionJobs to update
-     */
-    where?: PptConversionJobWhereInput
-    /**
-     * Limit how many PptConversionJobs to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * PptConversionJob updateManyAndReturn
-   */
-  export type PptConversionJobUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * The data used to update PptConversionJobs.
-     */
-    data: XOR<PptConversionJobUpdateManyMutationInput, PptConversionJobUncheckedUpdateManyInput>
-    /**
-     * Filter which PptConversionJobs to update
-     */
-    where?: PptConversionJobWhereInput
-    /**
-     * Limit how many PptConversionJobs to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * PptConversionJob upsert
-   */
-  export type PptConversionJobUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
-    /**
-     * The filter to search for the PptConversionJob to update in case it exists.
-     */
-    where: PptConversionJobWhereUniqueInput
-    /**
-     * In case the PptConversionJob found by the `where` argument doesn't exist, create a new PptConversionJob with this data.
-     */
-    create: XOR<PptConversionJobCreateInput, PptConversionJobUncheckedCreateInput>
-    /**
-     * In case the PptConversionJob was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PptConversionJobUpdateInput, PptConversionJobUncheckedUpdateInput>
-  }
-
-  /**
-   * PptConversionJob delete
-   */
-  export type PptConversionJobDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
-    /**
-     * Filter which PptConversionJob to delete.
-     */
-    where: PptConversionJobWhereUniqueInput
-  }
-
-  /**
-   * PptConversionJob deleteMany
-   */
-  export type PptConversionJobDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which PptConversionJobs to delete
-     */
-    where?: PptConversionJobWhereInput
-    /**
-     * Limit how many PptConversionJobs to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * PptConversionJob without action
-   */
-  export type PptConversionJobDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PptConversionJob
-     */
-    select?: PptConversionJobSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the PptConversionJob
-     */
-    omit?: PptConversionJobOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PptConversionJobInclude<ExtArgs> | null
   }
 
 
@@ -50193,6 +47723,7 @@ export namespace Prisma {
     author: 'author',
     published: 'published',
     pdfFilename: 'pdfFilename',
+    presentationPdfFilename: 'presentationPdfFilename',
     abstract: 'abstract',
     extractedAt: 'extractedAt',
     extractedContent: 'extractedContent',
@@ -50206,31 +47737,6 @@ export namespace Prisma {
   };
 
   export type ResearchScalarFieldEnum = (typeof ResearchScalarFieldEnum)[keyof typeof ResearchScalarFieldEnum]
-
-
-  export const SlideScalarFieldEnum: {
-    id: 'id',
-    researchId: 'researchId',
-    order: 'order',
-    imageFilename: 'imageFilename'
-  };
-
-  export type SlideScalarFieldEnum = (typeof SlideScalarFieldEnum)[keyof typeof SlideScalarFieldEnum]
-
-
-  export const PptConversionJobScalarFieldEnum: {
-    id: 'id',
-    researchId: 'researchId',
-    cloudConvertJobId: 'cloudConvertJobId',
-    status: 'status',
-    totalSlides: 'totalSlides',
-    processedSlides: 'processedSlides',
-    error: 'error',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type PptConversionJobScalarFieldEnum = (typeof PptConversionJobScalarFieldEnum)[keyof typeof PptConversionJobScalarFieldEnum]
 
 
   export const BlogScalarFieldEnum: {
@@ -53751,6 +51257,7 @@ export namespace Prisma {
     author?: StringNullableFilter<"Research"> | string | null
     published?: BoolFilter<"Research"> | boolean
     pdfFilename?: StringNullableFilter<"Research"> | string | null
+    presentationPdfFilename?: StringNullableFilter<"Research"> | string | null
     abstract?: StringNullableFilter<"Research"> | string | null
     extractedAt?: DateTimeNullableFilter<"Research"> | Date | string | null
     extractedContent?: JsonNullableFilter<"Research">
@@ -53763,8 +51270,6 @@ export namespace Prisma {
     domain?: StringNullableFilter<"Research"> | string | null
     AccessRequest?: AccessRequestListRelationFilter
     student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
-    Slide?: SlideListRelationFilter
-    pptConversionJobs?: PptConversionJobListRelationFilter
   }
 
   export type ResearchOrderByWithRelationInput = {
@@ -53776,6 +51281,7 @@ export namespace Prisma {
     author?: SortOrderInput | SortOrder
     published?: SortOrder
     pdfFilename?: SortOrderInput | SortOrder
+    presentationPdfFilename?: SortOrderInput | SortOrder
     abstract?: SortOrderInput | SortOrder
     extractedAt?: SortOrderInput | SortOrder
     extractedContent?: SortOrderInput | SortOrder
@@ -53788,8 +51294,6 @@ export namespace Prisma {
     domain?: SortOrderInput | SortOrder
     AccessRequest?: AccessRequestOrderByRelationAggregateInput
     student?: StudentOrderByWithRelationInput
-    Slide?: SlideOrderByRelationAggregateInput
-    pptConversionJobs?: PptConversionJobOrderByRelationAggregateInput
   }
 
   export type ResearchWhereUniqueInput = Prisma.AtLeast<{
@@ -53804,6 +51308,7 @@ export namespace Prisma {
     author?: StringNullableFilter<"Research"> | string | null
     published?: BoolFilter<"Research"> | boolean
     pdfFilename?: StringNullableFilter<"Research"> | string | null
+    presentationPdfFilename?: StringNullableFilter<"Research"> | string | null
     abstract?: StringNullableFilter<"Research"> | string | null
     extractedAt?: DateTimeNullableFilter<"Research"> | Date | string | null
     extractedContent?: JsonNullableFilter<"Research">
@@ -53816,8 +51321,6 @@ export namespace Prisma {
     domain?: StringNullableFilter<"Research"> | string | null
     AccessRequest?: AccessRequestListRelationFilter
     student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
-    Slide?: SlideListRelationFilter
-    pptConversionJobs?: PptConversionJobListRelationFilter
   }, "id" | "slug">
 
   export type ResearchOrderByWithAggregationInput = {
@@ -53829,6 +51332,7 @@ export namespace Prisma {
     author?: SortOrderInput | SortOrder
     published?: SortOrder
     pdfFilename?: SortOrderInput | SortOrder
+    presentationPdfFilename?: SortOrderInput | SortOrder
     abstract?: SortOrderInput | SortOrder
     extractedAt?: SortOrderInput | SortOrder
     extractedContent?: SortOrderInput | SortOrder
@@ -53858,6 +51362,7 @@ export namespace Prisma {
     author?: StringNullableWithAggregatesFilter<"Research"> | string | null
     published?: BoolWithAggregatesFilter<"Research"> | boolean
     pdfFilename?: StringNullableWithAggregatesFilter<"Research"> | string | null
+    presentationPdfFilename?: StringNullableWithAggregatesFilter<"Research"> | string | null
     abstract?: StringNullableWithAggregatesFilter<"Research"> | string | null
     extractedAt?: DateTimeNullableWithAggregatesFilter<"Research"> | Date | string | null
     extractedContent?: JsonNullableWithAggregatesFilter<"Research">
@@ -53868,135 +51373,6 @@ export namespace Prisma {
     school?: StringNullableWithAggregatesFilter<"Research"> | string | null
     studentId?: IntNullableWithAggregatesFilter<"Research"> | number | null
     domain?: StringNullableWithAggregatesFilter<"Research"> | string | null
-  }
-
-  export type SlideWhereInput = {
-    AND?: SlideWhereInput | SlideWhereInput[]
-    OR?: SlideWhereInput[]
-    NOT?: SlideWhereInput | SlideWhereInput[]
-    id?: StringFilter<"Slide"> | string
-    researchId?: StringFilter<"Slide"> | string
-    order?: IntFilter<"Slide"> | number
-    imageFilename?: StringFilter<"Slide"> | string
-    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
-  }
-
-  export type SlideOrderByWithRelationInput = {
-    id?: SortOrder
-    researchId?: SortOrder
-    order?: SortOrder
-    imageFilename?: SortOrder
-    Research?: ResearchOrderByWithRelationInput
-  }
-
-  export type SlideWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: SlideWhereInput | SlideWhereInput[]
-    OR?: SlideWhereInput[]
-    NOT?: SlideWhereInput | SlideWhereInput[]
-    researchId?: StringFilter<"Slide"> | string
-    order?: IntFilter<"Slide"> | number
-    imageFilename?: StringFilter<"Slide"> | string
-    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
-  }, "id">
-
-  export type SlideOrderByWithAggregationInput = {
-    id?: SortOrder
-    researchId?: SortOrder
-    order?: SortOrder
-    imageFilename?: SortOrder
-    _count?: SlideCountOrderByAggregateInput
-    _avg?: SlideAvgOrderByAggregateInput
-    _max?: SlideMaxOrderByAggregateInput
-    _min?: SlideMinOrderByAggregateInput
-    _sum?: SlideSumOrderByAggregateInput
-  }
-
-  export type SlideScalarWhereWithAggregatesInput = {
-    AND?: SlideScalarWhereWithAggregatesInput | SlideScalarWhereWithAggregatesInput[]
-    OR?: SlideScalarWhereWithAggregatesInput[]
-    NOT?: SlideScalarWhereWithAggregatesInput | SlideScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Slide"> | string
-    researchId?: StringWithAggregatesFilter<"Slide"> | string
-    order?: IntWithAggregatesFilter<"Slide"> | number
-    imageFilename?: StringWithAggregatesFilter<"Slide"> | string
-  }
-
-  export type PptConversionJobWhereInput = {
-    AND?: PptConversionJobWhereInput | PptConversionJobWhereInput[]
-    OR?: PptConversionJobWhereInput[]
-    NOT?: PptConversionJobWhereInput | PptConversionJobWhereInput[]
-    id?: StringFilter<"PptConversionJob"> | string
-    researchId?: StringFilter<"PptConversionJob"> | string
-    cloudConvertJobId?: StringFilter<"PptConversionJob"> | string
-    status?: StringFilter<"PptConversionJob"> | string
-    totalSlides?: IntNullableFilter<"PptConversionJob"> | number | null
-    processedSlides?: IntFilter<"PptConversionJob"> | number
-    error?: StringNullableFilter<"PptConversionJob"> | string | null
-    createdAt?: DateTimeFilter<"PptConversionJob"> | Date | string
-    updatedAt?: DateTimeFilter<"PptConversionJob"> | Date | string
-    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
-  }
-
-  export type PptConversionJobOrderByWithRelationInput = {
-    id?: SortOrder
-    researchId?: SortOrder
-    cloudConvertJobId?: SortOrder
-    status?: SortOrder
-    totalSlides?: SortOrderInput | SortOrder
-    processedSlides?: SortOrder
-    error?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    Research?: ResearchOrderByWithRelationInput
-  }
-
-  export type PptConversionJobWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    cloudConvertJobId?: string
-    AND?: PptConversionJobWhereInput | PptConversionJobWhereInput[]
-    OR?: PptConversionJobWhereInput[]
-    NOT?: PptConversionJobWhereInput | PptConversionJobWhereInput[]
-    researchId?: StringFilter<"PptConversionJob"> | string
-    status?: StringFilter<"PptConversionJob"> | string
-    totalSlides?: IntNullableFilter<"PptConversionJob"> | number | null
-    processedSlides?: IntFilter<"PptConversionJob"> | number
-    error?: StringNullableFilter<"PptConversionJob"> | string | null
-    createdAt?: DateTimeFilter<"PptConversionJob"> | Date | string
-    updatedAt?: DateTimeFilter<"PptConversionJob"> | Date | string
-    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
-  }, "id" | "cloudConvertJobId">
-
-  export type PptConversionJobOrderByWithAggregationInput = {
-    id?: SortOrder
-    researchId?: SortOrder
-    cloudConvertJobId?: SortOrder
-    status?: SortOrder
-    totalSlides?: SortOrderInput | SortOrder
-    processedSlides?: SortOrder
-    error?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: PptConversionJobCountOrderByAggregateInput
-    _avg?: PptConversionJobAvgOrderByAggregateInput
-    _max?: PptConversionJobMaxOrderByAggregateInput
-    _min?: PptConversionJobMinOrderByAggregateInput
-    _sum?: PptConversionJobSumOrderByAggregateInput
-  }
-
-  export type PptConversionJobScalarWhereWithAggregatesInput = {
-    AND?: PptConversionJobScalarWhereWithAggregatesInput | PptConversionJobScalarWhereWithAggregatesInput[]
-    OR?: PptConversionJobScalarWhereWithAggregatesInput[]
-    NOT?: PptConversionJobScalarWhereWithAggregatesInput | PptConversionJobScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"PptConversionJob"> | string
-    researchId?: StringWithAggregatesFilter<"PptConversionJob"> | string
-    cloudConvertJobId?: StringWithAggregatesFilter<"PptConversionJob"> | string
-    status?: StringWithAggregatesFilter<"PptConversionJob"> | string
-    totalSlides?: IntNullableWithAggregatesFilter<"PptConversionJob"> | number | null
-    processedSlides?: IntWithAggregatesFilter<"PptConversionJob"> | number
-    error?: StringNullableWithAggregatesFilter<"PptConversionJob"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"PptConversionJob"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"PptConversionJob"> | Date | string
   }
 
   export type BlogWhereInput = {
@@ -57886,6 +55262,7 @@ export namespace Prisma {
     author?: string | null
     published?: boolean
     pdfFilename?: string | null
+    presentationPdfFilename?: string | null
     abstract?: string | null
     extractedAt?: Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -57897,8 +55274,6 @@ export namespace Prisma {
     domain?: string | null
     AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
     student?: StudentCreateNestedOneWithoutResearchInput
-    Slide?: SlideCreateNestedManyWithoutResearchInput
-    pptConversionJobs?: PptConversionJobCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchUncheckedCreateInput = {
@@ -57910,6 +55285,7 @@ export namespace Prisma {
     author?: string | null
     published?: boolean
     pdfFilename?: string | null
+    presentationPdfFilename?: string | null
     abstract?: string | null
     extractedAt?: Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -57921,8 +55297,6 @@ export namespace Prisma {
     studentId?: number | null
     domain?: string | null
     AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
-    Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
-    pptConversionJobs?: PptConversionJobUncheckedCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchUpdateInput = {
@@ -57934,6 +55308,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -57945,8 +55320,6 @@ export namespace Prisma {
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
     student?: StudentUpdateOneWithoutResearchNestedInput
-    Slide?: SlideUpdateManyWithoutResearchNestedInput
-    pptConversionJobs?: PptConversionJobUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchUncheckedUpdateInput = {
@@ -57958,6 +55331,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -57969,8 +55343,6 @@ export namespace Prisma {
     studentId?: NullableIntFieldUpdateOperationsInput | number | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
-    Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
-    pptConversionJobs?: PptConversionJobUncheckedUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchCreateManyInput = {
@@ -57982,6 +55354,7 @@ export namespace Prisma {
     author?: string | null
     published?: boolean
     pdfFilename?: string | null
+    presentationPdfFilename?: string | null
     abstract?: string | null
     extractedAt?: Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -58003,6 +55376,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -58023,6 +55397,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -58033,137 +55408,6 @@ export namespace Prisma {
     school?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: NullableIntFieldUpdateOperationsInput | number | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type SlideCreateInput = {
-    id?: string
-    order: number
-    imageFilename: string
-    Research: ResearchCreateNestedOneWithoutSlideInput
-  }
-
-  export type SlideUncheckedCreateInput = {
-    id?: string
-    researchId: string
-    order: number
-    imageFilename: string
-  }
-
-  export type SlideUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageFilename?: StringFieldUpdateOperationsInput | string
-    Research?: ResearchUpdateOneRequiredWithoutSlideNestedInput
-  }
-
-  export type SlideUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    researchId?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageFilename?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type SlideCreateManyInput = {
-    id?: string
-    researchId: string
-    order: number
-    imageFilename: string
-  }
-
-  export type SlideUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageFilename?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type SlideUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    researchId?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageFilename?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PptConversionJobCreateInput = {
-    id?: string
-    cloudConvertJobId: string
-    status?: string
-    totalSlides?: number | null
-    processedSlides?: number
-    error?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    Research: ResearchCreateNestedOneWithoutPptConversionJobsInput
-  }
-
-  export type PptConversionJobUncheckedCreateInput = {
-    id?: string
-    researchId: string
-    cloudConvertJobId: string
-    status?: string
-    totalSlides?: number | null
-    processedSlides?: number
-    error?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PptConversionJobUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
-    processedSlides?: IntFieldUpdateOperationsInput | number
-    error?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Research?: ResearchUpdateOneRequiredWithoutPptConversionJobsNestedInput
-  }
-
-  export type PptConversionJobUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    researchId?: StringFieldUpdateOperationsInput | string
-    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
-    processedSlides?: IntFieldUpdateOperationsInput | number
-    error?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PptConversionJobCreateManyInput = {
-    id?: string
-    researchId: string
-    cloudConvertJobId: string
-    status?: string
-    totalSlides?: number | null
-    processedSlides?: number
-    error?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PptConversionJobUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
-    processedSlides?: IntFieldUpdateOperationsInput | number
-    error?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PptConversionJobUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    researchId?: StringFieldUpdateOperationsInput | string
-    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
-    processedSlides?: IntFieldUpdateOperationsInput | number
-    error?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BlogCreateInput = {
@@ -60885,27 +58129,7 @@ export namespace Prisma {
     none?: AccessRequestWhereInput
   }
 
-  export type SlideListRelationFilter = {
-    every?: SlideWhereInput
-    some?: SlideWhereInput
-    none?: SlideWhereInput
-  }
-
-  export type PptConversionJobListRelationFilter = {
-    every?: PptConversionJobWhereInput
-    some?: PptConversionJobWhereInput
-    none?: PptConversionJobWhereInput
-  }
-
   export type AccessRequestOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type SlideOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PptConversionJobOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -60918,6 +58142,7 @@ export namespace Prisma {
     author?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
+    presentationPdfFilename?: SortOrder
     abstract?: SortOrder
     extractedAt?: SortOrder
     extractedContent?: SortOrder
@@ -60943,6 +58168,7 @@ export namespace Prisma {
     author?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
+    presentationPdfFilename?: SortOrder
     abstract?: SortOrder
     extractedAt?: SortOrder
     extractionStatus?: SortOrder
@@ -60962,6 +58188,7 @@ export namespace Prisma {
     author?: SortOrder
     published?: SortOrder
     pdfFilename?: SortOrder
+    presentationPdfFilename?: SortOrder
     abstract?: SortOrder
     extractedAt?: SortOrder
     extractionStatus?: SortOrder
@@ -60974,81 +58201,6 @@ export namespace Prisma {
 
   export type ResearchSumOrderByAggregateInput = {
     studentId?: SortOrder
-  }
-
-  export type SlideCountOrderByAggregateInput = {
-    id?: SortOrder
-    researchId?: SortOrder
-    order?: SortOrder
-    imageFilename?: SortOrder
-  }
-
-  export type SlideAvgOrderByAggregateInput = {
-    order?: SortOrder
-  }
-
-  export type SlideMaxOrderByAggregateInput = {
-    id?: SortOrder
-    researchId?: SortOrder
-    order?: SortOrder
-    imageFilename?: SortOrder
-  }
-
-  export type SlideMinOrderByAggregateInput = {
-    id?: SortOrder
-    researchId?: SortOrder
-    order?: SortOrder
-    imageFilename?: SortOrder
-  }
-
-  export type SlideSumOrderByAggregateInput = {
-    order?: SortOrder
-  }
-
-  export type PptConversionJobCountOrderByAggregateInput = {
-    id?: SortOrder
-    researchId?: SortOrder
-    cloudConvertJobId?: SortOrder
-    status?: SortOrder
-    totalSlides?: SortOrder
-    processedSlides?: SortOrder
-    error?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PptConversionJobAvgOrderByAggregateInput = {
-    totalSlides?: SortOrder
-    processedSlides?: SortOrder
-  }
-
-  export type PptConversionJobMaxOrderByAggregateInput = {
-    id?: SortOrder
-    researchId?: SortOrder
-    cloudConvertJobId?: SortOrder
-    status?: SortOrder
-    totalSlides?: SortOrder
-    processedSlides?: SortOrder
-    error?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PptConversionJobMinOrderByAggregateInput = {
-    id?: SortOrder
-    researchId?: SortOrder
-    cloudConvertJobId?: SortOrder
-    status?: SortOrder
-    totalSlides?: SortOrder
-    processedSlides?: SortOrder
-    error?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type PptConversionJobSumOrderByAggregateInput = {
-    totalSlides?: SortOrder
-    processedSlides?: SortOrder
   }
 
   export type BlogCountOrderByAggregateInput = {
@@ -62959,39 +60111,11 @@ export namespace Prisma {
     connect?: StudentWhereUniqueInput
   }
 
-  export type SlideCreateNestedManyWithoutResearchInput = {
-    create?: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput> | SlideCreateWithoutResearchInput[] | SlideUncheckedCreateWithoutResearchInput[]
-    connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
-    createMany?: SlideCreateManyResearchInputEnvelope
-    connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
-  }
-
-  export type PptConversionJobCreateNestedManyWithoutResearchInput = {
-    create?: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput> | PptConversionJobCreateWithoutResearchInput[] | PptConversionJobUncheckedCreateWithoutResearchInput[]
-    connectOrCreate?: PptConversionJobCreateOrConnectWithoutResearchInput | PptConversionJobCreateOrConnectWithoutResearchInput[]
-    createMany?: PptConversionJobCreateManyResearchInputEnvelope
-    connect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
-  }
-
   export type AccessRequestUncheckedCreateNestedManyWithoutResearchInput = {
     create?: XOR<AccessRequestCreateWithoutResearchInput, AccessRequestUncheckedCreateWithoutResearchInput> | AccessRequestCreateWithoutResearchInput[] | AccessRequestUncheckedCreateWithoutResearchInput[]
     connectOrCreate?: AccessRequestCreateOrConnectWithoutResearchInput | AccessRequestCreateOrConnectWithoutResearchInput[]
     createMany?: AccessRequestCreateManyResearchInputEnvelope
     connect?: AccessRequestWhereUniqueInput | AccessRequestWhereUniqueInput[]
-  }
-
-  export type SlideUncheckedCreateNestedManyWithoutResearchInput = {
-    create?: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput> | SlideCreateWithoutResearchInput[] | SlideUncheckedCreateWithoutResearchInput[]
-    connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
-    createMany?: SlideCreateManyResearchInputEnvelope
-    connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
-  }
-
-  export type PptConversionJobUncheckedCreateNestedManyWithoutResearchInput = {
-    create?: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput> | PptConversionJobCreateWithoutResearchInput[] | PptConversionJobUncheckedCreateWithoutResearchInput[]
-    connectOrCreate?: PptConversionJobCreateOrConnectWithoutResearchInput | PptConversionJobCreateOrConnectWithoutResearchInput[]
-    createMany?: PptConversionJobCreateManyResearchInputEnvelope
-    connect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
   }
 
   export type ResearchUpdatekeywordsInput = {
@@ -63023,34 +60147,6 @@ export namespace Prisma {
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutResearchInput, StudentUpdateWithoutResearchInput>, StudentUncheckedUpdateWithoutResearchInput>
   }
 
-  export type SlideUpdateManyWithoutResearchNestedInput = {
-    create?: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput> | SlideCreateWithoutResearchInput[] | SlideUncheckedCreateWithoutResearchInput[]
-    connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
-    upsert?: SlideUpsertWithWhereUniqueWithoutResearchInput | SlideUpsertWithWhereUniqueWithoutResearchInput[]
-    createMany?: SlideCreateManyResearchInputEnvelope
-    set?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
-    disconnect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
-    delete?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
-    connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
-    update?: SlideUpdateWithWhereUniqueWithoutResearchInput | SlideUpdateWithWhereUniqueWithoutResearchInput[]
-    updateMany?: SlideUpdateManyWithWhereWithoutResearchInput | SlideUpdateManyWithWhereWithoutResearchInput[]
-    deleteMany?: SlideScalarWhereInput | SlideScalarWhereInput[]
-  }
-
-  export type PptConversionJobUpdateManyWithoutResearchNestedInput = {
-    create?: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput> | PptConversionJobCreateWithoutResearchInput[] | PptConversionJobUncheckedCreateWithoutResearchInput[]
-    connectOrCreate?: PptConversionJobCreateOrConnectWithoutResearchInput | PptConversionJobCreateOrConnectWithoutResearchInput[]
-    upsert?: PptConversionJobUpsertWithWhereUniqueWithoutResearchInput | PptConversionJobUpsertWithWhereUniqueWithoutResearchInput[]
-    createMany?: PptConversionJobCreateManyResearchInputEnvelope
-    set?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
-    disconnect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
-    delete?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
-    connect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
-    update?: PptConversionJobUpdateWithWhereUniqueWithoutResearchInput | PptConversionJobUpdateWithWhereUniqueWithoutResearchInput[]
-    updateMany?: PptConversionJobUpdateManyWithWhereWithoutResearchInput | PptConversionJobUpdateManyWithWhereWithoutResearchInput[]
-    deleteMany?: PptConversionJobScalarWhereInput | PptConversionJobScalarWhereInput[]
-  }
-
   export type AccessRequestUncheckedUpdateManyWithoutResearchNestedInput = {
     create?: XOR<AccessRequestCreateWithoutResearchInput, AccessRequestUncheckedCreateWithoutResearchInput> | AccessRequestCreateWithoutResearchInput[] | AccessRequestUncheckedCreateWithoutResearchInput[]
     connectOrCreate?: AccessRequestCreateOrConnectWithoutResearchInput | AccessRequestCreateOrConnectWithoutResearchInput[]
@@ -63063,62 +60159,6 @@ export namespace Prisma {
     update?: AccessRequestUpdateWithWhereUniqueWithoutResearchInput | AccessRequestUpdateWithWhereUniqueWithoutResearchInput[]
     updateMany?: AccessRequestUpdateManyWithWhereWithoutResearchInput | AccessRequestUpdateManyWithWhereWithoutResearchInput[]
     deleteMany?: AccessRequestScalarWhereInput | AccessRequestScalarWhereInput[]
-  }
-
-  export type SlideUncheckedUpdateManyWithoutResearchNestedInput = {
-    create?: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput> | SlideCreateWithoutResearchInput[] | SlideUncheckedCreateWithoutResearchInput[]
-    connectOrCreate?: SlideCreateOrConnectWithoutResearchInput | SlideCreateOrConnectWithoutResearchInput[]
-    upsert?: SlideUpsertWithWhereUniqueWithoutResearchInput | SlideUpsertWithWhereUniqueWithoutResearchInput[]
-    createMany?: SlideCreateManyResearchInputEnvelope
-    set?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
-    disconnect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
-    delete?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
-    connect?: SlideWhereUniqueInput | SlideWhereUniqueInput[]
-    update?: SlideUpdateWithWhereUniqueWithoutResearchInput | SlideUpdateWithWhereUniqueWithoutResearchInput[]
-    updateMany?: SlideUpdateManyWithWhereWithoutResearchInput | SlideUpdateManyWithWhereWithoutResearchInput[]
-    deleteMany?: SlideScalarWhereInput | SlideScalarWhereInput[]
-  }
-
-  export type PptConversionJobUncheckedUpdateManyWithoutResearchNestedInput = {
-    create?: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput> | PptConversionJobCreateWithoutResearchInput[] | PptConversionJobUncheckedCreateWithoutResearchInput[]
-    connectOrCreate?: PptConversionJobCreateOrConnectWithoutResearchInput | PptConversionJobCreateOrConnectWithoutResearchInput[]
-    upsert?: PptConversionJobUpsertWithWhereUniqueWithoutResearchInput | PptConversionJobUpsertWithWhereUniqueWithoutResearchInput[]
-    createMany?: PptConversionJobCreateManyResearchInputEnvelope
-    set?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
-    disconnect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
-    delete?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
-    connect?: PptConversionJobWhereUniqueInput | PptConversionJobWhereUniqueInput[]
-    update?: PptConversionJobUpdateWithWhereUniqueWithoutResearchInput | PptConversionJobUpdateWithWhereUniqueWithoutResearchInput[]
-    updateMany?: PptConversionJobUpdateManyWithWhereWithoutResearchInput | PptConversionJobUpdateManyWithWhereWithoutResearchInput[]
-    deleteMany?: PptConversionJobScalarWhereInput | PptConversionJobScalarWhereInput[]
-  }
-
-  export type ResearchCreateNestedOneWithoutSlideInput = {
-    create?: XOR<ResearchCreateWithoutSlideInput, ResearchUncheckedCreateWithoutSlideInput>
-    connectOrCreate?: ResearchCreateOrConnectWithoutSlideInput
-    connect?: ResearchWhereUniqueInput
-  }
-
-  export type ResearchUpdateOneRequiredWithoutSlideNestedInput = {
-    create?: XOR<ResearchCreateWithoutSlideInput, ResearchUncheckedCreateWithoutSlideInput>
-    connectOrCreate?: ResearchCreateOrConnectWithoutSlideInput
-    upsert?: ResearchUpsertWithoutSlideInput
-    connect?: ResearchWhereUniqueInput
-    update?: XOR<XOR<ResearchUpdateToOneWithWhereWithoutSlideInput, ResearchUpdateWithoutSlideInput>, ResearchUncheckedUpdateWithoutSlideInput>
-  }
-
-  export type ResearchCreateNestedOneWithoutPptConversionJobsInput = {
-    create?: XOR<ResearchCreateWithoutPptConversionJobsInput, ResearchUncheckedCreateWithoutPptConversionJobsInput>
-    connectOrCreate?: ResearchCreateOrConnectWithoutPptConversionJobsInput
-    connect?: ResearchWhereUniqueInput
-  }
-
-  export type ResearchUpdateOneRequiredWithoutPptConversionJobsNestedInput = {
-    create?: XOR<ResearchCreateWithoutPptConversionJobsInput, ResearchUncheckedCreateWithoutPptConversionJobsInput>
-    connectOrCreate?: ResearchCreateOrConnectWithoutPptConversionJobsInput
-    upsert?: ResearchUpsertWithoutPptConversionJobsInput
-    connect?: ResearchWhereUniqueInput
-    update?: XOR<XOR<ResearchUpdateToOneWithWhereWithoutPptConversionJobsInput, ResearchUpdateWithoutPptConversionJobsInput>, ResearchUncheckedUpdateWithoutPptConversionJobsInput>
   }
 
   export type StudentCreateNestedOneWithoutBlogInput = {
@@ -64329,6 +61369,7 @@ export namespace Prisma {
     author?: string | null
     published?: boolean
     pdfFilename?: string | null
+    presentationPdfFilename?: string | null
     abstract?: string | null
     extractedAt?: Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -64339,8 +61380,6 @@ export namespace Prisma {
     school?: string | null
     domain?: string | null
     AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
-    Slide?: SlideCreateNestedManyWithoutResearchInput
-    pptConversionJobs?: PptConversionJobCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchUncheckedCreateWithoutStudentInput = {
@@ -64352,6 +61391,7 @@ export namespace Prisma {
     author?: string | null
     published?: boolean
     pdfFilename?: string | null
+    presentationPdfFilename?: string | null
     abstract?: string | null
     extractedAt?: Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -64362,8 +61402,6 @@ export namespace Prisma {
     school?: string | null
     domain?: string | null
     AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
-    Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
-    pptConversionJobs?: PptConversionJobUncheckedCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchCreateOrConnectWithoutStudentInput = {
@@ -64797,6 +61835,7 @@ export namespace Prisma {
     author?: StringNullableFilter<"Research"> | string | null
     published?: BoolFilter<"Research"> | boolean
     pdfFilename?: StringNullableFilter<"Research"> | string | null
+    presentationPdfFilename?: StringNullableFilter<"Research"> | string | null
     abstract?: StringNullableFilter<"Research"> | string | null
     extractedAt?: DateTimeNullableFilter<"Research"> | Date | string | null
     extractedContent?: JsonNullableFilter<"Research">
@@ -68684,6 +65723,7 @@ export namespace Prisma {
     author?: string | null
     published?: boolean
     pdfFilename?: string | null
+    presentationPdfFilename?: string | null
     abstract?: string | null
     extractedAt?: Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -68694,8 +65734,6 @@ export namespace Prisma {
     school?: string | null
     domain?: string | null
     student?: StudentCreateNestedOneWithoutResearchInput
-    Slide?: SlideCreateNestedManyWithoutResearchInput
-    pptConversionJobs?: PptConversionJobCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchUncheckedCreateWithoutAccessRequestInput = {
@@ -68707,6 +65745,7 @@ export namespace Prisma {
     author?: string | null
     published?: boolean
     pdfFilename?: string | null
+    presentationPdfFilename?: string | null
     abstract?: string | null
     extractedAt?: Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -68717,8 +65756,6 @@ export namespace Prisma {
     school?: string | null
     studentId?: number | null
     domain?: string | null
-    Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
-    pptConversionJobs?: PptConversionJobUncheckedCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchCreateOrConnectWithoutAccessRequestInput = {
@@ -68746,6 +65783,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -68756,8 +65794,6 @@ export namespace Prisma {
     school?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     student?: StudentUpdateOneWithoutResearchNestedInput
-    Slide?: SlideUpdateManyWithoutResearchNestedInput
-    pptConversionJobs?: PptConversionJobUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchUncheckedUpdateWithoutAccessRequestInput = {
@@ -68769,6 +65805,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -68779,8 +65816,6 @@ export namespace Prisma {
     school?: NullableStringFieldUpdateOperationsInput | string | null
     studentId?: NullableIntFieldUpdateOperationsInput | number | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
-    Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
-    pptConversionJobs?: PptConversionJobUncheckedUpdateManyWithoutResearchNestedInput
   }
 
   export type AccessRequestCreateWithoutResearchInput = {
@@ -68875,60 +65910,6 @@ export namespace Prisma {
   export type StudentCreateOrConnectWithoutResearchInput = {
     where: StudentWhereUniqueInput
     create: XOR<StudentCreateWithoutResearchInput, StudentUncheckedCreateWithoutResearchInput>
-  }
-
-  export type SlideCreateWithoutResearchInput = {
-    id?: string
-    order: number
-    imageFilename: string
-  }
-
-  export type SlideUncheckedCreateWithoutResearchInput = {
-    id?: string
-    order: number
-    imageFilename: string
-  }
-
-  export type SlideCreateOrConnectWithoutResearchInput = {
-    where: SlideWhereUniqueInput
-    create: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput>
-  }
-
-  export type SlideCreateManyResearchInputEnvelope = {
-    data: SlideCreateManyResearchInput | SlideCreateManyResearchInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type PptConversionJobCreateWithoutResearchInput = {
-    id?: string
-    cloudConvertJobId: string
-    status?: string
-    totalSlides?: number | null
-    processedSlides?: number
-    error?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PptConversionJobUncheckedCreateWithoutResearchInput = {
-    id?: string
-    cloudConvertJobId: string
-    status?: string
-    totalSlides?: number | null
-    processedSlides?: number
-    error?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type PptConversionJobCreateOrConnectWithoutResearchInput = {
-    where: PptConversionJobWhereUniqueInput
-    create: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput>
-  }
-
-  export type PptConversionJobCreateManyResearchInputEnvelope = {
-    data: PptConversionJobCreateManyResearchInput | PptConversionJobCreateManyResearchInput[]
-    skipDuplicates?: boolean
   }
 
   export type AccessRequestUpsertWithWhereUniqueWithoutResearchInput = {
@@ -69029,279 +66010,6 @@ export namespace Prisma {
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
-  }
-
-  export type SlideUpsertWithWhereUniqueWithoutResearchInput = {
-    where: SlideWhereUniqueInput
-    update: XOR<SlideUpdateWithoutResearchInput, SlideUncheckedUpdateWithoutResearchInput>
-    create: XOR<SlideCreateWithoutResearchInput, SlideUncheckedCreateWithoutResearchInput>
-  }
-
-  export type SlideUpdateWithWhereUniqueWithoutResearchInput = {
-    where: SlideWhereUniqueInput
-    data: XOR<SlideUpdateWithoutResearchInput, SlideUncheckedUpdateWithoutResearchInput>
-  }
-
-  export type SlideUpdateManyWithWhereWithoutResearchInput = {
-    where: SlideScalarWhereInput
-    data: XOR<SlideUpdateManyMutationInput, SlideUncheckedUpdateManyWithoutResearchInput>
-  }
-
-  export type SlideScalarWhereInput = {
-    AND?: SlideScalarWhereInput | SlideScalarWhereInput[]
-    OR?: SlideScalarWhereInput[]
-    NOT?: SlideScalarWhereInput | SlideScalarWhereInput[]
-    id?: StringFilter<"Slide"> | string
-    researchId?: StringFilter<"Slide"> | string
-    order?: IntFilter<"Slide"> | number
-    imageFilename?: StringFilter<"Slide"> | string
-  }
-
-  export type PptConversionJobUpsertWithWhereUniqueWithoutResearchInput = {
-    where: PptConversionJobWhereUniqueInput
-    update: XOR<PptConversionJobUpdateWithoutResearchInput, PptConversionJobUncheckedUpdateWithoutResearchInput>
-    create: XOR<PptConversionJobCreateWithoutResearchInput, PptConversionJobUncheckedCreateWithoutResearchInput>
-  }
-
-  export type PptConversionJobUpdateWithWhereUniqueWithoutResearchInput = {
-    where: PptConversionJobWhereUniqueInput
-    data: XOR<PptConversionJobUpdateWithoutResearchInput, PptConversionJobUncheckedUpdateWithoutResearchInput>
-  }
-
-  export type PptConversionJobUpdateManyWithWhereWithoutResearchInput = {
-    where: PptConversionJobScalarWhereInput
-    data: XOR<PptConversionJobUpdateManyMutationInput, PptConversionJobUncheckedUpdateManyWithoutResearchInput>
-  }
-
-  export type PptConversionJobScalarWhereInput = {
-    AND?: PptConversionJobScalarWhereInput | PptConversionJobScalarWhereInput[]
-    OR?: PptConversionJobScalarWhereInput[]
-    NOT?: PptConversionJobScalarWhereInput | PptConversionJobScalarWhereInput[]
-    id?: StringFilter<"PptConversionJob"> | string
-    researchId?: StringFilter<"PptConversionJob"> | string
-    cloudConvertJobId?: StringFilter<"PptConversionJob"> | string
-    status?: StringFilter<"PptConversionJob"> | string
-    totalSlides?: IntNullableFilter<"PptConversionJob"> | number | null
-    processedSlides?: IntFilter<"PptConversionJob"> | number
-    error?: StringNullableFilter<"PptConversionJob"> | string | null
-    createdAt?: DateTimeFilter<"PptConversionJob"> | Date | string
-    updatedAt?: DateTimeFilter<"PptConversionJob"> | Date | string
-  }
-
-  export type ResearchCreateWithoutSlideInput = {
-    id: string
-    title: string
-    slug: string
-    description?: string | null
-    createdAt: Date | string
-    author?: string | null
-    published?: boolean
-    pdfFilename?: string | null
-    abstract?: string | null
-    extractedAt?: Date | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    extractionStatus?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
-    category?: string | null
-    grade?: string | null
-    school?: string | null
-    domain?: string | null
-    AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
-    student?: StudentCreateNestedOneWithoutResearchInput
-    pptConversionJobs?: PptConversionJobCreateNestedManyWithoutResearchInput
-  }
-
-  export type ResearchUncheckedCreateWithoutSlideInput = {
-    id: string
-    title: string
-    slug: string
-    description?: string | null
-    createdAt: Date | string
-    author?: string | null
-    published?: boolean
-    pdfFilename?: string | null
-    abstract?: string | null
-    extractedAt?: Date | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    extractionStatus?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
-    category?: string | null
-    grade?: string | null
-    school?: string | null
-    studentId?: number | null
-    domain?: string | null
-    AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
-    pptConversionJobs?: PptConversionJobUncheckedCreateNestedManyWithoutResearchInput
-  }
-
-  export type ResearchCreateOrConnectWithoutSlideInput = {
-    where: ResearchWhereUniqueInput
-    create: XOR<ResearchCreateWithoutSlideInput, ResearchUncheckedCreateWithoutSlideInput>
-  }
-
-  export type ResearchUpsertWithoutSlideInput = {
-    update: XOR<ResearchUpdateWithoutSlideInput, ResearchUncheckedUpdateWithoutSlideInput>
-    create: XOR<ResearchCreateWithoutSlideInput, ResearchUncheckedCreateWithoutSlideInput>
-    where?: ResearchWhereInput
-  }
-
-  export type ResearchUpdateToOneWithWhereWithoutSlideInput = {
-    where?: ResearchWhereInput
-    data: XOR<ResearchUpdateWithoutSlideInput, ResearchUncheckedUpdateWithoutSlideInput>
-  }
-
-  export type ResearchUpdateWithoutSlideInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
-    student?: StudentUpdateOneWithoutResearchNestedInput
-    pptConversionJobs?: PptConversionJobUpdateManyWithoutResearchNestedInput
-  }
-
-  export type ResearchUncheckedUpdateWithoutSlideInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    studentId?: NullableIntFieldUpdateOperationsInput | number | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
-    pptConversionJobs?: PptConversionJobUncheckedUpdateManyWithoutResearchNestedInput
-  }
-
-  export type ResearchCreateWithoutPptConversionJobsInput = {
-    id: string
-    title: string
-    slug: string
-    description?: string | null
-    createdAt: Date | string
-    author?: string | null
-    published?: boolean
-    pdfFilename?: string | null
-    abstract?: string | null
-    extractedAt?: Date | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    extractionStatus?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
-    category?: string | null
-    grade?: string | null
-    school?: string | null
-    domain?: string | null
-    AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
-    student?: StudentCreateNestedOneWithoutResearchInput
-    Slide?: SlideCreateNestedManyWithoutResearchInput
-  }
-
-  export type ResearchUncheckedCreateWithoutPptConversionJobsInput = {
-    id: string
-    title: string
-    slug: string
-    description?: string | null
-    createdAt: Date | string
-    author?: string | null
-    published?: boolean
-    pdfFilename?: string | null
-    abstract?: string | null
-    extractedAt?: Date | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    extractionStatus?: string | null
-    keywords?: ResearchCreatekeywordsInput | string[]
-    category?: string | null
-    grade?: string | null
-    school?: string | null
-    studentId?: number | null
-    domain?: string | null
-    AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
-    Slide?: SlideUncheckedCreateNestedManyWithoutResearchInput
-  }
-
-  export type ResearchCreateOrConnectWithoutPptConversionJobsInput = {
-    where: ResearchWhereUniqueInput
-    create: XOR<ResearchCreateWithoutPptConversionJobsInput, ResearchUncheckedCreateWithoutPptConversionJobsInput>
-  }
-
-  export type ResearchUpsertWithoutPptConversionJobsInput = {
-    update: XOR<ResearchUpdateWithoutPptConversionJobsInput, ResearchUncheckedUpdateWithoutPptConversionJobsInput>
-    create: XOR<ResearchCreateWithoutPptConversionJobsInput, ResearchUncheckedCreateWithoutPptConversionJobsInput>
-    where?: ResearchWhereInput
-  }
-
-  export type ResearchUpdateToOneWithWhereWithoutPptConversionJobsInput = {
-    where?: ResearchWhereInput
-    data: XOR<ResearchUpdateWithoutPptConversionJobsInput, ResearchUncheckedUpdateWithoutPptConversionJobsInput>
-  }
-
-  export type ResearchUpdateWithoutPptConversionJobsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
-    student?: StudentUpdateOneWithoutResearchNestedInput
-    Slide?: SlideUpdateManyWithoutResearchNestedInput
-  }
-
-  export type ResearchUncheckedUpdateWithoutPptConversionJobsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: NullableStringFieldUpdateOperationsInput | string | null
-    published?: BoolFieldUpdateOperationsInput | boolean
-    pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    abstract?: NullableStringFieldUpdateOperationsInput | string | null
-    extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    extractedContent?: NullableJsonNullValueInput | InputJsonValue
-    extractionStatus?: NullableStringFieldUpdateOperationsInput | string | null
-    keywords?: ResearchUpdatekeywordsInput | string[]
-    category?: NullableStringFieldUpdateOperationsInput | string | null
-    grade?: NullableStringFieldUpdateOperationsInput | string | null
-    school?: NullableStringFieldUpdateOperationsInput | string | null
-    studentId?: NullableIntFieldUpdateOperationsInput | number | null
-    domain?: NullableStringFieldUpdateOperationsInput | string | null
-    AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
-    Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
   }
 
   export type StudentCreateWithoutBlogInput = {
@@ -69997,6 +66705,7 @@ export namespace Prisma {
     author?: string | null
     published?: boolean
     pdfFilename?: string | null
+    presentationPdfFilename?: string | null
     abstract?: string | null
     extractedAt?: Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -70445,6 +67154,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -70455,8 +67165,6 @@ export namespace Prisma {
     school?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
-    Slide?: SlideUpdateManyWithoutResearchNestedInput
-    pptConversionJobs?: PptConversionJobUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchUncheckedUpdateWithoutStudentInput = {
@@ -70468,6 +67176,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -70478,8 +67187,6 @@ export namespace Prisma {
     school?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
-    Slide?: SlideUncheckedUpdateManyWithoutResearchNestedInput
-    pptConversionJobs?: PptConversionJobUncheckedUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchUncheckedUpdateManyWithoutStudentInput = {
@@ -70491,6 +67198,7 @@ export namespace Prisma {
     author?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     pdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
+    presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
     abstract?: NullableStringFieldUpdateOperationsInput | string | null
     extractedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     extractedContent?: NullableJsonNullValueInput | InputJsonValue
@@ -71327,23 +68035,6 @@ export namespace Prisma {
     reason?: string | null
   }
 
-  export type SlideCreateManyResearchInput = {
-    id?: string
-    order: number
-    imageFilename: string
-  }
-
-  export type PptConversionJobCreateManyResearchInput = {
-    id?: string
-    cloudConvertJobId: string
-    status?: string
-    totalSlides?: number | null
-    processedSlides?: number
-    error?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
   export type AccessRequestUpdateWithoutResearchInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -71372,57 +68063,6 @@ export namespace Prisma {
     approved?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type SlideUpdateWithoutResearchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageFilename?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type SlideUncheckedUpdateWithoutResearchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageFilename?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type SlideUncheckedUpdateManyWithoutResearchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    order?: IntFieldUpdateOperationsInput | number
-    imageFilename?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PptConversionJobUpdateWithoutResearchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
-    processedSlides?: IntFieldUpdateOperationsInput | number
-    error?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PptConversionJobUncheckedUpdateWithoutResearchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
-    processedSlides?: IntFieldUpdateOperationsInput | number
-    error?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type PptConversionJobUncheckedUpdateManyWithoutResearchInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    cloudConvertJobId?: StringFieldUpdateOperationsInput | string
-    status?: StringFieldUpdateOperationsInput | string
-    totalSlides?: NullableIntFieldUpdateOperationsInput | number | null
-    processedSlides?: IntFieldUpdateOperationsInput | number
-    error?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react'
 import { X, FileText, Upload, Trash2, Download, RefreshCw, CheckCircle, XCircle, Clock } from 'lucide-react'
 import { toast } from 'sonner'
-import Link from 'next/link'
 
 interface Research {
   id: string
@@ -98,6 +97,26 @@ export default function ManagePdfDialog({ researchId, onClose, onUpdate }: Manag
     }
   }
 
+  const openSignedPdf = async (endpointPath: string, filename: string) => {
+    try {
+      const response = await fetch(endpointPath)
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to load PDF')
+      }
+
+      if (!data.url) {
+        throw new Error('PDF URL is missing')
+      }
+
+      window.open(data.url, '_blank', 'noopener,noreferrer')
+    } catch (error) {
+      console.error(`Failed to open ${filename}:`, error)
+      toast.error(error instanceof Error ? error.message : `Failed to open ${filename}`)
+    }
+  }
+
   if (loading) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -165,7 +184,7 @@ export default function ManagePdfDialog({ researchId, onClose, onUpdate }: Manag
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b">
           <div>
-            <h3 className="text-xl font-semibold text-gray-900">Manage PDF</h3>
+            <h3 className="text-xl font-semibold text-gray-900">Manage Report PDF</h3>
             <p className="text-sm text-gray-500 mt-1">{research.title}</p>
           </div>
           <button
@@ -177,15 +196,14 @@ export default function ManagePdfDialog({ researchId, onClose, onUpdate }: Manag
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-6 max-h-[calc(90vh-140px)] overflow-y-auto">
           {research.pdfFilename ? (
             <>
-              {/* PDF Info */}
               <div className="border rounded-lg p-4 bg-gray-50">
                 <div className="flex items-start gap-4">
                   <FileText className="w-12 h-12 text-red-500 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-md font-semibold text-gray-900 mb-2">PDF File</h4>
+                    <h4 className="text-md font-semibold text-gray-900 mb-2">Technical Report PDF</h4>
                     <p className="text-sm text-gray-700 break-all mb-2">{research.pdfFilename}</p>
                     
                     {/* Extraction Status */}
@@ -206,19 +224,20 @@ export default function ManagePdfDialog({ researchId, onClose, onUpdate }: Manag
               {/* Actions */}
               <div className="space-y-3">
                 <h4 className="text-md font-semibold text-gray-900">Actions</h4>
-                
+
                 {/* View PDF */}
-                <Link
-                  href={`/research/${research.slug}/pdf`}
-                  target="_blank"
-                  className="flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 transition-colors"
+                <button
+                  type="button"
+                  onClick={() => openSignedPdf(`/api/research/${research.slug}/pdf`, 'report PDF')}
+                  className="w-full flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 transition-colors text-left"
+                  disabled={!research.pdfFilename}
                 >
                   <Download className="w-5 h-5 text-blue-600" />
                   <div>
-                    <p className="text-sm font-medium text-gray-900">Download/View PDF</p>
-                    <p className="text-xs text-gray-500">Opens in new tab</p>
+                    <p className="text-sm font-medium text-gray-900">View / Download Report PDF</p>
+                    <p className="text-xs text-gray-500">Opens the signed PDF in a new tab</p>
                   </div>
-                </Link>
+                </button>
 
                 {/* Re-extract Content */}
                 <button
@@ -233,16 +252,17 @@ export default function ManagePdfDialog({ researchId, onClose, onUpdate }: Manag
                 </button>
 
                 {/* Upload New PDF */}
-                <Link
-                  href={`/admin/research/${researchId}/upload`}
-                  className="flex items-center gap-3 p-3 border rounded-lg hover:bg-purple-50 transition-colors"
+                <button
+                  type="button"
+                  onClick={() => window.location.assign(`/admin/research/${researchId}/upload`)}
+                  className="w-full flex items-center gap-3 p-3 border rounded-lg hover:bg-purple-50 transition-colors text-left"
                 >
                   <Upload className="w-5 h-5 text-purple-600" />
                   <div>
                     <p className="text-sm font-medium text-gray-900">Replace PDF</p>
                     <p className="text-xs text-gray-500">Upload a new PDF (old one will be deleted)</p>
                   </div>
-                </Link>
+                </button>
 
                 {/* Delete PDF */}
                 <button
@@ -260,24 +280,25 @@ export default function ManagePdfDialog({ researchId, onClose, onUpdate }: Manag
             </>
           ) : (
             <>
-              {/* No PDF */}
+                {/* No PDF */}
               <div className="text-center py-8">
                 <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                 <p className="text-gray-600 mb-2">No PDF file uploaded</p>
-                <p className="text-sm text-gray-500">Upload a PDF to enable watermarking and slide generation</p>
+                <p className="text-sm text-gray-500">Upload a PDF to enable watermarking and content extraction</p>
               </div>
 
               {/* Upload Action */}
-              <Link
-                href={`/admin/research/${researchId}/upload`}
-                className="flex items-center justify-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors"
+              <button
+                type="button"
+                onClick={() => window.location.assign(`/admin/research/${researchId}/upload`)}
+                className="w-full flex items-center justify-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors"
               >
                 <Upload className="w-6 h-6 text-blue-600" />
                 <div className="text-left">
                   <p className="text-sm font-medium text-gray-900">Upload PDF</p>
                   <p className="text-xs text-gray-500">Go to upload page</p>
                 </div>
-              </Link>
+              </button>
             </>
           )}
         </div>

@@ -18,7 +18,6 @@ export async function GET() {
       include: {
         _count: {
           select: {
-            Slide: true,
             AccessRequest: true,
           },
         },
@@ -34,7 +33,26 @@ export async function GET() {
       },
     })
 
-    return NextResponse.json({ research }, { status: 200 })
+    const pendingCounts = await prisma.accessRequest.groupBy({
+      by: ["researchId"],
+      where: {
+        approved: false,
+      },
+      _count: {
+        _all: true,
+      },
+    })
+
+    const pendingCountByResearchId = new Map(
+      pendingCounts.map((item) => [item.researchId, item._count._all])
+    )
+
+    const researchWithPendingCounts = research.map((item) => ({
+      ...item,
+      pendingAccessRequestCount: pendingCountByResearchId.get(item.id) || 0,
+    }))
+
+    return NextResponse.json({ research: researchWithPendingCounts }, { status: 200 })
   } catch (err) {
     console.error("List research error:", err)
     return NextResponse.json(
