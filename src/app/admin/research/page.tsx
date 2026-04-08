@@ -33,7 +33,7 @@ interface Research {
   keywords: string[]
   presentationPdfFilename: string | null
   pdfFilename: string | null
-  pendingAccessRequestCount: number
+  pendingAccessRequestCount?: number
   student: Student | null
   _count: {
     AccessRequest: number
@@ -494,8 +494,8 @@ export default function ResearchAdminPage() {
                         >
                           <Users className="w-4 h-4 text-gray-500" />
                           <span>{item._count?.AccessRequest || 0}</span>
-                          {item.pendingAccessRequestCount > 0 && (
-                            <span className="absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full bg-red-600 ring-2 ring-white" aria-label={`${item.pendingAccessRequestCount} pending access requests`} />
+                          {(item.pendingAccessRequestCount || 0) > 0 && (
+                            <span className="absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full bg-red-600 ring-2 ring-white" aria-label={`${item.pendingAccessRequestCount || 0} pending access requests`} />
                           )}
                         </Link>
                       </td>

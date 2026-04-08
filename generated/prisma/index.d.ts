@@ -5604,6 +5604,7 @@ export namespace Prisma {
   export type AvailabilityDayMinAggregateOutputType = {
     id: number | null
     date: string | null
+    program: string | null
     adminEmail: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -5613,6 +5614,7 @@ export namespace Prisma {
   export type AvailabilityDayMaxAggregateOutputType = {
     id: number | null
     date: string | null
+    program: string | null
     adminEmail: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -5623,6 +5625,7 @@ export namespace Prisma {
     id: number
     date: number
     times: number
+    program: number
     adminEmail: number
     createdAt: number
     updatedAt: number
@@ -5643,6 +5646,7 @@ export namespace Prisma {
   export type AvailabilityDayMinAggregateInputType = {
     id?: true
     date?: true
+    program?: true
     adminEmail?: true
     createdAt?: true
     updatedAt?: true
@@ -5652,6 +5656,7 @@ export namespace Prisma {
   export type AvailabilityDayMaxAggregateInputType = {
     id?: true
     date?: true
+    program?: true
     adminEmail?: true
     createdAt?: true
     updatedAt?: true
@@ -5662,6 +5667,7 @@ export namespace Prisma {
     id?: true
     date?: true
     times?: true
+    program?: true
     adminEmail?: true
     createdAt?: true
     updatedAt?: true
@@ -5760,6 +5766,7 @@ export namespace Prisma {
     id: number
     date: string
     times: JsonValue
+    program: string
     adminEmail: string
     createdAt: Date
     updatedAt: Date
@@ -5790,6 +5797,7 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     times?: boolean
+    program?: boolean
     adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -5801,6 +5809,7 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     times?: boolean
+    program?: boolean
     adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -5812,6 +5821,7 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     times?: boolean
+    program?: boolean
     adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -5823,6 +5833,7 @@ export namespace Prisma {
     id?: boolean
     date?: boolean
     times?: boolean
+    program?: boolean
     adminEmail?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -5830,7 +5841,7 @@ export namespace Prisma {
     timezone?: boolean
   }
 
-  export type AvailabilityDayOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "times" | "adminEmail" | "createdAt" | "updatedAt" | "timesUTC" | "timezone", ExtArgs["result"]["availabilityDay"]>
+  export type AvailabilityDayOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "date" | "times" | "program" | "adminEmail" | "createdAt" | "updatedAt" | "timesUTC" | "timezone", ExtArgs["result"]["availabilityDay"]>
 
   export type $AvailabilityDayPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AvailabilityDay"
@@ -5839,6 +5850,7 @@ export namespace Prisma {
       id: number
       date: string
       times: Prisma.JsonValue
+      program: string
       adminEmail: string
       createdAt: Date
       updatedAt: Date
@@ -6270,6 +6282,7 @@ export namespace Prisma {
     readonly id: FieldRef<"AvailabilityDay", 'Int'>
     readonly date: FieldRef<"AvailabilityDay", 'String'>
     readonly times: FieldRef<"AvailabilityDay", 'Json'>
+    readonly program: FieldRef<"AvailabilityDay", 'String'>
     readonly adminEmail: FieldRef<"AvailabilityDay", 'String'>
     readonly createdAt: FieldRef<"AvailabilityDay", 'DateTime'>
     readonly updatedAt: FieldRef<"AvailabilityDay", 'DateTime'>
@@ -47085,6 +47098,7 @@ export namespace Prisma {
     id: 'id',
     date: 'date',
     times: 'times',
+    program: 'program',
     adminEmail: 'adminEmail',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -47978,6 +47992,7 @@ export namespace Prisma {
     id?: IntFilter<"AvailabilityDay"> | number
     date?: StringFilter<"AvailabilityDay"> | string
     times?: JsonFilter<"AvailabilityDay">
+    program?: StringFilter<"AvailabilityDay"> | string
     adminEmail?: StringFilter<"AvailabilityDay"> | string
     createdAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
     updatedAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
@@ -47989,6 +48004,7 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     times?: SortOrder
+    program?: SortOrder
     adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -47998,23 +48014,25 @@ export namespace Prisma {
 
   export type AvailabilityDayWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    date_adminEmail?: AvailabilityDayDateAdminEmailCompoundUniqueInput
+    date_program_adminEmail?: AvailabilityDayDateProgramAdminEmailCompoundUniqueInput
     AND?: AvailabilityDayWhereInput | AvailabilityDayWhereInput[]
     OR?: AvailabilityDayWhereInput[]
     NOT?: AvailabilityDayWhereInput | AvailabilityDayWhereInput[]
     date?: StringFilter<"AvailabilityDay"> | string
     times?: JsonFilter<"AvailabilityDay">
+    program?: StringFilter<"AvailabilityDay"> | string
     adminEmail?: StringFilter<"AvailabilityDay"> | string
     createdAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
     updatedAt?: DateTimeFilter<"AvailabilityDay"> | Date | string
     timesUTC?: JsonNullableFilter<"AvailabilityDay">
     timezone?: StringNullableFilter<"AvailabilityDay"> | string | null
-  }, "id" | "date_adminEmail">
+  }, "id" | "date_program_adminEmail">
 
   export type AvailabilityDayOrderByWithAggregationInput = {
     id?: SortOrder
     date?: SortOrder
     times?: SortOrder
+    program?: SortOrder
     adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -48034,6 +48052,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"AvailabilityDay"> | number
     date?: StringWithAggregatesFilter<"AvailabilityDay"> | string
     times?: JsonWithAggregatesFilter<"AvailabilityDay">
+    program?: StringWithAggregatesFilter<"AvailabilityDay"> | string
     adminEmail?: StringWithAggregatesFilter<"AvailabilityDay"> | string
     createdAt?: DateTimeWithAggregatesFilter<"AvailabilityDay"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AvailabilityDay"> | Date | string
@@ -51565,6 +51584,7 @@ export namespace Prisma {
   export type AvailabilityDayCreateInput = {
     date: string
     times: JsonNullValueInput | InputJsonValue
+    program: string
     adminEmail?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -51576,6 +51596,7 @@ export namespace Prisma {
     id?: number
     date: string
     times: JsonNullValueInput | InputJsonValue
+    program: string
     adminEmail?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -51586,6 +51607,7 @@ export namespace Prisma {
   export type AvailabilityDayUpdateInput = {
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
+    program?: StringFieldUpdateOperationsInput | string
     adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51597,6 +51619,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
+    program?: StringFieldUpdateOperationsInput | string
     adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51608,6 +51631,7 @@ export namespace Prisma {
     id?: number
     date: string
     times: JsonNullValueInput | InputJsonValue
+    program: string
     adminEmail?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -51618,6 +51642,7 @@ export namespace Prisma {
   export type AvailabilityDayUpdateManyMutationInput = {
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
+    program?: StringFieldUpdateOperationsInput | string
     adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -51629,6 +51654,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     date?: StringFieldUpdateOperationsInput | string
     times?: JsonNullValueInput | InputJsonValue
+    program?: StringFieldUpdateOperationsInput | string
     adminEmail?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -55730,8 +55756,9 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type AvailabilityDayDateAdminEmailCompoundUniqueInput = {
+  export type AvailabilityDayDateProgramAdminEmailCompoundUniqueInput = {
     date: string
+    program: string
     adminEmail: string
   }
 
@@ -55739,6 +55766,7 @@ export namespace Prisma {
     id?: SortOrder
     date?: SortOrder
     times?: SortOrder
+    program?: SortOrder
     adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -55753,6 +55781,7 @@ export namespace Prisma {
   export type AvailabilityDayMaxOrderByAggregateInput = {
     id?: SortOrder
     date?: SortOrder
+    program?: SortOrder
     adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -55762,6 +55791,7 @@ export namespace Prisma {
   export type AvailabilityDayMinOrderByAggregateInput = {
     id?: SortOrder
     date?: SortOrder
+    program?: SortOrder
     adminEmail?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder

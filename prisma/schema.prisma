@@ -29,13 +29,14 @@ model AvailabilityDay {
   id         Int      @id @default(autoincrement())
   date       String
   times      Json
+  program    String
   adminEmail String   @default("acharya.folsom@gmail.com")
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   timesUTC   Json?
   timezone   String?
 
-  @@unique([date, adminEmail])
+  @@unique([date, program, adminEmail])
 }
 
 model Teacher {
@@ -681,29 +682,28 @@ model AccessRequest {
 }
 
 model Research {
-  id                     String          @id
-  title                  String
-  slug                   String          @unique
-  description            String?
-  createdAt              DateTime
-  author                 String?
-  published              Boolean         @default(true)
-  pdfFilename            String?
+  id                      String          @id
+  title                   String
+  slug                    String          @unique
+  description             String?
+  createdAt               DateTime
+  author                  String?
+  published               Boolean         @default(true)
+  pdfFilename             String?
   presentationPdfFilename String?
-  abstract               String?
-  extractedAt            DateTime?
-  extractedContent       Json?
-  extractionStatus       String?
-  keywords               String[]
-  category               String?
-  grade                  String?
-  school                 String?
-  studentId              Int?
-  domain                 String?
-  AccessRequest          AccessRequest[]
-  student                Student?        @relation(fields: [studentId], references: [id])
+  abstract                String?
+  extractedAt             DateTime?
+  extractedContent        Json?
+  extractionStatus        String?
+  keywords                String[]
+  category                String?
+  grade                   String?
+  school                  String?
+  studentId               Int?
+  domain                  String?
+  AccessRequest           AccessRequest[]
+  student                 Student?        @relation(fields: [studentId], references: [id])
 }
-
 
 model Blog {
   id               Int       @id @default(autoincrement())
