@@ -38,6 +38,20 @@ export default async function HomePage() {
             </div>
           </div>
 
+          {/* Primary Tabs */}
+          <div className="mb-6 border-b border-blue-100">
+            <nav className="flex items-center gap-2" aria-label="Primary">
+              <Link
+                href="/"
+                prefetch={false}
+                className="inline-flex items-center rounded-t-lg border border-blue-200 border-b-white bg-white px-4 py-2 text-sm font-semibold text-blue-700"
+                aria-current="page"
+              >
+                Admin
+              </Link>
+            </nav>
+          </div>
+
           {/* Admin Actions */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Link
@@ -54,6 +68,28 @@ export default async function HomePage() {
                   <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
                     <span className="h-1.5 w-1.5 rounded-full bg-blue-600 mr-1.5" />
                     Scheduling
+                  </span>
+                </div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-inner group-hover:bg-blue-700 transition-colors">
+                  <Calendar className="w-6 h-6" />
+                </div>
+              </div>
+            </Link>
+
+            <Link
+              href="/admin/events"
+              prefetch={false}
+              className="group block rounded-xl p-6 bg-white border border-blue-100 shadow-sm motion-safe:hover:-translate-y-0.5 motion-safe:transition-transform motion-safe:duration-150"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Events</h3>
+                  <p className="text-sm text-gray-600">
+                    Manage and publish upcoming events
+                  </p>
+                  <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600 mr-1.5" />
+                    Event Hub
                   </span>
                 </div>
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-inner group-hover:bg-blue-700 transition-colors">
