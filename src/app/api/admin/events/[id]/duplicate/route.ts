@@ -1,6 +1,7 @@
 // src/app/api/admin/events/[id]/duplicate/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { auth } from "@/auth"
+import { auth } from '@/auth'
+import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // POST /api/admin/events/:id/duplicate - Duplicate an event
@@ -10,12 +11,11 @@ export async function POST(
 ) {
   try {
     const session = await auth()
-    if (!session?.user?.email) {
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     const { id } = await params
-
     const originalEvent = await prisma.generalEvent.findUnique({
       where: { id: parseInt(id) },
     })

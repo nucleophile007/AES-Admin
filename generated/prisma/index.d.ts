@@ -188,6 +188,16 @@ export type Research = $Result.DefaultSelection<Prisma.$ResearchPayload>
  * 
  */
 export type Blog = $Result.DefaultSelection<Prisma.$BlogPayload>
+/**
+ * Model AssignmentTarget
+ * 
+ */
+export type AssignmentTarget = $Result.DefaultSelection<Prisma.$AssignmentTargetPayload>
+/**
+ * Model RefreshToken
+ * 
+ */
+export type RefreshToken = $Result.DefaultSelection<Prisma.$RefreshTokenPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -656,6 +666,26 @@ export class PrismaClient<
     * ```
     */
   get blog(): Prisma.BlogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.assignmentTarget`: Exposes CRUD operations for the **AssignmentTarget** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AssignmentTargets
+    * const assignmentTargets = await prisma.assignmentTarget.findMany()
+    * ```
+    */
+  get assignmentTarget(): Prisma.AssignmentTargetDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.refreshToken`: Exposes CRUD operations for the **RefreshToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RefreshTokens
+    * const refreshTokens = await prisma.refreshToken.findMany()
+    * ```
+    */
+  get refreshToken(): Prisma.RefreshTokenDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1130,7 +1160,9 @@ export namespace Prisma {
     EventRegistration: 'EventRegistration',
     AccessRequest: 'AccessRequest',
     Research: 'Research',
-    Blog: 'Blog'
+    Blog: 'Blog',
+    AssignmentTarget: 'AssignmentTarget',
+    RefreshToken: 'RefreshToken'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1149,7 +1181,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog" | "assignmentTarget" | "refreshToken"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3743,6 +3775,154 @@ export namespace Prisma {
           }
         }
       }
+      AssignmentTarget: {
+        payload: Prisma.$AssignmentTargetPayload<ExtArgs>
+        fields: Prisma.AssignmentTargetFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AssignmentTargetFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AssignmentTargetFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload>
+          }
+          findFirst: {
+            args: Prisma.AssignmentTargetFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AssignmentTargetFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload>
+          }
+          findMany: {
+            args: Prisma.AssignmentTargetFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload>[]
+          }
+          create: {
+            args: Prisma.AssignmentTargetCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload>
+          }
+          createMany: {
+            args: Prisma.AssignmentTargetCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AssignmentTargetCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload>[]
+          }
+          delete: {
+            args: Prisma.AssignmentTargetDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload>
+          }
+          update: {
+            args: Prisma.AssignmentTargetUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload>
+          }
+          deleteMany: {
+            args: Prisma.AssignmentTargetDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AssignmentTargetUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AssignmentTargetUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload>[]
+          }
+          upsert: {
+            args: Prisma.AssignmentTargetUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AssignmentTargetPayload>
+          }
+          aggregate: {
+            args: Prisma.AssignmentTargetAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAssignmentTarget>
+          }
+          groupBy: {
+            args: Prisma.AssignmentTargetGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AssignmentTargetGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AssignmentTargetCountArgs<ExtArgs>
+            result: $Utils.Optional<AssignmentTargetCountAggregateOutputType> | number
+          }
+        }
+      }
+      RefreshToken: {
+        payload: Prisma.$RefreshTokenPayload<ExtArgs>
+        fields: Prisma.RefreshTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RefreshTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RefreshTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.RefreshTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RefreshTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          findMany: {
+            args: Prisma.RefreshTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[]
+          }
+          create: {
+            args: Prisma.RefreshTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          createMany: {
+            args: Prisma.RefreshTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RefreshTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.RefreshTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          update: {
+            args: Prisma.RefreshTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.RefreshTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RefreshTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RefreshTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.RefreshTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefreshTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.RefreshTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRefreshToken>
+          }
+          groupBy: {
+            args: Prisma.RefreshTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RefreshTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RefreshTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<RefreshTokenCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3870,6 +4050,8 @@ export namespace Prisma {
     accessRequest?: AccessRequestOmit
     research?: ResearchOmit
     blog?: BlogOmit
+    assignmentTarget?: AssignmentTargetOmit
+    refreshToken?: RefreshTokenOmit
   }
 
   /* Types for Logging */
@@ -4036,6 +4218,7 @@ export namespace Prisma {
 
   export type StudentCountOutputType = {
     assignedAssignments: number
+    AssignmentTarget: number
     Blog: number
     classSchedules: number
     enrollments: number
@@ -4052,6 +4235,7 @@ export namespace Prisma {
 
   export type StudentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignedAssignments?: boolean | StudentCountOutputTypeCountAssignedAssignmentsArgs
+    AssignmentTarget?: boolean | StudentCountOutputTypeCountAssignmentTargetArgs
     Blog?: boolean | StudentCountOutputTypeCountBlogArgs
     classSchedules?: boolean | StudentCountOutputTypeCountClassSchedulesArgs
     enrollments?: boolean | StudentCountOutputTypeCountEnrollmentsArgs
@@ -4082,6 +4266,13 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountAssignedAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AssignmentWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountAssignmentTargetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssignmentTargetWhereInput
   }
 
   /**
@@ -4215,11 +4406,13 @@ export namespace Prisma {
 
   export type AssignmentCountOutputType = {
     resources: number
+    AssignmentTarget: number
     submissions: number
   }
 
   export type AssignmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     resources?: boolean | AssignmentCountOutputTypeCountResourcesArgs
+    AssignmentTarget?: boolean | AssignmentCountOutputTypeCountAssignmentTargetArgs
     submissions?: boolean | AssignmentCountOutputTypeCountSubmissionsArgs
   }
 
@@ -4239,6 +4432,13 @@ export namespace Prisma {
    */
   export type AssignmentCountOutputTypeCountResourcesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AssignmentResourceWhereInput
+  }
+
+  /**
+   * AssignmentCountOutputType without action
+   */
+  export type AssignmentCountOutputTypeCountAssignmentTargetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssignmentTargetWhereInput
   }
 
   /**
@@ -4418,11 +4618,11 @@ export namespace Prisma {
    */
 
   export type ResearchCountOutputType = {
-    accessRequests: number
+    AccessRequest: number
   }
 
   export type ResearchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    accessRequests?: boolean | ResearchCountOutputTypeCountAccessRequestsArgs
+    AccessRequest?: boolean | ResearchCountOutputTypeCountAccessRequestArgs
   }
 
   // Custom InputTypes
@@ -4439,7 +4639,7 @@ export namespace Prisma {
   /**
    * ResearchCountOutputType without action
    */
-  export type ResearchCountOutputTypeCountAccessRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ResearchCountOutputTypeCountAccessRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AccessRequestWhereInput
   }
 
@@ -8310,6 +8510,7 @@ export namespace Prisma {
     parentAccountId?: boolean
     graduationYear?: boolean
     assignedAssignments?: boolean | Student$assignedAssignmentsArgs<ExtArgs>
+    AssignmentTarget?: boolean | Student$AssignmentTargetArgs<ExtArgs>
     Blog?: boolean | Student$BlogArgs<ExtArgs>
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
@@ -8385,6 +8586,7 @@ export namespace Prisma {
   export type StudentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "grade" | "schoolName" | "parentName" | "parentEmail" | "parentPhone" | "program" | "createdAt" | "updatedAt" | "isActivated" | "parentAccountId" | "graduationYear", ExtArgs["result"]["student"]>
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignedAssignments?: boolean | Student$assignedAssignmentsArgs<ExtArgs>
+    AssignmentTarget?: boolean | Student$AssignmentTargetArgs<ExtArgs>
     Blog?: boolean | Student$BlogArgs<ExtArgs>
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
@@ -8411,6 +8613,7 @@ export namespace Prisma {
     name: "Student"
     objects: {
       assignedAssignments: Prisma.$AssignmentPayload<ExtArgs>[]
+      AssignmentTarget: Prisma.$AssignmentTargetPayload<ExtArgs>[]
       Blog: Prisma.$BlogPayload<ExtArgs>[]
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
@@ -8836,6 +9039,7 @@ export namespace Prisma {
   export interface Prisma__StudentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     assignedAssignments<T extends Student$assignedAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Student$assignedAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    AssignmentTarget<T extends Student$AssignmentTargetArgs<ExtArgs> = {}>(args?: Subset<T, Student$AssignmentTargetArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Blog<T extends Student$BlogArgs<ExtArgs> = {}>(args?: Subset<T, Student$BlogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     classSchedules<T extends Student$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Student$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     enrollments<T extends Student$enrollmentsArgs<ExtArgs> = {}>(args?: Subset<T, Student$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -9310,6 +9514,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AssignmentScalarFieldEnum | AssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * Student.AssignmentTarget
+   */
+  export type Student$AssignmentTargetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    where?: AssignmentTargetWhereInput
+    orderBy?: AssignmentTargetOrderByWithRelationInput | AssignmentTargetOrderByWithRelationInput[]
+    cursor?: AssignmentTargetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AssignmentTargetScalarFieldEnum | AssignmentTargetScalarFieldEnum[]
   }
 
   /**
@@ -13288,6 +13516,7 @@ export namespace Prisma {
     targetStudent?: boolean | Assignment$targetStudentArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     resources?: boolean | Assignment$resourcesArgs<ExtArgs>
+    AssignmentTarget?: boolean | Assignment$AssignmentTargetArgs<ExtArgs>
     submissions?: boolean | Assignment$submissionsArgs<ExtArgs>
     _count?: boolean | AssignmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignment"]>
@@ -13355,6 +13584,7 @@ export namespace Prisma {
     targetStudent?: boolean | Assignment$targetStudentArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     resources?: boolean | Assignment$resourcesArgs<ExtArgs>
+    AssignmentTarget?: boolean | Assignment$AssignmentTargetArgs<ExtArgs>
     submissions?: boolean | Assignment$submissionsArgs<ExtArgs>
     _count?: boolean | AssignmentCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -13373,6 +13603,7 @@ export namespace Prisma {
       targetStudent: Prisma.$StudentPayload<ExtArgs> | null
       teacher: Prisma.$TeacherPayload<ExtArgs>
       resources: Prisma.$AssignmentResourcePayload<ExtArgs>[]
+      AssignmentTarget: Prisma.$AssignmentTargetPayload<ExtArgs>[]
       submissions: Prisma.$SubmissionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -13788,6 +14019,7 @@ export namespace Prisma {
     targetStudent<T extends Assignment$targetStudentArgs<ExtArgs> = {}>(args?: Subset<T, Assignment$targetStudentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     resources<T extends Assignment$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Assignment$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    AssignmentTarget<T extends Assignment$AssignmentTargetArgs<ExtArgs> = {}>(args?: Subset<T, Assignment$AssignmentTargetArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissions<T extends Assignment$submissionsArgs<ExtArgs> = {}>(args?: Subset<T, Assignment$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -14269,6 +14501,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AssignmentResourceScalarFieldEnum | AssignmentResourceScalarFieldEnum[]
+  }
+
+  /**
+   * Assignment.AssignmentTarget
+   */
+  export type Assignment$AssignmentTargetArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    where?: AssignmentTargetWhereInput
+    orderBy?: AssignmentTargetOrderByWithRelationInput | AssignmentTargetOrderByWithRelationInput[]
+    cursor?: AssignmentTargetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AssignmentTargetScalarFieldEnum | AssignmentTargetScalarFieldEnum[]
   }
 
   /**
@@ -43597,7 +43853,7 @@ export namespace Prisma {
     phone?: boolean
     reason?: boolean
     researchId?: boolean
-    research?: boolean | ResearchDefaultArgs<ExtArgs>
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["accessRequest"]>
 
   export type AccessRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -43609,7 +43865,7 @@ export namespace Prisma {
     phone?: boolean
     reason?: boolean
     researchId?: boolean
-    research?: boolean | ResearchDefaultArgs<ExtArgs>
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["accessRequest"]>
 
   export type AccessRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -43621,7 +43877,7 @@ export namespace Prisma {
     phone?: boolean
     reason?: boolean
     researchId?: boolean
-    research?: boolean | ResearchDefaultArgs<ExtArgs>
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["accessRequest"]>
 
   export type AccessRequestSelectScalar = {
@@ -43637,19 +43893,19 @@ export namespace Prisma {
 
   export type AccessRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "createdAt" | "approved" | "phone" | "reason" | "researchId", ExtArgs["result"]["accessRequest"]>
   export type AccessRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    research?: boolean | ResearchDefaultArgs<ExtArgs>
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }
   export type AccessRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    research?: boolean | ResearchDefaultArgs<ExtArgs>
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }
   export type AccessRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    research?: boolean | ResearchDefaultArgs<ExtArgs>
+    Research?: boolean | ResearchDefaultArgs<ExtArgs>
   }
 
   export type $AccessRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AccessRequest"
     objects: {
-      research: Prisma.$ResearchPayload<ExtArgs>
+      Research: Prisma.$ResearchPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -44054,7 +44310,7 @@ export namespace Prisma {
    */
   export interface Prisma__AccessRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    research<T extends ResearchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResearchDefaultArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Research<T extends ResearchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResearchDefaultArgs<ExtArgs>>): Prisma__ResearchClient<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -44808,8 +45064,8 @@ export namespace Prisma {
     studentId?: boolean
     domain?: boolean
     presentationPdfFilename?: boolean
-    accessRequests?: boolean | Research$accessRequestsArgs<ExtArgs>
-    Student?: boolean | Research$StudentArgs<ExtArgs>
+    AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
+    student?: boolean | Research$studentArgs<ExtArgs>
     _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["research"]>
 
@@ -44833,7 +45089,7 @@ export namespace Prisma {
     studentId?: boolean
     domain?: boolean
     presentationPdfFilename?: boolean
-    Student?: boolean | Research$StudentArgs<ExtArgs>
+    student?: boolean | Research$studentArgs<ExtArgs>
   }, ExtArgs["result"]["research"]>
 
   export type ResearchSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -44856,7 +45112,7 @@ export namespace Prisma {
     studentId?: boolean
     domain?: boolean
     presentationPdfFilename?: boolean
-    Student?: boolean | Research$StudentArgs<ExtArgs>
+    student?: boolean | Research$studentArgs<ExtArgs>
   }, ExtArgs["result"]["research"]>
 
   export type ResearchSelectScalar = {
@@ -44883,22 +45139,22 @@ export namespace Prisma {
 
   export type ResearchOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "published" | "author" | "createdAt" | "pdfFilename" | "abstract" | "category" | "extractedAt" | "extractedContent" | "extractionStatus" | "grade" | "keywords" | "school" | "studentId" | "domain" | "presentationPdfFilename", ExtArgs["result"]["research"]>
   export type ResearchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    accessRequests?: boolean | Research$accessRequestsArgs<ExtArgs>
-    Student?: boolean | Research$StudentArgs<ExtArgs>
+    AccessRequest?: boolean | Research$AccessRequestArgs<ExtArgs>
+    student?: boolean | Research$studentArgs<ExtArgs>
     _count?: boolean | ResearchCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ResearchIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Student?: boolean | Research$StudentArgs<ExtArgs>
+    student?: boolean | Research$studentArgs<ExtArgs>
   }
   export type ResearchIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Student?: boolean | Research$StudentArgs<ExtArgs>
+    student?: boolean | Research$studentArgs<ExtArgs>
   }
 
   export type $ResearchPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Research"
     objects: {
-      accessRequests: Prisma.$AccessRequestPayload<ExtArgs>[]
-      Student: Prisma.$StudentPayload<ExtArgs> | null
+      AccessRequest: Prisma.$AccessRequestPayload<ExtArgs>[]
+      student: Prisma.$StudentPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -45314,8 +45570,8 @@ export namespace Prisma {
    */
   export interface Prisma__ResearchClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    accessRequests<T extends Research$accessRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Research$accessRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Student<T extends Research$StudentArgs<ExtArgs> = {}>(args?: Subset<T, Research$StudentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    AccessRequest<T extends Research$AccessRequestArgs<ExtArgs> = {}>(args?: Subset<T, Research$AccessRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccessRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    student<T extends Research$studentArgs<ExtArgs> = {}>(args?: Subset<T, Research$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -45760,9 +46016,9 @@ export namespace Prisma {
   }
 
   /**
-   * Research.accessRequests
+   * Research.AccessRequest
    */
-  export type Research$accessRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Research$AccessRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the AccessRequest
      */
@@ -45784,9 +46040,9 @@ export namespace Prisma {
   }
 
   /**
-   * Research.Student
+   * Research.student
    */
-  export type Research$StudentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Research$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Student
      */
@@ -46095,7 +46351,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     approvedAt?: boolean
-    Student?: boolean | Blog$StudentArgs<ExtArgs>
+    student?: boolean | Blog$studentArgs<ExtArgs>
   }, ExtArgs["result"]["blog"]>
 
   export type BlogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -46112,7 +46368,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     approvedAt?: boolean
-    Student?: boolean | Blog$StudentArgs<ExtArgs>
+    student?: boolean | Blog$studentArgs<ExtArgs>
   }, ExtArgs["result"]["blog"]>
 
   export type BlogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -46129,7 +46385,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     approvedAt?: boolean
-    Student?: boolean | Blog$StudentArgs<ExtArgs>
+    student?: boolean | Blog$studentArgs<ExtArgs>
   }, ExtArgs["result"]["blog"]>
 
   export type BlogSelectScalar = {
@@ -46150,19 +46406,19 @@ export namespace Prisma {
 
   export type BlogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "abstract" | "externalUrl" | "studentId" | "studentPhoto" | "publicationYear" | "publicationMonth" | "isApproved" | "published" | "createdAt" | "updatedAt" | "approvedAt", ExtArgs["result"]["blog"]>
   export type BlogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Student?: boolean | Blog$StudentArgs<ExtArgs>
+    student?: boolean | Blog$studentArgs<ExtArgs>
   }
   export type BlogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Student?: boolean | Blog$StudentArgs<ExtArgs>
+    student?: boolean | Blog$studentArgs<ExtArgs>
   }
   export type BlogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Student?: boolean | Blog$StudentArgs<ExtArgs>
+    student?: boolean | Blog$studentArgs<ExtArgs>
   }
 
   export type $BlogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Blog"
     objects: {
-      Student: Prisma.$StudentPayload<ExtArgs> | null
+      student: Prisma.$StudentPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -46572,7 +46828,7 @@ export namespace Prisma {
    */
   export interface Prisma__BlogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Student<T extends Blog$StudentArgs<ExtArgs> = {}>(args?: Subset<T, Blog$StudentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    student<T extends Blog$studentArgs<ExtArgs> = {}>(args?: Subset<T, Blog$studentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -47011,9 +47267,9 @@ export namespace Prisma {
   }
 
   /**
-   * Blog.Student
+   * Blog.student
    */
-  export type Blog$StudentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Blog$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Student
      */
@@ -47045,6 +47301,2173 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: BlogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AssignmentTarget
+   */
+
+  export type AggregateAssignmentTarget = {
+    _count: AssignmentTargetCountAggregateOutputType | null
+    _avg: AssignmentTargetAvgAggregateOutputType | null
+    _sum: AssignmentTargetSumAggregateOutputType | null
+    _min: AssignmentTargetMinAggregateOutputType | null
+    _max: AssignmentTargetMaxAggregateOutputType | null
+  }
+
+  export type AssignmentTargetAvgAggregateOutputType = {
+    id: number | null
+    assignmentId: number | null
+    studentId: number | null
+  }
+
+  export type AssignmentTargetSumAggregateOutputType = {
+    id: number | null
+    assignmentId: number | null
+    studentId: number | null
+  }
+
+  export type AssignmentTargetMinAggregateOutputType = {
+    id: number | null
+    assignmentId: number | null
+    studentId: number | null
+    createdAt: Date | null
+  }
+
+  export type AssignmentTargetMaxAggregateOutputType = {
+    id: number | null
+    assignmentId: number | null
+    studentId: number | null
+    createdAt: Date | null
+  }
+
+  export type AssignmentTargetCountAggregateOutputType = {
+    id: number
+    assignmentId: number
+    studentId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AssignmentTargetAvgAggregateInputType = {
+    id?: true
+    assignmentId?: true
+    studentId?: true
+  }
+
+  export type AssignmentTargetSumAggregateInputType = {
+    id?: true
+    assignmentId?: true
+    studentId?: true
+  }
+
+  export type AssignmentTargetMinAggregateInputType = {
+    id?: true
+    assignmentId?: true
+    studentId?: true
+    createdAt?: true
+  }
+
+  export type AssignmentTargetMaxAggregateInputType = {
+    id?: true
+    assignmentId?: true
+    studentId?: true
+    createdAt?: true
+  }
+
+  export type AssignmentTargetCountAggregateInputType = {
+    id?: true
+    assignmentId?: true
+    studentId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AssignmentTargetAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AssignmentTarget to aggregate.
+     */
+    where?: AssignmentTargetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AssignmentTargets to fetch.
+     */
+    orderBy?: AssignmentTargetOrderByWithRelationInput | AssignmentTargetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AssignmentTargetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AssignmentTargets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AssignmentTargets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AssignmentTargets
+    **/
+    _count?: true | AssignmentTargetCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AssignmentTargetAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AssignmentTargetSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AssignmentTargetMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AssignmentTargetMaxAggregateInputType
+  }
+
+  export type GetAssignmentTargetAggregateType<T extends AssignmentTargetAggregateArgs> = {
+        [P in keyof T & keyof AggregateAssignmentTarget]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAssignmentTarget[P]>
+      : GetScalarType<T[P], AggregateAssignmentTarget[P]>
+  }
+
+
+
+
+  export type AssignmentTargetGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssignmentTargetWhereInput
+    orderBy?: AssignmentTargetOrderByWithAggregationInput | AssignmentTargetOrderByWithAggregationInput[]
+    by: AssignmentTargetScalarFieldEnum[] | AssignmentTargetScalarFieldEnum
+    having?: AssignmentTargetScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AssignmentTargetCountAggregateInputType | true
+    _avg?: AssignmentTargetAvgAggregateInputType
+    _sum?: AssignmentTargetSumAggregateInputType
+    _min?: AssignmentTargetMinAggregateInputType
+    _max?: AssignmentTargetMaxAggregateInputType
+  }
+
+  export type AssignmentTargetGroupByOutputType = {
+    id: number
+    assignmentId: number
+    studentId: number
+    createdAt: Date
+    _count: AssignmentTargetCountAggregateOutputType | null
+    _avg: AssignmentTargetAvgAggregateOutputType | null
+    _sum: AssignmentTargetSumAggregateOutputType | null
+    _min: AssignmentTargetMinAggregateOutputType | null
+    _max: AssignmentTargetMaxAggregateOutputType | null
+  }
+
+  type GetAssignmentTargetGroupByPayload<T extends AssignmentTargetGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AssignmentTargetGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AssignmentTargetGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AssignmentTargetGroupByOutputType[P]>
+            : GetScalarType<T[P], AssignmentTargetGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AssignmentTargetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    assignmentId?: boolean
+    studentId?: boolean
+    createdAt?: boolean
+    Assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["assignmentTarget"]>
+
+  export type AssignmentTargetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    assignmentId?: boolean
+    studentId?: boolean
+    createdAt?: boolean
+    Assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["assignmentTarget"]>
+
+  export type AssignmentTargetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    assignmentId?: boolean
+    studentId?: boolean
+    createdAt?: boolean
+    Assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["assignmentTarget"]>
+
+  export type AssignmentTargetSelectScalar = {
+    id?: boolean
+    assignmentId?: boolean
+    studentId?: boolean
+    createdAt?: boolean
+  }
+
+  export type AssignmentTargetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "assignmentId" | "studentId" | "createdAt", ExtArgs["result"]["assignmentTarget"]>
+  export type AssignmentTargetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+  export type AssignmentTargetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+  export type AssignmentTargetIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Assignment?: boolean | AssignmentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+
+  export type $AssignmentTargetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AssignmentTarget"
+    objects: {
+      Assignment: Prisma.$AssignmentPayload<ExtArgs>
+      Student: Prisma.$StudentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      assignmentId: number
+      studentId: number
+      createdAt: Date
+    }, ExtArgs["result"]["assignmentTarget"]>
+    composites: {}
+  }
+
+  type AssignmentTargetGetPayload<S extends boolean | null | undefined | AssignmentTargetDefaultArgs> = $Result.GetResult<Prisma.$AssignmentTargetPayload, S>
+
+  type AssignmentTargetCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AssignmentTargetFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AssignmentTargetCountAggregateInputType | true
+    }
+
+  export interface AssignmentTargetDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AssignmentTarget'], meta: { name: 'AssignmentTarget' } }
+    /**
+     * Find zero or one AssignmentTarget that matches the filter.
+     * @param {AssignmentTargetFindUniqueArgs} args - Arguments to find a AssignmentTarget
+     * @example
+     * // Get one AssignmentTarget
+     * const assignmentTarget = await prisma.assignmentTarget.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AssignmentTargetFindUniqueArgs>(args: SelectSubset<T, AssignmentTargetFindUniqueArgs<ExtArgs>>): Prisma__AssignmentTargetClient<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AssignmentTarget that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AssignmentTargetFindUniqueOrThrowArgs} args - Arguments to find a AssignmentTarget
+     * @example
+     * // Get one AssignmentTarget
+     * const assignmentTarget = await prisma.assignmentTarget.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AssignmentTargetFindUniqueOrThrowArgs>(args: SelectSubset<T, AssignmentTargetFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AssignmentTargetClient<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AssignmentTarget that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentTargetFindFirstArgs} args - Arguments to find a AssignmentTarget
+     * @example
+     * // Get one AssignmentTarget
+     * const assignmentTarget = await prisma.assignmentTarget.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AssignmentTargetFindFirstArgs>(args?: SelectSubset<T, AssignmentTargetFindFirstArgs<ExtArgs>>): Prisma__AssignmentTargetClient<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AssignmentTarget that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentTargetFindFirstOrThrowArgs} args - Arguments to find a AssignmentTarget
+     * @example
+     * // Get one AssignmentTarget
+     * const assignmentTarget = await prisma.assignmentTarget.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AssignmentTargetFindFirstOrThrowArgs>(args?: SelectSubset<T, AssignmentTargetFindFirstOrThrowArgs<ExtArgs>>): Prisma__AssignmentTargetClient<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AssignmentTargets that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentTargetFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AssignmentTargets
+     * const assignmentTargets = await prisma.assignmentTarget.findMany()
+     * 
+     * // Get first 10 AssignmentTargets
+     * const assignmentTargets = await prisma.assignmentTarget.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const assignmentTargetWithIdOnly = await prisma.assignmentTarget.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AssignmentTargetFindManyArgs>(args?: SelectSubset<T, AssignmentTargetFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AssignmentTarget.
+     * @param {AssignmentTargetCreateArgs} args - Arguments to create a AssignmentTarget.
+     * @example
+     * // Create one AssignmentTarget
+     * const AssignmentTarget = await prisma.assignmentTarget.create({
+     *   data: {
+     *     // ... data to create a AssignmentTarget
+     *   }
+     * })
+     * 
+     */
+    create<T extends AssignmentTargetCreateArgs>(args: SelectSubset<T, AssignmentTargetCreateArgs<ExtArgs>>): Prisma__AssignmentTargetClient<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AssignmentTargets.
+     * @param {AssignmentTargetCreateManyArgs} args - Arguments to create many AssignmentTargets.
+     * @example
+     * // Create many AssignmentTargets
+     * const assignmentTarget = await prisma.assignmentTarget.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AssignmentTargetCreateManyArgs>(args?: SelectSubset<T, AssignmentTargetCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AssignmentTargets and returns the data saved in the database.
+     * @param {AssignmentTargetCreateManyAndReturnArgs} args - Arguments to create many AssignmentTargets.
+     * @example
+     * // Create many AssignmentTargets
+     * const assignmentTarget = await prisma.assignmentTarget.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AssignmentTargets and only return the `id`
+     * const assignmentTargetWithIdOnly = await prisma.assignmentTarget.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AssignmentTargetCreateManyAndReturnArgs>(args?: SelectSubset<T, AssignmentTargetCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AssignmentTarget.
+     * @param {AssignmentTargetDeleteArgs} args - Arguments to delete one AssignmentTarget.
+     * @example
+     * // Delete one AssignmentTarget
+     * const AssignmentTarget = await prisma.assignmentTarget.delete({
+     *   where: {
+     *     // ... filter to delete one AssignmentTarget
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AssignmentTargetDeleteArgs>(args: SelectSubset<T, AssignmentTargetDeleteArgs<ExtArgs>>): Prisma__AssignmentTargetClient<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AssignmentTarget.
+     * @param {AssignmentTargetUpdateArgs} args - Arguments to update one AssignmentTarget.
+     * @example
+     * // Update one AssignmentTarget
+     * const assignmentTarget = await prisma.assignmentTarget.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AssignmentTargetUpdateArgs>(args: SelectSubset<T, AssignmentTargetUpdateArgs<ExtArgs>>): Prisma__AssignmentTargetClient<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AssignmentTargets.
+     * @param {AssignmentTargetDeleteManyArgs} args - Arguments to filter AssignmentTargets to delete.
+     * @example
+     * // Delete a few AssignmentTargets
+     * const { count } = await prisma.assignmentTarget.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AssignmentTargetDeleteManyArgs>(args?: SelectSubset<T, AssignmentTargetDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AssignmentTargets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentTargetUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AssignmentTargets
+     * const assignmentTarget = await prisma.assignmentTarget.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AssignmentTargetUpdateManyArgs>(args: SelectSubset<T, AssignmentTargetUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AssignmentTargets and returns the data updated in the database.
+     * @param {AssignmentTargetUpdateManyAndReturnArgs} args - Arguments to update many AssignmentTargets.
+     * @example
+     * // Update many AssignmentTargets
+     * const assignmentTarget = await prisma.assignmentTarget.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AssignmentTargets and only return the `id`
+     * const assignmentTargetWithIdOnly = await prisma.assignmentTarget.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AssignmentTargetUpdateManyAndReturnArgs>(args: SelectSubset<T, AssignmentTargetUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AssignmentTarget.
+     * @param {AssignmentTargetUpsertArgs} args - Arguments to update or create a AssignmentTarget.
+     * @example
+     * // Update or create a AssignmentTarget
+     * const assignmentTarget = await prisma.assignmentTarget.upsert({
+     *   create: {
+     *     // ... data to create a AssignmentTarget
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AssignmentTarget we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AssignmentTargetUpsertArgs>(args: SelectSubset<T, AssignmentTargetUpsertArgs<ExtArgs>>): Prisma__AssignmentTargetClient<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AssignmentTargets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentTargetCountArgs} args - Arguments to filter AssignmentTargets to count.
+     * @example
+     * // Count the number of AssignmentTargets
+     * const count = await prisma.assignmentTarget.count({
+     *   where: {
+     *     // ... the filter for the AssignmentTargets we want to count
+     *   }
+     * })
+    **/
+    count<T extends AssignmentTargetCountArgs>(
+      args?: Subset<T, AssignmentTargetCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AssignmentTargetCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AssignmentTarget.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentTargetAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AssignmentTargetAggregateArgs>(args: Subset<T, AssignmentTargetAggregateArgs>): Prisma.PrismaPromise<GetAssignmentTargetAggregateType<T>>
+
+    /**
+     * Group by AssignmentTarget.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AssignmentTargetGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AssignmentTargetGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AssignmentTargetGroupByArgs['orderBy'] }
+        : { orderBy?: AssignmentTargetGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AssignmentTargetGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAssignmentTargetGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AssignmentTarget model
+   */
+  readonly fields: AssignmentTargetFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AssignmentTarget.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AssignmentTargetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Assignment<T extends AssignmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AssignmentDefaultArgs<ExtArgs>>): Prisma__AssignmentClient<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AssignmentTarget model
+   */
+  interface AssignmentTargetFieldRefs {
+    readonly id: FieldRef<"AssignmentTarget", 'Int'>
+    readonly assignmentId: FieldRef<"AssignmentTarget", 'Int'>
+    readonly studentId: FieldRef<"AssignmentTarget", 'Int'>
+    readonly createdAt: FieldRef<"AssignmentTarget", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AssignmentTarget findUnique
+   */
+  export type AssignmentTargetFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    /**
+     * Filter, which AssignmentTarget to fetch.
+     */
+    where: AssignmentTargetWhereUniqueInput
+  }
+
+  /**
+   * AssignmentTarget findUniqueOrThrow
+   */
+  export type AssignmentTargetFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    /**
+     * Filter, which AssignmentTarget to fetch.
+     */
+    where: AssignmentTargetWhereUniqueInput
+  }
+
+  /**
+   * AssignmentTarget findFirst
+   */
+  export type AssignmentTargetFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    /**
+     * Filter, which AssignmentTarget to fetch.
+     */
+    where?: AssignmentTargetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AssignmentTargets to fetch.
+     */
+    orderBy?: AssignmentTargetOrderByWithRelationInput | AssignmentTargetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AssignmentTargets.
+     */
+    cursor?: AssignmentTargetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AssignmentTargets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AssignmentTargets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AssignmentTargets.
+     */
+    distinct?: AssignmentTargetScalarFieldEnum | AssignmentTargetScalarFieldEnum[]
+  }
+
+  /**
+   * AssignmentTarget findFirstOrThrow
+   */
+  export type AssignmentTargetFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    /**
+     * Filter, which AssignmentTarget to fetch.
+     */
+    where?: AssignmentTargetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AssignmentTargets to fetch.
+     */
+    orderBy?: AssignmentTargetOrderByWithRelationInput | AssignmentTargetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AssignmentTargets.
+     */
+    cursor?: AssignmentTargetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AssignmentTargets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AssignmentTargets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AssignmentTargets.
+     */
+    distinct?: AssignmentTargetScalarFieldEnum | AssignmentTargetScalarFieldEnum[]
+  }
+
+  /**
+   * AssignmentTarget findMany
+   */
+  export type AssignmentTargetFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    /**
+     * Filter, which AssignmentTargets to fetch.
+     */
+    where?: AssignmentTargetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AssignmentTargets to fetch.
+     */
+    orderBy?: AssignmentTargetOrderByWithRelationInput | AssignmentTargetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AssignmentTargets.
+     */
+    cursor?: AssignmentTargetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AssignmentTargets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AssignmentTargets.
+     */
+    skip?: number
+    distinct?: AssignmentTargetScalarFieldEnum | AssignmentTargetScalarFieldEnum[]
+  }
+
+  /**
+   * AssignmentTarget create
+   */
+  export type AssignmentTargetCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AssignmentTarget.
+     */
+    data: XOR<AssignmentTargetCreateInput, AssignmentTargetUncheckedCreateInput>
+  }
+
+  /**
+   * AssignmentTarget createMany
+   */
+  export type AssignmentTargetCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AssignmentTargets.
+     */
+    data: AssignmentTargetCreateManyInput | AssignmentTargetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AssignmentTarget createManyAndReturn
+   */
+  export type AssignmentTargetCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * The data used to create many AssignmentTargets.
+     */
+    data: AssignmentTargetCreateManyInput | AssignmentTargetCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AssignmentTarget update
+   */
+  export type AssignmentTargetUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AssignmentTarget.
+     */
+    data: XOR<AssignmentTargetUpdateInput, AssignmentTargetUncheckedUpdateInput>
+    /**
+     * Choose, which AssignmentTarget to update.
+     */
+    where: AssignmentTargetWhereUniqueInput
+  }
+
+  /**
+   * AssignmentTarget updateMany
+   */
+  export type AssignmentTargetUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AssignmentTargets.
+     */
+    data: XOR<AssignmentTargetUpdateManyMutationInput, AssignmentTargetUncheckedUpdateManyInput>
+    /**
+     * Filter which AssignmentTargets to update
+     */
+    where?: AssignmentTargetWhereInput
+    /**
+     * Limit how many AssignmentTargets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AssignmentTarget updateManyAndReturn
+   */
+  export type AssignmentTargetUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * The data used to update AssignmentTargets.
+     */
+    data: XOR<AssignmentTargetUpdateManyMutationInput, AssignmentTargetUncheckedUpdateManyInput>
+    /**
+     * Filter which AssignmentTargets to update
+     */
+    where?: AssignmentTargetWhereInput
+    /**
+     * Limit how many AssignmentTargets to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AssignmentTarget upsert
+   */
+  export type AssignmentTargetUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AssignmentTarget to update in case it exists.
+     */
+    where: AssignmentTargetWhereUniqueInput
+    /**
+     * In case the AssignmentTarget found by the `where` argument doesn't exist, create a new AssignmentTarget with this data.
+     */
+    create: XOR<AssignmentTargetCreateInput, AssignmentTargetUncheckedCreateInput>
+    /**
+     * In case the AssignmentTarget was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AssignmentTargetUpdateInput, AssignmentTargetUncheckedUpdateInput>
+  }
+
+  /**
+   * AssignmentTarget delete
+   */
+  export type AssignmentTargetDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+    /**
+     * Filter which AssignmentTarget to delete.
+     */
+    where: AssignmentTargetWhereUniqueInput
+  }
+
+  /**
+   * AssignmentTarget deleteMany
+   */
+  export type AssignmentTargetDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AssignmentTargets to delete
+     */
+    where?: AssignmentTargetWhereInput
+    /**
+     * Limit how many AssignmentTargets to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AssignmentTarget without action
+   */
+  export type AssignmentTargetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssignmentTarget
+     */
+    select?: AssignmentTargetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssignmentTarget
+     */
+    omit?: AssignmentTargetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentTargetInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RefreshToken
+   */
+
+  export type AggregateRefreshToken = {
+    _count: RefreshTokenCountAggregateOutputType | null
+    _avg: RefreshTokenAvgAggregateOutputType | null
+    _sum: RefreshTokenSumAggregateOutputType | null
+    _min: RefreshTokenMinAggregateOutputType | null
+    _max: RefreshTokenMaxAggregateOutputType | null
+  }
+
+  export type RefreshTokenAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type RefreshTokenSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type RefreshTokenMinAggregateOutputType = {
+    id: number | null
+    tokenHash: string | null
+    userId: number | null
+    userRole: string | null
+    expiresAt: Date | null
+    revokedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RefreshTokenMaxAggregateOutputType = {
+    id: number | null
+    tokenHash: string | null
+    userId: number | null
+    userRole: string | null
+    expiresAt: Date | null
+    revokedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RefreshTokenCountAggregateOutputType = {
+    id: number
+    tokenHash: number
+    userId: number
+    userRole: number
+    expiresAt: number
+    revokedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RefreshTokenAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type RefreshTokenSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type RefreshTokenMinAggregateInputType = {
+    id?: true
+    tokenHash?: true
+    userId?: true
+    userRole?: true
+    expiresAt?: true
+    revokedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RefreshTokenMaxAggregateInputType = {
+    id?: true
+    tokenHash?: true
+    userId?: true
+    userRole?: true
+    expiresAt?: true
+    revokedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RefreshTokenCountAggregateInputType = {
+    id?: true
+    tokenHash?: true
+    userId?: true
+    userRole?: true
+    expiresAt?: true
+    revokedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RefreshTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RefreshToken to aggregate.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RefreshTokens
+    **/
+    _count?: true | RefreshTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RefreshTokenAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RefreshTokenSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RefreshTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RefreshTokenMaxAggregateInputType
+  }
+
+  export type GetRefreshTokenAggregateType<T extends RefreshTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateRefreshToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRefreshToken[P]>
+      : GetScalarType<T[P], AggregateRefreshToken[P]>
+  }
+
+
+
+
+  export type RefreshTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RefreshTokenWhereInput
+    orderBy?: RefreshTokenOrderByWithAggregationInput | RefreshTokenOrderByWithAggregationInput[]
+    by: RefreshTokenScalarFieldEnum[] | RefreshTokenScalarFieldEnum
+    having?: RefreshTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RefreshTokenCountAggregateInputType | true
+    _avg?: RefreshTokenAvgAggregateInputType
+    _sum?: RefreshTokenSumAggregateInputType
+    _min?: RefreshTokenMinAggregateInputType
+    _max?: RefreshTokenMaxAggregateInputType
+  }
+
+  export type RefreshTokenGroupByOutputType = {
+    id: number
+    tokenHash: string
+    userId: number
+    userRole: string
+    expiresAt: Date
+    revokedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: RefreshTokenCountAggregateOutputType | null
+    _avg: RefreshTokenAvgAggregateOutputType | null
+    _sum: RefreshTokenSumAggregateOutputType | null
+    _min: RefreshTokenMinAggregateOutputType | null
+    _max: RefreshTokenMaxAggregateOutputType | null
+  }
+
+  type GetRefreshTokenGroupByPayload<T extends RefreshTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RefreshTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RefreshTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RefreshTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], RefreshTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RefreshTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tokenHash?: boolean
+    userId?: boolean
+    userRole?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["refreshToken"]>
+
+  export type RefreshTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tokenHash?: boolean
+    userId?: boolean
+    userRole?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["refreshToken"]>
+
+  export type RefreshTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tokenHash?: boolean
+    userId?: boolean
+    userRole?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["refreshToken"]>
+
+  export type RefreshTokenSelectScalar = {
+    id?: boolean
+    tokenHash?: boolean
+    userId?: boolean
+    userRole?: boolean
+    expiresAt?: boolean
+    revokedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RefreshTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tokenHash" | "userId" | "userRole" | "expiresAt" | "revokedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["refreshToken"]>
+
+  export type $RefreshTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RefreshToken"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      tokenHash: string
+      userId: number
+      userRole: string
+      expiresAt: Date
+      revokedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["refreshToken"]>
+    composites: {}
+  }
+
+  type RefreshTokenGetPayload<S extends boolean | null | undefined | RefreshTokenDefaultArgs> = $Result.GetResult<Prisma.$RefreshTokenPayload, S>
+
+  type RefreshTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RefreshTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RefreshTokenCountAggregateInputType | true
+    }
+
+  export interface RefreshTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RefreshToken'], meta: { name: 'RefreshToken' } }
+    /**
+     * Find zero or one RefreshToken that matches the filter.
+     * @param {RefreshTokenFindUniqueArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RefreshTokenFindUniqueArgs>(args: SelectSubset<T, RefreshTokenFindUniqueArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RefreshToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RefreshTokenFindUniqueOrThrowArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RefreshTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, RefreshTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RefreshToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenFindFirstArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RefreshTokenFindFirstArgs>(args?: SelectSubset<T, RefreshTokenFindFirstArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RefreshToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenFindFirstOrThrowArgs} args - Arguments to find a RefreshToken
+     * @example
+     * // Get one RefreshToken
+     * const refreshToken = await prisma.refreshToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RefreshTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, RefreshTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RefreshTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RefreshTokens
+     * const refreshTokens = await prisma.refreshToken.findMany()
+     * 
+     * // Get first 10 RefreshTokens
+     * const refreshTokens = await prisma.refreshToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const refreshTokenWithIdOnly = await prisma.refreshToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RefreshTokenFindManyArgs>(args?: SelectSubset<T, RefreshTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RefreshToken.
+     * @param {RefreshTokenCreateArgs} args - Arguments to create a RefreshToken.
+     * @example
+     * // Create one RefreshToken
+     * const RefreshToken = await prisma.refreshToken.create({
+     *   data: {
+     *     // ... data to create a RefreshToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends RefreshTokenCreateArgs>(args: SelectSubset<T, RefreshTokenCreateArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RefreshTokens.
+     * @param {RefreshTokenCreateManyArgs} args - Arguments to create many RefreshTokens.
+     * @example
+     * // Create many RefreshTokens
+     * const refreshToken = await prisma.refreshToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RefreshTokenCreateManyArgs>(args?: SelectSubset<T, RefreshTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RefreshTokens and returns the data saved in the database.
+     * @param {RefreshTokenCreateManyAndReturnArgs} args - Arguments to create many RefreshTokens.
+     * @example
+     * // Create many RefreshTokens
+     * const refreshToken = await prisma.refreshToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RefreshTokens and only return the `id`
+     * const refreshTokenWithIdOnly = await prisma.refreshToken.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RefreshTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, RefreshTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RefreshToken.
+     * @param {RefreshTokenDeleteArgs} args - Arguments to delete one RefreshToken.
+     * @example
+     * // Delete one RefreshToken
+     * const RefreshToken = await prisma.refreshToken.delete({
+     *   where: {
+     *     // ... filter to delete one RefreshToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RefreshTokenDeleteArgs>(args: SelectSubset<T, RefreshTokenDeleteArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RefreshToken.
+     * @param {RefreshTokenUpdateArgs} args - Arguments to update one RefreshToken.
+     * @example
+     * // Update one RefreshToken
+     * const refreshToken = await prisma.refreshToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RefreshTokenUpdateArgs>(args: SelectSubset<T, RefreshTokenUpdateArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RefreshTokens.
+     * @param {RefreshTokenDeleteManyArgs} args - Arguments to filter RefreshTokens to delete.
+     * @example
+     * // Delete a few RefreshTokens
+     * const { count } = await prisma.refreshToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RefreshTokenDeleteManyArgs>(args?: SelectSubset<T, RefreshTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RefreshTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RefreshTokens
+     * const refreshToken = await prisma.refreshToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RefreshTokenUpdateManyArgs>(args: SelectSubset<T, RefreshTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RefreshTokens and returns the data updated in the database.
+     * @param {RefreshTokenUpdateManyAndReturnArgs} args - Arguments to update many RefreshTokens.
+     * @example
+     * // Update many RefreshTokens
+     * const refreshToken = await prisma.refreshToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RefreshTokens and only return the `id`
+     * const refreshTokenWithIdOnly = await prisma.refreshToken.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RefreshTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, RefreshTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RefreshToken.
+     * @param {RefreshTokenUpsertArgs} args - Arguments to update or create a RefreshToken.
+     * @example
+     * // Update or create a RefreshToken
+     * const refreshToken = await prisma.refreshToken.upsert({
+     *   create: {
+     *     // ... data to create a RefreshToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RefreshToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RefreshTokenUpsertArgs>(args: SelectSubset<T, RefreshTokenUpsertArgs<ExtArgs>>): Prisma__RefreshTokenClient<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RefreshTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenCountArgs} args - Arguments to filter RefreshTokens to count.
+     * @example
+     * // Count the number of RefreshTokens
+     * const count = await prisma.refreshToken.count({
+     *   where: {
+     *     // ... the filter for the RefreshTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends RefreshTokenCountArgs>(
+      args?: Subset<T, RefreshTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RefreshTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RefreshToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RefreshTokenAggregateArgs>(args: Subset<T, RefreshTokenAggregateArgs>): Prisma.PrismaPromise<GetRefreshTokenAggregateType<T>>
+
+    /**
+     * Group by RefreshToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RefreshTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RefreshTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RefreshTokenGroupByArgs['orderBy'] }
+        : { orderBy?: RefreshTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RefreshTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRefreshTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RefreshToken model
+   */
+  readonly fields: RefreshTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RefreshToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RefreshTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RefreshToken model
+   */
+  interface RefreshTokenFieldRefs {
+    readonly id: FieldRef<"RefreshToken", 'Int'>
+    readonly tokenHash: FieldRef<"RefreshToken", 'String'>
+    readonly userId: FieldRef<"RefreshToken", 'Int'>
+    readonly userRole: FieldRef<"RefreshToken", 'String'>
+    readonly expiresAt: FieldRef<"RefreshToken", 'DateTime'>
+    readonly revokedAt: FieldRef<"RefreshToken", 'DateTime'>
+    readonly createdAt: FieldRef<"RefreshToken", 'DateTime'>
+    readonly updatedAt: FieldRef<"RefreshToken", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RefreshToken findUnique
+   */
+  export type RefreshTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken findUniqueOrThrow
+   */
+  export type RefreshTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken findFirst
+   */
+  export type RefreshTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RefreshTokens.
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RefreshTokens.
+     */
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * RefreshToken findFirstOrThrow
+   */
+  export type RefreshTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which RefreshToken to fetch.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RefreshTokens.
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RefreshTokens.
+     */
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * RefreshToken findMany
+   */
+  export type RefreshTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which RefreshTokens to fetch.
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RefreshTokens to fetch.
+     */
+    orderBy?: RefreshTokenOrderByWithRelationInput | RefreshTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RefreshTokens.
+     */
+    cursor?: RefreshTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RefreshTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RefreshTokens.
+     */
+    skip?: number
+    distinct?: RefreshTokenScalarFieldEnum | RefreshTokenScalarFieldEnum[]
+  }
+
+  /**
+   * RefreshToken create
+   */
+  export type RefreshTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to create a RefreshToken.
+     */
+    data: XOR<RefreshTokenCreateInput, RefreshTokenUncheckedCreateInput>
+  }
+
+  /**
+   * RefreshToken createMany
+   */
+  export type RefreshTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RefreshTokens.
+     */
+    data: RefreshTokenCreateManyInput | RefreshTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RefreshToken createManyAndReturn
+   */
+  export type RefreshTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many RefreshTokens.
+     */
+    data: RefreshTokenCreateManyInput | RefreshTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RefreshToken update
+   */
+  export type RefreshTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to update a RefreshToken.
+     */
+    data: XOR<RefreshTokenUpdateInput, RefreshTokenUncheckedUpdateInput>
+    /**
+     * Choose, which RefreshToken to update.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken updateMany
+   */
+  export type RefreshTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RefreshTokens.
+     */
+    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which RefreshTokens to update
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * Limit how many RefreshTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RefreshToken updateManyAndReturn
+   */
+  export type RefreshTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update RefreshTokens.
+     */
+    data: XOR<RefreshTokenUpdateManyMutationInput, RefreshTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which RefreshTokens to update
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * Limit how many RefreshTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RefreshToken upsert
+   */
+  export type RefreshTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * The filter to search for the RefreshToken to update in case it exists.
+     */
+    where: RefreshTokenWhereUniqueInput
+    /**
+     * In case the RefreshToken found by the `where` argument doesn't exist, create a new RefreshToken with this data.
+     */
+    create: XOR<RefreshTokenCreateInput, RefreshTokenUncheckedCreateInput>
+    /**
+     * In case the RefreshToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RefreshTokenUpdateInput, RefreshTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * RefreshToken delete
+   */
+  export type RefreshTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
+    /**
+     * Filter which RefreshToken to delete.
+     */
+    where: RefreshTokenWhereUniqueInput
+  }
+
+  /**
+   * RefreshToken deleteMany
+   */
+  export type RefreshTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RefreshTokens to delete
+     */
+    where?: RefreshTokenWhereInput
+    /**
+     * Limit how many RefreshTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RefreshToken without action
+   */
+  export type RefreshTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefreshToken
+     */
+    select?: RefreshTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefreshToken
+     */
+    omit?: RefreshTokenOmit<ExtArgs> | null
   }
 
 
@@ -47744,6 +50167,30 @@ export namespace Prisma {
   export type BlogScalarFieldEnum = (typeof BlogScalarFieldEnum)[keyof typeof BlogScalarFieldEnum]
 
 
+  export const AssignmentTargetScalarFieldEnum: {
+    id: 'id',
+    assignmentId: 'assignmentId',
+    studentId: 'studentId',
+    createdAt: 'createdAt'
+  };
+
+  export type AssignmentTargetScalarFieldEnum = (typeof AssignmentTargetScalarFieldEnum)[keyof typeof AssignmentTargetScalarFieldEnum]
+
+
+  export const RefreshTokenScalarFieldEnum: {
+    id: 'id',
+    tokenHash: 'tokenHash',
+    userId: 'userId',
+    userRole: 'userRole',
+    expiresAt: 'expiresAt',
+    revokedAt: 'revokedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -48174,6 +50621,7 @@ export namespace Prisma {
     parentAccountId?: IntNullableFilter<"Student"> | number | null
     graduationYear?: IntNullableFilter<"Student"> | number | null
     assignedAssignments?: AssignmentListRelationFilter
+    AssignmentTarget?: AssignmentTargetListRelationFilter
     Blog?: BlogListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
@@ -48206,6 +50654,7 @@ export namespace Prisma {
     parentAccountId?: SortOrderInput | SortOrder
     graduationYear?: SortOrderInput | SortOrder
     assignedAssignments?: AssignmentOrderByRelationAggregateInput
+    AssignmentTarget?: AssignmentTargetOrderByRelationAggregateInput
     Blog?: BlogOrderByRelationAggregateInput
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     enrollments?: EnrollmentOrderByRelationAggregateInput
@@ -48241,6 +50690,7 @@ export namespace Prisma {
     parentAccountId?: IntNullableFilter<"Student"> | number | null
     graduationYear?: IntNullableFilter<"Student"> | number | null
     assignedAssignments?: AssignmentListRelationFilter
+    AssignmentTarget?: AssignmentTargetListRelationFilter
     Blog?: BlogListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
@@ -48503,6 +50953,7 @@ export namespace Prisma {
     targetStudent?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     resources?: AssignmentResourceListRelationFilter
+    AssignmentTarget?: AssignmentTargetListRelationFilter
     submissions?: SubmissionListRelationFilter
   }
 
@@ -48525,6 +50976,7 @@ export namespace Prisma {
     targetStudent?: StudentOrderByWithRelationInput
     teacher?: TeacherOrderByWithRelationInput
     resources?: AssignmentResourceOrderByRelationAggregateInput
+    AssignmentTarget?: AssignmentTargetOrderByRelationAggregateInput
     submissions?: SubmissionOrderByRelationAggregateInput
   }
 
@@ -48550,6 +51002,7 @@ export namespace Prisma {
     targetStudent?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     resources?: AssignmentResourceListRelationFilter
+    AssignmentTarget?: AssignmentTargetListRelationFilter
     submissions?: SubmissionListRelationFilter
   }, "id">
 
@@ -51168,7 +53621,7 @@ export namespace Prisma {
     phone?: StringNullableFilter<"AccessRequest"> | string | null
     reason?: StringNullableFilter<"AccessRequest"> | string | null
     researchId?: StringFilter<"AccessRequest"> | string
-    research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
+    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
   }
 
   export type AccessRequestOrderByWithRelationInput = {
@@ -51180,7 +53633,7 @@ export namespace Prisma {
     phone?: SortOrderInput | SortOrder
     reason?: SortOrderInput | SortOrder
     researchId?: SortOrder
-    research?: ResearchOrderByWithRelationInput
+    Research?: ResearchOrderByWithRelationInput
   }
 
   export type AccessRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -51195,7 +53648,7 @@ export namespace Prisma {
     phone?: StringNullableFilter<"AccessRequest"> | string | null
     reason?: StringNullableFilter<"AccessRequest"> | string | null
     researchId?: StringFilter<"AccessRequest"> | string
-    research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
+    Research?: XOR<ResearchScalarRelationFilter, ResearchWhereInput>
   }, "id">
 
   export type AccessRequestOrderByWithAggregationInput = {
@@ -51249,8 +53702,8 @@ export namespace Prisma {
     studentId?: IntNullableFilter<"Research"> | number | null
     domain?: StringNullableFilter<"Research"> | string | null
     presentationPdfFilename?: StringNullableFilter<"Research"> | string | null
-    accessRequests?: AccessRequestListRelationFilter
-    Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+    AccessRequest?: AccessRequestListRelationFilter
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }
 
   export type ResearchOrderByWithRelationInput = {
@@ -51273,8 +53726,8 @@ export namespace Prisma {
     studentId?: SortOrderInput | SortOrder
     domain?: SortOrderInput | SortOrder
     presentationPdfFilename?: SortOrderInput | SortOrder
-    accessRequests?: AccessRequestOrderByRelationAggregateInput
-    Student?: StudentOrderByWithRelationInput
+    AccessRequest?: AccessRequestOrderByRelationAggregateInput
+    student?: StudentOrderByWithRelationInput
   }
 
   export type ResearchWhereUniqueInput = Prisma.AtLeast<{
@@ -51300,8 +53753,8 @@ export namespace Prisma {
     studentId?: IntNullableFilter<"Research"> | number | null
     domain?: StringNullableFilter<"Research"> | string | null
     presentationPdfFilename?: StringNullableFilter<"Research"> | string | null
-    accessRequests?: AccessRequestListRelationFilter
-    Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+    AccessRequest?: AccessRequestListRelationFilter
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }, "id" | "slug">
 
   export type ResearchOrderByWithAggregationInput = {
@@ -51373,7 +53826,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Blog"> | Date | string
     updatedAt?: DateTimeFilter<"Blog"> | Date | string
     approvedAt?: DateTimeNullableFilter<"Blog"> | Date | string | null
-    Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }
 
   export type BlogOrderByWithRelationInput = {
@@ -51390,7 +53843,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     approvedAt?: SortOrderInput | SortOrder
-    Student?: StudentOrderByWithRelationInput
+    student?: StudentOrderByWithRelationInput
   }
 
   export type BlogWhereUniqueInput = Prisma.AtLeast<{
@@ -51410,7 +53863,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Blog"> | Date | string
     updatedAt?: DateTimeFilter<"Blog"> | Date | string
     approvedAt?: DateTimeNullableFilter<"Blog"> | Date | string | null
-    Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
+    student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
   }, "id">
 
   export type BlogOrderByWithAggregationInput = {
@@ -51451,6 +53904,131 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Blog"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Blog"> | Date | string
     approvedAt?: DateTimeNullableWithAggregatesFilter<"Blog"> | Date | string | null
+  }
+
+  export type AssignmentTargetWhereInput = {
+    AND?: AssignmentTargetWhereInput | AssignmentTargetWhereInput[]
+    OR?: AssignmentTargetWhereInput[]
+    NOT?: AssignmentTargetWhereInput | AssignmentTargetWhereInput[]
+    id?: IntFilter<"AssignmentTarget"> | number
+    assignmentId?: IntFilter<"AssignmentTarget"> | number
+    studentId?: IntFilter<"AssignmentTarget"> | number
+    createdAt?: DateTimeFilter<"AssignmentTarget"> | Date | string
+    Assignment?: XOR<AssignmentScalarRelationFilter, AssignmentWhereInput>
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+  }
+
+  export type AssignmentTargetOrderByWithRelationInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    studentId?: SortOrder
+    createdAt?: SortOrder
+    Assignment?: AssignmentOrderByWithRelationInput
+    Student?: StudentOrderByWithRelationInput
+  }
+
+  export type AssignmentTargetWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    assignmentId_studentId?: AssignmentTargetAssignmentIdStudentIdCompoundUniqueInput
+    AND?: AssignmentTargetWhereInput | AssignmentTargetWhereInput[]
+    OR?: AssignmentTargetWhereInput[]
+    NOT?: AssignmentTargetWhereInput | AssignmentTargetWhereInput[]
+    assignmentId?: IntFilter<"AssignmentTarget"> | number
+    studentId?: IntFilter<"AssignmentTarget"> | number
+    createdAt?: DateTimeFilter<"AssignmentTarget"> | Date | string
+    Assignment?: XOR<AssignmentScalarRelationFilter, AssignmentWhereInput>
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+  }, "id" | "assignmentId_studentId">
+
+  export type AssignmentTargetOrderByWithAggregationInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    studentId?: SortOrder
+    createdAt?: SortOrder
+    _count?: AssignmentTargetCountOrderByAggregateInput
+    _avg?: AssignmentTargetAvgOrderByAggregateInput
+    _max?: AssignmentTargetMaxOrderByAggregateInput
+    _min?: AssignmentTargetMinOrderByAggregateInput
+    _sum?: AssignmentTargetSumOrderByAggregateInput
+  }
+
+  export type AssignmentTargetScalarWhereWithAggregatesInput = {
+    AND?: AssignmentTargetScalarWhereWithAggregatesInput | AssignmentTargetScalarWhereWithAggregatesInput[]
+    OR?: AssignmentTargetScalarWhereWithAggregatesInput[]
+    NOT?: AssignmentTargetScalarWhereWithAggregatesInput | AssignmentTargetScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"AssignmentTarget"> | number
+    assignmentId?: IntWithAggregatesFilter<"AssignmentTarget"> | number
+    studentId?: IntWithAggregatesFilter<"AssignmentTarget"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"AssignmentTarget"> | Date | string
+  }
+
+  export type RefreshTokenWhereInput = {
+    AND?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    OR?: RefreshTokenWhereInput[]
+    NOT?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    id?: IntFilter<"RefreshToken"> | number
+    tokenHash?: StringFilter<"RefreshToken"> | string
+    userId?: IntFilter<"RefreshToken"> | number
+    userRole?: StringFilter<"RefreshToken"> | string
+    expiresAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    revokedAt?: DateTimeNullableFilter<"RefreshToken"> | Date | string | null
+    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    updatedAt?: DateTimeFilter<"RefreshToken"> | Date | string
+  }
+
+  export type RefreshTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    tokenHash?: SortOrder
+    userId?: SortOrder
+    userRole?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RefreshTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    tokenHash?: string
+    AND?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    OR?: RefreshTokenWhereInput[]
+    NOT?: RefreshTokenWhereInput | RefreshTokenWhereInput[]
+    userId?: IntFilter<"RefreshToken"> | number
+    userRole?: StringFilter<"RefreshToken"> | string
+    expiresAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    revokedAt?: DateTimeNullableFilter<"RefreshToken"> | Date | string | null
+    createdAt?: DateTimeFilter<"RefreshToken"> | Date | string
+    updatedAt?: DateTimeFilter<"RefreshToken"> | Date | string
+  }, "id" | "tokenHash">
+
+  export type RefreshTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    tokenHash?: SortOrder
+    userId?: SortOrder
+    userRole?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RefreshTokenCountOrderByAggregateInput
+    _avg?: RefreshTokenAvgOrderByAggregateInput
+    _max?: RefreshTokenMaxOrderByAggregateInput
+    _min?: RefreshTokenMinOrderByAggregateInput
+    _sum?: RefreshTokenSumOrderByAggregateInput
+  }
+
+  export type RefreshTokenScalarWhereWithAggregatesInput = {
+    AND?: RefreshTokenScalarWhereWithAggregatesInput | RefreshTokenScalarWhereWithAggregatesInput[]
+    OR?: RefreshTokenScalarWhereWithAggregatesInput[]
+    NOT?: RefreshTokenScalarWhereWithAggregatesInput | RefreshTokenScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"RefreshToken"> | number
+    tokenHash?: StringWithAggregatesFilter<"RefreshToken"> | string
+    userId?: IntWithAggregatesFilter<"RefreshToken"> | number
+    userRole?: StringWithAggregatesFilter<"RefreshToken"> | string
+    expiresAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
+    revokedAt?: DateTimeNullableWithAggregatesFilter<"RefreshToken"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
   }
 
   export type WebinarRegistrationCreateInput = {
@@ -51785,6 +54363,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -51817,6 +54396,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -51846,6 +54426,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -51878,6 +54459,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -52115,6 +54697,7 @@ export namespace Prisma {
     targetStudent?: StudentCreateNestedOneWithoutAssignedAssignmentsInput
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
   }
 
@@ -52135,6 +54718,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     dueDateTimezone?: string | null
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
@@ -52154,6 +54738,7 @@ export namespace Prisma {
     targetStudent?: StudentUpdateOneWithoutAssignedAssignmentsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -52174,6 +54759,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -53466,7 +56052,7 @@ export namespace Prisma {
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
-    updatedAt?: Date | string
+    updatedAt: Date | string
     videoLink?: string | null
     beforeAfterApproved?: boolean
     consentToFeature?: boolean
@@ -53497,7 +56083,7 @@ export namespace Prisma {
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
-    updatedAt?: Date | string
+    updatedAt: Date | string
     videoLink?: string | null
     beforeAfterApproved?: boolean
     consentToFeature?: boolean
@@ -53586,7 +56172,7 @@ export namespace Prisma {
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
-    updatedAt?: Date | string
+    updatedAt: Date | string
     videoLink?: string | null
     beforeAfterApproved?: boolean
     consentToFeature?: boolean
@@ -55159,7 +57745,7 @@ export namespace Prisma {
     approved?: boolean
     phone?: string | null
     reason?: string | null
-    research: ResearchCreateNestedOneWithoutAccessRequestsInput
+    Research: ResearchCreateNestedOneWithoutAccessRequestInput
   }
 
   export type AccessRequestUncheckedCreateInput = {
@@ -55181,7 +57767,7 @@ export namespace Prisma {
     approved?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
-    research?: ResearchUpdateOneRequiredWithoutAccessRequestsNestedInput
+    Research?: ResearchUpdateOneRequiredWithoutAccessRequestNestedInput
   }
 
   export type AccessRequestUncheckedUpdateInput = {
@@ -55228,7 +57814,7 @@ export namespace Prisma {
   }
 
   export type ResearchCreateInput = {
-    id?: string
+    id: string
     title: string
     slug: string
     description?: string | null
@@ -55246,12 +57832,12 @@ export namespace Prisma {
     school?: string | null
     domain?: string | null
     presentationPdfFilename?: string | null
-    accessRequests?: AccessRequestCreateNestedManyWithoutResearchInput
-    Student?: StudentCreateNestedOneWithoutResearchInput
+    AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
+    student?: StudentCreateNestedOneWithoutResearchInput
   }
 
   export type ResearchUncheckedCreateInput = {
-    id?: string
+    id: string
     title: string
     slug: string
     description?: string | null
@@ -55270,7 +57856,7 @@ export namespace Prisma {
     studentId?: number | null
     domain?: string | null
     presentationPdfFilename?: string | null
-    accessRequests?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
+    AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchUpdateInput = {
@@ -55292,8 +57878,8 @@ export namespace Prisma {
     school?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    accessRequests?: AccessRequestUpdateManyWithoutResearchNestedInput
-    Student?: StudentUpdateOneWithoutResearchNestedInput
+    AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
+    student?: StudentUpdateOneWithoutResearchNestedInput
   }
 
   export type ResearchUncheckedUpdateInput = {
@@ -55316,11 +57902,11 @@ export namespace Prisma {
     studentId?: NullableIntFieldUpdateOperationsInput | number | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    accessRequests?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
+    AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchCreateManyInput = {
-    id?: string
+    id: string
     title: string
     slug: string
     description?: string | null
@@ -55394,9 +57980,9 @@ export namespace Prisma {
     isApproved?: boolean
     published?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     approvedAt?: Date | string | null
-    Student?: StudentCreateNestedOneWithoutBlogInput
+    student?: StudentCreateNestedOneWithoutBlogInput
   }
 
   export type BlogUncheckedCreateInput = {
@@ -55411,7 +57997,7 @@ export namespace Prisma {
     isApproved?: boolean
     published?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     approvedAt?: Date | string | null
   }
 
@@ -55427,7 +58013,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Student?: StudentUpdateOneWithoutBlogNestedInput
+    student?: StudentUpdateOneWithoutBlogNestedInput
   }
 
   export type BlogUncheckedUpdateInput = {
@@ -55458,7 +58044,7 @@ export namespace Prisma {
     isApproved?: boolean
     published?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     approvedAt?: Date | string | null
   }
 
@@ -55490,6 +58076,124 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AssignmentTargetCreateInput = {
+    createdAt?: Date | string
+    Assignment: AssignmentCreateNestedOneWithoutAssignmentTargetInput
+    Student: StudentCreateNestedOneWithoutAssignmentTargetInput
+  }
+
+  export type AssignmentTargetUncheckedCreateInput = {
+    id?: number
+    assignmentId: number
+    studentId: number
+    createdAt?: Date | string
+  }
+
+  export type AssignmentTargetUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Assignment?: AssignmentUpdateOneRequiredWithoutAssignmentTargetNestedInput
+    Student?: StudentUpdateOneRequiredWithoutAssignmentTargetNestedInput
+  }
+
+  export type AssignmentTargetUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    assignmentId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssignmentTargetCreateManyInput = {
+    id?: number
+    assignmentId: number
+    studentId: number
+    createdAt?: Date | string
+  }
+
+  export type AssignmentTargetUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssignmentTargetUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    assignmentId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenCreateInput = {
+    tokenHash: string
+    userId: number
+    userRole: string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RefreshTokenUncheckedCreateInput = {
+    id?: number
+    tokenHash: string
+    userId: number
+    userRole: string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RefreshTokenUpdateInput = {
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    userRole?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    userRole?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenCreateManyInput = {
+    id?: number
+    tokenHash: string
+    userId: number
+    userRole: string
+    expiresAt: Date | string
+    revokedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RefreshTokenUpdateManyMutationInput = {
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    userRole?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RefreshTokenUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tokenHash?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
+    userRole?: StringFieldUpdateOperationsInput | string
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    revokedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -55994,6 +58698,12 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type AssignmentTargetListRelationFilter = {
+    every?: AssignmentTargetWhereInput
+    some?: AssignmentTargetWhereInput
+    none?: AssignmentTargetWhereInput
+  }
+
   export type BlogListRelationFilter = {
     every?: BlogWhereInput
     some?: BlogWhereInput
@@ -56051,6 +58761,10 @@ export namespace Prisma {
     every?: TestimonialWhereInput
     some?: TestimonialWhereInput
     none?: TestimonialWhereInput
+  }
+
+  export type AssignmentTargetOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type BlogOrderByRelationAggregateInput = {
@@ -58235,6 +60949,87 @@ export namespace Prisma {
     publicationMonth?: SortOrder
   }
 
+  export type AssignmentTargetAssignmentIdStudentIdCompoundUniqueInput = {
+    assignmentId: number
+    studentId: number
+  }
+
+  export type AssignmentTargetCountOrderByAggregateInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    studentId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AssignmentTargetAvgOrderByAggregateInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    studentId?: SortOrder
+  }
+
+  export type AssignmentTargetMaxOrderByAggregateInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    studentId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AssignmentTargetMinOrderByAggregateInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    studentId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AssignmentTargetSumOrderByAggregateInput = {
+    id?: SortOrder
+    assignmentId?: SortOrder
+    studentId?: SortOrder
+  }
+
+  export type RefreshTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    tokenHash?: SortOrder
+    userId?: SortOrder
+    userRole?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RefreshTokenAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type RefreshTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tokenHash?: SortOrder
+    userId?: SortOrder
+    userRole?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RefreshTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    tokenHash?: SortOrder
+    userId?: SortOrder
+    userRole?: SortOrder
+    expiresAt?: SortOrder
+    revokedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RefreshTokenSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -58605,6 +61400,13 @@ export namespace Prisma {
     connect?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
   }
 
+  export type AssignmentTargetCreateNestedManyWithoutStudentInput = {
+    create?: XOR<AssignmentTargetCreateWithoutStudentInput, AssignmentTargetUncheckedCreateWithoutStudentInput> | AssignmentTargetCreateWithoutStudentInput[] | AssignmentTargetUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: AssignmentTargetCreateOrConnectWithoutStudentInput | AssignmentTargetCreateOrConnectWithoutStudentInput[]
+    createMany?: AssignmentTargetCreateManyStudentInputEnvelope
+    connect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+  }
+
   export type BlogCreateNestedManyWithoutStudentInput = {
     create?: XOR<BlogCreateWithoutStudentInput, BlogUncheckedCreateWithoutStudentInput> | BlogCreateWithoutStudentInput[] | BlogUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: BlogCreateOrConnectWithoutStudentInput | BlogCreateOrConnectWithoutStudentInput[]
@@ -58700,6 +61502,13 @@ export namespace Prisma {
     connectOrCreate?: AssignmentCreateOrConnectWithoutTargetStudentInput | AssignmentCreateOrConnectWithoutTargetStudentInput[]
     createMany?: AssignmentCreateManyTargetStudentInputEnvelope
     connect?: AssignmentWhereUniqueInput | AssignmentWhereUniqueInput[]
+  }
+
+  export type AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<AssignmentTargetCreateWithoutStudentInput, AssignmentTargetUncheckedCreateWithoutStudentInput> | AssignmentTargetCreateWithoutStudentInput[] | AssignmentTargetUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: AssignmentTargetCreateOrConnectWithoutStudentInput | AssignmentTargetCreateOrConnectWithoutStudentInput[]
+    createMany?: AssignmentTargetCreateManyStudentInputEnvelope
+    connect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
   }
 
   export type BlogUncheckedCreateNestedManyWithoutStudentInput = {
@@ -58806,6 +61615,20 @@ export namespace Prisma {
     update?: AssignmentUpdateWithWhereUniqueWithoutTargetStudentInput | AssignmentUpdateWithWhereUniqueWithoutTargetStudentInput[]
     updateMany?: AssignmentUpdateManyWithWhereWithoutTargetStudentInput | AssignmentUpdateManyWithWhereWithoutTargetStudentInput[]
     deleteMany?: AssignmentScalarWhereInput | AssignmentScalarWhereInput[]
+  }
+
+  export type AssignmentTargetUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<AssignmentTargetCreateWithoutStudentInput, AssignmentTargetUncheckedCreateWithoutStudentInput> | AssignmentTargetCreateWithoutStudentInput[] | AssignmentTargetUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: AssignmentTargetCreateOrConnectWithoutStudentInput | AssignmentTargetCreateOrConnectWithoutStudentInput[]
+    upsert?: AssignmentTargetUpsertWithWhereUniqueWithoutStudentInput | AssignmentTargetUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: AssignmentTargetCreateManyStudentInputEnvelope
+    set?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    disconnect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    delete?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    connect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    update?: AssignmentTargetUpdateWithWhereUniqueWithoutStudentInput | AssignmentTargetUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: AssignmentTargetUpdateManyWithWhereWithoutStudentInput | AssignmentTargetUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: AssignmentTargetScalarWhereInput | AssignmentTargetScalarWhereInput[]
   }
 
   export type BlogUpdateManyWithoutStudentNestedInput = {
@@ -58998,6 +61821,20 @@ export namespace Prisma {
     update?: AssignmentUpdateWithWhereUniqueWithoutTargetStudentInput | AssignmentUpdateWithWhereUniqueWithoutTargetStudentInput[]
     updateMany?: AssignmentUpdateManyWithWhereWithoutTargetStudentInput | AssignmentUpdateManyWithWhereWithoutTargetStudentInput[]
     deleteMany?: AssignmentScalarWhereInput | AssignmentScalarWhereInput[]
+  }
+
+  export type AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<AssignmentTargetCreateWithoutStudentInput, AssignmentTargetUncheckedCreateWithoutStudentInput> | AssignmentTargetCreateWithoutStudentInput[] | AssignmentTargetUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: AssignmentTargetCreateOrConnectWithoutStudentInput | AssignmentTargetCreateOrConnectWithoutStudentInput[]
+    upsert?: AssignmentTargetUpsertWithWhereUniqueWithoutStudentInput | AssignmentTargetUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: AssignmentTargetCreateManyStudentInputEnvelope
+    set?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    disconnect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    delete?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    connect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    update?: AssignmentTargetUpdateWithWhereUniqueWithoutStudentInput | AssignmentTargetUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: AssignmentTargetUpdateManyWithWhereWithoutStudentInput | AssignmentTargetUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: AssignmentTargetScalarWhereInput | AssignmentTargetScalarWhereInput[]
   }
 
   export type BlogUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -59341,6 +62178,13 @@ export namespace Prisma {
     connect?: AssignmentResourceWhereUniqueInput | AssignmentResourceWhereUniqueInput[]
   }
 
+  export type AssignmentTargetCreateNestedManyWithoutAssignmentInput = {
+    create?: XOR<AssignmentTargetCreateWithoutAssignmentInput, AssignmentTargetUncheckedCreateWithoutAssignmentInput> | AssignmentTargetCreateWithoutAssignmentInput[] | AssignmentTargetUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: AssignmentTargetCreateOrConnectWithoutAssignmentInput | AssignmentTargetCreateOrConnectWithoutAssignmentInput[]
+    createMany?: AssignmentTargetCreateManyAssignmentInputEnvelope
+    connect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+  }
+
   export type SubmissionCreateNestedManyWithoutAssignmentInput = {
     create?: XOR<SubmissionCreateWithoutAssignmentInput, SubmissionUncheckedCreateWithoutAssignmentInput> | SubmissionCreateWithoutAssignmentInput[] | SubmissionUncheckedCreateWithoutAssignmentInput[]
     connectOrCreate?: SubmissionCreateOrConnectWithoutAssignmentInput | SubmissionCreateOrConnectWithoutAssignmentInput[]
@@ -59353,6 +62197,13 @@ export namespace Prisma {
     connectOrCreate?: AssignmentResourceCreateOrConnectWithoutAssignmentInput | AssignmentResourceCreateOrConnectWithoutAssignmentInput[]
     createMany?: AssignmentResourceCreateManyAssignmentInputEnvelope
     connect?: AssignmentResourceWhereUniqueInput | AssignmentResourceWhereUniqueInput[]
+  }
+
+  export type AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput = {
+    create?: XOR<AssignmentTargetCreateWithoutAssignmentInput, AssignmentTargetUncheckedCreateWithoutAssignmentInput> | AssignmentTargetCreateWithoutAssignmentInput[] | AssignmentTargetUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: AssignmentTargetCreateOrConnectWithoutAssignmentInput | AssignmentTargetCreateOrConnectWithoutAssignmentInput[]
+    createMany?: AssignmentTargetCreateManyAssignmentInputEnvelope
+    connect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
   }
 
   export type SubmissionUncheckedCreateNestedManyWithoutAssignmentInput = {
@@ -59394,6 +62245,20 @@ export namespace Prisma {
     deleteMany?: AssignmentResourceScalarWhereInput | AssignmentResourceScalarWhereInput[]
   }
 
+  export type AssignmentTargetUpdateManyWithoutAssignmentNestedInput = {
+    create?: XOR<AssignmentTargetCreateWithoutAssignmentInput, AssignmentTargetUncheckedCreateWithoutAssignmentInput> | AssignmentTargetCreateWithoutAssignmentInput[] | AssignmentTargetUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: AssignmentTargetCreateOrConnectWithoutAssignmentInput | AssignmentTargetCreateOrConnectWithoutAssignmentInput[]
+    upsert?: AssignmentTargetUpsertWithWhereUniqueWithoutAssignmentInput | AssignmentTargetUpsertWithWhereUniqueWithoutAssignmentInput[]
+    createMany?: AssignmentTargetCreateManyAssignmentInputEnvelope
+    set?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    disconnect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    delete?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    connect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    update?: AssignmentTargetUpdateWithWhereUniqueWithoutAssignmentInput | AssignmentTargetUpdateWithWhereUniqueWithoutAssignmentInput[]
+    updateMany?: AssignmentTargetUpdateManyWithWhereWithoutAssignmentInput | AssignmentTargetUpdateManyWithWhereWithoutAssignmentInput[]
+    deleteMany?: AssignmentTargetScalarWhereInput | AssignmentTargetScalarWhereInput[]
+  }
+
   export type SubmissionUpdateManyWithoutAssignmentNestedInput = {
     create?: XOR<SubmissionCreateWithoutAssignmentInput, SubmissionUncheckedCreateWithoutAssignmentInput> | SubmissionCreateWithoutAssignmentInput[] | SubmissionUncheckedCreateWithoutAssignmentInput[]
     connectOrCreate?: SubmissionCreateOrConnectWithoutAssignmentInput | SubmissionCreateOrConnectWithoutAssignmentInput[]
@@ -59420,6 +62285,20 @@ export namespace Prisma {
     update?: AssignmentResourceUpdateWithWhereUniqueWithoutAssignmentInput | AssignmentResourceUpdateWithWhereUniqueWithoutAssignmentInput[]
     updateMany?: AssignmentResourceUpdateManyWithWhereWithoutAssignmentInput | AssignmentResourceUpdateManyWithWhereWithoutAssignmentInput[]
     deleteMany?: AssignmentResourceScalarWhereInput | AssignmentResourceScalarWhereInput[]
+  }
+
+  export type AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput = {
+    create?: XOR<AssignmentTargetCreateWithoutAssignmentInput, AssignmentTargetUncheckedCreateWithoutAssignmentInput> | AssignmentTargetCreateWithoutAssignmentInput[] | AssignmentTargetUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: AssignmentTargetCreateOrConnectWithoutAssignmentInput | AssignmentTargetCreateOrConnectWithoutAssignmentInput[]
+    upsert?: AssignmentTargetUpsertWithWhereUniqueWithoutAssignmentInput | AssignmentTargetUpsertWithWhereUniqueWithoutAssignmentInput[]
+    createMany?: AssignmentTargetCreateManyAssignmentInputEnvelope
+    set?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    disconnect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    delete?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    connect?: AssignmentTargetWhereUniqueInput | AssignmentTargetWhereUniqueInput[]
+    update?: AssignmentTargetUpdateWithWhereUniqueWithoutAssignmentInput | AssignmentTargetUpdateWithWhereUniqueWithoutAssignmentInput[]
+    updateMany?: AssignmentTargetUpdateManyWithWhereWithoutAssignmentInput | AssignmentTargetUpdateManyWithWhereWithoutAssignmentInput[]
+    deleteMany?: AssignmentTargetScalarWhereInput | AssignmentTargetScalarWhereInput[]
   }
 
   export type SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput = {
@@ -60050,18 +62929,18 @@ export namespace Prisma {
     update?: XOR<XOR<GeneralEventUpdateToOneWithWhereWithoutRegistrationsInput, GeneralEventUpdateWithoutRegistrationsInput>, GeneralEventUncheckedUpdateWithoutRegistrationsInput>
   }
 
-  export type ResearchCreateNestedOneWithoutAccessRequestsInput = {
-    create?: XOR<ResearchCreateWithoutAccessRequestsInput, ResearchUncheckedCreateWithoutAccessRequestsInput>
-    connectOrCreate?: ResearchCreateOrConnectWithoutAccessRequestsInput
+  export type ResearchCreateNestedOneWithoutAccessRequestInput = {
+    create?: XOR<ResearchCreateWithoutAccessRequestInput, ResearchUncheckedCreateWithoutAccessRequestInput>
+    connectOrCreate?: ResearchCreateOrConnectWithoutAccessRequestInput
     connect?: ResearchWhereUniqueInput
   }
 
-  export type ResearchUpdateOneRequiredWithoutAccessRequestsNestedInput = {
-    create?: XOR<ResearchCreateWithoutAccessRequestsInput, ResearchUncheckedCreateWithoutAccessRequestsInput>
-    connectOrCreate?: ResearchCreateOrConnectWithoutAccessRequestsInput
-    upsert?: ResearchUpsertWithoutAccessRequestsInput
+  export type ResearchUpdateOneRequiredWithoutAccessRequestNestedInput = {
+    create?: XOR<ResearchCreateWithoutAccessRequestInput, ResearchUncheckedCreateWithoutAccessRequestInput>
+    connectOrCreate?: ResearchCreateOrConnectWithoutAccessRequestInput
+    upsert?: ResearchUpsertWithoutAccessRequestInput
     connect?: ResearchWhereUniqueInput
-    update?: XOR<XOR<ResearchUpdateToOneWithWhereWithoutAccessRequestsInput, ResearchUpdateWithoutAccessRequestsInput>, ResearchUncheckedUpdateWithoutAccessRequestsInput>
+    update?: XOR<XOR<ResearchUpdateToOneWithWhereWithoutAccessRequestInput, ResearchUpdateWithoutAccessRequestInput>, ResearchUncheckedUpdateWithoutAccessRequestInput>
   }
 
   export type ResearchCreatekeywordsInput = {
@@ -60145,6 +63024,34 @@ export namespace Prisma {
     delete?: StudentWhereInput | boolean
     connect?: StudentWhereUniqueInput
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutBlogInput, StudentUpdateWithoutBlogInput>, StudentUncheckedUpdateWithoutBlogInput>
+  }
+
+  export type AssignmentCreateNestedOneWithoutAssignmentTargetInput = {
+    create?: XOR<AssignmentCreateWithoutAssignmentTargetInput, AssignmentUncheckedCreateWithoutAssignmentTargetInput>
+    connectOrCreate?: AssignmentCreateOrConnectWithoutAssignmentTargetInput
+    connect?: AssignmentWhereUniqueInput
+  }
+
+  export type StudentCreateNestedOneWithoutAssignmentTargetInput = {
+    create?: XOR<StudentCreateWithoutAssignmentTargetInput, StudentUncheckedCreateWithoutAssignmentTargetInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutAssignmentTargetInput
+    connect?: StudentWhereUniqueInput
+  }
+
+  export type AssignmentUpdateOneRequiredWithoutAssignmentTargetNestedInput = {
+    create?: XOR<AssignmentCreateWithoutAssignmentTargetInput, AssignmentUncheckedCreateWithoutAssignmentTargetInput>
+    connectOrCreate?: AssignmentCreateOrConnectWithoutAssignmentTargetInput
+    upsert?: AssignmentUpsertWithoutAssignmentTargetInput
+    connect?: AssignmentWhereUniqueInput
+    update?: XOR<XOR<AssignmentUpdateToOneWithWhereWithoutAssignmentTargetInput, AssignmentUpdateWithoutAssignmentTargetInput>, AssignmentUncheckedUpdateWithoutAssignmentTargetInput>
+  }
+
+  export type StudentUpdateOneRequiredWithoutAssignmentTargetNestedInput = {
+    create?: XOR<StudentCreateWithoutAssignmentTargetInput, StudentUncheckedCreateWithoutAssignmentTargetInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutAssignmentTargetInput
+    upsert?: StudentUpsertWithoutAssignmentTargetInput
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutAssignmentTargetInput, StudentUpdateWithoutAssignmentTargetInput>, StudentUncheckedUpdateWithoutAssignmentTargetInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -60425,6 +63332,7 @@ export namespace Prisma {
     dueDateTimezone?: string | null
     targetStudent?: StudentCreateNestedOneWithoutAssignedAssignmentsInput
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
   }
 
@@ -60444,6 +63352,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     dueDateTimezone?: string | null
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
@@ -61051,6 +63960,7 @@ export namespace Prisma {
     dueDateTimezone?: string | null
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
   }
 
@@ -61070,6 +63980,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     dueDateTimezone?: string | null
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
@@ -61083,6 +63994,27 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AssignmentTargetCreateWithoutStudentInput = {
+    createdAt?: Date | string
+    Assignment: AssignmentCreateNestedOneWithoutAssignmentTargetInput
+  }
+
+  export type AssignmentTargetUncheckedCreateWithoutStudentInput = {
+    id?: number
+    assignmentId: number
+    createdAt?: Date | string
+  }
+
+  export type AssignmentTargetCreateOrConnectWithoutStudentInput = {
+    where: AssignmentTargetWhereUniqueInput
+    create: XOR<AssignmentTargetCreateWithoutStudentInput, AssignmentTargetUncheckedCreateWithoutStudentInput>
+  }
+
+  export type AssignmentTargetCreateManyStudentInputEnvelope = {
+    data: AssignmentTargetCreateManyStudentInput | AssignmentTargetCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type BlogCreateWithoutStudentInput = {
     title: string
     abstract: string
@@ -61093,7 +64025,7 @@ export namespace Prisma {
     isApproved?: boolean
     published?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     approvedAt?: Date | string | null
   }
 
@@ -61108,7 +64040,7 @@ export namespace Prisma {
     isApproved?: boolean
     published?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     approvedAt?: Date | string | null
   }
 
@@ -61331,7 +64263,7 @@ export namespace Prisma {
   }
 
   export type ResearchCreateWithoutStudentInput = {
-    id?: string
+    id: string
     title: string
     slug: string
     description?: string | null
@@ -61349,11 +64281,11 @@ export namespace Prisma {
     school?: string | null
     domain?: string | null
     presentationPdfFilename?: string | null
-    accessRequests?: AccessRequestCreateNestedManyWithoutResearchInput
+    AccessRequest?: AccessRequestCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchUncheckedCreateWithoutStudentInput = {
-    id?: string
+    id: string
     title: string
     slug: string
     description?: string | null
@@ -61371,7 +64303,7 @@ export namespace Prisma {
     school?: string | null
     domain?: string | null
     presentationPdfFilename?: string | null
-    accessRequests?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
+    AccessRequest?: AccessRequestUncheckedCreateNestedManyWithoutResearchInput
   }
 
   export type ResearchCreateOrConnectWithoutStudentInput = {
@@ -61560,7 +64492,7 @@ export namespace Prisma {
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
-    updatedAt?: Date | string
+    updatedAt: Date | string
     videoLink?: string | null
     beforeAfterApproved?: boolean
     consentToFeature?: boolean
@@ -61589,7 +64521,7 @@ export namespace Prisma {
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
-    updatedAt?: Date | string
+    updatedAt: Date | string
     videoLink?: string | null
     beforeAfterApproved?: boolean
     consentToFeature?: boolean
@@ -61634,6 +64566,32 @@ export namespace Prisma {
   export type AssignmentUpdateManyWithWhereWithoutTargetStudentInput = {
     where: AssignmentScalarWhereInput
     data: XOR<AssignmentUpdateManyMutationInput, AssignmentUncheckedUpdateManyWithoutTargetStudentInput>
+  }
+
+  export type AssignmentTargetUpsertWithWhereUniqueWithoutStudentInput = {
+    where: AssignmentTargetWhereUniqueInput
+    update: XOR<AssignmentTargetUpdateWithoutStudentInput, AssignmentTargetUncheckedUpdateWithoutStudentInput>
+    create: XOR<AssignmentTargetCreateWithoutStudentInput, AssignmentTargetUncheckedCreateWithoutStudentInput>
+  }
+
+  export type AssignmentTargetUpdateWithWhereUniqueWithoutStudentInput = {
+    where: AssignmentTargetWhereUniqueInput
+    data: XOR<AssignmentTargetUpdateWithoutStudentInput, AssignmentTargetUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type AssignmentTargetUpdateManyWithWhereWithoutStudentInput = {
+    where: AssignmentTargetScalarWhereInput
+    data: XOR<AssignmentTargetUpdateManyMutationInput, AssignmentTargetUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type AssignmentTargetScalarWhereInput = {
+    AND?: AssignmentTargetScalarWhereInput | AssignmentTargetScalarWhereInput[]
+    OR?: AssignmentTargetScalarWhereInput[]
+    NOT?: AssignmentTargetScalarWhereInput | AssignmentTargetScalarWhereInput[]
+    id?: IntFilter<"AssignmentTarget"> | number
+    assignmentId?: IntFilter<"AssignmentTarget"> | number
+    studentId?: IntFilter<"AssignmentTarget"> | number
+    createdAt?: DateTimeFilter<"AssignmentTarget"> | Date | string
   }
 
   export type BlogUpsertWithWhereUniqueWithoutStudentInput = {
@@ -62051,6 +65009,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -62082,6 +65041,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -62174,6 +65134,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -62205,6 +65166,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -62525,6 +65487,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -62556,6 +65519,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -62628,6 +65592,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -62659,6 +65624,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -62686,6 +65652,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     isActivated?: boolean
     graduationYear?: number | null
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -62717,6 +65684,7 @@ export namespace Prisma {
     isActivated?: boolean
     parentAccountId?: number | null
     graduationYear?: number | null
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -62805,6 +65773,27 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AssignmentTargetCreateWithoutAssignmentInput = {
+    createdAt?: Date | string
+    Student: StudentCreateNestedOneWithoutAssignmentTargetInput
+  }
+
+  export type AssignmentTargetUncheckedCreateWithoutAssignmentInput = {
+    id?: number
+    studentId: number
+    createdAt?: Date | string
+  }
+
+  export type AssignmentTargetCreateOrConnectWithoutAssignmentInput = {
+    where: AssignmentTargetWhereUniqueInput
+    create: XOR<AssignmentTargetCreateWithoutAssignmentInput, AssignmentTargetUncheckedCreateWithoutAssignmentInput>
+  }
+
+  export type AssignmentTargetCreateManyAssignmentInputEnvelope = {
+    data: AssignmentTargetCreateManyAssignmentInput | AssignmentTargetCreateManyAssignmentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SubmissionCreateWithoutAssignmentInput = {
     content?: string | null
     fileUrl?: string | null
@@ -62869,6 +65858,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -62900,6 +65890,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -62994,6 +65985,22 @@ export namespace Prisma {
     isRequired?: BoolFilter<"AssignmentResource"> | boolean
   }
 
+  export type AssignmentTargetUpsertWithWhereUniqueWithoutAssignmentInput = {
+    where: AssignmentTargetWhereUniqueInput
+    update: XOR<AssignmentTargetUpdateWithoutAssignmentInput, AssignmentTargetUncheckedUpdateWithoutAssignmentInput>
+    create: XOR<AssignmentTargetCreateWithoutAssignmentInput, AssignmentTargetUncheckedCreateWithoutAssignmentInput>
+  }
+
+  export type AssignmentTargetUpdateWithWhereUniqueWithoutAssignmentInput = {
+    where: AssignmentTargetWhereUniqueInput
+    data: XOR<AssignmentTargetUpdateWithoutAssignmentInput, AssignmentTargetUncheckedUpdateWithoutAssignmentInput>
+  }
+
+  export type AssignmentTargetUpdateManyWithWhereWithoutAssignmentInput = {
+    where: AssignmentTargetScalarWhereInput
+    data: XOR<AssignmentTargetUpdateManyMutationInput, AssignmentTargetUncheckedUpdateManyWithoutAssignmentInput>
+  }
+
   export type SubmissionUpsertWithWhereUniqueWithoutAssignmentInput = {
     where: SubmissionWhereUniqueInput
     update: XOR<SubmissionUpdateWithoutAssignmentInput, SubmissionUncheckedUpdateWithoutAssignmentInput>
@@ -63026,6 +66033,7 @@ export namespace Prisma {
     targetStudent?: StudentCreateNestedOneWithoutAssignedAssignmentsInput
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateWithoutSubmissionsInput = {
@@ -63045,6 +66053,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     dueDateTimezone?: string | null
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentCreateOrConnectWithoutSubmissionsInput = {
@@ -63067,6 +66076,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -63098,6 +66108,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -63143,6 +66154,7 @@ export namespace Prisma {
     targetStudent?: StudentUpdateOneWithoutAssignedAssignmentsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutSubmissionsInput = {
@@ -63162,6 +66174,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type StudentUpsertWithoutSubmissionsInput = {
@@ -63190,6 +66203,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -63221,6 +66235,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -63249,6 +66264,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
@@ -63280,6 +66296,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -63383,6 +66400,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
@@ -63414,6 +66432,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -63636,6 +66655,7 @@ export namespace Prisma {
     dueDateTimezone?: string | null
     targetStudent?: StudentCreateNestedOneWithoutAssignedAssignmentsInput
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
   }
 
@@ -63655,6 +66675,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     dueDateTimezone?: string | null
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
@@ -63731,6 +66752,7 @@ export namespace Prisma {
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     targetStudent?: StudentUpdateOneWithoutAssignedAssignmentsNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -63750,6 +66772,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -63858,6 +66881,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -63889,6 +66913,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -63981,6 +67006,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -64012,6 +67038,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -64040,6 +67067,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -64071,6 +67099,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -64140,6 +67169,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -64171,6 +67201,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -64409,6 +67440,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
@@ -64440,6 +67472,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -64560,6 +67593,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
@@ -64591,6 +67625,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -64697,6 +67732,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -64728,6 +67764,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -64802,6 +67839,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -64833,6 +67871,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -64861,6 +67900,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -64892,6 +67932,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -64936,6 +67977,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -64967,6 +68009,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -64995,6 +68038,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -65025,6 +68069,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -65203,6 +68248,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -65234,6 +68280,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -65326,6 +68373,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -65357,6 +68405,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -65684,8 +68733,8 @@ export namespace Prisma {
     requiresPayment?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type ResearchCreateWithoutAccessRequestsInput = {
-    id?: string
+  export type ResearchCreateWithoutAccessRequestInput = {
+    id: string
     title: string
     slug: string
     description?: string | null
@@ -65703,11 +68752,11 @@ export namespace Prisma {
     school?: string | null
     domain?: string | null
     presentationPdfFilename?: string | null
-    Student?: StudentCreateNestedOneWithoutResearchInput
+    student?: StudentCreateNestedOneWithoutResearchInput
   }
 
-  export type ResearchUncheckedCreateWithoutAccessRequestsInput = {
-    id?: string
+  export type ResearchUncheckedCreateWithoutAccessRequestInput = {
+    id: string
     title: string
     slug: string
     description?: string | null
@@ -65728,23 +68777,23 @@ export namespace Prisma {
     presentationPdfFilename?: string | null
   }
 
-  export type ResearchCreateOrConnectWithoutAccessRequestsInput = {
+  export type ResearchCreateOrConnectWithoutAccessRequestInput = {
     where: ResearchWhereUniqueInput
-    create: XOR<ResearchCreateWithoutAccessRequestsInput, ResearchUncheckedCreateWithoutAccessRequestsInput>
+    create: XOR<ResearchCreateWithoutAccessRequestInput, ResearchUncheckedCreateWithoutAccessRequestInput>
   }
 
-  export type ResearchUpsertWithoutAccessRequestsInput = {
-    update: XOR<ResearchUpdateWithoutAccessRequestsInput, ResearchUncheckedUpdateWithoutAccessRequestsInput>
-    create: XOR<ResearchCreateWithoutAccessRequestsInput, ResearchUncheckedCreateWithoutAccessRequestsInput>
+  export type ResearchUpsertWithoutAccessRequestInput = {
+    update: XOR<ResearchUpdateWithoutAccessRequestInput, ResearchUncheckedUpdateWithoutAccessRequestInput>
+    create: XOR<ResearchCreateWithoutAccessRequestInput, ResearchUncheckedCreateWithoutAccessRequestInput>
     where?: ResearchWhereInput
   }
 
-  export type ResearchUpdateToOneWithWhereWithoutAccessRequestsInput = {
+  export type ResearchUpdateToOneWithWhereWithoutAccessRequestInput = {
     where?: ResearchWhereInput
-    data: XOR<ResearchUpdateWithoutAccessRequestsInput, ResearchUncheckedUpdateWithoutAccessRequestsInput>
+    data: XOR<ResearchUpdateWithoutAccessRequestInput, ResearchUncheckedUpdateWithoutAccessRequestInput>
   }
 
-  export type ResearchUpdateWithoutAccessRequestsInput = {
+  export type ResearchUpdateWithoutAccessRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -65763,10 +68812,10 @@ export namespace Prisma {
     school?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    Student?: StudentUpdateOneWithoutResearchNestedInput
+    student?: StudentUpdateOneWithoutResearchNestedInput
   }
 
-  export type ResearchUncheckedUpdateWithoutAccessRequestsInput = {
+  export type ResearchUncheckedUpdateWithoutAccessRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -65833,6 +68882,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
@@ -65864,6 +68914,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
@@ -65938,6 +68989,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -65969,6 +69021,7 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -65997,6 +69050,7 @@ export namespace Prisma {
     isActivated?: boolean
     graduationYear?: number | null
     assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
@@ -66028,6 +69082,7 @@ export namespace Prisma {
     parentAccountId?: number | null
     graduationYear?: number | null
     assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
@@ -66072,6 +69127,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
@@ -66103,6 +69159,239 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type AssignmentCreateWithoutAssignmentTargetInput = {
+    title: string
+    description: string
+    instructions?: string | null
+    program: string
+    subject: string
+    dueDate: Date | string
+    totalPoints?: number
+    isActive?: boolean
+    allowLateSubmission?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    dueDateTimezone?: string | null
+    targetStudent?: StudentCreateNestedOneWithoutAssignedAssignmentsInput
+    teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
+    resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
+    submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
+  }
+
+  export type AssignmentUncheckedCreateWithoutAssignmentTargetInput = {
+    id?: number
+    title: string
+    description: string
+    instructions?: string | null
+    program: string
+    subject: string
+    dueDate: Date | string
+    totalPoints?: number
+    isActive?: boolean
+    allowLateSubmission?: boolean
+    teacherId?: number
+    targetStudentId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    dueDateTimezone?: string | null
+    resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
+  }
+
+  export type AssignmentCreateOrConnectWithoutAssignmentTargetInput = {
+    where: AssignmentWhereUniqueInput
+    create: XOR<AssignmentCreateWithoutAssignmentTargetInput, AssignmentUncheckedCreateWithoutAssignmentTargetInput>
+  }
+
+  export type StudentCreateWithoutAssignmentTargetInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutAssignmentTargetInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutAssignmentTargetInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutAssignmentTargetInput, StudentUncheckedCreateWithoutAssignmentTargetInput>
+  }
+
+  export type AssignmentUpsertWithoutAssignmentTargetInput = {
+    update: XOR<AssignmentUpdateWithoutAssignmentTargetInput, AssignmentUncheckedUpdateWithoutAssignmentTargetInput>
+    create: XOR<AssignmentCreateWithoutAssignmentTargetInput, AssignmentUncheckedCreateWithoutAssignmentTargetInput>
+    where?: AssignmentWhereInput
+  }
+
+  export type AssignmentUpdateToOneWithWhereWithoutAssignmentTargetInput = {
+    where?: AssignmentWhereInput
+    data: XOR<AssignmentUpdateWithoutAssignmentTargetInput, AssignmentUncheckedUpdateWithoutAssignmentTargetInput>
+  }
+
+  export type AssignmentUpdateWithoutAssignmentTargetInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    instructions?: NullableStringFieldUpdateOperationsInput | string | null
+    program?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    targetStudent?: StudentUpdateOneWithoutAssignedAssignmentsNestedInput
+    teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
+    resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
+    submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
+  }
+
+  export type AssignmentUncheckedUpdateWithoutAssignmentTargetInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    instructions?: NullableStringFieldUpdateOperationsInput | string | null
+    program?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
+    teacherId?: IntFieldUpdateOperationsInput | number
+    targetStudentId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
+  }
+
+  export type StudentUpsertWithoutAssignmentTargetInput = {
+    update: XOR<StudentUpdateWithoutAssignmentTargetInput, StudentUncheckedUpdateWithoutAssignmentTargetInput>
+    create: XOR<StudentCreateWithoutAssignmentTargetInput, StudentUncheckedCreateWithoutAssignmentTargetInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutAssignmentTargetInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutAssignmentTargetInput, StudentUncheckedUpdateWithoutAssignmentTargetInput>
+  }
+
+  export type StudentUpdateWithoutAssignmentTargetInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutAssignmentTargetInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
@@ -66238,6 +69527,7 @@ export namespace Prisma {
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     targetStudent?: StudentUpdateOneWithoutAssignedAssignmentsNestedInput
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -66257,6 +69547,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -66566,6 +69857,12 @@ export namespace Prisma {
     dueDateTimezone?: string | null
   }
 
+  export type AssignmentTargetCreateManyStudentInput = {
+    id?: number
+    assignmentId: number
+    createdAt?: Date | string
+  }
+
   export type BlogCreateManyStudentInput = {
     id?: number
     title: string
@@ -66577,7 +69874,7 @@ export namespace Prisma {
     isApproved?: boolean
     published?: boolean
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     approvedAt?: Date | string | null
   }
 
@@ -66667,7 +69964,7 @@ export namespace Prisma {
   }
 
   export type ResearchCreateManyStudentInput = {
-    id?: string
+    id: string
     title: string
     slug: string
     description?: string | null
@@ -66743,7 +70040,7 @@ export namespace Prisma {
     isApproved?: boolean
     isVisible?: boolean
     createdAt?: Date | string
-    updatedAt?: Date | string
+    updatedAt: Date | string
     videoLink?: string | null
     beforeAfterApproved?: boolean
     consentToFeature?: boolean
@@ -66779,6 +70076,7 @@ export namespace Prisma {
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -66798,6 +70096,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
@@ -66816,6 +70115,23 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AssignmentTargetUpdateWithoutStudentInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Assignment?: AssignmentUpdateOneRequiredWithoutAssignmentTargetNestedInput
+  }
+
+  export type AssignmentTargetUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    assignmentId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssignmentTargetUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    assignmentId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BlogUpdateWithoutStudentInput = {
@@ -67134,7 +70450,7 @@ export namespace Prisma {
     school?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    accessRequests?: AccessRequestUpdateManyWithoutResearchNestedInput
+    AccessRequest?: AccessRequestUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchUncheckedUpdateWithoutStudentInput = {
@@ -67156,7 +70472,7 @@ export namespace Prisma {
     school?: NullableStringFieldUpdateOperationsInput | string | null
     domain?: NullableStringFieldUpdateOperationsInput | string | null
     presentationPdfFilename?: NullableStringFieldUpdateOperationsInput | string | null
-    accessRequests?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
+    AccessRequest?: AccessRequestUncheckedUpdateManyWithoutResearchNestedInput
   }
 
   export type ResearchUncheckedUpdateManyWithoutStudentInput = {
@@ -67539,6 +70855,12 @@ export namespace Prisma {
     isRequired?: boolean
   }
 
+  export type AssignmentTargetCreateManyAssignmentInput = {
+    id?: number
+    studentId: number
+    createdAt?: Date | string
+  }
+
   export type SubmissionCreateManyAssignmentInput = {
     id?: number
     studentId: number
@@ -67569,6 +70891,23 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     resourceId?: IntFieldUpdateOperationsInput | number
     isRequired?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type AssignmentTargetUpdateWithoutAssignmentInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Student?: StudentUpdateOneRequiredWithoutAssignmentTargetNestedInput
+  }
+
+  export type AssignmentTargetUncheckedUpdateWithoutAssignmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AssignmentTargetUncheckedUpdateManyWithoutAssignmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SubmissionUpdateWithoutAssignmentInput = {
@@ -67827,6 +71166,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
@@ -67857,6 +71197,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput

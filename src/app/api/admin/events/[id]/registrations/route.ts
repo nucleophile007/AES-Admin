@@ -1,6 +1,7 @@
 // src/app/api/admin/events/[id]/registrations/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { auth } from "@/auth"
+import { auth } from '@/auth'
+import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // GET /api/admin/events/:id/registrations - Get all registrations for an event
@@ -10,7 +11,7 @@ export async function GET(
 ) {
   try {
     const session = await auth()
-    if (!session?.user?.email) {
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 

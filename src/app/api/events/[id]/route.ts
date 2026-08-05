@@ -9,7 +9,6 @@ export async function GET(
 ) {
   try {
     const { id } = await params
-
     const event = await prisma.generalEvent.findUnique({
       where: {
         id: parseInt(id),

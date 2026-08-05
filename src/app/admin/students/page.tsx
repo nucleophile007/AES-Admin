@@ -1,28 +1,24 @@
 "use client"
 
-import { useDeferredValue, useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Search, GraduationCap, Filter, CheckCircle, Loader2, X, Plus, Mail } from "lucide-react"
-import TablePagination from "@/components/ui/table-pagination"
+import { Search, GraduationCap, Filter, CheckCircle, Loader2, X, Plus, Mail, Pencil, Trash2 } from "lucide-react"
+import { toast } from "sonner"
 
 interface Student {
   id: number
   name: string
   email: string
   grade: string
+  graduationYear: number | null
   schoolName: string
   parentName: string
   parentEmail: string
   parentPhone: string
   program: string
   isActivated: boolean
-  parentAccount?: {
-    id: number
-    email: string
-    isActivated: boolean
-  } | null
   createdAt: string
   updatedAt: string
 }
@@ -33,18 +29,16 @@ const PROGRAM_OPTIONS = [
   "MATH Competitions",
   "Research",
 ] as const
-const PAGE_SIZE = 50
 
 export default function StudentsPage() {
   const { data: session, status } = useSession()
   const router = useRouter()
   
   const [data, setData] = useState<Student[]>([])
+  const [filteredData, setFilteredData] = useState<Student[]>([])
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState("")
-  const deferredSearchTerm = useDeferredValue(searchTerm)
   const [selectedProgram, setSelectedProgram] = useState("all")
-  const [currentPage, setCurrentPage] = useState(1)
   const [actionLoading, setActionLoading] = useState<Record<string, boolean>>({})
 
   // Form states for new student
@@ -53,6 +47,7 @@ export default function StudentsPage() {
     name: "",
     email: "",
     grade: "",
+    graduationYear: "",
     schoolName: "",
     parentName: "",
     parentEmail: "",
@@ -76,41 +71,23 @@ export default function StudentsPage() {
   })
   const [enrollmentLoading, setEnrollmentLoading] = useState(false)
   const [enrollmentError, setEnrollmentError] = useState<string | null>(null)
-  const normalizedSearchTerm = useMemo(
-    () => deferredSearchTerm.trim().toLowerCase(),
-    [deferredSearchTerm],
-  )
-  const programs = useMemo(
-    () => Array.from(new Set(data.map((student) => student.program))),
-    [data],
-  )
-  const filteredData = useMemo(() => {
-    let filtered = data
 
-    if (normalizedSearchTerm) {
-      filtered = filtered.filter(
-        (student) =>
-          student.name.toLowerCase().includes(normalizedSearchTerm) ||
-          student.email.toLowerCase().includes(normalizedSearchTerm) ||
-          student.parentName.toLowerCase().includes(normalizedSearchTerm) ||
-          student.schoolName.toLowerCase().includes(normalizedSearchTerm),
-      )
-    }
-
-    if (selectedProgram !== "all") {
-      filtered = filtered.filter((student) => student.program === selectedProgram)
-    }
-
-    return filtered
-  }, [data, normalizedSearchTerm, selectedProgram])
-  const totalPages = useMemo(
-    () => Math.max(1, Math.ceil(filteredData.length / PAGE_SIZE)),
-    [filteredData.length],
-  )
-  const paginatedData = useMemo(() => {
-    const start = (currentPage - 1) * PAGE_SIZE
-    return filteredData.slice(start, start + PAGE_SIZE)
-  }, [currentPage, filteredData])
+  // Edit form states for existing students
+  const [showEditForm, setShowEditForm] = useState(false)
+  const [selectedStudentForEdit, setSelectedStudentForEdit] = useState<Student | null>(null)
+  const [editData, setEditData] = useState({
+    name: "",
+    email: "",
+    grade: "",
+    graduationYear: "",
+    schoolName: "",
+    parentName: "",
+    parentEmail: "",
+    parentPhone: "",
+    program: ""
+  })
+  const [editLoading, setEditLoading] = useState(false)
+  const [editError, setEditError] = useState<string | null>(null)
 
   // Check admin access and redirect if needed
   useEffect(() => {
@@ -141,16 +118,6 @@ export default function StudentsPage() {
     fetchStudents()
     fetchTeachers()
   }, [session, status])
-
-  useEffect(() => {
-    setCurrentPage(1)
-  }, [searchTerm, selectedProgram])
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages)
-    }
-  }, [currentPage, totalPages])
 
   const fetchStudents = async () => {
     setLoading(true)
@@ -187,6 +154,28 @@ export default function StudentsPage() {
     }
   }
 
+  useEffect(() => {
+    let filtered = data
+    
+    if (searchTerm) {
+      filtered = filtered.filter(
+        (student) =>
+          student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          student.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          student.parentName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          student.schoolName.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    }
+
+    if (selectedProgram !== "all") {
+      filtered = filtered.filter((student) => 
+        student.program === selectedProgram
+      )
+    }
+
+    setFilteredData(filtered)
+  }, [searchTerm, selectedProgram, data])
+
   const sendActivationEmail = async (id: number, email: string) => {
     setActionLoading(prev => ({ ...prev, [`activate-${id}`]: true }))
     
@@ -214,33 +203,6 @@ export default function StudentsPage() {
     }
   }
 
-  const sendParentActivationEmail = async (student: Student) => {
-    setActionLoading(prev => ({ ...prev, [`activate-parent-${student.id}`]: true }))
-
-    try {
-      const res = await fetch(`/api/admin/students/${student.id}/send-parent-activation`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (!res.ok) {
-        const errorData = await res.json()
-        throw new Error(errorData.error || errorData.message || 'Failed to send parent activation email')
-      }
-
-      const result = await res.json()
-      alert(result.message || 'Parent activation email sent successfully')
-      await fetchStudents()
-    } catch (e: any) {
-      console.error(e)
-      alert(e.message)
-    } finally {
-      setActionLoading(prev => ({ ...prev, [`activate-parent-${student.id}`]: false }))
-    }
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setFormLoading(true)
@@ -257,12 +219,17 @@ export default function StudentsPage() {
     }
     
     try {
+      const payload = {
+        ...formData,
+        graduationYear: formData.graduationYear.trim() ? Number(formData.graduationYear) : null,
+      }
+
       const res = await fetch("/api/admin/students", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       })
       
       if (!res.ok) {
@@ -274,14 +241,12 @@ export default function StudentsPage() {
       const newStudent = await res.json()
       
       // Add to our data and reset form
-      setData(prev => [{
-        ...newStudent.student,
-        parentAccount: newStudent.parentAccount ?? null
-      }, ...prev])
+      setData(prev => [newStudent.student, ...prev])
       setFormData({
         name: "",
         email: "",
         grade: "",
+        graduationYear: "",
         schoolName: "",
         parentName: "",
         parentEmail: "",
@@ -370,6 +335,154 @@ export default function StudentsPage() {
     setShowEnrollmentForm(true)
   }
 
+  const openEditForm = (student: Student) => {
+    setSelectedStudentForEdit(student)
+    setEditData({
+      name: student.name,
+      email: student.email,
+      grade: student.grade,
+      graduationYear: student.graduationYear?.toString() ?? "",
+      schoolName: student.schoolName,
+      parentName: student.parentName,
+      parentEmail: student.parentEmail,
+      parentPhone: student.parentPhone,
+      program: student.program
+    })
+    setEditError(null)
+    setShowEditForm(true)
+  }
+
+  const closeEditForm = () => {
+    setShowEditForm(false)
+    setSelectedStudentForEdit(null)
+    setEditError(null)
+  }
+
+  const handleDeleteStudent = async (student: Student) => {
+    const confirmed = await new Promise<boolean>((resolve) => {
+      let settled = false
+
+      const finish = (value: boolean) => {
+        if (!settled) {
+          settled = true
+          resolve(value)
+        }
+      }
+
+      toast(
+        `Delete ${student.name}? This action cannot be undone.`,
+        {
+          description:
+            "Linked student records will be removed. Parent account is deleted only if no other students are linked.",
+          duration: 12000,
+          action: {
+            label: "Delete",
+            onClick: () => finish(true),
+          },
+          cancel: {
+            label: "Cancel",
+            onClick: () => finish(false),
+          },
+          onDismiss: () => finish(false),
+        }
+      )
+    })
+
+    if (!confirmed) {
+      return
+    }
+
+    const loadingKey = `delete-${student.id}`
+    setActionLoading(prev => ({ ...prev, [loadingKey]: true }))
+
+    try {
+      const res = await fetch(`/api/admin/students/${student.id}`, {
+        method: 'DELETE',
+      })
+
+      if (!res.ok) {
+        const error = await res.json()
+        throw new Error(error.error || 'Failed to delete student')
+      }
+
+      const result = await res.json()
+      setData(prev => prev.filter(item => item.id !== student.id))
+
+      if (result.deletedParentAccount) {
+        toast.success(`Student deleted. Linked parent account #${result.parentAccountId} was also deleted.`)
+      } else {
+        toast.success("Student deleted successfully.")
+      }
+    } catch (e: any) {
+      console.error(e)
+      toast.error(e.message || "Failed to delete student")
+    } finally {
+      setActionLoading(prev => ({ ...prev, [loadingKey]: false }))
+    }
+  }
+
+  const handleEditSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!selectedStudentForEdit) {
+      setEditError("No student selected")
+      return
+    }
+
+    if (
+      !editData.name.trim() ||
+      !editData.email.trim() ||
+      !editData.grade.trim() ||
+      !editData.schoolName.trim() ||
+      !editData.parentName.trim() ||
+      !editData.parentEmail.trim() ||
+      !editData.parentPhone.trim() ||
+      !editData.program.trim()
+    ) {
+      setEditError("All fields are required")
+      return
+    }
+
+    setEditLoading(true)
+    setEditError(null)
+
+    try {
+      const payload = {
+        ...editData,
+        graduationYear: editData.graduationYear.trim() ? Number(editData.graduationYear) : null,
+      }
+
+      const res = await fetch(`/api/admin/students/${selectedStudentForEdit.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (!res.ok) {
+        const error = await res.json()
+        throw new Error(error.error || error.message || 'Failed to update student')
+      }
+
+      const json = await res.json()
+      const updatedStudent: Student = json.student
+
+      setData(prev => prev.map(student => (
+        student.id === updatedStudent.id ? updatedStudent : student
+      )))
+
+      toast.success("Student updated successfully.")
+      closeEditForm()
+    } catch (e: any) {
+      console.error(e)
+      toast.error(e.message || "Failed to update student")
+      setEditError(e.message)
+    } finally {
+      setEditLoading(false)
+    }
+  }
+
   // Check admin access before rendering dashboard
   if (status === 'loading') {
     return <div className="min-h-screen flex items-center justify-center">Loading...</div>
@@ -384,6 +497,9 @@ export default function StudentsPage() {
   if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
     return null // Will redirect to unauthorized via useEffect
   }
+
+  // Get all unique programs from student data
+  const programs = Array.from(new Set(data.map(student => student.program)))
 
   if (loading) {
     return (
@@ -489,6 +605,23 @@ export default function StudentsPage() {
                     value={formData.grade}
                     onChange={(e) => setFormData(prev => ({ ...prev, grade: e.target.value }))}
                     required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="graduationYear" className="block text-sm font-medium text-gray-700 mb-1">
+                    Graduation Year
+                  </label>
+                  <input
+                    type="number"
+                    id="graduationYear"
+                    min={2000}
+                    max={2100}
+                    step={1}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter graduation year"
+                    value={formData.graduationYear}
+                    onChange={(e) => setFormData(prev => ({ ...prev, graduationYear: e.target.value }))}
                   />
                 </div>
 
@@ -749,6 +882,201 @@ export default function StudentsPage() {
         </div>
       )}
 
+      {/* Edit Student Modal */}
+      {showEditForm && selectedStudentForEdit && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+          onClick={(e) => {
+            if (e.target === e.currentTarget && !editLoading) {
+              closeEditForm()
+            }
+          }}
+        >
+          <div
+            className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 my-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Edit Student</h2>
+              <button
+                type="button"
+                onClick={closeEditForm}
+                className="text-gray-400 hover:text-gray-600"
+                disabled={editLoading}
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleEditSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label htmlFor="edit-name" className="block text-sm font-medium text-gray-700 mb-1">
+                    Student Name
+                  </label>
+                  <input
+                    type="text"
+                    id="edit-name"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={editData.name}
+                    onChange={(e) => setEditData(prev => ({ ...prev, name: e.target.value }))}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="edit-email" className="block text-sm font-medium text-gray-700 mb-1">
+                    Student Email
+                  </label>
+                  <input
+                    type="email"
+                    id="edit-email"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={editData.email}
+                    onChange={(e) => setEditData(prev => ({ ...prev, email: e.target.value }))}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="edit-grade" className="block text-sm font-medium text-gray-700 mb-1">
+                    Grade
+                  </label>
+                  <input
+                    type="text"
+                    id="edit-grade"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={editData.grade}
+                    onChange={(e) => setEditData(prev => ({ ...prev, grade: e.target.value }))}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="edit-graduation-year" className="block text-sm font-medium text-gray-700 mb-1">
+                    Graduation Year
+                  </label>
+                  <input
+                    type="number"
+                    id="edit-graduation-year"
+                    min={2000}
+                    max={2100}
+                    step={1}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={editData.graduationYear}
+                    onChange={(e) => setEditData(prev => ({ ...prev, graduationYear: e.target.value }))}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="edit-school" className="block text-sm font-medium text-gray-700 mb-1">
+                    School Name
+                  </label>
+                  <input
+                    type="text"
+                    id="edit-school"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    value={editData.schoolName}
+                    onChange={(e) => setEditData(prev => ({ ...prev, schoolName: e.target.value }))}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="edit-program" className="block text-sm font-medium text-gray-700 mb-1">
+                    Program
+                  </label>
+                  <select
+                    id="edit-program"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    value={editData.program}
+                    onChange={(e) => setEditData(prev => ({ ...prev, program: e.target.value }))}
+                    required
+                  >
+                    <option value="">Select a program...</option>
+                    {PROGRAM_OPTIONS.map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="md:col-span-2">
+                  <h3 className="text-md font-medium text-gray-900 mb-2">Parent Information</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <label htmlFor="edit-parent-name" className="block text-sm font-medium text-gray-700 mb-1">
+                        Parent Name
+                      </label>
+                      <input
+                        type="text"
+                        id="edit-parent-name"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        value={editData.parentName}
+                        onChange={(e) => setEditData(prev => ({ ...prev, parentName: e.target.value }))}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="edit-parent-email" className="block text-sm font-medium text-gray-700 mb-1">
+                        Parent Email
+                      </label>
+                      <input
+                        type="email"
+                        id="edit-parent-email"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        value={editData.parentEmail}
+                        onChange={(e) => setEditData(prev => ({ ...prev, parentEmail: e.target.value }))}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="edit-parent-phone" className="block text-sm font-medium text-gray-700 mb-1">
+                        Parent Phone
+                      </label>
+                      <input
+                        type="tel"
+                        id="edit-parent-phone"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        value={editData.parentPhone}
+                        onChange={(e) => setEditData(prev => ({ ...prev, parentPhone: e.target.value }))}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {editError && (
+                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
+                  {editError}
+                </div>
+              )}
+
+              <div className="flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={closeEditForm}
+                  disabled={editLoading}
+                  className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 disabled:opacity-60"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={editLoading}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-300"
+                >
+                  {editLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+                  Update Student
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Filters */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -814,12 +1142,14 @@ export default function StudentsPage() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {paginatedData.map((student, idx) => (
+                  {filteredData.map((student, idx) => (
                     <tr key={student.id} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                       <td className="px-4 py-4">
                         <div className="font-medium text-gray-900">{student.name}</div>
                         <div className="text-xs text-gray-600">
-                          Grade {student.grade} • {student.schoolName}
+                          Grade {student.grade}
+                          {student.graduationYear ? ` • Class of ${student.graduationYear}` : ""}
+                          {` • ${student.schoolName}`}
                         </div>
                       </td>
                       <td className="px-4 py-4">
@@ -836,29 +1166,16 @@ export default function StudentsPage() {
                         </span>
                       </td>
                       <td className="px-4 py-4">
-                        <div className="flex flex-col gap-2">
-                          {student.isActivated ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium w-fit">
-                              <CheckCircle className="w-3 h-3" />
-                              Student Activated
-                            </span>
-                          ) : (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium w-fit">
-                              Student Pending
-                            </span>
-                          )}
-
-                          {student.parentAccount?.isActivated ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium w-fit">
-                              <CheckCircle className="w-3 h-3" />
-                              Parent Activated
-                            </span>
-                          ) : (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium w-fit">
-                              Parent Pending
-                            </span>
-                          )}
-                        </div>
+                        {student.isActivated ? (
+                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                            <CheckCircle className="w-3 h-3" />
+                            Activated
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">
+                            Pending Activation
+                          </span>
+                        )}
                       </td>
                       <td className="px-4 py-4">
                         <div className="flex items-center gap-2 flex-wrap">
@@ -873,27 +1190,20 @@ export default function StudentsPage() {
                               ) : (
                                 <div className="flex items-center gap-1">
                                   <Mail className="w-3 h-3" />
-                                  Send Student Activation
+                                  Send Activation
                                 </div>
                               )}
                             </button>
                           )}
-                          {!student.parentAccount?.isActivated && (
-                            <button
-                              onClick={() => sendParentActivationEmail(student)}
-                              disabled={actionLoading[`activate-parent-${student.id}`]}
-                              className="px-3 py-1 rounded-lg text-xs font-medium bg-amber-100 text-amber-800 hover:bg-amber-200"
-                            >
-                              {actionLoading[`activate-parent-${student.id}`] ? (
-                                <Loader2 className="w-3 h-3 animate-spin" />
-                              ) : (
-                                <div className="flex items-center gap-1">
-                                  <Mail className="w-3 h-3" />
-                                  Send Parent Activation
-                                </div>
-                              )}
-                            </button>
-                          )}
+                          <button
+                            onClick={() => openEditForm(student)}
+                            className="px-3 py-1 rounded-lg text-xs font-medium bg-amber-100 text-amber-800 hover:bg-amber-200"
+                          >
+                            <div className="flex items-center gap-1">
+                              <Pencil className="w-3 h-3" />
+                              Edit
+                            </div>
+                          </button>
                           <button
                             onClick={() => openEnrollmentForm(student)}
                             className="px-3 py-1 rounded-lg text-xs font-medium bg-purple-100 text-purple-800 hover:bg-purple-200"
@@ -903,6 +1213,20 @@ export default function StudentsPage() {
                               Add Enrollment
                             </div>
                           </button>
+                          <button
+                            onClick={() => handleDeleteStudent(student)}
+                            disabled={actionLoading[`delete-${student.id}`]}
+                            className="px-3 py-1 rounded-lg text-xs font-medium bg-red-100 text-red-800 hover:bg-red-200 disabled:opacity-60"
+                          >
+                            {actionLoading[`delete-${student.id}`] ? (
+                              <Loader2 className="w-3 h-3 animate-spin" />
+                            ) : (
+                              <div className="flex items-center gap-1">
+                                <Trash2 className="w-3 h-3" />
+                                Delete
+                              </div>
+                            )}
+                          </button>
                         </div>
                       </td>
                     </tr>
@@ -911,13 +1235,6 @@ export default function StudentsPage() {
               </table>
             </div>
           )}
-          <TablePagination
-            currentPage={currentPage}
-            pageSize={PAGE_SIZE}
-            totalItems={filteredData.length}
-            itemLabel="students"
-            onPageChange={setCurrentPage}
-          />
         </div>
       </div>
     </div>

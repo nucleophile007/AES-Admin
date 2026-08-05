@@ -2,11 +2,11 @@ import NextAuth from "next-auth"
 import Google from "next-auth/providers/google"
 import { allowedEmails } from "./lib/adminConfig"
 
-export const { handlers, auth, signIn, signOut } = NextAuth({
+const authConfig = {
     providers: [
         Google({
-            clientId: process.env.GOOGLE_CLIENT_ID!,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            clientId: process.env.GOOGLE_CLIENT_ID || '',
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
         }),
     ],
     session: {
@@ -43,4 +43,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             return session
         },
     },
-})
+}
+
+export const { handlers, auth, signIn, signOut } = NextAuth(authConfig)

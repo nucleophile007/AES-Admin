@@ -1,6 +1,7 @@
 // src/app/api/admin/events/[id]/registrations/[regId]/check-in/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { auth } from "@/auth"
+import { auth } from '@/auth'
+import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // POST /api/admin/events/:id/registrations/:regId/check-in - Check-in attendee
@@ -10,11 +11,11 @@ export async function POST(
 ) {
   try {
     const session = await auth()
-    if (!session?.user?.email) {
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { regId } = await params
+    const { id, regId } = await params
 
     const registration = await prisma.eventRegistration.update({
       where: { id: parseInt(regId) },

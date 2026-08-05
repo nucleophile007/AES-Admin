@@ -124,7 +124,7 @@
 //               </button>
 //             </form>
 
-//             {research.pdfFilename && (
+//             {research.pdfPath && (
 //               <p className="text-xs text-green-600 mt-3">
 //                 ✔ PDF already uploaded
 //               </p>
@@ -150,10 +150,11 @@ import { auth } from "@/auth"
 import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 import Link from "next/link"
-import { Upload, FileText, ArrowLeft, Images } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
+import UploadForms from "./UploadForms"
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export default async function ResearchUploadPage({ params }: Props) {
@@ -167,9 +168,12 @@ export default async function ResearchUploadPage({ params }: Props) {
     redirect("/auth/signin")
   }
 
+  // Await params
+  const { id } = await params
+
   // 🔍 Fetch research
   const research = await prisma.research.findUnique({
-    where: { id: params.id },
+    where: { id },
   })
 
   if (!research) {
@@ -177,119 +181,76 @@ export default async function ResearchUploadPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6 md:p-8">
+      <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="mb-8">
           <Link
             href="/admin"
-            className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
+            className="inline-flex items-center gap-2 text-sm px-4 py-2.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
-            Dashboard
+            Back to Dashboard
           </Link>
 
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">
+          <div className="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl p-8 text-white shadow-xl">
+            <h1 className="text-3xl font-bold mb-2">
               Upload Research Content
             </h1>
-            <p className="text-sm text-gray-600">
+            <p className="text-indigo-100 text-base">
               {research.title}
-              {research.author && ` • ${research.author}`}
             </p>
+            <div className="flex flex-wrap gap-3 mt-4 text-sm">
+              {research.author && (
+                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                  {research.author}
+                </span>
+              )}
+              {research.grade && (
+                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                  Grade {research.grade}
+                </span>
+              )}
+              {research.category && (
+                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                  {research.category}
+                </span>
+              )}
+              {research.domain && (
+                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
+                  {research.domain}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Upload Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* SLIDE IMAGE UPLOAD */}
-          <div className="bg-white rounded-xl border shadow-sm p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <Images className="w-6 h-6 text-blue-600" />
-              <h3 className="text-lg font-semibold text-gray-900">
-                Upload Slide Images
-              </h3>
-            </div>
-
-            <p className="text-sm text-gray-600 mb-4">
-              Upload slide images (PNG or JPG).
-              <br />
-              <span className="font-medium">
-                Order matters — images are saved in upload order.
-              </span>
-            </p>
-
-            <form
-              action={`/api/admin/research/${research.id}/upload-slides`}
-              method="POST"
-              encType="multipart/form-data"
-            >
-              <input
-                type="file"
-                name="files"
-                accept="image/png,image/jpeg"
-                multiple
-                required
-                className="block w-full text-sm mb-4"
-              />
-
-              <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                Upload Slides
-              </button>
-            </form>
-
-            <p className="text-xs text-gray-500 mt-3">
-              Uploaded slides are stored in secure storage.
-            </p>
-          </div>
-
-          {/* PDF Upload */}
-          <div className="bg-white rounded-xl border shadow-sm p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <FileText className="w-6 h-6 text-yellow-600" />
-              <h3 className="text-lg font-semibold text-gray-900">
-                Upload Technical Report (PDF)
-              </h3>
-            </div>
-
-            <p className="text-sm text-gray-600 mb-4">
-              Optional secure technical document (PDF).
-            </p>
-
-            <form
-              action={`/api/admin/research/${research.id}/upload-pdf`}
-              method="POST"
-              encType="multipart/form-data"
-            >
-              <input
-                type="file"
-                name="file"
-                accept=".pdf"
-                className="block w-full text-sm mb-4"
-              />
-
-              <button className="w-full px-4 py-2 bg-yellow-500 text-black rounded-lg hover:bg-yellow-400">
-                Upload PDF
-              </button>
-            </form>
-
-            {research.pdfFilename && (
-              <p className="text-xs text-green-600 mt-3">
-                ✔ PDF already uploaded
-              </p>
-            )}
-          </div>
-        </div>
+        {/* Upload Forms */}
+        <UploadForms
+          researchId={research.id}
+          presentationPdfFilename={research.presentationPdfFilename}
+          pdfFilename={research.pdfFilename}
+          extractionStatus={research.extractionStatus}
+          extractedAt={research.extractedAt}
+          sectionsCount={
+            typeof research.extractedContent === 'object' &&
+            research.extractedContent !== null &&
+            'sections' in research.extractedContent &&
+            Array.isArray(research.extractedContent.sections)
+              ? research.extractedContent.sections.length
+              : 0
+          }
+        />
 
         {/* Footer Note */}
-        <div className="mt-8 text-sm text-gray-500">
+        {/* <div className="mt-8 text-sm text-gray-500">
           Recommended workflow:
           <ul className="list-disc ml-6 mt-2 space-y-1">
             <li>Export PPT → images (PNG/JPG)</li>
             <li>Upload images in correct order</li>
             <li>Slides are auto-watermarked & secured</li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   )

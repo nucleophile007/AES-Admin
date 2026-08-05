@@ -1,12 +1,13 @@
 // src/app/api/admin/events/upload-image/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { auth } from "@/auth"
+import { auth } from '@/auth'
+import { allowedEmails } from "@/lib/adminConfig"
 import { uploadToR2 } from "@/lib/r2Upload"
 
 export async function POST(req: NextRequest) {
   try {
     const session = await auth()
-    if (!session?.user?.email) {
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 

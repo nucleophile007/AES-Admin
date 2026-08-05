@@ -3,6 +3,65 @@ import prisma from "@/lib/prisma"
 import { checkAdminAuth } from "@/lib/adminAuth"
 import slugify from "slugify"
 
+export async function GET() {
+  // 🔐 Admin auth
+  const authResult = await checkAdminAuth()
+  if (!authResult.success) {
+    return NextResponse.json(
+      { error: authResult.error },
+      { status: authResult.statusCode || 403 }
+    )
+  }
+
+  try {
+    const research = await prisma.research.findMany({
+      include: {
+        _count: {
+          select: {
+            AccessRequest: true,
+          },
+        },
+        student: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    })
+
+    const pendingCounts = await prisma.accessRequest.groupBy({
+      by: ["researchId"],
+      where: {
+        approved: false,
+      },
+      _count: {
+        _all: true,
+      },
+    })
+
+    const pendingCountByResearchId = new Map(
+      pendingCounts.map((item) => [item.researchId, item._count._all])
+    )
+
+    const researchWithPendingCounts = research.map((item) => ({
+      ...item,
+      pendingAccessRequestCount: pendingCountByResearchId.get(item.id) || 0,
+    }))
+
+    return NextResponse.json({ research: researchWithPendingCounts }, { status: 200 })
+  } catch (err) {
+    console.error("List research error:", err)
+    return NextResponse.json(
+      { error: "Failed to fetch research" },
+      { status: 500 }
+    )
+  }
+}
+
 export async function POST(req: NextRequest) {
   // 🔐 Admin auth
   const authResult = await checkAdminAuth()
@@ -15,13 +74,50 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json()
-    const { title, description, author } = body
+    const { title, description, author, grade, school, category, domain, createdAt, studentId } = body
 
     if (!title) {
       return NextResponse.json(
         { error: "Title is required" },
         { status: 400 }
       )
+    }
+
+    if (!createdAt) {
+      return NextResponse.json(
+        { error: "Research date is required" },
+        { status: 400 }
+      )
+    }
+
+    // Validate createdAt is a valid date
+    const parsedDate = new Date(createdAt)
+    if (isNaN(parsedDate.getTime())) {
+      return NextResponse.json(
+        { error: "Invalid date format" },
+        { status: 400 }
+      )
+    }
+
+    // Validate category if provided
+    if (category && !["IGNITE", "ELEVATE", "TRANSFORM"].includes(category)) {
+      return NextResponse.json(
+        { error: "Invalid category. Must be IGNITE, ELEVATE, or TRANSFORM" },
+        { status: 400 }
+      )
+    }
+
+    // Validate studentId if provided
+    if (studentId) {
+      const student = await prisma.student.findUnique({
+        where: { id: parseInt(studentId) },
+      })
+      if (!student) {
+        return NextResponse.json(
+          { error: "Student not found" },
+          { status: 404 }
+        )
+      }
     }
 
     const slug = slugify(title, {
@@ -47,9 +143,14 @@ export async function POST(req: NextRequest) {
         id: crypto.randomUUID(),
         title,
         slug,
-        createdAt: new Date(),
         description,
         author,
+        grade: grade || null,
+        school: school || null,
+        category: category || null,
+        domain: domain || null,
+        createdAt: parsedDate,
+        studentId: studentId ? parseInt(studentId) : null,
         pdfFilename: null,
       },
     })

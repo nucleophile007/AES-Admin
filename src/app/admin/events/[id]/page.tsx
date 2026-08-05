@@ -49,7 +49,7 @@ interface Event {
   maxParticipants: number | null
   registrationFee: number
   requiresPayment: boolean
-  EventRegistration: Registration[]
+  registrations: Registration[]
 }
 
 export default function EventDetailPage() {
@@ -156,16 +156,16 @@ export default function EventDetailPage() {
   }
 
   const stats = {
-    total: event.EventRegistration.length,
-    confirmed: event.EventRegistration.filter(
+    total: event.registrations.length,
+    confirmed: event.registrations.filter(
       (r) => r.registrationStatus === "confirmed"
     ).length,
-    pending: event.EventRegistration.filter(
+    pending: event.registrations.filter(
       (r) => r.registrationStatus === "pending"
     ).length,
-    attended: event.EventRegistration.filter((r) => r.attendanceConfirmed)
+    attended: event.registrations.filter((r) => r.attendanceConfirmed)
       .length,
-    totalPayments: event.EventRegistration.filter(
+    totalPayments: event.registrations.filter(
       (r) => r.paymentStatus === "completed"
     ).reduce((sum, r) => sum + (r.paymentAmount || 0), 0),
   }
@@ -285,7 +285,7 @@ export default function EventDetailPage() {
         <div className="p-4 border-b">
           <h2 className="text-xl font-semibold">Registrations</h2>
         </div>
-        {event.EventRegistration.length === 0 ? (
+        {event.registrations.length === 0 ? (
           <div className="p-8 text-center text-gray-500">
             No registrations yet
           </div>
@@ -315,7 +315,7 @@ export default function EventDetailPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                {event.EventRegistration.map((reg) => (
+                {event.registrations.map((reg) => (
                   <tr key={reg.id} className="hover:bg-gray-50">
                     <td className="px-4 py-3">
                       <div className="font-medium">{reg.studentName}</div>

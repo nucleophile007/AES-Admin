@@ -1,6 +1,7 @@
 // src/app/api/admin/events/[id]/registrations/export/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { auth } from "@/auth"
+import { auth } from '@/auth'
+import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // GET /api/admin/events/:id/registrations/export - Export registrations
@@ -10,12 +11,11 @@ export async function GET(
 ) {
   try {
     const session = await auth()
-    if (!session?.user?.email) {
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     const { id } = await params
-
     const { searchParams } = new URL(req.url)
     const format = searchParams.get("format") || "json"
 

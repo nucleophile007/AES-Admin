@@ -1,15 +1,12 @@
-import { ImageResponse } from 'next/og';
- 
-// Route segment config
-export const runtime = 'edge';
- 
+import { ImageResponse } from 'next/og'
+
 // Image metadata
 export const size = {
   width: 32,
   height: 32,
-};
-export const contentType = 'image/png';
- 
+}
+export const contentType = 'image/png'
+
 // Image generation
 export default function Icon() {
   return new ImageResponse(
@@ -24,7 +21,7 @@ export default function Icon() {
         justifyContent: 'center',
         color: 'white',
         backgroundColor: '#3B82F6',
-        borderRadius: '50%'
+        borderRadius: '50%',
       }}
     >
       A
@@ -33,5 +30,5 @@ export default function Icon() {
     {
       ...size,
     }
-  );
+  )
 }

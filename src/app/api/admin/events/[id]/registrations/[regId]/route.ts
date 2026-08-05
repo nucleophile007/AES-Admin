@@ -1,6 +1,7 @@
 // src/app/api/admin/events/[id]/registrations/[regId]/route.ts
 import { NextRequest, NextResponse } from "next/server"
-import { auth } from "@/auth"
+import { auth } from '@/auth'
+import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
 // PUT /api/admin/events/:id/registrations/:regId - Update registration
@@ -10,12 +11,11 @@ export async function PUT(
 ) {
   try {
     const session = await auth()
-    if (!session?.user?.email) {
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { regId } = await params
-
+    const { id, regId } = await params
     const body = await req.json()
 
     const registration = await prisma.eventRegistration.update({
@@ -56,11 +56,11 @@ export async function DELETE(
 ) {
   try {
     const session = await auth()
-    if (!session?.user?.email) {
+    if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { regId } = await params
+    const { id, regId } = await params
 
     await prisma.eventRegistration.delete({
       where: { id: parseInt(regId) },

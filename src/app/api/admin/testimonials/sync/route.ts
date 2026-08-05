@@ -55,6 +55,19 @@ async function fetchSheetData() {
   }
 
   const headers = rows[0].map(h => h.toString().trim())
+  
+  // Log available columns for debugging
+  console.log('\n📋 Available columns in Google Sheet:')
+  headers.forEach((h, i) => {
+    console.log(`  ${i + 1}. "${h}"`)
+  })
+  
+  // Check if programs column exists
+  const hasProgramsColumn = headers.some(h => 
+    h.toLowerCase().includes('program')
+  )
+  console.log(`\n✅ Programs column found: ${hasProgramsColumn}`)
+  
   const dataRows = rows.slice(1)
 
   return dataRows.map((row) => {
@@ -80,12 +93,29 @@ function mapSheetRowToTestimonial(row: SheetRow) {
     ? parseNameGradeSchool(row['Name, Grade and School'])
     : { name: null, grade: null, school: null }
 
-  const programsField = row['Program(s) enrolled (Select all that apply)']
-  const programs = programsField 
-    ? (typeof programsField === 'string' 
-        ? programsField.split(',').map(p => p.trim()) 
-        : [programsField.toString()])
-    : []
+  // Parse programs - handle various formats
+  const programsField = row['Program(s) enrolled']
+  
+  let programs: string[] = []
+  
+  if (programsField) {
+    const trimmed = programsField.toString().trim()
+    if (trimmed) {
+      // Split by comma and clean up each program name
+      programs = trimmed
+        .split(',')
+        .map((p: string) => p.trim())
+        .filter((p: string) => p.length > 0) // Remove empty strings
+    }
+  }
+  
+  // Log for debugging (only for first few rows)
+  if (!row._logged) {
+    console.log(`📝 Processing: ${nameGradeSchool.name}`)
+    console.log(`   Programs field: "${programsField}"`)
+    console.log(`   Parsed programs: [${programs.join(', ')}]`)
+    row._logged = true
+  }
 
   let ratingField = row['Did the tutor/mentor provide clarity, motivation, or customized support (1 - being not well  ;; 5 - exceptionally well) ']
   if (!ratingField) {
@@ -103,7 +133,8 @@ function mapSheetRowToTestimonial(row: SheetRow) {
     programs,
     rating,
     videoLink: null,
-    beforeAfterExpectations: row['Before : What were your expectations when you first joined ACHARYA with respect to specific goals, grades, confidence and programs ?\n\nAfter: What changes did you notice after joining and how has ACHARYA made a difference with your (your child\'s future plans) ?'] || null,
+    beforeExpectations: row['Before : What were your expectations when you first joined ACHARYA with respect to specific goals, grades, confidence and programs ?'] || null,
+    afterChanges: row['After: What changes did you notice after joining and how has ACHARYA made a difference with your (your child\'s future plans) ?'] || null,
     experienceDescription: null,
     successStory: row['Please share a specific success story or milestone achieved with the help of ACHARYA.'] || null,
     consentToFeature: row['May we feature your testimonial on our website and other marketing materials (flyers, posters, social media)? '] === 'Yes',
@@ -149,7 +180,8 @@ export async function POST() {
       try {
         const testimonialData = mapSheetRowToTestimonial(row)
 
-        if (!testimonialData.content) {
+        // Skip if no student name or content
+        if (!testimonialData.studentName || !testimonialData.content) {
           skipCount++
           continue
         }

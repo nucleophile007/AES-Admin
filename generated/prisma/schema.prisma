@@ -78,6 +78,7 @@ model Student {
   parentAccountId     Int?
   graduationYear      Int?
   assignedAssignments Assignment[]         @relation("AssignedAssignments")
+  AssignmentTarget    AssignmentTarget[]
   Blog                Blog[]
   classSchedules      ClassSchedule[]
   enrollments         Enrollment[]
@@ -148,6 +149,7 @@ model Assignment {
   targetStudent       Student?             @relation("AssignedAssignments", fields: [targetStudentId], references: [id])
   teacher             Teacher              @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   resources           AssignmentResource[]
+  AssignmentTarget    AssignmentTarget[]
   submissions         Submission[]
 }
 
@@ -385,7 +387,7 @@ model Testimonial {
   isApproved            Boolean   @default(false)
   isVisible             Boolean   @default(true)
   createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
+  updatedAt             DateTime
   videoLink             String?
   beforeAfterApproved   Boolean   @default(false)
   consentToFeature      Boolean   @default(false)
@@ -625,11 +627,11 @@ model GeneralEvent {
   requiresPayment        Boolean             @default(false)
   registrations          EventRegistration[]
 
-  @@index([eventDate])
-  @@index([status])
-  @@index([isPublished])
-  @@index([isFeatured])
   @@index([category])
+  @@index([eventDate])
+  @@index([isFeatured])
+  @@index([isPublished])
+  @@index([status])
 }
 
 model EventRegistration {
@@ -662,10 +664,10 @@ model EventRegistration {
 
   @@unique([eventId, studentEmail])
   @@index([eventId])
-  @@index([studentEmail])
   @@index([parentEmail])
-  @@index([registrationStatus])
   @@index([paymentStatus])
+  @@index([registrationStatus])
+  @@index([studentEmail])
 }
 
 model AccessRequest {
@@ -677,11 +679,11 @@ model AccessRequest {
   phone      String?
   reason     String?
   researchId String
-  research   Research @relation(fields: [researchId], references: [id])
+  Research   Research @relation(fields: [researchId], references: [id])
 }
 
 model Research {
-  id                      String          @id @default(cuid())
+  id                      String          @id
   title                   String
   slug                    String          @unique
   description             String?
@@ -700,8 +702,8 @@ model Research {
   studentId               Int?
   domain                  String?
   presentationPdfFilename String?
-  accessRequests          AccessRequest[]
-  Student                 Student?        @relation(fields: [studentId], references: [id])
+  AccessRequest           AccessRequest[]
+  student                 Student?        @relation(fields: [studentId], references: [id])
 }
 
 model Blog {
@@ -716,11 +718,38 @@ model Blog {
   isApproved       Boolean   @default(false)
   published        Boolean   @default(false)
   createdAt        DateTime  @default(now())
-  updatedAt        DateTime
+  updatedAt        DateTime  @updatedAt
   approvedAt       DateTime?
-  Student          Student?  @relation(fields: [studentId], references: [id])
+  student          Student?  @relation(fields: [studentId], references: [id])
 
   @@index([publicationYear, publicationMonth])
   @@index([published])
   @@index([studentId])
+}
+
+model AssignmentTarget {
+  id           Int        @id @default(autoincrement())
+  assignmentId Int
+  studentId    Int
+  createdAt    DateTime   @default(now())
+  Assignment   Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  Student      Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([assignmentId, studentId])
+  @@index([studentId])
+}
+
+model RefreshToken {
+  id        Int       @id @default(autoincrement())
+  tokenHash String    @unique
+  userId    Int
+  userRole  String
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+
+  @@index([expiresAt])
+  @@index([revokedAt])
+  @@index([userId, userRole])
 }

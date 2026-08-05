@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { CheckCircle, XCircle, User, Users, Calendar, Mail, Phone, School, GraduationCap, Eye, EyeOff, MessageSquareQuote, ChevronDown, ChevronUp, Trash2 } from 'lucide-react'
+import { CheckCircle, XCircle, User, Users, Calendar, Mail, Phone, School, GraduationCap, Eye, EyeOff, MessageSquareQuote, ChevronDown, ChevronUp, Trash2, Edit } from 'lucide-react'
 import Link from 'next/link'
 
 interface Student {
@@ -9,6 +9,7 @@ interface Student {
   name: string
   email: string
   grade: string
+  graduationYear?: number | null
   schoolName: string
   parentName: string
   parentEmail: string
@@ -31,7 +32,8 @@ interface Testimonial {
   school: string | null
   programs: string[]
   rating: number | null
-  beforeAfterExpectations: string | null
+  beforeExpectations: string | null
+  afterChanges: string | null
   successStory: string | null
   consentToFeature: boolean
   videoLink: string | null
@@ -53,6 +55,9 @@ export default function TestimonialsPage() {
   const [viewingContent, setViewingContent] = useState<{ title: string; content: string } | null>(null)
   const [syncing, setSyncing] = useState(false)
   const [syncMessage, setSyncMessage] = useState('')
+  const [editingTestimonial, setEditingTestimonial] = useState<Testimonial | null>(null)
+  const [editFormData, setEditFormData] = useState<any>({})
+  const [saving, setSaving] = useState(false)
 
   useEffect(() => {
     // Auto-sync on page load, then fetch testimonials
@@ -165,6 +170,82 @@ export default function TestimonialsPage() {
       ))
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to toggle section approval')
+    }
+  }
+
+  const openEditModal = (testimonial: Testimonial) => {
+    setEditingTestimonial(testimonial)
+    setEditFormData({
+      content: testimonial.content || '',
+      authorName: testimonial.authorName || '',
+      authorType: testimonial.authorType || 'student',
+      studentName: testimonial.studentName || '',
+      grade: testimonial.grade || '',
+      school: testimonial.school || '',
+      programs: testimonial.programs?.join(', ') || '',
+      rating: testimonial.rating || '',
+      beforeExpectations: testimonial.beforeExpectations || '',
+      afterChanges: testimonial.afterChanges || '',
+      successStory: testimonial.successStory || '',
+      videoLink: testimonial.videoLink || '',
+    })
+  }
+
+  const closeEditModal = () => {
+    setEditingTestimonial(null)
+    setEditFormData({})
+  }
+
+  const handleEditSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!editingTestimonial) return
+
+    try {
+      setSaving(true)
+      
+      // Process programs array
+      const programsArray = editFormData.programs
+        ? editFormData.programs.split(',').map((p: string) => p.trim()).filter(Boolean)
+        : []
+
+      // Build update payload
+      const updatePayload: any = {
+        testimonialId: editingTestimonial.id,
+        content: editFormData.content,
+        authorName: editFormData.authorName,
+        authorType: editFormData.authorType,
+        studentName: editFormData.studentName,
+        grade: editFormData.grade,
+        school: editFormData.school,
+        programs: programsArray,
+        rating: editFormData.rating ? parseInt(editFormData.rating) : null,
+        beforeExpectations: editFormData.beforeExpectations,
+        afterChanges: editFormData.afterChanges,
+        successStory: editFormData.successStory,
+        videoLink: editFormData.videoLink,
+      }
+
+      const response = await fetch('/api/admin/testimonials', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatePayload),
+      })
+
+      if (!response.ok) throw new Error('Failed to update testimonial')
+
+      const result = await response.json()
+      
+      // Update local state
+      setTestimonials(testimonials.map(t =>
+        t.id === editingTestimonial.id ? { ...t, ...result.testimonial, student: t.student } : t
+      ))
+      
+      closeEditModal()
+      alert('Testimonial updated successfully!')
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to update testimonial')
+    } finally {
+      setSaving(false)
     }
   }
 
@@ -532,7 +613,7 @@ export default function TestimonialsPage() {
                         )}
                       </td>
                       <td className="px-4 py-3 max-w-xs">
-                        {testimonial.beforeAfterExpectations && (
+                        {(testimonial.beforeExpectations || testimonial.afterChanges) && (
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => toggleSectionApproval(testimonial.id, 'beforeAfterApproved')}
@@ -544,10 +625,16 @@ export default function TestimonialsPage() {
                               {testimonial.beforeAfterApproved ? '✓' : '○'}
                             </button>
                             <button
-                              onClick={() => viewFullContent('Before/After Expectations', testimonial.beforeAfterExpectations || '')}
+                              onClick={() => {
+                                const combined = [
+                                  testimonial.beforeExpectations && `Before: ${testimonial.beforeExpectations}`,
+                                  testimonial.afterChanges && `After: ${testimonial.afterChanges}`
+                                ].filter(Boolean).join('\n\n')
+                                viewFullContent('Before/After Expectations', combined)
+                              }}
                               className="text-sm text-gray-600 truncate hover:text-blue-600 text-left"
                             >
-                              {testimonial.beforeAfterExpectations.substring(0, 50)}...
+                              {(testimonial.beforeExpectations || testimonial.afterChanges || '').substring(0, 50)}...
                             </button>
                           </div>
                         )}
@@ -595,6 +682,13 @@ export default function TestimonialsPage() {
                             {testimonial.isApproved ? 'Approved' : 'Approve'}
                           </button>
                           <button
+                            onClick={() => openEditModal(testimonial)}
+                            className="p-1.5 rounded text-blue-600 hover:bg-blue-50"
+                            title="Edit testimonial"
+                          >
+                            <Edit className="w-4 h-4" />
+                          </button>
+                          <button
                             onClick={() => deleteTestimonial(testimonial.id, testimonial.authorName)}
                             className="p-1.5 rounded text-red-600 hover:bg-red-50"
                             title="Delete testimonial"
@@ -631,10 +725,23 @@ export default function TestimonialsPage() {
                             )}
 
                             {/* Before/After */}
-                            {testimonial.beforeAfterExpectations && (
+                            {(testimonial.beforeExpectations || testimonial.afterChanges) && (
                               <div className="bg-white rounded-lg p-4">
                                 <h4 className="text-sm font-semibold text-gray-700 mb-2">Before/After Expectations</h4>
-                                <p className="text-sm text-gray-600 leading-relaxed">{testimonial.beforeAfterExpectations}</p>
+                                <div className="space-y-3">
+                                  {testimonial.beforeExpectations && (
+                                    <div>
+                                      <p className="text-xs font-semibold text-gray-500 mb-1">BEFORE:</p>
+                                      <p className="text-sm text-gray-600 leading-relaxed">{testimonial.beforeExpectations}</p>
+                                    </div>
+                                  )}
+                                  {testimonial.afterChanges && (
+                                    <div>
+                                      <p className="text-xs font-semibold text-gray-500 mb-1">AFTER:</p>
+                                      <p className="text-sm text-gray-600 leading-relaxed">{testimonial.afterChanges}</p>
+                                    </div>
+                                  )}
+                                </div>
                               </div>
                             )}
 
@@ -711,6 +818,191 @@ export default function TestimonialsPage() {
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
               >
                 Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Testimonial Modal */}
+      {editingTestimonial && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full my-8">
+            <div className="flex items-center justify-between p-4 border-b">
+              <h3 className="text-lg font-semibold text-gray-900">Edit Testimonial</h3>
+              <button
+                onClick={closeEditModal}
+                className="text-gray-400 hover:text-gray-600"
+                disabled={saving}
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <form onSubmit={handleEditSubmit} className="p-6 overflow-y-auto max-h-[calc(80vh-120px)]">
+              <div className="space-y-6">
+                {/* Basic Information */}
+                <div className="border-b pb-4">
+                  <h4 className="text-md font-semibold text-black mb-4">Basic Information</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-black mb-1">Author Name *</label>
+                      <input
+                        type="text"
+                        value={editFormData.authorName}
+                        onChange={(e) => setEditFormData({ ...editFormData, authorName: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-black mb-1">Author Type *</label>
+                      <select
+                        value={editFormData.authorType}
+                        onChange={(e) => setEditFormData({ ...editFormData, authorType: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                        required
+                      >
+                        <option value="student">Student</option>
+                        <option value="parent">Parent</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-black mb-1">Student Name</label>
+                      <input
+                        type="text"
+                        value={editFormData.studentName}
+                        onChange={(e) => setEditFormData({ ...editFormData, studentName: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-black mb-1">Grade</label>
+                      <input
+                        type="text"
+                        value={editFormData.grade}
+                        onChange={(e) => setEditFormData({ ...editFormData, grade: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-black mb-1">School</label>
+                      <input
+                        type="text"
+                        value={editFormData.school}
+                        onChange={(e) => setEditFormData({ ...editFormData, school: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-black mb-1">Rating (1-5)</label>
+                      <input
+                        type="number"
+                        min="1"
+                        max="5"
+                        value={editFormData.rating}
+                        onChange={(e) => setEditFormData({ ...editFormData, rating: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content Fields */}
+                <div className="border-b pb-4">
+                  <h4 className="text-md font-semibold text-black mb-4">Content</h4>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-black mb-1">Experience Description *</label>
+                      <textarea
+                        value={editFormData.content}
+                        onChange={(e) => setEditFormData({ ...editFormData, content: e.target.value })}
+                        rows={4}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-black mb-1">Before Expectations</label>
+                      <textarea
+                        value={editFormData.beforeExpectations}
+                        onChange={(e) => setEditFormData({ ...editFormData, beforeExpectations: e.target.value })}
+                        rows={3}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-black mb-1">After Changes</label>
+                      <textarea
+                        value={editFormData.afterChanges}
+                        onChange={(e) => setEditFormData({ ...editFormData, afterChanges: e.target.value })}
+                        rows={3}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-black mb-1">Success Story</label>
+                      <textarea
+                        value={editFormData.successStory}
+                        onChange={(e) => setEditFormData({ ...editFormData, successStory: e.target.value })}
+                        rows={3}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Additional Fields */}
+                <div>
+                  <h4 className="text-md font-semibold text-black mb-4">Additional Information</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="col-span-2">
+                      <label className="block text-sm font-medium text-black mb-1">Programs (comma-separated)</label>
+                      <input
+                        type="text"
+                        value={editFormData.programs}
+                        onChange={(e) => setEditFormData({ ...editFormData, programs: e.target.value })}
+                        placeholder="e.g., Math Olympiad, Science Research"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                      />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-sm font-medium text-black mb-1">Video Link</label>
+                      <input
+                        type="url"
+                        value={editFormData.videoLink}
+                        onChange={(e) => setEditFormData({ ...editFormData, videoLink: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div className="flex justify-end gap-3 p-4 border-t bg-gray-50">
+              <button
+                type="button"
+                onClick={closeEditModal}
+                disabled={saving}
+                className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleEditSubmit}
+                disabled={saving}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
+              >
+                {saving ? (
+                  <>
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-r-transparent"></div>
+                    Saving...
+                  </>
+                ) : (
+                  'Save Changes'
+                )}
               </button>
             </div>
           </div>

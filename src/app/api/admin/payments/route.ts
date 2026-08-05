@@ -34,13 +34,13 @@ export async function GET(request: NextRequest) {
     const payments = await db.payment.findMany({
       where,
       include: {
-        student: {
+        Student: {
           select: {
             email: true,
             parentEmail: true,
           },
         },
-        enrollment: {
+        Enrollment: {
           select: {
             program: true,
             subject: true,

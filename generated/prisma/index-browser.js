@@ -697,6 +697,24 @@ exports.Prisma.BlogScalarFieldEnum = {
   approvedAt: 'approvedAt'
 };
 
+exports.Prisma.AssignmentTargetScalarFieldEnum = {
+  id: 'id',
+  assignmentId: 'assignmentId',
+  studentId: 'studentId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  tokenHash: 'tokenHash',
+  userId: 'userId',
+  userRole: 'userRole',
+  expiresAt: 'expiresAt',
+  revokedAt: 'revokedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -763,7 +781,9 @@ exports.Prisma.ModelName = {
   EventRegistration: 'EventRegistration',
   AccessRequest: 'AccessRequest',
   Research: 'Research',
-  Blog: 'Blog'
+  Blog: 'Blog',
+  AssignmentTarget: 'AssignmentTarget',
+  RefreshToken: 'RefreshToken'
 };
 
 /**
