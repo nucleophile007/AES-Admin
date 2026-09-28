@@ -1,9 +1,10 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Plus, Trash2, Save, Globe } from "lucide-react"
+import EventCarouselComposer from "@/components/events/EventCarouselComposer"
 
 interface CustomField {
   id: string
@@ -32,7 +33,6 @@ export default function CreateEventPage() {
   const router = useRouter()
   const [step, setStep] = useState(1)
   const [loading, setLoading] = useState(false)
-  const [uploadingImage, setUploadingImage] = useState(false)
 
   const [formData, setFormData] = useState({
     // Step 1: Basic Information
@@ -122,48 +122,36 @@ export default function CreateEventPage() {
     })
   }
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-
-    // Validate file type
-    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"]
-    if (!allowedTypes.includes(file.type)) {
-      alert("Please upload an image file (JPEG, PNG, GIF, or WebP)")
-      return
-    }
-
-    // Validate file size (max 5MB)
-    const maxSize = 5 * 1024 * 1024
-    if (file.size > maxSize) {
-      alert("Image size must be less than 5MB")
-      return
-    }
-
-    setUploadingImage(true)
-    try {
-      const formData = new FormData()
-      formData.append("file", file)
-
-      const response = await fetch("/api/admin/events/upload-image", {
-        method: "POST",
-        body: formData,
-      })
-
-      if (response.ok) {
-        const data = await response.json()
-        setFormData((prev) => ({ ...prev, image: data.fileUrl }))
-      } else {
-        const error = await response.json()
-        alert(error.error || "Failed to upload image")
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error)
-      alert("Failed to upload image")
-    } finally {
-      setUploadingImage(false)
-    }
-  }
+  const carouselDefaults = useMemo(
+    () => ({
+      headline: formData.title,
+      subtitle: formData.description.slice(0, 90),
+      category: formData.category,
+      metaLine: [
+        formData.eventDate
+          ? new Date(formData.eventDate + "T12:00:00").toLocaleDateString(
+              undefined,
+              { weekday: "short", month: "short", day: "numeric" }
+            )
+          : "",
+        formData.eventStartTime && formData.eventEndTime
+          ? `${formData.eventStartTime} – ${formData.eventEndTime}`
+          : "",
+        formData.location,
+      ]
+        .filter(Boolean)
+        .join(" · "),
+    }),
+    [
+      formData.title,
+      formData.description,
+      formData.category,
+      formData.eventDate,
+      formData.eventStartTime,
+      formData.eventEndTime,
+      formData.location,
+    ]
+  )
 
   const handleSubmit = async (publish: boolean) => {
     setLoading(true)
@@ -321,88 +309,12 @@ export default function CreateEventPage() {
           />
         </div>
 
-        <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Event Image
-          </label>
-          
-          {/* Image Preview */}
-          {formData.image && (
-            <div className="mb-3">
-              <div className="relative inline-block">
-                <img
-                  src={formData.image}
-                  alt="Event preview"
-                  className="h-32 w-auto rounded-lg border shadow-sm"
-                />
-                <button
-                  type="button"
-                  onClick={() => setFormData({ ...formData, image: "" })}
-                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 shadow-md"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Upload Options */}
-          <div className="space-y-3">
-            {/* File Upload */}
-            <div>
-              <label className="block">
-                <div className="flex items-center gap-2 px-4 py-2 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors">
-                  {uploadingImage ? (
-                    <div className="flex items-center gap-2 text-blue-600">
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
-                      <span className="text-sm font-medium">Uploading...</span>
-                    </div>
-                  ) : (
-                    <>
-                      <Plus className="w-5 h-5 text-gray-400" />
-                      <span className="text-sm text-gray-600">
-                        Click to upload image (Max 5MB)
-                      </span>
-                    </>
-                  )}
-                </div>
-                <input
-                  type="file"
-                  accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
-                  onChange={handleImageUpload}
-                  className="hidden"
-                  disabled={uploadingImage}
-                />
-              </label>
-              <p className="text-xs text-gray-500 mt-1">
-                Supported formats: JPEG, PNG, GIF, WebP
-              </p>
-            </div>
-
-            {/* OR Divider */}
-            <div className="flex items-center gap-3">
-              <div className="flex-1 border-t border-gray-300"></div>
-              <span className="text-xs text-gray-500 font-medium">OR</span>
-              <div className="flex-1 border-t border-gray-300"></div>
-            </div>
-
-            {/* URL Input */}
-            <div>
-              <input
-                type="text"
-                className="w-full px-4 py-2 border rounded-lg"
-                value={formData.image}
-                onChange={(e) =>
-                  setFormData({ ...formData, image: e.target.value })
-                }
-                placeholder="Paste image URL here"
-                disabled={uploadingImage}
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                Or paste a direct link to an image
-              </p>
-            </div>
-          </div>
+        <div className="md:col-span-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+          <EventCarouselComposer
+            value={formData.image}
+            onChange={(image) => setFormData((prev) => ({ ...prev, image }))}
+            defaults={carouselDefaults}
+          />
         </div>
 
         <div>

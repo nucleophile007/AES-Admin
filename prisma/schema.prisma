@@ -53,6 +53,7 @@ model Teacher {
   googleTokenExpiry       DateTime?
   assignments             Assignment[]
   classSchedules          ClassSchedule[]
+  MeetingMinuteMeeting    MeetingMinuteMeeting[]
   mentorProfile           Mentor?
   progressReports         ProgressReport[]
   resources               Resource[]
@@ -62,36 +63,37 @@ model Teacher {
 }
 
 model Student {
-  id                  Int                  @id @default(autoincrement())
-  name                String
-  email               String               @unique
-  password            String?
-  grade               String
-  schoolName          String
-  parentName          String
-  parentEmail         String
-  parentPhone         String
-  program             String
-  createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @updatedAt
-  isActivated         Boolean              @default(false)
-  parentAccountId     Int?
-  graduationYear      Int?
-  assignedAssignments Assignment[]         @relation("AssignedAssignments")
-  AssignmentTarget    AssignmentTarget[]
-  Blog                Blog[]
-  classSchedules      ClassSchedule[]
-  enrollments         Enrollment[]
-  Payment             Payment[]
-  progressReports     ProgressReport[]
-  Research            Research[]
-  parentAccount       ParentAccount?       @relation(fields: [parentAccountId], references: [id])
-  groupMemberships    StudentGroupMember[]
-  assignedResources   StudentResource[]
-  studentSubmissions  StudentSubmission[]
-  submissions         Submission[]
-  teacherLinks        TeacherStudent[]
-  Testimonial         Testimonial[]
+  id                   Int                    @id @default(autoincrement())
+  name                 String
+  email                String                 @unique
+  password             String?
+  grade                String
+  schoolName           String
+  parentName           String
+  parentEmail          String
+  parentPhone          String
+  program              String
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  isActivated          Boolean                @default(false)
+  parentAccountId      Int?
+  graduationYear       Int?
+  assignedAssignments  Assignment[]           @relation("AssignedAssignments")
+  AssignmentTarget     AssignmentTarget[]
+  Blog                 Blog[]
+  classSchedules       ClassSchedule[]
+  enrollments          Enrollment[]
+  MeetingMinuteRequest MeetingMinuteRequest[]
+  Payment              Payment[]
+  progressReports      ProgressReport[]
+  Research             Research[]
+  parentAccount        ParentAccount?         @relation(fields: [parentAccountId], references: [id])
+  groupMemberships     StudentGroupMember[]
+  assignedResources    StudentResource[]
+  studentSubmissions   StudentSubmission[]
+  submissions          Submission[]
+  teacherLinks         TeacherStudent[]
+  Testimonial          Testimonial[]
 }
 
 model TeacherStudent {
@@ -278,7 +280,7 @@ model Message {
 }
 
 model ClassSchedule {
-  id                    Int           @id @default(autoincrement())
+  id                    Int                    @id @default(autoincrement())
   title                 String
   date                  DateTime
   startTime             String
@@ -287,12 +289,12 @@ model ClassSchedule {
   description           String?
   location              String?
   meetingLink           String?
-  status                String        @default("upcoming")
+  status                String                 @default("upcoming")
   color                 String?
   studentId             Int
   teacherId             Int
-  createdAt             DateTime      @default(now())
-  updatedAt             DateTime      @updatedAt
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
   endDateTime           DateTime?
   googleCalendarEventId String?
   groupId               Int?
@@ -302,9 +304,10 @@ model ClassSchedule {
   reminderSentAt        DateTime?
   startDateTime         DateTime?
   timezone              String?
-  group                 StudentGroup? @relation(fields: [groupId], references: [id])
-  student               Student       @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  teacher               Teacher       @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  group                 StudentGroup?          @relation(fields: [groupId], references: [id])
+  student               Student                @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  teacher               Teacher                @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  MeetingMinuteMeeting  MeetingMinuteMeeting[]
 
   @@index([teacherId])
   @@index([studentId])
@@ -752,4 +755,66 @@ model RefreshToken {
   @@index([expiresAt])
   @@index([revokedAt])
   @@index([userId, userRole])
+}
+
+model MeetingMinuteMeeting {
+  id                    Int                    @id @default(autoincrement())
+  teacherId             Int
+  source                MeetingSource          @default(GOOGLE)
+  googleCalendarEventId String?
+  classScheduleId       Int?
+  title                 String
+  description           String?
+  meetingLink           String?
+  location              String?
+  startDateTime         DateTime
+  endDateTime           DateTime
+  timezone              String
+  attendeeSnapshot      Json?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime
+  ClassSchedule         ClassSchedule?         @relation(fields: [classScheduleId], references: [id])
+  Teacher               Teacher                @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  MeetingMinuteRequest  MeetingMinuteRequest[]
+
+  @@unique([teacherId, classScheduleId])
+  @@unique([teacherId, googleCalendarEventId])
+  @@index([teacherId, startDateTime])
+}
+
+model MeetingMinuteRequest {
+  id                   Int                       @id @default(autoincrement())
+  meetingId            Int
+  studentId            Int
+  status               MeetingMinuteStatus       @default(ASSIGNED)
+  studentMinutes       String?
+  submittedAt          DateTime?
+  teacherFinalText     String?
+  reviewedAt           DateTime?
+  approvedAt           DateTime?
+  createdAt            DateTime                  @default(now())
+  updatedAt            DateTime
+  creationMode         MeetingMinuteCreationMode @default(STUDENT_ASSIGNED)
+  MeetingMinuteMeeting MeetingMinuteMeeting      @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  Student              Student                   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([meetingId, studentId])
+  @@index([meetingId, status])
+  @@index([studentId, status])
+}
+
+enum MeetingMinuteCreationMode {
+  STUDENT_ASSIGNED
+  MENTOR_DIRECT
+}
+
+enum MeetingMinuteStatus {
+  ASSIGNED
+  SUBMITTED
+  APPROVED
+}
+
+enum MeetingSource {
+  GOOGLE
+  AES_SCHEDULE
 }

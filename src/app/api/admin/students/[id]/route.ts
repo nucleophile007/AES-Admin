@@ -208,6 +208,20 @@ export async function PATCH(
       return NextResponse.json({ error: "Student not found" }, { status: 404 })
     }
 
+    if (studentUpdateData.program && studentUpdateData.program !== existingStudent.program) {
+      const matchingEnrollment = await prisma.enrollment.findFirst({
+        where: { studentId: id, program: studentUpdateData.program },
+        select: { id: true },
+      })
+
+      if (!matchingEnrollment) {
+        return NextResponse.json(
+          { error: "Add this program through enrollment before making it the student's active program" },
+          { status: 400 }
+        )
+      }
+    }
+
     if (typeof studentUpdateData.email === "string" && studentUpdateData.email !== existingStudent.email) {
       const existingEmail = await prisma.student.findUnique({
         where: { email: studentUpdateData.email }

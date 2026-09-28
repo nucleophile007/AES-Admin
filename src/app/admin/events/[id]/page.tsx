@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useParams, useRouter } from "next/navigation"
+import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import {
   Calendar,
@@ -15,7 +16,9 @@ import {
   Clock,
   Edit,
   ArrowLeft,
+  ImageIcon,
 } from "lucide-react"
+import EventCarouselComposer from "@/components/events/EventCarouselComposer"
 
 interface Registration {
   id: number
@@ -46,6 +49,7 @@ interface Event {
   eventDate: string
   eventTime: string
   location: string
+  image: string | null
   maxParticipants: number | null
   registrationFee: number
   requiresPayment: boolean
@@ -59,6 +63,8 @@ export default function EventDetailPage() {
   const [event, setEvent] = useState<Event | null>(null)
   const [loading, setLoading] = useState(true)
   const [selectedReg, setSelectedReg] = useState<Registration | null>(null)
+  const [carouselImage, setCarouselImage] = useState("")
+  const [savingCarousel, setSavingCarousel] = useState(false)
 
   useEffect(() => {
     fetchEvent()
@@ -70,6 +76,7 @@ export default function EventDetailPage() {
       if (response.ok) {
         const data = await response.json()
         setEvent(data)
+        setCarouselImage(data.image || "")
       }
     } catch (error) {
       console.error("Error fetching event:", error)
@@ -131,6 +138,51 @@ export default function EventDetailPage() {
       }
     } catch (error) {
       console.error("Error exporting:", error)
+    }
+  }
+
+  const carouselDefaults = useMemo(() => {
+    if (!event) return undefined
+    return {
+      headline: event.title,
+      subtitle: event.description?.slice(0, 90) || "",
+      category: event.category,
+      metaLine: [
+        new Date(event.eventDate).toLocaleDateString(undefined, {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+        }),
+        event.eventTime,
+        event.location,
+      ]
+        .filter(Boolean)
+        .join(" · "),
+    }
+  }, [event])
+
+  const saveCarouselImage = async () => {
+    if (!event) return
+    setSavingCarousel(true)
+    try {
+      const response = await fetch(`/api/admin/events/${eventId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ image: carouselImage || null }),
+      })
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}))
+        throw new Error(err.error || "Failed to save carousel image")
+      }
+      const updated = await response.json()
+      setEvent((prev) =>
+        prev ? { ...prev, image: updated.image ?? carouselImage } : prev
+      )
+      toast.success("Carousel card saved for the main site")
+    } catch (e: any) {
+      toast.error(e.message || "Could not save carousel card")
+    } finally {
+      setSavingCarousel(false)
     }
   }
 
@@ -246,6 +298,37 @@ export default function EventDetailPage() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Main-site carousel card */}
+      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <ImageIcon className="h-5 w-5 text-amber-600" />
+            <div>
+              <h2 className="text-lg font-semibold text-slate-900">
+                Carousel card
+              </h2>
+              <p className="text-xs text-slate-500">
+                Compose the fixed 1200×675 image the main site shows in the
+                event carousel.
+              </p>
+            </div>
+          </div>
+          <Button
+            type="button"
+            onClick={() => void saveCarouselImage()}
+            disabled={savingCarousel || carouselImage === (event.image || "")}
+            className="bg-slate-900 text-white hover:bg-slate-800"
+          >
+            {savingCarousel ? "Saving…" : "Save carousel image"}
+          </Button>
+        </div>
+        <EventCarouselComposer
+          value={carouselImage}
+          onChange={setCarouselImage}
+          defaults={carouselDefaults}
+        />
       </div>
 
       {/* Statistics */}

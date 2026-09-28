@@ -42,6 +42,28 @@ export async function GET(request: NextRequest) {
     // Get students from the database
     const students = await prisma.student.findMany({
       where: whereClause,
+      include: {
+        enrollments: {
+          select: {
+            program: true,
+            subject: true,
+            isActive: true,
+          },
+          orderBy: { startDate: "desc" },
+        },
+        teacherLinks: {
+          select: {
+            program: true,
+            teacher: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+              },
+            },
+          },
+        },
+      },
       orderBy: {
         createdAt: "desc"
       },
@@ -96,11 +118,19 @@ export async function POST(request: NextRequest) {
       parentEmail, 
       parentPhone,
       subject,
-      teacherId
+      teacherId,
+      teacherIds
     } = await request.json()
+    const selectedTeacherIds = Array.from(
+      new Set(
+        (Array.isArray(teacherIds) ? teacherIds : [teacherId])
+          .map((value) => Number(value))
+          .filter((value) => Number.isInteger(value) && value > 0)
+      )
+    )
     
     // Validate required fields
-    if (!name || !email || !grade || !schoolName || !program || !parentName || !parentEmail || !parentPhone || !subject || !teacherId) {
+    if (!name || !email || !grade || !schoolName || !program || !parentName || !parentEmail || !parentPhone || !subject || selectedTeacherIds.length === 0) {
       return NextResponse.json(
         { error: "All fields are required including subject and teacher" },
         { status: 400 }
@@ -116,14 +146,19 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify teacher exists
-    const teacher = await prisma.teacher.findUnique({
-      where: { id: parseInt(teacherId) }
+    const teachers = await prisma.teacher.findMany({
+      where: { id: { in: selectedTeacherIds } },
+      select: { id: true, programs: true },
     })
 
-    if (!teacher) {
+    if (teachers.length !== selectedTeacherIds.length) {
+      return NextResponse.json({ error: "One or more selected teachers were not found" }, { status: 404 })
+    }
+
+    if (teachers.some((teacher) => !teacher.programs.includes(program))) {
       return NextResponse.json(
-        { error: "Selected teacher not found" },
-        { status: 404 }
+        { error: "Each selected teacher must be assigned to the selected program" },
+        { status: 400 }
       )
     }
 
@@ -194,27 +229,32 @@ export async function POST(request: NextRequest) {
         }
       })
 
-      // 4. Create teacher-student link
-      const teacherStudent = await tx.teacherStudent.create({
-        data: {
-          teacherId: parseInt(teacherId),
-          studentId: student.id,
-          program
-        }
-      })
+      // 4. Create one teacher-student link for each selected teacher
+      const teacherStudents = await Promise.all(
+        selectedTeacherIds.map((selectedTeacherId) =>
+          tx.teacherStudent.create({
+            data: {
+              teacherId: selectedTeacherId,
+              studentId: student.id,
+              program,
+            },
+          })
+        )
+      )
 
-      return { student, enrollment, teacherStudent, parentAccount }
+      return { student, enrollment, teacherStudents, parentAccount }
     })
     
     console.log("Student created successfully:", result.student.id)
     console.log("Enrollment created:", result.enrollment.id)
-    console.log("Teacher-Student link created:", result.teacherStudent.id)
+    console.log("Teacher-Student links created:", result.teacherStudents.map((link) => link.id))
     
     return NextResponse.json({ 
       student: result.student,
       parentAccount: result.parentAccount,
       enrollment: result.enrollment,
-      teacherLink: result.teacherStudent
+      teacherLink: result.teacherStudents[0],
+      teacherLinks: result.teacherStudents,
     }, { status: 201 })
   } catch (error) {
     console.error("Failed to create student:", error)

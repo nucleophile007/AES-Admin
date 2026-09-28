@@ -18,10 +18,16 @@ interface Student {
   parentEmail: string
   parentPhone: string
   program: string
+  enrollments?: Array<{ program: string; subject: string; isActive: boolean }>
+  teacherLinks?: Array<{ program: string; teacher: { id: number; name: string; email: string } }>
   isActivated: boolean
   createdAt: string
   updatedAt: string
 }
+
+const getStudentPrograms = (student: Student) => Array.from(new Set(
+  (student.enrollments || []).map((enrollment) => enrollment.program).concat(student.program)
+))
 
 const PROGRAM_OPTIONS = [
   "College Prep",
@@ -54,7 +60,7 @@ export default function StudentsPage() {
     parentPhone: "",
     program: "",
     subject: "",
-    teacherId: ""
+    teacherIds: [] as string[]
   })
   const [formLoading, setFormLoading] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
@@ -67,7 +73,7 @@ export default function StudentsPage() {
   const [enrollmentData, setEnrollmentData] = useState({
     program: "",
     subject: "",
-    teacherId: ""
+    teacherIds: [] as string[]
   })
   const [enrollmentLoading, setEnrollmentLoading] = useState(false)
   const [enrollmentError, setEnrollmentError] = useState<string | null>(null)
@@ -169,7 +175,7 @@ export default function StudentsPage() {
 
     if (selectedProgram !== "all") {
       filtered = filtered.filter((student) => 
-        student.program === selectedProgram
+        getStudentPrograms(student).includes(selectedProgram)
       )
     }
 
@@ -212,7 +218,7 @@ export default function StudentsPage() {
     if (!formData.name.trim() || !formData.email.trim() || !formData.program.trim() || 
         !formData.grade.trim() || !formData.schoolName.trim() || 
         !formData.parentName.trim() || !formData.parentEmail.trim() || !formData.parentPhone.trim() ||
-        !formData.subject.trim() || !formData.teacherId.trim()) {
+        !formData.subject.trim() || formData.teacherIds.length === 0) {
       setFormError("All fields are required")
       setFormLoading(false)
       return
@@ -253,7 +259,7 @@ export default function StudentsPage() {
         parentPhone: "",
         program: "",
         subject: "",
-        teacherId: ""
+        teacherIds: []
       })
       setShowForm(false)
       
@@ -282,7 +288,7 @@ export default function StudentsPage() {
     }
 
     // Validate form
-    if (!enrollmentData.program.trim() || !enrollmentData.subject.trim() || !enrollmentData.teacherId.trim()) {
+    if (!enrollmentData.program.trim() || !enrollmentData.subject.trim() || enrollmentData.teacherIds.length === 0) {
       setEnrollmentError("All fields are required")
       setEnrollmentLoading(false)
       return
@@ -309,7 +315,7 @@ export default function StudentsPage() {
       setEnrollmentData({
         program: "",
         subject: "",
-        teacherId: ""
+        teacherIds: []
       })
       setShowEnrollmentForm(false)
       setSelectedStudentForEnrollment(null)
@@ -329,7 +335,7 @@ export default function StudentsPage() {
     setEnrollmentData({
       program: "",
       subject: "",
-      teacherId: ""
+      teacherIds: []
     })
     setEnrollmentError(null)
     setShowEnrollmentForm(true)
@@ -499,7 +505,7 @@ export default function StudentsPage() {
   }
 
   // Get all unique programs from student data
-  const programs = Array.from(new Set(data.map(student => student.program)))
+  const programs = Array.from(new Set(data.flatMap(getStudentPrograms)))
 
   if (loading) {
     return (
@@ -682,17 +688,21 @@ export default function StudentsPage() {
                   <select
                     id="teacherId"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    value={formData.teacherId}
-                    onChange={(e) => setFormData(prev => ({ ...prev, teacherId: e.target.value }))}
+                    value={formData.teacherIds}
+                    onChange={(e) => setFormData(prev => ({
+                      ...prev,
+                      teacherIds: Array.from(e.target.selectedOptions, (option) => option.value),
+                    }))}
+                    multiple
                     required
                   >
-                    <option value="">Select a teacher...</option>
+                    <option value="">Select one or more teachers...</option>
                     {teachersLoading ? (
                       <option disabled>Loading teachers...</option>
                     ) : (
-                      teachers.map(teacher => (
+                      teachers.filter((teacher) => teacher.programs.includes(formData.program)).map(teacher => (
                         <option key={teacher.id} value={teacher.id}>
-                          {teacher.name} - {teacher.programs.join(', ')}
+                          {teacher.name}
                         </option>
                       ))
                     )}
@@ -833,17 +843,21 @@ export default function StudentsPage() {
                   <select
                     id="enrollTeacher"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    value={enrollmentData.teacherId}
-                    onChange={(e) => setEnrollmentData(prev => ({ ...prev, teacherId: e.target.value }))}
+                    value={enrollmentData.teacherIds}
+                    onChange={(e) => setEnrollmentData(prev => ({
+                      ...prev,
+                      teacherIds: Array.from(e.target.selectedOptions, (option) => option.value),
+                    }))}
+                    multiple
                     required
                   >
-                    <option value="">Select a teacher...</option>
+                    <option value="">Select one or more teachers...</option>
                     {teachersLoading ? (
                       <option disabled>Loading teachers...</option>
                     ) : (
-                      teachers.map(teacher => (
+                      teachers.filter((teacher) => teacher.programs.includes(enrollmentData.program)).map(teacher => (
                         <option key={teacher.id} value={teacher.id}>
-                          {teacher.name} - {teacher.programs.join(', ')}
+                          {teacher.name}
                         </option>
                       ))
                     )}
@@ -984,8 +998,9 @@ export default function StudentsPage() {
 
                 <div>
                   <label htmlFor="edit-program" className="block text-sm font-medium text-gray-700 mb-1">
-                    Program
+                    Active Program
                   </label>
+                  <p className="mb-1 text-xs text-gray-500">Only enrolled programs can be selected here. Use Add Enrollment for a new program and teacher assignment.</p>
                   <select
                     id="edit-program"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
@@ -994,7 +1009,7 @@ export default function StudentsPage() {
                     required
                   >
                     <option value="">Select a program...</option>
-                    {PROGRAM_OPTIONS.map((opt) => (
+                    {getStudentPrograms(selectedStudentForEdit).map((opt) => (
                       <option key={opt} value={opt}>
                         {opt}
                       </option>
@@ -1162,7 +1177,7 @@ export default function StudentsPage() {
                       </td>
                       <td className="px-4 py-4">
                         <span className="inline-flex items-center px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                          {student.program}
+                          {getStudentPrograms(student).join(", ")}
                         </span>
                       </td>
                       <td className="px-4 py-4">
