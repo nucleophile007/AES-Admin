@@ -18,10 +18,17 @@ export async function POST(
   try {
     const { id: paramId } = await params
     const studentId = parseInt(paramId)
-    const { program, subject, teacherId } = await request.json()
+    const { program, subject, teacherId, teacherIds } = await request.json()
+    const selectedTeacherIds = Array.from(
+      new Set(
+        (Array.isArray(teacherIds) ? teacherIds : [teacherId])
+          .map((value) => Number(value))
+          .filter((value) => Number.isInteger(value) && value > 0)
+      )
+    )
     
     // Validate required fields
-    if (!program || !subject || !teacherId) {
+    if (!program || !subject || selectedTeacherIds.length === 0) {
       return NextResponse.json(
         { error: "Program, subject, and teacher are required" },
         { status: 400 }
@@ -38,12 +45,21 @@ export async function POST(
     }
 
     // Verify teacher exists
-    const teacher = await prisma.teacher.findUnique({
-      where: { id: parseInt(teacherId) }
+    const teachers = await prisma.teacher.findMany({
+      where: { id: { in: selectedTeacherIds } },
+      select: { id: true, programs: true },
     })
 
-    if (!teacher) {
-      return NextResponse.json({ error: "Selected teacher not found" }, { status: 404 })
+    if (teachers.length !== selectedTeacherIds.length) {
+      return NextResponse.json({ error: "One or more selected teachers were not found" }, { status: 404 })
+    }
+
+    const teachersForProgram = teachers.filter((teacher) => teacher.programs.includes(program))
+    if (teachersForProgram.length !== teachers.length) {
+      return NextResponse.json(
+        { error: "Each selected teacher must be assigned to the selected program" },
+        { status: 400 }
+      )
     }
 
     // Check if enrollment already exists
@@ -78,35 +94,27 @@ export async function POST(
         }
       })
 
-      // 2. Check if teacher-student link already exists for this program
-      const existingTeacherLink = await tx.teacherStudent.findUnique({
-        where: {
-          teacherId_studentId_program: {
-            teacherId: parseInt(teacherId),
-            studentId,
-            program
-          }
-        }
-      })
+      const teacherStudents = await Promise.all(
+        selectedTeacherIds.map((selectedTeacherId) =>
+          tx.teacherStudent.upsert({
+            where: {
+              teacherId_studentId_program: {
+                teacherId: selectedTeacherId,
+                studentId,
+                program,
+              },
+            },
+            update: {},
+            create: {
+              teacherId: selectedTeacherId,
+              studentId,
+              program,
+            },
+          })
+        )
+      )
 
-      let teacherStudent
-      if (existingTeacherLink) {
-        // If link exists, just return it
-        teacherStudent = existingTeacherLink
-        console.log("Teacher-Student link already exists:", existingTeacherLink.id)
-      } else {
-        // Create new teacher-student link
-        teacherStudent = await tx.teacherStudent.create({
-          data: {
-            teacherId: parseInt(teacherId),
-            studentId,
-            program
-          }
-        })
-        console.log("Teacher-Student link created:", teacherStudent.id)
-      }
-
-      return { enrollment, teacherStudent }
+      return { enrollment, teacherStudents }
     })
     
     console.log("Enrollment added successfully:", result.enrollment.id)
@@ -114,7 +122,8 @@ export async function POST(
     return NextResponse.json({ 
       success: true,
       enrollment: result.enrollment,
-      teacherLink: result.teacherStudent,
+      teacherLink: result.teacherStudents[0],
+      teacherLinks: result.teacherStudents,
       message: `Successfully enrolled ${student.name} in ${program} - ${subject}`
     }, { status: 201 })
     

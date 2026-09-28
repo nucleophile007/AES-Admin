@@ -715,6 +715,39 @@ exports.Prisma.RefreshTokenScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.MeetingMinuteMeetingScalarFieldEnum = {
+  id: 'id',
+  teacherId: 'teacherId',
+  source: 'source',
+  googleCalendarEventId: 'googleCalendarEventId',
+  classScheduleId: 'classScheduleId',
+  title: 'title',
+  description: 'description',
+  meetingLink: 'meetingLink',
+  location: 'location',
+  startDateTime: 'startDateTime',
+  endDateTime: 'endDateTime',
+  timezone: 'timezone',
+  attendeeSnapshot: 'attendeeSnapshot',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MeetingMinuteRequestScalarFieldEnum = {
+  id: 'id',
+  meetingId: 'meetingId',
+  studentId: 'studentId',
+  status: 'status',
+  studentMinutes: 'studentMinutes',
+  submittedAt: 'submittedAt',
+  teacherFinalText: 'teacherFinalText',
+  reviewedAt: 'reviewedAt',
+  approvedAt: 'approvedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  creationMode: 'creationMode'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -744,7 +777,21 @@ exports.Prisma.JsonNullValueFilter = {
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
 };
+exports.MeetingSource = exports.$Enums.MeetingSource = {
+  GOOGLE: 'GOOGLE',
+  AES_SCHEDULE: 'AES_SCHEDULE'
+};
 
+exports.MeetingMinuteStatus = exports.$Enums.MeetingMinuteStatus = {
+  ASSIGNED: 'ASSIGNED',
+  SUBMITTED: 'SUBMITTED',
+  APPROVED: 'APPROVED'
+};
+
+exports.MeetingMinuteCreationMode = exports.$Enums.MeetingMinuteCreationMode = {
+  STUDENT_ASSIGNED: 'STUDENT_ASSIGNED',
+  MENTOR_DIRECT: 'MENTOR_DIRECT'
+};
 
 exports.Prisma.ModelName = {
   WebinarRegistration: 'WebinarRegistration',
@@ -783,7 +830,9 @@ exports.Prisma.ModelName = {
   Research: 'Research',
   Blog: 'Blog',
   AssignmentTarget: 'AssignmentTarget',
-  RefreshToken: 'RefreshToken'
+  RefreshToken: 'RefreshToken',
+  MeetingMinuteMeeting: 'MeetingMinuteMeeting',
+  MeetingMinuteRequest: 'MeetingMinuteRequest'
 };
 
 /**

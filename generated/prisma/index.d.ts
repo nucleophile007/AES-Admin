@@ -198,6 +198,58 @@ export type AssignmentTarget = $Result.DefaultSelection<Prisma.$AssignmentTarget
  * 
  */
 export type RefreshToken = $Result.DefaultSelection<Prisma.$RefreshTokenPayload>
+/**
+ * Model MeetingMinuteMeeting
+ * 
+ */
+export type MeetingMinuteMeeting = $Result.DefaultSelection<Prisma.$MeetingMinuteMeetingPayload>
+/**
+ * Model MeetingMinuteRequest
+ * 
+ */
+export type MeetingMinuteRequest = $Result.DefaultSelection<Prisma.$MeetingMinuteRequestPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const MeetingMinuteCreationMode: {
+  STUDENT_ASSIGNED: 'STUDENT_ASSIGNED',
+  MENTOR_DIRECT: 'MENTOR_DIRECT'
+};
+
+export type MeetingMinuteCreationMode = (typeof MeetingMinuteCreationMode)[keyof typeof MeetingMinuteCreationMode]
+
+
+export const MeetingMinuteStatus: {
+  ASSIGNED: 'ASSIGNED',
+  SUBMITTED: 'SUBMITTED',
+  APPROVED: 'APPROVED'
+};
+
+export type MeetingMinuteStatus = (typeof MeetingMinuteStatus)[keyof typeof MeetingMinuteStatus]
+
+
+export const MeetingSource: {
+  GOOGLE: 'GOOGLE',
+  AES_SCHEDULE: 'AES_SCHEDULE'
+};
+
+export type MeetingSource = (typeof MeetingSource)[keyof typeof MeetingSource]
+
+}
+
+export type MeetingMinuteCreationMode = $Enums.MeetingMinuteCreationMode
+
+export const MeetingMinuteCreationMode: typeof $Enums.MeetingMinuteCreationMode
+
+export type MeetingMinuteStatus = $Enums.MeetingMinuteStatus
+
+export const MeetingMinuteStatus: typeof $Enums.MeetingMinuteStatus
+
+export type MeetingSource = $Enums.MeetingSource
+
+export const MeetingSource: typeof $Enums.MeetingSource
 
 /**
  * ##  Prisma Client ʲˢ
@@ -686,6 +738,26 @@ export class PrismaClient<
     * ```
     */
   get refreshToken(): Prisma.RefreshTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.meetingMinuteMeeting`: Exposes CRUD operations for the **MeetingMinuteMeeting** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MeetingMinuteMeetings
+    * const meetingMinuteMeetings = await prisma.meetingMinuteMeeting.findMany()
+    * ```
+    */
+  get meetingMinuteMeeting(): Prisma.MeetingMinuteMeetingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.meetingMinuteRequest`: Exposes CRUD operations for the **MeetingMinuteRequest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MeetingMinuteRequests
+    * const meetingMinuteRequests = await prisma.meetingMinuteRequest.findMany()
+    * ```
+    */
+  get meetingMinuteRequest(): Prisma.MeetingMinuteRequestDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1162,7 +1234,9 @@ export namespace Prisma {
     Research: 'Research',
     Blog: 'Blog',
     AssignmentTarget: 'AssignmentTarget',
-    RefreshToken: 'RefreshToken'
+    RefreshToken: 'RefreshToken',
+    MeetingMinuteMeeting: 'MeetingMinuteMeeting',
+    MeetingMinuteRequest: 'MeetingMinuteRequest'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1181,7 +1255,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog" | "assignmentTarget" | "refreshToken"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog" | "assignmentTarget" | "refreshToken" | "meetingMinuteMeeting" | "meetingMinuteRequest"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3923,6 +3997,154 @@ export namespace Prisma {
           }
         }
       }
+      MeetingMinuteMeeting: {
+        payload: Prisma.$MeetingMinuteMeetingPayload<ExtArgs>
+        fields: Prisma.MeetingMinuteMeetingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MeetingMinuteMeetingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MeetingMinuteMeetingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload>
+          }
+          findFirst: {
+            args: Prisma.MeetingMinuteMeetingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MeetingMinuteMeetingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload>
+          }
+          findMany: {
+            args: Prisma.MeetingMinuteMeetingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload>[]
+          }
+          create: {
+            args: Prisma.MeetingMinuteMeetingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload>
+          }
+          createMany: {
+            args: Prisma.MeetingMinuteMeetingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MeetingMinuteMeetingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload>[]
+          }
+          delete: {
+            args: Prisma.MeetingMinuteMeetingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload>
+          }
+          update: {
+            args: Prisma.MeetingMinuteMeetingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload>
+          }
+          deleteMany: {
+            args: Prisma.MeetingMinuteMeetingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MeetingMinuteMeetingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MeetingMinuteMeetingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload>[]
+          }
+          upsert: {
+            args: Prisma.MeetingMinuteMeetingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteMeetingPayload>
+          }
+          aggregate: {
+            args: Prisma.MeetingMinuteMeetingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMeetingMinuteMeeting>
+          }
+          groupBy: {
+            args: Prisma.MeetingMinuteMeetingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MeetingMinuteMeetingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MeetingMinuteMeetingCountArgs<ExtArgs>
+            result: $Utils.Optional<MeetingMinuteMeetingCountAggregateOutputType> | number
+          }
+        }
+      }
+      MeetingMinuteRequest: {
+        payload: Prisma.$MeetingMinuteRequestPayload<ExtArgs>
+        fields: Prisma.MeetingMinuteRequestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MeetingMinuteRequestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MeetingMinuteRequestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload>
+          }
+          findFirst: {
+            args: Prisma.MeetingMinuteRequestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MeetingMinuteRequestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload>
+          }
+          findMany: {
+            args: Prisma.MeetingMinuteRequestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload>[]
+          }
+          create: {
+            args: Prisma.MeetingMinuteRequestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload>
+          }
+          createMany: {
+            args: Prisma.MeetingMinuteRequestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MeetingMinuteRequestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload>[]
+          }
+          delete: {
+            args: Prisma.MeetingMinuteRequestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload>
+          }
+          update: {
+            args: Prisma.MeetingMinuteRequestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload>
+          }
+          deleteMany: {
+            args: Prisma.MeetingMinuteRequestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MeetingMinuteRequestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MeetingMinuteRequestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload>[]
+          }
+          upsert: {
+            args: Prisma.MeetingMinuteRequestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MeetingMinuteRequestPayload>
+          }
+          aggregate: {
+            args: Prisma.MeetingMinuteRequestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMeetingMinuteRequest>
+          }
+          groupBy: {
+            args: Prisma.MeetingMinuteRequestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MeetingMinuteRequestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MeetingMinuteRequestCountArgs<ExtArgs>
+            result: $Utils.Optional<MeetingMinuteRequestCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4052,6 +4274,8 @@ export namespace Prisma {
     blog?: BlogOmit
     assignmentTarget?: AssignmentTargetOmit
     refreshToken?: RefreshTokenOmit
+    meetingMinuteMeeting?: MeetingMinuteMeetingOmit
+    meetingMinuteRequest?: MeetingMinuteRequestOmit
   }
 
   /* Types for Logging */
@@ -4134,6 +4358,7 @@ export namespace Prisma {
   export type TeacherCountOutputType = {
     assignments: number
     classSchedules: number
+    MeetingMinuteMeeting: number
     progressReports: number
     resources: number
     studentGroups: number
@@ -4144,6 +4369,7 @@ export namespace Prisma {
   export type TeacherCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignments?: boolean | TeacherCountOutputTypeCountAssignmentsArgs
     classSchedules?: boolean | TeacherCountOutputTypeCountClassSchedulesArgs
+    MeetingMinuteMeeting?: boolean | TeacherCountOutputTypeCountMeetingMinuteMeetingArgs
     progressReports?: boolean | TeacherCountOutputTypeCountProgressReportsArgs
     resources?: boolean | TeacherCountOutputTypeCountResourcesArgs
     studentGroups?: boolean | TeacherCountOutputTypeCountStudentGroupsArgs
@@ -4174,6 +4400,13 @@ export namespace Prisma {
    */
   export type TeacherCountOutputTypeCountClassSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ClassScheduleWhereInput
+  }
+
+  /**
+   * TeacherCountOutputType without action
+   */
+  export type TeacherCountOutputTypeCountMeetingMinuteMeetingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MeetingMinuteMeetingWhereInput
   }
 
   /**
@@ -4222,6 +4455,7 @@ export namespace Prisma {
     Blog: number
     classSchedules: number
     enrollments: number
+    MeetingMinuteRequest: number
     Payment: number
     progressReports: number
     Research: number
@@ -4239,6 +4473,7 @@ export namespace Prisma {
     Blog?: boolean | StudentCountOutputTypeCountBlogArgs
     classSchedules?: boolean | StudentCountOutputTypeCountClassSchedulesArgs
     enrollments?: boolean | StudentCountOutputTypeCountEnrollmentsArgs
+    MeetingMinuteRequest?: boolean | StudentCountOutputTypeCountMeetingMinuteRequestArgs
     Payment?: boolean | StudentCountOutputTypeCountPaymentArgs
     progressReports?: boolean | StudentCountOutputTypeCountProgressReportsArgs
     Research?: boolean | StudentCountOutputTypeCountResearchArgs
@@ -4294,6 +4529,13 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountEnrollmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EnrollmentWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountMeetingMinuteRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MeetingMinuteRequestWhereInput
   }
 
   /**
@@ -4552,6 +4794,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type ClassScheduleCountOutputType
+   */
+
+  export type ClassScheduleCountOutputType = {
+    MeetingMinuteMeeting: number
+  }
+
+  export type ClassScheduleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MeetingMinuteMeeting?: boolean | ClassScheduleCountOutputTypeCountMeetingMinuteMeetingArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ClassScheduleCountOutputType without action
+   */
+  export type ClassScheduleCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassScheduleCountOutputType
+     */
+    select?: ClassScheduleCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ClassScheduleCountOutputType without action
+   */
+  export type ClassScheduleCountOutputTypeCountMeetingMinuteMeetingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MeetingMinuteMeetingWhereInput
+  }
+
+
+  /**
    * Count Type ParentAccountCountOutputType
    */
 
@@ -4641,6 +4914,37 @@ export namespace Prisma {
    */
   export type ResearchCountOutputTypeCountAccessRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AccessRequestWhereInput
+  }
+
+
+  /**
+   * Count Type MeetingMinuteMeetingCountOutputType
+   */
+
+  export type MeetingMinuteMeetingCountOutputType = {
+    MeetingMinuteRequest: number
+  }
+
+  export type MeetingMinuteMeetingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MeetingMinuteRequest?: boolean | MeetingMinuteMeetingCountOutputTypeCountMeetingMinuteRequestArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MeetingMinuteMeetingCountOutputType without action
+   */
+  export type MeetingMinuteMeetingCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeetingCountOutputType
+     */
+    select?: MeetingMinuteMeetingCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MeetingMinuteMeetingCountOutputType without action
+   */
+  export type MeetingMinuteMeetingCountOutputTypeCountMeetingMinuteRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MeetingMinuteRequestWhereInput
   }
 
 
@@ -7093,6 +7397,7 @@ export namespace Prisma {
     googleTokenExpiry?: boolean
     assignments?: boolean | Teacher$assignmentsArgs<ExtArgs>
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
+    MeetingMinuteMeeting?: boolean | Teacher$MeetingMinuteMeetingArgs<ExtArgs>
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
     progressReports?: boolean | Teacher$progressReportsArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
@@ -7151,6 +7456,7 @@ export namespace Prisma {
   export type TeacherInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignments?: boolean | Teacher$assignmentsArgs<ExtArgs>
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
+    MeetingMinuteMeeting?: boolean | Teacher$MeetingMinuteMeetingArgs<ExtArgs>
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
     progressReports?: boolean | Teacher$progressReportsArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
@@ -7167,6 +7473,7 @@ export namespace Prisma {
     objects: {
       assignments: Prisma.$AssignmentPayload<ExtArgs>[]
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
+      MeetingMinuteMeeting: Prisma.$MeetingMinuteMeetingPayload<ExtArgs>[]
       mentorProfile: Prisma.$MentorPayload<ExtArgs> | null
       progressReports: Prisma.$ProgressReportPayload<ExtArgs>[]
       resources: Prisma.$ResourcePayload<ExtArgs>[]
@@ -7583,6 +7890,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     assignments<T extends Teacher$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     classSchedules<T extends Teacher$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MeetingMinuteMeeting<T extends Teacher$MeetingMinuteMeetingArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$MeetingMinuteMeetingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     mentorProfile<T extends Teacher$mentorProfileArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$mentorProfileArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     progressReports<T extends Teacher$progressReportsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$progressReportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     resources<T extends Teacher$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8066,6 +8374,30 @@ export namespace Prisma {
   }
 
   /**
+   * Teacher.MeetingMinuteMeeting
+   */
+  export type Teacher$MeetingMinuteMeetingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    where?: MeetingMinuteMeetingWhereInput
+    orderBy?: MeetingMinuteMeetingOrderByWithRelationInput | MeetingMinuteMeetingOrderByWithRelationInput[]
+    cursor?: MeetingMinuteMeetingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MeetingMinuteMeetingScalarFieldEnum | MeetingMinuteMeetingScalarFieldEnum[]
+  }
+
+  /**
    * Teacher.mentorProfile
    */
   export type Teacher$mentorProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8514,6 +8846,7 @@ export namespace Prisma {
     Blog?: boolean | Student$BlogArgs<ExtArgs>
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
+    MeetingMinuteRequest?: boolean | Student$MeetingMinuteRequestArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
     progressReports?: boolean | Student$progressReportsArgs<ExtArgs>
     Research?: boolean | Student$ResearchArgs<ExtArgs>
@@ -8590,6 +8923,7 @@ export namespace Prisma {
     Blog?: boolean | Student$BlogArgs<ExtArgs>
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
+    MeetingMinuteRequest?: boolean | Student$MeetingMinuteRequestArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
     progressReports?: boolean | Student$progressReportsArgs<ExtArgs>
     Research?: boolean | Student$ResearchArgs<ExtArgs>
@@ -8617,6 +8951,7 @@ export namespace Prisma {
       Blog: Prisma.$BlogPayload<ExtArgs>[]
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
+      MeetingMinuteRequest: Prisma.$MeetingMinuteRequestPayload<ExtArgs>[]
       Payment: Prisma.$PaymentPayload<ExtArgs>[]
       progressReports: Prisma.$ProgressReportPayload<ExtArgs>[]
       Research: Prisma.$ResearchPayload<ExtArgs>[]
@@ -9043,6 +9378,7 @@ export namespace Prisma {
     Blog<T extends Student$BlogArgs<ExtArgs> = {}>(args?: Subset<T, Student$BlogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     classSchedules<T extends Student$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Student$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     enrollments<T extends Student$enrollmentsArgs<ExtArgs> = {}>(args?: Subset<T, Student$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MeetingMinuteRequest<T extends Student$MeetingMinuteRequestArgs<ExtArgs> = {}>(args?: Subset<T, Student$MeetingMinuteRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Payment<T extends Student$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Student$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     progressReports<T extends Student$progressReportsArgs<ExtArgs> = {}>(args?: Subset<T, Student$progressReportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Research<T extends Student$ResearchArgs<ExtArgs> = {}>(args?: Subset<T, Student$ResearchArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -9610,6 +9946,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EnrollmentScalarFieldEnum | EnrollmentScalarFieldEnum[]
+  }
+
+  /**
+   * Student.MeetingMinuteRequest
+   */
+  export type Student$MeetingMinuteRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    where?: MeetingMinuteRequestWhereInput
+    orderBy?: MeetingMinuteRequestOrderByWithRelationInput | MeetingMinuteRequestOrderByWithRelationInput[]
+    cursor?: MeetingMinuteRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MeetingMinuteRequestScalarFieldEnum | MeetingMinuteRequestScalarFieldEnum[]
   }
 
   /**
@@ -24229,6 +24589,8 @@ export namespace Prisma {
     group?: boolean | ClassSchedule$groupArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    MeetingMinuteMeeting?: boolean | ClassSchedule$MeetingMinuteMeetingArgs<ExtArgs>
+    _count?: boolean | ClassScheduleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classSchedule"]>
 
   export type ClassScheduleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -24323,6 +24685,8 @@ export namespace Prisma {
     group?: boolean | ClassSchedule$groupArgs<ExtArgs>
     student?: boolean | StudentDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    MeetingMinuteMeeting?: boolean | ClassSchedule$MeetingMinuteMeetingArgs<ExtArgs>
+    _count?: boolean | ClassScheduleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClassScheduleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     group?: boolean | ClassSchedule$groupArgs<ExtArgs>
@@ -24341,6 +24705,7 @@ export namespace Prisma {
       group: Prisma.$StudentGroupPayload<ExtArgs> | null
       student: Prisma.$StudentPayload<ExtArgs>
       teacher: Prisma.$TeacherPayload<ExtArgs>
+      MeetingMinuteMeeting: Prisma.$MeetingMinuteMeetingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -24764,6 +25129,7 @@ export namespace Prisma {
     group<T extends ClassSchedule$groupArgs<ExtArgs> = {}>(args?: Subset<T, ClassSchedule$groupArgs<ExtArgs>>): Prisma__StudentGroupClient<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    MeetingMinuteMeeting<T extends ClassSchedule$MeetingMinuteMeetingArgs<ExtArgs> = {}>(args?: Subset<T, ClassSchedule$MeetingMinuteMeetingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -25229,6 +25595,30 @@ export namespace Prisma {
      */
     include?: StudentGroupInclude<ExtArgs> | null
     where?: StudentGroupWhereInput
+  }
+
+  /**
+   * ClassSchedule.MeetingMinuteMeeting
+   */
+  export type ClassSchedule$MeetingMinuteMeetingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    where?: MeetingMinuteMeetingWhereInput
+    orderBy?: MeetingMinuteMeetingOrderByWithRelationInput | MeetingMinuteMeetingOrderByWithRelationInput[]
+    cursor?: MeetingMinuteMeetingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MeetingMinuteMeetingScalarFieldEnum | MeetingMinuteMeetingScalarFieldEnum[]
   }
 
   /**
@@ -49472,6 +49862,2488 @@ export namespace Prisma {
 
 
   /**
+   * Model MeetingMinuteMeeting
+   */
+
+  export type AggregateMeetingMinuteMeeting = {
+    _count: MeetingMinuteMeetingCountAggregateOutputType | null
+    _avg: MeetingMinuteMeetingAvgAggregateOutputType | null
+    _sum: MeetingMinuteMeetingSumAggregateOutputType | null
+    _min: MeetingMinuteMeetingMinAggregateOutputType | null
+    _max: MeetingMinuteMeetingMaxAggregateOutputType | null
+  }
+
+  export type MeetingMinuteMeetingAvgAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    classScheduleId: number | null
+  }
+
+  export type MeetingMinuteMeetingSumAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    classScheduleId: number | null
+  }
+
+  export type MeetingMinuteMeetingMinAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    source: $Enums.MeetingSource | null
+    googleCalendarEventId: string | null
+    classScheduleId: number | null
+    title: string | null
+    description: string | null
+    meetingLink: string | null
+    location: string | null
+    startDateTime: Date | null
+    endDateTime: Date | null
+    timezone: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MeetingMinuteMeetingMaxAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    source: $Enums.MeetingSource | null
+    googleCalendarEventId: string | null
+    classScheduleId: number | null
+    title: string | null
+    description: string | null
+    meetingLink: string | null
+    location: string | null
+    startDateTime: Date | null
+    endDateTime: Date | null
+    timezone: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MeetingMinuteMeetingCountAggregateOutputType = {
+    id: number
+    teacherId: number
+    source: number
+    googleCalendarEventId: number
+    classScheduleId: number
+    title: number
+    description: number
+    meetingLink: number
+    location: number
+    startDateTime: number
+    endDateTime: number
+    timezone: number
+    attendeeSnapshot: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MeetingMinuteMeetingAvgAggregateInputType = {
+    id?: true
+    teacherId?: true
+    classScheduleId?: true
+  }
+
+  export type MeetingMinuteMeetingSumAggregateInputType = {
+    id?: true
+    teacherId?: true
+    classScheduleId?: true
+  }
+
+  export type MeetingMinuteMeetingMinAggregateInputType = {
+    id?: true
+    teacherId?: true
+    source?: true
+    googleCalendarEventId?: true
+    classScheduleId?: true
+    title?: true
+    description?: true
+    meetingLink?: true
+    location?: true
+    startDateTime?: true
+    endDateTime?: true
+    timezone?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MeetingMinuteMeetingMaxAggregateInputType = {
+    id?: true
+    teacherId?: true
+    source?: true
+    googleCalendarEventId?: true
+    classScheduleId?: true
+    title?: true
+    description?: true
+    meetingLink?: true
+    location?: true
+    startDateTime?: true
+    endDateTime?: true
+    timezone?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MeetingMinuteMeetingCountAggregateInputType = {
+    id?: true
+    teacherId?: true
+    source?: true
+    googleCalendarEventId?: true
+    classScheduleId?: true
+    title?: true
+    description?: true
+    meetingLink?: true
+    location?: true
+    startDateTime?: true
+    endDateTime?: true
+    timezone?: true
+    attendeeSnapshot?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MeetingMinuteMeetingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MeetingMinuteMeeting to aggregate.
+     */
+    where?: MeetingMinuteMeetingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingMinuteMeetings to fetch.
+     */
+    orderBy?: MeetingMinuteMeetingOrderByWithRelationInput | MeetingMinuteMeetingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MeetingMinuteMeetingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingMinuteMeetings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingMinuteMeetings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MeetingMinuteMeetings
+    **/
+    _count?: true | MeetingMinuteMeetingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MeetingMinuteMeetingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MeetingMinuteMeetingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MeetingMinuteMeetingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MeetingMinuteMeetingMaxAggregateInputType
+  }
+
+  export type GetMeetingMinuteMeetingAggregateType<T extends MeetingMinuteMeetingAggregateArgs> = {
+        [P in keyof T & keyof AggregateMeetingMinuteMeeting]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMeetingMinuteMeeting[P]>
+      : GetScalarType<T[P], AggregateMeetingMinuteMeeting[P]>
+  }
+
+
+
+
+  export type MeetingMinuteMeetingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MeetingMinuteMeetingWhereInput
+    orderBy?: MeetingMinuteMeetingOrderByWithAggregationInput | MeetingMinuteMeetingOrderByWithAggregationInput[]
+    by: MeetingMinuteMeetingScalarFieldEnum[] | MeetingMinuteMeetingScalarFieldEnum
+    having?: MeetingMinuteMeetingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MeetingMinuteMeetingCountAggregateInputType | true
+    _avg?: MeetingMinuteMeetingAvgAggregateInputType
+    _sum?: MeetingMinuteMeetingSumAggregateInputType
+    _min?: MeetingMinuteMeetingMinAggregateInputType
+    _max?: MeetingMinuteMeetingMaxAggregateInputType
+  }
+
+  export type MeetingMinuteMeetingGroupByOutputType = {
+    id: number
+    teacherId: number
+    source: $Enums.MeetingSource
+    googleCalendarEventId: string | null
+    classScheduleId: number | null
+    title: string
+    description: string | null
+    meetingLink: string | null
+    location: string | null
+    startDateTime: Date
+    endDateTime: Date
+    timezone: string
+    attendeeSnapshot: JsonValue | null
+    createdAt: Date
+    updatedAt: Date
+    _count: MeetingMinuteMeetingCountAggregateOutputType | null
+    _avg: MeetingMinuteMeetingAvgAggregateOutputType | null
+    _sum: MeetingMinuteMeetingSumAggregateOutputType | null
+    _min: MeetingMinuteMeetingMinAggregateOutputType | null
+    _max: MeetingMinuteMeetingMaxAggregateOutputType | null
+  }
+
+  type GetMeetingMinuteMeetingGroupByPayload<T extends MeetingMinuteMeetingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MeetingMinuteMeetingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MeetingMinuteMeetingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MeetingMinuteMeetingGroupByOutputType[P]>
+            : GetScalarType<T[P], MeetingMinuteMeetingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MeetingMinuteMeetingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    source?: boolean
+    googleCalendarEventId?: boolean
+    classScheduleId?: boolean
+    title?: boolean
+    description?: boolean
+    meetingLink?: boolean
+    location?: boolean
+    startDateTime?: boolean
+    endDateTime?: boolean
+    timezone?: boolean
+    attendeeSnapshot?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ClassSchedule?: boolean | MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    MeetingMinuteRequest?: boolean | MeetingMinuteMeeting$MeetingMinuteRequestArgs<ExtArgs>
+    _count?: boolean | MeetingMinuteMeetingCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meetingMinuteMeeting"]>
+
+  export type MeetingMinuteMeetingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    source?: boolean
+    googleCalendarEventId?: boolean
+    classScheduleId?: boolean
+    title?: boolean
+    description?: boolean
+    meetingLink?: boolean
+    location?: boolean
+    startDateTime?: boolean
+    endDateTime?: boolean
+    timezone?: boolean
+    attendeeSnapshot?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ClassSchedule?: boolean | MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meetingMinuteMeeting"]>
+
+  export type MeetingMinuteMeetingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    source?: boolean
+    googleCalendarEventId?: boolean
+    classScheduleId?: boolean
+    title?: boolean
+    description?: boolean
+    meetingLink?: boolean
+    location?: boolean
+    startDateTime?: boolean
+    endDateTime?: boolean
+    timezone?: boolean
+    attendeeSnapshot?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ClassSchedule?: boolean | MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meetingMinuteMeeting"]>
+
+  export type MeetingMinuteMeetingSelectScalar = {
+    id?: boolean
+    teacherId?: boolean
+    source?: boolean
+    googleCalendarEventId?: boolean
+    classScheduleId?: boolean
+    title?: boolean
+    description?: boolean
+    meetingLink?: boolean
+    location?: boolean
+    startDateTime?: boolean
+    endDateTime?: boolean
+    timezone?: boolean
+    attendeeSnapshot?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MeetingMinuteMeetingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teacherId" | "source" | "googleCalendarEventId" | "classScheduleId" | "title" | "description" | "meetingLink" | "location" | "startDateTime" | "endDateTime" | "timezone" | "attendeeSnapshot" | "createdAt" | "updatedAt", ExtArgs["result"]["meetingMinuteMeeting"]>
+  export type MeetingMinuteMeetingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ClassSchedule?: boolean | MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    MeetingMinuteRequest?: boolean | MeetingMinuteMeeting$MeetingMinuteRequestArgs<ExtArgs>
+    _count?: boolean | MeetingMinuteMeetingCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MeetingMinuteMeetingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ClassSchedule?: boolean | MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+  export type MeetingMinuteMeetingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ClassSchedule?: boolean | MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+
+  export type $MeetingMinuteMeetingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MeetingMinuteMeeting"
+    objects: {
+      ClassSchedule: Prisma.$ClassSchedulePayload<ExtArgs> | null
+      Teacher: Prisma.$TeacherPayload<ExtArgs>
+      MeetingMinuteRequest: Prisma.$MeetingMinuteRequestPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      teacherId: number
+      source: $Enums.MeetingSource
+      googleCalendarEventId: string | null
+      classScheduleId: number | null
+      title: string
+      description: string | null
+      meetingLink: string | null
+      location: string | null
+      startDateTime: Date
+      endDateTime: Date
+      timezone: string
+      attendeeSnapshot: Prisma.JsonValue | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["meetingMinuteMeeting"]>
+    composites: {}
+  }
+
+  type MeetingMinuteMeetingGetPayload<S extends boolean | null | undefined | MeetingMinuteMeetingDefaultArgs> = $Result.GetResult<Prisma.$MeetingMinuteMeetingPayload, S>
+
+  type MeetingMinuteMeetingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MeetingMinuteMeetingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MeetingMinuteMeetingCountAggregateInputType | true
+    }
+
+  export interface MeetingMinuteMeetingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MeetingMinuteMeeting'], meta: { name: 'MeetingMinuteMeeting' } }
+    /**
+     * Find zero or one MeetingMinuteMeeting that matches the filter.
+     * @param {MeetingMinuteMeetingFindUniqueArgs} args - Arguments to find a MeetingMinuteMeeting
+     * @example
+     * // Get one MeetingMinuteMeeting
+     * const meetingMinuteMeeting = await prisma.meetingMinuteMeeting.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MeetingMinuteMeetingFindUniqueArgs>(args: SelectSubset<T, MeetingMinuteMeetingFindUniqueArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MeetingMinuteMeeting that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MeetingMinuteMeetingFindUniqueOrThrowArgs} args - Arguments to find a MeetingMinuteMeeting
+     * @example
+     * // Get one MeetingMinuteMeeting
+     * const meetingMinuteMeeting = await prisma.meetingMinuteMeeting.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MeetingMinuteMeetingFindUniqueOrThrowArgs>(args: SelectSubset<T, MeetingMinuteMeetingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MeetingMinuteMeeting that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteMeetingFindFirstArgs} args - Arguments to find a MeetingMinuteMeeting
+     * @example
+     * // Get one MeetingMinuteMeeting
+     * const meetingMinuteMeeting = await prisma.meetingMinuteMeeting.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MeetingMinuteMeetingFindFirstArgs>(args?: SelectSubset<T, MeetingMinuteMeetingFindFirstArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MeetingMinuteMeeting that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteMeetingFindFirstOrThrowArgs} args - Arguments to find a MeetingMinuteMeeting
+     * @example
+     * // Get one MeetingMinuteMeeting
+     * const meetingMinuteMeeting = await prisma.meetingMinuteMeeting.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MeetingMinuteMeetingFindFirstOrThrowArgs>(args?: SelectSubset<T, MeetingMinuteMeetingFindFirstOrThrowArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MeetingMinuteMeetings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteMeetingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MeetingMinuteMeetings
+     * const meetingMinuteMeetings = await prisma.meetingMinuteMeeting.findMany()
+     * 
+     * // Get first 10 MeetingMinuteMeetings
+     * const meetingMinuteMeetings = await prisma.meetingMinuteMeeting.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const meetingMinuteMeetingWithIdOnly = await prisma.meetingMinuteMeeting.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MeetingMinuteMeetingFindManyArgs>(args?: SelectSubset<T, MeetingMinuteMeetingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MeetingMinuteMeeting.
+     * @param {MeetingMinuteMeetingCreateArgs} args - Arguments to create a MeetingMinuteMeeting.
+     * @example
+     * // Create one MeetingMinuteMeeting
+     * const MeetingMinuteMeeting = await prisma.meetingMinuteMeeting.create({
+     *   data: {
+     *     // ... data to create a MeetingMinuteMeeting
+     *   }
+     * })
+     * 
+     */
+    create<T extends MeetingMinuteMeetingCreateArgs>(args: SelectSubset<T, MeetingMinuteMeetingCreateArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MeetingMinuteMeetings.
+     * @param {MeetingMinuteMeetingCreateManyArgs} args - Arguments to create many MeetingMinuteMeetings.
+     * @example
+     * // Create many MeetingMinuteMeetings
+     * const meetingMinuteMeeting = await prisma.meetingMinuteMeeting.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MeetingMinuteMeetingCreateManyArgs>(args?: SelectSubset<T, MeetingMinuteMeetingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MeetingMinuteMeetings and returns the data saved in the database.
+     * @param {MeetingMinuteMeetingCreateManyAndReturnArgs} args - Arguments to create many MeetingMinuteMeetings.
+     * @example
+     * // Create many MeetingMinuteMeetings
+     * const meetingMinuteMeeting = await prisma.meetingMinuteMeeting.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MeetingMinuteMeetings and only return the `id`
+     * const meetingMinuteMeetingWithIdOnly = await prisma.meetingMinuteMeeting.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MeetingMinuteMeetingCreateManyAndReturnArgs>(args?: SelectSubset<T, MeetingMinuteMeetingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MeetingMinuteMeeting.
+     * @param {MeetingMinuteMeetingDeleteArgs} args - Arguments to delete one MeetingMinuteMeeting.
+     * @example
+     * // Delete one MeetingMinuteMeeting
+     * const MeetingMinuteMeeting = await prisma.meetingMinuteMeeting.delete({
+     *   where: {
+     *     // ... filter to delete one MeetingMinuteMeeting
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MeetingMinuteMeetingDeleteArgs>(args: SelectSubset<T, MeetingMinuteMeetingDeleteArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MeetingMinuteMeeting.
+     * @param {MeetingMinuteMeetingUpdateArgs} args - Arguments to update one MeetingMinuteMeeting.
+     * @example
+     * // Update one MeetingMinuteMeeting
+     * const meetingMinuteMeeting = await prisma.meetingMinuteMeeting.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MeetingMinuteMeetingUpdateArgs>(args: SelectSubset<T, MeetingMinuteMeetingUpdateArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MeetingMinuteMeetings.
+     * @param {MeetingMinuteMeetingDeleteManyArgs} args - Arguments to filter MeetingMinuteMeetings to delete.
+     * @example
+     * // Delete a few MeetingMinuteMeetings
+     * const { count } = await prisma.meetingMinuteMeeting.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MeetingMinuteMeetingDeleteManyArgs>(args?: SelectSubset<T, MeetingMinuteMeetingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MeetingMinuteMeetings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteMeetingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MeetingMinuteMeetings
+     * const meetingMinuteMeeting = await prisma.meetingMinuteMeeting.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MeetingMinuteMeetingUpdateManyArgs>(args: SelectSubset<T, MeetingMinuteMeetingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MeetingMinuteMeetings and returns the data updated in the database.
+     * @param {MeetingMinuteMeetingUpdateManyAndReturnArgs} args - Arguments to update many MeetingMinuteMeetings.
+     * @example
+     * // Update many MeetingMinuteMeetings
+     * const meetingMinuteMeeting = await prisma.meetingMinuteMeeting.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MeetingMinuteMeetings and only return the `id`
+     * const meetingMinuteMeetingWithIdOnly = await prisma.meetingMinuteMeeting.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MeetingMinuteMeetingUpdateManyAndReturnArgs>(args: SelectSubset<T, MeetingMinuteMeetingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MeetingMinuteMeeting.
+     * @param {MeetingMinuteMeetingUpsertArgs} args - Arguments to update or create a MeetingMinuteMeeting.
+     * @example
+     * // Update or create a MeetingMinuteMeeting
+     * const meetingMinuteMeeting = await prisma.meetingMinuteMeeting.upsert({
+     *   create: {
+     *     // ... data to create a MeetingMinuteMeeting
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MeetingMinuteMeeting we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MeetingMinuteMeetingUpsertArgs>(args: SelectSubset<T, MeetingMinuteMeetingUpsertArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MeetingMinuteMeetings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteMeetingCountArgs} args - Arguments to filter MeetingMinuteMeetings to count.
+     * @example
+     * // Count the number of MeetingMinuteMeetings
+     * const count = await prisma.meetingMinuteMeeting.count({
+     *   where: {
+     *     // ... the filter for the MeetingMinuteMeetings we want to count
+     *   }
+     * })
+    **/
+    count<T extends MeetingMinuteMeetingCountArgs>(
+      args?: Subset<T, MeetingMinuteMeetingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MeetingMinuteMeetingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MeetingMinuteMeeting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteMeetingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MeetingMinuteMeetingAggregateArgs>(args: Subset<T, MeetingMinuteMeetingAggregateArgs>): Prisma.PrismaPromise<GetMeetingMinuteMeetingAggregateType<T>>
+
+    /**
+     * Group by MeetingMinuteMeeting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteMeetingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MeetingMinuteMeetingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MeetingMinuteMeetingGroupByArgs['orderBy'] }
+        : { orderBy?: MeetingMinuteMeetingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MeetingMinuteMeetingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMeetingMinuteMeetingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MeetingMinuteMeeting model
+   */
+  readonly fields: MeetingMinuteMeetingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MeetingMinuteMeeting.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MeetingMinuteMeetingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ClassSchedule<T extends MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs> = {}>(args?: Subset<T, MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs>>): Prisma__ClassScheduleClient<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    MeetingMinuteRequest<T extends MeetingMinuteMeeting$MeetingMinuteRequestArgs<ExtArgs> = {}>(args?: Subset<T, MeetingMinuteMeeting$MeetingMinuteRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MeetingMinuteMeeting model
+   */
+  interface MeetingMinuteMeetingFieldRefs {
+    readonly id: FieldRef<"MeetingMinuteMeeting", 'Int'>
+    readonly teacherId: FieldRef<"MeetingMinuteMeeting", 'Int'>
+    readonly source: FieldRef<"MeetingMinuteMeeting", 'MeetingSource'>
+    readonly googleCalendarEventId: FieldRef<"MeetingMinuteMeeting", 'String'>
+    readonly classScheduleId: FieldRef<"MeetingMinuteMeeting", 'Int'>
+    readonly title: FieldRef<"MeetingMinuteMeeting", 'String'>
+    readonly description: FieldRef<"MeetingMinuteMeeting", 'String'>
+    readonly meetingLink: FieldRef<"MeetingMinuteMeeting", 'String'>
+    readonly location: FieldRef<"MeetingMinuteMeeting", 'String'>
+    readonly startDateTime: FieldRef<"MeetingMinuteMeeting", 'DateTime'>
+    readonly endDateTime: FieldRef<"MeetingMinuteMeeting", 'DateTime'>
+    readonly timezone: FieldRef<"MeetingMinuteMeeting", 'String'>
+    readonly attendeeSnapshot: FieldRef<"MeetingMinuteMeeting", 'Json'>
+    readonly createdAt: FieldRef<"MeetingMinuteMeeting", 'DateTime'>
+    readonly updatedAt: FieldRef<"MeetingMinuteMeeting", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MeetingMinuteMeeting findUnique
+   */
+  export type MeetingMinuteMeetingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingMinuteMeeting to fetch.
+     */
+    where: MeetingMinuteMeetingWhereUniqueInput
+  }
+
+  /**
+   * MeetingMinuteMeeting findUniqueOrThrow
+   */
+  export type MeetingMinuteMeetingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingMinuteMeeting to fetch.
+     */
+    where: MeetingMinuteMeetingWhereUniqueInput
+  }
+
+  /**
+   * MeetingMinuteMeeting findFirst
+   */
+  export type MeetingMinuteMeetingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingMinuteMeeting to fetch.
+     */
+    where?: MeetingMinuteMeetingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingMinuteMeetings to fetch.
+     */
+    orderBy?: MeetingMinuteMeetingOrderByWithRelationInput | MeetingMinuteMeetingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MeetingMinuteMeetings.
+     */
+    cursor?: MeetingMinuteMeetingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingMinuteMeetings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingMinuteMeetings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MeetingMinuteMeetings.
+     */
+    distinct?: MeetingMinuteMeetingScalarFieldEnum | MeetingMinuteMeetingScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingMinuteMeeting findFirstOrThrow
+   */
+  export type MeetingMinuteMeetingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingMinuteMeeting to fetch.
+     */
+    where?: MeetingMinuteMeetingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingMinuteMeetings to fetch.
+     */
+    orderBy?: MeetingMinuteMeetingOrderByWithRelationInput | MeetingMinuteMeetingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MeetingMinuteMeetings.
+     */
+    cursor?: MeetingMinuteMeetingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingMinuteMeetings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingMinuteMeetings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MeetingMinuteMeetings.
+     */
+    distinct?: MeetingMinuteMeetingScalarFieldEnum | MeetingMinuteMeetingScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingMinuteMeeting findMany
+   */
+  export type MeetingMinuteMeetingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingMinuteMeetings to fetch.
+     */
+    where?: MeetingMinuteMeetingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingMinuteMeetings to fetch.
+     */
+    orderBy?: MeetingMinuteMeetingOrderByWithRelationInput | MeetingMinuteMeetingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MeetingMinuteMeetings.
+     */
+    cursor?: MeetingMinuteMeetingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingMinuteMeetings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingMinuteMeetings.
+     */
+    skip?: number
+    distinct?: MeetingMinuteMeetingScalarFieldEnum | MeetingMinuteMeetingScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingMinuteMeeting create
+   */
+  export type MeetingMinuteMeetingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MeetingMinuteMeeting.
+     */
+    data: XOR<MeetingMinuteMeetingCreateInput, MeetingMinuteMeetingUncheckedCreateInput>
+  }
+
+  /**
+   * MeetingMinuteMeeting createMany
+   */
+  export type MeetingMinuteMeetingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MeetingMinuteMeetings.
+     */
+    data: MeetingMinuteMeetingCreateManyInput | MeetingMinuteMeetingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MeetingMinuteMeeting createManyAndReturn
+   */
+  export type MeetingMinuteMeetingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * The data used to create many MeetingMinuteMeetings.
+     */
+    data: MeetingMinuteMeetingCreateManyInput | MeetingMinuteMeetingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MeetingMinuteMeeting update
+   */
+  export type MeetingMinuteMeetingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MeetingMinuteMeeting.
+     */
+    data: XOR<MeetingMinuteMeetingUpdateInput, MeetingMinuteMeetingUncheckedUpdateInput>
+    /**
+     * Choose, which MeetingMinuteMeeting to update.
+     */
+    where: MeetingMinuteMeetingWhereUniqueInput
+  }
+
+  /**
+   * MeetingMinuteMeeting updateMany
+   */
+  export type MeetingMinuteMeetingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MeetingMinuteMeetings.
+     */
+    data: XOR<MeetingMinuteMeetingUpdateManyMutationInput, MeetingMinuteMeetingUncheckedUpdateManyInput>
+    /**
+     * Filter which MeetingMinuteMeetings to update
+     */
+    where?: MeetingMinuteMeetingWhereInput
+    /**
+     * Limit how many MeetingMinuteMeetings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MeetingMinuteMeeting updateManyAndReturn
+   */
+  export type MeetingMinuteMeetingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * The data used to update MeetingMinuteMeetings.
+     */
+    data: XOR<MeetingMinuteMeetingUpdateManyMutationInput, MeetingMinuteMeetingUncheckedUpdateManyInput>
+    /**
+     * Filter which MeetingMinuteMeetings to update
+     */
+    where?: MeetingMinuteMeetingWhereInput
+    /**
+     * Limit how many MeetingMinuteMeetings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MeetingMinuteMeeting upsert
+   */
+  export type MeetingMinuteMeetingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MeetingMinuteMeeting to update in case it exists.
+     */
+    where: MeetingMinuteMeetingWhereUniqueInput
+    /**
+     * In case the MeetingMinuteMeeting found by the `where` argument doesn't exist, create a new MeetingMinuteMeeting with this data.
+     */
+    create: XOR<MeetingMinuteMeetingCreateInput, MeetingMinuteMeetingUncheckedCreateInput>
+    /**
+     * In case the MeetingMinuteMeeting was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MeetingMinuteMeetingUpdateInput, MeetingMinuteMeetingUncheckedUpdateInput>
+  }
+
+  /**
+   * MeetingMinuteMeeting delete
+   */
+  export type MeetingMinuteMeetingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    /**
+     * Filter which MeetingMinuteMeeting to delete.
+     */
+    where: MeetingMinuteMeetingWhereUniqueInput
+  }
+
+  /**
+   * MeetingMinuteMeeting deleteMany
+   */
+  export type MeetingMinuteMeetingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MeetingMinuteMeetings to delete
+     */
+    where?: MeetingMinuteMeetingWhereInput
+    /**
+     * Limit how many MeetingMinuteMeetings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MeetingMinuteMeeting.ClassSchedule
+   */
+  export type MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSchedule
+     */
+    select?: ClassScheduleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClassSchedule
+     */
+    omit?: ClassScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
+    where?: ClassScheduleWhereInput
+  }
+
+  /**
+   * MeetingMinuteMeeting.MeetingMinuteRequest
+   */
+  export type MeetingMinuteMeeting$MeetingMinuteRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    where?: MeetingMinuteRequestWhereInput
+    orderBy?: MeetingMinuteRequestOrderByWithRelationInput | MeetingMinuteRequestOrderByWithRelationInput[]
+    cursor?: MeetingMinuteRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MeetingMinuteRequestScalarFieldEnum | MeetingMinuteRequestScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingMinuteMeeting without action
+   */
+  export type MeetingMinuteMeetingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MeetingMinuteRequest
+   */
+
+  export type AggregateMeetingMinuteRequest = {
+    _count: MeetingMinuteRequestCountAggregateOutputType | null
+    _avg: MeetingMinuteRequestAvgAggregateOutputType | null
+    _sum: MeetingMinuteRequestSumAggregateOutputType | null
+    _min: MeetingMinuteRequestMinAggregateOutputType | null
+    _max: MeetingMinuteRequestMaxAggregateOutputType | null
+  }
+
+  export type MeetingMinuteRequestAvgAggregateOutputType = {
+    id: number | null
+    meetingId: number | null
+    studentId: number | null
+  }
+
+  export type MeetingMinuteRequestSumAggregateOutputType = {
+    id: number | null
+    meetingId: number | null
+    studentId: number | null
+  }
+
+  export type MeetingMinuteRequestMinAggregateOutputType = {
+    id: number | null
+    meetingId: number | null
+    studentId: number | null
+    status: $Enums.MeetingMinuteStatus | null
+    studentMinutes: string | null
+    submittedAt: Date | null
+    teacherFinalText: string | null
+    reviewedAt: Date | null
+    approvedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    creationMode: $Enums.MeetingMinuteCreationMode | null
+  }
+
+  export type MeetingMinuteRequestMaxAggregateOutputType = {
+    id: number | null
+    meetingId: number | null
+    studentId: number | null
+    status: $Enums.MeetingMinuteStatus | null
+    studentMinutes: string | null
+    submittedAt: Date | null
+    teacherFinalText: string | null
+    reviewedAt: Date | null
+    approvedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    creationMode: $Enums.MeetingMinuteCreationMode | null
+  }
+
+  export type MeetingMinuteRequestCountAggregateOutputType = {
+    id: number
+    meetingId: number
+    studentId: number
+    status: number
+    studentMinutes: number
+    submittedAt: number
+    teacherFinalText: number
+    reviewedAt: number
+    approvedAt: number
+    createdAt: number
+    updatedAt: number
+    creationMode: number
+    _all: number
+  }
+
+
+  export type MeetingMinuteRequestAvgAggregateInputType = {
+    id?: true
+    meetingId?: true
+    studentId?: true
+  }
+
+  export type MeetingMinuteRequestSumAggregateInputType = {
+    id?: true
+    meetingId?: true
+    studentId?: true
+  }
+
+  export type MeetingMinuteRequestMinAggregateInputType = {
+    id?: true
+    meetingId?: true
+    studentId?: true
+    status?: true
+    studentMinutes?: true
+    submittedAt?: true
+    teacherFinalText?: true
+    reviewedAt?: true
+    approvedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    creationMode?: true
+  }
+
+  export type MeetingMinuteRequestMaxAggregateInputType = {
+    id?: true
+    meetingId?: true
+    studentId?: true
+    status?: true
+    studentMinutes?: true
+    submittedAt?: true
+    teacherFinalText?: true
+    reviewedAt?: true
+    approvedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    creationMode?: true
+  }
+
+  export type MeetingMinuteRequestCountAggregateInputType = {
+    id?: true
+    meetingId?: true
+    studentId?: true
+    status?: true
+    studentMinutes?: true
+    submittedAt?: true
+    teacherFinalText?: true
+    reviewedAt?: true
+    approvedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    creationMode?: true
+    _all?: true
+  }
+
+  export type MeetingMinuteRequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MeetingMinuteRequest to aggregate.
+     */
+    where?: MeetingMinuteRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingMinuteRequests to fetch.
+     */
+    orderBy?: MeetingMinuteRequestOrderByWithRelationInput | MeetingMinuteRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MeetingMinuteRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingMinuteRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingMinuteRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MeetingMinuteRequests
+    **/
+    _count?: true | MeetingMinuteRequestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MeetingMinuteRequestAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MeetingMinuteRequestSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MeetingMinuteRequestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MeetingMinuteRequestMaxAggregateInputType
+  }
+
+  export type GetMeetingMinuteRequestAggregateType<T extends MeetingMinuteRequestAggregateArgs> = {
+        [P in keyof T & keyof AggregateMeetingMinuteRequest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMeetingMinuteRequest[P]>
+      : GetScalarType<T[P], AggregateMeetingMinuteRequest[P]>
+  }
+
+
+
+
+  export type MeetingMinuteRequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MeetingMinuteRequestWhereInput
+    orderBy?: MeetingMinuteRequestOrderByWithAggregationInput | MeetingMinuteRequestOrderByWithAggregationInput[]
+    by: MeetingMinuteRequestScalarFieldEnum[] | MeetingMinuteRequestScalarFieldEnum
+    having?: MeetingMinuteRequestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MeetingMinuteRequestCountAggregateInputType | true
+    _avg?: MeetingMinuteRequestAvgAggregateInputType
+    _sum?: MeetingMinuteRequestSumAggregateInputType
+    _min?: MeetingMinuteRequestMinAggregateInputType
+    _max?: MeetingMinuteRequestMaxAggregateInputType
+  }
+
+  export type MeetingMinuteRequestGroupByOutputType = {
+    id: number
+    meetingId: number
+    studentId: number
+    status: $Enums.MeetingMinuteStatus
+    studentMinutes: string | null
+    submittedAt: Date | null
+    teacherFinalText: string | null
+    reviewedAt: Date | null
+    approvedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    creationMode: $Enums.MeetingMinuteCreationMode
+    _count: MeetingMinuteRequestCountAggregateOutputType | null
+    _avg: MeetingMinuteRequestAvgAggregateOutputType | null
+    _sum: MeetingMinuteRequestSumAggregateOutputType | null
+    _min: MeetingMinuteRequestMinAggregateOutputType | null
+    _max: MeetingMinuteRequestMaxAggregateOutputType | null
+  }
+
+  type GetMeetingMinuteRequestGroupByPayload<T extends MeetingMinuteRequestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MeetingMinuteRequestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MeetingMinuteRequestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MeetingMinuteRequestGroupByOutputType[P]>
+            : GetScalarType<T[P], MeetingMinuteRequestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MeetingMinuteRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    meetingId?: boolean
+    studentId?: boolean
+    status?: boolean
+    studentMinutes?: boolean
+    submittedAt?: boolean
+    teacherFinalText?: boolean
+    reviewedAt?: boolean
+    approvedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creationMode?: boolean
+    MeetingMinuteMeeting?: boolean | MeetingMinuteMeetingDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meetingMinuteRequest"]>
+
+  export type MeetingMinuteRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    meetingId?: boolean
+    studentId?: boolean
+    status?: boolean
+    studentMinutes?: boolean
+    submittedAt?: boolean
+    teacherFinalText?: boolean
+    reviewedAt?: boolean
+    approvedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creationMode?: boolean
+    MeetingMinuteMeeting?: boolean | MeetingMinuteMeetingDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meetingMinuteRequest"]>
+
+  export type MeetingMinuteRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    meetingId?: boolean
+    studentId?: boolean
+    status?: boolean
+    studentMinutes?: boolean
+    submittedAt?: boolean
+    teacherFinalText?: boolean
+    reviewedAt?: boolean
+    approvedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creationMode?: boolean
+    MeetingMinuteMeeting?: boolean | MeetingMinuteMeetingDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["meetingMinuteRequest"]>
+
+  export type MeetingMinuteRequestSelectScalar = {
+    id?: boolean
+    meetingId?: boolean
+    studentId?: boolean
+    status?: boolean
+    studentMinutes?: boolean
+    submittedAt?: boolean
+    teacherFinalText?: boolean
+    reviewedAt?: boolean
+    approvedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creationMode?: boolean
+  }
+
+  export type MeetingMinuteRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "meetingId" | "studentId" | "status" | "studentMinutes" | "submittedAt" | "teacherFinalText" | "reviewedAt" | "approvedAt" | "createdAt" | "updatedAt" | "creationMode", ExtArgs["result"]["meetingMinuteRequest"]>
+  export type MeetingMinuteRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MeetingMinuteMeeting?: boolean | MeetingMinuteMeetingDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+  export type MeetingMinuteRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MeetingMinuteMeeting?: boolean | MeetingMinuteMeetingDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+  export type MeetingMinuteRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MeetingMinuteMeeting?: boolean | MeetingMinuteMeetingDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+
+  export type $MeetingMinuteRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MeetingMinuteRequest"
+    objects: {
+      MeetingMinuteMeeting: Prisma.$MeetingMinuteMeetingPayload<ExtArgs>
+      Student: Prisma.$StudentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      meetingId: number
+      studentId: number
+      status: $Enums.MeetingMinuteStatus
+      studentMinutes: string | null
+      submittedAt: Date | null
+      teacherFinalText: string | null
+      reviewedAt: Date | null
+      approvedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+      creationMode: $Enums.MeetingMinuteCreationMode
+    }, ExtArgs["result"]["meetingMinuteRequest"]>
+    composites: {}
+  }
+
+  type MeetingMinuteRequestGetPayload<S extends boolean | null | undefined | MeetingMinuteRequestDefaultArgs> = $Result.GetResult<Prisma.$MeetingMinuteRequestPayload, S>
+
+  type MeetingMinuteRequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MeetingMinuteRequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MeetingMinuteRequestCountAggregateInputType | true
+    }
+
+  export interface MeetingMinuteRequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MeetingMinuteRequest'], meta: { name: 'MeetingMinuteRequest' } }
+    /**
+     * Find zero or one MeetingMinuteRequest that matches the filter.
+     * @param {MeetingMinuteRequestFindUniqueArgs} args - Arguments to find a MeetingMinuteRequest
+     * @example
+     * // Get one MeetingMinuteRequest
+     * const meetingMinuteRequest = await prisma.meetingMinuteRequest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MeetingMinuteRequestFindUniqueArgs>(args: SelectSubset<T, MeetingMinuteRequestFindUniqueArgs<ExtArgs>>): Prisma__MeetingMinuteRequestClient<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MeetingMinuteRequest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MeetingMinuteRequestFindUniqueOrThrowArgs} args - Arguments to find a MeetingMinuteRequest
+     * @example
+     * // Get one MeetingMinuteRequest
+     * const meetingMinuteRequest = await prisma.meetingMinuteRequest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MeetingMinuteRequestFindUniqueOrThrowArgs>(args: SelectSubset<T, MeetingMinuteRequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MeetingMinuteRequestClient<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MeetingMinuteRequest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteRequestFindFirstArgs} args - Arguments to find a MeetingMinuteRequest
+     * @example
+     * // Get one MeetingMinuteRequest
+     * const meetingMinuteRequest = await prisma.meetingMinuteRequest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MeetingMinuteRequestFindFirstArgs>(args?: SelectSubset<T, MeetingMinuteRequestFindFirstArgs<ExtArgs>>): Prisma__MeetingMinuteRequestClient<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MeetingMinuteRequest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteRequestFindFirstOrThrowArgs} args - Arguments to find a MeetingMinuteRequest
+     * @example
+     * // Get one MeetingMinuteRequest
+     * const meetingMinuteRequest = await prisma.meetingMinuteRequest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MeetingMinuteRequestFindFirstOrThrowArgs>(args?: SelectSubset<T, MeetingMinuteRequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__MeetingMinuteRequestClient<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MeetingMinuteRequests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteRequestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MeetingMinuteRequests
+     * const meetingMinuteRequests = await prisma.meetingMinuteRequest.findMany()
+     * 
+     * // Get first 10 MeetingMinuteRequests
+     * const meetingMinuteRequests = await prisma.meetingMinuteRequest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const meetingMinuteRequestWithIdOnly = await prisma.meetingMinuteRequest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MeetingMinuteRequestFindManyArgs>(args?: SelectSubset<T, MeetingMinuteRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MeetingMinuteRequest.
+     * @param {MeetingMinuteRequestCreateArgs} args - Arguments to create a MeetingMinuteRequest.
+     * @example
+     * // Create one MeetingMinuteRequest
+     * const MeetingMinuteRequest = await prisma.meetingMinuteRequest.create({
+     *   data: {
+     *     // ... data to create a MeetingMinuteRequest
+     *   }
+     * })
+     * 
+     */
+    create<T extends MeetingMinuteRequestCreateArgs>(args: SelectSubset<T, MeetingMinuteRequestCreateArgs<ExtArgs>>): Prisma__MeetingMinuteRequestClient<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MeetingMinuteRequests.
+     * @param {MeetingMinuteRequestCreateManyArgs} args - Arguments to create many MeetingMinuteRequests.
+     * @example
+     * // Create many MeetingMinuteRequests
+     * const meetingMinuteRequest = await prisma.meetingMinuteRequest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MeetingMinuteRequestCreateManyArgs>(args?: SelectSubset<T, MeetingMinuteRequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MeetingMinuteRequests and returns the data saved in the database.
+     * @param {MeetingMinuteRequestCreateManyAndReturnArgs} args - Arguments to create many MeetingMinuteRequests.
+     * @example
+     * // Create many MeetingMinuteRequests
+     * const meetingMinuteRequest = await prisma.meetingMinuteRequest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MeetingMinuteRequests and only return the `id`
+     * const meetingMinuteRequestWithIdOnly = await prisma.meetingMinuteRequest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MeetingMinuteRequestCreateManyAndReturnArgs>(args?: SelectSubset<T, MeetingMinuteRequestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MeetingMinuteRequest.
+     * @param {MeetingMinuteRequestDeleteArgs} args - Arguments to delete one MeetingMinuteRequest.
+     * @example
+     * // Delete one MeetingMinuteRequest
+     * const MeetingMinuteRequest = await prisma.meetingMinuteRequest.delete({
+     *   where: {
+     *     // ... filter to delete one MeetingMinuteRequest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MeetingMinuteRequestDeleteArgs>(args: SelectSubset<T, MeetingMinuteRequestDeleteArgs<ExtArgs>>): Prisma__MeetingMinuteRequestClient<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MeetingMinuteRequest.
+     * @param {MeetingMinuteRequestUpdateArgs} args - Arguments to update one MeetingMinuteRequest.
+     * @example
+     * // Update one MeetingMinuteRequest
+     * const meetingMinuteRequest = await prisma.meetingMinuteRequest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MeetingMinuteRequestUpdateArgs>(args: SelectSubset<T, MeetingMinuteRequestUpdateArgs<ExtArgs>>): Prisma__MeetingMinuteRequestClient<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MeetingMinuteRequests.
+     * @param {MeetingMinuteRequestDeleteManyArgs} args - Arguments to filter MeetingMinuteRequests to delete.
+     * @example
+     * // Delete a few MeetingMinuteRequests
+     * const { count } = await prisma.meetingMinuteRequest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MeetingMinuteRequestDeleteManyArgs>(args?: SelectSubset<T, MeetingMinuteRequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MeetingMinuteRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteRequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MeetingMinuteRequests
+     * const meetingMinuteRequest = await prisma.meetingMinuteRequest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MeetingMinuteRequestUpdateManyArgs>(args: SelectSubset<T, MeetingMinuteRequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MeetingMinuteRequests and returns the data updated in the database.
+     * @param {MeetingMinuteRequestUpdateManyAndReturnArgs} args - Arguments to update many MeetingMinuteRequests.
+     * @example
+     * // Update many MeetingMinuteRequests
+     * const meetingMinuteRequest = await prisma.meetingMinuteRequest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MeetingMinuteRequests and only return the `id`
+     * const meetingMinuteRequestWithIdOnly = await prisma.meetingMinuteRequest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MeetingMinuteRequestUpdateManyAndReturnArgs>(args: SelectSubset<T, MeetingMinuteRequestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MeetingMinuteRequest.
+     * @param {MeetingMinuteRequestUpsertArgs} args - Arguments to update or create a MeetingMinuteRequest.
+     * @example
+     * // Update or create a MeetingMinuteRequest
+     * const meetingMinuteRequest = await prisma.meetingMinuteRequest.upsert({
+     *   create: {
+     *     // ... data to create a MeetingMinuteRequest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MeetingMinuteRequest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MeetingMinuteRequestUpsertArgs>(args: SelectSubset<T, MeetingMinuteRequestUpsertArgs<ExtArgs>>): Prisma__MeetingMinuteRequestClient<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MeetingMinuteRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteRequestCountArgs} args - Arguments to filter MeetingMinuteRequests to count.
+     * @example
+     * // Count the number of MeetingMinuteRequests
+     * const count = await prisma.meetingMinuteRequest.count({
+     *   where: {
+     *     // ... the filter for the MeetingMinuteRequests we want to count
+     *   }
+     * })
+    **/
+    count<T extends MeetingMinuteRequestCountArgs>(
+      args?: Subset<T, MeetingMinuteRequestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MeetingMinuteRequestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MeetingMinuteRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MeetingMinuteRequestAggregateArgs>(args: Subset<T, MeetingMinuteRequestAggregateArgs>): Prisma.PrismaPromise<GetMeetingMinuteRequestAggregateType<T>>
+
+    /**
+     * Group by MeetingMinuteRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MeetingMinuteRequestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MeetingMinuteRequestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MeetingMinuteRequestGroupByArgs['orderBy'] }
+        : { orderBy?: MeetingMinuteRequestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MeetingMinuteRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMeetingMinuteRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MeetingMinuteRequest model
+   */
+  readonly fields: MeetingMinuteRequestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MeetingMinuteRequest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MeetingMinuteRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    MeetingMinuteMeeting<T extends MeetingMinuteMeetingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MeetingMinuteMeetingDefaultArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MeetingMinuteRequest model
+   */
+  interface MeetingMinuteRequestFieldRefs {
+    readonly id: FieldRef<"MeetingMinuteRequest", 'Int'>
+    readonly meetingId: FieldRef<"MeetingMinuteRequest", 'Int'>
+    readonly studentId: FieldRef<"MeetingMinuteRequest", 'Int'>
+    readonly status: FieldRef<"MeetingMinuteRequest", 'MeetingMinuteStatus'>
+    readonly studentMinutes: FieldRef<"MeetingMinuteRequest", 'String'>
+    readonly submittedAt: FieldRef<"MeetingMinuteRequest", 'DateTime'>
+    readonly teacherFinalText: FieldRef<"MeetingMinuteRequest", 'String'>
+    readonly reviewedAt: FieldRef<"MeetingMinuteRequest", 'DateTime'>
+    readonly approvedAt: FieldRef<"MeetingMinuteRequest", 'DateTime'>
+    readonly createdAt: FieldRef<"MeetingMinuteRequest", 'DateTime'>
+    readonly updatedAt: FieldRef<"MeetingMinuteRequest", 'DateTime'>
+    readonly creationMode: FieldRef<"MeetingMinuteRequest", 'MeetingMinuteCreationMode'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MeetingMinuteRequest findUnique
+   */
+  export type MeetingMinuteRequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingMinuteRequest to fetch.
+     */
+    where: MeetingMinuteRequestWhereUniqueInput
+  }
+
+  /**
+   * MeetingMinuteRequest findUniqueOrThrow
+   */
+  export type MeetingMinuteRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingMinuteRequest to fetch.
+     */
+    where: MeetingMinuteRequestWhereUniqueInput
+  }
+
+  /**
+   * MeetingMinuteRequest findFirst
+   */
+  export type MeetingMinuteRequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingMinuteRequest to fetch.
+     */
+    where?: MeetingMinuteRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingMinuteRequests to fetch.
+     */
+    orderBy?: MeetingMinuteRequestOrderByWithRelationInput | MeetingMinuteRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MeetingMinuteRequests.
+     */
+    cursor?: MeetingMinuteRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingMinuteRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingMinuteRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MeetingMinuteRequests.
+     */
+    distinct?: MeetingMinuteRequestScalarFieldEnum | MeetingMinuteRequestScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingMinuteRequest findFirstOrThrow
+   */
+  export type MeetingMinuteRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingMinuteRequest to fetch.
+     */
+    where?: MeetingMinuteRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingMinuteRequests to fetch.
+     */
+    orderBy?: MeetingMinuteRequestOrderByWithRelationInput | MeetingMinuteRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MeetingMinuteRequests.
+     */
+    cursor?: MeetingMinuteRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingMinuteRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingMinuteRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MeetingMinuteRequests.
+     */
+    distinct?: MeetingMinuteRequestScalarFieldEnum | MeetingMinuteRequestScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingMinuteRequest findMany
+   */
+  export type MeetingMinuteRequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which MeetingMinuteRequests to fetch.
+     */
+    where?: MeetingMinuteRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MeetingMinuteRequests to fetch.
+     */
+    orderBy?: MeetingMinuteRequestOrderByWithRelationInput | MeetingMinuteRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MeetingMinuteRequests.
+     */
+    cursor?: MeetingMinuteRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MeetingMinuteRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MeetingMinuteRequests.
+     */
+    skip?: number
+    distinct?: MeetingMinuteRequestScalarFieldEnum | MeetingMinuteRequestScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingMinuteRequest create
+   */
+  export type MeetingMinuteRequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MeetingMinuteRequest.
+     */
+    data: XOR<MeetingMinuteRequestCreateInput, MeetingMinuteRequestUncheckedCreateInput>
+  }
+
+  /**
+   * MeetingMinuteRequest createMany
+   */
+  export type MeetingMinuteRequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MeetingMinuteRequests.
+     */
+    data: MeetingMinuteRequestCreateManyInput | MeetingMinuteRequestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MeetingMinuteRequest createManyAndReturn
+   */
+  export type MeetingMinuteRequestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * The data used to create many MeetingMinuteRequests.
+     */
+    data: MeetingMinuteRequestCreateManyInput | MeetingMinuteRequestCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MeetingMinuteRequest update
+   */
+  export type MeetingMinuteRequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MeetingMinuteRequest.
+     */
+    data: XOR<MeetingMinuteRequestUpdateInput, MeetingMinuteRequestUncheckedUpdateInput>
+    /**
+     * Choose, which MeetingMinuteRequest to update.
+     */
+    where: MeetingMinuteRequestWhereUniqueInput
+  }
+
+  /**
+   * MeetingMinuteRequest updateMany
+   */
+  export type MeetingMinuteRequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MeetingMinuteRequests.
+     */
+    data: XOR<MeetingMinuteRequestUpdateManyMutationInput, MeetingMinuteRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which MeetingMinuteRequests to update
+     */
+    where?: MeetingMinuteRequestWhereInput
+    /**
+     * Limit how many MeetingMinuteRequests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MeetingMinuteRequest updateManyAndReturn
+   */
+  export type MeetingMinuteRequestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * The data used to update MeetingMinuteRequests.
+     */
+    data: XOR<MeetingMinuteRequestUpdateManyMutationInput, MeetingMinuteRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which MeetingMinuteRequests to update
+     */
+    where?: MeetingMinuteRequestWhereInput
+    /**
+     * Limit how many MeetingMinuteRequests to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MeetingMinuteRequest upsert
+   */
+  export type MeetingMinuteRequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MeetingMinuteRequest to update in case it exists.
+     */
+    where: MeetingMinuteRequestWhereUniqueInput
+    /**
+     * In case the MeetingMinuteRequest found by the `where` argument doesn't exist, create a new MeetingMinuteRequest with this data.
+     */
+    create: XOR<MeetingMinuteRequestCreateInput, MeetingMinuteRequestUncheckedCreateInput>
+    /**
+     * In case the MeetingMinuteRequest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MeetingMinuteRequestUpdateInput, MeetingMinuteRequestUncheckedUpdateInput>
+  }
+
+  /**
+   * MeetingMinuteRequest delete
+   */
+  export type MeetingMinuteRequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+    /**
+     * Filter which MeetingMinuteRequest to delete.
+     */
+    where: MeetingMinuteRequestWhereUniqueInput
+  }
+
+  /**
+   * MeetingMinuteRequest deleteMany
+   */
+  export type MeetingMinuteRequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MeetingMinuteRequests to delete
+     */
+    where?: MeetingMinuteRequestWhereInput
+    /**
+     * Limit how many MeetingMinuteRequests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MeetingMinuteRequest without action
+   */
+  export type MeetingMinuteRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteRequest
+     */
+    select?: MeetingMinuteRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteRequest
+     */
+    omit?: MeetingMinuteRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteRequestInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -50191,6 +53063,45 @@ export namespace Prisma {
   export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
 
 
+  export const MeetingMinuteMeetingScalarFieldEnum: {
+    id: 'id',
+    teacherId: 'teacherId',
+    source: 'source',
+    googleCalendarEventId: 'googleCalendarEventId',
+    classScheduleId: 'classScheduleId',
+    title: 'title',
+    description: 'description',
+    meetingLink: 'meetingLink',
+    location: 'location',
+    startDateTime: 'startDateTime',
+    endDateTime: 'endDateTime',
+    timezone: 'timezone',
+    attendeeSnapshot: 'attendeeSnapshot',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MeetingMinuteMeetingScalarFieldEnum = (typeof MeetingMinuteMeetingScalarFieldEnum)[keyof typeof MeetingMinuteMeetingScalarFieldEnum]
+
+
+  export const MeetingMinuteRequestScalarFieldEnum: {
+    id: 'id',
+    meetingId: 'meetingId',
+    studentId: 'studentId',
+    status: 'status',
+    studentMinutes: 'studentMinutes',
+    submittedAt: 'submittedAt',
+    teacherFinalText: 'teacherFinalText',
+    reviewedAt: 'reviewedAt',
+    approvedAt: 'approvedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    creationMode: 'creationMode'
+  };
+
+  export type MeetingMinuteRequestScalarFieldEnum = (typeof MeetingMinuteRequestScalarFieldEnum)[keyof typeof MeetingMinuteRequestScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -50318,6 +53229,48 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'MeetingSource'
+   */
+  export type EnumMeetingSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MeetingSource'>
+    
+
+
+  /**
+   * Reference to a field of type 'MeetingSource[]'
+   */
+  export type ListEnumMeetingSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MeetingSource[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'MeetingMinuteStatus'
+   */
+  export type EnumMeetingMinuteStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MeetingMinuteStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'MeetingMinuteStatus[]'
+   */
+  export type ListEnumMeetingMinuteStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MeetingMinuteStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'MeetingMinuteCreationMode'
+   */
+  export type EnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MeetingMinuteCreationMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'MeetingMinuteCreationMode[]'
+   */
+  export type ListEnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MeetingMinuteCreationMode[]'>
     
   /**
    * Deep Input Types
@@ -50506,6 +53459,7 @@ export namespace Prisma {
     googleTokenExpiry?: DateTimeNullableFilter<"Teacher"> | Date | string | null
     assignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
+    MeetingMinuteMeeting?: MeetingMinuteMeetingListRelationFilter
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
     progressReports?: ProgressReportListRelationFilter
     resources?: ResourceListRelationFilter
@@ -50529,6 +53483,7 @@ export namespace Prisma {
     googleTokenExpiry?: SortOrderInput | SortOrder
     assignments?: AssignmentOrderByRelationAggregateInput
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingOrderByRelationAggregateInput
     mentorProfile?: MentorOrderByWithRelationInput
     progressReports?: ProgressReportOrderByRelationAggregateInput
     resources?: ResourceOrderByRelationAggregateInput
@@ -50555,6 +53510,7 @@ export namespace Prisma {
     googleTokenExpiry?: DateTimeNullableFilter<"Teacher"> | Date | string | null
     assignments?: AssignmentListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
+    MeetingMinuteMeeting?: MeetingMinuteMeetingListRelationFilter
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
     progressReports?: ProgressReportListRelationFilter
     resources?: ResourceListRelationFilter
@@ -50625,6 +53581,7 @@ export namespace Prisma {
     Blog?: BlogListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
+    MeetingMinuteRequest?: MeetingMinuteRequestListRelationFilter
     Payment?: PaymentListRelationFilter
     progressReports?: ProgressReportListRelationFilter
     Research?: ResearchListRelationFilter
@@ -50658,6 +53615,7 @@ export namespace Prisma {
     Blog?: BlogOrderByRelationAggregateInput
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     enrollments?: EnrollmentOrderByRelationAggregateInput
+    MeetingMinuteRequest?: MeetingMinuteRequestOrderByRelationAggregateInput
     Payment?: PaymentOrderByRelationAggregateInput
     progressReports?: ProgressReportOrderByRelationAggregateInput
     Research?: ResearchOrderByRelationAggregateInput
@@ -50694,6 +53652,7 @@ export namespace Prisma {
     Blog?: BlogListRelationFilter
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
+    MeetingMinuteRequest?: MeetingMinuteRequestListRelationFilter
     Payment?: PaymentListRelationFilter
     progressReports?: ProgressReportListRelationFilter
     Research?: ResearchListRelationFilter
@@ -51718,6 +54677,7 @@ export namespace Prisma {
     group?: XOR<StudentGroupNullableScalarRelationFilter, StudentGroupWhereInput> | null
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    MeetingMinuteMeeting?: MeetingMinuteMeetingListRelationFilter
   }
 
   export type ClassScheduleOrderByWithRelationInput = {
@@ -51748,6 +54708,7 @@ export namespace Prisma {
     group?: StudentGroupOrderByWithRelationInput
     student?: StudentOrderByWithRelationInput
     teacher?: TeacherOrderByWithRelationInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingOrderByRelationAggregateInput
   }
 
   export type ClassScheduleWhereUniqueInput = Prisma.AtLeast<{
@@ -51781,6 +54742,7 @@ export namespace Prisma {
     group?: XOR<StudentGroupNullableScalarRelationFilter, StudentGroupWhereInput> | null
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    MeetingMinuteMeeting?: MeetingMinuteMeetingListRelationFilter
   }, "id">
 
   export type ClassScheduleOrderByWithAggregationInput = {
@@ -54031,6 +56993,217 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"RefreshToken"> | Date | string
   }
 
+  export type MeetingMinuteMeetingWhereInput = {
+    AND?: MeetingMinuteMeetingWhereInput | MeetingMinuteMeetingWhereInput[]
+    OR?: MeetingMinuteMeetingWhereInput[]
+    NOT?: MeetingMinuteMeetingWhereInput | MeetingMinuteMeetingWhereInput[]
+    id?: IntFilter<"MeetingMinuteMeeting"> | number
+    teacherId?: IntFilter<"MeetingMinuteMeeting"> | number
+    source?: EnumMeetingSourceFilter<"MeetingMinuteMeeting"> | $Enums.MeetingSource
+    googleCalendarEventId?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    classScheduleId?: IntNullableFilter<"MeetingMinuteMeeting"> | number | null
+    title?: StringFilter<"MeetingMinuteMeeting"> | string
+    description?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    meetingLink?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    location?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    startDateTime?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    endDateTime?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    timezone?: StringFilter<"MeetingMinuteMeeting"> | string
+    attendeeSnapshot?: JsonNullableFilter<"MeetingMinuteMeeting">
+    createdAt?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    updatedAt?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    ClassSchedule?: XOR<ClassScheduleNullableScalarRelationFilter, ClassScheduleWhereInput> | null
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    MeetingMinuteRequest?: MeetingMinuteRequestListRelationFilter
+  }
+
+  export type MeetingMinuteMeetingOrderByWithRelationInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    source?: SortOrder
+    googleCalendarEventId?: SortOrderInput | SortOrder
+    classScheduleId?: SortOrderInput | SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    meetingLink?: SortOrderInput | SortOrder
+    location?: SortOrderInput | SortOrder
+    startDateTime?: SortOrder
+    endDateTime?: SortOrder
+    timezone?: SortOrder
+    attendeeSnapshot?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ClassSchedule?: ClassScheduleOrderByWithRelationInput
+    Teacher?: TeacherOrderByWithRelationInput
+    MeetingMinuteRequest?: MeetingMinuteRequestOrderByRelationAggregateInput
+  }
+
+  export type MeetingMinuteMeetingWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    teacherId_classScheduleId?: MeetingMinuteMeetingTeacherIdClassScheduleIdCompoundUniqueInput
+    teacherId_googleCalendarEventId?: MeetingMinuteMeetingTeacherIdGoogleCalendarEventIdCompoundUniqueInput
+    AND?: MeetingMinuteMeetingWhereInput | MeetingMinuteMeetingWhereInput[]
+    OR?: MeetingMinuteMeetingWhereInput[]
+    NOT?: MeetingMinuteMeetingWhereInput | MeetingMinuteMeetingWhereInput[]
+    teacherId?: IntFilter<"MeetingMinuteMeeting"> | number
+    source?: EnumMeetingSourceFilter<"MeetingMinuteMeeting"> | $Enums.MeetingSource
+    googleCalendarEventId?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    classScheduleId?: IntNullableFilter<"MeetingMinuteMeeting"> | number | null
+    title?: StringFilter<"MeetingMinuteMeeting"> | string
+    description?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    meetingLink?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    location?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    startDateTime?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    endDateTime?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    timezone?: StringFilter<"MeetingMinuteMeeting"> | string
+    attendeeSnapshot?: JsonNullableFilter<"MeetingMinuteMeeting">
+    createdAt?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    updatedAt?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    ClassSchedule?: XOR<ClassScheduleNullableScalarRelationFilter, ClassScheduleWhereInput> | null
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    MeetingMinuteRequest?: MeetingMinuteRequestListRelationFilter
+  }, "id" | "teacherId_classScheduleId" | "teacherId_googleCalendarEventId">
+
+  export type MeetingMinuteMeetingOrderByWithAggregationInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    source?: SortOrder
+    googleCalendarEventId?: SortOrderInput | SortOrder
+    classScheduleId?: SortOrderInput | SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    meetingLink?: SortOrderInput | SortOrder
+    location?: SortOrderInput | SortOrder
+    startDateTime?: SortOrder
+    endDateTime?: SortOrder
+    timezone?: SortOrder
+    attendeeSnapshot?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MeetingMinuteMeetingCountOrderByAggregateInput
+    _avg?: MeetingMinuteMeetingAvgOrderByAggregateInput
+    _max?: MeetingMinuteMeetingMaxOrderByAggregateInput
+    _min?: MeetingMinuteMeetingMinOrderByAggregateInput
+    _sum?: MeetingMinuteMeetingSumOrderByAggregateInput
+  }
+
+  export type MeetingMinuteMeetingScalarWhereWithAggregatesInput = {
+    AND?: MeetingMinuteMeetingScalarWhereWithAggregatesInput | MeetingMinuteMeetingScalarWhereWithAggregatesInput[]
+    OR?: MeetingMinuteMeetingScalarWhereWithAggregatesInput[]
+    NOT?: MeetingMinuteMeetingScalarWhereWithAggregatesInput | MeetingMinuteMeetingScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MeetingMinuteMeeting"> | number
+    teacherId?: IntWithAggregatesFilter<"MeetingMinuteMeeting"> | number
+    source?: EnumMeetingSourceWithAggregatesFilter<"MeetingMinuteMeeting"> | $Enums.MeetingSource
+    googleCalendarEventId?: StringNullableWithAggregatesFilter<"MeetingMinuteMeeting"> | string | null
+    classScheduleId?: IntNullableWithAggregatesFilter<"MeetingMinuteMeeting"> | number | null
+    title?: StringWithAggregatesFilter<"MeetingMinuteMeeting"> | string
+    description?: StringNullableWithAggregatesFilter<"MeetingMinuteMeeting"> | string | null
+    meetingLink?: StringNullableWithAggregatesFilter<"MeetingMinuteMeeting"> | string | null
+    location?: StringNullableWithAggregatesFilter<"MeetingMinuteMeeting"> | string | null
+    startDateTime?: DateTimeWithAggregatesFilter<"MeetingMinuteMeeting"> | Date | string
+    endDateTime?: DateTimeWithAggregatesFilter<"MeetingMinuteMeeting"> | Date | string
+    timezone?: StringWithAggregatesFilter<"MeetingMinuteMeeting"> | string
+    attendeeSnapshot?: JsonNullableWithAggregatesFilter<"MeetingMinuteMeeting">
+    createdAt?: DateTimeWithAggregatesFilter<"MeetingMinuteMeeting"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MeetingMinuteMeeting"> | Date | string
+  }
+
+  export type MeetingMinuteRequestWhereInput = {
+    AND?: MeetingMinuteRequestWhereInput | MeetingMinuteRequestWhereInput[]
+    OR?: MeetingMinuteRequestWhereInput[]
+    NOT?: MeetingMinuteRequestWhereInput | MeetingMinuteRequestWhereInput[]
+    id?: IntFilter<"MeetingMinuteRequest"> | number
+    meetingId?: IntFilter<"MeetingMinuteRequest"> | number
+    studentId?: IntFilter<"MeetingMinuteRequest"> | number
+    status?: EnumMeetingMinuteStatusFilter<"MeetingMinuteRequest"> | $Enums.MeetingMinuteStatus
+    studentMinutes?: StringNullableFilter<"MeetingMinuteRequest"> | string | null
+    submittedAt?: DateTimeNullableFilter<"MeetingMinuteRequest"> | Date | string | null
+    teacherFinalText?: StringNullableFilter<"MeetingMinuteRequest"> | string | null
+    reviewedAt?: DateTimeNullableFilter<"MeetingMinuteRequest"> | Date | string | null
+    approvedAt?: DateTimeNullableFilter<"MeetingMinuteRequest"> | Date | string | null
+    createdAt?: DateTimeFilter<"MeetingMinuteRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"MeetingMinuteRequest"> | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFilter<"MeetingMinuteRequest"> | $Enums.MeetingMinuteCreationMode
+    MeetingMinuteMeeting?: XOR<MeetingMinuteMeetingScalarRelationFilter, MeetingMinuteMeetingWhereInput>
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+  }
+
+  export type MeetingMinuteRequestOrderByWithRelationInput = {
+    id?: SortOrder
+    meetingId?: SortOrder
+    studentId?: SortOrder
+    status?: SortOrder
+    studentMinutes?: SortOrderInput | SortOrder
+    submittedAt?: SortOrderInput | SortOrder
+    teacherFinalText?: SortOrderInput | SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    approvedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creationMode?: SortOrder
+    MeetingMinuteMeeting?: MeetingMinuteMeetingOrderByWithRelationInput
+    Student?: StudentOrderByWithRelationInput
+  }
+
+  export type MeetingMinuteRequestWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    meetingId_studentId?: MeetingMinuteRequestMeetingIdStudentIdCompoundUniqueInput
+    AND?: MeetingMinuteRequestWhereInput | MeetingMinuteRequestWhereInput[]
+    OR?: MeetingMinuteRequestWhereInput[]
+    NOT?: MeetingMinuteRequestWhereInput | MeetingMinuteRequestWhereInput[]
+    meetingId?: IntFilter<"MeetingMinuteRequest"> | number
+    studentId?: IntFilter<"MeetingMinuteRequest"> | number
+    status?: EnumMeetingMinuteStatusFilter<"MeetingMinuteRequest"> | $Enums.MeetingMinuteStatus
+    studentMinutes?: StringNullableFilter<"MeetingMinuteRequest"> | string | null
+    submittedAt?: DateTimeNullableFilter<"MeetingMinuteRequest"> | Date | string | null
+    teacherFinalText?: StringNullableFilter<"MeetingMinuteRequest"> | string | null
+    reviewedAt?: DateTimeNullableFilter<"MeetingMinuteRequest"> | Date | string | null
+    approvedAt?: DateTimeNullableFilter<"MeetingMinuteRequest"> | Date | string | null
+    createdAt?: DateTimeFilter<"MeetingMinuteRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"MeetingMinuteRequest"> | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFilter<"MeetingMinuteRequest"> | $Enums.MeetingMinuteCreationMode
+    MeetingMinuteMeeting?: XOR<MeetingMinuteMeetingScalarRelationFilter, MeetingMinuteMeetingWhereInput>
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+  }, "id" | "meetingId_studentId">
+
+  export type MeetingMinuteRequestOrderByWithAggregationInput = {
+    id?: SortOrder
+    meetingId?: SortOrder
+    studentId?: SortOrder
+    status?: SortOrder
+    studentMinutes?: SortOrderInput | SortOrder
+    submittedAt?: SortOrderInput | SortOrder
+    teacherFinalText?: SortOrderInput | SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    approvedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creationMode?: SortOrder
+    _count?: MeetingMinuteRequestCountOrderByAggregateInput
+    _avg?: MeetingMinuteRequestAvgOrderByAggregateInput
+    _max?: MeetingMinuteRequestMaxOrderByAggregateInput
+    _min?: MeetingMinuteRequestMinOrderByAggregateInput
+    _sum?: MeetingMinuteRequestSumOrderByAggregateInput
+  }
+
+  export type MeetingMinuteRequestScalarWhereWithAggregatesInput = {
+    AND?: MeetingMinuteRequestScalarWhereWithAggregatesInput | MeetingMinuteRequestScalarWhereWithAggregatesInput[]
+    OR?: MeetingMinuteRequestScalarWhereWithAggregatesInput[]
+    NOT?: MeetingMinuteRequestScalarWhereWithAggregatesInput | MeetingMinuteRequestScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MeetingMinuteRequest"> | number
+    meetingId?: IntWithAggregatesFilter<"MeetingMinuteRequest"> | number
+    studentId?: IntWithAggregatesFilter<"MeetingMinuteRequest"> | number
+    status?: EnumMeetingMinuteStatusWithAggregatesFilter<"MeetingMinuteRequest"> | $Enums.MeetingMinuteStatus
+    studentMinutes?: StringNullableWithAggregatesFilter<"MeetingMinuteRequest"> | string | null
+    submittedAt?: DateTimeNullableWithAggregatesFilter<"MeetingMinuteRequest"> | Date | string | null
+    teacherFinalText?: StringNullableWithAggregatesFilter<"MeetingMinuteRequest"> | string | null
+    reviewedAt?: DateTimeNullableWithAggregatesFilter<"MeetingMinuteRequest"> | Date | string | null
+    approvedAt?: DateTimeNullableWithAggregatesFilter<"MeetingMinuteRequest"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"MeetingMinuteRequest"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MeetingMinuteRequest"> | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeWithAggregatesFilter<"MeetingMinuteRequest"> | $Enums.MeetingMinuteCreationMode
+  }
+
   export type WebinarRegistrationCreateInput = {
     email: string
     parentName: string
@@ -54228,6 +57401,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
@@ -54251,6 +57425,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
@@ -54273,6 +57448,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
@@ -54296,6 +57472,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
@@ -54367,6 +57544,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -54400,6 +57578,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -54430,6 +57609,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -54463,6 +57643,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -55487,6 +58668,7 @@ export namespace Prisma {
     group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
     student: StudentCreateNestedOneWithoutClassSchedulesInput
     teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutClassScheduleInput
   }
 
   export type ClassScheduleUncheckedCreateInput = {
@@ -55514,6 +58696,7 @@ export namespace Prisma {
     reminderSentAt?: Date | string | null
     startDateTime?: Date | string | null
     timezone?: string | null
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput
   }
 
   export type ClassScheduleUpdateInput = {
@@ -55540,6 +58723,7 @@ export namespace Prisma {
     group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
     student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateInput = {
@@ -55567,6 +58751,7 @@ export namespace Prisma {
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleCreateManyInput = {
@@ -58196,6 +61381,231 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MeetingMinuteMeetingCreateInput = {
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    ClassSchedule?: ClassScheduleCreateNestedOneWithoutMeetingMinuteMeetingInput
+    Teacher: TeacherCreateNestedOneWithoutMeetingMinuteMeetingInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutMeetingMinuteMeetingInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedCreateInput = {
+    id?: number
+    teacherId: number
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    classScheduleId?: number | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
+  }
+
+  export type MeetingMinuteMeetingUpdateInput = {
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClassSchedule?: ClassScheduleUpdateOneWithoutMeetingMinuteMeetingNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutMeetingMinuteMeetingNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutMeetingMinuteMeetingNestedInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
+  }
+
+  export type MeetingMinuteMeetingCreateManyInput = {
+    id?: number
+    teacherId: number
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    classScheduleId?: number | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MeetingMinuteMeetingUpdateManyMutationInput = {
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeetingMinuteMeetingUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MeetingMinuteRequestCreateInput = {
+    status?: $Enums.MeetingMinuteStatus
+    studentMinutes?: string | null
+    submittedAt?: Date | string | null
+    teacherFinalText?: string | null
+    reviewedAt?: Date | string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    creationMode?: $Enums.MeetingMinuteCreationMode
+    MeetingMinuteMeeting: MeetingMinuteMeetingCreateNestedOneWithoutMeetingMinuteRequestInput
+    Student: StudentCreateNestedOneWithoutMeetingMinuteRequestInput
+  }
+
+  export type MeetingMinuteRequestUncheckedCreateInput = {
+    id?: number
+    meetingId: number
+    studentId: number
+    status?: $Enums.MeetingMinuteStatus
+    studentMinutes?: string | null
+    submittedAt?: Date | string | null
+    teacherFinalText?: string | null
+    reviewedAt?: Date | string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    creationMode?: $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteRequestUpdateInput = {
+    status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
+    studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teacherFinalText?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneRequiredWithoutMeetingMinuteRequestNestedInput
+    Student?: StudentUpdateOneRequiredWithoutMeetingMinuteRequestNestedInput
+  }
+
+  export type MeetingMinuteRequestUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    meetingId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
+    studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teacherFinalText?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteRequestCreateManyInput = {
+    id?: number
+    meetingId: number
+    studentId: number
+    status?: $Enums.MeetingMinuteStatus
+    studentMinutes?: string | null
+    submittedAt?: Date | string | null
+    teacherFinalText?: string | null
+    reviewedAt?: Date | string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    creationMode?: $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteRequestUpdateManyMutationInput = {
+    status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
+    studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teacherFinalText?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteRequestUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    meetingId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
+    studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teacherFinalText?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -58559,6 +61969,12 @@ export namespace Prisma {
     none?: ClassScheduleWhereInput
   }
 
+  export type MeetingMinuteMeetingListRelationFilter = {
+    every?: MeetingMinuteMeetingWhereInput
+    some?: MeetingMinuteMeetingWhereInput
+    none?: MeetingMinuteMeetingWhereInput
+  }
+
   export type MentorNullableScalarRelationFilter = {
     is?: MentorWhereInput | null
     isNot?: MentorWhereInput | null
@@ -58599,6 +62015,10 @@ export namespace Prisma {
   }
 
   export type ClassScheduleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MeetingMinuteMeetingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -58716,6 +62136,12 @@ export namespace Prisma {
     none?: EnrollmentWhereInput
   }
 
+  export type MeetingMinuteRequestListRelationFilter = {
+    every?: MeetingMinuteRequestWhereInput
+    some?: MeetingMinuteRequestWhereInput
+    none?: MeetingMinuteRequestWhereInput
+  }
+
   export type PaymentListRelationFilter = {
     every?: PaymentWhereInput
     some?: PaymentWhereInput
@@ -58772,6 +62198,10 @@ export namespace Prisma {
   }
 
   export type EnrollmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MeetingMinuteRequestOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -61030,6 +64460,203 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type EnumMeetingSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingSource | EnumMeetingSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingSource[] | ListEnumMeetingSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingSource[] | ListEnumMeetingSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingSourceFilter<$PrismaModel> | $Enums.MeetingSource
+  }
+
+  export type ClassScheduleNullableScalarRelationFilter = {
+    is?: ClassScheduleWhereInput | null
+    isNot?: ClassScheduleWhereInput | null
+  }
+
+  export type MeetingMinuteMeetingTeacherIdClassScheduleIdCompoundUniqueInput = {
+    teacherId: number
+    classScheduleId: number
+  }
+
+  export type MeetingMinuteMeetingTeacherIdGoogleCalendarEventIdCompoundUniqueInput = {
+    teacherId: number
+    googleCalendarEventId: string
+  }
+
+  export type MeetingMinuteMeetingCountOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    source?: SortOrder
+    googleCalendarEventId?: SortOrder
+    classScheduleId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    meetingLink?: SortOrder
+    location?: SortOrder
+    startDateTime?: SortOrder
+    endDateTime?: SortOrder
+    timezone?: SortOrder
+    attendeeSnapshot?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MeetingMinuteMeetingAvgOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    classScheduleId?: SortOrder
+  }
+
+  export type MeetingMinuteMeetingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    source?: SortOrder
+    googleCalendarEventId?: SortOrder
+    classScheduleId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    meetingLink?: SortOrder
+    location?: SortOrder
+    startDateTime?: SortOrder
+    endDateTime?: SortOrder
+    timezone?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MeetingMinuteMeetingMinOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    source?: SortOrder
+    googleCalendarEventId?: SortOrder
+    classScheduleId?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    meetingLink?: SortOrder
+    location?: SortOrder
+    startDateTime?: SortOrder
+    endDateTime?: SortOrder
+    timezone?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MeetingMinuteMeetingSumOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    classScheduleId?: SortOrder
+  }
+
+  export type EnumMeetingSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingSource | EnumMeetingSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingSource[] | ListEnumMeetingSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingSource[] | ListEnumMeetingSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingSourceWithAggregatesFilter<$PrismaModel> | $Enums.MeetingSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMeetingSourceFilter<$PrismaModel>
+    _max?: NestedEnumMeetingSourceFilter<$PrismaModel>
+  }
+
+  export type EnumMeetingMinuteStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingMinuteStatus | EnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingMinuteStatus[] | ListEnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingMinuteStatus[] | ListEnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingMinuteStatusFilter<$PrismaModel> | $Enums.MeetingMinuteStatus
+  }
+
+  export type EnumMeetingMinuteCreationModeFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingMinuteCreationMode | EnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingMinuteCreationMode[] | ListEnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingMinuteCreationMode[] | ListEnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingMinuteCreationModeFilter<$PrismaModel> | $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteMeetingScalarRelationFilter = {
+    is?: MeetingMinuteMeetingWhereInput
+    isNot?: MeetingMinuteMeetingWhereInput
+  }
+
+  export type MeetingMinuteRequestMeetingIdStudentIdCompoundUniqueInput = {
+    meetingId: number
+    studentId: number
+  }
+
+  export type MeetingMinuteRequestCountOrderByAggregateInput = {
+    id?: SortOrder
+    meetingId?: SortOrder
+    studentId?: SortOrder
+    status?: SortOrder
+    studentMinutes?: SortOrder
+    submittedAt?: SortOrder
+    teacherFinalText?: SortOrder
+    reviewedAt?: SortOrder
+    approvedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creationMode?: SortOrder
+  }
+
+  export type MeetingMinuteRequestAvgOrderByAggregateInput = {
+    id?: SortOrder
+    meetingId?: SortOrder
+    studentId?: SortOrder
+  }
+
+  export type MeetingMinuteRequestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    meetingId?: SortOrder
+    studentId?: SortOrder
+    status?: SortOrder
+    studentMinutes?: SortOrder
+    submittedAt?: SortOrder
+    teacherFinalText?: SortOrder
+    reviewedAt?: SortOrder
+    approvedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creationMode?: SortOrder
+  }
+
+  export type MeetingMinuteRequestMinOrderByAggregateInput = {
+    id?: SortOrder
+    meetingId?: SortOrder
+    studentId?: SortOrder
+    status?: SortOrder
+    studentMinutes?: SortOrder
+    submittedAt?: SortOrder
+    teacherFinalText?: SortOrder
+    reviewedAt?: SortOrder
+    approvedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creationMode?: SortOrder
+  }
+
+  export type MeetingMinuteRequestSumOrderByAggregateInput = {
+    id?: SortOrder
+    meetingId?: SortOrder
+    studentId?: SortOrder
+  }
+
+  export type EnumMeetingMinuteStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingMinuteStatus | EnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingMinuteStatus[] | ListEnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingMinuteStatus[] | ListEnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingMinuteStatusWithAggregatesFilter<$PrismaModel> | $Enums.MeetingMinuteStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMeetingMinuteStatusFilter<$PrismaModel>
+    _max?: NestedEnumMeetingMinuteStatusFilter<$PrismaModel>
+  }
+
+  export type EnumMeetingMinuteCreationModeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingMinuteCreationMode | EnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingMinuteCreationMode[] | ListEnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingMinuteCreationMode[] | ListEnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingMinuteCreationModeWithAggregatesFilter<$PrismaModel> | $Enums.MeetingMinuteCreationMode
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMeetingMinuteCreationModeFilter<$PrismaModel>
+    _max?: NestedEnumMeetingMinuteCreationModeFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -61070,6 +64697,13 @@ export namespace Prisma {
     connectOrCreate?: ClassScheduleCreateOrConnectWithoutTeacherInput | ClassScheduleCreateOrConnectWithoutTeacherInput[]
     createMany?: ClassScheduleCreateManyTeacherInputEnvelope
     connect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+  }
+
+  export type MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutTeacherInput, MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput> | MeetingMinuteMeetingCreateWithoutTeacherInput[] | MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutTeacherInput | MeetingMinuteMeetingCreateOrConnectWithoutTeacherInput[]
+    createMany?: MeetingMinuteMeetingCreateManyTeacherInputEnvelope
+    connect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
   }
 
   export type MentorCreateNestedOneWithoutTeacherInput = {
@@ -61125,6 +64759,13 @@ export namespace Prisma {
     connectOrCreate?: ClassScheduleCreateOrConnectWithoutTeacherInput | ClassScheduleCreateOrConnectWithoutTeacherInput[]
     createMany?: ClassScheduleCreateManyTeacherInputEnvelope
     connect?: ClassScheduleWhereUniqueInput | ClassScheduleWhereUniqueInput[]
+  }
+
+  export type MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutTeacherInput, MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput> | MeetingMinuteMeetingCreateWithoutTeacherInput[] | MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutTeacherInput | MeetingMinuteMeetingCreateOrConnectWithoutTeacherInput[]
+    createMany?: MeetingMinuteMeetingCreateManyTeacherInputEnvelope
+    connect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
   }
 
   export type MentorUncheckedCreateNestedOneWithoutTeacherInput = {
@@ -61203,6 +64844,20 @@ export namespace Prisma {
     update?: ClassScheduleUpdateWithWhereUniqueWithoutTeacherInput | ClassScheduleUpdateWithWhereUniqueWithoutTeacherInput[]
     updateMany?: ClassScheduleUpdateManyWithWhereWithoutTeacherInput | ClassScheduleUpdateManyWithWhereWithoutTeacherInput[]
     deleteMany?: ClassScheduleScalarWhereInput | ClassScheduleScalarWhereInput[]
+  }
+
+  export type MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutTeacherInput, MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput> | MeetingMinuteMeetingCreateWithoutTeacherInput[] | MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutTeacherInput | MeetingMinuteMeetingCreateOrConnectWithoutTeacherInput[]
+    upsert?: MeetingMinuteMeetingUpsertWithWhereUniqueWithoutTeacherInput | MeetingMinuteMeetingUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: MeetingMinuteMeetingCreateManyTeacherInputEnvelope
+    set?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    disconnect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    delete?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    connect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    update?: MeetingMinuteMeetingUpdateWithWhereUniqueWithoutTeacherInput | MeetingMinuteMeetingUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: MeetingMinuteMeetingUpdateManyWithWhereWithoutTeacherInput | MeetingMinuteMeetingUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: MeetingMinuteMeetingScalarWhereInput | MeetingMinuteMeetingScalarWhereInput[]
   }
 
   export type MentorUpdateOneWithoutTeacherNestedInput = {
@@ -61311,6 +64966,20 @@ export namespace Prisma {
     update?: ClassScheduleUpdateWithWhereUniqueWithoutTeacherInput | ClassScheduleUpdateWithWhereUniqueWithoutTeacherInput[]
     updateMany?: ClassScheduleUpdateManyWithWhereWithoutTeacherInput | ClassScheduleUpdateManyWithWhereWithoutTeacherInput[]
     deleteMany?: ClassScheduleScalarWhereInput | ClassScheduleScalarWhereInput[]
+  }
+
+  export type MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutTeacherInput, MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput> | MeetingMinuteMeetingCreateWithoutTeacherInput[] | MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutTeacherInput | MeetingMinuteMeetingCreateOrConnectWithoutTeacherInput[]
+    upsert?: MeetingMinuteMeetingUpsertWithWhereUniqueWithoutTeacherInput | MeetingMinuteMeetingUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: MeetingMinuteMeetingCreateManyTeacherInputEnvelope
+    set?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    disconnect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    delete?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    connect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    update?: MeetingMinuteMeetingUpdateWithWhereUniqueWithoutTeacherInput | MeetingMinuteMeetingUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: MeetingMinuteMeetingUpdateManyWithWhereWithoutTeacherInput | MeetingMinuteMeetingUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: MeetingMinuteMeetingScalarWhereInput | MeetingMinuteMeetingScalarWhereInput[]
   }
 
   export type MentorUncheckedUpdateOneWithoutTeacherNestedInput = {
@@ -61428,6 +65097,13 @@ export namespace Prisma {
     connect?: EnrollmentWhereUniqueInput | EnrollmentWhereUniqueInput[]
   }
 
+  export type MeetingMinuteRequestCreateNestedManyWithoutStudentInput = {
+    create?: XOR<MeetingMinuteRequestCreateWithoutStudentInput, MeetingMinuteRequestUncheckedCreateWithoutStudentInput> | MeetingMinuteRequestCreateWithoutStudentInput[] | MeetingMinuteRequestUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutStudentInput | MeetingMinuteRequestCreateOrConnectWithoutStudentInput[]
+    createMany?: MeetingMinuteRequestCreateManyStudentInputEnvelope
+    connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+  }
+
   export type PaymentCreateNestedManyWithoutStudentInput = {
     create?: XOR<PaymentCreateWithoutStudentInput, PaymentUncheckedCreateWithoutStudentInput> | PaymentCreateWithoutStudentInput[] | PaymentUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: PaymentCreateOrConnectWithoutStudentInput | PaymentCreateOrConnectWithoutStudentInput[]
@@ -61530,6 +65206,13 @@ export namespace Prisma {
     connectOrCreate?: EnrollmentCreateOrConnectWithoutStudentInput | EnrollmentCreateOrConnectWithoutStudentInput[]
     createMany?: EnrollmentCreateManyStudentInputEnvelope
     connect?: EnrollmentWhereUniqueInput | EnrollmentWhereUniqueInput[]
+  }
+
+  export type MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<MeetingMinuteRequestCreateWithoutStudentInput, MeetingMinuteRequestUncheckedCreateWithoutStudentInput> | MeetingMinuteRequestCreateWithoutStudentInput[] | MeetingMinuteRequestUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutStudentInput | MeetingMinuteRequestCreateOrConnectWithoutStudentInput[]
+    createMany?: MeetingMinuteRequestCreateManyStudentInputEnvelope
+    connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
   }
 
   export type PaymentUncheckedCreateNestedManyWithoutStudentInput = {
@@ -61671,6 +65354,20 @@ export namespace Prisma {
     update?: EnrollmentUpdateWithWhereUniqueWithoutStudentInput | EnrollmentUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: EnrollmentUpdateManyWithWhereWithoutStudentInput | EnrollmentUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: EnrollmentScalarWhereInput | EnrollmentScalarWhereInput[]
+  }
+
+  export type MeetingMinuteRequestUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<MeetingMinuteRequestCreateWithoutStudentInput, MeetingMinuteRequestUncheckedCreateWithoutStudentInput> | MeetingMinuteRequestCreateWithoutStudentInput[] | MeetingMinuteRequestUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutStudentInput | MeetingMinuteRequestCreateOrConnectWithoutStudentInput[]
+    upsert?: MeetingMinuteRequestUpsertWithWhereUniqueWithoutStudentInput | MeetingMinuteRequestUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: MeetingMinuteRequestCreateManyStudentInputEnvelope
+    set?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    disconnect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    delete?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    update?: MeetingMinuteRequestUpdateWithWhereUniqueWithoutStudentInput | MeetingMinuteRequestUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: MeetingMinuteRequestUpdateManyWithWhereWithoutStudentInput | MeetingMinuteRequestUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: MeetingMinuteRequestScalarWhereInput | MeetingMinuteRequestScalarWhereInput[]
   }
 
   export type PaymentUpdateManyWithoutStudentNestedInput = {
@@ -61877,6 +65574,20 @@ export namespace Prisma {
     update?: EnrollmentUpdateWithWhereUniqueWithoutStudentInput | EnrollmentUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: EnrollmentUpdateManyWithWhereWithoutStudentInput | EnrollmentUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: EnrollmentScalarWhereInput | EnrollmentScalarWhereInput[]
+  }
+
+  export type MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<MeetingMinuteRequestCreateWithoutStudentInput, MeetingMinuteRequestUncheckedCreateWithoutStudentInput> | MeetingMinuteRequestCreateWithoutStudentInput[] | MeetingMinuteRequestUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutStudentInput | MeetingMinuteRequestCreateOrConnectWithoutStudentInput[]
+    upsert?: MeetingMinuteRequestUpsertWithWhereUniqueWithoutStudentInput | MeetingMinuteRequestUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: MeetingMinuteRequestCreateManyStudentInputEnvelope
+    set?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    disconnect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    delete?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    update?: MeetingMinuteRequestUpdateWithWhereUniqueWithoutStudentInput | MeetingMinuteRequestUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: MeetingMinuteRequestUpdateManyWithWhereWithoutStudentInput | MeetingMinuteRequestUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: MeetingMinuteRequestScalarWhereInput | MeetingMinuteRequestScalarWhereInput[]
   }
 
   export type PaymentUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -62664,6 +66375,20 @@ export namespace Prisma {
     connect?: TeacherWhereUniqueInput
   }
 
+  export type MeetingMinuteMeetingCreateNestedManyWithoutClassScheduleInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutClassScheduleInput, MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput> | MeetingMinuteMeetingCreateWithoutClassScheduleInput[] | MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput[]
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput | MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput[]
+    createMany?: MeetingMinuteMeetingCreateManyClassScheduleInputEnvelope
+    connect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+  }
+
+  export type MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutClassScheduleInput, MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput> | MeetingMinuteMeetingCreateWithoutClassScheduleInput[] | MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput[]
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput | MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput[]
+    createMany?: MeetingMinuteMeetingCreateManyClassScheduleInputEnvelope
+    connect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+  }
+
   export type StudentGroupUpdateOneWithoutClassSchedulesNestedInput = {
     create?: XOR<StudentGroupCreateWithoutClassSchedulesInput, StudentGroupUncheckedCreateWithoutClassSchedulesInput>
     connectOrCreate?: StudentGroupCreateOrConnectWithoutClassSchedulesInput
@@ -62688,6 +66413,34 @@ export namespace Prisma {
     upsert?: TeacherUpsertWithoutClassSchedulesInput
     connect?: TeacherWhereUniqueInput
     update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutClassSchedulesInput, TeacherUpdateWithoutClassSchedulesInput>, TeacherUncheckedUpdateWithoutClassSchedulesInput>
+  }
+
+  export type MeetingMinuteMeetingUpdateManyWithoutClassScheduleNestedInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutClassScheduleInput, MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput> | MeetingMinuteMeetingCreateWithoutClassScheduleInput[] | MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput[]
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput | MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput[]
+    upsert?: MeetingMinuteMeetingUpsertWithWhereUniqueWithoutClassScheduleInput | MeetingMinuteMeetingUpsertWithWhereUniqueWithoutClassScheduleInput[]
+    createMany?: MeetingMinuteMeetingCreateManyClassScheduleInputEnvelope
+    set?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    disconnect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    delete?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    connect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    update?: MeetingMinuteMeetingUpdateWithWhereUniqueWithoutClassScheduleInput | MeetingMinuteMeetingUpdateWithWhereUniqueWithoutClassScheduleInput[]
+    updateMany?: MeetingMinuteMeetingUpdateManyWithWhereWithoutClassScheduleInput | MeetingMinuteMeetingUpdateManyWithWhereWithoutClassScheduleInput[]
+    deleteMany?: MeetingMinuteMeetingScalarWhereInput | MeetingMinuteMeetingScalarWhereInput[]
+  }
+
+  export type MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutClassScheduleInput, MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput> | MeetingMinuteMeetingCreateWithoutClassScheduleInput[] | MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput[]
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput | MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput[]
+    upsert?: MeetingMinuteMeetingUpsertWithWhereUniqueWithoutClassScheduleInput | MeetingMinuteMeetingUpsertWithWhereUniqueWithoutClassScheduleInput[]
+    createMany?: MeetingMinuteMeetingCreateManyClassScheduleInputEnvelope
+    set?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    disconnect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    delete?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    connect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+    update?: MeetingMinuteMeetingUpdateWithWhereUniqueWithoutClassScheduleInput | MeetingMinuteMeetingUpdateWithWhereUniqueWithoutClassScheduleInput[]
+    updateMany?: MeetingMinuteMeetingUpdateManyWithWhereWithoutClassScheduleInput | MeetingMinuteMeetingUpdateManyWithWhereWithoutClassScheduleInput[]
+    deleteMany?: MeetingMinuteMeetingScalarWhereInput | MeetingMinuteMeetingScalarWhereInput[]
   }
 
   export type EnrollmentCreateNestedOneWithoutPaymentInput = {
@@ -63054,6 +66807,118 @@ export namespace Prisma {
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutAssignmentTargetInput, StudentUpdateWithoutAssignmentTargetInput>, StudentUncheckedUpdateWithoutAssignmentTargetInput>
   }
 
+  export type ClassScheduleCreateNestedOneWithoutMeetingMinuteMeetingInput = {
+    create?: XOR<ClassScheduleCreateWithoutMeetingMinuteMeetingInput, ClassScheduleUncheckedCreateWithoutMeetingMinuteMeetingInput>
+    connectOrCreate?: ClassScheduleCreateOrConnectWithoutMeetingMinuteMeetingInput
+    connect?: ClassScheduleWhereUniqueInput
+  }
+
+  export type TeacherCreateNestedOneWithoutMeetingMinuteMeetingInput = {
+    create?: XOR<TeacherCreateWithoutMeetingMinuteMeetingInput, TeacherUncheckedCreateWithoutMeetingMinuteMeetingInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutMeetingMinuteMeetingInput
+    connect?: TeacherWhereUniqueInput
+  }
+
+  export type MeetingMinuteRequestCreateNestedManyWithoutMeetingMinuteMeetingInput = {
+    create?: XOR<MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput, MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput> | MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput[] | MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput[]
+    connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput[]
+    createMany?: MeetingMinuteRequestCreateManyMeetingMinuteMeetingInputEnvelope
+    connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+  }
+
+  export type MeetingMinuteRequestUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput = {
+    create?: XOR<MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput, MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput> | MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput[] | MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput[]
+    connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput[]
+    createMany?: MeetingMinuteRequestCreateManyMeetingMinuteMeetingInputEnvelope
+    connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+  }
+
+  export type EnumMeetingSourceFieldUpdateOperationsInput = {
+    set?: $Enums.MeetingSource
+  }
+
+  export type ClassScheduleUpdateOneWithoutMeetingMinuteMeetingNestedInput = {
+    create?: XOR<ClassScheduleCreateWithoutMeetingMinuteMeetingInput, ClassScheduleUncheckedCreateWithoutMeetingMinuteMeetingInput>
+    connectOrCreate?: ClassScheduleCreateOrConnectWithoutMeetingMinuteMeetingInput
+    upsert?: ClassScheduleUpsertWithoutMeetingMinuteMeetingInput
+    disconnect?: ClassScheduleWhereInput | boolean
+    delete?: ClassScheduleWhereInput | boolean
+    connect?: ClassScheduleWhereUniqueInput
+    update?: XOR<XOR<ClassScheduleUpdateToOneWithWhereWithoutMeetingMinuteMeetingInput, ClassScheduleUpdateWithoutMeetingMinuteMeetingInput>, ClassScheduleUncheckedUpdateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type TeacherUpdateOneRequiredWithoutMeetingMinuteMeetingNestedInput = {
+    create?: XOR<TeacherCreateWithoutMeetingMinuteMeetingInput, TeacherUncheckedCreateWithoutMeetingMinuteMeetingInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutMeetingMinuteMeetingInput
+    upsert?: TeacherUpsertWithoutMeetingMinuteMeetingInput
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutMeetingMinuteMeetingInput, TeacherUpdateWithoutMeetingMinuteMeetingInput>, TeacherUncheckedUpdateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type MeetingMinuteRequestUpdateManyWithoutMeetingMinuteMeetingNestedInput = {
+    create?: XOR<MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput, MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput> | MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput[] | MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput[]
+    connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput[]
+    upsert?: MeetingMinuteRequestUpsertWithWhereUniqueWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestUpsertWithWhereUniqueWithoutMeetingMinuteMeetingInput[]
+    createMany?: MeetingMinuteRequestCreateManyMeetingMinuteMeetingInputEnvelope
+    set?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    disconnect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    delete?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    update?: MeetingMinuteRequestUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput[]
+    updateMany?: MeetingMinuteRequestUpdateManyWithWhereWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestUpdateManyWithWhereWithoutMeetingMinuteMeetingInput[]
+    deleteMany?: MeetingMinuteRequestScalarWhereInput | MeetingMinuteRequestScalarWhereInput[]
+  }
+
+  export type MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput = {
+    create?: XOR<MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput, MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput> | MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput[] | MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput[]
+    connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput[]
+    upsert?: MeetingMinuteRequestUpsertWithWhereUniqueWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestUpsertWithWhereUniqueWithoutMeetingMinuteMeetingInput[]
+    createMany?: MeetingMinuteRequestCreateManyMeetingMinuteMeetingInputEnvelope
+    set?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    disconnect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    delete?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+    update?: MeetingMinuteRequestUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput[]
+    updateMany?: MeetingMinuteRequestUpdateManyWithWhereWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestUpdateManyWithWhereWithoutMeetingMinuteMeetingInput[]
+    deleteMany?: MeetingMinuteRequestScalarWhereInput | MeetingMinuteRequestScalarWhereInput[]
+  }
+
+  export type MeetingMinuteMeetingCreateNestedOneWithoutMeetingMinuteRequestInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutMeetingMinuteRequestInput, MeetingMinuteMeetingUncheckedCreateWithoutMeetingMinuteRequestInput>
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutMeetingMinuteRequestInput
+    connect?: MeetingMinuteMeetingWhereUniqueInput
+  }
+
+  export type StudentCreateNestedOneWithoutMeetingMinuteRequestInput = {
+    create?: XOR<StudentCreateWithoutMeetingMinuteRequestInput, StudentUncheckedCreateWithoutMeetingMinuteRequestInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutMeetingMinuteRequestInput
+    connect?: StudentWhereUniqueInput
+  }
+
+  export type EnumMeetingMinuteStatusFieldUpdateOperationsInput = {
+    set?: $Enums.MeetingMinuteStatus
+  }
+
+  export type EnumMeetingMinuteCreationModeFieldUpdateOperationsInput = {
+    set?: $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteMeetingUpdateOneRequiredWithoutMeetingMinuteRequestNestedInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutMeetingMinuteRequestInput, MeetingMinuteMeetingUncheckedCreateWithoutMeetingMinuteRequestInput>
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutMeetingMinuteRequestInput
+    upsert?: MeetingMinuteMeetingUpsertWithoutMeetingMinuteRequestInput
+    connect?: MeetingMinuteMeetingWhereUniqueInput
+    update?: XOR<XOR<MeetingMinuteMeetingUpdateToOneWithWhereWithoutMeetingMinuteRequestInput, MeetingMinuteMeetingUpdateWithoutMeetingMinuteRequestInput>, MeetingMinuteMeetingUncheckedUpdateWithoutMeetingMinuteRequestInput>
+  }
+
+  export type StudentUpdateOneRequiredWithoutMeetingMinuteRequestNestedInput = {
+    create?: XOR<StudentCreateWithoutMeetingMinuteRequestInput, StudentUncheckedCreateWithoutMeetingMinuteRequestInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutMeetingMinuteRequestInput
+    upsert?: StudentUpsertWithoutMeetingMinuteRequestInput
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutMeetingMinuteRequestInput, StudentUpdateWithoutMeetingMinuteRequestInput>, StudentUncheckedUpdateWithoutMeetingMinuteRequestInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -63317,6 +67182,57 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
+  export type NestedEnumMeetingSourceFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingSource | EnumMeetingSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingSource[] | ListEnumMeetingSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingSource[] | ListEnumMeetingSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingSourceFilter<$PrismaModel> | $Enums.MeetingSource
+  }
+
+  export type NestedEnumMeetingSourceWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingSource | EnumMeetingSourceFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingSource[] | ListEnumMeetingSourceFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingSource[] | ListEnumMeetingSourceFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingSourceWithAggregatesFilter<$PrismaModel> | $Enums.MeetingSource
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMeetingSourceFilter<$PrismaModel>
+    _max?: NestedEnumMeetingSourceFilter<$PrismaModel>
+  }
+
+  export type NestedEnumMeetingMinuteStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingMinuteStatus | EnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingMinuteStatus[] | ListEnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingMinuteStatus[] | ListEnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingMinuteStatusFilter<$PrismaModel> | $Enums.MeetingMinuteStatus
+  }
+
+  export type NestedEnumMeetingMinuteCreationModeFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingMinuteCreationMode | EnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingMinuteCreationMode[] | ListEnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingMinuteCreationMode[] | ListEnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingMinuteCreationModeFilter<$PrismaModel> | $Enums.MeetingMinuteCreationMode
+  }
+
+  export type NestedEnumMeetingMinuteStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingMinuteStatus | EnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingMinuteStatus[] | ListEnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingMinuteStatus[] | ListEnumMeetingMinuteStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingMinuteStatusWithAggregatesFilter<$PrismaModel> | $Enums.MeetingMinuteStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMeetingMinuteStatusFilter<$PrismaModel>
+    _max?: NestedEnumMeetingMinuteStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumMeetingMinuteCreationModeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MeetingMinuteCreationMode | EnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    in?: $Enums.MeetingMinuteCreationMode[] | ListEnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MeetingMinuteCreationMode[] | ListEnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel>
+    not?: NestedEnumMeetingMinuteCreationModeWithAggregatesFilter<$PrismaModel> | $Enums.MeetingMinuteCreationMode
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMeetingMinuteCreationModeFilter<$PrismaModel>
+    _max?: NestedEnumMeetingMinuteCreationModeFilter<$PrismaModel>
+  }
+
   export type AssignmentCreateWithoutTeacherInput = {
     title: string
     description: string
@@ -63389,6 +67305,7 @@ export namespace Prisma {
     timezone?: string | null
     group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
     student: StudentCreateNestedOneWithoutClassSchedulesInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutClassScheduleInput
   }
 
   export type ClassScheduleUncheckedCreateWithoutTeacherInput = {
@@ -63415,6 +67332,7 @@ export namespace Prisma {
     reminderSentAt?: Date | string | null
     startDateTime?: Date | string | null
     timezone?: string | null
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput
   }
 
   export type ClassScheduleCreateOrConnectWithoutTeacherInput = {
@@ -63424,6 +67342,51 @@ export namespace Prisma {
 
   export type ClassScheduleCreateManyTeacherInputEnvelope = {
     data: ClassScheduleCreateManyTeacherInput | ClassScheduleCreateManyTeacherInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MeetingMinuteMeetingCreateWithoutTeacherInput = {
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    ClassSchedule?: ClassScheduleCreateNestedOneWithoutMeetingMinuteMeetingInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutMeetingMinuteMeetingInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput = {
+    id?: number
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    classScheduleId?: number | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
+  }
+
+  export type MeetingMinuteMeetingCreateOrConnectWithoutTeacherInput = {
+    where: MeetingMinuteMeetingWhereUniqueInput
+    create: XOR<MeetingMinuteMeetingCreateWithoutTeacherInput, MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type MeetingMinuteMeetingCreateManyTeacherInputEnvelope = {
+    data: MeetingMinuteMeetingCreateManyTeacherInput | MeetingMinuteMeetingCreateManyTeacherInput[]
     skipDuplicates?: boolean
   }
 
@@ -63731,6 +67694,43 @@ export namespace Prisma {
     reminderSentAt?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
     startDateTime?: DateTimeNullableFilter<"ClassSchedule"> | Date | string | null
     timezone?: StringNullableFilter<"ClassSchedule"> | string | null
+  }
+
+  export type MeetingMinuteMeetingUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: MeetingMinuteMeetingWhereUniqueInput
+    update: XOR<MeetingMinuteMeetingUpdateWithoutTeacherInput, MeetingMinuteMeetingUncheckedUpdateWithoutTeacherInput>
+    create: XOR<MeetingMinuteMeetingCreateWithoutTeacherInput, MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type MeetingMinuteMeetingUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: MeetingMinuteMeetingWhereUniqueInput
+    data: XOR<MeetingMinuteMeetingUpdateWithoutTeacherInput, MeetingMinuteMeetingUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type MeetingMinuteMeetingUpdateManyWithWhereWithoutTeacherInput = {
+    where: MeetingMinuteMeetingScalarWhereInput
+    data: XOR<MeetingMinuteMeetingUpdateManyMutationInput, MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type MeetingMinuteMeetingScalarWhereInput = {
+    AND?: MeetingMinuteMeetingScalarWhereInput | MeetingMinuteMeetingScalarWhereInput[]
+    OR?: MeetingMinuteMeetingScalarWhereInput[]
+    NOT?: MeetingMinuteMeetingScalarWhereInput | MeetingMinuteMeetingScalarWhereInput[]
+    id?: IntFilter<"MeetingMinuteMeeting"> | number
+    teacherId?: IntFilter<"MeetingMinuteMeeting"> | number
+    source?: EnumMeetingSourceFilter<"MeetingMinuteMeeting"> | $Enums.MeetingSource
+    googleCalendarEventId?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    classScheduleId?: IntNullableFilter<"MeetingMinuteMeeting"> | number | null
+    title?: StringFilter<"MeetingMinuteMeeting"> | string
+    description?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    meetingLink?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    location?: StringNullableFilter<"MeetingMinuteMeeting"> | string | null
+    startDateTime?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    endDateTime?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    timezone?: StringFilter<"MeetingMinuteMeeting"> | string
+    attendeeSnapshot?: JsonNullableFilter<"MeetingMinuteMeeting">
+    createdAt?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
+    updatedAt?: DateTimeFilter<"MeetingMinuteMeeting"> | Date | string
   }
 
   export type MentorUpsertWithoutTeacherInput = {
@@ -64077,6 +68077,7 @@ export namespace Prisma {
     timezone?: string | null
     group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
     teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutClassScheduleInput
   }
 
   export type ClassScheduleUncheckedCreateWithoutStudentInput = {
@@ -64103,6 +68104,7 @@ export namespace Prisma {
     reminderSentAt?: Date | string | null
     startDateTime?: Date | string | null
     timezone?: string | null
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput
   }
 
   export type ClassScheduleCreateOrConnectWithoutStudentInput = {
@@ -64141,6 +68143,43 @@ export namespace Prisma {
 
   export type EnrollmentCreateManyStudentInputEnvelope = {
     data: EnrollmentCreateManyStudentInput | EnrollmentCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MeetingMinuteRequestCreateWithoutStudentInput = {
+    status?: $Enums.MeetingMinuteStatus
+    studentMinutes?: string | null
+    submittedAt?: Date | string | null
+    teacherFinalText?: string | null
+    reviewedAt?: Date | string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    creationMode?: $Enums.MeetingMinuteCreationMode
+    MeetingMinuteMeeting: MeetingMinuteMeetingCreateNestedOneWithoutMeetingMinuteRequestInput
+  }
+
+  export type MeetingMinuteRequestUncheckedCreateWithoutStudentInput = {
+    id?: number
+    meetingId: number
+    status?: $Enums.MeetingMinuteStatus
+    studentMinutes?: string | null
+    submittedAt?: Date | string | null
+    teacherFinalText?: string | null
+    reviewedAt?: Date | string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    creationMode?: $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteRequestCreateOrConnectWithoutStudentInput = {
+    where: MeetingMinuteRequestWhereUniqueInput
+    create: XOR<MeetingMinuteRequestCreateWithoutStudentInput, MeetingMinuteRequestUncheckedCreateWithoutStudentInput>
+  }
+
+  export type MeetingMinuteRequestCreateManyStudentInputEnvelope = {
+    data: MeetingMinuteRequestCreateManyStudentInput | MeetingMinuteRequestCreateManyStudentInput[]
     skipDuplicates?: boolean
   }
 
@@ -64674,6 +68713,40 @@ export namespace Prisma {
     access?: StringFilter<"Enrollment"> | string
   }
 
+  export type MeetingMinuteRequestUpsertWithWhereUniqueWithoutStudentInput = {
+    where: MeetingMinuteRequestWhereUniqueInput
+    update: XOR<MeetingMinuteRequestUpdateWithoutStudentInput, MeetingMinuteRequestUncheckedUpdateWithoutStudentInput>
+    create: XOR<MeetingMinuteRequestCreateWithoutStudentInput, MeetingMinuteRequestUncheckedCreateWithoutStudentInput>
+  }
+
+  export type MeetingMinuteRequestUpdateWithWhereUniqueWithoutStudentInput = {
+    where: MeetingMinuteRequestWhereUniqueInput
+    data: XOR<MeetingMinuteRequestUpdateWithoutStudentInput, MeetingMinuteRequestUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type MeetingMinuteRequestUpdateManyWithWhereWithoutStudentInput = {
+    where: MeetingMinuteRequestScalarWhereInput
+    data: XOR<MeetingMinuteRequestUpdateManyMutationInput, MeetingMinuteRequestUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type MeetingMinuteRequestScalarWhereInput = {
+    AND?: MeetingMinuteRequestScalarWhereInput | MeetingMinuteRequestScalarWhereInput[]
+    OR?: MeetingMinuteRequestScalarWhereInput[]
+    NOT?: MeetingMinuteRequestScalarWhereInput | MeetingMinuteRequestScalarWhereInput[]
+    id?: IntFilter<"MeetingMinuteRequest"> | number
+    meetingId?: IntFilter<"MeetingMinuteRequest"> | number
+    studentId?: IntFilter<"MeetingMinuteRequest"> | number
+    status?: EnumMeetingMinuteStatusFilter<"MeetingMinuteRequest"> | $Enums.MeetingMinuteStatus
+    studentMinutes?: StringNullableFilter<"MeetingMinuteRequest"> | string | null
+    submittedAt?: DateTimeNullableFilter<"MeetingMinuteRequest"> | Date | string | null
+    teacherFinalText?: StringNullableFilter<"MeetingMinuteRequest"> | string | null
+    reviewedAt?: DateTimeNullableFilter<"MeetingMinuteRequest"> | Date | string | null
+    approvedAt?: DateTimeNullableFilter<"MeetingMinuteRequest"> | Date | string | null
+    createdAt?: DateTimeFilter<"MeetingMinuteRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"MeetingMinuteRequest"> | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFilter<"MeetingMinuteRequest"> | $Enums.MeetingMinuteCreationMode
+  }
+
   export type PaymentUpsertWithWhereUniqueWithoutStudentInput = {
     where: PaymentWhereUniqueInput
     update: XOR<PaymentUpdateWithoutStudentInput, PaymentUncheckedUpdateWithoutStudentInput>
@@ -65013,6 +69086,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -65045,6 +69119,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -65074,6 +69149,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
@@ -65096,6 +69172,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
@@ -65138,6 +69215,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -65170,6 +69248,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -65205,6 +69284,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
@@ -65227,6 +69307,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
@@ -65257,6 +69338,7 @@ export namespace Prisma {
     timezone?: string | null
     student: StudentCreateNestedOneWithoutClassSchedulesInput
     teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutClassScheduleInput
   }
 
   export type ClassScheduleUncheckedCreateWithoutGroupInput = {
@@ -65283,6 +69365,7 @@ export namespace Prisma {
     reminderSentAt?: Date | string | null
     startDateTime?: Date | string | null
     timezone?: string | null
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput
   }
 
   export type ClassScheduleCreateOrConnectWithoutGroupInput = {
@@ -65309,6 +69392,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
@@ -65331,6 +69415,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
@@ -65405,6 +69490,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
@@ -65427,6 +69513,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
@@ -65491,6 +69578,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -65523,6 +69611,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -65596,6 +69685,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -65628,6 +69718,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -65656,6 +69747,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -65688,6 +69780,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -65717,6 +69810,7 @@ export namespace Prisma {
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
@@ -65739,6 +69833,7 @@ export namespace Prisma {
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
@@ -65862,6 +69957,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -65894,6 +69990,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -65929,6 +70026,7 @@ export namespace Prisma {
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
@@ -65951,6 +70049,7 @@ export namespace Prisma {
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
@@ -66080,6 +70179,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -66112,6 +70212,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -66207,6 +70308,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -66239,6 +70341,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -66267,6 +70370,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -66299,6 +70403,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -66403,6 +70508,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -66435,6 +70541,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -66497,6 +70604,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -66519,6 +70627,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -66595,6 +70704,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -66617,6 +70727,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -66885,6 +70996,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -66917,6 +71029,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -67010,6 +71123,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -67042,6 +71156,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -67071,6 +71186,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -67103,6 +71219,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -67173,6 +71290,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -67205,6 +71323,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -67277,6 +71396,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
@@ -67299,6 +71419,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
@@ -67374,6 +71495,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
@@ -67396,6 +71518,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
@@ -67443,6 +71566,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     Blog?: BlogCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -67475,6 +71599,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -67504,6 +71629,7 @@ export namespace Prisma {
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
@@ -67526,6 +71652,7 @@ export namespace Prisma {
     googleRefreshToken?: string | null
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
@@ -67537,6 +71664,51 @@ export namespace Prisma {
   export type TeacherCreateOrConnectWithoutClassSchedulesInput = {
     where: TeacherWhereUniqueInput
     create: XOR<TeacherCreateWithoutClassSchedulesInput, TeacherUncheckedCreateWithoutClassSchedulesInput>
+  }
+
+  export type MeetingMinuteMeetingCreateWithoutClassScheduleInput = {
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Teacher: TeacherCreateNestedOneWithoutMeetingMinuteMeetingInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutMeetingMinuteMeetingInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput = {
+    id?: number
+    teacherId: number
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
+  }
+
+  export type MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput = {
+    where: MeetingMinuteMeetingWhereUniqueInput
+    create: XOR<MeetingMinuteMeetingCreateWithoutClassScheduleInput, MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput>
+  }
+
+  export type MeetingMinuteMeetingCreateManyClassScheduleInputEnvelope = {
+    data: MeetingMinuteMeetingCreateManyClassScheduleInput | MeetingMinuteMeetingCreateManyClassScheduleInput[]
+    skipDuplicates?: boolean
   }
 
   export type StudentGroupUpsertWithoutClassSchedulesInput = {
@@ -67596,6 +71768,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -67628,6 +71801,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -67663,6 +71837,7 @@ export namespace Prisma {
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
@@ -67685,12 +71860,29 @@ export namespace Prisma {
     googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type MeetingMinuteMeetingUpsertWithWhereUniqueWithoutClassScheduleInput = {
+    where: MeetingMinuteMeetingWhereUniqueInput
+    update: XOR<MeetingMinuteMeetingUpdateWithoutClassScheduleInput, MeetingMinuteMeetingUncheckedUpdateWithoutClassScheduleInput>
+    create: XOR<MeetingMinuteMeetingCreateWithoutClassScheduleInput, MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput>
+  }
+
+  export type MeetingMinuteMeetingUpdateWithWhereUniqueWithoutClassScheduleInput = {
+    where: MeetingMinuteMeetingWhereUniqueInput
+    data: XOR<MeetingMinuteMeetingUpdateWithoutClassScheduleInput, MeetingMinuteMeetingUncheckedUpdateWithoutClassScheduleInput>
+  }
+
+  export type MeetingMinuteMeetingUpdateManyWithWhereWithoutClassScheduleInput = {
+    where: MeetingMinuteMeetingScalarWhereInput
+    data: XOR<MeetingMinuteMeetingUpdateManyMutationInput, MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleInput>
   }
 
   export type EnrollmentCreateWithoutPaymentInput = {
@@ -67736,6 +71928,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
@@ -67768,6 +71961,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
@@ -67843,6 +72037,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
@@ -67875,6 +72070,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
@@ -67904,6 +72100,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -67936,6 +72133,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -67981,6 +72179,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -68013,6 +72212,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -68042,6 +72242,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -68073,6 +72274,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -68145,6 +72347,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -68167,6 +72370,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -68204,6 +72408,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -68226,6 +72431,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -68252,6 +72458,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
@@ -68284,6 +72491,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
@@ -68313,6 +72521,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -68335,6 +72544,7 @@ export namespace Prisma {
     googleTokenExpiry?: Date | string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -68377,6 +72587,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
@@ -68409,6 +72620,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
@@ -68444,6 +72656,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -68466,6 +72679,7 @@ export namespace Prisma {
     googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -68886,6 +73100,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
@@ -68918,6 +73133,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
@@ -68993,6 +73209,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
@@ -69025,6 +73242,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
@@ -69053,6 +73271,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -69085,6 +73304,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -69130,6 +73350,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -69162,6 +73383,7 @@ export namespace Prisma {
     AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -69235,6 +73457,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -69267,6 +73490,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -69362,6 +73586,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -69391,6 +73616,516 @@ export namespace Prisma {
     parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
     assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type ClassScheduleCreateWithoutMeetingMinuteMeetingInput = {
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    subject: string
+    description?: string | null
+    location?: string | null
+    meetingLink?: string | null
+    status?: string
+    color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
+    googleCalendarEventId?: string | null
+    meetingMinutes?: string | null
+    reminderJobId?: string | null
+    reminderScheduledFor?: Date | string | null
+    reminderSentAt?: Date | string | null
+    startDateTime?: Date | string | null
+    timezone?: string | null
+    group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
+    student: StudentCreateNestedOneWithoutClassSchedulesInput
+    teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
+  }
+
+  export type ClassScheduleUncheckedCreateWithoutMeetingMinuteMeetingInput = {
+    id?: number
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    subject: string
+    description?: string | null
+    location?: string | null
+    meetingLink?: string | null
+    status?: string
+    color?: string | null
+    studentId: number
+    teacherId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
+    googleCalendarEventId?: string | null
+    groupId?: number | null
+    meetingMinutes?: string | null
+    reminderJobId?: string | null
+    reminderScheduledFor?: Date | string | null
+    reminderSentAt?: Date | string | null
+    startDateTime?: Date | string | null
+    timezone?: string | null
+  }
+
+  export type ClassScheduleCreateOrConnectWithoutMeetingMinuteMeetingInput = {
+    where: ClassScheduleWhereUniqueInput
+    create: XOR<ClassScheduleCreateWithoutMeetingMinuteMeetingInput, ClassScheduleUncheckedCreateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type TeacherCreateWithoutMeetingMinuteMeetingInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherUncheckedCreateWithoutMeetingMinuteMeetingInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherCreateOrConnectWithoutMeetingMinuteMeetingInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutMeetingMinuteMeetingInput, TeacherUncheckedCreateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput = {
+    status?: $Enums.MeetingMinuteStatus
+    studentMinutes?: string | null
+    submittedAt?: Date | string | null
+    teacherFinalText?: string | null
+    reviewedAt?: Date | string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    creationMode?: $Enums.MeetingMinuteCreationMode
+    Student: StudentCreateNestedOneWithoutMeetingMinuteRequestInput
+  }
+
+  export type MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput = {
+    id?: number
+    studentId: number
+    status?: $Enums.MeetingMinuteStatus
+    studentMinutes?: string | null
+    submittedAt?: Date | string | null
+    teacherFinalText?: string | null
+    reviewedAt?: Date | string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    creationMode?: $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput = {
+    where: MeetingMinuteRequestWhereUniqueInput
+    create: XOR<MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput, MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type MeetingMinuteRequestCreateManyMeetingMinuteMeetingInputEnvelope = {
+    data: MeetingMinuteRequestCreateManyMeetingMinuteMeetingInput | MeetingMinuteRequestCreateManyMeetingMinuteMeetingInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ClassScheduleUpsertWithoutMeetingMinuteMeetingInput = {
+    update: XOR<ClassScheduleUpdateWithoutMeetingMinuteMeetingInput, ClassScheduleUncheckedUpdateWithoutMeetingMinuteMeetingInput>
+    create: XOR<ClassScheduleCreateWithoutMeetingMinuteMeetingInput, ClassScheduleUncheckedCreateWithoutMeetingMinuteMeetingInput>
+    where?: ClassScheduleWhereInput
+  }
+
+  export type ClassScheduleUpdateToOneWithWhereWithoutMeetingMinuteMeetingInput = {
+    where?: ClassScheduleWhereInput
+    data: XOR<ClassScheduleUpdateWithoutMeetingMinuteMeetingInput, ClassScheduleUncheckedUpdateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type ClassScheduleUpdateWithoutMeetingMinuteMeetingInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
+    group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
+    student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
+    teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
+  }
+
+  export type ClassScheduleUncheckedUpdateWithoutMeetingMinuteMeetingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TeacherUpsertWithoutMeetingMinuteMeetingInput = {
+    update: XOR<TeacherUpdateWithoutMeetingMinuteMeetingInput, TeacherUncheckedUpdateWithoutMeetingMinuteMeetingInput>
+    create: XOR<TeacherCreateWithoutMeetingMinuteMeetingInput, TeacherUncheckedCreateWithoutMeetingMinuteMeetingInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutMeetingMinuteMeetingInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutMeetingMinuteMeetingInput, TeacherUncheckedUpdateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type TeacherUpdateWithoutMeetingMinuteMeetingInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutMeetingMinuteMeetingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type MeetingMinuteRequestUpsertWithWhereUniqueWithoutMeetingMinuteMeetingInput = {
+    where: MeetingMinuteRequestWhereUniqueInput
+    update: XOR<MeetingMinuteRequestUpdateWithoutMeetingMinuteMeetingInput, MeetingMinuteRequestUncheckedUpdateWithoutMeetingMinuteMeetingInput>
+    create: XOR<MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput, MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type MeetingMinuteRequestUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput = {
+    where: MeetingMinuteRequestWhereUniqueInput
+    data: XOR<MeetingMinuteRequestUpdateWithoutMeetingMinuteMeetingInput, MeetingMinuteRequestUncheckedUpdateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type MeetingMinuteRequestUpdateManyWithWhereWithoutMeetingMinuteMeetingInput = {
+    where: MeetingMinuteRequestScalarWhereInput
+    data: XOR<MeetingMinuteRequestUpdateManyMutationInput, MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type MeetingMinuteMeetingCreateWithoutMeetingMinuteRequestInput = {
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    ClassSchedule?: ClassScheduleCreateNestedOneWithoutMeetingMinuteMeetingInput
+    Teacher: TeacherCreateNestedOneWithoutMeetingMinuteMeetingInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedCreateWithoutMeetingMinuteRequestInput = {
+    id?: number
+    teacherId: number
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    classScheduleId?: number | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MeetingMinuteMeetingCreateOrConnectWithoutMeetingMinuteRequestInput = {
+    where: MeetingMinuteMeetingWhereUniqueInput
+    create: XOR<MeetingMinuteMeetingCreateWithoutMeetingMinuteRequestInput, MeetingMinuteMeetingUncheckedCreateWithoutMeetingMinuteRequestInput>
+  }
+
+  export type StudentCreateWithoutMeetingMinuteRequestInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutMeetingMinuteRequestInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutMeetingMinuteRequestInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutMeetingMinuteRequestInput, StudentUncheckedCreateWithoutMeetingMinuteRequestInput>
+  }
+
+  export type MeetingMinuteMeetingUpsertWithoutMeetingMinuteRequestInput = {
+    update: XOR<MeetingMinuteMeetingUpdateWithoutMeetingMinuteRequestInput, MeetingMinuteMeetingUncheckedUpdateWithoutMeetingMinuteRequestInput>
+    create: XOR<MeetingMinuteMeetingCreateWithoutMeetingMinuteRequestInput, MeetingMinuteMeetingUncheckedCreateWithoutMeetingMinuteRequestInput>
+    where?: MeetingMinuteMeetingWhereInput
+  }
+
+  export type MeetingMinuteMeetingUpdateToOneWithWhereWithoutMeetingMinuteRequestInput = {
+    where?: MeetingMinuteMeetingWhereInput
+    data: XOR<MeetingMinuteMeetingUpdateWithoutMeetingMinuteRequestInput, MeetingMinuteMeetingUncheckedUpdateWithoutMeetingMinuteRequestInput>
+  }
+
+  export type MeetingMinuteMeetingUpdateWithoutMeetingMinuteRequestInput = {
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClassSchedule?: ClassScheduleUpdateOneWithoutMeetingMinuteMeetingNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutMeetingMinuteMeetingNestedInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedUpdateWithoutMeetingMinuteRequestInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentUpsertWithoutMeetingMinuteRequestInput = {
+    update: XOR<StudentUpdateWithoutMeetingMinuteRequestInput, StudentUncheckedUpdateWithoutMeetingMinuteRequestInput>
+    create: XOR<StudentCreateWithoutMeetingMinuteRequestInput, StudentUncheckedCreateWithoutMeetingMinuteRequestInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutMeetingMinuteRequestInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutMeetingMinuteRequestInput, StudentUncheckedUpdateWithoutMeetingMinuteRequestInput>
+  }
+
+  export type StudentUpdateWithoutMeetingMinuteRequestInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutMeetingMinuteRequestInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
@@ -69446,6 +74181,23 @@ export namespace Prisma {
     reminderSentAt?: Date | string | null
     startDateTime?: Date | string | null
     timezone?: string | null
+  }
+
+  export type MeetingMinuteMeetingCreateManyTeacherInput = {
+    id?: number
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    classScheduleId?: number | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
   }
 
   export type ProgressReportCreateManyTeacherInput = {
@@ -69591,6 +74343,7 @@ export namespace Prisma {
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
     group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
     student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateWithoutTeacherInput = {
@@ -69617,6 +74370,7 @@ export namespace Prisma {
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateManyWithoutTeacherInput = {
@@ -69643,6 +74397,58 @@ export namespace Prisma {
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MeetingMinuteMeetingUpdateWithoutTeacherInput = {
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClassSchedule?: ClassScheduleUpdateOneWithoutMeetingMinuteMeetingNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutMeetingMinuteMeetingNestedInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedUpdateWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProgressReportUpdateWithoutTeacherInput = {
@@ -69911,6 +74717,20 @@ export namespace Prisma {
     startDate?: Date | string
     isActive?: boolean
     access?: string
+  }
+
+  export type MeetingMinuteRequestCreateManyStudentInput = {
+    id?: number
+    meetingId: number
+    status?: $Enums.MeetingMinuteStatus
+    studentMinutes?: string | null
+    submittedAt?: Date | string | null
+    teacherFinalText?: string | null
+    reviewedAt?: Date | string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    creationMode?: $Enums.MeetingMinuteCreationMode
   }
 
   export type PaymentCreateManyStudentInput = {
@@ -70201,6 +75021,7 @@ export namespace Prisma {
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
     group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateWithoutStudentInput = {
@@ -70227,6 +75048,7 @@ export namespace Prisma {
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateManyWithoutStudentInput = {
@@ -70281,6 +75103,47 @@ export namespace Prisma {
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     isActive?: BoolFieldUpdateOperationsInput | boolean
     access?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MeetingMinuteRequestUpdateWithoutStudentInput = {
+    status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
+    studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teacherFinalText?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneRequiredWithoutMeetingMinuteRequestNestedInput
+  }
+
+  export type MeetingMinuteRequestUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    meetingId?: IntFieldUpdateOperationsInput | number
+    status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
+    studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teacherFinalText?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteRequestUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    meetingId?: IntFieldUpdateOperationsInput | number
+    status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
+    studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teacherFinalText?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
   }
 
   export type PaymentUpdateWithoutStudentInput = {
@@ -70778,6 +75641,7 @@ export namespace Prisma {
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
     student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateWithoutGroupInput = {
@@ -70804,6 +75668,7 @@ export namespace Prisma {
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateManyWithoutGroupInput = {
@@ -71134,6 +75999,75 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MeetingMinuteMeetingCreateManyClassScheduleInput = {
+    id?: number
+    teacherId: number
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MeetingMinuteMeetingUpdateWithoutClassScheduleInput = {
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Teacher?: TeacherUpdateOneRequiredWithoutMeetingMinuteMeetingNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutMeetingMinuteMeetingNestedInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedUpdateWithoutClassScheduleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StudentCreateManyParentAccountInput = {
     id?: number
     name: string
@@ -71170,6 +76104,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -71201,6 +76136,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -71374,6 +76310,61 @@ export namespace Prisma {
     approved?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     reason?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type MeetingMinuteRequestCreateManyMeetingMinuteMeetingInput = {
+    id?: number
+    studentId: number
+    status?: $Enums.MeetingMinuteStatus
+    studentMinutes?: string | null
+    submittedAt?: Date | string | null
+    teacherFinalText?: string | null
+    reviewedAt?: Date | string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    creationMode?: $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteRequestUpdateWithoutMeetingMinuteMeetingInput = {
+    status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
+    studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teacherFinalText?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+    Student?: StudentUpdateOneRequiredWithoutMeetingMinuteRequestNestedInput
+  }
+
+  export type MeetingMinuteRequestUncheckedUpdateWithoutMeetingMinuteMeetingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
+    studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teacherFinalText?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
+    studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    teacherFinalText?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
   }
 
 
