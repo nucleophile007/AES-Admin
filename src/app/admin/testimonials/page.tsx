@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { CheckCircle, XCircle, User, Users, Calendar, Mail, Phone, School, GraduationCap, Eye, EyeOff, MessageSquareQuote, ChevronDown, ChevronUp, Trash2, Edit } from 'lucide-react'
 import Link from 'next/link'
+import { toast } from 'sonner'
 
 interface Student {
   id: number
@@ -126,7 +127,7 @@ export default function TestimonialsPage() {
         t.id === testimonialId ? { ...t, isApproved: !currentStatus } : t
       ))
     } catch (err) {
-      alert(err instanceof Error ? err.message : 'Failed to update testimonial')
+      toast.error(err instanceof Error ? err.message : 'Failed to update testimonial')
     }
   }
 
@@ -148,7 +149,7 @@ export default function TestimonialsPage() {
         t.id === testimonialId ? { ...t, isVisible: !currentStatus } : t
       ))
     } catch (err) {
-      alert(err instanceof Error ? err.message : 'Failed to update testimonial visibility')
+      toast.error(err instanceof Error ? err.message : 'Failed to update testimonial visibility')
     }
   }
 
@@ -169,7 +170,7 @@ export default function TestimonialsPage() {
         t.id === testimonialId ? { ...t, [section]: data[section] } : t
       ))
     } catch (err) {
-      alert(err instanceof Error ? err.message : 'Failed to toggle section approval')
+      toast.error(err instanceof Error ? err.message : 'Failed to toggle section approval')
     }
   }
 
@@ -241,9 +242,9 @@ export default function TestimonialsPage() {
       ))
       
       closeEditModal()
-      alert('Testimonial updated successfully!')
+      toast.success('Testimonial updated successfully!')
     } catch (err) {
-      alert(err instanceof Error ? err.message : 'Failed to update testimonial')
+      toast.error(err instanceof Error ? err.message : 'Failed to update testimonial')
     } finally {
       setSaving(false)
     }
@@ -266,9 +267,9 @@ export default function TestimonialsPage() {
       // Update local state by removing the deleted testimonial
       setTestimonials(testimonials.filter(t => t.id !== testimonialId))
       
-      alert('Testimonial deleted successfully. Please remember to delete the corresponding row from the Google Sheet.')
+      toast.success('Testimonial deleted successfully. Please remember to delete the corresponding row from the Google Sheet.')
     } catch (err) {
-      alert(err instanceof Error ? err.message : 'Failed to delete testimonial')
+      toast.error(err instanceof Error ? err.message : 'Failed to delete testimonial')
     }
   }
 

@@ -5,6 +5,7 @@ import { useParams } from "next/navigation"
 import Link from "next/link"
 import useSWR from "swr"
 import { ArrowLeft, CheckCircle, Clock, Loader2, Mail, Phone, Shield, User } from "lucide-react"
+import { toast } from "sonner"
 
 const fetcher = (url: string) =>
   fetch(url).then(async (res) => {
@@ -74,7 +75,7 @@ export default function ResearchAccessRequestsPage() {
 
       await mutate()
     } catch (err) {
-      alert(err instanceof Error ? err.message : "Approval failed")
+      toast.error(err instanceof Error ? err.message : "Approval failed")
     } finally {
       setActionLoading((prev) => ({ ...prev, [requestId]: false }))
     }

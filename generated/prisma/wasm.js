@@ -748,6 +748,111 @@ exports.Prisma.MeetingMinuteRequestScalarFieldEnum = {
   creationMode: 'creationMode'
 };
 
+exports.Prisma.StudentTaskScalarFieldEnum = {
+  id: 'id',
+  taskId: 'taskId',
+  studentId: 'studentId',
+  status: 'status',
+  startedAt: 'startedAt',
+  submittedAt: 'submittedAt',
+  completedAt: 'completedAt',
+  submissionNote: 'submissionNote',
+  submissionUrl: 'submissionUrl',
+  submissionFileUrl: 'submissionFileUrl',
+  submissionFileName: 'submissionFileName',
+  submissionExternalConfirmed: 'submissionExternalConfirmed',
+  mentorFeedback: 'mentorFeedback',
+  reviewedAt: 'reviewedAt',
+  reviewedById: 'reviewedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  checklistDone: 'checklistDone',
+  dueSoonReminderSentAt: 'dueSoonReminderSentAt',
+  overdueReminderSentAt: 'overdueReminderSentAt'
+};
+
+exports.Prisma.TaskScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  priority: 'priority',
+  deadline: 'deadline',
+  creatorId: 'creatorId',
+  requireSubmissionNote: 'requireSubmissionNote',
+  requireFileUpload: 'requireFileUpload',
+  requireUrl: 'requireUrl',
+  requireExternalConfirmation: 'requireExternalConfirmation',
+  externalConfirmationPrompt: 'externalConfirmationPrompt',
+  requireMentorApproval: 'requireMentorApproval',
+  isCancelled: 'isCancelled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  checklist: 'checklist',
+  linkedAssignmentId: 'linkedAssignmentId',
+  linkedMeetingId: 'linkedMeetingId',
+  linkedResourceId: 'linkedResourceId',
+  nextOccurrenceCreatedAt: 'nextOccurrenceCreatedAt',
+  recurrence: 'recurrence',
+  recurrenceEndsAt: 'recurrenceEndsAt',
+  seriesId: 'seriesId',
+  templateId: 'templateId'
+};
+
+exports.Prisma.TaskActivityScalarFieldEnum = {
+  id: 'id',
+  studentTaskId: 'studentTaskId',
+  action: 'action',
+  details: 'details',
+  performedById: 'performedById',
+  performedByRole: 'performedByRole',
+  performedByName: 'performedByName',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.TaskCommentScalarFieldEnum = {
+  id: 'id',
+  studentTaskId: 'studentTaskId',
+  authorId: 'authorId',
+  authorRole: 'authorRole',
+  authorName: 'authorName',
+  content: 'content',
+  attachmentUrl: 'attachmentUrl',
+  attachmentName: 'attachmentName',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.TaskSavedFilterScalarFieldEnum = {
+  id: 'id',
+  ownerId: 'ownerId',
+  ownerRole: 'ownerRole',
+  name: 'name',
+  query: 'query',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.TaskTemplateScalarFieldEnum = {
+  id: 'id',
+  teacherId: 'teacherId',
+  name: 'name',
+  title: 'title',
+  description: 'description',
+  category: 'category',
+  priority: 'priority',
+  defaultDeadlineDays: 'defaultDeadlineDays',
+  requireSubmissionNote: 'requireSubmissionNote',
+  requireFileUpload: 'requireFileUpload',
+  requireUrl: 'requireUrl',
+  requireExternalConfirmation: 'requireExternalConfirmation',
+  externalConfirmationPrompt: 'externalConfirmationPrompt',
+  requireMentorApproval: 'requireMentorApproval',
+  checklist: 'checklist',
+  recurrence: 'recurrence',
+  usageCount: 'usageCount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -832,7 +937,13 @@ exports.Prisma.ModelName = {
   AssignmentTarget: 'AssignmentTarget',
   RefreshToken: 'RefreshToken',
   MeetingMinuteMeeting: 'MeetingMinuteMeeting',
-  MeetingMinuteRequest: 'MeetingMinuteRequest'
+  MeetingMinuteRequest: 'MeetingMinuteRequest',
+  StudentTask: 'StudentTask',
+  Task: 'Task',
+  TaskActivity: 'TaskActivity',
+  TaskComment: 'TaskComment',
+  TaskSavedFilter: 'TaskSavedFilter',
+  TaskTemplate: 'TaskTemplate'
 };
 
 /**

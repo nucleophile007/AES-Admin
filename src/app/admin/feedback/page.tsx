@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Search, MessageSquare, Filter, CheckCircle, Loader2, Star, Eye } from "lucide-react"
+import { toast } from "sonner"
 
 interface Feedback {
   id: number
@@ -136,8 +137,8 @@ export default function FeedbackPage() {
     }
   }
 
-  const fetchFeedback = async () => {
-    setLoading(true)
+  const fetchFeedback = async (showLoading = true) => {
+    if (showLoading) setLoading(true)
     try {
       const url = `/api/admin/parent-testimonials`
       const res = await fetch(url)
@@ -153,7 +154,7 @@ export default function FeedbackPage() {
     } catch (e: any) {
       console.error('Failed to load parent testimonials:', e.message)
     } finally {
-      setLoading(false)
+      if (showLoading) setLoading(false)
     }
   }
 
@@ -172,10 +173,10 @@ export default function FeedbackPage() {
       if (!res.ok) throw new Error('Failed to update testimonial status')
       
       await res.json()
-      await fetchFeedback()
+      await fetchFeedback(false)
     } catch (e: any) {
       console.error(e)
-      alert(e.message)
+      toast.error(e.message)
     } finally {
       setActionLoading(prev => ({ ...prev, [`status-${id}`]: false }))
     }

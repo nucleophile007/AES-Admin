@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useEffect, useState, useRef } from 'react'
 import { MessageCircle, X, Send } from 'lucide-react'
+import { toast } from 'sonner'
 
 interface Enrollment {
   id: number
@@ -72,9 +73,9 @@ export default function EnrollmentsPage() {
     }
   }, [status])
 
-  async function fetchEnrollments() {
+  async function fetchEnrollments(showLoading = true) {
     try {
-      setLoading(true)
+      if (showLoading) setLoading(true)
       setError('')
       const response = await fetch('/api/admin/enrollments')
       
@@ -90,7 +91,7 @@ export default function EnrollmentsPage() {
       console.error('Error fetching enrollments:', err)
       setError(err instanceof Error ? err.message : 'Failed to load enrollments')
     } finally {
-      setLoading(false)
+      if (showLoading) setLoading(false)
     }
   }
 
@@ -124,16 +125,16 @@ export default function EnrollmentsPage() {
       }
 
       // Refresh enrollments after update
-      await fetchEnrollments()
+      await fetchEnrollments(false)
     } catch (err) {
       console.error('Error toggling access:', err)
-      alert(err instanceof Error ? err.message : 'Failed to update access')
+      toast.error(err instanceof Error ? err.message : 'Failed to update access')
     }
   }
 
   function openReminderModal(enrollment: Enrollment) {
     if (!enrollment.student.parentEmail) {
-      alert('No parent email available for this student')
+      toast.error('No parent email available for this student')
       return
     }
     setSelectedEnrollment(enrollment)
@@ -155,7 +156,7 @@ export default function EnrollmentsPage() {
 
   async function sendPaymentReminder() {
     if (!selectedEnrollment || !paymentInfo || !amount || !dueDate) {
-      alert('Please fill in all required fields')
+      toast.error('Please fill in all required fields')
       return
     }
 
@@ -188,11 +189,11 @@ export default function EnrollmentsPage() {
         throw new Error(data.error || 'Failed to send payment reminder')
       }
 
-      alert('Payment reminder sent successfully!')
+      toast.success('Payment reminder sent successfully!')
       closeReminderModal()
     } catch (err) {
       console.error('Error sending payment reminder:', err)
-      alert(err instanceof Error ? err.message : 'Failed to send payment reminder')
+      toast.error(err instanceof Error ? err.message : 'Failed to send payment reminder')
     } finally {
       setSendingEmail(false)
     }
@@ -265,7 +266,7 @@ export default function EnrollmentsPage() {
       await fetchMessages(chatRecipient.id, chatRecipient.role)
     } catch (err) {
       console.error('Error sending message:', err)
-      alert(err instanceof Error ? err.message : 'Failed to send message')
+      toast.error(err instanceof Error ? err.message : 'Failed to send message')
     } finally {
       setSendingMessage(false)
     }

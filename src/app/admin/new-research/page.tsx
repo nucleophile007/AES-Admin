@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { BookOpen, ArrowLeft, Loader2 } from "lucide-react"
 import StudentAutocomplete from "@/components/ui/StudentAutocomplete"
+import { toast } from "sonner"
 
 export default function NewResearchPage() {
   const router = useRouter()
@@ -77,7 +78,7 @@ export default function NewResearchPage() {
 
       router.push(`/admin/research/${created.research.id}/upload`)
     } catch (err: any) {
-      alert(err.message)
+      toast.error(err.message)
     } finally {
       setLoading(false)
     }

@@ -1,11 +1,12 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Search, GraduationCap, Filter, CheckCircle, Loader2, X, Plus, Mail, Pencil, Trash2 } from "lucide-react"
+import { Search, GraduationCap, Filter, CheckCircle, Loader2, X, Plus, Mail, Pencil, Trash2, ChevronDown } from "lucide-react"
 import { toast } from "sonner"
+import { getSubjectGroupsForProgram, getSubjectsForProgram, isSingleLevelProgram, PROGRAM_OPTIONS } from "@/lib/programCatalog"
 
 interface Student {
   id: number
@@ -18,7 +19,7 @@ interface Student {
   parentEmail: string
   parentPhone: string
   program: string
-  enrollments?: Array<{ program: string; subject: string; isActive: boolean }>
+  enrollments?: Array<{ id: number; program: string; subject: string; isActive: boolean }>
   teacherLinks?: Array<{ program: string; teacher: { id: number; name: string; email: string } }>
   isActivated: boolean
   createdAt: string
@@ -29,12 +30,202 @@ const getStudentPrograms = (student: Student) => Array.from(new Set(
   (student.enrollments || []).map((enrollment) => enrollment.program).concat(student.program)
 ))
 
-const PROGRAM_OPTIONS = [
-  "College Prep",
-  "Tutoring",
-  "MATH Competitions",
-  "Research",
-] as const
+interface EnrollmentDraft {
+  program: string
+  subject: string
+  teacherIds: string[]
+}
+
+const STUDENTS_CACHE_KEY = "admin.students.cache.v1"
+const TEACHERS_CACHE_KEY = "admin.teachers.cache.v1"
+
+const readSessionCache = <T,>(key: string): T | null => {
+  try {
+    const cached = sessionStorage.getItem(key)
+    return cached ? JSON.parse(cached) as T : null
+  } catch {
+    return null
+  }
+}
+
+const writeSessionCache = <T,>(key: string, value: T) => {
+  try {
+    sessionStorage.setItem(key, JSON.stringify(value))
+  } catch {
+    // Session storage is optional and may be unavailable in private browsing.
+  }
+}
+
+function SubjectPicker({
+  program,
+  value,
+  onChange,
+}: {
+  program: string
+  value: string
+  onChange: (value: string) => void
+}) {
+  const groups = getSubjectGroupsForProgram(program)
+  const [expandedGroup, setExpandedGroup] = useState<string | null>(null)
+
+  if (isSingleLevelProgram(program)) {
+    return <div className="flex items-center rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-500">No subject selection needed</div>
+  }
+
+  if (program === "Tutoring" || program === "AES Champions") {
+    return (
+      <div className="relative">
+        <label className="mb-1 block text-sm font-medium text-gray-700">Subject</label>
+        <details className="group">
+          <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700">
+            <span className={value ? "text-gray-900" : "text-gray-400"}>{value || "Select a subject..."}</span>
+            <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+          </summary>
+          <div className="absolute z-20 mt-1 w-full rounded-lg border border-gray-200 bg-white p-2 shadow-lg">
+            {groups.map((group) => (
+              <div key={group.name} className="border-b border-gray-100 last:border-0">
+                {group.subjects.length ? (
+                  <>
+                    <button
+                      type="button"
+                      className="flex w-full items-center gap-2 px-2 py-2 text-left text-sm font-medium text-gray-800 hover:bg-gray-50"
+                      onClick={() => setExpandedGroup(expandedGroup === group.name ? null : group.name)}
+                    >
+                      <Plus className={`h-4 w-4 transition-transform ${expandedGroup === group.name ? "rotate-45" : ""}`} />
+                      {group.name}
+                    </button>
+                    {expandedGroup === group.name && (
+                      <div className="mb-1 ml-6 space-y-1">
+                        {group.subjects.map((subject) => (
+                          <button
+                            type="button"
+                            key={subject}
+                            className={`block w-full rounded px-2 py-1.5 text-left text-sm ${value === subject ? "bg-blue-50 text-blue-700" : "text-gray-600 hover:bg-gray-50"}`}
+                            onClick={(event) => {
+                              onChange(subject)
+                              event.currentTarget.closest("details")?.removeAttribute("open")
+                            }}
+                          >
+                            {subject}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <button
+                    type="button"
+                    className={`block w-full rounded px-2 py-2 text-left text-sm ${value === group.name ? "bg-blue-50 text-blue-700" : "font-medium text-gray-800 hover:bg-gray-50"}`}
+                    onClick={(event) => {
+                      onChange(group.name)
+                      event.currentTarget.closest("details")?.removeAttribute("open")
+                    }}
+                  >
+                    {group.name}
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        </details>
+      </div>
+    )
+  }
+
+  return (
+    <select
+      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-black"
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
+      required
+    >
+      <option value="">Select a subject...</option>
+      {groups.flatMap((group) => group.subjects).map((subject) => <option key={subject} value={subject}>{subject}</option>)}
+      {!getSubjectsForProgram(program).length && <option value="Other">Other (legacy/custom)</option>}
+    </select>
+  )
+}
+
+function MentorPicker({
+  teachers,
+  selectedIds,
+  onChange,
+  loading,
+}: {
+  teachers: Array<{ id: number; name: string; email: string; programs: string[] }>
+  selectedIds: string[]
+  onChange: (ids: string[]) => void
+  loading: boolean
+}) {
+  const [open, setOpen] = useState(false)
+  const pickerRef = useRef<HTMLDivElement>(null)
+  const availableTeachers = teachers
+  const selectedTeachers = availableTeachers.filter((teacher) => selectedIds.includes(String(teacher.id)))
+
+  useEffect(() => {
+    if (!open) return
+    const handlePointerDown = (event: PointerEvent) => {
+      if (pickerRef.current && !pickerRef.current.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    }
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false)
+    }
+    document.addEventListener("pointerdown", handlePointerDown)
+    document.addEventListener("keydown", handleKeyDown)
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown)
+      document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [open])
+
+  return (
+    <div ref={pickerRef} className="relative">
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen((value) => !value)}
+        className={`flex min-h-[42px] w-full items-center justify-between rounded-lg border bg-white px-3 py-2 text-left text-sm transition ${
+          open ? "border-blue-500 ring-2 ring-blue-100" : "border-slate-300 hover:border-slate-400"
+        }`}
+      >
+        <span className={selectedTeachers.length ? "text-slate-900" : "text-slate-400"}>
+          {selectedTeachers.length
+            ? `${selectedTeachers.length} mentor${selectedTeachers.length === 1 ? "" : "s"} selected`
+            : "Select mentors"}
+        </span>
+        <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute left-0 right-0 z-30 mt-2 max-h-64 overflow-y-auto rounded-xl border border-slate-200 bg-white p-2 shadow-xl ring-1 ring-black/5">
+          <div className="border-b border-slate-100 px-2 pb-2 text-xs text-slate-500">
+            Select one or more mentors
+          </div>
+          {loading && <p className="px-2 py-3 text-sm text-slate-500">Loading mentors...</p>}
+          {!loading && !teachers.length && <p className="px-2 py-3 text-sm text-slate-500">No mentors available.</p>}
+          {teachers.map((teacher) => {
+          const id = String(teacher.id)
+          return (
+            <label key={teacher.id} className="flex cursor-pointer items-start gap-3 rounded-lg px-2 py-2.5 text-sm text-slate-700 hover:bg-slate-50">
+              <input
+                type="checkbox"
+                checked={selectedIds.includes(id)}
+                onChange={(event) => onChange(event.target.checked ? [...selectedIds, id] : selectedIds.filter((selectedId) => selectedId !== id))}
+                className="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+              />
+              <span className="min-w-0">
+                <span className="block font-medium text-slate-800">{teacher.name}</span>
+                <span className="block truncate text-xs text-slate-500">{teacher.email}</span>
+              </span>
+            </label>
+          )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
 
 export default function StudentsPage() {
   const { data: session, status } = useSession()
@@ -58,9 +249,7 @@ export default function StudentsPage() {
     parentName: "",
     parentEmail: "",
     parentPhone: "",
-    program: "",
-    subject: "",
-    teacherIds: [] as string[]
+    enrollments: [{ program: "", subject: "", teacherIds: [] as string[] }] as EnrollmentDraft[]
   })
   const [formLoading, setFormLoading] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
@@ -75,6 +264,7 @@ export default function StudentsPage() {
     subject: "",
     teacherIds: [] as string[]
   })
+  const [editingEnrollmentId, setEditingEnrollmentId] = useState<number | null>(null)
   const [enrollmentLoading, setEnrollmentLoading] = useState(false)
   const [enrollmentError, setEnrollmentError] = useState<string | null>(null)
 
@@ -126,32 +316,60 @@ export default function StudentsPage() {
   }, [session, status])
 
   const fetchStudents = async () => {
-    setLoading(true)
+    const cachedStudents = readSessionCache<Student[]>(STUDENTS_CACHE_KEY)
+    if (cachedStudents) {
+      setData(cachedStudents)
+      setLoading(false)
+    } else {
+      setLoading(true)
+    }
     try {
-      const res = await fetch("/api/admin/students")
+      const res = await fetch("/api/admin/students", { cache: "no-store" })
       if (res.status === 403) {
         throw new Error("Not authorized")
       }
       if (!res.ok) {
-        throw new Error("Failed to load data")
+        let message = `Request failed (${res.status})`
+        try {
+          const errorBody = await res.json() as { error?: string; details?: string }
+          message = errorBody.error || errorBody.details || message
+        } catch {
+          // Keep the HTTP status when the server does not return JSON.
+        }
+        throw new Error(message)
       }
       
       const json = await res.json()
-      setData(json.students || [])
-    } catch (e: any) {
-      console.error('Failed to load students:', e.message)
+      const students = json.students || []
+      setData(students)
+      writeSessionCache(STUDENTS_CACHE_KEY, students)
+    } catch (e: unknown) {
+      const message = e instanceof Error ? e.message : "Unknown error"
+      if (cachedStudents) {
+        console.warn("Could not refresh students; showing cached data:", message)
+      } else {
+        console.error("Failed to load students:", message)
+      }
     } finally {
       setLoading(false)
     }
   }
 
   const fetchTeachers = async () => {
-    setTeachersLoading(true)
+    const cachedTeachers = readSessionCache<Array<{id: number, name: string, email: string, programs: string[]}>>(TEACHERS_CACHE_KEY)
+    if (cachedTeachers) {
+      setTeachers(cachedTeachers)
+      setTeachersLoading(false)
+    } else {
+      setTeachersLoading(true)
+    }
     try {
       const res = await fetch("/api/admin/teachers")
       if (res.ok) {
         const json = await res.json()
-        setTeachers(json.teachers || [])
+        const nextTeachers = json.teachers || []
+        setTeachers(nextTeachers)
+        writeSessionCache(TEACHERS_CACHE_KEY, nextTeachers)
       }
     } catch (e) {
       console.error("Failed to fetch teachers:", e)
@@ -200,13 +418,37 @@ export default function StudentsPage() {
       }
       
       const result = await res.json()
-      alert(result.message || 'Activation email sent successfully')
+      toast.success(result.message || 'Activation email sent successfully')
     } catch (e: any) {
       console.error(e)
-      alert(e.message)
+      toast.error(e.message)
     } finally {
       setActionLoading(prev => ({ ...prev, [`activate-${id}`]: false }))
     }
+  }
+
+  const addEnrollmentDraft = () => {
+    setFormData((prev) => ({
+      ...prev,
+      enrollments: [...prev.enrollments, { program: "", subject: "", teacherIds: [] }],
+    }))
+  }
+
+  const removeEnrollmentDraft = (index: number) => {
+    if (formData.enrollments.length === 1) return
+    setFormData((prev) => ({
+      ...prev,
+      enrollments: prev.enrollments.filter((_, enrollmentIndex) => enrollmentIndex !== index),
+    }))
+  }
+
+  const updateEnrollmentDraft = (index: number, updates: Partial<EnrollmentDraft>) => {
+    setFormData((prev) => ({
+      ...prev,
+      enrollments: prev.enrollments.map((enrollment, enrollmentIndex) =>
+        enrollmentIndex === index ? { ...enrollment, ...updates } : enrollment
+      ),
+    }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -215,11 +457,13 @@ export default function StudentsPage() {
     setFormError(null)
     
     // Validate form
-    if (!formData.name.trim() || !formData.email.trim() || !formData.program.trim() || 
+    if (!formData.name.trim() || !formData.email.trim() ||
         !formData.grade.trim() || !formData.schoolName.trim() || 
         !formData.parentName.trim() || !formData.parentEmail.trim() || !formData.parentPhone.trim() ||
-        !formData.subject.trim() || formData.teacherIds.length === 0) {
-      setFormError("All fields are required")
+        formData.enrollments.some((enrollment) =>
+          !enrollment.program.trim() || !enrollment.subject.trim() || enrollment.teacherIds.length === 0
+        )) {
+      setFormError("Complete every program enrollment with a subject and at least one teacher")
       setFormLoading(false)
       return
     }
@@ -247,7 +491,16 @@ export default function StudentsPage() {
       const newStudent = await res.json()
       
       // Add to our data and reset form
-      setData(prev => [newStudent.student, ...prev])
+      setData(prev => [{
+        ...newStudent.student,
+        enrollments: newStudent.enrollments || [],
+        teacherLinks: newStudent.teacherLinks || [],
+      }, ...prev])
+      writeSessionCache(STUDENTS_CACHE_KEY, [{
+        ...newStudent.student,
+        enrollments: newStudent.enrollments || [],
+        teacherLinks: newStudent.teacherLinks || [],
+      }, ...data])
       setFormData({
         name: "",
         email: "",
@@ -257,9 +510,7 @@ export default function StudentsPage() {
         parentName: "",
         parentEmail: "",
         parentPhone: "",
-        program: "",
-        subject: "",
-        teacherIds: []
+        enrollments: [{ program: "", subject: "", teacherIds: [] }]
       })
       setShowForm(false)
       
@@ -293,38 +544,61 @@ export default function StudentsPage() {
       setEnrollmentLoading(false)
       return
     }
+
+    const isEditing = Boolean(editingEnrollmentId)
+    const studentName = selectedStudentForEnrollment.name
+    const enrollmentLabel = `${enrollmentData.program} - ${enrollmentData.subject}`
+    const toastId = toast.loading(isEditing ? "Updating enrollment..." : "Adding enrollment...")
     
     try {
       const res = await fetch(`/api/admin/students/${selectedStudentForEnrollment.id}/enroll`, {
-        method: 'POST',
+        method: editingEnrollmentId ? 'PATCH' : 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(enrollmentData),
+        body: JSON.stringify(editingEnrollmentId
+          ? { ...enrollmentData, enrollmentId: editingEnrollmentId }
+          : enrollmentData),
       })
       
       if (!res.ok) {
-        const error = await res.json()
-        console.error('Enrollment API Error:', error)
-        throw new Error(error.error || error.message || error.details || 'Failed to add enrollment')
+        const responseText = await res.text()
+        let error: { error?: string; message?: string; details?: string } = {}
+        try {
+          error = responseText ? JSON.parse(responseText) as typeof error : {}
+        } catch {
+          // Keep the HTTP status when the server does not return JSON.
+        }
+        const message = error.details || error.error || error.message || `Request failed (${res.status})`
+        const diagnostic = `Enrollment request failed (${res.status}${res.statusText ? ` ${res.statusText}` : ""}): ${message}`
+        console.warn(diagnostic, responseText || "<empty response>")
+        throw new Error(diagnostic)
       }
       
       await res.json()
       
-      // Reset form
       setEnrollmentData({
         program: "",
         subject: "",
         teacherIds: []
       })
+      setEditingEnrollmentId(null)
+      setEnrollmentLoading(false)
       setShowEnrollmentForm(false)
       setSelectedStudentForEnrollment(null)
+      toast.success(
+        `${isEditing ? "Enrollment updated" : "Enrollment added"} for ${studentName}: ${enrollmentLabel}`,
+        { id: toastId }
+      )
+
+      // Refresh in the background so the modal closes without waiting for the list query.
+      void fetchStudents()
       
-      alert(`Successfully enrolled ${selectedStudentForEnrollment.name} in ${enrollmentData.program} - ${enrollmentData.subject}`)
-      
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error(e)
-      setEnrollmentError(e.message)
+      const message = e instanceof Error ? e.message : "Enrollment request failed"
+      setEnrollmentError(message)
+      toast.error(message, { id: toastId })
     } finally {
       setEnrollmentLoading(false)
     }
@@ -338,7 +612,46 @@ export default function StudentsPage() {
       teacherIds: []
     })
     setEnrollmentError(null)
+    setEditingEnrollmentId(null)
     setShowEnrollmentForm(true)
+  }
+
+  const editEnrollment = (student: Student, enrollment: NonNullable<Student["enrollments"]>[number]) => {
+    const teacherIds = (student.teacherLinks || [])
+      .filter((link) => link.program === enrollment.program)
+      .map((link) => String(link.teacher.id))
+    setSelectedStudentForEnrollment(student)
+    setEnrollmentData({ program: enrollment.program, subject: enrollment.subject, teacherIds })
+    setEditingEnrollmentId(enrollment.id)
+    setEnrollmentError(null)
+    setShowEnrollmentForm(true)
+  }
+
+  const closeEnrollmentForm = () => {
+    if (enrollmentLoading) return
+    setShowEnrollmentForm(false)
+    setSelectedStudentForEnrollment(null)
+    setEditingEnrollmentId(null)
+    setEnrollmentError(null)
+  }
+
+  const deleteEnrollment = async (student: Student, enrollment: NonNullable<Student["enrollments"]>[number]) => {
+    if (!window.confirm(`Delete ${enrollment.program} - ${enrollment.subject} for ${student.name}?`)) return
+    setActionLoading((previous) => ({ ...previous, [`enrollment-delete-${enrollment.id}`]: true }))
+    try {
+      const response = await fetch(`/api/admin/students/${student.id}/enroll?enrollmentId=${enrollment.id}`, { method: "DELETE" })
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || "Failed to delete enrollment")
+      await fetchStudents()
+      if (selectedStudentForEnrollment?.id === student.id) {
+        const refreshed = data.find((item) => item.id === student.id)
+        if (refreshed) setSelectedStudentForEnrollment(refreshed)
+      }
+    } catch (error) {
+      setEnrollmentError(error instanceof Error ? error.message : "Failed to delete enrollment")
+    } finally {
+      setActionLoading((previous) => ({ ...previous, [`enrollment-delete-${enrollment.id}`]: false }))
+    }
   }
 
   const openEditForm = (student: Student) => {
@@ -412,7 +725,11 @@ export default function StudentsPage() {
       }
 
       const result = await res.json()
-      setData(prev => prev.filter(item => item.id !== student.id))
+      setData(prev => {
+        const students = prev.filter(item => item.id !== student.id)
+        writeSessionCache(STUDENTS_CACHE_KEY, students)
+        return students
+      })
 
       if (result.deletedParentAccount) {
         toast.success(`Student deleted. Linked parent account #${result.parentAccountId} was also deleted.`)
@@ -474,9 +791,13 @@ export default function StudentsPage() {
       const json = await res.json()
       const updatedStudent: Student = json.student
 
-      setData(prev => prev.map(student => (
-        student.id === updatedStudent.id ? updatedStudent : student
-      )))
+      setData(prev => {
+        const students = prev.map(student => (
+          student.id === updatedStudent.id ? updatedStudent : student
+        ))
+        writeSessionCache(STUDENTS_CACHE_KEY, students)
+        return students
+      })
 
       toast.success("Student updated successfully.")
       closeEditForm()
@@ -646,67 +967,62 @@ export default function StudentsPage() {
                   />
                 </div>
                 
-                <div>
-                  <label htmlFor="program" className="block text-sm font-medium text-gray-700 mb-1">
-                    Program
-                  </label>
-                  <select
-                    id="program"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-                    value={formData.program}
-                    onChange={(e) => setFormData(prev => ({ ...prev, program: e.target.value }))}
-                    required
-                  >
-                    <option value="">Select a program...</option>
-                    {PROGRAM_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt}>
-                        {opt}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter subject (e.g., Math, English)"
-                    value={formData.subject}
-                    onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="teacherId" className="block text-sm font-medium text-gray-700 mb-1">
-                    Assigned Mentor/Teacher
-                  </label>
-                  <select
-                    id="teacherId"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    value={formData.teacherIds}
-                    onChange={(e) => setFormData(prev => ({
-                      ...prev,
-                      teacherIds: Array.from(e.target.selectedOptions, (option) => option.value),
-                    }))}
-                    multiple
-                    required
-                  >
-                    <option value="">Select one or more teachers...</option>
-                    {teachersLoading ? (
-                      <option disabled>Loading teachers...</option>
-                    ) : (
-                      teachers.filter((teacher) => teacher.programs.includes(formData.program)).map(teacher => (
-                        <option key={teacher.id} value={teacher.id}>
-                          {teacher.name}
-                        </option>
-                      ))
-                    )}
-                  </select>
+                <div className="col-span-2">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <h3 className="text-md font-medium text-gray-900">Program Enrollments</h3>
+                      <p className="text-sm text-gray-500">Add one or more programs for this student.</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={addEnrollmentDraft}
+                      className="inline-flex items-center gap-1 px-3 py-2 text-sm text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-50"
+                    >
+                      <Plus className="w-4 h-4" /> Add Program
+                    </button>
+                  </div>
+                  <div className="space-y-4">
+                    {formData.enrollments.map((enrollment, index) => {
+                      return (
+                        <div key={index} className="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                          <div className="flex justify-between items-center mb-3">
+                            <span className="font-medium text-gray-700">Enrollment {index + 1}</span>
+                            {formData.enrollments.length > 1 && (
+                              <button type="button" onClick={() => removeEnrollmentDraft(index)} className="text-sm text-red-600 hover:text-red-700">
+                                Remove
+                              </button>
+                            )}
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <select
+                              className="px-4 py-2 border border-gray-300 rounded-lg text-black bg-white"
+                              value={enrollment.program}
+                              onChange={(e) => updateEnrollmentDraft(index, {
+                                program: e.target.value,
+                                subject: isSingleLevelProgram(e.target.value) ? e.target.value : "",
+                                teacherIds: [],
+                              })}
+                              required
+                            >
+                              <option value="">Select a program...</option>
+                              {PROGRAM_OPTIONS.map((program) => <option key={program} value={program}>{program}</option>)}
+                            </select>
+                            <SubjectPicker
+                              program={enrollment.program}
+                              value={enrollment.subject}
+                              onChange={(subject) => updateEnrollmentDraft(index, { subject })}
+                            />
+                            <MentorPicker
+                              teachers={teachers}
+                              selectedIds={enrollment.teacherIds}
+                              onChange={(teacherIds) => updateEnrollmentDraft(index, { teacherIds })}
+                              loading={teachersLoading}
+                            />
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
                 
                 <div className="col-span-2">
@@ -783,22 +1099,76 @@ export default function StudentsPage() {
 
       {/* Add Enrollment Form Modal */}
       {showEnrollmentForm && selectedStudentForEnrollment && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold text-gray-900">
-                Add Enrollment for {selectedStudentForEnrollment.name}
-              </h2>
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
+          <div className="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-white shadow-2xl">
+            <div className="sticky top-0 z-10 flex items-start justify-between border-b border-slate-200 bg-white px-6 py-5">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600">Student enrollment</p>
+                <h2 className="mt-1 text-2xl font-bold text-slate-900">
+                  {editingEnrollmentId ? "Edit enrollment" : "Manage enrollments"}
+                </h2>
+                <p className="mt-1 text-sm text-slate-500">{selectedStudentForEnrollment.name}</p>
+              </div>
               <button
-                onClick={() => {
-                  setShowEnrollmentForm(false)
-                  setSelectedStudentForEnrollment(null)
-                }}
-                className="text-gray-500 hover:text-gray-700"
+                type="button"
+                onClick={closeEnrollmentForm}
+                className="rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                aria-label="Close enrollment manager"
               >
-                <X className="w-5 h-5" />
+                <X className="h-6 w-6" />
               </button>
             </div>
+            <div className="space-y-6 p-6">
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+              <div className="mb-3 flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900">Current enrollments</h3>
+                  <p className="mt-0.5 text-xs text-slate-500">Choose an enrollment to edit or remove it.</p>
+                </div>
+                <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">
+                  {(selectedStudentForEnrollment.enrollments || []).length} total
+                </span>
+              </div>
+              <div className="space-y-2">
+                {(selectedStudentForEnrollment.enrollments || []).map((enrollment) => (
+                  <div key={enrollment.id} className={`flex items-center justify-between gap-3 rounded-xl border bg-white p-4 text-sm shadow-sm ${
+                    editingEnrollmentId === enrollment.id ? "border-blue-500 ring-2 ring-blue-100" : "border-slate-200"
+                  }`}>
+                    <div>
+                      <p className="font-semibold text-slate-900">{enrollment.program}</p>
+                      <p className="mt-1 text-slate-500">{enrollment.subject}</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={(event) => {
+                          event.preventDefault()
+                          event.stopPropagation()
+                          editEnrollment(selectedStudentForEnrollment, enrollment)
+                        }}
+                        className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-100"
+                      >
+                        Edit
+                      </button>
+                      <button type="button" onClick={() => void deleteEnrollment(selectedStudentForEnrollment, enrollment)} disabled={actionLoading[`enrollment-delete-${enrollment.id}`]} className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-semibold text-red-700 transition hover:bg-red-100 disabled:opacity-50">Delete</button>
+                    </div>
+                  </div>
+                ))}
+                {!(selectedStudentForEnrollment.enrollments || []).length && <p className="text-sm text-slate-500">No enrollments found.</p>}
+              </div>
+            </div>
+            <div className="rounded-xl border border-slate-200 bg-white">
+              <div className="border-b border-slate-100 px-5 py-4">
+                <h3 className="font-bold text-slate-900">{editingEnrollmentId ? "Update selected enrollment" : "Add a new enrollment"}</h3>
+                <p className="mt-1 text-sm text-slate-500">Assign the program, subject, and mentors for this student.</p>
+              </div>
+              <div className="p-5">
+            {editingEnrollmentId && (
+              <div className="mb-4 flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 text-sm text-blue-800">
+                <span>You are editing the highlighted enrollment.</span>
+                <button type="button" onClick={() => { setEditingEnrollmentId(null); setEnrollmentData({ program: "", subject: "", teacherIds: [] }); setEnrollmentError(null) }} className="font-semibold underline underline-offset-2">Cancel edit</button>
+              </div>
+            )}
             <form onSubmit={handleEnrollmentSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div>
@@ -809,7 +1179,11 @@ export default function StudentsPage() {
                     id="enrollProgram"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
                     value={enrollmentData.program}
-                    onChange={(e) => setEnrollmentData(prev => ({ ...prev, program: e.target.value }))}
+                    onChange={(e) => setEnrollmentData(prev => ({
+                      ...prev,
+                      program: e.target.value,
+                      subject: isSingleLevelProgram(e.target.value) ? e.target.value : "",
+                    }))}
                     required
                   >
                     <option value="">Select a program...</option>
@@ -821,48 +1195,17 @@ export default function StudentsPage() {
                   </select>
                 </div>
 
-                <div>
-                  <label htmlFor="enrollSubject" className="block text-sm font-medium text-gray-700 mb-1">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="enrollSubject"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter subject (e.g., Math, English)"
-                    value={enrollmentData.subject}
-                    onChange={(e) => setEnrollmentData(prev => ({ ...prev, subject: e.target.value }))}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="enrollTeacher" className="block text-sm font-medium text-gray-700 mb-1">
-                    Assigned Teacher
-                  </label>
-                  <select
-                    id="enrollTeacher"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    value={enrollmentData.teacherIds}
-                    onChange={(e) => setEnrollmentData(prev => ({
-                      ...prev,
-                      teacherIds: Array.from(e.target.selectedOptions, (option) => option.value),
-                    }))}
-                    multiple
-                    required
-                  >
-                    <option value="">Select one or more teachers...</option>
-                    {teachersLoading ? (
-                      <option disabled>Loading teachers...</option>
-                    ) : (
-                      teachers.filter((teacher) => teacher.programs.includes(enrollmentData.program)).map(teacher => (
-                        <option key={teacher.id} value={teacher.id}>
-                          {teacher.name}
-                        </option>
-                      ))
-                    )}
-                  </select>
-                </div>
+                <SubjectPicker
+                  program={enrollmentData.program}
+                  value={enrollmentData.subject}
+                  onChange={(subject) => setEnrollmentData(prev => ({ ...prev, subject }))}
+                />
+                <MentorPicker
+                  teachers={teachers}
+                  selectedIds={enrollmentData.teacherIds}
+                  onChange={(teacherIds) => setEnrollmentData(prev => ({ ...prev, teacherIds }))}
+                  loading={teachersLoading}
+                />
               </div>
 
               {enrollmentError && (
@@ -874,10 +1217,7 @@ export default function StudentsPage() {
               <div className="flex justify-end gap-2">
                 <button
                   type="button"
-                  onClick={() => {
-                    setShowEnrollmentForm(false)
-                    setSelectedStudentForEnrollment(null)
-                  }}
+                  onClick={closeEnrollmentForm}
                   className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200"
                 >
                   Cancel
@@ -888,10 +1228,13 @@ export default function StudentsPage() {
                   className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-300"
                 >
                   {enrollmentLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-                  Add Enrollment
+                  {editingEnrollmentId ? "Update Enrollment" : "Add Enrollment"}
                 </button>
               </div>
             </form>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
       )}

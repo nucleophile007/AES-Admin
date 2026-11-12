@@ -3,6 +3,12 @@ import { auth } from '@/auth'
 import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
 
+interface EnrollmentInput {
+  program: string
+  subject: string
+  teacherIds: number[]
+}
+
 // GET /api/admin/students
 export async function GET(request: NextRequest) {
   // Verify admin permissions
@@ -45,6 +51,7 @@ export async function GET(request: NextRequest) {
       include: {
         enrollments: {
           select: {
+            id: true,
             program: true,
             subject: true,
             isActive: true,
@@ -107,6 +114,7 @@ export async function POST(request: NextRequest) {
       return { value: parsed }
     }
 
+    const body = await request.json()
     const { 
       name, 
       email, 
@@ -120,19 +128,31 @@ export async function POST(request: NextRequest) {
       subject,
       teacherId,
       teacherIds
-    } = await request.json()
-    const selectedTeacherIds = Array.from(
-      new Set(
-        (Array.isArray(teacherIds) ? teacherIds : [teacherId])
+    } = body
+    const enrollmentInputs: EnrollmentInput[] = Array.isArray(body.enrollments) && body.enrollments.length > 0
+      ? body.enrollments
+      : [{ program, subject, teacherIds: Array.isArray(teacherIds) ? teacherIds : [teacherId] }]
+    const enrollments: EnrollmentInput[] = enrollmentInputs.map((enrollment: {
+      program?: unknown
+      subject?: unknown
+      teacherIds?: unknown
+      teacherId?: unknown
+    }) => ({
+      program: typeof enrollment.program === "string" ? enrollment.program.trim() : "",
+      subject: typeof enrollment.subject === "string" ? enrollment.subject.trim() : "",
+      teacherIds: Array.from(new Set<number>(
+        (Array.isArray(enrollment.teacherIds) ? enrollment.teacherIds : [enrollment.teacherId])
           .map((value) => Number(value))
           .filter((value) => Number.isInteger(value) && value > 0)
-      )
-    )
+      )) as number[],
+    }))
     
     // Validate required fields
-    if (!name || !email || !grade || !schoolName || !program || !parentName || !parentEmail || !parentPhone || !subject || selectedTeacherIds.length === 0) {
+    if (!name || !email || !grade || !schoolName || !parentName || !parentEmail || !parentPhone ||
+        enrollments.length === 0 ||
+        enrollments.some((enrollment) => !enrollment.program || !enrollment.subject || enrollment.teacherIds.length === 0)) {
       return NextResponse.json(
-        { error: "All fields are required including subject and teacher" },
+        { error: "All fields are required for every program enrollment" },
         { status: 400 }
       )
     }
@@ -146,20 +166,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify teacher exists
+    const selectedTeacherIds = Array.from(new Set(enrollments.flatMap((enrollment) => enrollment.teacherIds)))
     const teachers = await prisma.teacher.findMany({
       where: { id: { in: selectedTeacherIds } },
-      select: { id: true, programs: true },
+      select: { id: true },
     })
 
     if (teachers.length !== selectedTeacherIds.length) {
       return NextResponse.json({ error: "One or more selected teachers were not found" }, { status: 404 })
-    }
-
-    if (teachers.some((teacher) => !teacher.programs.includes(program))) {
-      return NextResponse.json(
-        { error: "Each selected teacher must be assigned to the selected program" },
-        { status: 400 }
-      )
     }
 
     // Check if student with this email already exists
@@ -209,7 +223,7 @@ export async function POST(request: NextRequest) {
           grade,
           graduationYear: graduationYearResult.value,
           schoolName,
-          program,
+          program: enrollments[0].program,
           parentName,
           parentEmail,
           parentPhone,
@@ -219,40 +233,44 @@ export async function POST(request: NextRequest) {
         }
       })
 
-      // 3. Create enrollment
-      const enrollment = await tx.enrollment.create({
-        data: {
-          studentId: student.id,
-          program,
-          subject,
-          isActive: true
-        }
-      })
-
-      // 4. Create one teacher-student link for each selected teacher
-      const teacherStudents = await Promise.all(
-        selectedTeacherIds.map((selectedTeacherId) =>
-          tx.teacherStudent.create({
-            data: {
-              teacherId: selectedTeacherId,
-              studentId: student.id,
-              program,
-            },
-          })
+      const createdEnrollments = []
+      const teacherStudents = []
+      for (const enrollmentInput of enrollments) {
+        const enrollment = await tx.enrollment.create({
+          data: {
+            studentId: student.id,
+            program: enrollmentInput.program,
+            subject: enrollmentInput.subject,
+            isActive: true
+          }
+        })
+        createdEnrollments.push(enrollment)
+        const links = await Promise.all(
+          enrollmentInput.teacherIds.map((selectedTeacherId) =>
+            tx.teacherStudent.create({
+              data: {
+                teacherId: selectedTeacherId,
+                studentId: student.id,
+                program: enrollmentInput.program,
+              },
+            })
+          )
         )
-      )
+        teacherStudents.push(...links)
+      }
 
-      return { student, enrollment, teacherStudents, parentAccount }
+      return { student, enrollments: createdEnrollments, teacherStudents, parentAccount }
     })
     
     console.log("Student created successfully:", result.student.id)
-    console.log("Enrollment created:", result.enrollment.id)
+    console.log("Enrollments created:", result.enrollments.map((enrollment) => enrollment.id))
     console.log("Teacher-Student links created:", result.teacherStudents.map((link) => link.id))
     
     return NextResponse.json({ 
       student: result.student,
       parentAccount: result.parentAccount,
-      enrollment: result.enrollment,
+      enrollments: result.enrollments,
+      enrollment: result.enrollments[0],
       teacherLink: result.teacherStudents[0],
       teacherLinks: result.teacherStudents,
     }, { status: 201 })
