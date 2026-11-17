@@ -238,6 +238,16 @@ export type TaskSavedFilter = $Result.DefaultSelection<Prisma.$TaskSavedFilterPa
  * 
  */
 export type TaskTemplate = $Result.DefaultSelection<Prisma.$TaskTemplatePayload>
+/**
+ * Model MentorAvailabilitySlot
+ * 
+ */
+export type MentorAvailabilitySlot = $Result.DefaultSelection<Prisma.$MentorAvailabilitySlotPayload>
+/**
+ * Model MentorSlotBooking
+ * 
+ */
+export type MentorSlotBooking = $Result.DefaultSelection<Prisma.$MentorSlotBookingPayload>
 
 /**
  * Enums
@@ -267,6 +277,25 @@ export const MeetingSource: {
 
 export type MeetingSource = (typeof MeetingSource)[keyof typeof MeetingSource]
 
+
+export const MentorAvailabilityStatus: {
+  OPEN: 'OPEN',
+  BOOKED: 'BOOKED',
+  CANCELLED: 'CANCELLED'
+};
+
+export type MentorAvailabilityStatus = (typeof MentorAvailabilityStatus)[keyof typeof MentorAvailabilityStatus]
+
+
+export const MentorSlotBookingStatus: {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  DECLINED: 'DECLINED',
+  CANCELLED: 'CANCELLED'
+};
+
+export type MentorSlotBookingStatus = (typeof MentorSlotBookingStatus)[keyof typeof MentorSlotBookingStatus]
+
 }
 
 export type MeetingMinuteCreationMode = $Enums.MeetingMinuteCreationMode
@@ -280,6 +309,14 @@ export const MeetingMinuteStatus: typeof $Enums.MeetingMinuteStatus
 export type MeetingSource = $Enums.MeetingSource
 
 export const MeetingSource: typeof $Enums.MeetingSource
+
+export type MentorAvailabilityStatus = $Enums.MentorAvailabilityStatus
+
+export const MentorAvailabilityStatus: typeof $Enums.MentorAvailabilityStatus
+
+export type MentorSlotBookingStatus = $Enums.MentorSlotBookingStatus
+
+export const MentorSlotBookingStatus: typeof $Enums.MentorSlotBookingStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -848,6 +885,26 @@ export class PrismaClient<
     * ```
     */
   get taskTemplate(): Prisma.TaskTemplateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mentorAvailabilitySlot`: Exposes CRUD operations for the **MentorAvailabilitySlot** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MentorAvailabilitySlots
+    * const mentorAvailabilitySlots = await prisma.mentorAvailabilitySlot.findMany()
+    * ```
+    */
+  get mentorAvailabilitySlot(): Prisma.MentorAvailabilitySlotDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mentorSlotBooking`: Exposes CRUD operations for the **MentorSlotBooking** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MentorSlotBookings
+    * const mentorSlotBookings = await prisma.mentorSlotBooking.findMany()
+    * ```
+    */
+  get mentorSlotBooking(): Prisma.MentorSlotBookingDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1332,7 +1389,9 @@ export namespace Prisma {
     TaskActivity: 'TaskActivity',
     TaskComment: 'TaskComment',
     TaskSavedFilter: 'TaskSavedFilter',
-    TaskTemplate: 'TaskTemplate'
+    TaskTemplate: 'TaskTemplate',
+    MentorAvailabilitySlot: 'MentorAvailabilitySlot',
+    MentorSlotBooking: 'MentorSlotBooking'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1351,7 +1410,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog" | "assignmentTarget" | "refreshToken" | "meetingMinuteMeeting" | "meetingMinuteRequest" | "studentTask" | "task" | "taskActivity" | "taskComment" | "taskSavedFilter" | "taskTemplate"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog" | "assignmentTarget" | "refreshToken" | "meetingMinuteMeeting" | "meetingMinuteRequest" | "studentTask" | "task" | "taskActivity" | "taskComment" | "taskSavedFilter" | "taskTemplate" | "mentorAvailabilitySlot" | "mentorSlotBooking"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4685,6 +4744,154 @@ export namespace Prisma {
           }
         }
       }
+      MentorAvailabilitySlot: {
+        payload: Prisma.$MentorAvailabilitySlotPayload<ExtArgs>
+        fields: Prisma.MentorAvailabilitySlotFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MentorAvailabilitySlotFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MentorAvailabilitySlotFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload>
+          }
+          findFirst: {
+            args: Prisma.MentorAvailabilitySlotFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MentorAvailabilitySlotFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload>
+          }
+          findMany: {
+            args: Prisma.MentorAvailabilitySlotFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload>[]
+          }
+          create: {
+            args: Prisma.MentorAvailabilitySlotCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload>
+          }
+          createMany: {
+            args: Prisma.MentorAvailabilitySlotCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MentorAvailabilitySlotCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload>[]
+          }
+          delete: {
+            args: Prisma.MentorAvailabilitySlotDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload>
+          }
+          update: {
+            args: Prisma.MentorAvailabilitySlotUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload>
+          }
+          deleteMany: {
+            args: Prisma.MentorAvailabilitySlotDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MentorAvailabilitySlotUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MentorAvailabilitySlotUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload>[]
+          }
+          upsert: {
+            args: Prisma.MentorAvailabilitySlotUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorAvailabilitySlotPayload>
+          }
+          aggregate: {
+            args: Prisma.MentorAvailabilitySlotAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMentorAvailabilitySlot>
+          }
+          groupBy: {
+            args: Prisma.MentorAvailabilitySlotGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MentorAvailabilitySlotGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MentorAvailabilitySlotCountArgs<ExtArgs>
+            result: $Utils.Optional<MentorAvailabilitySlotCountAggregateOutputType> | number
+          }
+        }
+      }
+      MentorSlotBooking: {
+        payload: Prisma.$MentorSlotBookingPayload<ExtArgs>
+        fields: Prisma.MentorSlotBookingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MentorSlotBookingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MentorSlotBookingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload>
+          }
+          findFirst: {
+            args: Prisma.MentorSlotBookingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MentorSlotBookingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload>
+          }
+          findMany: {
+            args: Prisma.MentorSlotBookingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload>[]
+          }
+          create: {
+            args: Prisma.MentorSlotBookingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload>
+          }
+          createMany: {
+            args: Prisma.MentorSlotBookingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MentorSlotBookingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload>[]
+          }
+          delete: {
+            args: Prisma.MentorSlotBookingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload>
+          }
+          update: {
+            args: Prisma.MentorSlotBookingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload>
+          }
+          deleteMany: {
+            args: Prisma.MentorSlotBookingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MentorSlotBookingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MentorSlotBookingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload>[]
+          }
+          upsert: {
+            args: Prisma.MentorSlotBookingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MentorSlotBookingPayload>
+          }
+          aggregate: {
+            args: Prisma.MentorSlotBookingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMentorSlotBooking>
+          }
+          groupBy: {
+            args: Prisma.MentorSlotBookingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MentorSlotBookingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MentorSlotBookingCountArgs<ExtArgs>
+            result: $Utils.Optional<MentorSlotBookingCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4822,6 +5029,8 @@ export namespace Prisma {
     taskComment?: TaskCommentOmit
     taskSavedFilter?: TaskSavedFilterOmit
     taskTemplate?: TaskTemplateOmit
+    mentorAvailabilitySlot?: MentorAvailabilitySlotOmit
+    mentorSlotBooking?: MentorSlotBookingOmit
   }
 
   /* Types for Logging */
@@ -4905,6 +5114,7 @@ export namespace Prisma {
     assignments: number
     classSchedules: number
     MeetingMinuteMeeting: number
+    MentorAvailabilitySlot: number
     progressReports: number
     resources: number
     studentGroups: number
@@ -4919,6 +5129,7 @@ export namespace Prisma {
     assignments?: boolean | TeacherCountOutputTypeCountAssignmentsArgs
     classSchedules?: boolean | TeacherCountOutputTypeCountClassSchedulesArgs
     MeetingMinuteMeeting?: boolean | TeacherCountOutputTypeCountMeetingMinuteMeetingArgs
+    MentorAvailabilitySlot?: boolean | TeacherCountOutputTypeCountMentorAvailabilitySlotArgs
     progressReports?: boolean | TeacherCountOutputTypeCountProgressReportsArgs
     resources?: boolean | TeacherCountOutputTypeCountResourcesArgs
     studentGroups?: boolean | TeacherCountOutputTypeCountStudentGroupsArgs
@@ -4959,6 +5170,13 @@ export namespace Prisma {
    */
   export type TeacherCountOutputTypeCountMeetingMinuteMeetingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MeetingMinuteMeetingWhereInput
+  }
+
+  /**
+   * TeacherCountOutputType without action
+   */
+  export type TeacherCountOutputTypeCountMentorAvailabilitySlotArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentorAvailabilitySlotWhereInput
   }
 
   /**
@@ -5029,6 +5247,7 @@ export namespace Prisma {
     classSchedules: number
     enrollments: number
     MeetingMinuteRequest: number
+    MentorSlotBooking: number
     Payment: number
     progressReports: number
     Research: number
@@ -5048,6 +5267,7 @@ export namespace Prisma {
     classSchedules?: boolean | StudentCountOutputTypeCountClassSchedulesArgs
     enrollments?: boolean | StudentCountOutputTypeCountEnrollmentsArgs
     MeetingMinuteRequest?: boolean | StudentCountOutputTypeCountMeetingMinuteRequestArgs
+    MentorSlotBooking?: boolean | StudentCountOutputTypeCountMentorSlotBookingArgs
     Payment?: boolean | StudentCountOutputTypeCountPaymentArgs
     progressReports?: boolean | StudentCountOutputTypeCountProgressReportsArgs
     Research?: boolean | StudentCountOutputTypeCountResearchArgs
@@ -5111,6 +5331,13 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountMeetingMinuteRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MeetingMinuteRequestWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountMentorSlotBookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentorSlotBookingWhereInput
   }
 
   /**
@@ -5656,6 +5883,37 @@ export namespace Prisma {
    */
   export type TaskTemplateCountOutputTypeCountTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TaskWhereInput
+  }
+
+
+  /**
+   * Count Type MentorAvailabilitySlotCountOutputType
+   */
+
+  export type MentorAvailabilitySlotCountOutputType = {
+    MentorSlotBooking: number
+  }
+
+  export type MentorAvailabilitySlotCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    MentorSlotBooking?: boolean | MentorAvailabilitySlotCountOutputTypeCountMentorSlotBookingArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MentorAvailabilitySlotCountOutputType without action
+   */
+  export type MentorAvailabilitySlotCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlotCountOutputType
+     */
+    select?: MentorAvailabilitySlotCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MentorAvailabilitySlotCountOutputType without action
+   */
+  export type MentorAvailabilitySlotCountOutputTypeCountMentorSlotBookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentorSlotBookingWhereInput
   }
 
 
@@ -8110,6 +8368,7 @@ export namespace Prisma {
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | Teacher$MeetingMinuteMeetingArgs<ExtArgs>
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
+    MentorAvailabilitySlot?: boolean | Teacher$MentorAvailabilitySlotArgs<ExtArgs>
     progressReports?: boolean | Teacher$progressReportsArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     studentGroups?: boolean | Teacher$studentGroupsArgs<ExtArgs>
@@ -8172,6 +8431,7 @@ export namespace Prisma {
     classSchedules?: boolean | Teacher$classSchedulesArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | Teacher$MeetingMinuteMeetingArgs<ExtArgs>
     mentorProfile?: boolean | Teacher$mentorProfileArgs<ExtArgs>
+    MentorAvailabilitySlot?: boolean | Teacher$MentorAvailabilitySlotArgs<ExtArgs>
     progressReports?: boolean | Teacher$progressReportsArgs<ExtArgs>
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     studentGroups?: boolean | Teacher$studentGroupsArgs<ExtArgs>
@@ -8192,6 +8452,7 @@ export namespace Prisma {
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       MeetingMinuteMeeting: Prisma.$MeetingMinuteMeetingPayload<ExtArgs>[]
       mentorProfile: Prisma.$MentorPayload<ExtArgs> | null
+      MentorAvailabilitySlot: Prisma.$MentorAvailabilitySlotPayload<ExtArgs>[]
       progressReports: Prisma.$ProgressReportPayload<ExtArgs>[]
       resources: Prisma.$ResourcePayload<ExtArgs>[]
       studentGroups: Prisma.$StudentGroupPayload<ExtArgs>[]
@@ -8612,6 +8873,7 @@ export namespace Prisma {
     classSchedules<T extends Teacher$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     MeetingMinuteMeeting<T extends Teacher$MeetingMinuteMeetingArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$MeetingMinuteMeetingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     mentorProfile<T extends Teacher$mentorProfileArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$mentorProfileArgs<ExtArgs>>): Prisma__MentorClient<$Result.GetResult<Prisma.$MentorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    MentorAvailabilitySlot<T extends Teacher$MentorAvailabilitySlotArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$MentorAvailabilitySlotArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     progressReports<T extends Teacher$progressReportsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$progressReportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     resources<T extends Teacher$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     studentGroups<T extends Teacher$studentGroupsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$studentGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -9140,6 +9402,30 @@ export namespace Prisma {
   }
 
   /**
+   * Teacher.MentorAvailabilitySlot
+   */
+  export type Teacher$MentorAvailabilitySlotArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+    where?: MentorAvailabilitySlotWhereInput
+    orderBy?: MentorAvailabilitySlotOrderByWithRelationInput | MentorAvailabilitySlotOrderByWithRelationInput[]
+    cursor?: MentorAvailabilitySlotWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MentorAvailabilitySlotScalarFieldEnum | MentorAvailabilitySlotScalarFieldEnum[]
+  }
+
+  /**
    * Teacher.progressReports
    */
   export type Teacher$progressReportsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9642,6 +9928,7 @@ export namespace Prisma {
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     MeetingMinuteRequest?: boolean | Student$MeetingMinuteRequestArgs<ExtArgs>
+    MentorSlotBooking?: boolean | Student$MentorSlotBookingArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
     progressReports?: boolean | Student$progressReportsArgs<ExtArgs>
     Research?: boolean | Student$ResearchArgs<ExtArgs>
@@ -9720,6 +10007,7 @@ export namespace Prisma {
     classSchedules?: boolean | Student$classSchedulesArgs<ExtArgs>
     enrollments?: boolean | Student$enrollmentsArgs<ExtArgs>
     MeetingMinuteRequest?: boolean | Student$MeetingMinuteRequestArgs<ExtArgs>
+    MentorSlotBooking?: boolean | Student$MentorSlotBookingArgs<ExtArgs>
     Payment?: boolean | Student$PaymentArgs<ExtArgs>
     progressReports?: boolean | Student$progressReportsArgs<ExtArgs>
     Research?: boolean | Student$ResearchArgs<ExtArgs>
@@ -9749,6 +10037,7 @@ export namespace Prisma {
       classSchedules: Prisma.$ClassSchedulePayload<ExtArgs>[]
       enrollments: Prisma.$EnrollmentPayload<ExtArgs>[]
       MeetingMinuteRequest: Prisma.$MeetingMinuteRequestPayload<ExtArgs>[]
+      MentorSlotBooking: Prisma.$MentorSlotBookingPayload<ExtArgs>[]
       Payment: Prisma.$PaymentPayload<ExtArgs>[]
       progressReports: Prisma.$ProgressReportPayload<ExtArgs>[]
       Research: Prisma.$ResearchPayload<ExtArgs>[]
@@ -10177,6 +10466,7 @@ export namespace Prisma {
     classSchedules<T extends Student$classSchedulesArgs<ExtArgs> = {}>(args?: Subset<T, Student$classSchedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     enrollments<T extends Student$enrollmentsArgs<ExtArgs> = {}>(args?: Subset<T, Student$enrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     MeetingMinuteRequest<T extends Student$MeetingMinuteRequestArgs<ExtArgs> = {}>(args?: Subset<T, Student$MeetingMinuteRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MentorSlotBooking<T extends Student$MentorSlotBookingArgs<ExtArgs> = {}>(args?: Subset<T, Student$MentorSlotBookingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Payment<T extends Student$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Student$PaymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     progressReports<T extends Student$progressReportsArgs<ExtArgs> = {}>(args?: Subset<T, Student$progressReportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProgressReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Research<T extends Student$ResearchArgs<ExtArgs> = {}>(args?: Subset<T, Student$ResearchArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResearchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -10769,6 +11059,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MeetingMinuteRequestScalarFieldEnum | MeetingMinuteRequestScalarFieldEnum[]
+  }
+
+  /**
+   * Student.MentorSlotBooking
+   */
+  export type Student$MentorSlotBookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    where?: MentorSlotBookingWhereInput
+    orderBy?: MentorSlotBookingOrderByWithRelationInput | MentorSlotBookingOrderByWithRelationInput[]
+    cursor?: MentorSlotBookingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MentorSlotBookingScalarFieldEnum | MentorSlotBookingScalarFieldEnum[]
   }
 
   /**
@@ -25469,6 +25783,7 @@ export namespace Prisma {
     student?: boolean | StudentDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | ClassSchedule$MeetingMinuteMeetingArgs<ExtArgs>
+    MentorSlotBooking?: boolean | ClassSchedule$MentorSlotBookingArgs<ExtArgs>
     _count?: boolean | ClassScheduleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["classSchedule"]>
 
@@ -25565,6 +25880,7 @@ export namespace Prisma {
     student?: boolean | StudentDefaultArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | ClassSchedule$MeetingMinuteMeetingArgs<ExtArgs>
+    MentorSlotBooking?: boolean | ClassSchedule$MentorSlotBookingArgs<ExtArgs>
     _count?: boolean | ClassScheduleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ClassScheduleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -25585,6 +25901,7 @@ export namespace Prisma {
       student: Prisma.$StudentPayload<ExtArgs>
       teacher: Prisma.$TeacherPayload<ExtArgs>
       MeetingMinuteMeeting: Prisma.$MeetingMinuteMeetingPayload<ExtArgs>[]
+      MentorSlotBooking: Prisma.$MentorSlotBookingPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -26009,6 +26326,7 @@ export namespace Prisma {
     student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     MeetingMinuteMeeting<T extends ClassSchedule$MeetingMinuteMeetingArgs<ExtArgs> = {}>(args?: Subset<T, ClassSchedule$MeetingMinuteMeetingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    MentorSlotBooking<T extends ClassSchedule$MentorSlotBookingArgs<ExtArgs> = {}>(args?: Subset<T, ClassSchedule$MentorSlotBookingArgs<ExtArgs>>): Prisma__MentorSlotBookingClient<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -26498,6 +26816,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MeetingMinuteMeetingScalarFieldEnum | MeetingMinuteMeetingScalarFieldEnum[]
+  }
+
+  /**
+   * ClassSchedule.MentorSlotBooking
+   */
+  export type ClassSchedule$MentorSlotBookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    where?: MentorSlotBookingWhereInput
   }
 
   /**
@@ -54695,6 +55032,7 @@ export namespace Prisma {
     recurrenceEndsAt: Date | null
     seriesId: number | null
     templateId: number | null
+    requireChecklistComplete: boolean | null
   }
 
   export type TaskMaxAggregateOutputType = {
@@ -54722,6 +55060,7 @@ export namespace Prisma {
     recurrenceEndsAt: Date | null
     seriesId: number | null
     templateId: number | null
+    requireChecklistComplete: boolean | null
   }
 
   export type TaskCountAggregateOutputType = {
@@ -54750,6 +55089,7 @@ export namespace Prisma {
     recurrenceEndsAt: number
     seriesId: number
     templateId: number
+    requireChecklistComplete: number
     _all: number
   }
 
@@ -54799,6 +55139,7 @@ export namespace Prisma {
     recurrenceEndsAt?: true
     seriesId?: true
     templateId?: true
+    requireChecklistComplete?: true
   }
 
   export type TaskMaxAggregateInputType = {
@@ -54826,6 +55167,7 @@ export namespace Prisma {
     recurrenceEndsAt?: true
     seriesId?: true
     templateId?: true
+    requireChecklistComplete?: true
   }
 
   export type TaskCountAggregateInputType = {
@@ -54854,6 +55196,7 @@ export namespace Prisma {
     recurrenceEndsAt?: true
     seriesId?: true
     templateId?: true
+    requireChecklistComplete?: true
     _all?: true
   }
 
@@ -54969,6 +55312,7 @@ export namespace Prisma {
     recurrenceEndsAt: Date | null
     seriesId: number | null
     templateId: number | null
+    requireChecklistComplete: boolean
     _count: TaskCountAggregateOutputType | null
     _avg: TaskAvgAggregateOutputType | null
     _sum: TaskSumAggregateOutputType | null
@@ -55016,6 +55360,7 @@ export namespace Prisma {
     recurrenceEndsAt?: boolean
     seriesId?: boolean
     templateId?: boolean
+    requireChecklistComplete?: boolean
     StudentTask?: boolean | Task$StudentTaskArgs<ExtArgs>
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
@@ -55051,6 +55396,7 @@ export namespace Prisma {
     recurrenceEndsAt?: boolean
     seriesId?: boolean
     templateId?: boolean
+    requireChecklistComplete?: boolean
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
@@ -55084,6 +55430,7 @@ export namespace Prisma {
     recurrenceEndsAt?: boolean
     seriesId?: boolean
     templateId?: boolean
+    requireChecklistComplete?: boolean
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
@@ -55117,9 +55464,10 @@ export namespace Prisma {
     recurrenceEndsAt?: boolean
     seriesId?: boolean
     templateId?: boolean
+    requireChecklistComplete?: boolean
   }
 
-  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "priority" | "deadline" | "creatorId" | "requireSubmissionNote" | "requireFileUpload" | "requireUrl" | "requireExternalConfirmation" | "externalConfirmationPrompt" | "requireMentorApproval" | "isCancelled" | "createdAt" | "updatedAt" | "checklist" | "linkedAssignmentId" | "linkedMeetingId" | "linkedResourceId" | "nextOccurrenceCreatedAt" | "recurrence" | "recurrenceEndsAt" | "seriesId" | "templateId", ExtArgs["result"]["task"]>
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "priority" | "deadline" | "creatorId" | "requireSubmissionNote" | "requireFileUpload" | "requireUrl" | "requireExternalConfirmation" | "externalConfirmationPrompt" | "requireMentorApproval" | "isCancelled" | "createdAt" | "updatedAt" | "checklist" | "linkedAssignmentId" | "linkedMeetingId" | "linkedResourceId" | "nextOccurrenceCreatedAt" | "recurrence" | "recurrenceEndsAt" | "seriesId" | "templateId" | "requireChecklistComplete", ExtArgs["result"]["task"]>
   export type TaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     StudentTask?: boolean | Task$StudentTaskArgs<ExtArgs>
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
@@ -55180,6 +55528,7 @@ export namespace Prisma {
       recurrenceEndsAt: Date | null
       seriesId: number | null
       templateId: number | null
+      requireChecklistComplete: boolean
     }, ExtArgs["result"]["task"]>
     composites: {}
   }
@@ -55634,6 +55983,7 @@ export namespace Prisma {
     readonly recurrenceEndsAt: FieldRef<"Task", 'DateTime'>
     readonly seriesId: FieldRef<"Task", 'Int'>
     readonly templateId: FieldRef<"Task", 'Int'>
+    readonly requireChecklistComplete: FieldRef<"Task", 'Boolean'>
   }
     
 
@@ -59530,6 +59880,7 @@ export namespace Prisma {
     usageCount: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    requireChecklistComplete: boolean | null
   }
 
   export type TaskTemplateMaxAggregateOutputType = {
@@ -59551,6 +59902,7 @@ export namespace Prisma {
     usageCount: number | null
     createdAt: Date | null
     updatedAt: Date | null
+    requireChecklistComplete: boolean | null
   }
 
   export type TaskTemplateCountAggregateOutputType = {
@@ -59573,6 +59925,7 @@ export namespace Prisma {
     usageCount: number
     createdAt: number
     updatedAt: number
+    requireChecklistComplete: number
     _all: number
   }
 
@@ -59610,6 +59963,7 @@ export namespace Prisma {
     usageCount?: true
     createdAt?: true
     updatedAt?: true
+    requireChecklistComplete?: true
   }
 
   export type TaskTemplateMaxAggregateInputType = {
@@ -59631,6 +59985,7 @@ export namespace Prisma {
     usageCount?: true
     createdAt?: true
     updatedAt?: true
+    requireChecklistComplete?: true
   }
 
   export type TaskTemplateCountAggregateInputType = {
@@ -59653,6 +60008,7 @@ export namespace Prisma {
     usageCount?: true
     createdAt?: true
     updatedAt?: true
+    requireChecklistComplete?: true
     _all?: true
   }
 
@@ -59762,6 +60118,7 @@ export namespace Prisma {
     usageCount: number
     createdAt: Date
     updatedAt: Date
+    requireChecklistComplete: boolean
     _count: TaskTemplateCountAggregateOutputType | null
     _avg: TaskTemplateAvgAggregateOutputType | null
     _sum: TaskTemplateSumAggregateOutputType | null
@@ -59803,6 +60160,7 @@ export namespace Prisma {
     usageCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    requireChecklistComplete?: boolean
     Task?: boolean | TaskTemplate$TaskArgs<ExtArgs>
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     _count?: boolean | TaskTemplateCountOutputTypeDefaultArgs<ExtArgs>
@@ -59828,6 +60186,7 @@ export namespace Prisma {
     usageCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    requireChecklistComplete?: boolean
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["taskTemplate"]>
 
@@ -59851,6 +60210,7 @@ export namespace Prisma {
     usageCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    requireChecklistComplete?: boolean
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["taskTemplate"]>
 
@@ -59874,9 +60234,10 @@ export namespace Prisma {
     usageCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    requireChecklistComplete?: boolean
   }
 
-  export type TaskTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teacherId" | "name" | "title" | "description" | "category" | "priority" | "defaultDeadlineDays" | "requireSubmissionNote" | "requireFileUpload" | "requireUrl" | "requireExternalConfirmation" | "externalConfirmationPrompt" | "requireMentorApproval" | "checklist" | "recurrence" | "usageCount" | "createdAt" | "updatedAt", ExtArgs["result"]["taskTemplate"]>
+  export type TaskTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teacherId" | "name" | "title" | "description" | "category" | "priority" | "defaultDeadlineDays" | "requireSubmissionNote" | "requireFileUpload" | "requireUrl" | "requireExternalConfirmation" | "externalConfirmationPrompt" | "requireMentorApproval" | "checklist" | "recurrence" | "usageCount" | "createdAt" | "updatedAt" | "requireChecklistComplete", ExtArgs["result"]["taskTemplate"]>
   export type TaskTemplateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Task?: boolean | TaskTemplate$TaskArgs<ExtArgs>
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
@@ -59915,6 +60276,7 @@ export namespace Prisma {
       usageCount: number
       createdAt: Date
       updatedAt: Date
+      requireChecklistComplete: boolean
     }, ExtArgs["result"]["taskTemplate"]>
     composites: {}
   }
@@ -60359,6 +60721,7 @@ export namespace Prisma {
     readonly usageCount: FieldRef<"TaskTemplate", 'Int'>
     readonly createdAt: FieldRef<"TaskTemplate", 'DateTime'>
     readonly updatedAt: FieldRef<"TaskTemplate", 'DateTime'>
+    readonly requireChecklistComplete: FieldRef<"TaskTemplate", 'Boolean'>
   }
     
 
@@ -60794,6 +61157,2375 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: TaskTemplateInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MentorAvailabilitySlot
+   */
+
+  export type AggregateMentorAvailabilitySlot = {
+    _count: MentorAvailabilitySlotCountAggregateOutputType | null
+    _avg: MentorAvailabilitySlotAvgAggregateOutputType | null
+    _sum: MentorAvailabilitySlotSumAggregateOutputType | null
+    _min: MentorAvailabilitySlotMinAggregateOutputType | null
+    _max: MentorAvailabilitySlotMaxAggregateOutputType | null
+  }
+
+  export type MentorAvailabilitySlotAvgAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+  }
+
+  export type MentorAvailabilitySlotSumAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+  }
+
+  export type MentorAvailabilitySlotMinAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    startsAt: Date | null
+    endsAt: Date | null
+    timezone: string | null
+    status: $Enums.MentorAvailabilityStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MentorAvailabilitySlotMaxAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    startsAt: Date | null
+    endsAt: Date | null
+    timezone: string | null
+    status: $Enums.MentorAvailabilityStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MentorAvailabilitySlotCountAggregateOutputType = {
+    id: number
+    teacherId: number
+    startsAt: number
+    endsAt: number
+    timezone: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MentorAvailabilitySlotAvgAggregateInputType = {
+    id?: true
+    teacherId?: true
+  }
+
+  export type MentorAvailabilitySlotSumAggregateInputType = {
+    id?: true
+    teacherId?: true
+  }
+
+  export type MentorAvailabilitySlotMinAggregateInputType = {
+    id?: true
+    teacherId?: true
+    startsAt?: true
+    endsAt?: true
+    timezone?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MentorAvailabilitySlotMaxAggregateInputType = {
+    id?: true
+    teacherId?: true
+    startsAt?: true
+    endsAt?: true
+    timezone?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MentorAvailabilitySlotCountAggregateInputType = {
+    id?: true
+    teacherId?: true
+    startsAt?: true
+    endsAt?: true
+    timezone?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MentorAvailabilitySlotAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MentorAvailabilitySlot to aggregate.
+     */
+    where?: MentorAvailabilitySlotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MentorAvailabilitySlots to fetch.
+     */
+    orderBy?: MentorAvailabilitySlotOrderByWithRelationInput | MentorAvailabilitySlotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MentorAvailabilitySlotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MentorAvailabilitySlots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MentorAvailabilitySlots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MentorAvailabilitySlots
+    **/
+    _count?: true | MentorAvailabilitySlotCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MentorAvailabilitySlotAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MentorAvailabilitySlotSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MentorAvailabilitySlotMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MentorAvailabilitySlotMaxAggregateInputType
+  }
+
+  export type GetMentorAvailabilitySlotAggregateType<T extends MentorAvailabilitySlotAggregateArgs> = {
+        [P in keyof T & keyof AggregateMentorAvailabilitySlot]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMentorAvailabilitySlot[P]>
+      : GetScalarType<T[P], AggregateMentorAvailabilitySlot[P]>
+  }
+
+
+
+
+  export type MentorAvailabilitySlotGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentorAvailabilitySlotWhereInput
+    orderBy?: MentorAvailabilitySlotOrderByWithAggregationInput | MentorAvailabilitySlotOrderByWithAggregationInput[]
+    by: MentorAvailabilitySlotScalarFieldEnum[] | MentorAvailabilitySlotScalarFieldEnum
+    having?: MentorAvailabilitySlotScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MentorAvailabilitySlotCountAggregateInputType | true
+    _avg?: MentorAvailabilitySlotAvgAggregateInputType
+    _sum?: MentorAvailabilitySlotSumAggregateInputType
+    _min?: MentorAvailabilitySlotMinAggregateInputType
+    _max?: MentorAvailabilitySlotMaxAggregateInputType
+  }
+
+  export type MentorAvailabilitySlotGroupByOutputType = {
+    id: number
+    teacherId: number
+    startsAt: Date
+    endsAt: Date
+    timezone: string
+    status: $Enums.MentorAvailabilityStatus
+    createdAt: Date
+    updatedAt: Date
+    _count: MentorAvailabilitySlotCountAggregateOutputType | null
+    _avg: MentorAvailabilitySlotAvgAggregateOutputType | null
+    _sum: MentorAvailabilitySlotSumAggregateOutputType | null
+    _min: MentorAvailabilitySlotMinAggregateOutputType | null
+    _max: MentorAvailabilitySlotMaxAggregateOutputType | null
+  }
+
+  type GetMentorAvailabilitySlotGroupByPayload<T extends MentorAvailabilitySlotGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MentorAvailabilitySlotGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MentorAvailabilitySlotGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MentorAvailabilitySlotGroupByOutputType[P]>
+            : GetScalarType<T[P], MentorAvailabilitySlotGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MentorAvailabilitySlotSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    timezone?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    MentorSlotBooking?: boolean | MentorAvailabilitySlot$MentorSlotBookingArgs<ExtArgs>
+    _count?: boolean | MentorAvailabilitySlotCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentorAvailabilitySlot"]>
+
+  export type MentorAvailabilitySlotSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    timezone?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentorAvailabilitySlot"]>
+
+  export type MentorAvailabilitySlotSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    timezone?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentorAvailabilitySlot"]>
+
+  export type MentorAvailabilitySlotSelectScalar = {
+    id?: boolean
+    teacherId?: boolean
+    startsAt?: boolean
+    endsAt?: boolean
+    timezone?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MentorAvailabilitySlotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teacherId" | "startsAt" | "endsAt" | "timezone" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["mentorAvailabilitySlot"]>
+  export type MentorAvailabilitySlotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    MentorSlotBooking?: boolean | MentorAvailabilitySlot$MentorSlotBookingArgs<ExtArgs>
+    _count?: boolean | MentorAvailabilitySlotCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MentorAvailabilitySlotIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+  export type MentorAvailabilitySlotIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+
+  export type $MentorAvailabilitySlotPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MentorAvailabilitySlot"
+    objects: {
+      Teacher: Prisma.$TeacherPayload<ExtArgs>
+      MentorSlotBooking: Prisma.$MentorSlotBookingPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      teacherId: number
+      startsAt: Date
+      endsAt: Date
+      timezone: string
+      status: $Enums.MentorAvailabilityStatus
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["mentorAvailabilitySlot"]>
+    composites: {}
+  }
+
+  type MentorAvailabilitySlotGetPayload<S extends boolean | null | undefined | MentorAvailabilitySlotDefaultArgs> = $Result.GetResult<Prisma.$MentorAvailabilitySlotPayload, S>
+
+  type MentorAvailabilitySlotCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MentorAvailabilitySlotFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MentorAvailabilitySlotCountAggregateInputType | true
+    }
+
+  export interface MentorAvailabilitySlotDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MentorAvailabilitySlot'], meta: { name: 'MentorAvailabilitySlot' } }
+    /**
+     * Find zero or one MentorAvailabilitySlot that matches the filter.
+     * @param {MentorAvailabilitySlotFindUniqueArgs} args - Arguments to find a MentorAvailabilitySlot
+     * @example
+     * // Get one MentorAvailabilitySlot
+     * const mentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MentorAvailabilitySlotFindUniqueArgs>(args: SelectSubset<T, MentorAvailabilitySlotFindUniqueArgs<ExtArgs>>): Prisma__MentorAvailabilitySlotClient<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MentorAvailabilitySlot that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MentorAvailabilitySlotFindUniqueOrThrowArgs} args - Arguments to find a MentorAvailabilitySlot
+     * @example
+     * // Get one MentorAvailabilitySlot
+     * const mentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MentorAvailabilitySlotFindUniqueOrThrowArgs>(args: SelectSubset<T, MentorAvailabilitySlotFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MentorAvailabilitySlotClient<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MentorAvailabilitySlot that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorAvailabilitySlotFindFirstArgs} args - Arguments to find a MentorAvailabilitySlot
+     * @example
+     * // Get one MentorAvailabilitySlot
+     * const mentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MentorAvailabilitySlotFindFirstArgs>(args?: SelectSubset<T, MentorAvailabilitySlotFindFirstArgs<ExtArgs>>): Prisma__MentorAvailabilitySlotClient<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MentorAvailabilitySlot that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorAvailabilitySlotFindFirstOrThrowArgs} args - Arguments to find a MentorAvailabilitySlot
+     * @example
+     * // Get one MentorAvailabilitySlot
+     * const mentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MentorAvailabilitySlotFindFirstOrThrowArgs>(args?: SelectSubset<T, MentorAvailabilitySlotFindFirstOrThrowArgs<ExtArgs>>): Prisma__MentorAvailabilitySlotClient<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MentorAvailabilitySlots that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorAvailabilitySlotFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MentorAvailabilitySlots
+     * const mentorAvailabilitySlots = await prisma.mentorAvailabilitySlot.findMany()
+     * 
+     * // Get first 10 MentorAvailabilitySlots
+     * const mentorAvailabilitySlots = await prisma.mentorAvailabilitySlot.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mentorAvailabilitySlotWithIdOnly = await prisma.mentorAvailabilitySlot.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MentorAvailabilitySlotFindManyArgs>(args?: SelectSubset<T, MentorAvailabilitySlotFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MentorAvailabilitySlot.
+     * @param {MentorAvailabilitySlotCreateArgs} args - Arguments to create a MentorAvailabilitySlot.
+     * @example
+     * // Create one MentorAvailabilitySlot
+     * const MentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.create({
+     *   data: {
+     *     // ... data to create a MentorAvailabilitySlot
+     *   }
+     * })
+     * 
+     */
+    create<T extends MentorAvailabilitySlotCreateArgs>(args: SelectSubset<T, MentorAvailabilitySlotCreateArgs<ExtArgs>>): Prisma__MentorAvailabilitySlotClient<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MentorAvailabilitySlots.
+     * @param {MentorAvailabilitySlotCreateManyArgs} args - Arguments to create many MentorAvailabilitySlots.
+     * @example
+     * // Create many MentorAvailabilitySlots
+     * const mentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MentorAvailabilitySlotCreateManyArgs>(args?: SelectSubset<T, MentorAvailabilitySlotCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MentorAvailabilitySlots and returns the data saved in the database.
+     * @param {MentorAvailabilitySlotCreateManyAndReturnArgs} args - Arguments to create many MentorAvailabilitySlots.
+     * @example
+     * // Create many MentorAvailabilitySlots
+     * const mentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MentorAvailabilitySlots and only return the `id`
+     * const mentorAvailabilitySlotWithIdOnly = await prisma.mentorAvailabilitySlot.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MentorAvailabilitySlotCreateManyAndReturnArgs>(args?: SelectSubset<T, MentorAvailabilitySlotCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MentorAvailabilitySlot.
+     * @param {MentorAvailabilitySlotDeleteArgs} args - Arguments to delete one MentorAvailabilitySlot.
+     * @example
+     * // Delete one MentorAvailabilitySlot
+     * const MentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.delete({
+     *   where: {
+     *     // ... filter to delete one MentorAvailabilitySlot
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MentorAvailabilitySlotDeleteArgs>(args: SelectSubset<T, MentorAvailabilitySlotDeleteArgs<ExtArgs>>): Prisma__MentorAvailabilitySlotClient<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MentorAvailabilitySlot.
+     * @param {MentorAvailabilitySlotUpdateArgs} args - Arguments to update one MentorAvailabilitySlot.
+     * @example
+     * // Update one MentorAvailabilitySlot
+     * const mentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MentorAvailabilitySlotUpdateArgs>(args: SelectSubset<T, MentorAvailabilitySlotUpdateArgs<ExtArgs>>): Prisma__MentorAvailabilitySlotClient<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MentorAvailabilitySlots.
+     * @param {MentorAvailabilitySlotDeleteManyArgs} args - Arguments to filter MentorAvailabilitySlots to delete.
+     * @example
+     * // Delete a few MentorAvailabilitySlots
+     * const { count } = await prisma.mentorAvailabilitySlot.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MentorAvailabilitySlotDeleteManyArgs>(args?: SelectSubset<T, MentorAvailabilitySlotDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MentorAvailabilitySlots.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorAvailabilitySlotUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MentorAvailabilitySlots
+     * const mentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MentorAvailabilitySlotUpdateManyArgs>(args: SelectSubset<T, MentorAvailabilitySlotUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MentorAvailabilitySlots and returns the data updated in the database.
+     * @param {MentorAvailabilitySlotUpdateManyAndReturnArgs} args - Arguments to update many MentorAvailabilitySlots.
+     * @example
+     * // Update many MentorAvailabilitySlots
+     * const mentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MentorAvailabilitySlots and only return the `id`
+     * const mentorAvailabilitySlotWithIdOnly = await prisma.mentorAvailabilitySlot.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MentorAvailabilitySlotUpdateManyAndReturnArgs>(args: SelectSubset<T, MentorAvailabilitySlotUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MentorAvailabilitySlot.
+     * @param {MentorAvailabilitySlotUpsertArgs} args - Arguments to update or create a MentorAvailabilitySlot.
+     * @example
+     * // Update or create a MentorAvailabilitySlot
+     * const mentorAvailabilitySlot = await prisma.mentorAvailabilitySlot.upsert({
+     *   create: {
+     *     // ... data to create a MentorAvailabilitySlot
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MentorAvailabilitySlot we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MentorAvailabilitySlotUpsertArgs>(args: SelectSubset<T, MentorAvailabilitySlotUpsertArgs<ExtArgs>>): Prisma__MentorAvailabilitySlotClient<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MentorAvailabilitySlots.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorAvailabilitySlotCountArgs} args - Arguments to filter MentorAvailabilitySlots to count.
+     * @example
+     * // Count the number of MentorAvailabilitySlots
+     * const count = await prisma.mentorAvailabilitySlot.count({
+     *   where: {
+     *     // ... the filter for the MentorAvailabilitySlots we want to count
+     *   }
+     * })
+    **/
+    count<T extends MentorAvailabilitySlotCountArgs>(
+      args?: Subset<T, MentorAvailabilitySlotCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MentorAvailabilitySlotCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MentorAvailabilitySlot.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorAvailabilitySlotAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MentorAvailabilitySlotAggregateArgs>(args: Subset<T, MentorAvailabilitySlotAggregateArgs>): Prisma.PrismaPromise<GetMentorAvailabilitySlotAggregateType<T>>
+
+    /**
+     * Group by MentorAvailabilitySlot.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorAvailabilitySlotGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MentorAvailabilitySlotGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MentorAvailabilitySlotGroupByArgs['orderBy'] }
+        : { orderBy?: MentorAvailabilitySlotGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MentorAvailabilitySlotGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMentorAvailabilitySlotGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MentorAvailabilitySlot model
+   */
+  readonly fields: MentorAvailabilitySlotFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MentorAvailabilitySlot.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MentorAvailabilitySlotClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    MentorSlotBooking<T extends MentorAvailabilitySlot$MentorSlotBookingArgs<ExtArgs> = {}>(args?: Subset<T, MentorAvailabilitySlot$MentorSlotBookingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MentorAvailabilitySlot model
+   */
+  interface MentorAvailabilitySlotFieldRefs {
+    readonly id: FieldRef<"MentorAvailabilitySlot", 'Int'>
+    readonly teacherId: FieldRef<"MentorAvailabilitySlot", 'Int'>
+    readonly startsAt: FieldRef<"MentorAvailabilitySlot", 'DateTime'>
+    readonly endsAt: FieldRef<"MentorAvailabilitySlot", 'DateTime'>
+    readonly timezone: FieldRef<"MentorAvailabilitySlot", 'String'>
+    readonly status: FieldRef<"MentorAvailabilitySlot", 'MentorAvailabilityStatus'>
+    readonly createdAt: FieldRef<"MentorAvailabilitySlot", 'DateTime'>
+    readonly updatedAt: FieldRef<"MentorAvailabilitySlot", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MentorAvailabilitySlot findUnique
+   */
+  export type MentorAvailabilitySlotFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+    /**
+     * Filter, which MentorAvailabilitySlot to fetch.
+     */
+    where: MentorAvailabilitySlotWhereUniqueInput
+  }
+
+  /**
+   * MentorAvailabilitySlot findUniqueOrThrow
+   */
+  export type MentorAvailabilitySlotFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+    /**
+     * Filter, which MentorAvailabilitySlot to fetch.
+     */
+    where: MentorAvailabilitySlotWhereUniqueInput
+  }
+
+  /**
+   * MentorAvailabilitySlot findFirst
+   */
+  export type MentorAvailabilitySlotFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+    /**
+     * Filter, which MentorAvailabilitySlot to fetch.
+     */
+    where?: MentorAvailabilitySlotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MentorAvailabilitySlots to fetch.
+     */
+    orderBy?: MentorAvailabilitySlotOrderByWithRelationInput | MentorAvailabilitySlotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MentorAvailabilitySlots.
+     */
+    cursor?: MentorAvailabilitySlotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MentorAvailabilitySlots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MentorAvailabilitySlots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MentorAvailabilitySlots.
+     */
+    distinct?: MentorAvailabilitySlotScalarFieldEnum | MentorAvailabilitySlotScalarFieldEnum[]
+  }
+
+  /**
+   * MentorAvailabilitySlot findFirstOrThrow
+   */
+  export type MentorAvailabilitySlotFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+    /**
+     * Filter, which MentorAvailabilitySlot to fetch.
+     */
+    where?: MentorAvailabilitySlotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MentorAvailabilitySlots to fetch.
+     */
+    orderBy?: MentorAvailabilitySlotOrderByWithRelationInput | MentorAvailabilitySlotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MentorAvailabilitySlots.
+     */
+    cursor?: MentorAvailabilitySlotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MentorAvailabilitySlots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MentorAvailabilitySlots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MentorAvailabilitySlots.
+     */
+    distinct?: MentorAvailabilitySlotScalarFieldEnum | MentorAvailabilitySlotScalarFieldEnum[]
+  }
+
+  /**
+   * MentorAvailabilitySlot findMany
+   */
+  export type MentorAvailabilitySlotFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+    /**
+     * Filter, which MentorAvailabilitySlots to fetch.
+     */
+    where?: MentorAvailabilitySlotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MentorAvailabilitySlots to fetch.
+     */
+    orderBy?: MentorAvailabilitySlotOrderByWithRelationInput | MentorAvailabilitySlotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MentorAvailabilitySlots.
+     */
+    cursor?: MentorAvailabilitySlotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MentorAvailabilitySlots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MentorAvailabilitySlots.
+     */
+    skip?: number
+    distinct?: MentorAvailabilitySlotScalarFieldEnum | MentorAvailabilitySlotScalarFieldEnum[]
+  }
+
+  /**
+   * MentorAvailabilitySlot create
+   */
+  export type MentorAvailabilitySlotCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MentorAvailabilitySlot.
+     */
+    data: XOR<MentorAvailabilitySlotCreateInput, MentorAvailabilitySlotUncheckedCreateInput>
+  }
+
+  /**
+   * MentorAvailabilitySlot createMany
+   */
+  export type MentorAvailabilitySlotCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MentorAvailabilitySlots.
+     */
+    data: MentorAvailabilitySlotCreateManyInput | MentorAvailabilitySlotCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MentorAvailabilitySlot createManyAndReturn
+   */
+  export type MentorAvailabilitySlotCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * The data used to create many MentorAvailabilitySlots.
+     */
+    data: MentorAvailabilitySlotCreateManyInput | MentorAvailabilitySlotCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MentorAvailabilitySlot update
+   */
+  export type MentorAvailabilitySlotUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MentorAvailabilitySlot.
+     */
+    data: XOR<MentorAvailabilitySlotUpdateInput, MentorAvailabilitySlotUncheckedUpdateInput>
+    /**
+     * Choose, which MentorAvailabilitySlot to update.
+     */
+    where: MentorAvailabilitySlotWhereUniqueInput
+  }
+
+  /**
+   * MentorAvailabilitySlot updateMany
+   */
+  export type MentorAvailabilitySlotUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MentorAvailabilitySlots.
+     */
+    data: XOR<MentorAvailabilitySlotUpdateManyMutationInput, MentorAvailabilitySlotUncheckedUpdateManyInput>
+    /**
+     * Filter which MentorAvailabilitySlots to update
+     */
+    where?: MentorAvailabilitySlotWhereInput
+    /**
+     * Limit how many MentorAvailabilitySlots to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MentorAvailabilitySlot updateManyAndReturn
+   */
+  export type MentorAvailabilitySlotUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * The data used to update MentorAvailabilitySlots.
+     */
+    data: XOR<MentorAvailabilitySlotUpdateManyMutationInput, MentorAvailabilitySlotUncheckedUpdateManyInput>
+    /**
+     * Filter which MentorAvailabilitySlots to update
+     */
+    where?: MentorAvailabilitySlotWhereInput
+    /**
+     * Limit how many MentorAvailabilitySlots to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MentorAvailabilitySlot upsert
+   */
+  export type MentorAvailabilitySlotUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MentorAvailabilitySlot to update in case it exists.
+     */
+    where: MentorAvailabilitySlotWhereUniqueInput
+    /**
+     * In case the MentorAvailabilitySlot found by the `where` argument doesn't exist, create a new MentorAvailabilitySlot with this data.
+     */
+    create: XOR<MentorAvailabilitySlotCreateInput, MentorAvailabilitySlotUncheckedCreateInput>
+    /**
+     * In case the MentorAvailabilitySlot was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MentorAvailabilitySlotUpdateInput, MentorAvailabilitySlotUncheckedUpdateInput>
+  }
+
+  /**
+   * MentorAvailabilitySlot delete
+   */
+  export type MentorAvailabilitySlotDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+    /**
+     * Filter which MentorAvailabilitySlot to delete.
+     */
+    where: MentorAvailabilitySlotWhereUniqueInput
+  }
+
+  /**
+   * MentorAvailabilitySlot deleteMany
+   */
+  export type MentorAvailabilitySlotDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MentorAvailabilitySlots to delete
+     */
+    where?: MentorAvailabilitySlotWhereInput
+    /**
+     * Limit how many MentorAvailabilitySlots to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MentorAvailabilitySlot.MentorSlotBooking
+   */
+  export type MentorAvailabilitySlot$MentorSlotBookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    where?: MentorSlotBookingWhereInput
+    orderBy?: MentorSlotBookingOrderByWithRelationInput | MentorSlotBookingOrderByWithRelationInput[]
+    cursor?: MentorSlotBookingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MentorSlotBookingScalarFieldEnum | MentorSlotBookingScalarFieldEnum[]
+  }
+
+  /**
+   * MentorAvailabilitySlot without action
+   */
+  export type MentorAvailabilitySlotDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorAvailabilitySlot
+     */
+    select?: MentorAvailabilitySlotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorAvailabilitySlot
+     */
+    omit?: MentorAvailabilitySlotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorAvailabilitySlotInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MentorSlotBooking
+   */
+
+  export type AggregateMentorSlotBooking = {
+    _count: MentorSlotBookingCountAggregateOutputType | null
+    _avg: MentorSlotBookingAvgAggregateOutputType | null
+    _sum: MentorSlotBookingSumAggregateOutputType | null
+    _min: MentorSlotBookingMinAggregateOutputType | null
+    _max: MentorSlotBookingMaxAggregateOutputType | null
+  }
+
+  export type MentorSlotBookingAvgAggregateOutputType = {
+    id: number | null
+    slotId: number | null
+    studentId: number | null
+    classScheduleId: number | null
+  }
+
+  export type MentorSlotBookingSumAggregateOutputType = {
+    id: number | null
+    slotId: number | null
+    studentId: number | null
+    classScheduleId: number | null
+  }
+
+  export type MentorSlotBookingMinAggregateOutputType = {
+    id: number | null
+    slotId: number | null
+    studentId: number | null
+    classScheduleId: number | null
+    status: $Enums.MentorSlotBookingStatus | null
+    message: string | null
+    googleSyncError: string | null
+    respondedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MentorSlotBookingMaxAggregateOutputType = {
+    id: number | null
+    slotId: number | null
+    studentId: number | null
+    classScheduleId: number | null
+    status: $Enums.MentorSlotBookingStatus | null
+    message: string | null
+    googleSyncError: string | null
+    respondedAt: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MentorSlotBookingCountAggregateOutputType = {
+    id: number
+    slotId: number
+    studentId: number
+    classScheduleId: number
+    status: number
+    message: number
+    googleSyncError: number
+    respondedAt: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MentorSlotBookingAvgAggregateInputType = {
+    id?: true
+    slotId?: true
+    studentId?: true
+    classScheduleId?: true
+  }
+
+  export type MentorSlotBookingSumAggregateInputType = {
+    id?: true
+    slotId?: true
+    studentId?: true
+    classScheduleId?: true
+  }
+
+  export type MentorSlotBookingMinAggregateInputType = {
+    id?: true
+    slotId?: true
+    studentId?: true
+    classScheduleId?: true
+    status?: true
+    message?: true
+    googleSyncError?: true
+    respondedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MentorSlotBookingMaxAggregateInputType = {
+    id?: true
+    slotId?: true
+    studentId?: true
+    classScheduleId?: true
+    status?: true
+    message?: true
+    googleSyncError?: true
+    respondedAt?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MentorSlotBookingCountAggregateInputType = {
+    id?: true
+    slotId?: true
+    studentId?: true
+    classScheduleId?: true
+    status?: true
+    message?: true
+    googleSyncError?: true
+    respondedAt?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MentorSlotBookingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MentorSlotBooking to aggregate.
+     */
+    where?: MentorSlotBookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MentorSlotBookings to fetch.
+     */
+    orderBy?: MentorSlotBookingOrderByWithRelationInput | MentorSlotBookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MentorSlotBookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MentorSlotBookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MentorSlotBookings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MentorSlotBookings
+    **/
+    _count?: true | MentorSlotBookingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MentorSlotBookingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MentorSlotBookingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MentorSlotBookingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MentorSlotBookingMaxAggregateInputType
+  }
+
+  export type GetMentorSlotBookingAggregateType<T extends MentorSlotBookingAggregateArgs> = {
+        [P in keyof T & keyof AggregateMentorSlotBooking]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMentorSlotBooking[P]>
+      : GetScalarType<T[P], AggregateMentorSlotBooking[P]>
+  }
+
+
+
+
+  export type MentorSlotBookingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MentorSlotBookingWhereInput
+    orderBy?: MentorSlotBookingOrderByWithAggregationInput | MentorSlotBookingOrderByWithAggregationInput[]
+    by: MentorSlotBookingScalarFieldEnum[] | MentorSlotBookingScalarFieldEnum
+    having?: MentorSlotBookingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MentorSlotBookingCountAggregateInputType | true
+    _avg?: MentorSlotBookingAvgAggregateInputType
+    _sum?: MentorSlotBookingSumAggregateInputType
+    _min?: MentorSlotBookingMinAggregateInputType
+    _max?: MentorSlotBookingMaxAggregateInputType
+  }
+
+  export type MentorSlotBookingGroupByOutputType = {
+    id: number
+    slotId: number
+    studentId: number
+    classScheduleId: number | null
+    status: $Enums.MentorSlotBookingStatus
+    message: string | null
+    googleSyncError: string | null
+    respondedAt: Date | null
+    createdAt: Date
+    updatedAt: Date
+    _count: MentorSlotBookingCountAggregateOutputType | null
+    _avg: MentorSlotBookingAvgAggregateOutputType | null
+    _sum: MentorSlotBookingSumAggregateOutputType | null
+    _min: MentorSlotBookingMinAggregateOutputType | null
+    _max: MentorSlotBookingMaxAggregateOutputType | null
+  }
+
+  type GetMentorSlotBookingGroupByPayload<T extends MentorSlotBookingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MentorSlotBookingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MentorSlotBookingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MentorSlotBookingGroupByOutputType[P]>
+            : GetScalarType<T[P], MentorSlotBookingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MentorSlotBookingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slotId?: boolean
+    studentId?: boolean
+    classScheduleId?: boolean
+    status?: boolean
+    message?: boolean
+    googleSyncError?: boolean
+    respondedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ClassSchedule?: boolean | MentorSlotBooking$ClassScheduleArgs<ExtArgs>
+    MentorAvailabilitySlot?: boolean | MentorAvailabilitySlotDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentorSlotBooking"]>
+
+  export type MentorSlotBookingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slotId?: boolean
+    studentId?: boolean
+    classScheduleId?: boolean
+    status?: boolean
+    message?: boolean
+    googleSyncError?: boolean
+    respondedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ClassSchedule?: boolean | MentorSlotBooking$ClassScheduleArgs<ExtArgs>
+    MentorAvailabilitySlot?: boolean | MentorAvailabilitySlotDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentorSlotBooking"]>
+
+  export type MentorSlotBookingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    slotId?: boolean
+    studentId?: boolean
+    classScheduleId?: boolean
+    status?: boolean
+    message?: boolean
+    googleSyncError?: boolean
+    respondedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ClassSchedule?: boolean | MentorSlotBooking$ClassScheduleArgs<ExtArgs>
+    MentorAvailabilitySlot?: boolean | MentorAvailabilitySlotDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mentorSlotBooking"]>
+
+  export type MentorSlotBookingSelectScalar = {
+    id?: boolean
+    slotId?: boolean
+    studentId?: boolean
+    classScheduleId?: boolean
+    status?: boolean
+    message?: boolean
+    googleSyncError?: boolean
+    respondedAt?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MentorSlotBookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slotId" | "studentId" | "classScheduleId" | "status" | "message" | "googleSyncError" | "respondedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["mentorSlotBooking"]>
+  export type MentorSlotBookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ClassSchedule?: boolean | MentorSlotBooking$ClassScheduleArgs<ExtArgs>
+    MentorAvailabilitySlot?: boolean | MentorAvailabilitySlotDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+  export type MentorSlotBookingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ClassSchedule?: boolean | MentorSlotBooking$ClassScheduleArgs<ExtArgs>
+    MentorAvailabilitySlot?: boolean | MentorAvailabilitySlotDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+  export type MentorSlotBookingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ClassSchedule?: boolean | MentorSlotBooking$ClassScheduleArgs<ExtArgs>
+    MentorAvailabilitySlot?: boolean | MentorAvailabilitySlotDefaultArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+
+  export type $MentorSlotBookingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MentorSlotBooking"
+    objects: {
+      ClassSchedule: Prisma.$ClassSchedulePayload<ExtArgs> | null
+      MentorAvailabilitySlot: Prisma.$MentorAvailabilitySlotPayload<ExtArgs>
+      Student: Prisma.$StudentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      slotId: number
+      studentId: number
+      classScheduleId: number | null
+      status: $Enums.MentorSlotBookingStatus
+      message: string | null
+      googleSyncError: string | null
+      respondedAt: Date | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["mentorSlotBooking"]>
+    composites: {}
+  }
+
+  type MentorSlotBookingGetPayload<S extends boolean | null | undefined | MentorSlotBookingDefaultArgs> = $Result.GetResult<Prisma.$MentorSlotBookingPayload, S>
+
+  type MentorSlotBookingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MentorSlotBookingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MentorSlotBookingCountAggregateInputType | true
+    }
+
+  export interface MentorSlotBookingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MentorSlotBooking'], meta: { name: 'MentorSlotBooking' } }
+    /**
+     * Find zero or one MentorSlotBooking that matches the filter.
+     * @param {MentorSlotBookingFindUniqueArgs} args - Arguments to find a MentorSlotBooking
+     * @example
+     * // Get one MentorSlotBooking
+     * const mentorSlotBooking = await prisma.mentorSlotBooking.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MentorSlotBookingFindUniqueArgs>(args: SelectSubset<T, MentorSlotBookingFindUniqueArgs<ExtArgs>>): Prisma__MentorSlotBookingClient<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one MentorSlotBooking that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MentorSlotBookingFindUniqueOrThrowArgs} args - Arguments to find a MentorSlotBooking
+     * @example
+     * // Get one MentorSlotBooking
+     * const mentorSlotBooking = await prisma.mentorSlotBooking.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MentorSlotBookingFindUniqueOrThrowArgs>(args: SelectSubset<T, MentorSlotBookingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MentorSlotBookingClient<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MentorSlotBooking that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorSlotBookingFindFirstArgs} args - Arguments to find a MentorSlotBooking
+     * @example
+     * // Get one MentorSlotBooking
+     * const mentorSlotBooking = await prisma.mentorSlotBooking.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MentorSlotBookingFindFirstArgs>(args?: SelectSubset<T, MentorSlotBookingFindFirstArgs<ExtArgs>>): Prisma__MentorSlotBookingClient<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first MentorSlotBooking that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorSlotBookingFindFirstOrThrowArgs} args - Arguments to find a MentorSlotBooking
+     * @example
+     * // Get one MentorSlotBooking
+     * const mentorSlotBooking = await prisma.mentorSlotBooking.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MentorSlotBookingFindFirstOrThrowArgs>(args?: SelectSubset<T, MentorSlotBookingFindFirstOrThrowArgs<ExtArgs>>): Prisma__MentorSlotBookingClient<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more MentorSlotBookings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorSlotBookingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MentorSlotBookings
+     * const mentorSlotBookings = await prisma.mentorSlotBooking.findMany()
+     * 
+     * // Get first 10 MentorSlotBookings
+     * const mentorSlotBookings = await prisma.mentorSlotBooking.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mentorSlotBookingWithIdOnly = await prisma.mentorSlotBooking.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MentorSlotBookingFindManyArgs>(args?: SelectSubset<T, MentorSlotBookingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a MentorSlotBooking.
+     * @param {MentorSlotBookingCreateArgs} args - Arguments to create a MentorSlotBooking.
+     * @example
+     * // Create one MentorSlotBooking
+     * const MentorSlotBooking = await prisma.mentorSlotBooking.create({
+     *   data: {
+     *     // ... data to create a MentorSlotBooking
+     *   }
+     * })
+     * 
+     */
+    create<T extends MentorSlotBookingCreateArgs>(args: SelectSubset<T, MentorSlotBookingCreateArgs<ExtArgs>>): Prisma__MentorSlotBookingClient<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many MentorSlotBookings.
+     * @param {MentorSlotBookingCreateManyArgs} args - Arguments to create many MentorSlotBookings.
+     * @example
+     * // Create many MentorSlotBookings
+     * const mentorSlotBooking = await prisma.mentorSlotBooking.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MentorSlotBookingCreateManyArgs>(args?: SelectSubset<T, MentorSlotBookingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MentorSlotBookings and returns the data saved in the database.
+     * @param {MentorSlotBookingCreateManyAndReturnArgs} args - Arguments to create many MentorSlotBookings.
+     * @example
+     * // Create many MentorSlotBookings
+     * const mentorSlotBooking = await prisma.mentorSlotBooking.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MentorSlotBookings and only return the `id`
+     * const mentorSlotBookingWithIdOnly = await prisma.mentorSlotBooking.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MentorSlotBookingCreateManyAndReturnArgs>(args?: SelectSubset<T, MentorSlotBookingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a MentorSlotBooking.
+     * @param {MentorSlotBookingDeleteArgs} args - Arguments to delete one MentorSlotBooking.
+     * @example
+     * // Delete one MentorSlotBooking
+     * const MentorSlotBooking = await prisma.mentorSlotBooking.delete({
+     *   where: {
+     *     // ... filter to delete one MentorSlotBooking
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MentorSlotBookingDeleteArgs>(args: SelectSubset<T, MentorSlotBookingDeleteArgs<ExtArgs>>): Prisma__MentorSlotBookingClient<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one MentorSlotBooking.
+     * @param {MentorSlotBookingUpdateArgs} args - Arguments to update one MentorSlotBooking.
+     * @example
+     * // Update one MentorSlotBooking
+     * const mentorSlotBooking = await prisma.mentorSlotBooking.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MentorSlotBookingUpdateArgs>(args: SelectSubset<T, MentorSlotBookingUpdateArgs<ExtArgs>>): Prisma__MentorSlotBookingClient<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more MentorSlotBookings.
+     * @param {MentorSlotBookingDeleteManyArgs} args - Arguments to filter MentorSlotBookings to delete.
+     * @example
+     * // Delete a few MentorSlotBookings
+     * const { count } = await prisma.mentorSlotBooking.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MentorSlotBookingDeleteManyArgs>(args?: SelectSubset<T, MentorSlotBookingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MentorSlotBookings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorSlotBookingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MentorSlotBookings
+     * const mentorSlotBooking = await prisma.mentorSlotBooking.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MentorSlotBookingUpdateManyArgs>(args: SelectSubset<T, MentorSlotBookingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MentorSlotBookings and returns the data updated in the database.
+     * @param {MentorSlotBookingUpdateManyAndReturnArgs} args - Arguments to update many MentorSlotBookings.
+     * @example
+     * // Update many MentorSlotBookings
+     * const mentorSlotBooking = await prisma.mentorSlotBooking.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MentorSlotBookings and only return the `id`
+     * const mentorSlotBookingWithIdOnly = await prisma.mentorSlotBooking.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MentorSlotBookingUpdateManyAndReturnArgs>(args: SelectSubset<T, MentorSlotBookingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one MentorSlotBooking.
+     * @param {MentorSlotBookingUpsertArgs} args - Arguments to update or create a MentorSlotBooking.
+     * @example
+     * // Update or create a MentorSlotBooking
+     * const mentorSlotBooking = await prisma.mentorSlotBooking.upsert({
+     *   create: {
+     *     // ... data to create a MentorSlotBooking
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MentorSlotBooking we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MentorSlotBookingUpsertArgs>(args: SelectSubset<T, MentorSlotBookingUpsertArgs<ExtArgs>>): Prisma__MentorSlotBookingClient<$Result.GetResult<Prisma.$MentorSlotBookingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of MentorSlotBookings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorSlotBookingCountArgs} args - Arguments to filter MentorSlotBookings to count.
+     * @example
+     * // Count the number of MentorSlotBookings
+     * const count = await prisma.mentorSlotBooking.count({
+     *   where: {
+     *     // ... the filter for the MentorSlotBookings we want to count
+     *   }
+     * })
+    **/
+    count<T extends MentorSlotBookingCountArgs>(
+      args?: Subset<T, MentorSlotBookingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MentorSlotBookingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MentorSlotBooking.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorSlotBookingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MentorSlotBookingAggregateArgs>(args: Subset<T, MentorSlotBookingAggregateArgs>): Prisma.PrismaPromise<GetMentorSlotBookingAggregateType<T>>
+
+    /**
+     * Group by MentorSlotBooking.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MentorSlotBookingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MentorSlotBookingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MentorSlotBookingGroupByArgs['orderBy'] }
+        : { orderBy?: MentorSlotBookingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MentorSlotBookingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMentorSlotBookingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MentorSlotBooking model
+   */
+  readonly fields: MentorSlotBookingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MentorSlotBooking.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MentorSlotBookingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ClassSchedule<T extends MentorSlotBooking$ClassScheduleArgs<ExtArgs> = {}>(args?: Subset<T, MentorSlotBooking$ClassScheduleArgs<ExtArgs>>): Prisma__ClassScheduleClient<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    MentorAvailabilitySlot<T extends MentorAvailabilitySlotDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MentorAvailabilitySlotDefaultArgs<ExtArgs>>): Prisma__MentorAvailabilitySlotClient<$Result.GetResult<Prisma.$MentorAvailabilitySlotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MentorSlotBooking model
+   */
+  interface MentorSlotBookingFieldRefs {
+    readonly id: FieldRef<"MentorSlotBooking", 'Int'>
+    readonly slotId: FieldRef<"MentorSlotBooking", 'Int'>
+    readonly studentId: FieldRef<"MentorSlotBooking", 'Int'>
+    readonly classScheduleId: FieldRef<"MentorSlotBooking", 'Int'>
+    readonly status: FieldRef<"MentorSlotBooking", 'MentorSlotBookingStatus'>
+    readonly message: FieldRef<"MentorSlotBooking", 'String'>
+    readonly googleSyncError: FieldRef<"MentorSlotBooking", 'String'>
+    readonly respondedAt: FieldRef<"MentorSlotBooking", 'DateTime'>
+    readonly createdAt: FieldRef<"MentorSlotBooking", 'DateTime'>
+    readonly updatedAt: FieldRef<"MentorSlotBooking", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MentorSlotBooking findUnique
+   */
+  export type MentorSlotBookingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    /**
+     * Filter, which MentorSlotBooking to fetch.
+     */
+    where: MentorSlotBookingWhereUniqueInput
+  }
+
+  /**
+   * MentorSlotBooking findUniqueOrThrow
+   */
+  export type MentorSlotBookingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    /**
+     * Filter, which MentorSlotBooking to fetch.
+     */
+    where: MentorSlotBookingWhereUniqueInput
+  }
+
+  /**
+   * MentorSlotBooking findFirst
+   */
+  export type MentorSlotBookingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    /**
+     * Filter, which MentorSlotBooking to fetch.
+     */
+    where?: MentorSlotBookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MentorSlotBookings to fetch.
+     */
+    orderBy?: MentorSlotBookingOrderByWithRelationInput | MentorSlotBookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MentorSlotBookings.
+     */
+    cursor?: MentorSlotBookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MentorSlotBookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MentorSlotBookings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MentorSlotBookings.
+     */
+    distinct?: MentorSlotBookingScalarFieldEnum | MentorSlotBookingScalarFieldEnum[]
+  }
+
+  /**
+   * MentorSlotBooking findFirstOrThrow
+   */
+  export type MentorSlotBookingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    /**
+     * Filter, which MentorSlotBooking to fetch.
+     */
+    where?: MentorSlotBookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MentorSlotBookings to fetch.
+     */
+    orderBy?: MentorSlotBookingOrderByWithRelationInput | MentorSlotBookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MentorSlotBookings.
+     */
+    cursor?: MentorSlotBookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MentorSlotBookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MentorSlotBookings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MentorSlotBookings.
+     */
+    distinct?: MentorSlotBookingScalarFieldEnum | MentorSlotBookingScalarFieldEnum[]
+  }
+
+  /**
+   * MentorSlotBooking findMany
+   */
+  export type MentorSlotBookingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    /**
+     * Filter, which MentorSlotBookings to fetch.
+     */
+    where?: MentorSlotBookingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MentorSlotBookings to fetch.
+     */
+    orderBy?: MentorSlotBookingOrderByWithRelationInput | MentorSlotBookingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MentorSlotBookings.
+     */
+    cursor?: MentorSlotBookingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MentorSlotBookings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MentorSlotBookings.
+     */
+    skip?: number
+    distinct?: MentorSlotBookingScalarFieldEnum | MentorSlotBookingScalarFieldEnum[]
+  }
+
+  /**
+   * MentorSlotBooking create
+   */
+  export type MentorSlotBookingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MentorSlotBooking.
+     */
+    data: XOR<MentorSlotBookingCreateInput, MentorSlotBookingUncheckedCreateInput>
+  }
+
+  /**
+   * MentorSlotBooking createMany
+   */
+  export type MentorSlotBookingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MentorSlotBookings.
+     */
+    data: MentorSlotBookingCreateManyInput | MentorSlotBookingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MentorSlotBooking createManyAndReturn
+   */
+  export type MentorSlotBookingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * The data used to create many MentorSlotBookings.
+     */
+    data: MentorSlotBookingCreateManyInput | MentorSlotBookingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MentorSlotBooking update
+   */
+  export type MentorSlotBookingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MentorSlotBooking.
+     */
+    data: XOR<MentorSlotBookingUpdateInput, MentorSlotBookingUncheckedUpdateInput>
+    /**
+     * Choose, which MentorSlotBooking to update.
+     */
+    where: MentorSlotBookingWhereUniqueInput
+  }
+
+  /**
+   * MentorSlotBooking updateMany
+   */
+  export type MentorSlotBookingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MentorSlotBookings.
+     */
+    data: XOR<MentorSlotBookingUpdateManyMutationInput, MentorSlotBookingUncheckedUpdateManyInput>
+    /**
+     * Filter which MentorSlotBookings to update
+     */
+    where?: MentorSlotBookingWhereInput
+    /**
+     * Limit how many MentorSlotBookings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MentorSlotBooking updateManyAndReturn
+   */
+  export type MentorSlotBookingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * The data used to update MentorSlotBookings.
+     */
+    data: XOR<MentorSlotBookingUpdateManyMutationInput, MentorSlotBookingUncheckedUpdateManyInput>
+    /**
+     * Filter which MentorSlotBookings to update
+     */
+    where?: MentorSlotBookingWhereInput
+    /**
+     * Limit how many MentorSlotBookings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MentorSlotBooking upsert
+   */
+  export type MentorSlotBookingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MentorSlotBooking to update in case it exists.
+     */
+    where: MentorSlotBookingWhereUniqueInput
+    /**
+     * In case the MentorSlotBooking found by the `where` argument doesn't exist, create a new MentorSlotBooking with this data.
+     */
+    create: XOR<MentorSlotBookingCreateInput, MentorSlotBookingUncheckedCreateInput>
+    /**
+     * In case the MentorSlotBooking was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MentorSlotBookingUpdateInput, MentorSlotBookingUncheckedUpdateInput>
+  }
+
+  /**
+   * MentorSlotBooking delete
+   */
+  export type MentorSlotBookingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
+    /**
+     * Filter which MentorSlotBooking to delete.
+     */
+    where: MentorSlotBookingWhereUniqueInput
+  }
+
+  /**
+   * MentorSlotBooking deleteMany
+   */
+  export type MentorSlotBookingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MentorSlotBookings to delete
+     */
+    where?: MentorSlotBookingWhereInput
+    /**
+     * Limit how many MentorSlotBookings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MentorSlotBooking.ClassSchedule
+   */
+  export type MentorSlotBooking$ClassScheduleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ClassSchedule
+     */
+    select?: ClassScheduleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ClassSchedule
+     */
+    omit?: ClassScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassScheduleInclude<ExtArgs> | null
+    where?: ClassScheduleWhereInput
+  }
+
+  /**
+   * MentorSlotBooking without action
+   */
+  export type MentorSlotBookingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MentorSlotBooking
+     */
+    select?: MentorSlotBookingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MentorSlotBooking
+     */
+    omit?: MentorSlotBookingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MentorSlotBookingInclude<ExtArgs> | null
   }
 
 
@@ -61607,7 +64339,8 @@ export namespace Prisma {
     recurrence: 'recurrence',
     recurrenceEndsAt: 'recurrenceEndsAt',
     seriesId: 'seriesId',
-    templateId: 'templateId'
+    templateId: 'templateId',
+    requireChecklistComplete: 'requireChecklistComplete'
   };
 
   export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
@@ -61673,10 +64406,41 @@ export namespace Prisma {
     recurrence: 'recurrence',
     usageCount: 'usageCount',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    requireChecklistComplete: 'requireChecklistComplete'
   };
 
   export type TaskTemplateScalarFieldEnum = (typeof TaskTemplateScalarFieldEnum)[keyof typeof TaskTemplateScalarFieldEnum]
+
+
+  export const MentorAvailabilitySlotScalarFieldEnum: {
+    id: 'id',
+    teacherId: 'teacherId',
+    startsAt: 'startsAt',
+    endsAt: 'endsAt',
+    timezone: 'timezone',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MentorAvailabilitySlotScalarFieldEnum = (typeof MentorAvailabilitySlotScalarFieldEnum)[keyof typeof MentorAvailabilitySlotScalarFieldEnum]
+
+
+  export const MentorSlotBookingScalarFieldEnum: {
+    id: 'id',
+    slotId: 'slotId',
+    studentId: 'studentId',
+    classScheduleId: 'classScheduleId',
+    status: 'status',
+    message: 'message',
+    googleSyncError: 'googleSyncError',
+    respondedAt: 'respondedAt',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MentorSlotBookingScalarFieldEnum = (typeof MentorSlotBookingScalarFieldEnum)[keyof typeof MentorSlotBookingScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -61848,6 +64612,34 @@ export namespace Prisma {
    * Reference to a field of type 'MeetingMinuteCreationMode[]'
    */
   export type ListEnumMeetingMinuteCreationModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MeetingMinuteCreationMode[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'MentorAvailabilityStatus'
+   */
+  export type EnumMentorAvailabilityStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MentorAvailabilityStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'MentorAvailabilityStatus[]'
+   */
+  export type ListEnumMentorAvailabilityStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MentorAvailabilityStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'MentorSlotBookingStatus'
+   */
+  export type EnumMentorSlotBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MentorSlotBookingStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'MentorSlotBookingStatus[]'
+   */
+  export type ListEnumMentorSlotBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MentorSlotBookingStatus[]'>
     
   /**
    * Deep Input Types
@@ -62038,6 +64830,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleListRelationFilter
     MeetingMinuteMeeting?: MeetingMinuteMeetingListRelationFilter
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
+    MentorAvailabilitySlot?: MentorAvailabilitySlotListRelationFilter
     progressReports?: ProgressReportListRelationFilter
     resources?: ResourceListRelationFilter
     studentGroups?: StudentGroupListRelationFilter
@@ -62065,6 +64858,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingOrderByRelationAggregateInput
     mentorProfile?: MentorOrderByWithRelationInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotOrderByRelationAggregateInput
     progressReports?: ProgressReportOrderByRelationAggregateInput
     resources?: ResourceOrderByRelationAggregateInput
     studentGroups?: StudentGroupOrderByRelationAggregateInput
@@ -62095,6 +64889,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleListRelationFilter
     MeetingMinuteMeeting?: MeetingMinuteMeetingListRelationFilter
     mentorProfile?: XOR<MentorNullableScalarRelationFilter, MentorWhereInput> | null
+    MentorAvailabilitySlot?: MentorAvailabilitySlotListRelationFilter
     progressReports?: ProgressReportListRelationFilter
     resources?: ResourceListRelationFilter
     studentGroups?: StudentGroupListRelationFilter
@@ -62168,6 +64963,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     MeetingMinuteRequest?: MeetingMinuteRequestListRelationFilter
+    MentorSlotBooking?: MentorSlotBookingListRelationFilter
     Payment?: PaymentListRelationFilter
     progressReports?: ProgressReportListRelationFilter
     Research?: ResearchListRelationFilter
@@ -62203,6 +64999,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleOrderByRelationAggregateInput
     enrollments?: EnrollmentOrderByRelationAggregateInput
     MeetingMinuteRequest?: MeetingMinuteRequestOrderByRelationAggregateInput
+    MentorSlotBooking?: MentorSlotBookingOrderByRelationAggregateInput
     Payment?: PaymentOrderByRelationAggregateInput
     progressReports?: ProgressReportOrderByRelationAggregateInput
     Research?: ResearchOrderByRelationAggregateInput
@@ -62241,6 +65038,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleListRelationFilter
     enrollments?: EnrollmentListRelationFilter
     MeetingMinuteRequest?: MeetingMinuteRequestListRelationFilter
+    MentorSlotBooking?: MentorSlotBookingListRelationFilter
     Payment?: PaymentListRelationFilter
     progressReports?: ProgressReportListRelationFilter
     Research?: ResearchListRelationFilter
@@ -63273,6 +66071,7 @@ export namespace Prisma {
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     MeetingMinuteMeeting?: MeetingMinuteMeetingListRelationFilter
+    MentorSlotBooking?: XOR<MentorSlotBookingNullableScalarRelationFilter, MentorSlotBookingWhereInput> | null
   }
 
   export type ClassScheduleOrderByWithRelationInput = {
@@ -63304,6 +66103,7 @@ export namespace Prisma {
     student?: StudentOrderByWithRelationInput
     teacher?: TeacherOrderByWithRelationInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingOrderByRelationAggregateInput
+    MentorSlotBooking?: MentorSlotBookingOrderByWithRelationInput
   }
 
   export type ClassScheduleWhereUniqueInput = Prisma.AtLeast<{
@@ -63338,6 +66138,7 @@ export namespace Prisma {
     student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     MeetingMinuteMeeting?: MeetingMinuteMeetingListRelationFilter
+    MentorSlotBooking?: XOR<MentorSlotBookingNullableScalarRelationFilter, MentorSlotBookingWhereInput> | null
   }, "id">
 
   export type ClassScheduleOrderByWithAggregationInput = {
@@ -65976,6 +68777,7 @@ export namespace Prisma {
     recurrenceEndsAt?: DateTimeNullableFilter<"Task"> | Date | string | null
     seriesId?: IntNullableFilter<"Task"> | number | null
     templateId?: IntNullableFilter<"Task"> | number | null
+    requireChecklistComplete?: BoolFilter<"Task"> | boolean
     StudentTask?: StudentTaskListRelationFilter
     Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     Assignment?: XOR<AssignmentNullableScalarRelationFilter, AssignmentWhereInput> | null
@@ -66010,6 +68812,7 @@ export namespace Prisma {
     recurrenceEndsAt?: SortOrderInput | SortOrder
     seriesId?: SortOrderInput | SortOrder
     templateId?: SortOrderInput | SortOrder
+    requireChecklistComplete?: SortOrder
     StudentTask?: StudentTaskOrderByRelationAggregateInput
     Teacher?: TeacherOrderByWithRelationInput
     Assignment?: AssignmentOrderByWithRelationInput
@@ -66047,6 +68850,7 @@ export namespace Prisma {
     recurrenceEndsAt?: DateTimeNullableFilter<"Task"> | Date | string | null
     seriesId?: IntNullableFilter<"Task"> | number | null
     templateId?: IntNullableFilter<"Task"> | number | null
+    requireChecklistComplete?: BoolFilter<"Task"> | boolean
     StudentTask?: StudentTaskListRelationFilter
     Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     Assignment?: XOR<AssignmentNullableScalarRelationFilter, AssignmentWhereInput> | null
@@ -66081,6 +68885,7 @@ export namespace Prisma {
     recurrenceEndsAt?: SortOrderInput | SortOrder
     seriesId?: SortOrderInput | SortOrder
     templateId?: SortOrderInput | SortOrder
+    requireChecklistComplete?: SortOrder
     _count?: TaskCountOrderByAggregateInput
     _avg?: TaskAvgOrderByAggregateInput
     _max?: TaskMaxOrderByAggregateInput
@@ -66117,6 +68922,7 @@ export namespace Prisma {
     recurrenceEndsAt?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
     seriesId?: IntNullableWithAggregatesFilter<"Task"> | number | null
     templateId?: IntNullableWithAggregatesFilter<"Task"> | number | null
+    requireChecklistComplete?: BoolWithAggregatesFilter<"Task"> | boolean
   }
 
   export type TaskActivityWhereInput = {
@@ -66351,6 +69157,7 @@ export namespace Prisma {
     usageCount?: IntFilter<"TaskTemplate"> | number
     createdAt?: DateTimeFilter<"TaskTemplate"> | Date | string
     updatedAt?: DateTimeFilter<"TaskTemplate"> | Date | string
+    requireChecklistComplete?: BoolFilter<"TaskTemplate"> | boolean
     Task?: TaskListRelationFilter
     Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
   }
@@ -66375,6 +69182,7 @@ export namespace Prisma {
     usageCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    requireChecklistComplete?: SortOrder
     Task?: TaskOrderByRelationAggregateInput
     Teacher?: TeacherOrderByWithRelationInput
   }
@@ -66403,6 +69211,7 @@ export namespace Prisma {
     usageCount?: IntFilter<"TaskTemplate"> | number
     createdAt?: DateTimeFilter<"TaskTemplate"> | Date | string
     updatedAt?: DateTimeFilter<"TaskTemplate"> | Date | string
+    requireChecklistComplete?: BoolFilter<"TaskTemplate"> | boolean
     Task?: TaskListRelationFilter
     Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
   }, "id" | "teacherId_name">
@@ -66427,6 +69236,7 @@ export namespace Prisma {
     usageCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    requireChecklistComplete?: SortOrder
     _count?: TaskTemplateCountOrderByAggregateInput
     _avg?: TaskTemplateAvgOrderByAggregateInput
     _max?: TaskTemplateMaxOrderByAggregateInput
@@ -66457,6 +69267,171 @@ export namespace Prisma {
     usageCount?: IntWithAggregatesFilter<"TaskTemplate"> | number
     createdAt?: DateTimeWithAggregatesFilter<"TaskTemplate"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TaskTemplate"> | Date | string
+    requireChecklistComplete?: BoolWithAggregatesFilter<"TaskTemplate"> | boolean
+  }
+
+  export type MentorAvailabilitySlotWhereInput = {
+    AND?: MentorAvailabilitySlotWhereInput | MentorAvailabilitySlotWhereInput[]
+    OR?: MentorAvailabilitySlotWhereInput[]
+    NOT?: MentorAvailabilitySlotWhereInput | MentorAvailabilitySlotWhereInput[]
+    id?: IntFilter<"MentorAvailabilitySlot"> | number
+    teacherId?: IntFilter<"MentorAvailabilitySlot"> | number
+    startsAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    endsAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    timezone?: StringFilter<"MentorAvailabilitySlot"> | string
+    status?: EnumMentorAvailabilityStatusFilter<"MentorAvailabilitySlot"> | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    updatedAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    MentorSlotBooking?: MentorSlotBookingListRelationFilter
+  }
+
+  export type MentorAvailabilitySlotOrderByWithRelationInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    timezone?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    Teacher?: TeacherOrderByWithRelationInput
+    MentorSlotBooking?: MentorSlotBookingOrderByRelationAggregateInput
+  }
+
+  export type MentorAvailabilitySlotWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: MentorAvailabilitySlotWhereInput | MentorAvailabilitySlotWhereInput[]
+    OR?: MentorAvailabilitySlotWhereInput[]
+    NOT?: MentorAvailabilitySlotWhereInput | MentorAvailabilitySlotWhereInput[]
+    teacherId?: IntFilter<"MentorAvailabilitySlot"> | number
+    startsAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    endsAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    timezone?: StringFilter<"MentorAvailabilitySlot"> | string
+    status?: EnumMentorAvailabilityStatusFilter<"MentorAvailabilitySlot"> | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    updatedAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    MentorSlotBooking?: MentorSlotBookingListRelationFilter
+  }, "id">
+
+  export type MentorAvailabilitySlotOrderByWithAggregationInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    timezone?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MentorAvailabilitySlotCountOrderByAggregateInput
+    _avg?: MentorAvailabilitySlotAvgOrderByAggregateInput
+    _max?: MentorAvailabilitySlotMaxOrderByAggregateInput
+    _min?: MentorAvailabilitySlotMinOrderByAggregateInput
+    _sum?: MentorAvailabilitySlotSumOrderByAggregateInput
+  }
+
+  export type MentorAvailabilitySlotScalarWhereWithAggregatesInput = {
+    AND?: MentorAvailabilitySlotScalarWhereWithAggregatesInput | MentorAvailabilitySlotScalarWhereWithAggregatesInput[]
+    OR?: MentorAvailabilitySlotScalarWhereWithAggregatesInput[]
+    NOT?: MentorAvailabilitySlotScalarWhereWithAggregatesInput | MentorAvailabilitySlotScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MentorAvailabilitySlot"> | number
+    teacherId?: IntWithAggregatesFilter<"MentorAvailabilitySlot"> | number
+    startsAt?: DateTimeWithAggregatesFilter<"MentorAvailabilitySlot"> | Date | string
+    endsAt?: DateTimeWithAggregatesFilter<"MentorAvailabilitySlot"> | Date | string
+    timezone?: StringWithAggregatesFilter<"MentorAvailabilitySlot"> | string
+    status?: EnumMentorAvailabilityStatusWithAggregatesFilter<"MentorAvailabilitySlot"> | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeWithAggregatesFilter<"MentorAvailabilitySlot"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MentorAvailabilitySlot"> | Date | string
+  }
+
+  export type MentorSlotBookingWhereInput = {
+    AND?: MentorSlotBookingWhereInput | MentorSlotBookingWhereInput[]
+    OR?: MentorSlotBookingWhereInput[]
+    NOT?: MentorSlotBookingWhereInput | MentorSlotBookingWhereInput[]
+    id?: IntFilter<"MentorSlotBooking"> | number
+    slotId?: IntFilter<"MentorSlotBooking"> | number
+    studentId?: IntFilter<"MentorSlotBooking"> | number
+    classScheduleId?: IntNullableFilter<"MentorSlotBooking"> | number | null
+    status?: EnumMentorSlotBookingStatusFilter<"MentorSlotBooking"> | $Enums.MentorSlotBookingStatus
+    message?: StringNullableFilter<"MentorSlotBooking"> | string | null
+    googleSyncError?: StringNullableFilter<"MentorSlotBooking"> | string | null
+    respondedAt?: DateTimeNullableFilter<"MentorSlotBooking"> | Date | string | null
+    createdAt?: DateTimeFilter<"MentorSlotBooking"> | Date | string
+    updatedAt?: DateTimeFilter<"MentorSlotBooking"> | Date | string
+    ClassSchedule?: XOR<ClassScheduleNullableScalarRelationFilter, ClassScheduleWhereInput> | null
+    MentorAvailabilitySlot?: XOR<MentorAvailabilitySlotScalarRelationFilter, MentorAvailabilitySlotWhereInput>
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+  }
+
+  export type MentorSlotBookingOrderByWithRelationInput = {
+    id?: SortOrder
+    slotId?: SortOrder
+    studentId?: SortOrder
+    classScheduleId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    message?: SortOrderInput | SortOrder
+    googleSyncError?: SortOrderInput | SortOrder
+    respondedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ClassSchedule?: ClassScheduleOrderByWithRelationInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotOrderByWithRelationInput
+    Student?: StudentOrderByWithRelationInput
+  }
+
+  export type MentorSlotBookingWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    classScheduleId?: number
+    slotId_studentId?: MentorSlotBookingSlotIdStudentIdCompoundUniqueInput
+    AND?: MentorSlotBookingWhereInput | MentorSlotBookingWhereInput[]
+    OR?: MentorSlotBookingWhereInput[]
+    NOT?: MentorSlotBookingWhereInput | MentorSlotBookingWhereInput[]
+    slotId?: IntFilter<"MentorSlotBooking"> | number
+    studentId?: IntFilter<"MentorSlotBooking"> | number
+    status?: EnumMentorSlotBookingStatusFilter<"MentorSlotBooking"> | $Enums.MentorSlotBookingStatus
+    message?: StringNullableFilter<"MentorSlotBooking"> | string | null
+    googleSyncError?: StringNullableFilter<"MentorSlotBooking"> | string | null
+    respondedAt?: DateTimeNullableFilter<"MentorSlotBooking"> | Date | string | null
+    createdAt?: DateTimeFilter<"MentorSlotBooking"> | Date | string
+    updatedAt?: DateTimeFilter<"MentorSlotBooking"> | Date | string
+    ClassSchedule?: XOR<ClassScheduleNullableScalarRelationFilter, ClassScheduleWhereInput> | null
+    MentorAvailabilitySlot?: XOR<MentorAvailabilitySlotScalarRelationFilter, MentorAvailabilitySlotWhereInput>
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+  }, "id" | "classScheduleId" | "slotId_studentId">
+
+  export type MentorSlotBookingOrderByWithAggregationInput = {
+    id?: SortOrder
+    slotId?: SortOrder
+    studentId?: SortOrder
+    classScheduleId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    message?: SortOrderInput | SortOrder
+    googleSyncError?: SortOrderInput | SortOrder
+    respondedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MentorSlotBookingCountOrderByAggregateInput
+    _avg?: MentorSlotBookingAvgOrderByAggregateInput
+    _max?: MentorSlotBookingMaxOrderByAggregateInput
+    _min?: MentorSlotBookingMinOrderByAggregateInput
+    _sum?: MentorSlotBookingSumOrderByAggregateInput
+  }
+
+  export type MentorSlotBookingScalarWhereWithAggregatesInput = {
+    AND?: MentorSlotBookingScalarWhereWithAggregatesInput | MentorSlotBookingScalarWhereWithAggregatesInput[]
+    OR?: MentorSlotBookingScalarWhereWithAggregatesInput[]
+    NOT?: MentorSlotBookingScalarWhereWithAggregatesInput | MentorSlotBookingScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MentorSlotBooking"> | number
+    slotId?: IntWithAggregatesFilter<"MentorSlotBooking"> | number
+    studentId?: IntWithAggregatesFilter<"MentorSlotBooking"> | number
+    classScheduleId?: IntNullableWithAggregatesFilter<"MentorSlotBooking"> | number | null
+    status?: EnumMentorSlotBookingStatusWithAggregatesFilter<"MentorSlotBooking"> | $Enums.MentorSlotBookingStatus
+    message?: StringNullableWithAggregatesFilter<"MentorSlotBooking"> | string | null
+    googleSyncError?: StringNullableWithAggregatesFilter<"MentorSlotBooking"> | string | null
+    respondedAt?: DateTimeNullableWithAggregatesFilter<"MentorSlotBooking"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"MentorSlotBooking"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MentorSlotBooking"> | Date | string
   }
 
   export type WebinarRegistrationCreateInput = {
@@ -66658,6 +69633,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -66685,6 +69661,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -66711,6 +69688,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -66738,6 +69716,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -66812,6 +69791,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -66847,6 +69827,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -66879,6 +69860,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -66914,6 +69896,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -67948,6 +70931,7 @@ export namespace Prisma {
     student: StudentCreateNestedOneWithoutClassSchedulesInput
     teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutClassScheduleInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedOneWithoutClassScheduleInput
   }
 
   export type ClassScheduleUncheckedCreateInput = {
@@ -67976,6 +70960,7 @@ export namespace Prisma {
     startDateTime?: Date | string | null
     timezone?: string | null
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedOneWithoutClassScheduleInput
   }
 
   export type ClassScheduleUpdateInput = {
@@ -68003,6 +70988,7 @@ export namespace Prisma {
     student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutClassScheduleNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateOneWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateInput = {
@@ -68031,6 +71017,7 @@ export namespace Prisma {
     startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateOneWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleCreateManyInput = {
@@ -71072,6 +74059,7 @@ export namespace Prisma {
     recurrence?: string | null
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
     Teacher: TeacherCreateNestedOneWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
@@ -71106,6 +74094,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -71129,6 +74118,7 @@ export namespace Prisma {
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
     Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
@@ -71163,6 +74153,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -71192,6 +74183,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
   }
 
   export type TaskUpdateManyMutationInput = {
@@ -71214,6 +74206,7 @@ export namespace Prisma {
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TaskUncheckedUpdateManyInput = {
@@ -71242,6 +74235,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TaskActivityCreateInput = {
@@ -71475,6 +74469,7 @@ export namespace Prisma {
     usageCount?: number
     createdAt?: Date | string
     updatedAt: Date | string
+    requireChecklistComplete?: boolean
     Task?: TaskCreateNestedManyWithoutTaskTemplateInput
     Teacher: TeacherCreateNestedOneWithoutTaskTemplateInput
   }
@@ -71499,6 +74494,7 @@ export namespace Prisma {
     usageCount?: number
     createdAt?: Date | string
     updatedAt: Date | string
+    requireChecklistComplete?: boolean
     Task?: TaskUncheckedCreateNestedManyWithoutTaskTemplateInput
   }
 
@@ -71520,6 +74516,7 @@ export namespace Prisma {
     usageCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     Task?: TaskUpdateManyWithoutTaskTemplateNestedInput
     Teacher?: TeacherUpdateOneRequiredWithoutTaskTemplateNestedInput
   }
@@ -71544,6 +74541,7 @@ export namespace Prisma {
     usageCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     Task?: TaskUncheckedUpdateManyWithoutTaskTemplateNestedInput
   }
 
@@ -71567,6 +74565,7 @@ export namespace Prisma {
     usageCount?: number
     createdAt?: Date | string
     updatedAt: Date | string
+    requireChecklistComplete?: boolean
   }
 
   export type TaskTemplateUpdateManyMutationInput = {
@@ -71587,6 +74586,7 @@ export namespace Prisma {
     usageCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TaskTemplateUncheckedUpdateManyInput = {
@@ -71607,6 +74607,169 @@ export namespace Prisma {
     checklist?: NullableJsonNullValueInput | InputJsonValue
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     usageCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type MentorAvailabilitySlotCreateInput = {
+    startsAt: Date | string
+    endsAt: Date | string
+    timezone: string
+    status?: $Enums.MentorAvailabilityStatus
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Teacher: TeacherCreateNestedOneWithoutMentorAvailabilitySlotInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutMentorAvailabilitySlotInput
+  }
+
+  export type MentorAvailabilitySlotUncheckedCreateInput = {
+    id?: number
+    teacherId: number
+    startsAt: Date | string
+    endsAt: Date | string
+    timezone: string
+    status?: $Enums.MentorAvailabilityStatus
+    createdAt?: Date | string
+    updatedAt: Date | string
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutMentorAvailabilitySlotInput
+  }
+
+  export type MentorAvailabilitySlotUpdateInput = {
+    startsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    status?: EnumMentorAvailabilityStatusFieldUpdateOperationsInput | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Teacher?: TeacherUpdateOneRequiredWithoutMentorAvailabilitySlotNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutMentorAvailabilitySlotNestedInput
+  }
+
+  export type MentorAvailabilitySlotUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    startsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    status?: EnumMentorAvailabilityStatusFieldUpdateOperationsInput | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutMentorAvailabilitySlotNestedInput
+  }
+
+  export type MentorAvailabilitySlotCreateManyInput = {
+    id?: number
+    teacherId: number
+    startsAt: Date | string
+    endsAt: Date | string
+    timezone: string
+    status?: $Enums.MentorAvailabilityStatus
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MentorAvailabilitySlotUpdateManyMutationInput = {
+    startsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    status?: EnumMentorAvailabilityStatusFieldUpdateOperationsInput | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentorAvailabilitySlotUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    startsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    status?: EnumMentorAvailabilityStatusFieldUpdateOperationsInput | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentorSlotBookingCreateInput = {
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    ClassSchedule?: ClassScheduleCreateNestedOneWithoutMentorSlotBookingInput
+    MentorAvailabilitySlot: MentorAvailabilitySlotCreateNestedOneWithoutMentorSlotBookingInput
+    Student: StudentCreateNestedOneWithoutMentorSlotBookingInput
+  }
+
+  export type MentorSlotBookingUncheckedCreateInput = {
+    id?: number
+    slotId: number
+    studentId: number
+    classScheduleId?: number | null
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MentorSlotBookingUpdateInput = {
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClassSchedule?: ClassScheduleUpdateOneWithoutMentorSlotBookingNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateOneRequiredWithoutMentorSlotBookingNestedInput
+    Student?: StudentUpdateOneRequiredWithoutMentorSlotBookingNestedInput
+  }
+
+  export type MentorSlotBookingUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slotId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentorSlotBookingCreateManyInput = {
+    id?: number
+    slotId: number
+    studentId: number
+    classScheduleId?: number | null
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MentorSlotBookingUpdateManyMutationInput = {
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentorSlotBookingUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slotId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -71985,6 +75148,12 @@ export namespace Prisma {
     isNot?: MentorWhereInput | null
   }
 
+  export type MentorAvailabilitySlotListRelationFilter = {
+    every?: MentorAvailabilitySlotWhereInput
+    some?: MentorAvailabilitySlotWhereInput
+    none?: MentorAvailabilitySlotWhereInput
+  }
+
   export type ProgressReportListRelationFilter = {
     every?: ProgressReportWhereInput
     some?: ProgressReportWhereInput
@@ -72042,6 +75211,10 @@ export namespace Prisma {
   }
 
   export type MeetingMinuteMeetingOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MentorAvailabilitySlotOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -72177,6 +75350,12 @@ export namespace Prisma {
     none?: MeetingMinuteRequestWhereInput
   }
 
+  export type MentorSlotBookingListRelationFilter = {
+    every?: MentorSlotBookingWhereInput
+    some?: MentorSlotBookingWhereInput
+    none?: MentorSlotBookingWhereInput
+  }
+
   export type PaymentListRelationFilter = {
     every?: PaymentWhereInput
     some?: PaymentWhereInput
@@ -72237,6 +75416,10 @@ export namespace Prisma {
   }
 
   export type MeetingMinuteRequestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MentorSlotBookingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -73002,6 +76185,11 @@ export namespace Prisma {
   export type StudentGroupNullableScalarRelationFilter = {
     is?: StudentGroupWhereInput | null
     isNot?: StudentGroupWhereInput | null
+  }
+
+  export type MentorSlotBookingNullableScalarRelationFilter = {
+    is?: MentorSlotBookingWhereInput | null
+    isNot?: MentorSlotBookingWhereInput | null
   }
 
   export type ClassScheduleCountOrderByAggregateInput = {
@@ -74849,6 +78037,7 @@ export namespace Prisma {
     recurrenceEndsAt?: SortOrder
     seriesId?: SortOrder
     templateId?: SortOrder
+    requireChecklistComplete?: SortOrder
   }
 
   export type TaskAvgOrderByAggregateInput = {
@@ -74886,6 +78075,7 @@ export namespace Prisma {
     recurrenceEndsAt?: SortOrder
     seriesId?: SortOrder
     templateId?: SortOrder
+    requireChecklistComplete?: SortOrder
   }
 
   export type TaskMinOrderByAggregateInput = {
@@ -74913,6 +78103,7 @@ export namespace Prisma {
     recurrenceEndsAt?: SortOrder
     seriesId?: SortOrder
     templateId?: SortOrder
+    requireChecklistComplete?: SortOrder
   }
 
   export type TaskSumOrderByAggregateInput = {
@@ -75091,6 +78282,7 @@ export namespace Prisma {
     usageCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    requireChecklistComplete?: SortOrder
   }
 
   export type TaskTemplateAvgOrderByAggregateInput = {
@@ -75119,6 +78311,7 @@ export namespace Prisma {
     usageCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    requireChecklistComplete?: SortOrder
   }
 
   export type TaskTemplateMinOrderByAggregateInput = {
@@ -75140,6 +78333,7 @@ export namespace Prisma {
     usageCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    requireChecklistComplete?: SortOrder
   }
 
   export type TaskTemplateSumOrderByAggregateInput = {
@@ -75147,6 +78341,146 @@ export namespace Prisma {
     teacherId?: SortOrder
     defaultDeadlineDays?: SortOrder
     usageCount?: SortOrder
+  }
+
+  export type EnumMentorAvailabilityStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.MentorAvailabilityStatus | EnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MentorAvailabilityStatus[] | ListEnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MentorAvailabilityStatus[] | ListEnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMentorAvailabilityStatusFilter<$PrismaModel> | $Enums.MentorAvailabilityStatus
+  }
+
+  export type MentorAvailabilitySlotCountOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    timezone?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MentorAvailabilitySlotAvgOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+  }
+
+  export type MentorAvailabilitySlotMaxOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    timezone?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MentorAvailabilitySlotMinOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    startsAt?: SortOrder
+    endsAt?: SortOrder
+    timezone?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MentorAvailabilitySlotSumOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+  }
+
+  export type EnumMentorAvailabilityStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MentorAvailabilityStatus | EnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MentorAvailabilityStatus[] | ListEnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MentorAvailabilityStatus[] | ListEnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMentorAvailabilityStatusWithAggregatesFilter<$PrismaModel> | $Enums.MentorAvailabilityStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMentorAvailabilityStatusFilter<$PrismaModel>
+    _max?: NestedEnumMentorAvailabilityStatusFilter<$PrismaModel>
+  }
+
+  export type EnumMentorSlotBookingStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.MentorSlotBookingStatus | EnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MentorSlotBookingStatus[] | ListEnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MentorSlotBookingStatus[] | ListEnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMentorSlotBookingStatusFilter<$PrismaModel> | $Enums.MentorSlotBookingStatus
+  }
+
+  export type MentorAvailabilitySlotScalarRelationFilter = {
+    is?: MentorAvailabilitySlotWhereInput
+    isNot?: MentorAvailabilitySlotWhereInput
+  }
+
+  export type MentorSlotBookingSlotIdStudentIdCompoundUniqueInput = {
+    slotId: number
+    studentId: number
+  }
+
+  export type MentorSlotBookingCountOrderByAggregateInput = {
+    id?: SortOrder
+    slotId?: SortOrder
+    studentId?: SortOrder
+    classScheduleId?: SortOrder
+    status?: SortOrder
+    message?: SortOrder
+    googleSyncError?: SortOrder
+    respondedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MentorSlotBookingAvgOrderByAggregateInput = {
+    id?: SortOrder
+    slotId?: SortOrder
+    studentId?: SortOrder
+    classScheduleId?: SortOrder
+  }
+
+  export type MentorSlotBookingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    slotId?: SortOrder
+    studentId?: SortOrder
+    classScheduleId?: SortOrder
+    status?: SortOrder
+    message?: SortOrder
+    googleSyncError?: SortOrder
+    respondedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MentorSlotBookingMinOrderByAggregateInput = {
+    id?: SortOrder
+    slotId?: SortOrder
+    studentId?: SortOrder
+    classScheduleId?: SortOrder
+    status?: SortOrder
+    message?: SortOrder
+    googleSyncError?: SortOrder
+    respondedAt?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MentorSlotBookingSumOrderByAggregateInput = {
+    id?: SortOrder
+    slotId?: SortOrder
+    studentId?: SortOrder
+    classScheduleId?: SortOrder
+  }
+
+  export type EnumMentorSlotBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MentorSlotBookingStatus | EnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MentorSlotBookingStatus[] | ListEnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MentorSlotBookingStatus[] | ListEnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMentorSlotBookingStatusWithAggregatesFilter<$PrismaModel> | $Enums.MentorSlotBookingStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMentorSlotBookingStatusFilter<$PrismaModel>
+    _max?: NestedEnumMentorSlotBookingStatusFilter<$PrismaModel>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -75202,6 +78536,13 @@ export namespace Prisma {
     create?: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
     connectOrCreate?: MentorCreateOrConnectWithoutTeacherInput
     connect?: MentorWhereUniqueInput
+  }
+
+  export type MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<MentorAvailabilitySlotCreateWithoutTeacherInput, MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput> | MentorAvailabilitySlotCreateWithoutTeacherInput[] | MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: MentorAvailabilitySlotCreateOrConnectWithoutTeacherInput | MentorAvailabilitySlotCreateOrConnectWithoutTeacherInput[]
+    createMany?: MentorAvailabilitySlotCreateManyTeacherInputEnvelope
+    connect?: MentorAvailabilitySlotWhereUniqueInput | MentorAvailabilitySlotWhereUniqueInput[]
   }
 
   export type ProgressReportCreateNestedManyWithoutTeacherInput = {
@@ -75285,6 +78626,13 @@ export namespace Prisma {
     create?: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
     connectOrCreate?: MentorCreateOrConnectWithoutTeacherInput
     connect?: MentorWhereUniqueInput
+  }
+
+  export type MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<MentorAvailabilitySlotCreateWithoutTeacherInput, MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput> | MentorAvailabilitySlotCreateWithoutTeacherInput[] | MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: MentorAvailabilitySlotCreateOrConnectWithoutTeacherInput | MentorAvailabilitySlotCreateOrConnectWithoutTeacherInput[]
+    createMany?: MentorAvailabilitySlotCreateManyTeacherInputEnvelope
+    connect?: MentorAvailabilitySlotWhereUniqueInput | MentorAvailabilitySlotWhereUniqueInput[]
   }
 
   export type ProgressReportUncheckedCreateNestedManyWithoutTeacherInput = {
@@ -75402,6 +78750,20 @@ export namespace Prisma {
     delete?: MentorWhereInput | boolean
     connect?: MentorWhereUniqueInput
     update?: XOR<XOR<MentorUpdateToOneWithWhereWithoutTeacherInput, MentorUpdateWithoutTeacherInput>, MentorUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<MentorAvailabilitySlotCreateWithoutTeacherInput, MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput> | MentorAvailabilitySlotCreateWithoutTeacherInput[] | MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: MentorAvailabilitySlotCreateOrConnectWithoutTeacherInput | MentorAvailabilitySlotCreateOrConnectWithoutTeacherInput[]
+    upsert?: MentorAvailabilitySlotUpsertWithWhereUniqueWithoutTeacherInput | MentorAvailabilitySlotUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: MentorAvailabilitySlotCreateManyTeacherInputEnvelope
+    set?: MentorAvailabilitySlotWhereUniqueInput | MentorAvailabilitySlotWhereUniqueInput[]
+    disconnect?: MentorAvailabilitySlotWhereUniqueInput | MentorAvailabilitySlotWhereUniqueInput[]
+    delete?: MentorAvailabilitySlotWhereUniqueInput | MentorAvailabilitySlotWhereUniqueInput[]
+    connect?: MentorAvailabilitySlotWhereUniqueInput | MentorAvailabilitySlotWhereUniqueInput[]
+    update?: MentorAvailabilitySlotUpdateWithWhereUniqueWithoutTeacherInput | MentorAvailabilitySlotUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: MentorAvailabilitySlotUpdateManyWithWhereWithoutTeacherInput | MentorAvailabilitySlotUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: MentorAvailabilitySlotScalarWhereInput | MentorAvailabilitySlotScalarWhereInput[]
   }
 
   export type ProgressReportUpdateManyWithoutTeacherNestedInput = {
@@ -75568,6 +78930,20 @@ export namespace Prisma {
     update?: XOR<XOR<MentorUpdateToOneWithWhereWithoutTeacherInput, MentorUpdateWithoutTeacherInput>, MentorUncheckedUpdateWithoutTeacherInput>
   }
 
+  export type MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<MentorAvailabilitySlotCreateWithoutTeacherInput, MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput> | MentorAvailabilitySlotCreateWithoutTeacherInput[] | MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: MentorAvailabilitySlotCreateOrConnectWithoutTeacherInput | MentorAvailabilitySlotCreateOrConnectWithoutTeacherInput[]
+    upsert?: MentorAvailabilitySlotUpsertWithWhereUniqueWithoutTeacherInput | MentorAvailabilitySlotUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: MentorAvailabilitySlotCreateManyTeacherInputEnvelope
+    set?: MentorAvailabilitySlotWhereUniqueInput | MentorAvailabilitySlotWhereUniqueInput[]
+    disconnect?: MentorAvailabilitySlotWhereUniqueInput | MentorAvailabilitySlotWhereUniqueInput[]
+    delete?: MentorAvailabilitySlotWhereUniqueInput | MentorAvailabilitySlotWhereUniqueInput[]
+    connect?: MentorAvailabilitySlotWhereUniqueInput | MentorAvailabilitySlotWhereUniqueInput[]
+    update?: MentorAvailabilitySlotUpdateWithWhereUniqueWithoutTeacherInput | MentorAvailabilitySlotUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: MentorAvailabilitySlotUpdateManyWithWhereWithoutTeacherInput | MentorAvailabilitySlotUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: MentorAvailabilitySlotScalarWhereInput | MentorAvailabilitySlotScalarWhereInput[]
+  }
+
   export type ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput = {
     create?: XOR<ProgressReportCreateWithoutTeacherInput, ProgressReportUncheckedCreateWithoutTeacherInput> | ProgressReportCreateWithoutTeacherInput[] | ProgressReportUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: ProgressReportCreateOrConnectWithoutTeacherInput | ProgressReportCreateOrConnectWithoutTeacherInput[]
@@ -75722,6 +79098,13 @@ export namespace Prisma {
     connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
   }
 
+  export type MentorSlotBookingCreateNestedManyWithoutStudentInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutStudentInput, MentorSlotBookingUncheckedCreateWithoutStudentInput> | MentorSlotBookingCreateWithoutStudentInput[] | MentorSlotBookingUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutStudentInput | MentorSlotBookingCreateOrConnectWithoutStudentInput[]
+    createMany?: MentorSlotBookingCreateManyStudentInputEnvelope
+    connect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+  }
+
   export type PaymentCreateNestedManyWithoutStudentInput = {
     create?: XOR<PaymentCreateWithoutStudentInput, PaymentUncheckedCreateWithoutStudentInput> | PaymentCreateWithoutStudentInput[] | PaymentUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: PaymentCreateOrConnectWithoutStudentInput | PaymentCreateOrConnectWithoutStudentInput[]
@@ -75838,6 +79221,13 @@ export namespace Prisma {
     connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutStudentInput | MeetingMinuteRequestCreateOrConnectWithoutStudentInput[]
     createMany?: MeetingMinuteRequestCreateManyStudentInputEnvelope
     connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+  }
+
+  export type MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutStudentInput, MentorSlotBookingUncheckedCreateWithoutStudentInput> | MentorSlotBookingCreateWithoutStudentInput[] | MentorSlotBookingUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutStudentInput | MentorSlotBookingCreateOrConnectWithoutStudentInput[]
+    createMany?: MentorSlotBookingCreateManyStudentInputEnvelope
+    connect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
   }
 
   export type PaymentUncheckedCreateNestedManyWithoutStudentInput = {
@@ -76000,6 +79390,20 @@ export namespace Prisma {
     update?: MeetingMinuteRequestUpdateWithWhereUniqueWithoutStudentInput | MeetingMinuteRequestUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: MeetingMinuteRequestUpdateManyWithWhereWithoutStudentInput | MeetingMinuteRequestUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: MeetingMinuteRequestScalarWhereInput | MeetingMinuteRequestScalarWhereInput[]
+  }
+
+  export type MentorSlotBookingUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutStudentInput, MentorSlotBookingUncheckedCreateWithoutStudentInput> | MentorSlotBookingCreateWithoutStudentInput[] | MentorSlotBookingUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutStudentInput | MentorSlotBookingCreateOrConnectWithoutStudentInput[]
+    upsert?: MentorSlotBookingUpsertWithWhereUniqueWithoutStudentInput | MentorSlotBookingUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: MentorSlotBookingCreateManyStudentInputEnvelope
+    set?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    disconnect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    delete?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    connect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    update?: MentorSlotBookingUpdateWithWhereUniqueWithoutStudentInput | MentorSlotBookingUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: MentorSlotBookingUpdateManyWithWhereWithoutStudentInput | MentorSlotBookingUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: MentorSlotBookingScalarWhereInput | MentorSlotBookingScalarWhereInput[]
   }
 
   export type PaymentUpdateManyWithoutStudentNestedInput = {
@@ -76234,6 +79638,20 @@ export namespace Prisma {
     update?: MeetingMinuteRequestUpdateWithWhereUniqueWithoutStudentInput | MeetingMinuteRequestUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: MeetingMinuteRequestUpdateManyWithWhereWithoutStudentInput | MeetingMinuteRequestUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: MeetingMinuteRequestScalarWhereInput | MeetingMinuteRequestScalarWhereInput[]
+  }
+
+  export type MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutStudentInput, MentorSlotBookingUncheckedCreateWithoutStudentInput> | MentorSlotBookingCreateWithoutStudentInput[] | MentorSlotBookingUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutStudentInput | MentorSlotBookingCreateOrConnectWithoutStudentInput[]
+    upsert?: MentorSlotBookingUpsertWithWhereUniqueWithoutStudentInput | MentorSlotBookingUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: MentorSlotBookingCreateManyStudentInputEnvelope
+    set?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    disconnect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    delete?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    connect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    update?: MentorSlotBookingUpdateWithWhereUniqueWithoutStudentInput | MentorSlotBookingUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: MentorSlotBookingUpdateManyWithWhereWithoutStudentInput | MentorSlotBookingUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: MentorSlotBookingScalarWhereInput | MentorSlotBookingScalarWhereInput[]
   }
 
   export type PaymentUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -77126,11 +80544,23 @@ export namespace Prisma {
     connect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
   }
 
+  export type MentorSlotBookingCreateNestedOneWithoutClassScheduleInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutClassScheduleInput, MentorSlotBookingUncheckedCreateWithoutClassScheduleInput>
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutClassScheduleInput
+    connect?: MentorSlotBookingWhereUniqueInput
+  }
+
   export type MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput = {
     create?: XOR<MeetingMinuteMeetingCreateWithoutClassScheduleInput, MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput> | MeetingMinuteMeetingCreateWithoutClassScheduleInput[] | MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput[]
     connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput | MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput[]
     createMany?: MeetingMinuteMeetingCreateManyClassScheduleInputEnvelope
     connect?: MeetingMinuteMeetingWhereUniqueInput | MeetingMinuteMeetingWhereUniqueInput[]
+  }
+
+  export type MentorSlotBookingUncheckedCreateNestedOneWithoutClassScheduleInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutClassScheduleInput, MentorSlotBookingUncheckedCreateWithoutClassScheduleInput>
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutClassScheduleInput
+    connect?: MentorSlotBookingWhereUniqueInput
   }
 
   export type StudentGroupUpdateOneWithoutClassSchedulesNestedInput = {
@@ -77173,6 +80603,16 @@ export namespace Prisma {
     deleteMany?: MeetingMinuteMeetingScalarWhereInput | MeetingMinuteMeetingScalarWhereInput[]
   }
 
+  export type MentorSlotBookingUpdateOneWithoutClassScheduleNestedInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutClassScheduleInput, MentorSlotBookingUncheckedCreateWithoutClassScheduleInput>
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutClassScheduleInput
+    upsert?: MentorSlotBookingUpsertWithoutClassScheduleInput
+    disconnect?: MentorSlotBookingWhereInput | boolean
+    delete?: MentorSlotBookingWhereInput | boolean
+    connect?: MentorSlotBookingWhereUniqueInput
+    update?: XOR<XOR<MentorSlotBookingUpdateToOneWithWhereWithoutClassScheduleInput, MentorSlotBookingUpdateWithoutClassScheduleInput>, MentorSlotBookingUncheckedUpdateWithoutClassScheduleInput>
+  }
+
   export type MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput = {
     create?: XOR<MeetingMinuteMeetingCreateWithoutClassScheduleInput, MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput> | MeetingMinuteMeetingCreateWithoutClassScheduleInput[] | MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput[]
     connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput | MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput[]
@@ -77185,6 +80625,16 @@ export namespace Prisma {
     update?: MeetingMinuteMeetingUpdateWithWhereUniqueWithoutClassScheduleInput | MeetingMinuteMeetingUpdateWithWhereUniqueWithoutClassScheduleInput[]
     updateMany?: MeetingMinuteMeetingUpdateManyWithWhereWithoutClassScheduleInput | MeetingMinuteMeetingUpdateManyWithWhereWithoutClassScheduleInput[]
     deleteMany?: MeetingMinuteMeetingScalarWhereInput | MeetingMinuteMeetingScalarWhereInput[]
+  }
+
+  export type MentorSlotBookingUncheckedUpdateOneWithoutClassScheduleNestedInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutClassScheduleInput, MentorSlotBookingUncheckedCreateWithoutClassScheduleInput>
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutClassScheduleInput
+    upsert?: MentorSlotBookingUpsertWithoutClassScheduleInput
+    disconnect?: MentorSlotBookingWhereInput | boolean
+    delete?: MentorSlotBookingWhereInput | boolean
+    connect?: MentorSlotBookingWhereUniqueInput
+    update?: XOR<XOR<MentorSlotBookingUpdateToOneWithWhereWithoutClassScheduleInput, MentorSlotBookingUpdateWithoutClassScheduleInput>, MentorSlotBookingUncheckedUpdateWithoutClassScheduleInput>
   }
 
   export type EnrollmentCreateNestedOneWithoutPaymentInput = {
@@ -78037,6 +81487,114 @@ export namespace Prisma {
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
+  export type TeacherCreateNestedOneWithoutMentorAvailabilitySlotInput = {
+    create?: XOR<TeacherCreateWithoutMentorAvailabilitySlotInput, TeacherUncheckedCreateWithoutMentorAvailabilitySlotInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutMentorAvailabilitySlotInput
+    connect?: TeacherWhereUniqueInput
+  }
+
+  export type MentorSlotBookingCreateNestedManyWithoutMentorAvailabilitySlotInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput, MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput> | MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput[] | MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput[]
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutMentorAvailabilitySlotInput | MentorSlotBookingCreateOrConnectWithoutMentorAvailabilitySlotInput[]
+    createMany?: MentorSlotBookingCreateManyMentorAvailabilitySlotInputEnvelope
+    connect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+  }
+
+  export type MentorSlotBookingUncheckedCreateNestedManyWithoutMentorAvailabilitySlotInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput, MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput> | MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput[] | MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput[]
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutMentorAvailabilitySlotInput | MentorSlotBookingCreateOrConnectWithoutMentorAvailabilitySlotInput[]
+    createMany?: MentorSlotBookingCreateManyMentorAvailabilitySlotInputEnvelope
+    connect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+  }
+
+  export type EnumMentorAvailabilityStatusFieldUpdateOperationsInput = {
+    set?: $Enums.MentorAvailabilityStatus
+  }
+
+  export type TeacherUpdateOneRequiredWithoutMentorAvailabilitySlotNestedInput = {
+    create?: XOR<TeacherCreateWithoutMentorAvailabilitySlotInput, TeacherUncheckedCreateWithoutMentorAvailabilitySlotInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutMentorAvailabilitySlotInput
+    upsert?: TeacherUpsertWithoutMentorAvailabilitySlotInput
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutMentorAvailabilitySlotInput, TeacherUpdateWithoutMentorAvailabilitySlotInput>, TeacherUncheckedUpdateWithoutMentorAvailabilitySlotInput>
+  }
+
+  export type MentorSlotBookingUpdateManyWithoutMentorAvailabilitySlotNestedInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput, MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput> | MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput[] | MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput[]
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutMentorAvailabilitySlotInput | MentorSlotBookingCreateOrConnectWithoutMentorAvailabilitySlotInput[]
+    upsert?: MentorSlotBookingUpsertWithWhereUniqueWithoutMentorAvailabilitySlotInput | MentorSlotBookingUpsertWithWhereUniqueWithoutMentorAvailabilitySlotInput[]
+    createMany?: MentorSlotBookingCreateManyMentorAvailabilitySlotInputEnvelope
+    set?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    disconnect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    delete?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    connect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    update?: MentorSlotBookingUpdateWithWhereUniqueWithoutMentorAvailabilitySlotInput | MentorSlotBookingUpdateWithWhereUniqueWithoutMentorAvailabilitySlotInput[]
+    updateMany?: MentorSlotBookingUpdateManyWithWhereWithoutMentorAvailabilitySlotInput | MentorSlotBookingUpdateManyWithWhereWithoutMentorAvailabilitySlotInput[]
+    deleteMany?: MentorSlotBookingScalarWhereInput | MentorSlotBookingScalarWhereInput[]
+  }
+
+  export type MentorSlotBookingUncheckedUpdateManyWithoutMentorAvailabilitySlotNestedInput = {
+    create?: XOR<MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput, MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput> | MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput[] | MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput[]
+    connectOrCreate?: MentorSlotBookingCreateOrConnectWithoutMentorAvailabilitySlotInput | MentorSlotBookingCreateOrConnectWithoutMentorAvailabilitySlotInput[]
+    upsert?: MentorSlotBookingUpsertWithWhereUniqueWithoutMentorAvailabilitySlotInput | MentorSlotBookingUpsertWithWhereUniqueWithoutMentorAvailabilitySlotInput[]
+    createMany?: MentorSlotBookingCreateManyMentorAvailabilitySlotInputEnvelope
+    set?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    disconnect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    delete?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    connect?: MentorSlotBookingWhereUniqueInput | MentorSlotBookingWhereUniqueInput[]
+    update?: MentorSlotBookingUpdateWithWhereUniqueWithoutMentorAvailabilitySlotInput | MentorSlotBookingUpdateWithWhereUniqueWithoutMentorAvailabilitySlotInput[]
+    updateMany?: MentorSlotBookingUpdateManyWithWhereWithoutMentorAvailabilitySlotInput | MentorSlotBookingUpdateManyWithWhereWithoutMentorAvailabilitySlotInput[]
+    deleteMany?: MentorSlotBookingScalarWhereInput | MentorSlotBookingScalarWhereInput[]
+  }
+
+  export type ClassScheduleCreateNestedOneWithoutMentorSlotBookingInput = {
+    create?: XOR<ClassScheduleCreateWithoutMentorSlotBookingInput, ClassScheduleUncheckedCreateWithoutMentorSlotBookingInput>
+    connectOrCreate?: ClassScheduleCreateOrConnectWithoutMentorSlotBookingInput
+    connect?: ClassScheduleWhereUniqueInput
+  }
+
+  export type MentorAvailabilitySlotCreateNestedOneWithoutMentorSlotBookingInput = {
+    create?: XOR<MentorAvailabilitySlotCreateWithoutMentorSlotBookingInput, MentorAvailabilitySlotUncheckedCreateWithoutMentorSlotBookingInput>
+    connectOrCreate?: MentorAvailabilitySlotCreateOrConnectWithoutMentorSlotBookingInput
+    connect?: MentorAvailabilitySlotWhereUniqueInput
+  }
+
+  export type StudentCreateNestedOneWithoutMentorSlotBookingInput = {
+    create?: XOR<StudentCreateWithoutMentorSlotBookingInput, StudentUncheckedCreateWithoutMentorSlotBookingInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutMentorSlotBookingInput
+    connect?: StudentWhereUniqueInput
+  }
+
+  export type EnumMentorSlotBookingStatusFieldUpdateOperationsInput = {
+    set?: $Enums.MentorSlotBookingStatus
+  }
+
+  export type ClassScheduleUpdateOneWithoutMentorSlotBookingNestedInput = {
+    create?: XOR<ClassScheduleCreateWithoutMentorSlotBookingInput, ClassScheduleUncheckedCreateWithoutMentorSlotBookingInput>
+    connectOrCreate?: ClassScheduleCreateOrConnectWithoutMentorSlotBookingInput
+    upsert?: ClassScheduleUpsertWithoutMentorSlotBookingInput
+    disconnect?: ClassScheduleWhereInput | boolean
+    delete?: ClassScheduleWhereInput | boolean
+    connect?: ClassScheduleWhereUniqueInput
+    update?: XOR<XOR<ClassScheduleUpdateToOneWithWhereWithoutMentorSlotBookingInput, ClassScheduleUpdateWithoutMentorSlotBookingInput>, ClassScheduleUncheckedUpdateWithoutMentorSlotBookingInput>
+  }
+
+  export type MentorAvailabilitySlotUpdateOneRequiredWithoutMentorSlotBookingNestedInput = {
+    create?: XOR<MentorAvailabilitySlotCreateWithoutMentorSlotBookingInput, MentorAvailabilitySlotUncheckedCreateWithoutMentorSlotBookingInput>
+    connectOrCreate?: MentorAvailabilitySlotCreateOrConnectWithoutMentorSlotBookingInput
+    upsert?: MentorAvailabilitySlotUpsertWithoutMentorSlotBookingInput
+    connect?: MentorAvailabilitySlotWhereUniqueInput
+    update?: XOR<XOR<MentorAvailabilitySlotUpdateToOneWithWhereWithoutMentorSlotBookingInput, MentorAvailabilitySlotUpdateWithoutMentorSlotBookingInput>, MentorAvailabilitySlotUncheckedUpdateWithoutMentorSlotBookingInput>
+  }
+
+  export type StudentUpdateOneRequiredWithoutMentorSlotBookingNestedInput = {
+    create?: XOR<StudentCreateWithoutMentorSlotBookingInput, StudentUncheckedCreateWithoutMentorSlotBookingInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutMentorSlotBookingInput
+    upsert?: StudentUpsertWithoutMentorSlotBookingInput
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutMentorSlotBookingInput, StudentUpdateWithoutMentorSlotBookingInput>, StudentUncheckedUpdateWithoutMentorSlotBookingInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -78351,6 +81909,40 @@ export namespace Prisma {
     _max?: NestedEnumMeetingMinuteCreationModeFilter<$PrismaModel>
   }
 
+  export type NestedEnumMentorAvailabilityStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.MentorAvailabilityStatus | EnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MentorAvailabilityStatus[] | ListEnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MentorAvailabilityStatus[] | ListEnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMentorAvailabilityStatusFilter<$PrismaModel> | $Enums.MentorAvailabilityStatus
+  }
+
+  export type NestedEnumMentorAvailabilityStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MentorAvailabilityStatus | EnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MentorAvailabilityStatus[] | ListEnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MentorAvailabilityStatus[] | ListEnumMentorAvailabilityStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMentorAvailabilityStatusWithAggregatesFilter<$PrismaModel> | $Enums.MentorAvailabilityStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMentorAvailabilityStatusFilter<$PrismaModel>
+    _max?: NestedEnumMentorAvailabilityStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumMentorSlotBookingStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.MentorSlotBookingStatus | EnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MentorSlotBookingStatus[] | ListEnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MentorSlotBookingStatus[] | ListEnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMentorSlotBookingStatusFilter<$PrismaModel> | $Enums.MentorSlotBookingStatus
+  }
+
+  export type NestedEnumMentorSlotBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MentorSlotBookingStatus | EnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MentorSlotBookingStatus[] | ListEnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MentorSlotBookingStatus[] | ListEnumMentorSlotBookingStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMentorSlotBookingStatusWithAggregatesFilter<$PrismaModel> | $Enums.MentorSlotBookingStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMentorSlotBookingStatusFilter<$PrismaModel>
+    _max?: NestedEnumMentorSlotBookingStatusFilter<$PrismaModel>
+  }
+
   export type AssignmentCreateWithoutTeacherInput = {
     title: string
     description: string
@@ -78426,6 +82018,7 @@ export namespace Prisma {
     group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
     student: StudentCreateNestedOneWithoutClassSchedulesInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutClassScheduleInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedOneWithoutClassScheduleInput
   }
 
   export type ClassScheduleUncheckedCreateWithoutTeacherInput = {
@@ -78453,6 +82046,7 @@ export namespace Prisma {
     startDateTime?: Date | string | null
     timezone?: string | null
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedOneWithoutClassScheduleInput
   }
 
   export type ClassScheduleCreateOrConnectWithoutTeacherInput = {
@@ -78552,6 +82146,37 @@ export namespace Prisma {
   export type MentorCreateOrConnectWithoutTeacherInput = {
     where: MentorWhereUniqueInput
     create: XOR<MentorCreateWithoutTeacherInput, MentorUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type MentorAvailabilitySlotCreateWithoutTeacherInput = {
+    startsAt: Date | string
+    endsAt: Date | string
+    timezone: string
+    status?: $Enums.MentorAvailabilityStatus
+    createdAt?: Date | string
+    updatedAt: Date | string
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutMentorAvailabilitySlotInput
+  }
+
+  export type MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput = {
+    id?: number
+    startsAt: Date | string
+    endsAt: Date | string
+    timezone: string
+    status?: $Enums.MentorAvailabilityStatus
+    createdAt?: Date | string
+    updatedAt: Date | string
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutMentorAvailabilitySlotInput
+  }
+
+  export type MentorAvailabilitySlotCreateOrConnectWithoutTeacherInput = {
+    where: MentorAvailabilitySlotWhereUniqueInput
+    create: XOR<MentorAvailabilitySlotCreateWithoutTeacherInput, MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type MentorAvailabilitySlotCreateManyTeacherInputEnvelope = {
+    data: MentorAvailabilitySlotCreateManyTeacherInput | MentorAvailabilitySlotCreateManyTeacherInput[]
+    skipDuplicates?: boolean
   }
 
   export type ProgressReportCreateWithoutTeacherInput = {
@@ -78791,6 +82416,7 @@ export namespace Prisma {
     recurrence?: string | null
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
@@ -78823,6 +82449,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -78854,6 +82481,7 @@ export namespace Prisma {
     usageCount?: number
     createdAt?: Date | string
     updatedAt: Date | string
+    requireChecklistComplete?: boolean
     Task?: TaskCreateNestedManyWithoutTaskTemplateInput
   }
 
@@ -78876,6 +82504,7 @@ export namespace Prisma {
     usageCount?: number
     createdAt?: Date | string
     updatedAt: Date | string
+    requireChecklistComplete?: boolean
     Task?: TaskUncheckedCreateNestedManyWithoutTaskTemplateInput
   }
 
@@ -79078,6 +82707,36 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     department?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MentorAvailabilitySlotUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: MentorAvailabilitySlotWhereUniqueInput
+    update: XOR<MentorAvailabilitySlotUpdateWithoutTeacherInput, MentorAvailabilitySlotUncheckedUpdateWithoutTeacherInput>
+    create: XOR<MentorAvailabilitySlotCreateWithoutTeacherInput, MentorAvailabilitySlotUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type MentorAvailabilitySlotUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: MentorAvailabilitySlotWhereUniqueInput
+    data: XOR<MentorAvailabilitySlotUpdateWithoutTeacherInput, MentorAvailabilitySlotUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type MentorAvailabilitySlotUpdateManyWithWhereWithoutTeacherInput = {
+    where: MentorAvailabilitySlotScalarWhereInput
+    data: XOR<MentorAvailabilitySlotUpdateManyMutationInput, MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type MentorAvailabilitySlotScalarWhereInput = {
+    AND?: MentorAvailabilitySlotScalarWhereInput | MentorAvailabilitySlotScalarWhereInput[]
+    OR?: MentorAvailabilitySlotScalarWhereInput[]
+    NOT?: MentorAvailabilitySlotScalarWhereInput | MentorAvailabilitySlotScalarWhereInput[]
+    id?: IntFilter<"MentorAvailabilitySlot"> | number
+    teacherId?: IntFilter<"MentorAvailabilitySlot"> | number
+    startsAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    endsAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    timezone?: StringFilter<"MentorAvailabilitySlot"> | string
+    status?: EnumMentorAvailabilityStatusFilter<"MentorAvailabilitySlot"> | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
+    updatedAt?: DateTimeFilter<"MentorAvailabilitySlot"> | Date | string
   }
 
   export type ProgressReportUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -79304,6 +82963,7 @@ export namespace Prisma {
     recurrenceEndsAt?: DateTimeNullableFilter<"Task"> | Date | string | null
     seriesId?: IntNullableFilter<"Task"> | number | null
     templateId?: IntNullableFilter<"Task"> | number | null
+    requireChecklistComplete?: BoolFilter<"Task"> | boolean
   }
 
   export type TaskTemplateUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -79345,6 +83005,7 @@ export namespace Prisma {
     usageCount?: IntFilter<"TaskTemplate"> | number
     createdAt?: DateTimeFilter<"TaskTemplate"> | Date | string
     updatedAt?: DateTimeFilter<"TaskTemplate"> | Date | string
+    requireChecklistComplete?: BoolFilter<"TaskTemplate"> | boolean
   }
 
   export type TeacherStudentUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -79509,6 +83170,7 @@ export namespace Prisma {
     group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
     teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutClassScheduleInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedOneWithoutClassScheduleInput
   }
 
   export type ClassScheduleUncheckedCreateWithoutStudentInput = {
@@ -79536,6 +83198,7 @@ export namespace Prisma {
     startDateTime?: Date | string | null
     timezone?: string | null
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedOneWithoutClassScheduleInput
   }
 
   export type ClassScheduleCreateOrConnectWithoutStudentInput = {
@@ -79611,6 +83274,39 @@ export namespace Prisma {
 
   export type MeetingMinuteRequestCreateManyStudentInputEnvelope = {
     data: MeetingMinuteRequestCreateManyStudentInput | MeetingMinuteRequestCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MentorSlotBookingCreateWithoutStudentInput = {
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    ClassSchedule?: ClassScheduleCreateNestedOneWithoutMentorSlotBookingInput
+    MentorAvailabilitySlot: MentorAvailabilitySlotCreateNestedOneWithoutMentorSlotBookingInput
+  }
+
+  export type MentorSlotBookingUncheckedCreateWithoutStudentInput = {
+    id?: number
+    slotId: number
+    classScheduleId?: number | null
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MentorSlotBookingCreateOrConnectWithoutStudentInput = {
+    where: MentorSlotBookingWhereUniqueInput
+    create: XOR<MentorSlotBookingCreateWithoutStudentInput, MentorSlotBookingUncheckedCreateWithoutStudentInput>
+  }
+
+  export type MentorSlotBookingCreateManyStudentInputEnvelope = {
+    data: MentorSlotBookingCreateManyStudentInput | MentorSlotBookingCreateManyStudentInput[]
     skipDuplicates?: boolean
   }
 
@@ -80235,6 +83931,38 @@ export namespace Prisma {
     creationMode?: EnumMeetingMinuteCreationModeFilter<"MeetingMinuteRequest"> | $Enums.MeetingMinuteCreationMode
   }
 
+  export type MentorSlotBookingUpsertWithWhereUniqueWithoutStudentInput = {
+    where: MentorSlotBookingWhereUniqueInput
+    update: XOR<MentorSlotBookingUpdateWithoutStudentInput, MentorSlotBookingUncheckedUpdateWithoutStudentInput>
+    create: XOR<MentorSlotBookingCreateWithoutStudentInput, MentorSlotBookingUncheckedCreateWithoutStudentInput>
+  }
+
+  export type MentorSlotBookingUpdateWithWhereUniqueWithoutStudentInput = {
+    where: MentorSlotBookingWhereUniqueInput
+    data: XOR<MentorSlotBookingUpdateWithoutStudentInput, MentorSlotBookingUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type MentorSlotBookingUpdateManyWithWhereWithoutStudentInput = {
+    where: MentorSlotBookingScalarWhereInput
+    data: XOR<MentorSlotBookingUpdateManyMutationInput, MentorSlotBookingUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type MentorSlotBookingScalarWhereInput = {
+    AND?: MentorSlotBookingScalarWhereInput | MentorSlotBookingScalarWhereInput[]
+    OR?: MentorSlotBookingScalarWhereInput[]
+    NOT?: MentorSlotBookingScalarWhereInput | MentorSlotBookingScalarWhereInput[]
+    id?: IntFilter<"MentorSlotBooking"> | number
+    slotId?: IntFilter<"MentorSlotBooking"> | number
+    studentId?: IntFilter<"MentorSlotBooking"> | number
+    classScheduleId?: IntNullableFilter<"MentorSlotBooking"> | number | null
+    status?: EnumMentorSlotBookingStatusFilter<"MentorSlotBooking"> | $Enums.MentorSlotBookingStatus
+    message?: StringNullableFilter<"MentorSlotBooking"> | string | null
+    googleSyncError?: StringNullableFilter<"MentorSlotBooking"> | string | null
+    respondedAt?: DateTimeNullableFilter<"MentorSlotBooking"> | Date | string | null
+    createdAt?: DateTimeFilter<"MentorSlotBooking"> | Date | string
+    updatedAt?: DateTimeFilter<"MentorSlotBooking"> | Date | string
+  }
+
   export type PaymentUpsertWithWhereUniqueWithoutStudentInput = {
     where: PaymentWhereUniqueInput
     update: XOR<PaymentUpdateWithoutStudentInput, PaymentUncheckedUpdateWithoutStudentInput>
@@ -80591,6 +84319,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -80625,6 +84354,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -80657,6 +84387,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -80683,6 +84414,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -80728,6 +84460,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -80762,6 +84495,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -80800,6 +84534,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -80826,6 +84561,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -80859,6 +84595,7 @@ export namespace Prisma {
     student: StudentCreateNestedOneWithoutClassSchedulesInput
     teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutClassScheduleInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedOneWithoutClassScheduleInput
   }
 
   export type ClassScheduleUncheckedCreateWithoutGroupInput = {
@@ -80886,6 +84623,7 @@ export namespace Prisma {
     startDateTime?: Date | string | null
     timezone?: string | null
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedOneWithoutClassScheduleInput
   }
 
   export type ClassScheduleCreateOrConnectWithoutGroupInput = {
@@ -80914,6 +84652,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
@@ -80940,6 +84679,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
@@ -81018,6 +84758,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
@@ -81044,6 +84785,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
@@ -81111,6 +84853,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -81145,6 +84888,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -81220,6 +84964,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -81254,6 +84999,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -81284,6 +85030,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -81318,6 +85065,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -81350,6 +85098,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -81376,6 +85125,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -81492,6 +85242,7 @@ export namespace Prisma {
     recurrence?: string | null
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
     Teacher: TeacherCreateNestedOneWithoutTaskInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
@@ -81524,6 +85275,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -81567,6 +85319,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -81601,6 +85354,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -81639,6 +85393,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -81665,6 +85420,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -81815,6 +85571,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -81849,6 +85606,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -81948,6 +85706,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -81982,6 +85741,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -82012,6 +85772,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -82046,6 +85807,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -82152,6 +85914,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -82186,6 +85949,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -82251,6 +86015,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
@@ -82277,6 +86042,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
@@ -82334,6 +86100,7 @@ export namespace Prisma {
     recurrence?: string | null
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
     Teacher: TeacherCreateNestedOneWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
@@ -82366,6 +86133,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -82422,6 +86190,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
@@ -82448,6 +86217,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
@@ -82745,6 +86515,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -82779,6 +86550,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -82876,6 +86648,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -82910,6 +86683,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -82941,6 +86715,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -82975,6 +86750,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -83047,6 +86823,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -83081,6 +86858,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -83156,6 +86934,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -83182,6 +86961,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -83261,6 +87041,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -83287,6 +87068,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -83337,6 +87119,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -83371,6 +87154,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -83403,6 +87187,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -83429,6 +87214,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -83491,6 +87277,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MentorSlotBookingCreateWithoutClassScheduleInput = {
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    MentorAvailabilitySlot: MentorAvailabilitySlotCreateNestedOneWithoutMentorSlotBookingInput
+    Student: StudentCreateNestedOneWithoutMentorSlotBookingInput
+  }
+
+  export type MentorSlotBookingUncheckedCreateWithoutClassScheduleInput = {
+    id?: number
+    slotId: number
+    studentId: number
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MentorSlotBookingCreateOrConnectWithoutClassScheduleInput = {
+    where: MentorSlotBookingWhereUniqueInput
+    create: XOR<MentorSlotBookingCreateWithoutClassScheduleInput, MentorSlotBookingUncheckedCreateWithoutClassScheduleInput>
+  }
+
   export type StudentGroupUpsertWithoutClassSchedulesInput = {
     update: XOR<StudentGroupUpdateWithoutClassSchedulesInput, StudentGroupUncheckedUpdateWithoutClassSchedulesInput>
     create: XOR<StudentGroupCreateWithoutClassSchedulesInput, StudentGroupUncheckedCreateWithoutClassSchedulesInput>
@@ -83549,6 +87363,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -83583,6 +87398,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -83621,6 +87437,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -83647,6 +87464,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -83671,6 +87489,40 @@ export namespace Prisma {
   export type MeetingMinuteMeetingUpdateManyWithWhereWithoutClassScheduleInput = {
     where: MeetingMinuteMeetingScalarWhereInput
     data: XOR<MeetingMinuteMeetingUpdateManyMutationInput, MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleInput>
+  }
+
+  export type MentorSlotBookingUpsertWithoutClassScheduleInput = {
+    update: XOR<MentorSlotBookingUpdateWithoutClassScheduleInput, MentorSlotBookingUncheckedUpdateWithoutClassScheduleInput>
+    create: XOR<MentorSlotBookingCreateWithoutClassScheduleInput, MentorSlotBookingUncheckedCreateWithoutClassScheduleInput>
+    where?: MentorSlotBookingWhereInput
+  }
+
+  export type MentorSlotBookingUpdateToOneWithWhereWithoutClassScheduleInput = {
+    where?: MentorSlotBookingWhereInput
+    data: XOR<MentorSlotBookingUpdateWithoutClassScheduleInput, MentorSlotBookingUncheckedUpdateWithoutClassScheduleInput>
+  }
+
+  export type MentorSlotBookingUpdateWithoutClassScheduleInput = {
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateOneRequiredWithoutMentorSlotBookingNestedInput
+    Student?: StudentUpdateOneRequiredWithoutMentorSlotBookingNestedInput
+  }
+
+  export type MentorSlotBookingUncheckedUpdateWithoutClassScheduleInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slotId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EnrollmentCreateWithoutPaymentInput = {
@@ -83717,6 +87569,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
@@ -83751,6 +87604,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
@@ -83828,6 +87682,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
@@ -83862,6 +87717,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
@@ -83893,6 +87749,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -83927,6 +87784,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -83974,6 +87832,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -84008,6 +87867,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -84039,6 +87899,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -84072,6 +87933,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -84146,6 +88008,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -84172,6 +88035,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -84213,6 +88077,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -84239,6 +88104,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -84269,6 +88135,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
@@ -84303,6 +88170,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
@@ -84335,6 +88203,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
@@ -84361,6 +88230,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
@@ -84406,6 +88276,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
@@ -84440,6 +88311,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
@@ -84478,6 +88350,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
@@ -84504,6 +88377,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
@@ -84927,6 +88801,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
@@ -84961,6 +88836,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
@@ -85038,6 +88914,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
@@ -85072,6 +88949,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
@@ -85102,6 +88980,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -85136,6 +89015,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -85183,6 +89063,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -85217,6 +89098,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -85294,6 +89176,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -85328,6 +89211,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -85427,6 +89311,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -85461,6 +89346,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -85497,6 +89383,7 @@ export namespace Prisma {
     group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
     student: StudentCreateNestedOneWithoutClassSchedulesInput
     teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedOneWithoutClassScheduleInput
   }
 
   export type ClassScheduleUncheckedCreateWithoutMeetingMinuteMeetingInput = {
@@ -85524,6 +89411,7 @@ export namespace Prisma {
     reminderSentAt?: Date | string | null
     startDateTime?: Date | string | null
     timezone?: string | null
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedOneWithoutClassScheduleInput
   }
 
   export type ClassScheduleCreateOrConnectWithoutMeetingMinuteMeetingInput = {
@@ -85546,6 +89434,7 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -85572,6 +89461,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -85644,6 +89534,7 @@ export namespace Prisma {
     recurrence?: string | null
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
     Teacher: TeacherCreateNestedOneWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
@@ -85676,6 +89567,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -85724,6 +89616,7 @@ export namespace Prisma {
     group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
     student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateOneWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateWithoutMeetingMinuteMeetingInput = {
@@ -85751,6 +89644,7 @@ export namespace Prisma {
     reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateOneWithoutClassScheduleNestedInput
   }
 
   export type TeacherUpsertWithoutMeetingMinuteMeetingInput = {
@@ -85779,6 +89673,7 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -85805,6 +89700,7 @@ export namespace Prisma {
     assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -85908,6 +89804,7 @@ export namespace Prisma {
     Blog?: BlogCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -85942,6 +89839,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -86037,6 +89935,7 @@ export namespace Prisma {
     Blog?: BlogUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -86071,6 +89970,7 @@ export namespace Prisma {
     Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -86099,6 +89999,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -86125,6 +90026,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -86159,6 +90061,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingCreateNestedManyWithoutStudentInput
     Payment?: PaymentCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
     Research?: ResearchCreateNestedManyWithoutStudentInput
@@ -86193,6 +90096,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
     enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedCreateNestedManyWithoutStudentInput
     Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
@@ -86229,6 +90133,7 @@ export namespace Prisma {
     recurrence?: string | null
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
+    requireChecklistComplete?: boolean
     Teacher: TeacherCreateNestedOneWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
@@ -86262,6 +90167,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
   }
 
   export type TaskCreateOrConnectWithoutStudentTaskInput = {
@@ -86356,6 +90262,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -86382,6 +90289,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -86422,6 +90330,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -86456,6 +90365,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -86498,6 +90408,7 @@ export namespace Prisma {
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
@@ -86531,6 +90442,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TaskActivityUpsertWithWhereUniqueWithoutStudentTaskInput = {
@@ -86667,6 +90579,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -86693,6 +90606,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -86857,6 +90771,7 @@ export namespace Prisma {
     usageCount?: number
     createdAt?: Date | string
     updatedAt: Date | string
+    requireChecklistComplete?: boolean
     Teacher: TeacherCreateNestedOneWithoutTaskTemplateInput
   }
 
@@ -86880,6 +90795,7 @@ export namespace Prisma {
     usageCount?: number
     createdAt?: Date | string
     updatedAt: Date | string
+    requireChecklistComplete?: boolean
   }
 
   export type TaskTemplateCreateOrConnectWithoutTaskInput = {
@@ -86930,6 +90846,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -86956,6 +90873,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -87144,6 +91062,7 @@ export namespace Prisma {
     usageCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     Teacher?: TeacherUpdateOneRequiredWithoutTaskTemplateNestedInput
   }
 
@@ -87167,6 +91086,7 @@ export namespace Prisma {
     usageCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StudentTaskCreateWithoutTaskActivityInput = {
@@ -87409,6 +91329,7 @@ export namespace Prisma {
     recurrence?: string | null
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
     Teacher: TeacherCreateNestedOneWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
@@ -87441,6 +91362,7 @@ export namespace Prisma {
     recurrence?: string | null
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
+    requireChecklistComplete?: boolean
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -87470,6 +91392,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
@@ -87496,6 +91419,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
     mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
@@ -87553,6 +91477,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
@@ -87579,6 +91504,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
     mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
@@ -87586,6 +91512,511 @@ export namespace Prisma {
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherCreateWithoutMentorAvailabilitySlotInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherUncheckedCreateWithoutMentorAvailabilitySlotInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherCreateOrConnectWithoutMentorAvailabilitySlotInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutMentorAvailabilitySlotInput, TeacherUncheckedCreateWithoutMentorAvailabilitySlotInput>
+  }
+
+  export type MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput = {
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    ClassSchedule?: ClassScheduleCreateNestedOneWithoutMentorSlotBookingInput
+    Student: StudentCreateNestedOneWithoutMentorSlotBookingInput
+  }
+
+  export type MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput = {
+    id?: number
+    studentId: number
+    classScheduleId?: number | null
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MentorSlotBookingCreateOrConnectWithoutMentorAvailabilitySlotInput = {
+    where: MentorSlotBookingWhereUniqueInput
+    create: XOR<MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput, MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput>
+  }
+
+  export type MentorSlotBookingCreateManyMentorAvailabilitySlotInputEnvelope = {
+    data: MentorSlotBookingCreateManyMentorAvailabilitySlotInput | MentorSlotBookingCreateManyMentorAvailabilitySlotInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TeacherUpsertWithoutMentorAvailabilitySlotInput = {
+    update: XOR<TeacherUpdateWithoutMentorAvailabilitySlotInput, TeacherUncheckedUpdateWithoutMentorAvailabilitySlotInput>
+    create: XOR<TeacherCreateWithoutMentorAvailabilitySlotInput, TeacherUncheckedCreateWithoutMentorAvailabilitySlotInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutMentorAvailabilitySlotInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutMentorAvailabilitySlotInput, TeacherUncheckedUpdateWithoutMentorAvailabilitySlotInput>
+  }
+
+  export type TeacherUpdateWithoutMentorAvailabilitySlotInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutMentorAvailabilitySlotInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type MentorSlotBookingUpsertWithWhereUniqueWithoutMentorAvailabilitySlotInput = {
+    where: MentorSlotBookingWhereUniqueInput
+    update: XOR<MentorSlotBookingUpdateWithoutMentorAvailabilitySlotInput, MentorSlotBookingUncheckedUpdateWithoutMentorAvailabilitySlotInput>
+    create: XOR<MentorSlotBookingCreateWithoutMentorAvailabilitySlotInput, MentorSlotBookingUncheckedCreateWithoutMentorAvailabilitySlotInput>
+  }
+
+  export type MentorSlotBookingUpdateWithWhereUniqueWithoutMentorAvailabilitySlotInput = {
+    where: MentorSlotBookingWhereUniqueInput
+    data: XOR<MentorSlotBookingUpdateWithoutMentorAvailabilitySlotInput, MentorSlotBookingUncheckedUpdateWithoutMentorAvailabilitySlotInput>
+  }
+
+  export type MentorSlotBookingUpdateManyWithWhereWithoutMentorAvailabilitySlotInput = {
+    where: MentorSlotBookingScalarWhereInput
+    data: XOR<MentorSlotBookingUpdateManyMutationInput, MentorSlotBookingUncheckedUpdateManyWithoutMentorAvailabilitySlotInput>
+  }
+
+  export type ClassScheduleCreateWithoutMentorSlotBookingInput = {
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    subject: string
+    description?: string | null
+    location?: string | null
+    meetingLink?: string | null
+    status?: string
+    color?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
+    googleCalendarEventId?: string | null
+    meetingMinutes?: string | null
+    reminderJobId?: string | null
+    reminderScheduledFor?: Date | string | null
+    reminderSentAt?: Date | string | null
+    startDateTime?: Date | string | null
+    timezone?: string | null
+    group?: StudentGroupCreateNestedOneWithoutClassSchedulesInput
+    student: StudentCreateNestedOneWithoutClassSchedulesInput
+    teacher: TeacherCreateNestedOneWithoutClassSchedulesInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutClassScheduleInput
+  }
+
+  export type ClassScheduleUncheckedCreateWithoutMentorSlotBookingInput = {
+    id?: number
+    title: string
+    date: Date | string
+    startTime: string
+    endTime: string
+    subject: string
+    description?: string | null
+    location?: string | null
+    meetingLink?: string | null
+    status?: string
+    color?: string | null
+    studentId: number
+    teacherId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    endDateTime?: Date | string | null
+    googleCalendarEventId?: string | null
+    groupId?: number | null
+    meetingMinutes?: string | null
+    reminderJobId?: string | null
+    reminderScheduledFor?: Date | string | null
+    reminderSentAt?: Date | string | null
+    startDateTime?: Date | string | null
+    timezone?: string | null
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutClassScheduleInput
+  }
+
+  export type ClassScheduleCreateOrConnectWithoutMentorSlotBookingInput = {
+    where: ClassScheduleWhereUniqueInput
+    create: XOR<ClassScheduleCreateWithoutMentorSlotBookingInput, ClassScheduleUncheckedCreateWithoutMentorSlotBookingInput>
+  }
+
+  export type MentorAvailabilitySlotCreateWithoutMentorSlotBookingInput = {
+    startsAt: Date | string
+    endsAt: Date | string
+    timezone: string
+    status?: $Enums.MentorAvailabilityStatus
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Teacher: TeacherCreateNestedOneWithoutMentorAvailabilitySlotInput
+  }
+
+  export type MentorAvailabilitySlotUncheckedCreateWithoutMentorSlotBookingInput = {
+    id?: number
+    teacherId: number
+    startsAt: Date | string
+    endsAt: Date | string
+    timezone: string
+    status?: $Enums.MentorAvailabilityStatus
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MentorAvailabilitySlotCreateOrConnectWithoutMentorSlotBookingInput = {
+    where: MentorAvailabilitySlotWhereUniqueInput
+    create: XOR<MentorAvailabilitySlotCreateWithoutMentorSlotBookingInput, MentorAvailabilitySlotUncheckedCreateWithoutMentorSlotBookingInput>
+  }
+
+  export type StudentCreateWithoutMentorSlotBookingInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutMentorSlotBookingInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutMentorSlotBookingInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutMentorSlotBookingInput, StudentUncheckedCreateWithoutMentorSlotBookingInput>
+  }
+
+  export type ClassScheduleUpsertWithoutMentorSlotBookingInput = {
+    update: XOR<ClassScheduleUpdateWithoutMentorSlotBookingInput, ClassScheduleUncheckedUpdateWithoutMentorSlotBookingInput>
+    create: XOR<ClassScheduleCreateWithoutMentorSlotBookingInput, ClassScheduleUncheckedCreateWithoutMentorSlotBookingInput>
+    where?: ClassScheduleWhereInput
+  }
+
+  export type ClassScheduleUpdateToOneWithWhereWithoutMentorSlotBookingInput = {
+    where?: ClassScheduleWhereInput
+    data: XOR<ClassScheduleUpdateWithoutMentorSlotBookingInput, ClassScheduleUncheckedUpdateWithoutMentorSlotBookingInput>
+  }
+
+  export type ClassScheduleUpdateWithoutMentorSlotBookingInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
+    group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
+    student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
+    teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutClassScheduleNestedInput
+  }
+
+  export type ClassScheduleUncheckedUpdateWithoutMentorSlotBookingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    color?: NullableStringFieldUpdateOperationsInput | string | null
+    studentId?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    meetingMinutes?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderJobId?: NullableStringFieldUpdateOperationsInput | string | null
+    reminderScheduledFor?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    timezone?: NullableStringFieldUpdateOperationsInput | string | null
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput
+  }
+
+  export type MentorAvailabilitySlotUpsertWithoutMentorSlotBookingInput = {
+    update: XOR<MentorAvailabilitySlotUpdateWithoutMentorSlotBookingInput, MentorAvailabilitySlotUncheckedUpdateWithoutMentorSlotBookingInput>
+    create: XOR<MentorAvailabilitySlotCreateWithoutMentorSlotBookingInput, MentorAvailabilitySlotUncheckedCreateWithoutMentorSlotBookingInput>
+    where?: MentorAvailabilitySlotWhereInput
+  }
+
+  export type MentorAvailabilitySlotUpdateToOneWithWhereWithoutMentorSlotBookingInput = {
+    where?: MentorAvailabilitySlotWhereInput
+    data: XOR<MentorAvailabilitySlotUpdateWithoutMentorSlotBookingInput, MentorAvailabilitySlotUncheckedUpdateWithoutMentorSlotBookingInput>
+  }
+
+  export type MentorAvailabilitySlotUpdateWithoutMentorSlotBookingInput = {
+    startsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    status?: EnumMentorAvailabilityStatusFieldUpdateOperationsInput | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Teacher?: TeacherUpdateOneRequiredWithoutMentorAvailabilitySlotNestedInput
+  }
+
+  export type MentorAvailabilitySlotUncheckedUpdateWithoutMentorSlotBookingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    startsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    status?: EnumMentorAvailabilityStatusFieldUpdateOperationsInput | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentUpsertWithoutMentorSlotBookingInput = {
+    update: XOR<StudentUpdateWithoutMentorSlotBookingInput, StudentUncheckedUpdateWithoutMentorSlotBookingInput>
+    create: XOR<StudentCreateWithoutMentorSlotBookingInput, StudentUncheckedCreateWithoutMentorSlotBookingInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutMentorSlotBookingInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutMentorSlotBookingInput, StudentUncheckedUpdateWithoutMentorSlotBookingInput>
+  }
+
+  export type StudentUpdateWithoutMentorSlotBookingInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutMentorSlotBookingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AssignmentCreateManyTeacherInput = {
@@ -87644,6 +92075,16 @@ export namespace Prisma {
     endDateTime: Date | string
     timezone: string
     attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MentorAvailabilitySlotCreateManyTeacherInput = {
+    id?: number
+    startsAt: Date | string
+    endsAt: Date | string
+    timezone: string
+    status?: $Enums.MentorAvailabilityStatus
     createdAt?: Date | string
     updatedAt: Date | string
   }
@@ -87752,6 +92193,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
   }
 
   export type TaskTemplateCreateManyTeacherInput = {
@@ -87773,6 +92215,7 @@ export namespace Prisma {
     usageCount?: number
     createdAt?: Date | string
     updatedAt: Date | string
+    requireChecklistComplete?: boolean
   }
 
   export type TeacherStudentCreateManyTeacherInput = {
@@ -87864,6 +92307,7 @@ export namespace Prisma {
     group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
     student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutClassScheduleNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateOneWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateWithoutTeacherInput = {
@@ -87891,6 +92335,7 @@ export namespace Prisma {
     startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateOneWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateManyWithoutTeacherInput = {
@@ -87969,6 +92414,37 @@ export namespace Prisma {
     endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
     timezone?: StringFieldUpdateOperationsInput | string
     attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentorAvailabilitySlotUpdateWithoutTeacherInput = {
+    startsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    status?: EnumMentorAvailabilityStatusFieldUpdateOperationsInput | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutMentorAvailabilitySlotNestedInput
+  }
+
+  export type MentorAvailabilitySlotUncheckedUpdateWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    startsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    status?: EnumMentorAvailabilityStatusFieldUpdateOperationsInput | $Enums.MentorAvailabilityStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutMentorAvailabilitySlotNestedInput
+  }
+
+  export type MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    startsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    endsAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    status?: EnumMentorAvailabilityStatusFieldUpdateOperationsInput | $Enums.MentorAvailabilityStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -88239,6 +92715,7 @@ export namespace Prisma {
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
@@ -88271,6 +92748,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -88299,6 +92777,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TaskTemplateUpdateWithoutTeacherInput = {
@@ -88319,6 +92798,7 @@ export namespace Prisma {
     usageCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     Task?: TaskUpdateManyWithoutTaskTemplateNestedInput
   }
 
@@ -88341,6 +92821,7 @@ export namespace Prisma {
     usageCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     Task?: TaskUncheckedUpdateManyWithoutTaskTemplateNestedInput
   }
 
@@ -88363,6 +92844,7 @@ export namespace Prisma {
     usageCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TeacherStudentUpdateWithoutTeacherInput = {
@@ -88470,6 +92952,18 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     creationMode?: $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MentorSlotBookingCreateManyStudentInput = {
+    id?: number
+    slotId: number
+    classScheduleId?: number | null
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
   }
 
   export type PaymentCreateManyStudentInput = {
@@ -88785,6 +93279,7 @@ export namespace Prisma {
     group?: StudentGroupUpdateOneWithoutClassSchedulesNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutClassScheduleNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateOneWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateWithoutStudentInput = {
@@ -88812,6 +93307,7 @@ export namespace Prisma {
     startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateOneWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateManyWithoutStudentInput = {
@@ -88907,6 +93403,41 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+  }
+
+  export type MentorSlotBookingUpdateWithoutStudentInput = {
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClassSchedule?: ClassScheduleUpdateOneWithoutMentorSlotBookingNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateOneRequiredWithoutMentorSlotBookingNestedInput
+  }
+
+  export type MentorSlotBookingUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slotId?: IntFieldUpdateOperationsInput | number
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentorSlotBookingUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    slotId?: IntFieldUpdateOperationsInput | number
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PaymentUpdateWithoutStudentInput = {
@@ -89474,6 +94005,7 @@ export namespace Prisma {
     student?: StudentUpdateOneRequiredWithoutClassSchedulesNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutClassSchedulesNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutClassScheduleNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateOneWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateWithoutGroupInput = {
@@ -89501,6 +94033,7 @@ export namespace Prisma {
     startDateTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     timezone?: NullableStringFieldUpdateOperationsInput | string | null
     MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateOneWithoutClassScheduleNestedInput
   }
 
   export type ClassScheduleUncheckedUpdateManyWithoutGroupInput = {
@@ -89598,6 +94131,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
   }
 
   export type AssignmentResourceUpdateWithoutAssignmentInput = {
@@ -89698,6 +94232,7 @@ export namespace Prisma {
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
     Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
@@ -89730,6 +94265,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -89758,6 +94294,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PaymentCreateManyEnrollmentInput = {
@@ -89897,6 +94434,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
   }
 
   export type AssignmentResourceUpdateWithoutResourceInput = {
@@ -89956,6 +94494,7 @@ export namespace Prisma {
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
     Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
@@ -89988,6 +94527,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -90016,6 +94556,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StudentSubmissionRemarkCreateManyStudentSubmissionInput = {
@@ -90157,6 +94698,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
     Research?: ResearchUpdateManyWithoutStudentNestedInput
@@ -90190,6 +94732,7 @@ export namespace Prisma {
     classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
     enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    MentorSlotBooking?: MentorSlotBookingUncheckedUpdateManyWithoutStudentNestedInput
     Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
@@ -90405,6 +94948,7 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     templateId?: number | null
+    requireChecklistComplete?: boolean
   }
 
   export type MeetingMinuteRequestUpdateWithoutMeetingMinuteMeetingInput = {
@@ -90468,6 +95012,7 @@ export namespace Prisma {
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
     Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
@@ -90500,6 +95045,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -90528,6 +95074,7 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TaskActivityCreateManyStudentTaskInput = {
@@ -90728,6 +95275,7 @@ export namespace Prisma {
     recurrence?: string | null
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
+    requireChecklistComplete?: boolean
   }
 
   export type TaskUpdateWithoutTaskTemplateInput = {
@@ -90750,6 +95298,7 @@ export namespace Prisma {
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
     Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
@@ -90782,6 +95331,7 @@ export namespace Prisma {
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -90810,6 +95360,54 @@ export namespace Prisma {
     recurrence?: NullableStringFieldUpdateOperationsInput | string | null
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type MentorSlotBookingCreateManyMentorAvailabilitySlotInput = {
+    id?: number
+    studentId: number
+    classScheduleId?: number | null
+    status?: $Enums.MentorSlotBookingStatus
+    message?: string | null
+    googleSyncError?: string | null
+    respondedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type MentorSlotBookingUpdateWithoutMentorAvailabilitySlotInput = {
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClassSchedule?: ClassScheduleUpdateOneWithoutMentorSlotBookingNestedInput
+    Student?: StudentUpdateOneRequiredWithoutMentorSlotBookingNestedInput
+  }
+
+  export type MentorSlotBookingUncheckedUpdateWithoutMentorAvailabilitySlotInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MentorSlotBookingUncheckedUpdateManyWithoutMentorAvailabilitySlotInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: EnumMentorSlotBookingStatusFieldUpdateOperationsInput | $Enums.MentorSlotBookingStatus
+    message?: NullableStringFieldUpdateOperationsInput | string | null
+    googleSyncError?: NullableStringFieldUpdateOperationsInput | string | null
+    respondedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

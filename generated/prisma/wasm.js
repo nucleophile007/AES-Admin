@@ -796,7 +796,8 @@ exports.Prisma.TaskScalarFieldEnum = {
   recurrence: 'recurrence',
   recurrenceEndsAt: 'recurrenceEndsAt',
   seriesId: 'seriesId',
-  templateId: 'templateId'
+  templateId: 'templateId',
+  requireChecklistComplete: 'requireChecklistComplete'
 };
 
 exports.Prisma.TaskActivityScalarFieldEnum = {
@@ -850,6 +851,31 @@ exports.Prisma.TaskTemplateScalarFieldEnum = {
   recurrence: 'recurrence',
   usageCount: 'usageCount',
   createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  requireChecklistComplete: 'requireChecklistComplete'
+};
+
+exports.Prisma.MentorAvailabilitySlotScalarFieldEnum = {
+  id: 'id',
+  teacherId: 'teacherId',
+  startsAt: 'startsAt',
+  endsAt: 'endsAt',
+  timezone: 'timezone',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MentorSlotBookingScalarFieldEnum = {
+  id: 'id',
+  slotId: 'slotId',
+  studentId: 'studentId',
+  classScheduleId: 'classScheduleId',
+  status: 'status',
+  message: 'message',
+  googleSyncError: 'googleSyncError',
+  respondedAt: 'respondedAt',
+  createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
@@ -898,6 +924,19 @@ exports.MeetingMinuteCreationMode = exports.$Enums.MeetingMinuteCreationMode = {
   MENTOR_DIRECT: 'MENTOR_DIRECT'
 };
 
+exports.MentorAvailabilityStatus = exports.$Enums.MentorAvailabilityStatus = {
+  OPEN: 'OPEN',
+  BOOKED: 'BOOKED',
+  CANCELLED: 'CANCELLED'
+};
+
+exports.MentorSlotBookingStatus = exports.$Enums.MentorSlotBookingStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  DECLINED: 'DECLINED',
+  CANCELLED: 'CANCELLED'
+};
+
 exports.Prisma.ModelName = {
   WebinarRegistration: 'WebinarRegistration',
   AvailabilityDay: 'AvailabilityDay',
@@ -943,7 +982,9 @@ exports.Prisma.ModelName = {
   TaskActivity: 'TaskActivity',
   TaskComment: 'TaskComment',
   TaskSavedFilter: 'TaskSavedFilter',
-  TaskTemplate: 'TaskTemplate'
+  TaskTemplate: 'TaskTemplate',
+  MentorAvailabilitySlot: 'MentorAvailabilitySlot',
+  MentorSlotBooking: 'MentorSlotBooking'
 };
 
 /**
