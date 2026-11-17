@@ -879,6 +879,22 @@ exports.Prisma.MentorSlotBookingScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.VideoTestimonialScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  designation: 'designation',
+  program: 'program',
+  description: 'description',
+  videoKey: 'videoKey',
+  videoUrl: 'videoUrl',
+  mimeType: 'mimeType',
+  fileSize: 'fileSize',
+  isVisible: 'isVisible',
+  displayOrder: 'displayOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -984,7 +1000,8 @@ exports.Prisma.ModelName = {
   TaskSavedFilter: 'TaskSavedFilter',
   TaskTemplate: 'TaskTemplate',
   MentorAvailabilitySlot: 'MentorAvailabilitySlot',
-  MentorSlotBooking: 'MentorSlotBooking'
+  MentorSlotBooking: 'MentorSlotBooking',
+  VideoTestimonial: 'VideoTestimonial'
 };
 
 /**

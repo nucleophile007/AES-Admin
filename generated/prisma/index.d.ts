@@ -248,6 +248,12 @@ export type MentorAvailabilitySlot = $Result.DefaultSelection<Prisma.$MentorAvai
  * 
  */
 export type MentorSlotBooking = $Result.DefaultSelection<Prisma.$MentorSlotBookingPayload>
+/**
+ * Model VideoTestimonial
+ * Video testimonials uploaded from AES-Admin. Files live in the R2 bucket under "video-testimonials/".
+ * The table is created by the AES migration 20261117000000_video_testimonials.
+ */
+export type VideoTestimonial = $Result.DefaultSelection<Prisma.$VideoTestimonialPayload>
 
 /**
  * Enums
@@ -905,6 +911,16 @@ export class PrismaClient<
     * ```
     */
   get mentorSlotBooking(): Prisma.MentorSlotBookingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.videoTestimonial`: Exposes CRUD operations for the **VideoTestimonial** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VideoTestimonials
+    * const videoTestimonials = await prisma.videoTestimonial.findMany()
+    * ```
+    */
+  get videoTestimonial(): Prisma.VideoTestimonialDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1391,7 +1407,8 @@ export namespace Prisma {
     TaskSavedFilter: 'TaskSavedFilter',
     TaskTemplate: 'TaskTemplate',
     MentorAvailabilitySlot: 'MentorAvailabilitySlot',
-    MentorSlotBooking: 'MentorSlotBooking'
+    MentorSlotBooking: 'MentorSlotBooking',
+    VideoTestimonial: 'VideoTestimonial'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1410,7 +1427,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog" | "assignmentTarget" | "refreshToken" | "meetingMinuteMeeting" | "meetingMinuteRequest" | "studentTask" | "task" | "taskActivity" | "taskComment" | "taskSavedFilter" | "taskTemplate" | "mentorAvailabilitySlot" | "mentorSlotBooking"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog" | "assignmentTarget" | "refreshToken" | "meetingMinuteMeeting" | "meetingMinuteRequest" | "studentTask" | "task" | "taskActivity" | "taskComment" | "taskSavedFilter" | "taskTemplate" | "mentorAvailabilitySlot" | "mentorSlotBooking" | "videoTestimonial"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4892,6 +4909,80 @@ export namespace Prisma {
           }
         }
       }
+      VideoTestimonial: {
+        payload: Prisma.$VideoTestimonialPayload<ExtArgs>
+        fields: Prisma.VideoTestimonialFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VideoTestimonialFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VideoTestimonialFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload>
+          }
+          findFirst: {
+            args: Prisma.VideoTestimonialFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VideoTestimonialFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload>
+          }
+          findMany: {
+            args: Prisma.VideoTestimonialFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload>[]
+          }
+          create: {
+            args: Prisma.VideoTestimonialCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload>
+          }
+          createMany: {
+            args: Prisma.VideoTestimonialCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VideoTestimonialCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload>[]
+          }
+          delete: {
+            args: Prisma.VideoTestimonialDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload>
+          }
+          update: {
+            args: Prisma.VideoTestimonialUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload>
+          }
+          deleteMany: {
+            args: Prisma.VideoTestimonialDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VideoTestimonialUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VideoTestimonialUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload>[]
+          }
+          upsert: {
+            args: Prisma.VideoTestimonialUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VideoTestimonialPayload>
+          }
+          aggregate: {
+            args: Prisma.VideoTestimonialAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVideoTestimonial>
+          }
+          groupBy: {
+            args: Prisma.VideoTestimonialGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VideoTestimonialGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VideoTestimonialCountArgs<ExtArgs>
+            result: $Utils.Optional<VideoTestimonialCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -5031,6 +5122,7 @@ export namespace Prisma {
     taskTemplate?: TaskTemplateOmit
     mentorAvailabilitySlot?: MentorAvailabilitySlotOmit
     mentorSlotBooking?: MentorSlotBookingOmit
+    videoTestimonial?: VideoTestimonialOmit
   }
 
   /* Types for Logging */
@@ -63530,6 +63622,1147 @@ export namespace Prisma {
 
 
   /**
+   * Model VideoTestimonial
+   */
+
+  export type AggregateVideoTestimonial = {
+    _count: VideoTestimonialCountAggregateOutputType | null
+    _avg: VideoTestimonialAvgAggregateOutputType | null
+    _sum: VideoTestimonialSumAggregateOutputType | null
+    _min: VideoTestimonialMinAggregateOutputType | null
+    _max: VideoTestimonialMaxAggregateOutputType | null
+  }
+
+  export type VideoTestimonialAvgAggregateOutputType = {
+    id: number | null
+    fileSize: number | null
+    displayOrder: number | null
+  }
+
+  export type VideoTestimonialSumAggregateOutputType = {
+    id: number | null
+    fileSize: number | null
+    displayOrder: number | null
+  }
+
+  export type VideoTestimonialMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    designation: string | null
+    program: string | null
+    description: string | null
+    videoKey: string | null
+    videoUrl: string | null
+    mimeType: string | null
+    fileSize: number | null
+    isVisible: boolean | null
+    displayOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type VideoTestimonialMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    designation: string | null
+    program: string | null
+    description: string | null
+    videoKey: string | null
+    videoUrl: string | null
+    mimeType: string | null
+    fileSize: number | null
+    isVisible: boolean | null
+    displayOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type VideoTestimonialCountAggregateOutputType = {
+    id: number
+    name: number
+    designation: number
+    program: number
+    description: number
+    videoKey: number
+    videoUrl: number
+    mimeType: number
+    fileSize: number
+    isVisible: number
+    displayOrder: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type VideoTestimonialAvgAggregateInputType = {
+    id?: true
+    fileSize?: true
+    displayOrder?: true
+  }
+
+  export type VideoTestimonialSumAggregateInputType = {
+    id?: true
+    fileSize?: true
+    displayOrder?: true
+  }
+
+  export type VideoTestimonialMinAggregateInputType = {
+    id?: true
+    name?: true
+    designation?: true
+    program?: true
+    description?: true
+    videoKey?: true
+    videoUrl?: true
+    mimeType?: true
+    fileSize?: true
+    isVisible?: true
+    displayOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type VideoTestimonialMaxAggregateInputType = {
+    id?: true
+    name?: true
+    designation?: true
+    program?: true
+    description?: true
+    videoKey?: true
+    videoUrl?: true
+    mimeType?: true
+    fileSize?: true
+    isVisible?: true
+    displayOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type VideoTestimonialCountAggregateInputType = {
+    id?: true
+    name?: true
+    designation?: true
+    program?: true
+    description?: true
+    videoKey?: true
+    videoUrl?: true
+    mimeType?: true
+    fileSize?: true
+    isVisible?: true
+    displayOrder?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type VideoTestimonialAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VideoTestimonial to aggregate.
+     */
+    where?: VideoTestimonialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VideoTestimonials to fetch.
+     */
+    orderBy?: VideoTestimonialOrderByWithRelationInput | VideoTestimonialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VideoTestimonialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VideoTestimonials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VideoTestimonials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VideoTestimonials
+    **/
+    _count?: true | VideoTestimonialCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: VideoTestimonialAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VideoTestimonialSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VideoTestimonialMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VideoTestimonialMaxAggregateInputType
+  }
+
+  export type GetVideoTestimonialAggregateType<T extends VideoTestimonialAggregateArgs> = {
+        [P in keyof T & keyof AggregateVideoTestimonial]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVideoTestimonial[P]>
+      : GetScalarType<T[P], AggregateVideoTestimonial[P]>
+  }
+
+
+
+
+  export type VideoTestimonialGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VideoTestimonialWhereInput
+    orderBy?: VideoTestimonialOrderByWithAggregationInput | VideoTestimonialOrderByWithAggregationInput[]
+    by: VideoTestimonialScalarFieldEnum[] | VideoTestimonialScalarFieldEnum
+    having?: VideoTestimonialScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VideoTestimonialCountAggregateInputType | true
+    _avg?: VideoTestimonialAvgAggregateInputType
+    _sum?: VideoTestimonialSumAggregateInputType
+    _min?: VideoTestimonialMinAggregateInputType
+    _max?: VideoTestimonialMaxAggregateInputType
+  }
+
+  export type VideoTestimonialGroupByOutputType = {
+    id: number
+    name: string
+    designation: string | null
+    program: string | null
+    description: string | null
+    videoKey: string
+    videoUrl: string
+    mimeType: string
+    fileSize: number
+    isVisible: boolean
+    displayOrder: number
+    createdAt: Date
+    updatedAt: Date
+    _count: VideoTestimonialCountAggregateOutputType | null
+    _avg: VideoTestimonialAvgAggregateOutputType | null
+    _sum: VideoTestimonialSumAggregateOutputType | null
+    _min: VideoTestimonialMinAggregateOutputType | null
+    _max: VideoTestimonialMaxAggregateOutputType | null
+  }
+
+  type GetVideoTestimonialGroupByPayload<T extends VideoTestimonialGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VideoTestimonialGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VideoTestimonialGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VideoTestimonialGroupByOutputType[P]>
+            : GetScalarType<T[P], VideoTestimonialGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VideoTestimonialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    designation?: boolean
+    program?: boolean
+    description?: boolean
+    videoKey?: boolean
+    videoUrl?: boolean
+    mimeType?: boolean
+    fileSize?: boolean
+    isVisible?: boolean
+    displayOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["videoTestimonial"]>
+
+  export type VideoTestimonialSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    designation?: boolean
+    program?: boolean
+    description?: boolean
+    videoKey?: boolean
+    videoUrl?: boolean
+    mimeType?: boolean
+    fileSize?: boolean
+    isVisible?: boolean
+    displayOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["videoTestimonial"]>
+
+  export type VideoTestimonialSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    designation?: boolean
+    program?: boolean
+    description?: boolean
+    videoKey?: boolean
+    videoUrl?: boolean
+    mimeType?: boolean
+    fileSize?: boolean
+    isVisible?: boolean
+    displayOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["videoTestimonial"]>
+
+  export type VideoTestimonialSelectScalar = {
+    id?: boolean
+    name?: boolean
+    designation?: boolean
+    program?: boolean
+    description?: boolean
+    videoKey?: boolean
+    videoUrl?: boolean
+    mimeType?: boolean
+    fileSize?: boolean
+    isVisible?: boolean
+    displayOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type VideoTestimonialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "designation" | "program" | "description" | "videoKey" | "videoUrl" | "mimeType" | "fileSize" | "isVisible" | "displayOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["videoTestimonial"]>
+
+  export type $VideoTestimonialPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VideoTestimonial"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      designation: string | null
+      program: string | null
+      description: string | null
+      videoKey: string
+      videoUrl: string
+      mimeType: string
+      fileSize: number
+      isVisible: boolean
+      displayOrder: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["videoTestimonial"]>
+    composites: {}
+  }
+
+  type VideoTestimonialGetPayload<S extends boolean | null | undefined | VideoTestimonialDefaultArgs> = $Result.GetResult<Prisma.$VideoTestimonialPayload, S>
+
+  type VideoTestimonialCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VideoTestimonialFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VideoTestimonialCountAggregateInputType | true
+    }
+
+  export interface VideoTestimonialDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VideoTestimonial'], meta: { name: 'VideoTestimonial' } }
+    /**
+     * Find zero or one VideoTestimonial that matches the filter.
+     * @param {VideoTestimonialFindUniqueArgs} args - Arguments to find a VideoTestimonial
+     * @example
+     * // Get one VideoTestimonial
+     * const videoTestimonial = await prisma.videoTestimonial.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VideoTestimonialFindUniqueArgs>(args: SelectSubset<T, VideoTestimonialFindUniqueArgs<ExtArgs>>): Prisma__VideoTestimonialClient<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VideoTestimonial that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VideoTestimonialFindUniqueOrThrowArgs} args - Arguments to find a VideoTestimonial
+     * @example
+     * // Get one VideoTestimonial
+     * const videoTestimonial = await prisma.videoTestimonial.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VideoTestimonialFindUniqueOrThrowArgs>(args: SelectSubset<T, VideoTestimonialFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VideoTestimonialClient<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VideoTestimonial that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoTestimonialFindFirstArgs} args - Arguments to find a VideoTestimonial
+     * @example
+     * // Get one VideoTestimonial
+     * const videoTestimonial = await prisma.videoTestimonial.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VideoTestimonialFindFirstArgs>(args?: SelectSubset<T, VideoTestimonialFindFirstArgs<ExtArgs>>): Prisma__VideoTestimonialClient<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VideoTestimonial that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoTestimonialFindFirstOrThrowArgs} args - Arguments to find a VideoTestimonial
+     * @example
+     * // Get one VideoTestimonial
+     * const videoTestimonial = await prisma.videoTestimonial.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VideoTestimonialFindFirstOrThrowArgs>(args?: SelectSubset<T, VideoTestimonialFindFirstOrThrowArgs<ExtArgs>>): Prisma__VideoTestimonialClient<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VideoTestimonials that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoTestimonialFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VideoTestimonials
+     * const videoTestimonials = await prisma.videoTestimonial.findMany()
+     * 
+     * // Get first 10 VideoTestimonials
+     * const videoTestimonials = await prisma.videoTestimonial.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const videoTestimonialWithIdOnly = await prisma.videoTestimonial.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VideoTestimonialFindManyArgs>(args?: SelectSubset<T, VideoTestimonialFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VideoTestimonial.
+     * @param {VideoTestimonialCreateArgs} args - Arguments to create a VideoTestimonial.
+     * @example
+     * // Create one VideoTestimonial
+     * const VideoTestimonial = await prisma.videoTestimonial.create({
+     *   data: {
+     *     // ... data to create a VideoTestimonial
+     *   }
+     * })
+     * 
+     */
+    create<T extends VideoTestimonialCreateArgs>(args: SelectSubset<T, VideoTestimonialCreateArgs<ExtArgs>>): Prisma__VideoTestimonialClient<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VideoTestimonials.
+     * @param {VideoTestimonialCreateManyArgs} args - Arguments to create many VideoTestimonials.
+     * @example
+     * // Create many VideoTestimonials
+     * const videoTestimonial = await prisma.videoTestimonial.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VideoTestimonialCreateManyArgs>(args?: SelectSubset<T, VideoTestimonialCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VideoTestimonials and returns the data saved in the database.
+     * @param {VideoTestimonialCreateManyAndReturnArgs} args - Arguments to create many VideoTestimonials.
+     * @example
+     * // Create many VideoTestimonials
+     * const videoTestimonial = await prisma.videoTestimonial.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VideoTestimonials and only return the `id`
+     * const videoTestimonialWithIdOnly = await prisma.videoTestimonial.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VideoTestimonialCreateManyAndReturnArgs>(args?: SelectSubset<T, VideoTestimonialCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VideoTestimonial.
+     * @param {VideoTestimonialDeleteArgs} args - Arguments to delete one VideoTestimonial.
+     * @example
+     * // Delete one VideoTestimonial
+     * const VideoTestimonial = await prisma.videoTestimonial.delete({
+     *   where: {
+     *     // ... filter to delete one VideoTestimonial
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VideoTestimonialDeleteArgs>(args: SelectSubset<T, VideoTestimonialDeleteArgs<ExtArgs>>): Prisma__VideoTestimonialClient<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VideoTestimonial.
+     * @param {VideoTestimonialUpdateArgs} args - Arguments to update one VideoTestimonial.
+     * @example
+     * // Update one VideoTestimonial
+     * const videoTestimonial = await prisma.videoTestimonial.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VideoTestimonialUpdateArgs>(args: SelectSubset<T, VideoTestimonialUpdateArgs<ExtArgs>>): Prisma__VideoTestimonialClient<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VideoTestimonials.
+     * @param {VideoTestimonialDeleteManyArgs} args - Arguments to filter VideoTestimonials to delete.
+     * @example
+     * // Delete a few VideoTestimonials
+     * const { count } = await prisma.videoTestimonial.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VideoTestimonialDeleteManyArgs>(args?: SelectSubset<T, VideoTestimonialDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VideoTestimonials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoTestimonialUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VideoTestimonials
+     * const videoTestimonial = await prisma.videoTestimonial.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VideoTestimonialUpdateManyArgs>(args: SelectSubset<T, VideoTestimonialUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VideoTestimonials and returns the data updated in the database.
+     * @param {VideoTestimonialUpdateManyAndReturnArgs} args - Arguments to update many VideoTestimonials.
+     * @example
+     * // Update many VideoTestimonials
+     * const videoTestimonial = await prisma.videoTestimonial.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VideoTestimonials and only return the `id`
+     * const videoTestimonialWithIdOnly = await prisma.videoTestimonial.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VideoTestimonialUpdateManyAndReturnArgs>(args: SelectSubset<T, VideoTestimonialUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VideoTestimonial.
+     * @param {VideoTestimonialUpsertArgs} args - Arguments to update or create a VideoTestimonial.
+     * @example
+     * // Update or create a VideoTestimonial
+     * const videoTestimonial = await prisma.videoTestimonial.upsert({
+     *   create: {
+     *     // ... data to create a VideoTestimonial
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VideoTestimonial we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VideoTestimonialUpsertArgs>(args: SelectSubset<T, VideoTestimonialUpsertArgs<ExtArgs>>): Prisma__VideoTestimonialClient<$Result.GetResult<Prisma.$VideoTestimonialPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VideoTestimonials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoTestimonialCountArgs} args - Arguments to filter VideoTestimonials to count.
+     * @example
+     * // Count the number of VideoTestimonials
+     * const count = await prisma.videoTestimonial.count({
+     *   where: {
+     *     // ... the filter for the VideoTestimonials we want to count
+     *   }
+     * })
+    **/
+    count<T extends VideoTestimonialCountArgs>(
+      args?: Subset<T, VideoTestimonialCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VideoTestimonialCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VideoTestimonial.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoTestimonialAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VideoTestimonialAggregateArgs>(args: Subset<T, VideoTestimonialAggregateArgs>): Prisma.PrismaPromise<GetVideoTestimonialAggregateType<T>>
+
+    /**
+     * Group by VideoTestimonial.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VideoTestimonialGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VideoTestimonialGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VideoTestimonialGroupByArgs['orderBy'] }
+        : { orderBy?: VideoTestimonialGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VideoTestimonialGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVideoTestimonialGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VideoTestimonial model
+   */
+  readonly fields: VideoTestimonialFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VideoTestimonial.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VideoTestimonialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VideoTestimonial model
+   */
+  interface VideoTestimonialFieldRefs {
+    readonly id: FieldRef<"VideoTestimonial", 'Int'>
+    readonly name: FieldRef<"VideoTestimonial", 'String'>
+    readonly designation: FieldRef<"VideoTestimonial", 'String'>
+    readonly program: FieldRef<"VideoTestimonial", 'String'>
+    readonly description: FieldRef<"VideoTestimonial", 'String'>
+    readonly videoKey: FieldRef<"VideoTestimonial", 'String'>
+    readonly videoUrl: FieldRef<"VideoTestimonial", 'String'>
+    readonly mimeType: FieldRef<"VideoTestimonial", 'String'>
+    readonly fileSize: FieldRef<"VideoTestimonial", 'Int'>
+    readonly isVisible: FieldRef<"VideoTestimonial", 'Boolean'>
+    readonly displayOrder: FieldRef<"VideoTestimonial", 'Int'>
+    readonly createdAt: FieldRef<"VideoTestimonial", 'DateTime'>
+    readonly updatedAt: FieldRef<"VideoTestimonial", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VideoTestimonial findUnique
+   */
+  export type VideoTestimonialFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * Filter, which VideoTestimonial to fetch.
+     */
+    where: VideoTestimonialWhereUniqueInput
+  }
+
+  /**
+   * VideoTestimonial findUniqueOrThrow
+   */
+  export type VideoTestimonialFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * Filter, which VideoTestimonial to fetch.
+     */
+    where: VideoTestimonialWhereUniqueInput
+  }
+
+  /**
+   * VideoTestimonial findFirst
+   */
+  export type VideoTestimonialFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * Filter, which VideoTestimonial to fetch.
+     */
+    where?: VideoTestimonialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VideoTestimonials to fetch.
+     */
+    orderBy?: VideoTestimonialOrderByWithRelationInput | VideoTestimonialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VideoTestimonials.
+     */
+    cursor?: VideoTestimonialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VideoTestimonials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VideoTestimonials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VideoTestimonials.
+     */
+    distinct?: VideoTestimonialScalarFieldEnum | VideoTestimonialScalarFieldEnum[]
+  }
+
+  /**
+   * VideoTestimonial findFirstOrThrow
+   */
+  export type VideoTestimonialFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * Filter, which VideoTestimonial to fetch.
+     */
+    where?: VideoTestimonialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VideoTestimonials to fetch.
+     */
+    orderBy?: VideoTestimonialOrderByWithRelationInput | VideoTestimonialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VideoTestimonials.
+     */
+    cursor?: VideoTestimonialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VideoTestimonials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VideoTestimonials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VideoTestimonials.
+     */
+    distinct?: VideoTestimonialScalarFieldEnum | VideoTestimonialScalarFieldEnum[]
+  }
+
+  /**
+   * VideoTestimonial findMany
+   */
+  export type VideoTestimonialFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * Filter, which VideoTestimonials to fetch.
+     */
+    where?: VideoTestimonialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VideoTestimonials to fetch.
+     */
+    orderBy?: VideoTestimonialOrderByWithRelationInput | VideoTestimonialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VideoTestimonials.
+     */
+    cursor?: VideoTestimonialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VideoTestimonials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VideoTestimonials.
+     */
+    skip?: number
+    distinct?: VideoTestimonialScalarFieldEnum | VideoTestimonialScalarFieldEnum[]
+  }
+
+  /**
+   * VideoTestimonial create
+   */
+  export type VideoTestimonialCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * The data needed to create a VideoTestimonial.
+     */
+    data: XOR<VideoTestimonialCreateInput, VideoTestimonialUncheckedCreateInput>
+  }
+
+  /**
+   * VideoTestimonial createMany
+   */
+  export type VideoTestimonialCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VideoTestimonials.
+     */
+    data: VideoTestimonialCreateManyInput | VideoTestimonialCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VideoTestimonial createManyAndReturn
+   */
+  export type VideoTestimonialCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * The data used to create many VideoTestimonials.
+     */
+    data: VideoTestimonialCreateManyInput | VideoTestimonialCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VideoTestimonial update
+   */
+  export type VideoTestimonialUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * The data needed to update a VideoTestimonial.
+     */
+    data: XOR<VideoTestimonialUpdateInput, VideoTestimonialUncheckedUpdateInput>
+    /**
+     * Choose, which VideoTestimonial to update.
+     */
+    where: VideoTestimonialWhereUniqueInput
+  }
+
+  /**
+   * VideoTestimonial updateMany
+   */
+  export type VideoTestimonialUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VideoTestimonials.
+     */
+    data: XOR<VideoTestimonialUpdateManyMutationInput, VideoTestimonialUncheckedUpdateManyInput>
+    /**
+     * Filter which VideoTestimonials to update
+     */
+    where?: VideoTestimonialWhereInput
+    /**
+     * Limit how many VideoTestimonials to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VideoTestimonial updateManyAndReturn
+   */
+  export type VideoTestimonialUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * The data used to update VideoTestimonials.
+     */
+    data: XOR<VideoTestimonialUpdateManyMutationInput, VideoTestimonialUncheckedUpdateManyInput>
+    /**
+     * Filter which VideoTestimonials to update
+     */
+    where?: VideoTestimonialWhereInput
+    /**
+     * Limit how many VideoTestimonials to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VideoTestimonial upsert
+   */
+  export type VideoTestimonialUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * The filter to search for the VideoTestimonial to update in case it exists.
+     */
+    where: VideoTestimonialWhereUniqueInput
+    /**
+     * In case the VideoTestimonial found by the `where` argument doesn't exist, create a new VideoTestimonial with this data.
+     */
+    create: XOR<VideoTestimonialCreateInput, VideoTestimonialUncheckedCreateInput>
+    /**
+     * In case the VideoTestimonial was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VideoTestimonialUpdateInput, VideoTestimonialUncheckedUpdateInput>
+  }
+
+  /**
+   * VideoTestimonial delete
+   */
+  export type VideoTestimonialDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+    /**
+     * Filter which VideoTestimonial to delete.
+     */
+    where: VideoTestimonialWhereUniqueInput
+  }
+
+  /**
+   * VideoTestimonial deleteMany
+   */
+  export type VideoTestimonialDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VideoTestimonials to delete
+     */
+    where?: VideoTestimonialWhereInput
+    /**
+     * Limit how many VideoTestimonials to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VideoTestimonial without action
+   */
+  export type VideoTestimonialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VideoTestimonial
+     */
+    select?: VideoTestimonialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VideoTestimonial
+     */
+    omit?: VideoTestimonialOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -64441,6 +65674,25 @@ export namespace Prisma {
   };
 
   export type MentorSlotBookingScalarFieldEnum = (typeof MentorSlotBookingScalarFieldEnum)[keyof typeof MentorSlotBookingScalarFieldEnum]
+
+
+  export const VideoTestimonialScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    designation: 'designation',
+    program: 'program',
+    description: 'description',
+    videoKey: 'videoKey',
+    videoUrl: 'videoUrl',
+    mimeType: 'mimeType',
+    fileSize: 'fileSize',
+    isVisible: 'isVisible',
+    displayOrder: 'displayOrder',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type VideoTestimonialScalarFieldEnum = (typeof VideoTestimonialScalarFieldEnum)[keyof typeof VideoTestimonialScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -69432,6 +70684,100 @@ export namespace Prisma {
     respondedAt?: DateTimeNullableWithAggregatesFilter<"MentorSlotBooking"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"MentorSlotBooking"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"MentorSlotBooking"> | Date | string
+  }
+
+  export type VideoTestimonialWhereInput = {
+    AND?: VideoTestimonialWhereInput | VideoTestimonialWhereInput[]
+    OR?: VideoTestimonialWhereInput[]
+    NOT?: VideoTestimonialWhereInput | VideoTestimonialWhereInput[]
+    id?: IntFilter<"VideoTestimonial"> | number
+    name?: StringFilter<"VideoTestimonial"> | string
+    designation?: StringNullableFilter<"VideoTestimonial"> | string | null
+    program?: StringNullableFilter<"VideoTestimonial"> | string | null
+    description?: StringNullableFilter<"VideoTestimonial"> | string | null
+    videoKey?: StringFilter<"VideoTestimonial"> | string
+    videoUrl?: StringFilter<"VideoTestimonial"> | string
+    mimeType?: StringFilter<"VideoTestimonial"> | string
+    fileSize?: IntFilter<"VideoTestimonial"> | number
+    isVisible?: BoolFilter<"VideoTestimonial"> | boolean
+    displayOrder?: IntFilter<"VideoTestimonial"> | number
+    createdAt?: DateTimeFilter<"VideoTestimonial"> | Date | string
+    updatedAt?: DateTimeFilter<"VideoTestimonial"> | Date | string
+  }
+
+  export type VideoTestimonialOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    designation?: SortOrderInput | SortOrder
+    program?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    videoKey?: SortOrder
+    videoUrl?: SortOrder
+    mimeType?: SortOrder
+    fileSize?: SortOrder
+    isVisible?: SortOrder
+    displayOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VideoTestimonialWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    videoKey?: string
+    AND?: VideoTestimonialWhereInput | VideoTestimonialWhereInput[]
+    OR?: VideoTestimonialWhereInput[]
+    NOT?: VideoTestimonialWhereInput | VideoTestimonialWhereInput[]
+    name?: StringFilter<"VideoTestimonial"> | string
+    designation?: StringNullableFilter<"VideoTestimonial"> | string | null
+    program?: StringNullableFilter<"VideoTestimonial"> | string | null
+    description?: StringNullableFilter<"VideoTestimonial"> | string | null
+    videoUrl?: StringFilter<"VideoTestimonial"> | string
+    mimeType?: StringFilter<"VideoTestimonial"> | string
+    fileSize?: IntFilter<"VideoTestimonial"> | number
+    isVisible?: BoolFilter<"VideoTestimonial"> | boolean
+    displayOrder?: IntFilter<"VideoTestimonial"> | number
+    createdAt?: DateTimeFilter<"VideoTestimonial"> | Date | string
+    updatedAt?: DateTimeFilter<"VideoTestimonial"> | Date | string
+  }, "id" | "videoKey">
+
+  export type VideoTestimonialOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    designation?: SortOrderInput | SortOrder
+    program?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    videoKey?: SortOrder
+    videoUrl?: SortOrder
+    mimeType?: SortOrder
+    fileSize?: SortOrder
+    isVisible?: SortOrder
+    displayOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: VideoTestimonialCountOrderByAggregateInput
+    _avg?: VideoTestimonialAvgOrderByAggregateInput
+    _max?: VideoTestimonialMaxOrderByAggregateInput
+    _min?: VideoTestimonialMinOrderByAggregateInput
+    _sum?: VideoTestimonialSumOrderByAggregateInput
+  }
+
+  export type VideoTestimonialScalarWhereWithAggregatesInput = {
+    AND?: VideoTestimonialScalarWhereWithAggregatesInput | VideoTestimonialScalarWhereWithAggregatesInput[]
+    OR?: VideoTestimonialScalarWhereWithAggregatesInput[]
+    NOT?: VideoTestimonialScalarWhereWithAggregatesInput | VideoTestimonialScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"VideoTestimonial"> | number
+    name?: StringWithAggregatesFilter<"VideoTestimonial"> | string
+    designation?: StringNullableWithAggregatesFilter<"VideoTestimonial"> | string | null
+    program?: StringNullableWithAggregatesFilter<"VideoTestimonial"> | string | null
+    description?: StringNullableWithAggregatesFilter<"VideoTestimonial"> | string | null
+    videoKey?: StringWithAggregatesFilter<"VideoTestimonial"> | string
+    videoUrl?: StringWithAggregatesFilter<"VideoTestimonial"> | string
+    mimeType?: StringWithAggregatesFilter<"VideoTestimonial"> | string
+    fileSize?: IntWithAggregatesFilter<"VideoTestimonial"> | number
+    isVisible?: BoolWithAggregatesFilter<"VideoTestimonial"> | boolean
+    displayOrder?: IntWithAggregatesFilter<"VideoTestimonial"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"VideoTestimonial"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"VideoTestimonial"> | Date | string
   }
 
   export type WebinarRegistrationCreateInput = {
@@ -74774,6 +76120,115 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type VideoTestimonialCreateInput = {
+    name: string
+    designation?: string | null
+    program?: string | null
+    description?: string | null
+    videoKey: string
+    videoUrl: string
+    mimeType: string
+    fileSize: number
+    isVisible?: boolean
+    displayOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type VideoTestimonialUncheckedCreateInput = {
+    id?: number
+    name: string
+    designation?: string | null
+    program?: string | null
+    description?: string | null
+    videoKey: string
+    videoUrl: string
+    mimeType: string
+    fileSize: number
+    isVisible?: boolean
+    displayOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type VideoTestimonialUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    program?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    videoKey?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VideoTestimonialUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    program?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    videoKey?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VideoTestimonialCreateManyInput = {
+    id?: number
+    name: string
+    designation?: string | null
+    program?: string | null
+    description?: string | null
+    videoKey: string
+    videoUrl: string
+    mimeType: string
+    fileSize: number
+    isVisible?: boolean
+    displayOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type VideoTestimonialUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    program?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    videoKey?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VideoTestimonialUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    designation?: NullableStringFieldUpdateOperationsInput | string | null
+    program?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    videoKey?: StringFieldUpdateOperationsInput | string
+    videoUrl?: StringFieldUpdateOperationsInput | string
+    mimeType?: StringFieldUpdateOperationsInput | string
+    fileSize?: IntFieldUpdateOperationsInput | number
+    isVisible?: BoolFieldUpdateOperationsInput | boolean
+    displayOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -78481,6 +79936,66 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumMentorSlotBookingStatusFilter<$PrismaModel>
     _max?: NestedEnumMentorSlotBookingStatusFilter<$PrismaModel>
+  }
+
+  export type VideoTestimonialCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    designation?: SortOrder
+    program?: SortOrder
+    description?: SortOrder
+    videoKey?: SortOrder
+    videoUrl?: SortOrder
+    mimeType?: SortOrder
+    fileSize?: SortOrder
+    isVisible?: SortOrder
+    displayOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VideoTestimonialAvgOrderByAggregateInput = {
+    id?: SortOrder
+    fileSize?: SortOrder
+    displayOrder?: SortOrder
+  }
+
+  export type VideoTestimonialMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    designation?: SortOrder
+    program?: SortOrder
+    description?: SortOrder
+    videoKey?: SortOrder
+    videoUrl?: SortOrder
+    mimeType?: SortOrder
+    fileSize?: SortOrder
+    isVisible?: SortOrder
+    displayOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VideoTestimonialMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    designation?: SortOrder
+    program?: SortOrder
+    description?: SortOrder
+    videoKey?: SortOrder
+    videoUrl?: SortOrder
+    mimeType?: SortOrder
+    fileSize?: SortOrder
+    isVisible?: SortOrder
+    displayOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VideoTestimonialSumOrderByAggregateInput = {
+    id?: SortOrder
+    fileSize?: SortOrder
+    displayOrder?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
