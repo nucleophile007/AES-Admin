@@ -9,7 +9,6 @@ import {
   BarChart3,
   CheckSquare,
   Download,
-  Eye,
   Kanban,
   List,
   LoaderCircle,
@@ -176,7 +175,7 @@ function AdminTasks() {
   const hasFilters = JSON.stringify({ ...filters, search: searchInput.trim() }) !== JSON.stringify(EMPTY_FILTERS)
 
   const items = useMemo(() => data?.items ?? [], [data])
-  const selectableIds = useMemo(() => items.filter((i) => isAdminTask(i.task)).map((i) => i.id), [items])
+  const selectableIds = useMemo(() => items.map((i) => i.id), [items])
   const mentors = lookups?.mentors ?? []
   const categories = lookups?.categories ?? []
   const metrics = data?.metrics
@@ -417,8 +416,8 @@ function SourceBadge({ item }: { item: TaskItem }) {
   return isAdminTask(item.task) ? (
     <span className="rounded border border-blue-200 bg-blue-50 px-1.5 text-[11px] font-medium text-blue-700">Admin</span>
   ) : (
-    <span className="inline-flex items-center gap-1 rounded border border-slate-200 bg-slate-50 px-1.5 text-[11px] text-slate-600" title="Mentor task: view only">
-      <Eye className="h-3 w-3" /> Mentor
+    <span className="rounded border border-slate-200 bg-slate-50 px-1.5 text-[11px] text-slate-600" title="Created by a mentor. You act with the mentor's permissions.">
+      Mentor
     </span>
   )
 }
@@ -446,7 +445,7 @@ function TaskTable({
             <th className="w-10 px-3 py-2.5">
               <input
                 type="checkbox"
-                aria-label="Select all admin tasks"
+                aria-label="Select all tasks"
                 checked={selectableIds.length > 0 && selected.size === selectableIds.length}
                 disabled={!selectableIds.length}
                 onChange={onToggleAll}
@@ -464,7 +463,6 @@ function TaskTable({
         <tbody className="divide-y divide-slate-100">
           {items.map((item) => {
             const person = assigneeOf(item)
-            const admin = isAdminTask(item.task)
             const progress = checklistProgress(item.task, item.checklistDone)
             const overdue = isOverdue(item.task.deadline, item.status)
             return (
@@ -474,8 +472,6 @@ function TaskTable({
                     type="checkbox"
                     aria-label={`Select ${taskKey(item.taskId)} for ${person?.name ?? 'assignee'}`}
                     checked={selected.has(item.id)}
-                    disabled={!admin}
-                    title={admin ? undefined : 'Mentor tasks are view-only'}
                     onChange={() => onToggle(item.id)}
                     className="h-4 w-4 rounded border-slate-300 disabled:opacity-30"
                   />

@@ -43,18 +43,23 @@ export function PeoplePicker({
   onChange,
   mentors,
   alreadyAssigned,
+  onlyStudentsOfMentor,
 }: {
   value: PeopleSelection
   onChange: (next: PeopleSelection) => void
   mentors: Person[]
   /** People already on the task (shown as assigned, not selectable). */
   alreadyAssigned?: Set<string>
+  /** Limit the picker to this mentor's students (adding people to a mentor's task). */
+  onlyStudentsOfMentor?: number
 }) {
+  const locked = onlyStudentsOfMentor != null
+  const roles = locked ? (['STUDENT'] as AssigneeRole[]) : ROLES
   const [role, setRole] = useState<AssigneeRole>('STUDENT')
   const [query, setQuery] = useState('')
   const [debounced, setDebounced] = useState('')
   const [program, setProgram] = useState('')
-  const [mentorId, setMentorId] = useState('')
+  const [mentorId, setMentorId] = useState(locked ? String(onlyStudentsOfMentor) : '')
   const [programs, setPrograms] = useState<string[]>([])
   const [data, setData] = useState<PeopleResponse | null>(null)
   const [loading, setLoading] = useState(false)
@@ -148,7 +153,7 @@ export function PeoplePicker({
   return (
     <div className="rounded-lg border border-slate-200">
       <div className="flex flex-wrap gap-1 border-b border-slate-200 bg-slate-50 p-1.5" role="tablist" aria-label="Who to assign">
-        {ROLES.map((r) => {
+        {roles.map((r) => {
           const count = Object.keys(value[r]).length
           return (
             <button
@@ -186,7 +191,7 @@ export function PeoplePicker({
                   <option key={p} value={p}>{p}</option>
                 ))}
               </select>
-              <select value={mentorId} onChange={(e) => setMentorId(e.target.value)} className={`${fieldClass} w-auto`} aria-label="Filter by mentor">
+              <select value={mentorId} onChange={(e) => setMentorId(e.target.value)} disabled={locked} className={`${fieldClass} w-auto disabled:bg-slate-50`} aria-label="Filter by mentor">
                 <option value="">Any mentor</option>
                 {mentors.map((m) => (
                   <option key={m.id} value={m.id}>{m.name}&apos;s students</option>

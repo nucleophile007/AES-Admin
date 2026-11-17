@@ -5,7 +5,7 @@ import useSWR from 'swr'
 import {
   Ban,
   CheckCircle2,
-  Eye,
+  Info,
   ExternalLink,
   History,
   LoaderCircle,
@@ -48,13 +48,19 @@ type DetailTask = TaskRecord & { studentTasks: Omit<TaskItem, 'task'>[] }
 interface DetailResponse {
   task: DetailTask
   readOnly: boolean
+  /** False on a mentor's task: only the mentor can delete it. */
+  canDelete?: boolean
+  /** Set on a mentor's task: only this mentor's students can be added. */
+  mentorId?: number | null
 }
 
 const ROLE_WORD: Record<string, string> = { teacher: 'Mentor', student: 'Student', parent: 'Parent', admin: 'Admin' }
 
 /**
  * One task with every assignee's progress. Admin-created tasks can be reviewed,
- * commented on, edited, cancelled and deleted; mentor-created tasks are view-only.
+ * commented on, edited, cancelled and deleted. On a mentor-created task the
+ * admin has the mentor's own permissions: everything except delete, and only
+ * that mentor's students can be added. AES enforces both.
  */
 export function TaskDetailPanel({
   taskId,
@@ -86,6 +92,8 @@ export function TaskDetailPanel({
 
   const task = data?.task
   const readOnly = data?.readOnly ?? true
+  const canDelete = data?.canDelete ?? !readOnly
+  const mentorId = data?.mentorId ?? null
   const items = useMemo(() => task?.studentTasks ?? [], [task])
   const selected = items.find((i) => i.id === selectedId) ?? items[0] ?? null
 
@@ -153,10 +161,13 @@ export function TaskDetailPanel({
         </div>
       ) : (
         <div className="space-y-5">
-          {readOnly && (
-            <div className="flex items-start gap-2 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
-              <Eye className="mt-0.5 h-4 w-4 shrink-0" />
-              Created by a mentor, so this task is view-only for admins. The mentor reviews it.
+          {mentorId != null && (
+            <div className="flex items-start gap-2 rounded-lg border border-sky-200 bg-sky-50 p-3 text-sm text-sky-900">
+              <Info className="mt-0.5 h-4 w-4 shrink-0" />
+              <span>
+                Created by mentor {creatorLabel(task)}. You can do what the mentor can: edit, cancel, review and comment.
+                Only their students can be added, only the mentor can delete it, and they are emailed about your changes.
+              </span>
             </div>
           )}
           {task.isCancelled && (
@@ -189,9 +200,11 @@ export function TaskDetailPanel({
                 {task.isCancelled ? <RotateCcw className="h-4 w-4" /> : <Ban className="h-4 w-4" />}
                 {task.isCancelled ? 'Restore' : 'Cancel task'}
               </button>
-              <button type="button" className={`${buttonClass} border-rose-200 text-rose-700 hover:bg-rose-50`} onClick={() => void deleteTask()} disabled={busy}>
-                <Trash2 className="h-4 w-4" /> Delete
-              </button>
+              {canDelete && (
+                <button type="button" className={`${buttonClass} border-rose-200 text-rose-700 hover:bg-rose-50`} onClick={() => void deleteTask()} disabled={busy}>
+                  <Trash2 className="h-4 w-4" /> Delete
+                </button>
+              )}
             </div>
           )}
 
@@ -242,13 +255,14 @@ export function TaskDetailPanel({
       <Modal
         open={addingPeople}
         onClose={() => setAddingPeople(false)}
-        title="Add people to this task"
+        title={mentorId != null && task ? `Add ${creatorLabel(task)}'s students to this task` : 'Add people to this task'}
         width="max-w-2xl"
       >
         {task && (
           <AddPeopleForm
             task={task}
             mentors={mentors}
+            mentorId={mentorId}
             onDone={(added) => {
               setAddingPeople(false)
               if (added) refresh()
@@ -343,7 +357,18 @@ function EditTaskForm({
   )
 }
 
-function AddPeopleForm({ task, mentors, onDone }: { task: DetailTask; mentors: Person[]; onDone: (added: boolean) => void }) {
+function AddPeopleForm({
+  task,
+  mentors,
+  mentorId,
+  onDone,
+}: {
+  task: DetailTask
+  mentors: Person[]
+  /** A mentor's task: only that mentor's students can be added. */
+  mentorId: number | null
+  onDone: (added: boolean) => void
+}) {
   const [people, setPeople] = useState<PeopleSelection>(emptySelection)
   const [saving, setSaving] = useState(false)
   const already = useMemo(
@@ -369,7 +394,13 @@ function AddPeopleForm({ task, mentors, onDone }: { task: DetailTask; mentors: P
   }
   return (
     <div className="space-y-3">
-      <PeoplePicker value={people} onChange={setPeople} mentors={mentors} alreadyAssigned={already} />
+      <PeoplePicker
+        value={people}
+        onChange={setPeople}
+        mentors={mentors}
+        alreadyAssigned={already}
+        onlyStudentsOfMentor={mentorId ?? undefined}
+      />
       <div className="flex justify-end gap-2">
         <button type="button" className={buttonClass} onClick={() => onDone(false)} disabled={saving}>Cancel</button>
         <button type="button" className={primaryButtonClass} onClick={() => void save()} disabled={!count || saving}>

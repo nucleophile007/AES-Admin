@@ -5,7 +5,7 @@ import { checkAdminAuth } from '@/lib/adminAuth'
  * Pass-through to the AES task engine (/api/integrations/admin/tasks/*).
  * The admin is checked here (Google sign-in + allowlist); AES trusts the
  * shared key plus the acting admin's email/name headers. All task rules
- * (including "mentor-created tasks are view-only") are enforced in AES.
+ * (including what admins may do on mentor-created tasks) are enforced in AES.
  */
 
 type RouteContext = { params: Promise<{ path?: string[] }> }

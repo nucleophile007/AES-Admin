@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import useSWR from 'swr'
 import { LoaderCircle } from 'lucide-react'
-import { ROLE_META, STATUS_META, fieldClass, inputClass, taskApi, type AssigneeRole, type TaskStatus } from './taskUtils'
+import { ROLE_META, STATUS_META, fieldClass, taskApi, type AssigneeRole, type TaskStatus } from './taskUtils'
 
 interface InsightsResponse {
   days: number
