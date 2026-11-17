@@ -53,6 +53,15 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    const normalizedPrograms = programs
+      .filter((program: unknown): program is string => typeof program === "string")
+      .map((program: string) => program.trim())
+      .filter(Boolean)
+
+    if (normalizedPrograms.length === 0) {
+      return NextResponse.json({ error: "At least one valid program is required" }, { status: 400 })
+    }
+
     // Check if teacher with this email already exists
     const existingTeacher = await prisma.teacher.findUnique({
       where: { email }
@@ -70,7 +79,7 @@ export async function POST(request: NextRequest) {
       data: {
         name,
         email,
-        programs: programs // Array of programs
+        programs: normalizedPrograms
         // password: null by default
         // isActivated: false by default
       }

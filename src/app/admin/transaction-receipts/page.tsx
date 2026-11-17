@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Search, Receipt, Filter, CheckCircle, X, Loader2, Eye, Download, FileText } from "lucide-react"
+import { toast } from "sonner"
 
 interface TransactionReceipt {
   id: number
@@ -83,8 +84,8 @@ export default function TransactionReceiptsPage() {
     fetchReceipts()
   }, [session, status, selectedStatus])
 
-  const fetchReceipts = async () => {
-    setLoading(true)
+  const fetchReceipts = async (showLoading = true) => {
+    if (showLoading) setLoading(true)
     try {
       const url = selectedStatus !== "all" 
         ? `/api/admin/transaction-receipts?status=${selectedStatus}`
@@ -102,7 +103,7 @@ export default function TransactionReceiptsPage() {
     } catch (e: any) {
       console.error('Failed to load transaction receipts:', e.message)
     } finally {
-      setLoading(false)
+      if (showLoading) setLoading(false)
     }
   }
 
@@ -124,14 +125,14 @@ export default function TransactionReceiptsPage() {
       if (!res.ok) throw new Error('Failed to update receipt status')
       
       await res.json()
-      await fetchReceipts()
+      await fetchReceipts(false)
       setShowReviewModal(false)
       setAdminNotes("")
       setSelectedReceipt(null)
       setReviewAction(null)
     } catch (e: any) {
       console.error(e)
-      alert(e.message)
+      toast.error(e.message)
     } finally {
       setActionLoading(prev => ({ ...prev, [`status-${id}`]: false }))
     }
@@ -411,7 +412,7 @@ export default function TransactionReceiptsPage() {
               <button
                 onClick={() => {
                   if (reviewAction === "reject" && !adminNotes.trim()) {
-                    alert("Please provide a reason for rejection")
+                    toast.error("Please provide a reason for rejection")
                     return
                   }
                   updateReceiptStatus(selectedReceipt.id, reviewAction === "verify" ? "verified" : "rejected", adminNotes)

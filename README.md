@@ -77,6 +77,10 @@ npm run db:generate
 npm run db:push
 ```
 
+### Mentor availability calendar
+
+The mentor booking calendar data and migration live only in the separate AES application database. AES-Admin does not mirror the booking schema or access AES database credentials; its admin-only API proxies the read-only AES calendar endpoint from the server. Configure `AES_API_BASE_URL` in AES-Admin and the same high-entropy `AES_ADMIN_CALENDAR_API_KEY` in both server environments. Apply `prisma/migrations/20261026150000_mentor_slot_booking/migration.sql` only to the AES database. Booking requests and approvals remain managed in the AES mentor/student dashboards.
+
 ## 🔍 Diagnostics Pages
 
 The application includes built-in diagnostic pages to help troubleshoot issues:

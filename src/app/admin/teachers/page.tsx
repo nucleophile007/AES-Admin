@@ -4,8 +4,10 @@ import { useDeferredValue, useEffect, useMemo, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Search, User, Filter, CheckCircle, Loader2, X, Plus, Mail } from "lucide-react"
+import { Search, User, Filter, CheckCircle, Loader2, X, Plus, Mail, Trash2, ChevronDown } from "lucide-react"
+import { toast } from "sonner"
 import TablePagination from "@/components/ui/table-pagination"
+import { PROGRAM_OPTIONS } from "@/lib/programCatalog"
 
 interface Teacher {
   id: number
@@ -18,13 +20,69 @@ interface Teacher {
   updatedAt: string
 }
 
-const PROGRAM_OPTIONS = [
-  "College Prep",
-  "Tutoring",
-  "MATH Competitions",
-  "Research",
-] as const
 const PAGE_SIZE = 50
+const TEACHERS_CACHE_KEY = "admin.teachers.cache.v1"
+
+const readTeacherCache = (): Teacher[] | null => {
+  try {
+    const cached = sessionStorage.getItem(TEACHERS_CACHE_KEY)
+    return cached ? JSON.parse(cached) as Teacher[] : null
+  } catch {
+    return null
+  }
+}
+
+const writeTeacherCache = (teachers: Teacher[]) => {
+  try {
+    sessionStorage.setItem(TEACHERS_CACHE_KEY, JSON.stringify(teachers))
+  } catch {
+    // Session storage is optional and may be unavailable in private browsing.
+  }
+}
+
+interface TeacherFormData {
+  name: string
+  email: string
+  programs: string[]
+}
+
+function ProgramPicker({
+  selectedPrograms,
+  onChange,
+}: {
+  selectedPrograms: string[]
+  onChange: (programs: string[]) => void
+}) {
+  return (
+    <details className="group relative">
+      <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700">
+        <span className={selectedPrograms.length ? "text-gray-900" : "text-gray-400"}>
+          {selectedPrograms.length
+            ? `${selectedPrograms.length} program${selectedPrograms.length === 1 ? "" : "s"} selected`
+            : "Select programs..."}
+        </span>
+        <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="absolute z-20 mt-1 max-h-64 w-full overflow-y-auto rounded-lg border border-gray-200 bg-white p-2 shadow-lg">
+        {PROGRAM_OPTIONS.map((program) => (
+          <label key={program} className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-sm text-gray-700 hover:bg-gray-50">
+            <input
+              type="checkbox"
+              checked={selectedPrograms.includes(program)}
+              onChange={(event) => onChange(
+                event.target.checked
+                  ? [...selectedPrograms, program]
+                  : selectedPrograms.filter((selectedProgram) => selectedProgram !== program)
+              )}
+              className="h-4 w-4 rounded border-gray-300 text-blue-600"
+            />
+            <span>{program}</span>
+          </label>
+        ))}
+      </div>
+    </details>
+  )
+}
 
 export default function TeachersPage() {
   const { data: session, status } = useSession()
@@ -40,10 +98,10 @@ export default function TeachersPage() {
 
   // Form states for new teacher
   const [showForm, setShowForm] = useState(false)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<TeacherFormData>({
     name: "",
     email: "",
-    programs: [""] // Start with one empty program
+    programs: []
   })
   const [formLoading, setFormLoading] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
@@ -121,20 +179,40 @@ export default function TeachersPage() {
   }, [currentPage, totalPages])
 
   const fetchTeachers = async () => {
-    setLoading(true)
+    const cachedTeachers = readTeacherCache()
+    if (cachedTeachers) {
+      setData(cachedTeachers)
+      setLoading(false)
+    } else {
+      setLoading(true)
+    }
     try {
-      const res = await fetch("/api/admin/teachers")
+      const res = await fetch("/api/admin/teachers", { cache: "no-store" })
       if (res.status === 403) {
         throw new Error("Not authorized")
       }
       if (!res.ok) {
-        throw new Error("Failed to load data")
+        let message = `Request failed (${res.status})`
+        try {
+          const errorBody = await res.json() as { error?: string; details?: string }
+          message = errorBody.error || errorBody.details || message
+        } catch {
+          // Keep the HTTP status when the server does not return JSON.
+        }
+        throw new Error(message)
       }
       
       const json = await res.json()
-      setData(json.teachers || [])
-    } catch (e: any) {
-      console.error('Failed to load teachers:', e.message)
+      const teachers = json.teachers || []
+      setData(teachers)
+      writeTeacherCache(teachers)
+    } catch (e: unknown) {
+      const message = e instanceof Error ? e.message : "Unknown error"
+      if (cachedTeachers) {
+        console.warn("Could not refresh teachers; showing cached data:", message)
+      } else {
+        console.error("Failed to load teachers:", message)
+      }
     } finally {
       setLoading(false)
     }
@@ -156,16 +234,75 @@ export default function TeachersPage() {
       
       await res.json()
       
-      setData(prev => 
-        prev.map(teacher => 
+      setData(prev => {
+        const teachers = prev.map(teacher =>
           teacher.id === id ? { ...teacher, isActive: newStatus } : teacher
         )
-      )
+        writeTeacherCache(teachers)
+        return teachers
+      })
     } catch (e: any) {
       console.error(e)
-      alert(e.message)
+      toast.error(e.message)
     } finally {
       setActionLoading(prev => ({ ...prev, [`status-${id}`]: false }))
+    }
+  }
+
+  const handleDeleteTeacher = async (teacher: Teacher) => {
+    const confirmed = await new Promise<boolean>((resolve) => {
+      let settled = false
+
+      const finish = (value: boolean) => {
+        if (!settled) {
+          settled = true
+          resolve(value)
+        }
+      }
+
+      toast(`Delete ${teacher.name}? This action cannot be undone.`, {
+        description: "The teacher and their associated records will be removed.",
+        duration: 12000,
+        action: {
+          label: "Delete",
+          onClick: () => finish(true),
+        },
+        cancel: {
+          label: "Cancel",
+          onClick: () => finish(false),
+        },
+        onDismiss: () => finish(false),
+      })
+    })
+
+    if (!confirmed) {
+      return
+    }
+
+    const loadingKey = `delete-${teacher.id}`
+    setActionLoading(prev => ({ ...prev, [loadingKey]: true }))
+
+    try {
+      const res = await fetch(`/api/admin/teachers/${teacher.id}`, {
+        method: "DELETE",
+      })
+
+      if (!res.ok) {
+        const error = await res.json()
+        throw new Error(error.error || "Failed to delete teacher")
+      }
+
+      setData(prev => {
+        const teachers = prev.filter(item => item.id !== teacher.id)
+        writeTeacherCache(teachers)
+        return teachers
+      })
+      toast.success("Teacher deleted successfully.")
+    } catch (e: any) {
+      console.error(e)
+      toast.error(e.message || "Failed to delete teacher")
+    } finally {
+      setActionLoading(prev => ({ ...prev, [loadingKey]: false }))
     }
   }
 
@@ -187,38 +324,13 @@ export default function TeachersPage() {
       }
       
       const result = await res.json()
-      alert(result.message || 'Activation email sent successfully')
+      toast.success(result.message || 'Activation email sent successfully')
     } catch (e: any) {
       console.error(e)
-      alert(e.message)
+      toast.error(e.message)
     } finally {
       setActionLoading(prev => ({ ...prev, [`activate-${id}`]: false }))
     }
-  }
-
-  const handleAddProgram = () => {
-    setFormData(prev => ({
-      ...prev,
-      programs: [...prev.programs, ""]
-    }))
-  }
-
-  const handleRemoveProgram = (index: number) => {
-    if (formData.programs.length <= 1) return // Keep at least one program field
-    
-    setFormData(prev => ({
-      ...prev,
-      programs: prev.programs.filter((_, i) => i !== index)
-    }))
-  }
-
-  const handleProgramChange = (index: number, value: string) => {
-    const newPrograms = [...formData.programs]
-    newPrograms[index] = value
-    setFormData(prev => ({
-      ...prev,
-      programs: newPrograms
-    }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -261,11 +373,15 @@ export default function TeachersPage() {
       const newTeacher = await res.json()
       
       // Add to our data and reset form
-      setData(prev => [newTeacher.teacher, ...prev])
+      setData(prev => {
+        const teachers = [newTeacher.teacher, ...prev]
+        writeTeacherCache(teachers)
+        return teachers
+      })
       setFormData({
         name: "",
         email: "",
-        programs: [""]
+        programs: []
       })
       setShowForm(false)
       
@@ -391,46 +507,16 @@ export default function TeachersPage() {
               </div>
 
               <div className="mb-6">
-                <div className="flex justify-between items-center mb-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Programs
-                  </label>
-                  <button 
-                    type="button"
-                    className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1"
-                    onClick={handleAddProgram}
-                  >
-                    <Plus className="w-4 h-4" />
-                    Add Program
-                  </button>
-                </div>
-                
-                {formData.programs.map((program, index) => (
-                  <div key={index} className="flex gap-2 mb-2">
-                    <select
-                      className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-                      value={program}
-                      onChange={(e) => handleProgramChange(index, e.target.value)}
-                      required={index === 0} // At least one program required
-                    >
-                      <option value="">Select a program...</option>
-                      {PROGRAM_OPTIONS.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                    {formData.programs.length > 1 && (
-                      <button
-                        type="button"
-                        className="p-2 text-gray-500 hover:text-red-500"
-                        onClick={() => handleRemoveProgram(index)}
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
-                    )}
-                  </div>
-                ))}
+                <label className="mb-2 block text-sm font-medium text-gray-700">
+                  Programs they teach
+                </label>
+                <ProgramPicker
+                  selectedPrograms={formData.programs}
+                  onChange={(programs) => setFormData((prev) => ({ ...prev, programs }))}
+                />
+                <p className="mt-2 text-xs text-gray-500">
+                  Select every program this teacher can support. You can choose multiple programs without holding a key.
+                </p>
               </div>
 
               {formError && (
@@ -598,6 +684,18 @@ export default function TeachersPage() {
                               )}
                             </button>
                           )}
+                          <button
+                            onClick={() => handleDeleteTeacher(teacher)}
+                            disabled={actionLoading[`delete-${teacher.id}`]}
+                            aria-label={`Delete ${teacher.name}`}
+                            className="px-3 py-1 rounded-lg text-xs font-medium bg-red-100 text-red-800 hover:bg-red-200 disabled:opacity-50"
+                          >
+                            {actionLoading[`delete-${teacher.id}`] ? (
+                              <Loader2 className="w-3 h-3 animate-spin" />
+                            ) : (
+                              <Trash2 className="w-3 h-3" />
+                            )}
+                          </button>
                         </div>
                       </td>
                     </tr>

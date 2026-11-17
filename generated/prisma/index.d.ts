@@ -208,6 +208,36 @@ export type MeetingMinuteMeeting = $Result.DefaultSelection<Prisma.$MeetingMinut
  * 
  */
 export type MeetingMinuteRequest = $Result.DefaultSelection<Prisma.$MeetingMinuteRequestPayload>
+/**
+ * Model StudentTask
+ * 
+ */
+export type StudentTask = $Result.DefaultSelection<Prisma.$StudentTaskPayload>
+/**
+ * Model Task
+ * 
+ */
+export type Task = $Result.DefaultSelection<Prisma.$TaskPayload>
+/**
+ * Model TaskActivity
+ * 
+ */
+export type TaskActivity = $Result.DefaultSelection<Prisma.$TaskActivityPayload>
+/**
+ * Model TaskComment
+ * 
+ */
+export type TaskComment = $Result.DefaultSelection<Prisma.$TaskCommentPayload>
+/**
+ * Model TaskSavedFilter
+ * 
+ */
+export type TaskSavedFilter = $Result.DefaultSelection<Prisma.$TaskSavedFilterPayload>
+/**
+ * Model TaskTemplate
+ * 
+ */
+export type TaskTemplate = $Result.DefaultSelection<Prisma.$TaskTemplatePayload>
 
 /**
  * Enums
@@ -758,6 +788,66 @@ export class PrismaClient<
     * ```
     */
   get meetingMinuteRequest(): Prisma.MeetingMinuteRequestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.studentTask`: Exposes CRUD operations for the **StudentTask** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more StudentTasks
+    * const studentTasks = await prisma.studentTask.findMany()
+    * ```
+    */
+  get studentTask(): Prisma.StudentTaskDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.task`: Exposes CRUD operations for the **Task** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tasks
+    * const tasks = await prisma.task.findMany()
+    * ```
+    */
+  get task(): Prisma.TaskDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.taskActivity`: Exposes CRUD operations for the **TaskActivity** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TaskActivities
+    * const taskActivities = await prisma.taskActivity.findMany()
+    * ```
+    */
+  get taskActivity(): Prisma.TaskActivityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.taskComment`: Exposes CRUD operations for the **TaskComment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TaskComments
+    * const taskComments = await prisma.taskComment.findMany()
+    * ```
+    */
+  get taskComment(): Prisma.TaskCommentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.taskSavedFilter`: Exposes CRUD operations for the **TaskSavedFilter** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TaskSavedFilters
+    * const taskSavedFilters = await prisma.taskSavedFilter.findMany()
+    * ```
+    */
+  get taskSavedFilter(): Prisma.TaskSavedFilterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.taskTemplate`: Exposes CRUD operations for the **TaskTemplate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TaskTemplates
+    * const taskTemplates = await prisma.taskTemplate.findMany()
+    * ```
+    */
+  get taskTemplate(): Prisma.TaskTemplateDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1236,7 +1326,13 @@ export namespace Prisma {
     AssignmentTarget: 'AssignmentTarget',
     RefreshToken: 'RefreshToken',
     MeetingMinuteMeeting: 'MeetingMinuteMeeting',
-    MeetingMinuteRequest: 'MeetingMinuteRequest'
+    MeetingMinuteRequest: 'MeetingMinuteRequest',
+    StudentTask: 'StudentTask',
+    Task: 'Task',
+    TaskActivity: 'TaskActivity',
+    TaskComment: 'TaskComment',
+    TaskSavedFilter: 'TaskSavedFilter',
+    TaskTemplate: 'TaskTemplate'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1255,7 +1351,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog" | "assignmentTarget" | "refreshToken" | "meetingMinuteMeeting" | "meetingMinuteRequest"
+      modelProps: "webinarRegistration" | "availabilityDay" | "teacher" | "student" | "teacherStudent" | "studentGroup" | "studentGroupMember" | "assignment" | "submission" | "enrollment" | "resource" | "assignmentResource" | "studentResource" | "studentSubmission" | "studentSubmissionRemark" | "message" | "classSchedule" | "activationRequest" | "passwordResetRequest" | "admin" | "payment" | "testimonial" | "securityLog" | "failedActivation" | "feedback" | "contactSubmission" | "parentAccount" | "transactionReceipt" | "mentor" | "progressReport" | "generalEvent" | "eventRegistration" | "accessRequest" | "research" | "blog" | "assignmentTarget" | "refreshToken" | "meetingMinuteMeeting" | "meetingMinuteRequest" | "studentTask" | "task" | "taskActivity" | "taskComment" | "taskSavedFilter" | "taskTemplate"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4145,6 +4241,450 @@ export namespace Prisma {
           }
         }
       }
+      StudentTask: {
+        payload: Prisma.$StudentTaskPayload<ExtArgs>
+        fields: Prisma.StudentTaskFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StudentTaskFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StudentTaskFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload>
+          }
+          findFirst: {
+            args: Prisma.StudentTaskFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StudentTaskFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload>
+          }
+          findMany: {
+            args: Prisma.StudentTaskFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload>[]
+          }
+          create: {
+            args: Prisma.StudentTaskCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload>
+          }
+          createMany: {
+            args: Prisma.StudentTaskCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StudentTaskCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload>[]
+          }
+          delete: {
+            args: Prisma.StudentTaskDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload>
+          }
+          update: {
+            args: Prisma.StudentTaskUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload>
+          }
+          deleteMany: {
+            args: Prisma.StudentTaskDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StudentTaskUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StudentTaskUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload>[]
+          }
+          upsert: {
+            args: Prisma.StudentTaskUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StudentTaskPayload>
+          }
+          aggregate: {
+            args: Prisma.StudentTaskAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStudentTask>
+          }
+          groupBy: {
+            args: Prisma.StudentTaskGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StudentTaskGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StudentTaskCountArgs<ExtArgs>
+            result: $Utils.Optional<StudentTaskCountAggregateOutputType> | number
+          }
+        }
+      }
+      Task: {
+        payload: Prisma.$TaskPayload<ExtArgs>
+        fields: Prisma.TaskFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TaskFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TaskFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          findFirst: {
+            args: Prisma.TaskFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TaskFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          findMany: {
+            args: Prisma.TaskFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>[]
+          }
+          create: {
+            args: Prisma.TaskCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          createMany: {
+            args: Prisma.TaskCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TaskCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>[]
+          }
+          delete: {
+            args: Prisma.TaskDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          update: {
+            args: Prisma.TaskUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          deleteMany: {
+            args: Prisma.TaskDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TaskUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TaskUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>[]
+          }
+          upsert: {
+            args: Prisma.TaskUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskPayload>
+          }
+          aggregate: {
+            args: Prisma.TaskAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTask>
+          }
+          groupBy: {
+            args: Prisma.TaskGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TaskGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TaskCountArgs<ExtArgs>
+            result: $Utils.Optional<TaskCountAggregateOutputType> | number
+          }
+        }
+      }
+      TaskActivity: {
+        payload: Prisma.$TaskActivityPayload<ExtArgs>
+        fields: Prisma.TaskActivityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TaskActivityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TaskActivityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload>
+          }
+          findFirst: {
+            args: Prisma.TaskActivityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TaskActivityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload>
+          }
+          findMany: {
+            args: Prisma.TaskActivityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload>[]
+          }
+          create: {
+            args: Prisma.TaskActivityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload>
+          }
+          createMany: {
+            args: Prisma.TaskActivityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TaskActivityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload>[]
+          }
+          delete: {
+            args: Prisma.TaskActivityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload>
+          }
+          update: {
+            args: Prisma.TaskActivityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload>
+          }
+          deleteMany: {
+            args: Prisma.TaskActivityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TaskActivityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TaskActivityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload>[]
+          }
+          upsert: {
+            args: Prisma.TaskActivityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskActivityPayload>
+          }
+          aggregate: {
+            args: Prisma.TaskActivityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTaskActivity>
+          }
+          groupBy: {
+            args: Prisma.TaskActivityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TaskActivityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TaskActivityCountArgs<ExtArgs>
+            result: $Utils.Optional<TaskActivityCountAggregateOutputType> | number
+          }
+        }
+      }
+      TaskComment: {
+        payload: Prisma.$TaskCommentPayload<ExtArgs>
+        fields: Prisma.TaskCommentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TaskCommentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TaskCommentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+          }
+          findFirst: {
+            args: Prisma.TaskCommentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TaskCommentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+          }
+          findMany: {
+            args: Prisma.TaskCommentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload>[]
+          }
+          create: {
+            args: Prisma.TaskCommentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+          }
+          createMany: {
+            args: Prisma.TaskCommentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TaskCommentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload>[]
+          }
+          delete: {
+            args: Prisma.TaskCommentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+          }
+          update: {
+            args: Prisma.TaskCommentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+          }
+          deleteMany: {
+            args: Prisma.TaskCommentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TaskCommentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TaskCommentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload>[]
+          }
+          upsert: {
+            args: Prisma.TaskCommentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskCommentPayload>
+          }
+          aggregate: {
+            args: Prisma.TaskCommentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTaskComment>
+          }
+          groupBy: {
+            args: Prisma.TaskCommentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TaskCommentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TaskCommentCountArgs<ExtArgs>
+            result: $Utils.Optional<TaskCommentCountAggregateOutputType> | number
+          }
+        }
+      }
+      TaskSavedFilter: {
+        payload: Prisma.$TaskSavedFilterPayload<ExtArgs>
+        fields: Prisma.TaskSavedFilterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TaskSavedFilterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TaskSavedFilterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload>
+          }
+          findFirst: {
+            args: Prisma.TaskSavedFilterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TaskSavedFilterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload>
+          }
+          findMany: {
+            args: Prisma.TaskSavedFilterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload>[]
+          }
+          create: {
+            args: Prisma.TaskSavedFilterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload>
+          }
+          createMany: {
+            args: Prisma.TaskSavedFilterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TaskSavedFilterCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload>[]
+          }
+          delete: {
+            args: Prisma.TaskSavedFilterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload>
+          }
+          update: {
+            args: Prisma.TaskSavedFilterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload>
+          }
+          deleteMany: {
+            args: Prisma.TaskSavedFilterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TaskSavedFilterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TaskSavedFilterUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload>[]
+          }
+          upsert: {
+            args: Prisma.TaskSavedFilterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskSavedFilterPayload>
+          }
+          aggregate: {
+            args: Prisma.TaskSavedFilterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTaskSavedFilter>
+          }
+          groupBy: {
+            args: Prisma.TaskSavedFilterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TaskSavedFilterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TaskSavedFilterCountArgs<ExtArgs>
+            result: $Utils.Optional<TaskSavedFilterCountAggregateOutputType> | number
+          }
+        }
+      }
+      TaskTemplate: {
+        payload: Prisma.$TaskTemplatePayload<ExtArgs>
+        fields: Prisma.TaskTemplateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TaskTemplateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TaskTemplateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload>
+          }
+          findFirst: {
+            args: Prisma.TaskTemplateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TaskTemplateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload>
+          }
+          findMany: {
+            args: Prisma.TaskTemplateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload>[]
+          }
+          create: {
+            args: Prisma.TaskTemplateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload>
+          }
+          createMany: {
+            args: Prisma.TaskTemplateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TaskTemplateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload>[]
+          }
+          delete: {
+            args: Prisma.TaskTemplateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload>
+          }
+          update: {
+            args: Prisma.TaskTemplateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload>
+          }
+          deleteMany: {
+            args: Prisma.TaskTemplateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TaskTemplateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TaskTemplateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload>[]
+          }
+          upsert: {
+            args: Prisma.TaskTemplateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TaskTemplatePayload>
+          }
+          aggregate: {
+            args: Prisma.TaskTemplateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTaskTemplate>
+          }
+          groupBy: {
+            args: Prisma.TaskTemplateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TaskTemplateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TaskTemplateCountArgs<ExtArgs>
+            result: $Utils.Optional<TaskTemplateCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4276,6 +4816,12 @@ export namespace Prisma {
     refreshToken?: RefreshTokenOmit
     meetingMinuteMeeting?: MeetingMinuteMeetingOmit
     meetingMinuteRequest?: MeetingMinuteRequestOmit
+    studentTask?: StudentTaskOmit
+    task?: TaskOmit
+    taskActivity?: TaskActivityOmit
+    taskComment?: TaskCommentOmit
+    taskSavedFilter?: TaskSavedFilterOmit
+    taskTemplate?: TaskTemplateOmit
   }
 
   /* Types for Logging */
@@ -4363,6 +4909,9 @@ export namespace Prisma {
     resources: number
     studentGroups: number
     submissionRemarks: number
+    StudentTask: number
+    Task: number
+    TaskTemplate: number
     students: number
   }
 
@@ -4374,6 +4923,9 @@ export namespace Prisma {
     resources?: boolean | TeacherCountOutputTypeCountResourcesArgs
     studentGroups?: boolean | TeacherCountOutputTypeCountStudentGroupsArgs
     submissionRemarks?: boolean | TeacherCountOutputTypeCountSubmissionRemarksArgs
+    StudentTask?: boolean | TeacherCountOutputTypeCountStudentTaskArgs
+    Task?: boolean | TeacherCountOutputTypeCountTaskArgs
+    TaskTemplate?: boolean | TeacherCountOutputTypeCountTaskTemplateArgs
     students?: boolean | TeacherCountOutputTypeCountStudentsArgs
   }
 
@@ -4440,6 +4992,27 @@ export namespace Prisma {
   /**
    * TeacherCountOutputType without action
    */
+  export type TeacherCountOutputTypeCountStudentTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentTaskWhereInput
+  }
+
+  /**
+   * TeacherCountOutputType without action
+   */
+  export type TeacherCountOutputTypeCountTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskWhereInput
+  }
+
+  /**
+   * TeacherCountOutputType without action
+   */
+  export type TeacherCountOutputTypeCountTaskTemplateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskTemplateWhereInput
+  }
+
+  /**
+   * TeacherCountOutputType without action
+   */
   export type TeacherCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TeacherStudentWhereInput
   }
@@ -4462,6 +5035,7 @@ export namespace Prisma {
     groupMemberships: number
     assignedResources: number
     studentSubmissions: number
+    StudentTask: number
     submissions: number
     teacherLinks: number
     Testimonial: number
@@ -4480,6 +5054,7 @@ export namespace Prisma {
     groupMemberships?: boolean | StudentCountOutputTypeCountGroupMembershipsArgs
     assignedResources?: boolean | StudentCountOutputTypeCountAssignedResourcesArgs
     studentSubmissions?: boolean | StudentCountOutputTypeCountStudentSubmissionsArgs
+    StudentTask?: boolean | StudentCountOutputTypeCountStudentTaskArgs
     submissions?: boolean | StudentCountOutputTypeCountSubmissionsArgs
     teacherLinks?: boolean | StudentCountOutputTypeCountTeacherLinksArgs
     Testimonial?: boolean | StudentCountOutputTypeCountTestimonialArgs
@@ -4583,6 +5158,13 @@ export namespace Prisma {
   /**
    * StudentCountOutputType without action
    */
+  export type StudentCountOutputTypeCountStudentTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentTaskWhereInput
+  }
+
+  /**
+   * StudentCountOutputType without action
+   */
   export type StudentCountOutputTypeCountSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SubmissionWhereInput
   }
@@ -4650,12 +5232,14 @@ export namespace Prisma {
     resources: number
     AssignmentTarget: number
     submissions: number
+    Task: number
   }
 
   export type AssignmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     resources?: boolean | AssignmentCountOutputTypeCountResourcesArgs
     AssignmentTarget?: boolean | AssignmentCountOutputTypeCountAssignmentTargetArgs
     submissions?: boolean | AssignmentCountOutputTypeCountSubmissionsArgs
+    Task?: boolean | AssignmentCountOutputTypeCountTaskArgs
   }
 
   // Custom InputTypes
@@ -4688,6 +5272,13 @@ export namespace Prisma {
    */
   export type AssignmentCountOutputTypeCountSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SubmissionWhereInput
+  }
+
+  /**
+   * AssignmentCountOutputType without action
+   */
+  export type AssignmentCountOutputTypeCountTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskWhereInput
   }
 
 
@@ -4729,11 +5320,13 @@ export namespace Prisma {
   export type ResourceCountOutputType = {
     assignmentLinks: number
     studentAssignments: number
+    Task: number
   }
 
   export type ResourceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignmentLinks?: boolean | ResourceCountOutputTypeCountAssignmentLinksArgs
     studentAssignments?: boolean | ResourceCountOutputTypeCountStudentAssignmentsArgs
+    Task?: boolean | ResourceCountOutputTypeCountTaskArgs
   }
 
   // Custom InputTypes
@@ -4759,6 +5352,13 @@ export namespace Prisma {
    */
   export type ResourceCountOutputTypeCountStudentAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StudentResourceWhereInput
+  }
+
+  /**
+   * ResourceCountOutputType without action
+   */
+  export type ResourceCountOutputTypeCountTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskWhereInput
   }
 
 
@@ -4923,10 +5523,12 @@ export namespace Prisma {
 
   export type MeetingMinuteMeetingCountOutputType = {
     MeetingMinuteRequest: number
+    Task: number
   }
 
   export type MeetingMinuteMeetingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     MeetingMinuteRequest?: boolean | MeetingMinuteMeetingCountOutputTypeCountMeetingMinuteRequestArgs
+    Task?: boolean | MeetingMinuteMeetingCountOutputTypeCountTaskArgs
   }
 
   // Custom InputTypes
@@ -4945,6 +5547,115 @@ export namespace Prisma {
    */
   export type MeetingMinuteMeetingCountOutputTypeCountMeetingMinuteRequestArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MeetingMinuteRequestWhereInput
+  }
+
+  /**
+   * MeetingMinuteMeetingCountOutputType without action
+   */
+  export type MeetingMinuteMeetingCountOutputTypeCountTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskWhereInput
+  }
+
+
+  /**
+   * Count Type StudentTaskCountOutputType
+   */
+
+  export type StudentTaskCountOutputType = {
+    TaskActivity: number
+    TaskComment: number
+  }
+
+  export type StudentTaskCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    TaskActivity?: boolean | StudentTaskCountOutputTypeCountTaskActivityArgs
+    TaskComment?: boolean | StudentTaskCountOutputTypeCountTaskCommentArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * StudentTaskCountOutputType without action
+   */
+  export type StudentTaskCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTaskCountOutputType
+     */
+    select?: StudentTaskCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * StudentTaskCountOutputType without action
+   */
+  export type StudentTaskCountOutputTypeCountTaskActivityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskActivityWhereInput
+  }
+
+  /**
+   * StudentTaskCountOutputType without action
+   */
+  export type StudentTaskCountOutputTypeCountTaskCommentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskCommentWhereInput
+  }
+
+
+  /**
+   * Count Type TaskCountOutputType
+   */
+
+  export type TaskCountOutputType = {
+    StudentTask: number
+  }
+
+  export type TaskCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentTask?: boolean | TaskCountOutputTypeCountStudentTaskArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TaskCountOutputType without action
+   */
+  export type TaskCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskCountOutputType
+     */
+    select?: TaskCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TaskCountOutputType without action
+   */
+  export type TaskCountOutputTypeCountStudentTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentTaskWhereInput
+  }
+
+
+  /**
+   * Count Type TaskTemplateCountOutputType
+   */
+
+  export type TaskTemplateCountOutputType = {
+    Task: number
+  }
+
+  export type TaskTemplateCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Task?: boolean | TaskTemplateCountOutputTypeCountTaskArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TaskTemplateCountOutputType without action
+   */
+  export type TaskTemplateCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplateCountOutputType
+     */
+    select?: TaskTemplateCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TaskTemplateCountOutputType without action
+   */
+  export type TaskTemplateCountOutputTypeCountTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskWhereInput
   }
 
 
@@ -7403,6 +8114,9 @@ export namespace Prisma {
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     studentGroups?: boolean | Teacher$studentGroupsArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
+    StudentTask?: boolean | Teacher$StudentTaskArgs<ExtArgs>
+    Task?: boolean | Teacher$TaskArgs<ExtArgs>
+    TaskTemplate?: boolean | Teacher$TaskTemplateArgs<ExtArgs>
     students?: boolean | Teacher$studentsArgs<ExtArgs>
     _count?: boolean | TeacherCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teacher"]>
@@ -7462,6 +8176,9 @@ export namespace Prisma {
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     studentGroups?: boolean | Teacher$studentGroupsArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
+    StudentTask?: boolean | Teacher$StudentTaskArgs<ExtArgs>
+    Task?: boolean | Teacher$TaskArgs<ExtArgs>
+    TaskTemplate?: boolean | Teacher$TaskTemplateArgs<ExtArgs>
     students?: boolean | Teacher$studentsArgs<ExtArgs>
     _count?: boolean | TeacherCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -7479,6 +8196,9 @@ export namespace Prisma {
       resources: Prisma.$ResourcePayload<ExtArgs>[]
       studentGroups: Prisma.$StudentGroupPayload<ExtArgs>[]
       submissionRemarks: Prisma.$StudentSubmissionRemarkPayload<ExtArgs>[]
+      StudentTask: Prisma.$StudentTaskPayload<ExtArgs>[]
+      Task: Prisma.$TaskPayload<ExtArgs>[]
+      TaskTemplate: Prisma.$TaskTemplatePayload<ExtArgs>[]
       students: Prisma.$TeacherStudentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -7896,6 +8616,9 @@ export namespace Prisma {
     resources<T extends Teacher$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     studentGroups<T extends Teacher$studentGroupsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$studentGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissionRemarks<T extends Teacher$submissionRemarksArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$submissionRemarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionRemarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    StudentTask<T extends Teacher$StudentTaskArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$StudentTaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Task<T extends Teacher$TaskArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    TaskTemplate<T extends Teacher$TaskTemplateArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$TaskTemplateArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     students<T extends Teacher$studentsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8513,6 +9236,78 @@ export namespace Prisma {
   }
 
   /**
+   * Teacher.StudentTask
+   */
+  export type Teacher$StudentTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    where?: StudentTaskWhereInput
+    orderBy?: StudentTaskOrderByWithRelationInput | StudentTaskOrderByWithRelationInput[]
+    cursor?: StudentTaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentTaskScalarFieldEnum | StudentTaskScalarFieldEnum[]
+  }
+
+  /**
+   * Teacher.Task
+   */
+  export type Teacher$TaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    where?: TaskWhereInput
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    cursor?: TaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * Teacher.TaskTemplate
+   */
+  export type Teacher$TaskTemplateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    where?: TaskTemplateWhereInput
+    orderBy?: TaskTemplateOrderByWithRelationInput | TaskTemplateOrderByWithRelationInput[]
+    cursor?: TaskTemplateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskTemplateScalarFieldEnum | TaskTemplateScalarFieldEnum[]
+  }
+
+  /**
    * Teacher.students
    */
   export type Teacher$studentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8854,6 +9649,7 @@ export namespace Prisma {
     groupMemberships?: boolean | Student$groupMembershipsArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
     studentSubmissions?: boolean | Student$studentSubmissionsArgs<ExtArgs>
+    StudentTask?: boolean | Student$StudentTaskArgs<ExtArgs>
     submissions?: boolean | Student$submissionsArgs<ExtArgs>
     teacherLinks?: boolean | Student$teacherLinksArgs<ExtArgs>
     Testimonial?: boolean | Student$TestimonialArgs<ExtArgs>
@@ -8931,6 +9727,7 @@ export namespace Prisma {
     groupMemberships?: boolean | Student$groupMembershipsArgs<ExtArgs>
     assignedResources?: boolean | Student$assignedResourcesArgs<ExtArgs>
     studentSubmissions?: boolean | Student$studentSubmissionsArgs<ExtArgs>
+    StudentTask?: boolean | Student$StudentTaskArgs<ExtArgs>
     submissions?: boolean | Student$submissionsArgs<ExtArgs>
     teacherLinks?: boolean | Student$teacherLinksArgs<ExtArgs>
     Testimonial?: boolean | Student$TestimonialArgs<ExtArgs>
@@ -8959,6 +9756,7 @@ export namespace Prisma {
       groupMemberships: Prisma.$StudentGroupMemberPayload<ExtArgs>[]
       assignedResources: Prisma.$StudentResourcePayload<ExtArgs>[]
       studentSubmissions: Prisma.$StudentSubmissionPayload<ExtArgs>[]
+      StudentTask: Prisma.$StudentTaskPayload<ExtArgs>[]
       submissions: Prisma.$SubmissionPayload<ExtArgs>[]
       teacherLinks: Prisma.$TeacherStudentPayload<ExtArgs>[]
       Testimonial: Prisma.$TestimonialPayload<ExtArgs>[]
@@ -9386,6 +10184,7 @@ export namespace Prisma {
     groupMemberships<T extends Student$groupMembershipsArgs<ExtArgs> = {}>(args?: Subset<T, Student$groupMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     assignedResources<T extends Student$assignedResourcesArgs<ExtArgs> = {}>(args?: Subset<T, Student$assignedResourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     studentSubmissions<T extends Student$studentSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$studentSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    StudentTask<T extends Student$StudentTaskArgs<ExtArgs> = {}>(args?: Subset<T, Student$StudentTaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissions<T extends Student$submissionsArgs<ExtArgs> = {}>(args?: Subset<T, Student$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     teacherLinks<T extends Student$teacherLinksArgs<ExtArgs> = {}>(args?: Subset<T, Student$teacherLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Testimonial<T extends Student$TestimonialArgs<ExtArgs> = {}>(args?: Subset<T, Student$TestimonialArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TestimonialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -10133,6 +10932,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StudentSubmissionScalarFieldEnum | StudentSubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * Student.StudentTask
+   */
+  export type Student$StudentTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    where?: StudentTaskWhereInput
+    orderBy?: StudentTaskOrderByWithRelationInput | StudentTaskOrderByWithRelationInput[]
+    cursor?: StudentTaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentTaskScalarFieldEnum | StudentTaskScalarFieldEnum[]
   }
 
   /**
@@ -13878,6 +14701,7 @@ export namespace Prisma {
     resources?: boolean | Assignment$resourcesArgs<ExtArgs>
     AssignmentTarget?: boolean | Assignment$AssignmentTargetArgs<ExtArgs>
     submissions?: boolean | Assignment$submissionsArgs<ExtArgs>
+    Task?: boolean | Assignment$TaskArgs<ExtArgs>
     _count?: boolean | AssignmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assignment"]>
 
@@ -13946,6 +14770,7 @@ export namespace Prisma {
     resources?: boolean | Assignment$resourcesArgs<ExtArgs>
     AssignmentTarget?: boolean | Assignment$AssignmentTargetArgs<ExtArgs>
     submissions?: boolean | Assignment$submissionsArgs<ExtArgs>
+    Task?: boolean | Assignment$TaskArgs<ExtArgs>
     _count?: boolean | AssignmentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type AssignmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -13965,6 +14790,7 @@ export namespace Prisma {
       resources: Prisma.$AssignmentResourcePayload<ExtArgs>[]
       AssignmentTarget: Prisma.$AssignmentTargetPayload<ExtArgs>[]
       submissions: Prisma.$SubmissionPayload<ExtArgs>[]
+      Task: Prisma.$TaskPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -14381,6 +15207,7 @@ export namespace Prisma {
     resources<T extends Assignment$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Assignment$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     AssignmentTarget<T extends Assignment$AssignmentTargetArgs<ExtArgs> = {}>(args?: Subset<T, Assignment$AssignmentTargetArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentTargetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissions<T extends Assignment$submissionsArgs<ExtArgs> = {}>(args?: Subset<T, Assignment$submissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Task<T extends Assignment$TaskArgs<ExtArgs> = {}>(args?: Subset<T, Assignment$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -14909,6 +15736,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SubmissionScalarFieldEnum | SubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * Assignment.Task
+   */
+  export type Assignment$TaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    where?: TaskWhereInput
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    cursor?: TaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
   }
 
   /**
@@ -17595,6 +18446,7 @@ export namespace Prisma {
     assignmentLinks?: boolean | Resource$assignmentLinksArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     studentAssignments?: boolean | Resource$studentAssignmentsArgs<ExtArgs>
+    Task?: boolean | Resource$TaskArgs<ExtArgs>
     _count?: boolean | ResourceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["resource"]>
 
@@ -17659,6 +18511,7 @@ export namespace Prisma {
     assignmentLinks?: boolean | Resource$assignmentLinksArgs<ExtArgs>
     teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     studentAssignments?: boolean | Resource$studentAssignmentsArgs<ExtArgs>
+    Task?: boolean | Resource$TaskArgs<ExtArgs>
     _count?: boolean | ResourceCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ResourceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17674,6 +18527,7 @@ export namespace Prisma {
       assignmentLinks: Prisma.$AssignmentResourcePayload<ExtArgs>[]
       teacher: Prisma.$TeacherPayload<ExtArgs>
       studentAssignments: Prisma.$StudentResourcePayload<ExtArgs>[]
+      Task: Prisma.$TaskPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -18088,6 +18942,7 @@ export namespace Prisma {
     assignmentLinks<T extends Resource$assignmentLinksArgs<ExtArgs> = {}>(args?: Subset<T, Resource$assignmentLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssignmentResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     studentAssignments<T extends Resource$studentAssignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Resource$studentAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Task<T extends Resource$TaskArgs<ExtArgs> = {}>(args?: Subset<T, Resource$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18573,6 +19428,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StudentResourceScalarFieldEnum | StudentResourceScalarFieldEnum[]
+  }
+
+  /**
+   * Resource.Task
+   */
+  export type Resource$TaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    where?: TaskWhereInput
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    cursor?: TaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
   }
 
   /**
@@ -50146,6 +51025,7 @@ export namespace Prisma {
     ClassSchedule?: boolean | MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs>
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     MeetingMinuteRequest?: boolean | MeetingMinuteMeeting$MeetingMinuteRequestArgs<ExtArgs>
+    Task?: boolean | MeetingMinuteMeeting$TaskArgs<ExtArgs>
     _count?: boolean | MeetingMinuteMeetingCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["meetingMinuteMeeting"]>
 
@@ -50212,6 +51092,7 @@ export namespace Prisma {
     ClassSchedule?: boolean | MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs>
     Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
     MeetingMinuteRequest?: boolean | MeetingMinuteMeeting$MeetingMinuteRequestArgs<ExtArgs>
+    Task?: boolean | MeetingMinuteMeeting$TaskArgs<ExtArgs>
     _count?: boolean | MeetingMinuteMeetingCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type MeetingMinuteMeetingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -50229,6 +51110,7 @@ export namespace Prisma {
       ClassSchedule: Prisma.$ClassSchedulePayload<ExtArgs> | null
       Teacher: Prisma.$TeacherPayload<ExtArgs>
       MeetingMinuteRequest: Prisma.$MeetingMinuteRequestPayload<ExtArgs>[]
+      Task: Prisma.$TaskPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -50643,6 +51525,7 @@ export namespace Prisma {
     ClassSchedule<T extends MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs> = {}>(args?: Subset<T, MeetingMinuteMeeting$ClassScheduleArgs<ExtArgs>>): Prisma__ClassScheduleClient<$Result.GetResult<Prisma.$ClassSchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     MeetingMinuteRequest<T extends MeetingMinuteMeeting$MeetingMinuteRequestArgs<ExtArgs> = {}>(args?: Subset<T, MeetingMinuteMeeting$MeetingMinuteRequestArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MeetingMinuteRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Task<T extends MeetingMinuteMeeting$TaskArgs<ExtArgs> = {}>(args?: Subset<T, MeetingMinuteMeeting$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -51123,6 +52006,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MeetingMinuteRequestScalarFieldEnum | MeetingMinuteRequestScalarFieldEnum[]
+  }
+
+  /**
+   * MeetingMinuteMeeting.Task
+   */
+  export type MeetingMinuteMeeting$TaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    where?: TaskWhereInput
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    cursor?: TaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
   }
 
   /**
@@ -52344,6 +53251,7553 @@ export namespace Prisma {
 
 
   /**
+   * Model StudentTask
+   */
+
+  export type AggregateStudentTask = {
+    _count: StudentTaskCountAggregateOutputType | null
+    _avg: StudentTaskAvgAggregateOutputType | null
+    _sum: StudentTaskSumAggregateOutputType | null
+    _min: StudentTaskMinAggregateOutputType | null
+    _max: StudentTaskMaxAggregateOutputType | null
+  }
+
+  export type StudentTaskAvgAggregateOutputType = {
+    id: number | null
+    taskId: number | null
+    studentId: number | null
+    reviewedById: number | null
+  }
+
+  export type StudentTaskSumAggregateOutputType = {
+    id: number | null
+    taskId: number | null
+    studentId: number | null
+    reviewedById: number | null
+  }
+
+  export type StudentTaskMinAggregateOutputType = {
+    id: number | null
+    taskId: number | null
+    studentId: number | null
+    status: string | null
+    startedAt: Date | null
+    submittedAt: Date | null
+    completedAt: Date | null
+    submissionNote: string | null
+    submissionUrl: string | null
+    submissionFileUrl: string | null
+    submissionFileName: string | null
+    submissionExternalConfirmed: boolean | null
+    mentorFeedback: string | null
+    reviewedAt: Date | null
+    reviewedById: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    dueSoonReminderSentAt: Date | null
+    overdueReminderSentAt: Date | null
+  }
+
+  export type StudentTaskMaxAggregateOutputType = {
+    id: number | null
+    taskId: number | null
+    studentId: number | null
+    status: string | null
+    startedAt: Date | null
+    submittedAt: Date | null
+    completedAt: Date | null
+    submissionNote: string | null
+    submissionUrl: string | null
+    submissionFileUrl: string | null
+    submissionFileName: string | null
+    submissionExternalConfirmed: boolean | null
+    mentorFeedback: string | null
+    reviewedAt: Date | null
+    reviewedById: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    dueSoonReminderSentAt: Date | null
+    overdueReminderSentAt: Date | null
+  }
+
+  export type StudentTaskCountAggregateOutputType = {
+    id: number
+    taskId: number
+    studentId: number
+    status: number
+    startedAt: number
+    submittedAt: number
+    completedAt: number
+    submissionNote: number
+    submissionUrl: number
+    submissionFileUrl: number
+    submissionFileName: number
+    submissionExternalConfirmed: number
+    mentorFeedback: number
+    reviewedAt: number
+    reviewedById: number
+    createdAt: number
+    updatedAt: number
+    checklistDone: number
+    dueSoonReminderSentAt: number
+    overdueReminderSentAt: number
+    _all: number
+  }
+
+
+  export type StudentTaskAvgAggregateInputType = {
+    id?: true
+    taskId?: true
+    studentId?: true
+    reviewedById?: true
+  }
+
+  export type StudentTaskSumAggregateInputType = {
+    id?: true
+    taskId?: true
+    studentId?: true
+    reviewedById?: true
+  }
+
+  export type StudentTaskMinAggregateInputType = {
+    id?: true
+    taskId?: true
+    studentId?: true
+    status?: true
+    startedAt?: true
+    submittedAt?: true
+    completedAt?: true
+    submissionNote?: true
+    submissionUrl?: true
+    submissionFileUrl?: true
+    submissionFileName?: true
+    submissionExternalConfirmed?: true
+    mentorFeedback?: true
+    reviewedAt?: true
+    reviewedById?: true
+    createdAt?: true
+    updatedAt?: true
+    dueSoonReminderSentAt?: true
+    overdueReminderSentAt?: true
+  }
+
+  export type StudentTaskMaxAggregateInputType = {
+    id?: true
+    taskId?: true
+    studentId?: true
+    status?: true
+    startedAt?: true
+    submittedAt?: true
+    completedAt?: true
+    submissionNote?: true
+    submissionUrl?: true
+    submissionFileUrl?: true
+    submissionFileName?: true
+    submissionExternalConfirmed?: true
+    mentorFeedback?: true
+    reviewedAt?: true
+    reviewedById?: true
+    createdAt?: true
+    updatedAt?: true
+    dueSoonReminderSentAt?: true
+    overdueReminderSentAt?: true
+  }
+
+  export type StudentTaskCountAggregateInputType = {
+    id?: true
+    taskId?: true
+    studentId?: true
+    status?: true
+    startedAt?: true
+    submittedAt?: true
+    completedAt?: true
+    submissionNote?: true
+    submissionUrl?: true
+    submissionFileUrl?: true
+    submissionFileName?: true
+    submissionExternalConfirmed?: true
+    mentorFeedback?: true
+    reviewedAt?: true
+    reviewedById?: true
+    createdAt?: true
+    updatedAt?: true
+    checklistDone?: true
+    dueSoonReminderSentAt?: true
+    overdueReminderSentAt?: true
+    _all?: true
+  }
+
+  export type StudentTaskAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StudentTask to aggregate.
+     */
+    where?: StudentTaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentTasks to fetch.
+     */
+    orderBy?: StudentTaskOrderByWithRelationInput | StudentTaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StudentTaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentTasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentTasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned StudentTasks
+    **/
+    _count?: true | StudentTaskCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: StudentTaskAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: StudentTaskSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StudentTaskMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StudentTaskMaxAggregateInputType
+  }
+
+  export type GetStudentTaskAggregateType<T extends StudentTaskAggregateArgs> = {
+        [P in keyof T & keyof AggregateStudentTask]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStudentTask[P]>
+      : GetScalarType<T[P], AggregateStudentTask[P]>
+  }
+
+
+
+
+  export type StudentTaskGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentTaskWhereInput
+    orderBy?: StudentTaskOrderByWithAggregationInput | StudentTaskOrderByWithAggregationInput[]
+    by: StudentTaskScalarFieldEnum[] | StudentTaskScalarFieldEnum
+    having?: StudentTaskScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StudentTaskCountAggregateInputType | true
+    _avg?: StudentTaskAvgAggregateInputType
+    _sum?: StudentTaskSumAggregateInputType
+    _min?: StudentTaskMinAggregateInputType
+    _max?: StudentTaskMaxAggregateInputType
+  }
+
+  export type StudentTaskGroupByOutputType = {
+    id: number
+    taskId: number
+    studentId: number
+    status: string
+    startedAt: Date | null
+    submittedAt: Date | null
+    completedAt: Date | null
+    submissionNote: string | null
+    submissionUrl: string | null
+    submissionFileUrl: string | null
+    submissionFileName: string | null
+    submissionExternalConfirmed: boolean
+    mentorFeedback: string | null
+    reviewedAt: Date | null
+    reviewedById: number | null
+    createdAt: Date
+    updatedAt: Date
+    checklistDone: JsonValue | null
+    dueSoonReminderSentAt: Date | null
+    overdueReminderSentAt: Date | null
+    _count: StudentTaskCountAggregateOutputType | null
+    _avg: StudentTaskAvgAggregateOutputType | null
+    _sum: StudentTaskSumAggregateOutputType | null
+    _min: StudentTaskMinAggregateOutputType | null
+    _max: StudentTaskMaxAggregateOutputType | null
+  }
+
+  type GetStudentTaskGroupByPayload<T extends StudentTaskGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StudentTaskGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StudentTaskGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StudentTaskGroupByOutputType[P]>
+            : GetScalarType<T[P], StudentTaskGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StudentTaskSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    taskId?: boolean
+    studentId?: boolean
+    status?: boolean
+    startedAt?: boolean
+    submittedAt?: boolean
+    completedAt?: boolean
+    submissionNote?: boolean
+    submissionUrl?: boolean
+    submissionFileUrl?: boolean
+    submissionFileName?: boolean
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: boolean
+    reviewedAt?: boolean
+    reviewedById?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    checklistDone?: boolean
+    dueSoonReminderSentAt?: boolean
+    overdueReminderSentAt?: boolean
+    Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Task?: boolean | TaskDefaultArgs<ExtArgs>
+    TaskActivity?: boolean | StudentTask$TaskActivityArgs<ExtArgs>
+    TaskComment?: boolean | StudentTask$TaskCommentArgs<ExtArgs>
+    _count?: boolean | StudentTaskCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentTask"]>
+
+  export type StudentTaskSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    taskId?: boolean
+    studentId?: boolean
+    status?: boolean
+    startedAt?: boolean
+    submittedAt?: boolean
+    completedAt?: boolean
+    submissionNote?: boolean
+    submissionUrl?: boolean
+    submissionFileUrl?: boolean
+    submissionFileName?: boolean
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: boolean
+    reviewedAt?: boolean
+    reviewedById?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    checklistDone?: boolean
+    dueSoonReminderSentAt?: boolean
+    overdueReminderSentAt?: boolean
+    Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Task?: boolean | TaskDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentTask"]>
+
+  export type StudentTaskSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    taskId?: boolean
+    studentId?: boolean
+    status?: boolean
+    startedAt?: boolean
+    submittedAt?: boolean
+    completedAt?: boolean
+    submissionNote?: boolean
+    submissionUrl?: boolean
+    submissionFileUrl?: boolean
+    submissionFileName?: boolean
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: boolean
+    reviewedAt?: boolean
+    reviewedById?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    checklistDone?: boolean
+    dueSoonReminderSentAt?: boolean
+    overdueReminderSentAt?: boolean
+    Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Task?: boolean | TaskDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["studentTask"]>
+
+  export type StudentTaskSelectScalar = {
+    id?: boolean
+    taskId?: boolean
+    studentId?: boolean
+    status?: boolean
+    startedAt?: boolean
+    submittedAt?: boolean
+    completedAt?: boolean
+    submissionNote?: boolean
+    submissionUrl?: boolean
+    submissionFileUrl?: boolean
+    submissionFileName?: boolean
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: boolean
+    reviewedAt?: boolean
+    reviewedById?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    checklistDone?: boolean
+    dueSoonReminderSentAt?: boolean
+    overdueReminderSentAt?: boolean
+  }
+
+  export type StudentTaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "taskId" | "studentId" | "status" | "startedAt" | "submittedAt" | "completedAt" | "submissionNote" | "submissionUrl" | "submissionFileUrl" | "submissionFileName" | "submissionExternalConfirmed" | "mentorFeedback" | "reviewedAt" | "reviewedById" | "createdAt" | "updatedAt" | "checklistDone" | "dueSoonReminderSentAt" | "overdueReminderSentAt", ExtArgs["result"]["studentTask"]>
+  export type StudentTaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Task?: boolean | TaskDefaultArgs<ExtArgs>
+    TaskActivity?: boolean | StudentTask$TaskActivityArgs<ExtArgs>
+    TaskComment?: boolean | StudentTask$TaskCommentArgs<ExtArgs>
+    _count?: boolean | StudentTaskCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type StudentTaskIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Task?: boolean | TaskDefaultArgs<ExtArgs>
+  }
+  export type StudentTaskIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
+    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Task?: boolean | TaskDefaultArgs<ExtArgs>
+  }
+
+  export type $StudentTaskPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "StudentTask"
+    objects: {
+      Teacher: Prisma.$TeacherPayload<ExtArgs> | null
+      Student: Prisma.$StudentPayload<ExtArgs>
+      Task: Prisma.$TaskPayload<ExtArgs>
+      TaskActivity: Prisma.$TaskActivityPayload<ExtArgs>[]
+      TaskComment: Prisma.$TaskCommentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      taskId: number
+      studentId: number
+      status: string
+      startedAt: Date | null
+      submittedAt: Date | null
+      completedAt: Date | null
+      submissionNote: string | null
+      submissionUrl: string | null
+      submissionFileUrl: string | null
+      submissionFileName: string | null
+      submissionExternalConfirmed: boolean
+      mentorFeedback: string | null
+      reviewedAt: Date | null
+      reviewedById: number | null
+      createdAt: Date
+      updatedAt: Date
+      checklistDone: Prisma.JsonValue | null
+      dueSoonReminderSentAt: Date | null
+      overdueReminderSentAt: Date | null
+    }, ExtArgs["result"]["studentTask"]>
+    composites: {}
+  }
+
+  type StudentTaskGetPayload<S extends boolean | null | undefined | StudentTaskDefaultArgs> = $Result.GetResult<Prisma.$StudentTaskPayload, S>
+
+  type StudentTaskCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StudentTaskFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StudentTaskCountAggregateInputType | true
+    }
+
+  export interface StudentTaskDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['StudentTask'], meta: { name: 'StudentTask' } }
+    /**
+     * Find zero or one StudentTask that matches the filter.
+     * @param {StudentTaskFindUniqueArgs} args - Arguments to find a StudentTask
+     * @example
+     * // Get one StudentTask
+     * const studentTask = await prisma.studentTask.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StudentTaskFindUniqueArgs>(args: SelectSubset<T, StudentTaskFindUniqueArgs<ExtArgs>>): Prisma__StudentTaskClient<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one StudentTask that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StudentTaskFindUniqueOrThrowArgs} args - Arguments to find a StudentTask
+     * @example
+     * // Get one StudentTask
+     * const studentTask = await prisma.studentTask.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StudentTaskFindUniqueOrThrowArgs>(args: SelectSubset<T, StudentTaskFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StudentTaskClient<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StudentTask that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentTaskFindFirstArgs} args - Arguments to find a StudentTask
+     * @example
+     * // Get one StudentTask
+     * const studentTask = await prisma.studentTask.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StudentTaskFindFirstArgs>(args?: SelectSubset<T, StudentTaskFindFirstArgs<ExtArgs>>): Prisma__StudentTaskClient<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first StudentTask that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentTaskFindFirstOrThrowArgs} args - Arguments to find a StudentTask
+     * @example
+     * // Get one StudentTask
+     * const studentTask = await prisma.studentTask.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StudentTaskFindFirstOrThrowArgs>(args?: SelectSubset<T, StudentTaskFindFirstOrThrowArgs<ExtArgs>>): Prisma__StudentTaskClient<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more StudentTasks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentTaskFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all StudentTasks
+     * const studentTasks = await prisma.studentTask.findMany()
+     * 
+     * // Get first 10 StudentTasks
+     * const studentTasks = await prisma.studentTask.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const studentTaskWithIdOnly = await prisma.studentTask.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StudentTaskFindManyArgs>(args?: SelectSubset<T, StudentTaskFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a StudentTask.
+     * @param {StudentTaskCreateArgs} args - Arguments to create a StudentTask.
+     * @example
+     * // Create one StudentTask
+     * const StudentTask = await prisma.studentTask.create({
+     *   data: {
+     *     // ... data to create a StudentTask
+     *   }
+     * })
+     * 
+     */
+    create<T extends StudentTaskCreateArgs>(args: SelectSubset<T, StudentTaskCreateArgs<ExtArgs>>): Prisma__StudentTaskClient<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many StudentTasks.
+     * @param {StudentTaskCreateManyArgs} args - Arguments to create many StudentTasks.
+     * @example
+     * // Create many StudentTasks
+     * const studentTask = await prisma.studentTask.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StudentTaskCreateManyArgs>(args?: SelectSubset<T, StudentTaskCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many StudentTasks and returns the data saved in the database.
+     * @param {StudentTaskCreateManyAndReturnArgs} args - Arguments to create many StudentTasks.
+     * @example
+     * // Create many StudentTasks
+     * const studentTask = await prisma.studentTask.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many StudentTasks and only return the `id`
+     * const studentTaskWithIdOnly = await prisma.studentTask.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StudentTaskCreateManyAndReturnArgs>(args?: SelectSubset<T, StudentTaskCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a StudentTask.
+     * @param {StudentTaskDeleteArgs} args - Arguments to delete one StudentTask.
+     * @example
+     * // Delete one StudentTask
+     * const StudentTask = await prisma.studentTask.delete({
+     *   where: {
+     *     // ... filter to delete one StudentTask
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StudentTaskDeleteArgs>(args: SelectSubset<T, StudentTaskDeleteArgs<ExtArgs>>): Prisma__StudentTaskClient<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one StudentTask.
+     * @param {StudentTaskUpdateArgs} args - Arguments to update one StudentTask.
+     * @example
+     * // Update one StudentTask
+     * const studentTask = await prisma.studentTask.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StudentTaskUpdateArgs>(args: SelectSubset<T, StudentTaskUpdateArgs<ExtArgs>>): Prisma__StudentTaskClient<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more StudentTasks.
+     * @param {StudentTaskDeleteManyArgs} args - Arguments to filter StudentTasks to delete.
+     * @example
+     * // Delete a few StudentTasks
+     * const { count } = await prisma.studentTask.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StudentTaskDeleteManyArgs>(args?: SelectSubset<T, StudentTaskDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StudentTasks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentTaskUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many StudentTasks
+     * const studentTask = await prisma.studentTask.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StudentTaskUpdateManyArgs>(args: SelectSubset<T, StudentTaskUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more StudentTasks and returns the data updated in the database.
+     * @param {StudentTaskUpdateManyAndReturnArgs} args - Arguments to update many StudentTasks.
+     * @example
+     * // Update many StudentTasks
+     * const studentTask = await prisma.studentTask.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more StudentTasks and only return the `id`
+     * const studentTaskWithIdOnly = await prisma.studentTask.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StudentTaskUpdateManyAndReturnArgs>(args: SelectSubset<T, StudentTaskUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one StudentTask.
+     * @param {StudentTaskUpsertArgs} args - Arguments to update or create a StudentTask.
+     * @example
+     * // Update or create a StudentTask
+     * const studentTask = await prisma.studentTask.upsert({
+     *   create: {
+     *     // ... data to create a StudentTask
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the StudentTask we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StudentTaskUpsertArgs>(args: SelectSubset<T, StudentTaskUpsertArgs<ExtArgs>>): Prisma__StudentTaskClient<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of StudentTasks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentTaskCountArgs} args - Arguments to filter StudentTasks to count.
+     * @example
+     * // Count the number of StudentTasks
+     * const count = await prisma.studentTask.count({
+     *   where: {
+     *     // ... the filter for the StudentTasks we want to count
+     *   }
+     * })
+    **/
+    count<T extends StudentTaskCountArgs>(
+      args?: Subset<T, StudentTaskCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StudentTaskCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a StudentTask.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentTaskAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StudentTaskAggregateArgs>(args: Subset<T, StudentTaskAggregateArgs>): Prisma.PrismaPromise<GetStudentTaskAggregateType<T>>
+
+    /**
+     * Group by StudentTask.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StudentTaskGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StudentTaskGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StudentTaskGroupByArgs['orderBy'] }
+        : { orderBy?: StudentTaskGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StudentTaskGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStudentTaskGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the StudentTask model
+   */
+  readonly fields: StudentTaskFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for StudentTask.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StudentTaskClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Teacher<T extends StudentTask$TeacherArgs<ExtArgs> = {}>(args?: Subset<T, StudentTask$TeacherArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Task<T extends TaskDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TaskDefaultArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    TaskActivity<T extends StudentTask$TaskActivityArgs<ExtArgs> = {}>(args?: Subset<T, StudentTask$TaskActivityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    TaskComment<T extends StudentTask$TaskCommentArgs<ExtArgs> = {}>(args?: Subset<T, StudentTask$TaskCommentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the StudentTask model
+   */
+  interface StudentTaskFieldRefs {
+    readonly id: FieldRef<"StudentTask", 'Int'>
+    readonly taskId: FieldRef<"StudentTask", 'Int'>
+    readonly studentId: FieldRef<"StudentTask", 'Int'>
+    readonly status: FieldRef<"StudentTask", 'String'>
+    readonly startedAt: FieldRef<"StudentTask", 'DateTime'>
+    readonly submittedAt: FieldRef<"StudentTask", 'DateTime'>
+    readonly completedAt: FieldRef<"StudentTask", 'DateTime'>
+    readonly submissionNote: FieldRef<"StudentTask", 'String'>
+    readonly submissionUrl: FieldRef<"StudentTask", 'String'>
+    readonly submissionFileUrl: FieldRef<"StudentTask", 'String'>
+    readonly submissionFileName: FieldRef<"StudentTask", 'String'>
+    readonly submissionExternalConfirmed: FieldRef<"StudentTask", 'Boolean'>
+    readonly mentorFeedback: FieldRef<"StudentTask", 'String'>
+    readonly reviewedAt: FieldRef<"StudentTask", 'DateTime'>
+    readonly reviewedById: FieldRef<"StudentTask", 'Int'>
+    readonly createdAt: FieldRef<"StudentTask", 'DateTime'>
+    readonly updatedAt: FieldRef<"StudentTask", 'DateTime'>
+    readonly checklistDone: FieldRef<"StudentTask", 'Json'>
+    readonly dueSoonReminderSentAt: FieldRef<"StudentTask", 'DateTime'>
+    readonly overdueReminderSentAt: FieldRef<"StudentTask", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * StudentTask findUnique
+   */
+  export type StudentTaskFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentTask to fetch.
+     */
+    where: StudentTaskWhereUniqueInput
+  }
+
+  /**
+   * StudentTask findUniqueOrThrow
+   */
+  export type StudentTaskFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentTask to fetch.
+     */
+    where: StudentTaskWhereUniqueInput
+  }
+
+  /**
+   * StudentTask findFirst
+   */
+  export type StudentTaskFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentTask to fetch.
+     */
+    where?: StudentTaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentTasks to fetch.
+     */
+    orderBy?: StudentTaskOrderByWithRelationInput | StudentTaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StudentTasks.
+     */
+    cursor?: StudentTaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentTasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentTasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StudentTasks.
+     */
+    distinct?: StudentTaskScalarFieldEnum | StudentTaskScalarFieldEnum[]
+  }
+
+  /**
+   * StudentTask findFirstOrThrow
+   */
+  export type StudentTaskFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentTask to fetch.
+     */
+    where?: StudentTaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentTasks to fetch.
+     */
+    orderBy?: StudentTaskOrderByWithRelationInput | StudentTaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for StudentTasks.
+     */
+    cursor?: StudentTaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentTasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentTasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of StudentTasks.
+     */
+    distinct?: StudentTaskScalarFieldEnum | StudentTaskScalarFieldEnum[]
+  }
+
+  /**
+   * StudentTask findMany
+   */
+  export type StudentTaskFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    /**
+     * Filter, which StudentTasks to fetch.
+     */
+    where?: StudentTaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of StudentTasks to fetch.
+     */
+    orderBy?: StudentTaskOrderByWithRelationInput | StudentTaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing StudentTasks.
+     */
+    cursor?: StudentTaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` StudentTasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` StudentTasks.
+     */
+    skip?: number
+    distinct?: StudentTaskScalarFieldEnum | StudentTaskScalarFieldEnum[]
+  }
+
+  /**
+   * StudentTask create
+   */
+  export type StudentTaskCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    /**
+     * The data needed to create a StudentTask.
+     */
+    data: XOR<StudentTaskCreateInput, StudentTaskUncheckedCreateInput>
+  }
+
+  /**
+   * StudentTask createMany
+   */
+  export type StudentTaskCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many StudentTasks.
+     */
+    data: StudentTaskCreateManyInput | StudentTaskCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * StudentTask createManyAndReturn
+   */
+  export type StudentTaskCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * The data used to create many StudentTasks.
+     */
+    data: StudentTaskCreateManyInput | StudentTaskCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StudentTask update
+   */
+  export type StudentTaskUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    /**
+     * The data needed to update a StudentTask.
+     */
+    data: XOR<StudentTaskUpdateInput, StudentTaskUncheckedUpdateInput>
+    /**
+     * Choose, which StudentTask to update.
+     */
+    where: StudentTaskWhereUniqueInput
+  }
+
+  /**
+   * StudentTask updateMany
+   */
+  export type StudentTaskUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update StudentTasks.
+     */
+    data: XOR<StudentTaskUpdateManyMutationInput, StudentTaskUncheckedUpdateManyInput>
+    /**
+     * Filter which StudentTasks to update
+     */
+    where?: StudentTaskWhereInput
+    /**
+     * Limit how many StudentTasks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * StudentTask updateManyAndReturn
+   */
+  export type StudentTaskUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * The data used to update StudentTasks.
+     */
+    data: XOR<StudentTaskUpdateManyMutationInput, StudentTaskUncheckedUpdateManyInput>
+    /**
+     * Filter which StudentTasks to update
+     */
+    where?: StudentTaskWhereInput
+    /**
+     * Limit how many StudentTasks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * StudentTask upsert
+   */
+  export type StudentTaskUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    /**
+     * The filter to search for the StudentTask to update in case it exists.
+     */
+    where: StudentTaskWhereUniqueInput
+    /**
+     * In case the StudentTask found by the `where` argument doesn't exist, create a new StudentTask with this data.
+     */
+    create: XOR<StudentTaskCreateInput, StudentTaskUncheckedCreateInput>
+    /**
+     * In case the StudentTask was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StudentTaskUpdateInput, StudentTaskUncheckedUpdateInput>
+  }
+
+  /**
+   * StudentTask delete
+   */
+  export type StudentTaskDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    /**
+     * Filter which StudentTask to delete.
+     */
+    where: StudentTaskWhereUniqueInput
+  }
+
+  /**
+   * StudentTask deleteMany
+   */
+  export type StudentTaskDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which StudentTasks to delete
+     */
+    where?: StudentTaskWhereInput
+    /**
+     * Limit how many StudentTasks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * StudentTask.Teacher
+   */
+  export type StudentTask$TeacherArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Teacher
+     */
+    select?: TeacherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Teacher
+     */
+    omit?: TeacherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
+    where?: TeacherWhereInput
+  }
+
+  /**
+   * StudentTask.TaskActivity
+   */
+  export type StudentTask$TaskActivityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+    where?: TaskActivityWhereInput
+    orderBy?: TaskActivityOrderByWithRelationInput | TaskActivityOrderByWithRelationInput[]
+    cursor?: TaskActivityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskActivityScalarFieldEnum | TaskActivityScalarFieldEnum[]
+  }
+
+  /**
+   * StudentTask.TaskComment
+   */
+  export type StudentTask$TaskCommentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+    where?: TaskCommentWhereInput
+    orderBy?: TaskCommentOrderByWithRelationInput | TaskCommentOrderByWithRelationInput[]
+    cursor?: TaskCommentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskCommentScalarFieldEnum | TaskCommentScalarFieldEnum[]
+  }
+
+  /**
+   * StudentTask without action
+   */
+  export type StudentTaskDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Task
+   */
+
+  export type AggregateTask = {
+    _count: TaskCountAggregateOutputType | null
+    _avg: TaskAvgAggregateOutputType | null
+    _sum: TaskSumAggregateOutputType | null
+    _min: TaskMinAggregateOutputType | null
+    _max: TaskMaxAggregateOutputType | null
+  }
+
+  export type TaskAvgAggregateOutputType = {
+    id: number | null
+    creatorId: number | null
+    linkedAssignmentId: number | null
+    linkedMeetingId: number | null
+    linkedResourceId: number | null
+    seriesId: number | null
+    templateId: number | null
+  }
+
+  export type TaskSumAggregateOutputType = {
+    id: number | null
+    creatorId: number | null
+    linkedAssignmentId: number | null
+    linkedMeetingId: number | null
+    linkedResourceId: number | null
+    seriesId: number | null
+    templateId: number | null
+  }
+
+  export type TaskMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    category: string | null
+    priority: string | null
+    deadline: Date | null
+    creatorId: number | null
+    requireSubmissionNote: boolean | null
+    requireFileUpload: boolean | null
+    requireUrl: boolean | null
+    requireExternalConfirmation: boolean | null
+    externalConfirmationPrompt: string | null
+    requireMentorApproval: boolean | null
+    isCancelled: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    linkedAssignmentId: number | null
+    linkedMeetingId: number | null
+    linkedResourceId: number | null
+    nextOccurrenceCreatedAt: Date | null
+    recurrence: string | null
+    recurrenceEndsAt: Date | null
+    seriesId: number | null
+    templateId: number | null
+  }
+
+  export type TaskMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    category: string | null
+    priority: string | null
+    deadline: Date | null
+    creatorId: number | null
+    requireSubmissionNote: boolean | null
+    requireFileUpload: boolean | null
+    requireUrl: boolean | null
+    requireExternalConfirmation: boolean | null
+    externalConfirmationPrompt: string | null
+    requireMentorApproval: boolean | null
+    isCancelled: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    linkedAssignmentId: number | null
+    linkedMeetingId: number | null
+    linkedResourceId: number | null
+    nextOccurrenceCreatedAt: Date | null
+    recurrence: string | null
+    recurrenceEndsAt: Date | null
+    seriesId: number | null
+    templateId: number | null
+  }
+
+  export type TaskCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    category: number
+    priority: number
+    deadline: number
+    creatorId: number
+    requireSubmissionNote: number
+    requireFileUpload: number
+    requireUrl: number
+    requireExternalConfirmation: number
+    externalConfirmationPrompt: number
+    requireMentorApproval: number
+    isCancelled: number
+    createdAt: number
+    updatedAt: number
+    checklist: number
+    linkedAssignmentId: number
+    linkedMeetingId: number
+    linkedResourceId: number
+    nextOccurrenceCreatedAt: number
+    recurrence: number
+    recurrenceEndsAt: number
+    seriesId: number
+    templateId: number
+    _all: number
+  }
+
+
+  export type TaskAvgAggregateInputType = {
+    id?: true
+    creatorId?: true
+    linkedAssignmentId?: true
+    linkedMeetingId?: true
+    linkedResourceId?: true
+    seriesId?: true
+    templateId?: true
+  }
+
+  export type TaskSumAggregateInputType = {
+    id?: true
+    creatorId?: true
+    linkedAssignmentId?: true
+    linkedMeetingId?: true
+    linkedResourceId?: true
+    seriesId?: true
+    templateId?: true
+  }
+
+  export type TaskMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    category?: true
+    priority?: true
+    deadline?: true
+    creatorId?: true
+    requireSubmissionNote?: true
+    requireFileUpload?: true
+    requireUrl?: true
+    requireExternalConfirmation?: true
+    externalConfirmationPrompt?: true
+    requireMentorApproval?: true
+    isCancelled?: true
+    createdAt?: true
+    updatedAt?: true
+    linkedAssignmentId?: true
+    linkedMeetingId?: true
+    linkedResourceId?: true
+    nextOccurrenceCreatedAt?: true
+    recurrence?: true
+    recurrenceEndsAt?: true
+    seriesId?: true
+    templateId?: true
+  }
+
+  export type TaskMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    category?: true
+    priority?: true
+    deadline?: true
+    creatorId?: true
+    requireSubmissionNote?: true
+    requireFileUpload?: true
+    requireUrl?: true
+    requireExternalConfirmation?: true
+    externalConfirmationPrompt?: true
+    requireMentorApproval?: true
+    isCancelled?: true
+    createdAt?: true
+    updatedAt?: true
+    linkedAssignmentId?: true
+    linkedMeetingId?: true
+    linkedResourceId?: true
+    nextOccurrenceCreatedAt?: true
+    recurrence?: true
+    recurrenceEndsAt?: true
+    seriesId?: true
+    templateId?: true
+  }
+
+  export type TaskCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    category?: true
+    priority?: true
+    deadline?: true
+    creatorId?: true
+    requireSubmissionNote?: true
+    requireFileUpload?: true
+    requireUrl?: true
+    requireExternalConfirmation?: true
+    externalConfirmationPrompt?: true
+    requireMentorApproval?: true
+    isCancelled?: true
+    createdAt?: true
+    updatedAt?: true
+    checklist?: true
+    linkedAssignmentId?: true
+    linkedMeetingId?: true
+    linkedResourceId?: true
+    nextOccurrenceCreatedAt?: true
+    recurrence?: true
+    recurrenceEndsAt?: true
+    seriesId?: true
+    templateId?: true
+    _all?: true
+  }
+
+  export type TaskAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Task to aggregate.
+     */
+    where?: TaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tasks to fetch.
+     */
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Tasks
+    **/
+    _count?: true | TaskCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TaskAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TaskSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TaskMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TaskMaxAggregateInputType
+  }
+
+  export type GetTaskAggregateType<T extends TaskAggregateArgs> = {
+        [P in keyof T & keyof AggregateTask]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTask[P]>
+      : GetScalarType<T[P], AggregateTask[P]>
+  }
+
+
+
+
+  export type TaskGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskWhereInput
+    orderBy?: TaskOrderByWithAggregationInput | TaskOrderByWithAggregationInput[]
+    by: TaskScalarFieldEnum[] | TaskScalarFieldEnum
+    having?: TaskScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TaskCountAggregateInputType | true
+    _avg?: TaskAvgAggregateInputType
+    _sum?: TaskSumAggregateInputType
+    _min?: TaskMinAggregateInputType
+    _max?: TaskMaxAggregateInputType
+  }
+
+  export type TaskGroupByOutputType = {
+    id: number
+    title: string
+    description: string
+    category: string
+    priority: string
+    deadline: Date | null
+    creatorId: number
+    requireSubmissionNote: boolean
+    requireFileUpload: boolean
+    requireUrl: boolean
+    requireExternalConfirmation: boolean
+    externalConfirmationPrompt: string | null
+    requireMentorApproval: boolean
+    isCancelled: boolean
+    createdAt: Date
+    updatedAt: Date
+    checklist: JsonValue | null
+    linkedAssignmentId: number | null
+    linkedMeetingId: number | null
+    linkedResourceId: number | null
+    nextOccurrenceCreatedAt: Date | null
+    recurrence: string | null
+    recurrenceEndsAt: Date | null
+    seriesId: number | null
+    templateId: number | null
+    _count: TaskCountAggregateOutputType | null
+    _avg: TaskAvgAggregateOutputType | null
+    _sum: TaskSumAggregateOutputType | null
+    _min: TaskMinAggregateOutputType | null
+    _max: TaskMaxAggregateOutputType | null
+  }
+
+  type GetTaskGroupByPayload<T extends TaskGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TaskGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TaskGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TaskGroupByOutputType[P]>
+            : GetScalarType<T[P], TaskGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TaskSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    priority?: boolean
+    deadline?: boolean
+    creatorId?: boolean
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: boolean
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    checklist?: boolean
+    linkedAssignmentId?: boolean
+    linkedMeetingId?: boolean
+    linkedResourceId?: boolean
+    nextOccurrenceCreatedAt?: boolean
+    recurrence?: boolean
+    recurrenceEndsAt?: boolean
+    seriesId?: boolean
+    templateId?: boolean
+    StudentTask?: boolean | Task$StudentTaskArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
+    MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
+    Resource?: boolean | Task$ResourceArgs<ExtArgs>
+    TaskTemplate?: boolean | Task$TaskTemplateArgs<ExtArgs>
+    _count?: boolean | TaskCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["task"]>
+
+  export type TaskSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    priority?: boolean
+    deadline?: boolean
+    creatorId?: boolean
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: boolean
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    checklist?: boolean
+    linkedAssignmentId?: boolean
+    linkedMeetingId?: boolean
+    linkedResourceId?: boolean
+    nextOccurrenceCreatedAt?: boolean
+    recurrence?: boolean
+    recurrenceEndsAt?: boolean
+    seriesId?: boolean
+    templateId?: boolean
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
+    MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
+    Resource?: boolean | Task$ResourceArgs<ExtArgs>
+    TaskTemplate?: boolean | Task$TaskTemplateArgs<ExtArgs>
+  }, ExtArgs["result"]["task"]>
+
+  export type TaskSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    priority?: boolean
+    deadline?: boolean
+    creatorId?: boolean
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: boolean
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    checklist?: boolean
+    linkedAssignmentId?: boolean
+    linkedMeetingId?: boolean
+    linkedResourceId?: boolean
+    nextOccurrenceCreatedAt?: boolean
+    recurrence?: boolean
+    recurrenceEndsAt?: boolean
+    seriesId?: boolean
+    templateId?: boolean
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
+    MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
+    Resource?: boolean | Task$ResourceArgs<ExtArgs>
+    TaskTemplate?: boolean | Task$TaskTemplateArgs<ExtArgs>
+  }, ExtArgs["result"]["task"]>
+
+  export type TaskSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    priority?: boolean
+    deadline?: boolean
+    creatorId?: boolean
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: boolean
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    checklist?: boolean
+    linkedAssignmentId?: boolean
+    linkedMeetingId?: boolean
+    linkedResourceId?: boolean
+    nextOccurrenceCreatedAt?: boolean
+    recurrence?: boolean
+    recurrenceEndsAt?: boolean
+    seriesId?: boolean
+    templateId?: boolean
+  }
+
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "priority" | "deadline" | "creatorId" | "requireSubmissionNote" | "requireFileUpload" | "requireUrl" | "requireExternalConfirmation" | "externalConfirmationPrompt" | "requireMentorApproval" | "isCancelled" | "createdAt" | "updatedAt" | "checklist" | "linkedAssignmentId" | "linkedMeetingId" | "linkedResourceId" | "nextOccurrenceCreatedAt" | "recurrence" | "recurrenceEndsAt" | "seriesId" | "templateId", ExtArgs["result"]["task"]>
+  export type TaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentTask?: boolean | Task$StudentTaskArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
+    MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
+    Resource?: boolean | Task$ResourceArgs<ExtArgs>
+    TaskTemplate?: boolean | Task$TaskTemplateArgs<ExtArgs>
+    _count?: boolean | TaskCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TaskIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
+    MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
+    Resource?: boolean | Task$ResourceArgs<ExtArgs>
+    TaskTemplate?: boolean | Task$TaskTemplateArgs<ExtArgs>
+  }
+  export type TaskIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
+    MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
+    Resource?: boolean | Task$ResourceArgs<ExtArgs>
+    TaskTemplate?: boolean | Task$TaskTemplateArgs<ExtArgs>
+  }
+
+  export type $TaskPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Task"
+    objects: {
+      StudentTask: Prisma.$StudentTaskPayload<ExtArgs>[]
+      Teacher: Prisma.$TeacherPayload<ExtArgs>
+      Assignment: Prisma.$AssignmentPayload<ExtArgs> | null
+      MeetingMinuteMeeting: Prisma.$MeetingMinuteMeetingPayload<ExtArgs> | null
+      Resource: Prisma.$ResourcePayload<ExtArgs> | null
+      TaskTemplate: Prisma.$TaskTemplatePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      description: string
+      category: string
+      priority: string
+      deadline: Date | null
+      creatorId: number
+      requireSubmissionNote: boolean
+      requireFileUpload: boolean
+      requireUrl: boolean
+      requireExternalConfirmation: boolean
+      externalConfirmationPrompt: string | null
+      requireMentorApproval: boolean
+      isCancelled: boolean
+      createdAt: Date
+      updatedAt: Date
+      checklist: Prisma.JsonValue | null
+      linkedAssignmentId: number | null
+      linkedMeetingId: number | null
+      linkedResourceId: number | null
+      nextOccurrenceCreatedAt: Date | null
+      recurrence: string | null
+      recurrenceEndsAt: Date | null
+      seriesId: number | null
+      templateId: number | null
+    }, ExtArgs["result"]["task"]>
+    composites: {}
+  }
+
+  type TaskGetPayload<S extends boolean | null | undefined | TaskDefaultArgs> = $Result.GetResult<Prisma.$TaskPayload, S>
+
+  type TaskCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TaskFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TaskCountAggregateInputType | true
+    }
+
+  export interface TaskDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Task'], meta: { name: 'Task' } }
+    /**
+     * Find zero or one Task that matches the filter.
+     * @param {TaskFindUniqueArgs} args - Arguments to find a Task
+     * @example
+     * // Get one Task
+     * const task = await prisma.task.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TaskFindUniqueArgs>(args: SelectSubset<T, TaskFindUniqueArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Task that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TaskFindUniqueOrThrowArgs} args - Arguments to find a Task
+     * @example
+     * // Get one Task
+     * const task = await prisma.task.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TaskFindUniqueOrThrowArgs>(args: SelectSubset<T, TaskFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Task that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskFindFirstArgs} args - Arguments to find a Task
+     * @example
+     * // Get one Task
+     * const task = await prisma.task.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TaskFindFirstArgs>(args?: SelectSubset<T, TaskFindFirstArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Task that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskFindFirstOrThrowArgs} args - Arguments to find a Task
+     * @example
+     * // Get one Task
+     * const task = await prisma.task.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TaskFindFirstOrThrowArgs>(args?: SelectSubset<T, TaskFindFirstOrThrowArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Tasks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Tasks
+     * const tasks = await prisma.task.findMany()
+     * 
+     * // Get first 10 Tasks
+     * const tasks = await prisma.task.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const taskWithIdOnly = await prisma.task.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TaskFindManyArgs>(args?: SelectSubset<T, TaskFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Task.
+     * @param {TaskCreateArgs} args - Arguments to create a Task.
+     * @example
+     * // Create one Task
+     * const Task = await prisma.task.create({
+     *   data: {
+     *     // ... data to create a Task
+     *   }
+     * })
+     * 
+     */
+    create<T extends TaskCreateArgs>(args: SelectSubset<T, TaskCreateArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Tasks.
+     * @param {TaskCreateManyArgs} args - Arguments to create many Tasks.
+     * @example
+     * // Create many Tasks
+     * const task = await prisma.task.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TaskCreateManyArgs>(args?: SelectSubset<T, TaskCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Tasks and returns the data saved in the database.
+     * @param {TaskCreateManyAndReturnArgs} args - Arguments to create many Tasks.
+     * @example
+     * // Create many Tasks
+     * const task = await prisma.task.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Tasks and only return the `id`
+     * const taskWithIdOnly = await prisma.task.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TaskCreateManyAndReturnArgs>(args?: SelectSubset<T, TaskCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Task.
+     * @param {TaskDeleteArgs} args - Arguments to delete one Task.
+     * @example
+     * // Delete one Task
+     * const Task = await prisma.task.delete({
+     *   where: {
+     *     // ... filter to delete one Task
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TaskDeleteArgs>(args: SelectSubset<T, TaskDeleteArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Task.
+     * @param {TaskUpdateArgs} args - Arguments to update one Task.
+     * @example
+     * // Update one Task
+     * const task = await prisma.task.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TaskUpdateArgs>(args: SelectSubset<T, TaskUpdateArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Tasks.
+     * @param {TaskDeleteManyArgs} args - Arguments to filter Tasks to delete.
+     * @example
+     * // Delete a few Tasks
+     * const { count } = await prisma.task.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TaskDeleteManyArgs>(args?: SelectSubset<T, TaskDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tasks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Tasks
+     * const task = await prisma.task.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TaskUpdateManyArgs>(args: SelectSubset<T, TaskUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tasks and returns the data updated in the database.
+     * @param {TaskUpdateManyAndReturnArgs} args - Arguments to update many Tasks.
+     * @example
+     * // Update many Tasks
+     * const task = await prisma.task.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Tasks and only return the `id`
+     * const taskWithIdOnly = await prisma.task.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TaskUpdateManyAndReturnArgs>(args: SelectSubset<T, TaskUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Task.
+     * @param {TaskUpsertArgs} args - Arguments to update or create a Task.
+     * @example
+     * // Update or create a Task
+     * const task = await prisma.task.upsert({
+     *   create: {
+     *     // ... data to create a Task
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Task we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TaskUpsertArgs>(args: SelectSubset<T, TaskUpsertArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Tasks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskCountArgs} args - Arguments to filter Tasks to count.
+     * @example
+     * // Count the number of Tasks
+     * const count = await prisma.task.count({
+     *   where: {
+     *     // ... the filter for the Tasks we want to count
+     *   }
+     * })
+    **/
+    count<T extends TaskCountArgs>(
+      args?: Subset<T, TaskCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TaskCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Task.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TaskAggregateArgs>(args: Subset<T, TaskAggregateArgs>): Prisma.PrismaPromise<GetTaskAggregateType<T>>
+
+    /**
+     * Group by Task.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TaskGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TaskGroupByArgs['orderBy'] }
+        : { orderBy?: TaskGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TaskGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaskGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Task model
+   */
+  readonly fields: TaskFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Task.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TaskClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    StudentTask<T extends Task$StudentTaskArgs<ExtArgs> = {}>(args?: Subset<T, Task$StudentTaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Assignment<T extends Task$AssignmentArgs<ExtArgs> = {}>(args?: Subset<T, Task$AssignmentArgs<ExtArgs>>): Prisma__AssignmentClient<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    MeetingMinuteMeeting<T extends Task$MeetingMinuteMeetingArgs<ExtArgs> = {}>(args?: Subset<T, Task$MeetingMinuteMeetingArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Resource<T extends Task$ResourceArgs<ExtArgs> = {}>(args?: Subset<T, Task$ResourceArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    TaskTemplate<T extends Task$TaskTemplateArgs<ExtArgs> = {}>(args?: Subset<T, Task$TaskTemplateArgs<ExtArgs>>): Prisma__TaskTemplateClient<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Task model
+   */
+  interface TaskFieldRefs {
+    readonly id: FieldRef<"Task", 'Int'>
+    readonly title: FieldRef<"Task", 'String'>
+    readonly description: FieldRef<"Task", 'String'>
+    readonly category: FieldRef<"Task", 'String'>
+    readonly priority: FieldRef<"Task", 'String'>
+    readonly deadline: FieldRef<"Task", 'DateTime'>
+    readonly creatorId: FieldRef<"Task", 'Int'>
+    readonly requireSubmissionNote: FieldRef<"Task", 'Boolean'>
+    readonly requireFileUpload: FieldRef<"Task", 'Boolean'>
+    readonly requireUrl: FieldRef<"Task", 'Boolean'>
+    readonly requireExternalConfirmation: FieldRef<"Task", 'Boolean'>
+    readonly externalConfirmationPrompt: FieldRef<"Task", 'String'>
+    readonly requireMentorApproval: FieldRef<"Task", 'Boolean'>
+    readonly isCancelled: FieldRef<"Task", 'Boolean'>
+    readonly createdAt: FieldRef<"Task", 'DateTime'>
+    readonly updatedAt: FieldRef<"Task", 'DateTime'>
+    readonly checklist: FieldRef<"Task", 'Json'>
+    readonly linkedAssignmentId: FieldRef<"Task", 'Int'>
+    readonly linkedMeetingId: FieldRef<"Task", 'Int'>
+    readonly linkedResourceId: FieldRef<"Task", 'Int'>
+    readonly nextOccurrenceCreatedAt: FieldRef<"Task", 'DateTime'>
+    readonly recurrence: FieldRef<"Task", 'String'>
+    readonly recurrenceEndsAt: FieldRef<"Task", 'DateTime'>
+    readonly seriesId: FieldRef<"Task", 'Int'>
+    readonly templateId: FieldRef<"Task", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Task findUnique
+   */
+  export type TaskFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter, which Task to fetch.
+     */
+    where: TaskWhereUniqueInput
+  }
+
+  /**
+   * Task findUniqueOrThrow
+   */
+  export type TaskFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter, which Task to fetch.
+     */
+    where: TaskWhereUniqueInput
+  }
+
+  /**
+   * Task findFirst
+   */
+  export type TaskFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter, which Task to fetch.
+     */
+    where?: TaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tasks to fetch.
+     */
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tasks.
+     */
+    cursor?: TaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tasks.
+     */
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * Task findFirstOrThrow
+   */
+  export type TaskFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter, which Task to fetch.
+     */
+    where?: TaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tasks to fetch.
+     */
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tasks.
+     */
+    cursor?: TaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tasks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tasks.
+     */
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * Task findMany
+   */
+  export type TaskFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter, which Tasks to fetch.
+     */
+    where?: TaskWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tasks to fetch.
+     */
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Tasks.
+     */
+    cursor?: TaskWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tasks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tasks.
+     */
+    skip?: number
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * Task create
+   */
+  export type TaskCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Task.
+     */
+    data: XOR<TaskCreateInput, TaskUncheckedCreateInput>
+  }
+
+  /**
+   * Task createMany
+   */
+  export type TaskCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Tasks.
+     */
+    data: TaskCreateManyInput | TaskCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Task createManyAndReturn
+   */
+  export type TaskCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * The data used to create many Tasks.
+     */
+    data: TaskCreateManyInput | TaskCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Task update
+   */
+  export type TaskUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Task.
+     */
+    data: XOR<TaskUpdateInput, TaskUncheckedUpdateInput>
+    /**
+     * Choose, which Task to update.
+     */
+    where: TaskWhereUniqueInput
+  }
+
+  /**
+   * Task updateMany
+   */
+  export type TaskUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Tasks.
+     */
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyInput>
+    /**
+     * Filter which Tasks to update
+     */
+    where?: TaskWhereInput
+    /**
+     * Limit how many Tasks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Task updateManyAndReturn
+   */
+  export type TaskUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * The data used to update Tasks.
+     */
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyInput>
+    /**
+     * Filter which Tasks to update
+     */
+    where?: TaskWhereInput
+    /**
+     * Limit how many Tasks to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Task upsert
+   */
+  export type TaskUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Task to update in case it exists.
+     */
+    where: TaskWhereUniqueInput
+    /**
+     * In case the Task found by the `where` argument doesn't exist, create a new Task with this data.
+     */
+    create: XOR<TaskCreateInput, TaskUncheckedCreateInput>
+    /**
+     * In case the Task was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TaskUpdateInput, TaskUncheckedUpdateInput>
+  }
+
+  /**
+   * Task delete
+   */
+  export type TaskDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    /**
+     * Filter which Task to delete.
+     */
+    where: TaskWhereUniqueInput
+  }
+
+  /**
+   * Task deleteMany
+   */
+  export type TaskDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tasks to delete
+     */
+    where?: TaskWhereInput
+    /**
+     * Limit how many Tasks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Task.StudentTask
+   */
+  export type Task$StudentTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    where?: StudentTaskWhereInput
+    orderBy?: StudentTaskOrderByWithRelationInput | StudentTaskOrderByWithRelationInput[]
+    cursor?: StudentTaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentTaskScalarFieldEnum | StudentTaskScalarFieldEnum[]
+  }
+
+  /**
+   * Task.Assignment
+   */
+  export type Task$AssignmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Assignment
+     */
+    select?: AssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Assignment
+     */
+    omit?: AssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssignmentInclude<ExtArgs> | null
+    where?: AssignmentWhereInput
+  }
+
+  /**
+   * Task.MeetingMinuteMeeting
+   */
+  export type Task$MeetingMinuteMeetingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MeetingMinuteMeeting
+     */
+    select?: MeetingMinuteMeetingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MeetingMinuteMeeting
+     */
+    omit?: MeetingMinuteMeetingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MeetingMinuteMeetingInclude<ExtArgs> | null
+    where?: MeetingMinuteMeetingWhereInput
+  }
+
+  /**
+   * Task.Resource
+   */
+  export type Task$ResourceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Resource
+     */
+    omit?: ResourceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceInclude<ExtArgs> | null
+    where?: ResourceWhereInput
+  }
+
+  /**
+   * Task.TaskTemplate
+   */
+  export type Task$TaskTemplateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    where?: TaskTemplateWhereInput
+  }
+
+  /**
+   * Task without action
+   */
+  export type TaskDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TaskActivity
+   */
+
+  export type AggregateTaskActivity = {
+    _count: TaskActivityCountAggregateOutputType | null
+    _avg: TaskActivityAvgAggregateOutputType | null
+    _sum: TaskActivitySumAggregateOutputType | null
+    _min: TaskActivityMinAggregateOutputType | null
+    _max: TaskActivityMaxAggregateOutputType | null
+  }
+
+  export type TaskActivityAvgAggregateOutputType = {
+    id: number | null
+    studentTaskId: number | null
+    performedById: number | null
+  }
+
+  export type TaskActivitySumAggregateOutputType = {
+    id: number | null
+    studentTaskId: number | null
+    performedById: number | null
+  }
+
+  export type TaskActivityMinAggregateOutputType = {
+    id: number | null
+    studentTaskId: number | null
+    action: string | null
+    details: string | null
+    performedById: number | null
+    performedByRole: string | null
+    performedByName: string | null
+    createdAt: Date | null
+  }
+
+  export type TaskActivityMaxAggregateOutputType = {
+    id: number | null
+    studentTaskId: number | null
+    action: string | null
+    details: string | null
+    performedById: number | null
+    performedByRole: string | null
+    performedByName: string | null
+    createdAt: Date | null
+  }
+
+  export type TaskActivityCountAggregateOutputType = {
+    id: number
+    studentTaskId: number
+    action: number
+    details: number
+    performedById: number
+    performedByRole: number
+    performedByName: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type TaskActivityAvgAggregateInputType = {
+    id?: true
+    studentTaskId?: true
+    performedById?: true
+  }
+
+  export type TaskActivitySumAggregateInputType = {
+    id?: true
+    studentTaskId?: true
+    performedById?: true
+  }
+
+  export type TaskActivityMinAggregateInputType = {
+    id?: true
+    studentTaskId?: true
+    action?: true
+    details?: true
+    performedById?: true
+    performedByRole?: true
+    performedByName?: true
+    createdAt?: true
+  }
+
+  export type TaskActivityMaxAggregateInputType = {
+    id?: true
+    studentTaskId?: true
+    action?: true
+    details?: true
+    performedById?: true
+    performedByRole?: true
+    performedByName?: true
+    createdAt?: true
+  }
+
+  export type TaskActivityCountAggregateInputType = {
+    id?: true
+    studentTaskId?: true
+    action?: true
+    details?: true
+    performedById?: true
+    performedByRole?: true
+    performedByName?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type TaskActivityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskActivity to aggregate.
+     */
+    where?: TaskActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskActivities to fetch.
+     */
+    orderBy?: TaskActivityOrderByWithRelationInput | TaskActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TaskActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TaskActivities
+    **/
+    _count?: true | TaskActivityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TaskActivityAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TaskActivitySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TaskActivityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TaskActivityMaxAggregateInputType
+  }
+
+  export type GetTaskActivityAggregateType<T extends TaskActivityAggregateArgs> = {
+        [P in keyof T & keyof AggregateTaskActivity]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTaskActivity[P]>
+      : GetScalarType<T[P], AggregateTaskActivity[P]>
+  }
+
+
+
+
+  export type TaskActivityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskActivityWhereInput
+    orderBy?: TaskActivityOrderByWithAggregationInput | TaskActivityOrderByWithAggregationInput[]
+    by: TaskActivityScalarFieldEnum[] | TaskActivityScalarFieldEnum
+    having?: TaskActivityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TaskActivityCountAggregateInputType | true
+    _avg?: TaskActivityAvgAggregateInputType
+    _sum?: TaskActivitySumAggregateInputType
+    _min?: TaskActivityMinAggregateInputType
+    _max?: TaskActivityMaxAggregateInputType
+  }
+
+  export type TaskActivityGroupByOutputType = {
+    id: number
+    studentTaskId: number
+    action: string
+    details: string | null
+    performedById: number
+    performedByRole: string
+    performedByName: string
+    createdAt: Date
+    _count: TaskActivityCountAggregateOutputType | null
+    _avg: TaskActivityAvgAggregateOutputType | null
+    _sum: TaskActivitySumAggregateOutputType | null
+    _min: TaskActivityMinAggregateOutputType | null
+    _max: TaskActivityMaxAggregateOutputType | null
+  }
+
+  type GetTaskActivityGroupByPayload<T extends TaskActivityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TaskActivityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TaskActivityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TaskActivityGroupByOutputType[P]>
+            : GetScalarType<T[P], TaskActivityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TaskActivitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentTaskId?: boolean
+    action?: boolean
+    details?: boolean
+    performedById?: boolean
+    performedByRole?: boolean
+    performedByName?: boolean
+    createdAt?: boolean
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskActivity"]>
+
+  export type TaskActivitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentTaskId?: boolean
+    action?: boolean
+    details?: boolean
+    performedById?: boolean
+    performedByRole?: boolean
+    performedByName?: boolean
+    createdAt?: boolean
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskActivity"]>
+
+  export type TaskActivitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentTaskId?: boolean
+    action?: boolean
+    details?: boolean
+    performedById?: boolean
+    performedByRole?: boolean
+    performedByName?: boolean
+    createdAt?: boolean
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskActivity"]>
+
+  export type TaskActivitySelectScalar = {
+    id?: boolean
+    studentTaskId?: boolean
+    action?: boolean
+    details?: boolean
+    performedById?: boolean
+    performedByRole?: boolean
+    performedByName?: boolean
+    createdAt?: boolean
+  }
+
+  export type TaskActivityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentTaskId" | "action" | "details" | "performedById" | "performedByRole" | "performedByName" | "createdAt", ExtArgs["result"]["taskActivity"]>
+  export type TaskActivityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }
+  export type TaskActivityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }
+  export type TaskActivityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }
+
+  export type $TaskActivityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TaskActivity"
+    objects: {
+      StudentTask: Prisma.$StudentTaskPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      studentTaskId: number
+      action: string
+      details: string | null
+      performedById: number
+      performedByRole: string
+      performedByName: string
+      createdAt: Date
+    }, ExtArgs["result"]["taskActivity"]>
+    composites: {}
+  }
+
+  type TaskActivityGetPayload<S extends boolean | null | undefined | TaskActivityDefaultArgs> = $Result.GetResult<Prisma.$TaskActivityPayload, S>
+
+  type TaskActivityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TaskActivityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TaskActivityCountAggregateInputType | true
+    }
+
+  export interface TaskActivityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TaskActivity'], meta: { name: 'TaskActivity' } }
+    /**
+     * Find zero or one TaskActivity that matches the filter.
+     * @param {TaskActivityFindUniqueArgs} args - Arguments to find a TaskActivity
+     * @example
+     * // Get one TaskActivity
+     * const taskActivity = await prisma.taskActivity.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TaskActivityFindUniqueArgs>(args: SelectSubset<T, TaskActivityFindUniqueArgs<ExtArgs>>): Prisma__TaskActivityClient<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TaskActivity that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TaskActivityFindUniqueOrThrowArgs} args - Arguments to find a TaskActivity
+     * @example
+     * // Get one TaskActivity
+     * const taskActivity = await prisma.taskActivity.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TaskActivityFindUniqueOrThrowArgs>(args: SelectSubset<T, TaskActivityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TaskActivityClient<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskActivity that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskActivityFindFirstArgs} args - Arguments to find a TaskActivity
+     * @example
+     * // Get one TaskActivity
+     * const taskActivity = await prisma.taskActivity.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TaskActivityFindFirstArgs>(args?: SelectSubset<T, TaskActivityFindFirstArgs<ExtArgs>>): Prisma__TaskActivityClient<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskActivity that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskActivityFindFirstOrThrowArgs} args - Arguments to find a TaskActivity
+     * @example
+     * // Get one TaskActivity
+     * const taskActivity = await prisma.taskActivity.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TaskActivityFindFirstOrThrowArgs>(args?: SelectSubset<T, TaskActivityFindFirstOrThrowArgs<ExtArgs>>): Prisma__TaskActivityClient<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TaskActivities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskActivityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TaskActivities
+     * const taskActivities = await prisma.taskActivity.findMany()
+     * 
+     * // Get first 10 TaskActivities
+     * const taskActivities = await prisma.taskActivity.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const taskActivityWithIdOnly = await prisma.taskActivity.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TaskActivityFindManyArgs>(args?: SelectSubset<T, TaskActivityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TaskActivity.
+     * @param {TaskActivityCreateArgs} args - Arguments to create a TaskActivity.
+     * @example
+     * // Create one TaskActivity
+     * const TaskActivity = await prisma.taskActivity.create({
+     *   data: {
+     *     // ... data to create a TaskActivity
+     *   }
+     * })
+     * 
+     */
+    create<T extends TaskActivityCreateArgs>(args: SelectSubset<T, TaskActivityCreateArgs<ExtArgs>>): Prisma__TaskActivityClient<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TaskActivities.
+     * @param {TaskActivityCreateManyArgs} args - Arguments to create many TaskActivities.
+     * @example
+     * // Create many TaskActivities
+     * const taskActivity = await prisma.taskActivity.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TaskActivityCreateManyArgs>(args?: SelectSubset<T, TaskActivityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TaskActivities and returns the data saved in the database.
+     * @param {TaskActivityCreateManyAndReturnArgs} args - Arguments to create many TaskActivities.
+     * @example
+     * // Create many TaskActivities
+     * const taskActivity = await prisma.taskActivity.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TaskActivities and only return the `id`
+     * const taskActivityWithIdOnly = await prisma.taskActivity.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TaskActivityCreateManyAndReturnArgs>(args?: SelectSubset<T, TaskActivityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TaskActivity.
+     * @param {TaskActivityDeleteArgs} args - Arguments to delete one TaskActivity.
+     * @example
+     * // Delete one TaskActivity
+     * const TaskActivity = await prisma.taskActivity.delete({
+     *   where: {
+     *     // ... filter to delete one TaskActivity
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TaskActivityDeleteArgs>(args: SelectSubset<T, TaskActivityDeleteArgs<ExtArgs>>): Prisma__TaskActivityClient<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TaskActivity.
+     * @param {TaskActivityUpdateArgs} args - Arguments to update one TaskActivity.
+     * @example
+     * // Update one TaskActivity
+     * const taskActivity = await prisma.taskActivity.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TaskActivityUpdateArgs>(args: SelectSubset<T, TaskActivityUpdateArgs<ExtArgs>>): Prisma__TaskActivityClient<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TaskActivities.
+     * @param {TaskActivityDeleteManyArgs} args - Arguments to filter TaskActivities to delete.
+     * @example
+     * // Delete a few TaskActivities
+     * const { count } = await prisma.taskActivity.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TaskActivityDeleteManyArgs>(args?: SelectSubset<T, TaskActivityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskActivities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskActivityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TaskActivities
+     * const taskActivity = await prisma.taskActivity.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TaskActivityUpdateManyArgs>(args: SelectSubset<T, TaskActivityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskActivities and returns the data updated in the database.
+     * @param {TaskActivityUpdateManyAndReturnArgs} args - Arguments to update many TaskActivities.
+     * @example
+     * // Update many TaskActivities
+     * const taskActivity = await prisma.taskActivity.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TaskActivities and only return the `id`
+     * const taskActivityWithIdOnly = await prisma.taskActivity.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TaskActivityUpdateManyAndReturnArgs>(args: SelectSubset<T, TaskActivityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TaskActivity.
+     * @param {TaskActivityUpsertArgs} args - Arguments to update or create a TaskActivity.
+     * @example
+     * // Update or create a TaskActivity
+     * const taskActivity = await prisma.taskActivity.upsert({
+     *   create: {
+     *     // ... data to create a TaskActivity
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TaskActivity we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TaskActivityUpsertArgs>(args: SelectSubset<T, TaskActivityUpsertArgs<ExtArgs>>): Prisma__TaskActivityClient<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TaskActivities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskActivityCountArgs} args - Arguments to filter TaskActivities to count.
+     * @example
+     * // Count the number of TaskActivities
+     * const count = await prisma.taskActivity.count({
+     *   where: {
+     *     // ... the filter for the TaskActivities we want to count
+     *   }
+     * })
+    **/
+    count<T extends TaskActivityCountArgs>(
+      args?: Subset<T, TaskActivityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TaskActivityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TaskActivity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskActivityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TaskActivityAggregateArgs>(args: Subset<T, TaskActivityAggregateArgs>): Prisma.PrismaPromise<GetTaskActivityAggregateType<T>>
+
+    /**
+     * Group by TaskActivity.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskActivityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TaskActivityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TaskActivityGroupByArgs['orderBy'] }
+        : { orderBy?: TaskActivityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TaskActivityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaskActivityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TaskActivity model
+   */
+  readonly fields: TaskActivityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TaskActivity.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TaskActivityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    StudentTask<T extends StudentTaskDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentTaskDefaultArgs<ExtArgs>>): Prisma__StudentTaskClient<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TaskActivity model
+   */
+  interface TaskActivityFieldRefs {
+    readonly id: FieldRef<"TaskActivity", 'Int'>
+    readonly studentTaskId: FieldRef<"TaskActivity", 'Int'>
+    readonly action: FieldRef<"TaskActivity", 'String'>
+    readonly details: FieldRef<"TaskActivity", 'String'>
+    readonly performedById: FieldRef<"TaskActivity", 'Int'>
+    readonly performedByRole: FieldRef<"TaskActivity", 'String'>
+    readonly performedByName: FieldRef<"TaskActivity", 'String'>
+    readonly createdAt: FieldRef<"TaskActivity", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TaskActivity findUnique
+   */
+  export type TaskActivityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskActivity to fetch.
+     */
+    where: TaskActivityWhereUniqueInput
+  }
+
+  /**
+   * TaskActivity findUniqueOrThrow
+   */
+  export type TaskActivityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskActivity to fetch.
+     */
+    where: TaskActivityWhereUniqueInput
+  }
+
+  /**
+   * TaskActivity findFirst
+   */
+  export type TaskActivityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskActivity to fetch.
+     */
+    where?: TaskActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskActivities to fetch.
+     */
+    orderBy?: TaskActivityOrderByWithRelationInput | TaskActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskActivities.
+     */
+    cursor?: TaskActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskActivities.
+     */
+    distinct?: TaskActivityScalarFieldEnum | TaskActivityScalarFieldEnum[]
+  }
+
+  /**
+   * TaskActivity findFirstOrThrow
+   */
+  export type TaskActivityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskActivity to fetch.
+     */
+    where?: TaskActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskActivities to fetch.
+     */
+    orderBy?: TaskActivityOrderByWithRelationInput | TaskActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskActivities.
+     */
+    cursor?: TaskActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskActivities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskActivities.
+     */
+    distinct?: TaskActivityScalarFieldEnum | TaskActivityScalarFieldEnum[]
+  }
+
+  /**
+   * TaskActivity findMany
+   */
+  export type TaskActivityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskActivities to fetch.
+     */
+    where?: TaskActivityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskActivities to fetch.
+     */
+    orderBy?: TaskActivityOrderByWithRelationInput | TaskActivityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TaskActivities.
+     */
+    cursor?: TaskActivityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskActivities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskActivities.
+     */
+    skip?: number
+    distinct?: TaskActivityScalarFieldEnum | TaskActivityScalarFieldEnum[]
+  }
+
+  /**
+   * TaskActivity create
+   */
+  export type TaskActivityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TaskActivity.
+     */
+    data: XOR<TaskActivityCreateInput, TaskActivityUncheckedCreateInput>
+  }
+
+  /**
+   * TaskActivity createMany
+   */
+  export type TaskActivityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TaskActivities.
+     */
+    data: TaskActivityCreateManyInput | TaskActivityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TaskActivity createManyAndReturn
+   */
+  export type TaskActivityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * The data used to create many TaskActivities.
+     */
+    data: TaskActivityCreateManyInput | TaskActivityCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskActivity update
+   */
+  export type TaskActivityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TaskActivity.
+     */
+    data: XOR<TaskActivityUpdateInput, TaskActivityUncheckedUpdateInput>
+    /**
+     * Choose, which TaskActivity to update.
+     */
+    where: TaskActivityWhereUniqueInput
+  }
+
+  /**
+   * TaskActivity updateMany
+   */
+  export type TaskActivityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TaskActivities.
+     */
+    data: XOR<TaskActivityUpdateManyMutationInput, TaskActivityUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskActivities to update
+     */
+    where?: TaskActivityWhereInput
+    /**
+     * Limit how many TaskActivities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskActivity updateManyAndReturn
+   */
+  export type TaskActivityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * The data used to update TaskActivities.
+     */
+    data: XOR<TaskActivityUpdateManyMutationInput, TaskActivityUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskActivities to update
+     */
+    where?: TaskActivityWhereInput
+    /**
+     * Limit how many TaskActivities to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskActivity upsert
+   */
+  export type TaskActivityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TaskActivity to update in case it exists.
+     */
+    where: TaskActivityWhereUniqueInput
+    /**
+     * In case the TaskActivity found by the `where` argument doesn't exist, create a new TaskActivity with this data.
+     */
+    create: XOR<TaskActivityCreateInput, TaskActivityUncheckedCreateInput>
+    /**
+     * In case the TaskActivity was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TaskActivityUpdateInput, TaskActivityUncheckedUpdateInput>
+  }
+
+  /**
+   * TaskActivity delete
+   */
+  export type TaskActivityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+    /**
+     * Filter which TaskActivity to delete.
+     */
+    where: TaskActivityWhereUniqueInput
+  }
+
+  /**
+   * TaskActivity deleteMany
+   */
+  export type TaskActivityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskActivities to delete
+     */
+    where?: TaskActivityWhereInput
+    /**
+     * Limit how many TaskActivities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskActivity without action
+   */
+  export type TaskActivityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskActivity
+     */
+    select?: TaskActivitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskActivity
+     */
+    omit?: TaskActivityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskActivityInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TaskComment
+   */
+
+  export type AggregateTaskComment = {
+    _count: TaskCommentCountAggregateOutputType | null
+    _avg: TaskCommentAvgAggregateOutputType | null
+    _sum: TaskCommentSumAggregateOutputType | null
+    _min: TaskCommentMinAggregateOutputType | null
+    _max: TaskCommentMaxAggregateOutputType | null
+  }
+
+  export type TaskCommentAvgAggregateOutputType = {
+    id: number | null
+    studentTaskId: number | null
+    authorId: number | null
+  }
+
+  export type TaskCommentSumAggregateOutputType = {
+    id: number | null
+    studentTaskId: number | null
+    authorId: number | null
+  }
+
+  export type TaskCommentMinAggregateOutputType = {
+    id: number | null
+    studentTaskId: number | null
+    authorId: number | null
+    authorRole: string | null
+    authorName: string | null
+    content: string | null
+    attachmentUrl: string | null
+    attachmentName: string | null
+    createdAt: Date | null
+  }
+
+  export type TaskCommentMaxAggregateOutputType = {
+    id: number | null
+    studentTaskId: number | null
+    authorId: number | null
+    authorRole: string | null
+    authorName: string | null
+    content: string | null
+    attachmentUrl: string | null
+    attachmentName: string | null
+    createdAt: Date | null
+  }
+
+  export type TaskCommentCountAggregateOutputType = {
+    id: number
+    studentTaskId: number
+    authorId: number
+    authorRole: number
+    authorName: number
+    content: number
+    attachmentUrl: number
+    attachmentName: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type TaskCommentAvgAggregateInputType = {
+    id?: true
+    studentTaskId?: true
+    authorId?: true
+  }
+
+  export type TaskCommentSumAggregateInputType = {
+    id?: true
+    studentTaskId?: true
+    authorId?: true
+  }
+
+  export type TaskCommentMinAggregateInputType = {
+    id?: true
+    studentTaskId?: true
+    authorId?: true
+    authorRole?: true
+    authorName?: true
+    content?: true
+    attachmentUrl?: true
+    attachmentName?: true
+    createdAt?: true
+  }
+
+  export type TaskCommentMaxAggregateInputType = {
+    id?: true
+    studentTaskId?: true
+    authorId?: true
+    authorRole?: true
+    authorName?: true
+    content?: true
+    attachmentUrl?: true
+    attachmentName?: true
+    createdAt?: true
+  }
+
+  export type TaskCommentCountAggregateInputType = {
+    id?: true
+    studentTaskId?: true
+    authorId?: true
+    authorRole?: true
+    authorName?: true
+    content?: true
+    attachmentUrl?: true
+    attachmentName?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type TaskCommentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskComment to aggregate.
+     */
+    where?: TaskCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskComments to fetch.
+     */
+    orderBy?: TaskCommentOrderByWithRelationInput | TaskCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TaskCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskComments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TaskComments
+    **/
+    _count?: true | TaskCommentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TaskCommentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TaskCommentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TaskCommentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TaskCommentMaxAggregateInputType
+  }
+
+  export type GetTaskCommentAggregateType<T extends TaskCommentAggregateArgs> = {
+        [P in keyof T & keyof AggregateTaskComment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTaskComment[P]>
+      : GetScalarType<T[P], AggregateTaskComment[P]>
+  }
+
+
+
+
+  export type TaskCommentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskCommentWhereInput
+    orderBy?: TaskCommentOrderByWithAggregationInput | TaskCommentOrderByWithAggregationInput[]
+    by: TaskCommentScalarFieldEnum[] | TaskCommentScalarFieldEnum
+    having?: TaskCommentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TaskCommentCountAggregateInputType | true
+    _avg?: TaskCommentAvgAggregateInputType
+    _sum?: TaskCommentSumAggregateInputType
+    _min?: TaskCommentMinAggregateInputType
+    _max?: TaskCommentMaxAggregateInputType
+  }
+
+  export type TaskCommentGroupByOutputType = {
+    id: number
+    studentTaskId: number
+    authorId: number
+    authorRole: string
+    authorName: string
+    content: string
+    attachmentUrl: string | null
+    attachmentName: string | null
+    createdAt: Date
+    _count: TaskCommentCountAggregateOutputType | null
+    _avg: TaskCommentAvgAggregateOutputType | null
+    _sum: TaskCommentSumAggregateOutputType | null
+    _min: TaskCommentMinAggregateOutputType | null
+    _max: TaskCommentMaxAggregateOutputType | null
+  }
+
+  type GetTaskCommentGroupByPayload<T extends TaskCommentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TaskCommentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TaskCommentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TaskCommentGroupByOutputType[P]>
+            : GetScalarType<T[P], TaskCommentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TaskCommentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentTaskId?: boolean
+    authorId?: boolean
+    authorRole?: boolean
+    authorName?: boolean
+    content?: boolean
+    attachmentUrl?: boolean
+    attachmentName?: boolean
+    createdAt?: boolean
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskComment"]>
+
+  export type TaskCommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentTaskId?: boolean
+    authorId?: boolean
+    authorRole?: boolean
+    authorName?: boolean
+    content?: boolean
+    attachmentUrl?: boolean
+    attachmentName?: boolean
+    createdAt?: boolean
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskComment"]>
+
+  export type TaskCommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentTaskId?: boolean
+    authorId?: boolean
+    authorRole?: boolean
+    authorName?: boolean
+    content?: boolean
+    attachmentUrl?: boolean
+    attachmentName?: boolean
+    createdAt?: boolean
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskComment"]>
+
+  export type TaskCommentSelectScalar = {
+    id?: boolean
+    studentTaskId?: boolean
+    authorId?: boolean
+    authorRole?: boolean
+    authorName?: boolean
+    content?: boolean
+    attachmentUrl?: boolean
+    attachmentName?: boolean
+    createdAt?: boolean
+  }
+
+  export type TaskCommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentTaskId" | "authorId" | "authorRole" | "authorName" | "content" | "attachmentUrl" | "attachmentName" | "createdAt", ExtArgs["result"]["taskComment"]>
+  export type TaskCommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }
+  export type TaskCommentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }
+  export type TaskCommentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    StudentTask?: boolean | StudentTaskDefaultArgs<ExtArgs>
+  }
+
+  export type $TaskCommentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TaskComment"
+    objects: {
+      StudentTask: Prisma.$StudentTaskPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      studentTaskId: number
+      authorId: number
+      authorRole: string
+      authorName: string
+      content: string
+      attachmentUrl: string | null
+      attachmentName: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["taskComment"]>
+    composites: {}
+  }
+
+  type TaskCommentGetPayload<S extends boolean | null | undefined | TaskCommentDefaultArgs> = $Result.GetResult<Prisma.$TaskCommentPayload, S>
+
+  type TaskCommentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TaskCommentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TaskCommentCountAggregateInputType | true
+    }
+
+  export interface TaskCommentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TaskComment'], meta: { name: 'TaskComment' } }
+    /**
+     * Find zero or one TaskComment that matches the filter.
+     * @param {TaskCommentFindUniqueArgs} args - Arguments to find a TaskComment
+     * @example
+     * // Get one TaskComment
+     * const taskComment = await prisma.taskComment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TaskCommentFindUniqueArgs>(args: SelectSubset<T, TaskCommentFindUniqueArgs<ExtArgs>>): Prisma__TaskCommentClient<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TaskComment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TaskCommentFindUniqueOrThrowArgs} args - Arguments to find a TaskComment
+     * @example
+     * // Get one TaskComment
+     * const taskComment = await prisma.taskComment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TaskCommentFindUniqueOrThrowArgs>(args: SelectSubset<T, TaskCommentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TaskCommentClient<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskComment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskCommentFindFirstArgs} args - Arguments to find a TaskComment
+     * @example
+     * // Get one TaskComment
+     * const taskComment = await prisma.taskComment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TaskCommentFindFirstArgs>(args?: SelectSubset<T, TaskCommentFindFirstArgs<ExtArgs>>): Prisma__TaskCommentClient<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskComment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskCommentFindFirstOrThrowArgs} args - Arguments to find a TaskComment
+     * @example
+     * // Get one TaskComment
+     * const taskComment = await prisma.taskComment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TaskCommentFindFirstOrThrowArgs>(args?: SelectSubset<T, TaskCommentFindFirstOrThrowArgs<ExtArgs>>): Prisma__TaskCommentClient<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TaskComments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskCommentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TaskComments
+     * const taskComments = await prisma.taskComment.findMany()
+     * 
+     * // Get first 10 TaskComments
+     * const taskComments = await prisma.taskComment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const taskCommentWithIdOnly = await prisma.taskComment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TaskCommentFindManyArgs>(args?: SelectSubset<T, TaskCommentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TaskComment.
+     * @param {TaskCommentCreateArgs} args - Arguments to create a TaskComment.
+     * @example
+     * // Create one TaskComment
+     * const TaskComment = await prisma.taskComment.create({
+     *   data: {
+     *     // ... data to create a TaskComment
+     *   }
+     * })
+     * 
+     */
+    create<T extends TaskCommentCreateArgs>(args: SelectSubset<T, TaskCommentCreateArgs<ExtArgs>>): Prisma__TaskCommentClient<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TaskComments.
+     * @param {TaskCommentCreateManyArgs} args - Arguments to create many TaskComments.
+     * @example
+     * // Create many TaskComments
+     * const taskComment = await prisma.taskComment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TaskCommentCreateManyArgs>(args?: SelectSubset<T, TaskCommentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TaskComments and returns the data saved in the database.
+     * @param {TaskCommentCreateManyAndReturnArgs} args - Arguments to create many TaskComments.
+     * @example
+     * // Create many TaskComments
+     * const taskComment = await prisma.taskComment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TaskComments and only return the `id`
+     * const taskCommentWithIdOnly = await prisma.taskComment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TaskCommentCreateManyAndReturnArgs>(args?: SelectSubset<T, TaskCommentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TaskComment.
+     * @param {TaskCommentDeleteArgs} args - Arguments to delete one TaskComment.
+     * @example
+     * // Delete one TaskComment
+     * const TaskComment = await prisma.taskComment.delete({
+     *   where: {
+     *     // ... filter to delete one TaskComment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TaskCommentDeleteArgs>(args: SelectSubset<T, TaskCommentDeleteArgs<ExtArgs>>): Prisma__TaskCommentClient<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TaskComment.
+     * @param {TaskCommentUpdateArgs} args - Arguments to update one TaskComment.
+     * @example
+     * // Update one TaskComment
+     * const taskComment = await prisma.taskComment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TaskCommentUpdateArgs>(args: SelectSubset<T, TaskCommentUpdateArgs<ExtArgs>>): Prisma__TaskCommentClient<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TaskComments.
+     * @param {TaskCommentDeleteManyArgs} args - Arguments to filter TaskComments to delete.
+     * @example
+     * // Delete a few TaskComments
+     * const { count } = await prisma.taskComment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TaskCommentDeleteManyArgs>(args?: SelectSubset<T, TaskCommentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskComments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskCommentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TaskComments
+     * const taskComment = await prisma.taskComment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TaskCommentUpdateManyArgs>(args: SelectSubset<T, TaskCommentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskComments and returns the data updated in the database.
+     * @param {TaskCommentUpdateManyAndReturnArgs} args - Arguments to update many TaskComments.
+     * @example
+     * // Update many TaskComments
+     * const taskComment = await prisma.taskComment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TaskComments and only return the `id`
+     * const taskCommentWithIdOnly = await prisma.taskComment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TaskCommentUpdateManyAndReturnArgs>(args: SelectSubset<T, TaskCommentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TaskComment.
+     * @param {TaskCommentUpsertArgs} args - Arguments to update or create a TaskComment.
+     * @example
+     * // Update or create a TaskComment
+     * const taskComment = await prisma.taskComment.upsert({
+     *   create: {
+     *     // ... data to create a TaskComment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TaskComment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TaskCommentUpsertArgs>(args: SelectSubset<T, TaskCommentUpsertArgs<ExtArgs>>): Prisma__TaskCommentClient<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TaskComments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskCommentCountArgs} args - Arguments to filter TaskComments to count.
+     * @example
+     * // Count the number of TaskComments
+     * const count = await prisma.taskComment.count({
+     *   where: {
+     *     // ... the filter for the TaskComments we want to count
+     *   }
+     * })
+    **/
+    count<T extends TaskCommentCountArgs>(
+      args?: Subset<T, TaskCommentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TaskCommentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TaskComment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskCommentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TaskCommentAggregateArgs>(args: Subset<T, TaskCommentAggregateArgs>): Prisma.PrismaPromise<GetTaskCommentAggregateType<T>>
+
+    /**
+     * Group by TaskComment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskCommentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TaskCommentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TaskCommentGroupByArgs['orderBy'] }
+        : { orderBy?: TaskCommentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TaskCommentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaskCommentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TaskComment model
+   */
+  readonly fields: TaskCommentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TaskComment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TaskCommentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    StudentTask<T extends StudentTaskDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentTaskDefaultArgs<ExtArgs>>): Prisma__StudentTaskClient<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TaskComment model
+   */
+  interface TaskCommentFieldRefs {
+    readonly id: FieldRef<"TaskComment", 'Int'>
+    readonly studentTaskId: FieldRef<"TaskComment", 'Int'>
+    readonly authorId: FieldRef<"TaskComment", 'Int'>
+    readonly authorRole: FieldRef<"TaskComment", 'String'>
+    readonly authorName: FieldRef<"TaskComment", 'String'>
+    readonly content: FieldRef<"TaskComment", 'String'>
+    readonly attachmentUrl: FieldRef<"TaskComment", 'String'>
+    readonly attachmentName: FieldRef<"TaskComment", 'String'>
+    readonly createdAt: FieldRef<"TaskComment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TaskComment findUnique
+   */
+  export type TaskCommentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskComment to fetch.
+     */
+    where: TaskCommentWhereUniqueInput
+  }
+
+  /**
+   * TaskComment findUniqueOrThrow
+   */
+  export type TaskCommentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskComment to fetch.
+     */
+    where: TaskCommentWhereUniqueInput
+  }
+
+  /**
+   * TaskComment findFirst
+   */
+  export type TaskCommentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskComment to fetch.
+     */
+    where?: TaskCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskComments to fetch.
+     */
+    orderBy?: TaskCommentOrderByWithRelationInput | TaskCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskComments.
+     */
+    cursor?: TaskCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskComments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskComments.
+     */
+    distinct?: TaskCommentScalarFieldEnum | TaskCommentScalarFieldEnum[]
+  }
+
+  /**
+   * TaskComment findFirstOrThrow
+   */
+  export type TaskCommentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskComment to fetch.
+     */
+    where?: TaskCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskComments to fetch.
+     */
+    orderBy?: TaskCommentOrderByWithRelationInput | TaskCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskComments.
+     */
+    cursor?: TaskCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskComments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskComments.
+     */
+    distinct?: TaskCommentScalarFieldEnum | TaskCommentScalarFieldEnum[]
+  }
+
+  /**
+   * TaskComment findMany
+   */
+  export type TaskCommentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskComments to fetch.
+     */
+    where?: TaskCommentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskComments to fetch.
+     */
+    orderBy?: TaskCommentOrderByWithRelationInput | TaskCommentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TaskComments.
+     */
+    cursor?: TaskCommentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskComments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskComments.
+     */
+    skip?: number
+    distinct?: TaskCommentScalarFieldEnum | TaskCommentScalarFieldEnum[]
+  }
+
+  /**
+   * TaskComment create
+   */
+  export type TaskCommentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TaskComment.
+     */
+    data: XOR<TaskCommentCreateInput, TaskCommentUncheckedCreateInput>
+  }
+
+  /**
+   * TaskComment createMany
+   */
+  export type TaskCommentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TaskComments.
+     */
+    data: TaskCommentCreateManyInput | TaskCommentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TaskComment createManyAndReturn
+   */
+  export type TaskCommentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * The data used to create many TaskComments.
+     */
+    data: TaskCommentCreateManyInput | TaskCommentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskComment update
+   */
+  export type TaskCommentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TaskComment.
+     */
+    data: XOR<TaskCommentUpdateInput, TaskCommentUncheckedUpdateInput>
+    /**
+     * Choose, which TaskComment to update.
+     */
+    where: TaskCommentWhereUniqueInput
+  }
+
+  /**
+   * TaskComment updateMany
+   */
+  export type TaskCommentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TaskComments.
+     */
+    data: XOR<TaskCommentUpdateManyMutationInput, TaskCommentUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskComments to update
+     */
+    where?: TaskCommentWhereInput
+    /**
+     * Limit how many TaskComments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskComment updateManyAndReturn
+   */
+  export type TaskCommentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * The data used to update TaskComments.
+     */
+    data: XOR<TaskCommentUpdateManyMutationInput, TaskCommentUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskComments to update
+     */
+    where?: TaskCommentWhereInput
+    /**
+     * Limit how many TaskComments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskComment upsert
+   */
+  export type TaskCommentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TaskComment to update in case it exists.
+     */
+    where: TaskCommentWhereUniqueInput
+    /**
+     * In case the TaskComment found by the `where` argument doesn't exist, create a new TaskComment with this data.
+     */
+    create: XOR<TaskCommentCreateInput, TaskCommentUncheckedCreateInput>
+    /**
+     * In case the TaskComment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TaskCommentUpdateInput, TaskCommentUncheckedUpdateInput>
+  }
+
+  /**
+   * TaskComment delete
+   */
+  export type TaskCommentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+    /**
+     * Filter which TaskComment to delete.
+     */
+    where: TaskCommentWhereUniqueInput
+  }
+
+  /**
+   * TaskComment deleteMany
+   */
+  export type TaskCommentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskComments to delete
+     */
+    where?: TaskCommentWhereInput
+    /**
+     * Limit how many TaskComments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskComment without action
+   */
+  export type TaskCommentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskComment
+     */
+    select?: TaskCommentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskComment
+     */
+    omit?: TaskCommentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskCommentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TaskSavedFilter
+   */
+
+  export type AggregateTaskSavedFilter = {
+    _count: TaskSavedFilterCountAggregateOutputType | null
+    _avg: TaskSavedFilterAvgAggregateOutputType | null
+    _sum: TaskSavedFilterSumAggregateOutputType | null
+    _min: TaskSavedFilterMinAggregateOutputType | null
+    _max: TaskSavedFilterMaxAggregateOutputType | null
+  }
+
+  export type TaskSavedFilterAvgAggregateOutputType = {
+    id: number | null
+    ownerId: number | null
+  }
+
+  export type TaskSavedFilterSumAggregateOutputType = {
+    id: number | null
+    ownerId: number | null
+  }
+
+  export type TaskSavedFilterMinAggregateOutputType = {
+    id: number | null
+    ownerId: number | null
+    ownerRole: string | null
+    name: string | null
+    query: string | null
+    createdAt: Date | null
+  }
+
+  export type TaskSavedFilterMaxAggregateOutputType = {
+    id: number | null
+    ownerId: number | null
+    ownerRole: string | null
+    name: string | null
+    query: string | null
+    createdAt: Date | null
+  }
+
+  export type TaskSavedFilterCountAggregateOutputType = {
+    id: number
+    ownerId: number
+    ownerRole: number
+    name: number
+    query: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type TaskSavedFilterAvgAggregateInputType = {
+    id?: true
+    ownerId?: true
+  }
+
+  export type TaskSavedFilterSumAggregateInputType = {
+    id?: true
+    ownerId?: true
+  }
+
+  export type TaskSavedFilterMinAggregateInputType = {
+    id?: true
+    ownerId?: true
+    ownerRole?: true
+    name?: true
+    query?: true
+    createdAt?: true
+  }
+
+  export type TaskSavedFilterMaxAggregateInputType = {
+    id?: true
+    ownerId?: true
+    ownerRole?: true
+    name?: true
+    query?: true
+    createdAt?: true
+  }
+
+  export type TaskSavedFilterCountAggregateInputType = {
+    id?: true
+    ownerId?: true
+    ownerRole?: true
+    name?: true
+    query?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type TaskSavedFilterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskSavedFilter to aggregate.
+     */
+    where?: TaskSavedFilterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskSavedFilters to fetch.
+     */
+    orderBy?: TaskSavedFilterOrderByWithRelationInput | TaskSavedFilterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TaskSavedFilterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskSavedFilters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskSavedFilters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TaskSavedFilters
+    **/
+    _count?: true | TaskSavedFilterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TaskSavedFilterAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TaskSavedFilterSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TaskSavedFilterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TaskSavedFilterMaxAggregateInputType
+  }
+
+  export type GetTaskSavedFilterAggregateType<T extends TaskSavedFilterAggregateArgs> = {
+        [P in keyof T & keyof AggregateTaskSavedFilter]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTaskSavedFilter[P]>
+      : GetScalarType<T[P], AggregateTaskSavedFilter[P]>
+  }
+
+
+
+
+  export type TaskSavedFilterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskSavedFilterWhereInput
+    orderBy?: TaskSavedFilterOrderByWithAggregationInput | TaskSavedFilterOrderByWithAggregationInput[]
+    by: TaskSavedFilterScalarFieldEnum[] | TaskSavedFilterScalarFieldEnum
+    having?: TaskSavedFilterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TaskSavedFilterCountAggregateInputType | true
+    _avg?: TaskSavedFilterAvgAggregateInputType
+    _sum?: TaskSavedFilterSumAggregateInputType
+    _min?: TaskSavedFilterMinAggregateInputType
+    _max?: TaskSavedFilterMaxAggregateInputType
+  }
+
+  export type TaskSavedFilterGroupByOutputType = {
+    id: number
+    ownerId: number
+    ownerRole: string
+    name: string
+    query: string
+    createdAt: Date
+    _count: TaskSavedFilterCountAggregateOutputType | null
+    _avg: TaskSavedFilterAvgAggregateOutputType | null
+    _sum: TaskSavedFilterSumAggregateOutputType | null
+    _min: TaskSavedFilterMinAggregateOutputType | null
+    _max: TaskSavedFilterMaxAggregateOutputType | null
+  }
+
+  type GetTaskSavedFilterGroupByPayload<T extends TaskSavedFilterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TaskSavedFilterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TaskSavedFilterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TaskSavedFilterGroupByOutputType[P]>
+            : GetScalarType<T[P], TaskSavedFilterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TaskSavedFilterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ownerId?: boolean
+    ownerRole?: boolean
+    name?: boolean
+    query?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["taskSavedFilter"]>
+
+  export type TaskSavedFilterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ownerId?: boolean
+    ownerRole?: boolean
+    name?: boolean
+    query?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["taskSavedFilter"]>
+
+  export type TaskSavedFilterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ownerId?: boolean
+    ownerRole?: boolean
+    name?: boolean
+    query?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["taskSavedFilter"]>
+
+  export type TaskSavedFilterSelectScalar = {
+    id?: boolean
+    ownerId?: boolean
+    ownerRole?: boolean
+    name?: boolean
+    query?: boolean
+    createdAt?: boolean
+  }
+
+  export type TaskSavedFilterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ownerId" | "ownerRole" | "name" | "query" | "createdAt", ExtArgs["result"]["taskSavedFilter"]>
+
+  export type $TaskSavedFilterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TaskSavedFilter"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      ownerId: number
+      ownerRole: string
+      name: string
+      query: string
+      createdAt: Date
+    }, ExtArgs["result"]["taskSavedFilter"]>
+    composites: {}
+  }
+
+  type TaskSavedFilterGetPayload<S extends boolean | null | undefined | TaskSavedFilterDefaultArgs> = $Result.GetResult<Prisma.$TaskSavedFilterPayload, S>
+
+  type TaskSavedFilterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TaskSavedFilterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TaskSavedFilterCountAggregateInputType | true
+    }
+
+  export interface TaskSavedFilterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TaskSavedFilter'], meta: { name: 'TaskSavedFilter' } }
+    /**
+     * Find zero or one TaskSavedFilter that matches the filter.
+     * @param {TaskSavedFilterFindUniqueArgs} args - Arguments to find a TaskSavedFilter
+     * @example
+     * // Get one TaskSavedFilter
+     * const taskSavedFilter = await prisma.taskSavedFilter.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TaskSavedFilterFindUniqueArgs>(args: SelectSubset<T, TaskSavedFilterFindUniqueArgs<ExtArgs>>): Prisma__TaskSavedFilterClient<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TaskSavedFilter that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TaskSavedFilterFindUniqueOrThrowArgs} args - Arguments to find a TaskSavedFilter
+     * @example
+     * // Get one TaskSavedFilter
+     * const taskSavedFilter = await prisma.taskSavedFilter.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TaskSavedFilterFindUniqueOrThrowArgs>(args: SelectSubset<T, TaskSavedFilterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TaskSavedFilterClient<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskSavedFilter that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskSavedFilterFindFirstArgs} args - Arguments to find a TaskSavedFilter
+     * @example
+     * // Get one TaskSavedFilter
+     * const taskSavedFilter = await prisma.taskSavedFilter.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TaskSavedFilterFindFirstArgs>(args?: SelectSubset<T, TaskSavedFilterFindFirstArgs<ExtArgs>>): Prisma__TaskSavedFilterClient<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskSavedFilter that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskSavedFilterFindFirstOrThrowArgs} args - Arguments to find a TaskSavedFilter
+     * @example
+     * // Get one TaskSavedFilter
+     * const taskSavedFilter = await prisma.taskSavedFilter.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TaskSavedFilterFindFirstOrThrowArgs>(args?: SelectSubset<T, TaskSavedFilterFindFirstOrThrowArgs<ExtArgs>>): Prisma__TaskSavedFilterClient<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TaskSavedFilters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskSavedFilterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TaskSavedFilters
+     * const taskSavedFilters = await prisma.taskSavedFilter.findMany()
+     * 
+     * // Get first 10 TaskSavedFilters
+     * const taskSavedFilters = await prisma.taskSavedFilter.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const taskSavedFilterWithIdOnly = await prisma.taskSavedFilter.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TaskSavedFilterFindManyArgs>(args?: SelectSubset<T, TaskSavedFilterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TaskSavedFilter.
+     * @param {TaskSavedFilterCreateArgs} args - Arguments to create a TaskSavedFilter.
+     * @example
+     * // Create one TaskSavedFilter
+     * const TaskSavedFilter = await prisma.taskSavedFilter.create({
+     *   data: {
+     *     // ... data to create a TaskSavedFilter
+     *   }
+     * })
+     * 
+     */
+    create<T extends TaskSavedFilterCreateArgs>(args: SelectSubset<T, TaskSavedFilterCreateArgs<ExtArgs>>): Prisma__TaskSavedFilterClient<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TaskSavedFilters.
+     * @param {TaskSavedFilterCreateManyArgs} args - Arguments to create many TaskSavedFilters.
+     * @example
+     * // Create many TaskSavedFilters
+     * const taskSavedFilter = await prisma.taskSavedFilter.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TaskSavedFilterCreateManyArgs>(args?: SelectSubset<T, TaskSavedFilterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TaskSavedFilters and returns the data saved in the database.
+     * @param {TaskSavedFilterCreateManyAndReturnArgs} args - Arguments to create many TaskSavedFilters.
+     * @example
+     * // Create many TaskSavedFilters
+     * const taskSavedFilter = await prisma.taskSavedFilter.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TaskSavedFilters and only return the `id`
+     * const taskSavedFilterWithIdOnly = await prisma.taskSavedFilter.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TaskSavedFilterCreateManyAndReturnArgs>(args?: SelectSubset<T, TaskSavedFilterCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TaskSavedFilter.
+     * @param {TaskSavedFilterDeleteArgs} args - Arguments to delete one TaskSavedFilter.
+     * @example
+     * // Delete one TaskSavedFilter
+     * const TaskSavedFilter = await prisma.taskSavedFilter.delete({
+     *   where: {
+     *     // ... filter to delete one TaskSavedFilter
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TaskSavedFilterDeleteArgs>(args: SelectSubset<T, TaskSavedFilterDeleteArgs<ExtArgs>>): Prisma__TaskSavedFilterClient<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TaskSavedFilter.
+     * @param {TaskSavedFilterUpdateArgs} args - Arguments to update one TaskSavedFilter.
+     * @example
+     * // Update one TaskSavedFilter
+     * const taskSavedFilter = await prisma.taskSavedFilter.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TaskSavedFilterUpdateArgs>(args: SelectSubset<T, TaskSavedFilterUpdateArgs<ExtArgs>>): Prisma__TaskSavedFilterClient<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TaskSavedFilters.
+     * @param {TaskSavedFilterDeleteManyArgs} args - Arguments to filter TaskSavedFilters to delete.
+     * @example
+     * // Delete a few TaskSavedFilters
+     * const { count } = await prisma.taskSavedFilter.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TaskSavedFilterDeleteManyArgs>(args?: SelectSubset<T, TaskSavedFilterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskSavedFilters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskSavedFilterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TaskSavedFilters
+     * const taskSavedFilter = await prisma.taskSavedFilter.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TaskSavedFilterUpdateManyArgs>(args: SelectSubset<T, TaskSavedFilterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskSavedFilters and returns the data updated in the database.
+     * @param {TaskSavedFilterUpdateManyAndReturnArgs} args - Arguments to update many TaskSavedFilters.
+     * @example
+     * // Update many TaskSavedFilters
+     * const taskSavedFilter = await prisma.taskSavedFilter.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TaskSavedFilters and only return the `id`
+     * const taskSavedFilterWithIdOnly = await prisma.taskSavedFilter.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TaskSavedFilterUpdateManyAndReturnArgs>(args: SelectSubset<T, TaskSavedFilterUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TaskSavedFilter.
+     * @param {TaskSavedFilterUpsertArgs} args - Arguments to update or create a TaskSavedFilter.
+     * @example
+     * // Update or create a TaskSavedFilter
+     * const taskSavedFilter = await prisma.taskSavedFilter.upsert({
+     *   create: {
+     *     // ... data to create a TaskSavedFilter
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TaskSavedFilter we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TaskSavedFilterUpsertArgs>(args: SelectSubset<T, TaskSavedFilterUpsertArgs<ExtArgs>>): Prisma__TaskSavedFilterClient<$Result.GetResult<Prisma.$TaskSavedFilterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TaskSavedFilters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskSavedFilterCountArgs} args - Arguments to filter TaskSavedFilters to count.
+     * @example
+     * // Count the number of TaskSavedFilters
+     * const count = await prisma.taskSavedFilter.count({
+     *   where: {
+     *     // ... the filter for the TaskSavedFilters we want to count
+     *   }
+     * })
+    **/
+    count<T extends TaskSavedFilterCountArgs>(
+      args?: Subset<T, TaskSavedFilterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TaskSavedFilterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TaskSavedFilter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskSavedFilterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TaskSavedFilterAggregateArgs>(args: Subset<T, TaskSavedFilterAggregateArgs>): Prisma.PrismaPromise<GetTaskSavedFilterAggregateType<T>>
+
+    /**
+     * Group by TaskSavedFilter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskSavedFilterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TaskSavedFilterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TaskSavedFilterGroupByArgs['orderBy'] }
+        : { orderBy?: TaskSavedFilterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TaskSavedFilterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaskSavedFilterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TaskSavedFilter model
+   */
+  readonly fields: TaskSavedFilterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TaskSavedFilter.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TaskSavedFilterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TaskSavedFilter model
+   */
+  interface TaskSavedFilterFieldRefs {
+    readonly id: FieldRef<"TaskSavedFilter", 'Int'>
+    readonly ownerId: FieldRef<"TaskSavedFilter", 'Int'>
+    readonly ownerRole: FieldRef<"TaskSavedFilter", 'String'>
+    readonly name: FieldRef<"TaskSavedFilter", 'String'>
+    readonly query: FieldRef<"TaskSavedFilter", 'String'>
+    readonly createdAt: FieldRef<"TaskSavedFilter", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TaskSavedFilter findUnique
+   */
+  export type TaskSavedFilterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * Filter, which TaskSavedFilter to fetch.
+     */
+    where: TaskSavedFilterWhereUniqueInput
+  }
+
+  /**
+   * TaskSavedFilter findUniqueOrThrow
+   */
+  export type TaskSavedFilterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * Filter, which TaskSavedFilter to fetch.
+     */
+    where: TaskSavedFilterWhereUniqueInput
+  }
+
+  /**
+   * TaskSavedFilter findFirst
+   */
+  export type TaskSavedFilterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * Filter, which TaskSavedFilter to fetch.
+     */
+    where?: TaskSavedFilterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskSavedFilters to fetch.
+     */
+    orderBy?: TaskSavedFilterOrderByWithRelationInput | TaskSavedFilterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskSavedFilters.
+     */
+    cursor?: TaskSavedFilterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskSavedFilters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskSavedFilters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskSavedFilters.
+     */
+    distinct?: TaskSavedFilterScalarFieldEnum | TaskSavedFilterScalarFieldEnum[]
+  }
+
+  /**
+   * TaskSavedFilter findFirstOrThrow
+   */
+  export type TaskSavedFilterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * Filter, which TaskSavedFilter to fetch.
+     */
+    where?: TaskSavedFilterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskSavedFilters to fetch.
+     */
+    orderBy?: TaskSavedFilterOrderByWithRelationInput | TaskSavedFilterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskSavedFilters.
+     */
+    cursor?: TaskSavedFilterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskSavedFilters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskSavedFilters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskSavedFilters.
+     */
+    distinct?: TaskSavedFilterScalarFieldEnum | TaskSavedFilterScalarFieldEnum[]
+  }
+
+  /**
+   * TaskSavedFilter findMany
+   */
+  export type TaskSavedFilterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * Filter, which TaskSavedFilters to fetch.
+     */
+    where?: TaskSavedFilterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskSavedFilters to fetch.
+     */
+    orderBy?: TaskSavedFilterOrderByWithRelationInput | TaskSavedFilterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TaskSavedFilters.
+     */
+    cursor?: TaskSavedFilterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskSavedFilters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskSavedFilters.
+     */
+    skip?: number
+    distinct?: TaskSavedFilterScalarFieldEnum | TaskSavedFilterScalarFieldEnum[]
+  }
+
+  /**
+   * TaskSavedFilter create
+   */
+  export type TaskSavedFilterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * The data needed to create a TaskSavedFilter.
+     */
+    data: XOR<TaskSavedFilterCreateInput, TaskSavedFilterUncheckedCreateInput>
+  }
+
+  /**
+   * TaskSavedFilter createMany
+   */
+  export type TaskSavedFilterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TaskSavedFilters.
+     */
+    data: TaskSavedFilterCreateManyInput | TaskSavedFilterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TaskSavedFilter createManyAndReturn
+   */
+  export type TaskSavedFilterCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * The data used to create many TaskSavedFilters.
+     */
+    data: TaskSavedFilterCreateManyInput | TaskSavedFilterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TaskSavedFilter update
+   */
+  export type TaskSavedFilterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * The data needed to update a TaskSavedFilter.
+     */
+    data: XOR<TaskSavedFilterUpdateInput, TaskSavedFilterUncheckedUpdateInput>
+    /**
+     * Choose, which TaskSavedFilter to update.
+     */
+    where: TaskSavedFilterWhereUniqueInput
+  }
+
+  /**
+   * TaskSavedFilter updateMany
+   */
+  export type TaskSavedFilterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TaskSavedFilters.
+     */
+    data: XOR<TaskSavedFilterUpdateManyMutationInput, TaskSavedFilterUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskSavedFilters to update
+     */
+    where?: TaskSavedFilterWhereInput
+    /**
+     * Limit how many TaskSavedFilters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskSavedFilter updateManyAndReturn
+   */
+  export type TaskSavedFilterUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * The data used to update TaskSavedFilters.
+     */
+    data: XOR<TaskSavedFilterUpdateManyMutationInput, TaskSavedFilterUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskSavedFilters to update
+     */
+    where?: TaskSavedFilterWhereInput
+    /**
+     * Limit how many TaskSavedFilters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskSavedFilter upsert
+   */
+  export type TaskSavedFilterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * The filter to search for the TaskSavedFilter to update in case it exists.
+     */
+    where: TaskSavedFilterWhereUniqueInput
+    /**
+     * In case the TaskSavedFilter found by the `where` argument doesn't exist, create a new TaskSavedFilter with this data.
+     */
+    create: XOR<TaskSavedFilterCreateInput, TaskSavedFilterUncheckedCreateInput>
+    /**
+     * In case the TaskSavedFilter was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TaskSavedFilterUpdateInput, TaskSavedFilterUncheckedUpdateInput>
+  }
+
+  /**
+   * TaskSavedFilter delete
+   */
+  export type TaskSavedFilterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+    /**
+     * Filter which TaskSavedFilter to delete.
+     */
+    where: TaskSavedFilterWhereUniqueInput
+  }
+
+  /**
+   * TaskSavedFilter deleteMany
+   */
+  export type TaskSavedFilterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskSavedFilters to delete
+     */
+    where?: TaskSavedFilterWhereInput
+    /**
+     * Limit how many TaskSavedFilters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskSavedFilter without action
+   */
+  export type TaskSavedFilterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskSavedFilter
+     */
+    select?: TaskSavedFilterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskSavedFilter
+     */
+    omit?: TaskSavedFilterOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TaskTemplate
+   */
+
+  export type AggregateTaskTemplate = {
+    _count: TaskTemplateCountAggregateOutputType | null
+    _avg: TaskTemplateAvgAggregateOutputType | null
+    _sum: TaskTemplateSumAggregateOutputType | null
+    _min: TaskTemplateMinAggregateOutputType | null
+    _max: TaskTemplateMaxAggregateOutputType | null
+  }
+
+  export type TaskTemplateAvgAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    defaultDeadlineDays: number | null
+    usageCount: number | null
+  }
+
+  export type TaskTemplateSumAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    defaultDeadlineDays: number | null
+    usageCount: number | null
+  }
+
+  export type TaskTemplateMinAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    name: string | null
+    title: string | null
+    description: string | null
+    category: string | null
+    priority: string | null
+    defaultDeadlineDays: number | null
+    requireSubmissionNote: boolean | null
+    requireFileUpload: boolean | null
+    requireUrl: boolean | null
+    requireExternalConfirmation: boolean | null
+    externalConfirmationPrompt: string | null
+    requireMentorApproval: boolean | null
+    recurrence: string | null
+    usageCount: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TaskTemplateMaxAggregateOutputType = {
+    id: number | null
+    teacherId: number | null
+    name: string | null
+    title: string | null
+    description: string | null
+    category: string | null
+    priority: string | null
+    defaultDeadlineDays: number | null
+    requireSubmissionNote: boolean | null
+    requireFileUpload: boolean | null
+    requireUrl: boolean | null
+    requireExternalConfirmation: boolean | null
+    externalConfirmationPrompt: string | null
+    requireMentorApproval: boolean | null
+    recurrence: string | null
+    usageCount: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TaskTemplateCountAggregateOutputType = {
+    id: number
+    teacherId: number
+    name: number
+    title: number
+    description: number
+    category: number
+    priority: number
+    defaultDeadlineDays: number
+    requireSubmissionNote: number
+    requireFileUpload: number
+    requireUrl: number
+    requireExternalConfirmation: number
+    externalConfirmationPrompt: number
+    requireMentorApproval: number
+    checklist: number
+    recurrence: number
+    usageCount: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TaskTemplateAvgAggregateInputType = {
+    id?: true
+    teacherId?: true
+    defaultDeadlineDays?: true
+    usageCount?: true
+  }
+
+  export type TaskTemplateSumAggregateInputType = {
+    id?: true
+    teacherId?: true
+    defaultDeadlineDays?: true
+    usageCount?: true
+  }
+
+  export type TaskTemplateMinAggregateInputType = {
+    id?: true
+    teacherId?: true
+    name?: true
+    title?: true
+    description?: true
+    category?: true
+    priority?: true
+    defaultDeadlineDays?: true
+    requireSubmissionNote?: true
+    requireFileUpload?: true
+    requireUrl?: true
+    requireExternalConfirmation?: true
+    externalConfirmationPrompt?: true
+    requireMentorApproval?: true
+    recurrence?: true
+    usageCount?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TaskTemplateMaxAggregateInputType = {
+    id?: true
+    teacherId?: true
+    name?: true
+    title?: true
+    description?: true
+    category?: true
+    priority?: true
+    defaultDeadlineDays?: true
+    requireSubmissionNote?: true
+    requireFileUpload?: true
+    requireUrl?: true
+    requireExternalConfirmation?: true
+    externalConfirmationPrompt?: true
+    requireMentorApproval?: true
+    recurrence?: true
+    usageCount?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TaskTemplateCountAggregateInputType = {
+    id?: true
+    teacherId?: true
+    name?: true
+    title?: true
+    description?: true
+    category?: true
+    priority?: true
+    defaultDeadlineDays?: true
+    requireSubmissionNote?: true
+    requireFileUpload?: true
+    requireUrl?: true
+    requireExternalConfirmation?: true
+    externalConfirmationPrompt?: true
+    requireMentorApproval?: true
+    checklist?: true
+    recurrence?: true
+    usageCount?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TaskTemplateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskTemplate to aggregate.
+     */
+    where?: TaskTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskTemplates to fetch.
+     */
+    orderBy?: TaskTemplateOrderByWithRelationInput | TaskTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TaskTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TaskTemplates
+    **/
+    _count?: true | TaskTemplateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TaskTemplateAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TaskTemplateSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TaskTemplateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TaskTemplateMaxAggregateInputType
+  }
+
+  export type GetTaskTemplateAggregateType<T extends TaskTemplateAggregateArgs> = {
+        [P in keyof T & keyof AggregateTaskTemplate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTaskTemplate[P]>
+      : GetScalarType<T[P], AggregateTaskTemplate[P]>
+  }
+
+
+
+
+  export type TaskTemplateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TaskTemplateWhereInput
+    orderBy?: TaskTemplateOrderByWithAggregationInput | TaskTemplateOrderByWithAggregationInput[]
+    by: TaskTemplateScalarFieldEnum[] | TaskTemplateScalarFieldEnum
+    having?: TaskTemplateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TaskTemplateCountAggregateInputType | true
+    _avg?: TaskTemplateAvgAggregateInputType
+    _sum?: TaskTemplateSumAggregateInputType
+    _min?: TaskTemplateMinAggregateInputType
+    _max?: TaskTemplateMaxAggregateInputType
+  }
+
+  export type TaskTemplateGroupByOutputType = {
+    id: number
+    teacherId: number
+    name: string
+    title: string
+    description: string
+    category: string
+    priority: string
+    defaultDeadlineDays: number | null
+    requireSubmissionNote: boolean
+    requireFileUpload: boolean
+    requireUrl: boolean
+    requireExternalConfirmation: boolean
+    externalConfirmationPrompt: string | null
+    requireMentorApproval: boolean
+    checklist: JsonValue | null
+    recurrence: string | null
+    usageCount: number
+    createdAt: Date
+    updatedAt: Date
+    _count: TaskTemplateCountAggregateOutputType | null
+    _avg: TaskTemplateAvgAggregateOutputType | null
+    _sum: TaskTemplateSumAggregateOutputType | null
+    _min: TaskTemplateMinAggregateOutputType | null
+    _max: TaskTemplateMaxAggregateOutputType | null
+  }
+
+  type GetTaskTemplateGroupByPayload<T extends TaskTemplateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TaskTemplateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TaskTemplateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TaskTemplateGroupByOutputType[P]>
+            : GetScalarType<T[P], TaskTemplateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TaskTemplateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    name?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    priority?: boolean
+    defaultDeadlineDays?: boolean
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: boolean
+    requireMentorApproval?: boolean
+    checklist?: boolean
+    recurrence?: boolean
+    usageCount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Task?: boolean | TaskTemplate$TaskArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    _count?: boolean | TaskTemplateCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskTemplate"]>
+
+  export type TaskTemplateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    name?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    priority?: boolean
+    defaultDeadlineDays?: boolean
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: boolean
+    requireMentorApproval?: boolean
+    checklist?: boolean
+    recurrence?: boolean
+    usageCount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskTemplate"]>
+
+  export type TaskTemplateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    teacherId?: boolean
+    name?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    priority?: boolean
+    defaultDeadlineDays?: boolean
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: boolean
+    requireMentorApproval?: boolean
+    checklist?: boolean
+    recurrence?: boolean
+    usageCount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["taskTemplate"]>
+
+  export type TaskTemplateSelectScalar = {
+    id?: boolean
+    teacherId?: boolean
+    name?: boolean
+    title?: boolean
+    description?: boolean
+    category?: boolean
+    priority?: boolean
+    defaultDeadlineDays?: boolean
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: boolean
+    requireMentorApproval?: boolean
+    checklist?: boolean
+    recurrence?: boolean
+    usageCount?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TaskTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teacherId" | "name" | "title" | "description" | "category" | "priority" | "defaultDeadlineDays" | "requireSubmissionNote" | "requireFileUpload" | "requireUrl" | "requireExternalConfirmation" | "externalConfirmationPrompt" | "requireMentorApproval" | "checklist" | "recurrence" | "usageCount" | "createdAt" | "updatedAt", ExtArgs["result"]["taskTemplate"]>
+  export type TaskTemplateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Task?: boolean | TaskTemplate$TaskArgs<ExtArgs>
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    _count?: boolean | TaskTemplateCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TaskTemplateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+  export type TaskTemplateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+  }
+
+  export type $TaskTemplatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TaskTemplate"
+    objects: {
+      Task: Prisma.$TaskPayload<ExtArgs>[]
+      Teacher: Prisma.$TeacherPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      teacherId: number
+      name: string
+      title: string
+      description: string
+      category: string
+      priority: string
+      defaultDeadlineDays: number | null
+      requireSubmissionNote: boolean
+      requireFileUpload: boolean
+      requireUrl: boolean
+      requireExternalConfirmation: boolean
+      externalConfirmationPrompt: string | null
+      requireMentorApproval: boolean
+      checklist: Prisma.JsonValue | null
+      recurrence: string | null
+      usageCount: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["taskTemplate"]>
+    composites: {}
+  }
+
+  type TaskTemplateGetPayload<S extends boolean | null | undefined | TaskTemplateDefaultArgs> = $Result.GetResult<Prisma.$TaskTemplatePayload, S>
+
+  type TaskTemplateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TaskTemplateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TaskTemplateCountAggregateInputType | true
+    }
+
+  export interface TaskTemplateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TaskTemplate'], meta: { name: 'TaskTemplate' } }
+    /**
+     * Find zero or one TaskTemplate that matches the filter.
+     * @param {TaskTemplateFindUniqueArgs} args - Arguments to find a TaskTemplate
+     * @example
+     * // Get one TaskTemplate
+     * const taskTemplate = await prisma.taskTemplate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TaskTemplateFindUniqueArgs>(args: SelectSubset<T, TaskTemplateFindUniqueArgs<ExtArgs>>): Prisma__TaskTemplateClient<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TaskTemplate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TaskTemplateFindUniqueOrThrowArgs} args - Arguments to find a TaskTemplate
+     * @example
+     * // Get one TaskTemplate
+     * const taskTemplate = await prisma.taskTemplate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TaskTemplateFindUniqueOrThrowArgs>(args: SelectSubset<T, TaskTemplateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TaskTemplateClient<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskTemplate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskTemplateFindFirstArgs} args - Arguments to find a TaskTemplate
+     * @example
+     * // Get one TaskTemplate
+     * const taskTemplate = await prisma.taskTemplate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TaskTemplateFindFirstArgs>(args?: SelectSubset<T, TaskTemplateFindFirstArgs<ExtArgs>>): Prisma__TaskTemplateClient<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TaskTemplate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskTemplateFindFirstOrThrowArgs} args - Arguments to find a TaskTemplate
+     * @example
+     * // Get one TaskTemplate
+     * const taskTemplate = await prisma.taskTemplate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TaskTemplateFindFirstOrThrowArgs>(args?: SelectSubset<T, TaskTemplateFindFirstOrThrowArgs<ExtArgs>>): Prisma__TaskTemplateClient<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TaskTemplates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskTemplateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TaskTemplates
+     * const taskTemplates = await prisma.taskTemplate.findMany()
+     * 
+     * // Get first 10 TaskTemplates
+     * const taskTemplates = await prisma.taskTemplate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const taskTemplateWithIdOnly = await prisma.taskTemplate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TaskTemplateFindManyArgs>(args?: SelectSubset<T, TaskTemplateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TaskTemplate.
+     * @param {TaskTemplateCreateArgs} args - Arguments to create a TaskTemplate.
+     * @example
+     * // Create one TaskTemplate
+     * const TaskTemplate = await prisma.taskTemplate.create({
+     *   data: {
+     *     // ... data to create a TaskTemplate
+     *   }
+     * })
+     * 
+     */
+    create<T extends TaskTemplateCreateArgs>(args: SelectSubset<T, TaskTemplateCreateArgs<ExtArgs>>): Prisma__TaskTemplateClient<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TaskTemplates.
+     * @param {TaskTemplateCreateManyArgs} args - Arguments to create many TaskTemplates.
+     * @example
+     * // Create many TaskTemplates
+     * const taskTemplate = await prisma.taskTemplate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TaskTemplateCreateManyArgs>(args?: SelectSubset<T, TaskTemplateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TaskTemplates and returns the data saved in the database.
+     * @param {TaskTemplateCreateManyAndReturnArgs} args - Arguments to create many TaskTemplates.
+     * @example
+     * // Create many TaskTemplates
+     * const taskTemplate = await prisma.taskTemplate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TaskTemplates and only return the `id`
+     * const taskTemplateWithIdOnly = await prisma.taskTemplate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TaskTemplateCreateManyAndReturnArgs>(args?: SelectSubset<T, TaskTemplateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TaskTemplate.
+     * @param {TaskTemplateDeleteArgs} args - Arguments to delete one TaskTemplate.
+     * @example
+     * // Delete one TaskTemplate
+     * const TaskTemplate = await prisma.taskTemplate.delete({
+     *   where: {
+     *     // ... filter to delete one TaskTemplate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TaskTemplateDeleteArgs>(args: SelectSubset<T, TaskTemplateDeleteArgs<ExtArgs>>): Prisma__TaskTemplateClient<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TaskTemplate.
+     * @param {TaskTemplateUpdateArgs} args - Arguments to update one TaskTemplate.
+     * @example
+     * // Update one TaskTemplate
+     * const taskTemplate = await prisma.taskTemplate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TaskTemplateUpdateArgs>(args: SelectSubset<T, TaskTemplateUpdateArgs<ExtArgs>>): Prisma__TaskTemplateClient<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TaskTemplates.
+     * @param {TaskTemplateDeleteManyArgs} args - Arguments to filter TaskTemplates to delete.
+     * @example
+     * // Delete a few TaskTemplates
+     * const { count } = await prisma.taskTemplate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TaskTemplateDeleteManyArgs>(args?: SelectSubset<T, TaskTemplateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskTemplateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TaskTemplates
+     * const taskTemplate = await prisma.taskTemplate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TaskTemplateUpdateManyArgs>(args: SelectSubset<T, TaskTemplateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TaskTemplates and returns the data updated in the database.
+     * @param {TaskTemplateUpdateManyAndReturnArgs} args - Arguments to update many TaskTemplates.
+     * @example
+     * // Update many TaskTemplates
+     * const taskTemplate = await prisma.taskTemplate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TaskTemplates and only return the `id`
+     * const taskTemplateWithIdOnly = await prisma.taskTemplate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TaskTemplateUpdateManyAndReturnArgs>(args: SelectSubset<T, TaskTemplateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TaskTemplate.
+     * @param {TaskTemplateUpsertArgs} args - Arguments to update or create a TaskTemplate.
+     * @example
+     * // Update or create a TaskTemplate
+     * const taskTemplate = await prisma.taskTemplate.upsert({
+     *   create: {
+     *     // ... data to create a TaskTemplate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TaskTemplate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TaskTemplateUpsertArgs>(args: SelectSubset<T, TaskTemplateUpsertArgs<ExtArgs>>): Prisma__TaskTemplateClient<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TaskTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskTemplateCountArgs} args - Arguments to filter TaskTemplates to count.
+     * @example
+     * // Count the number of TaskTemplates
+     * const count = await prisma.taskTemplate.count({
+     *   where: {
+     *     // ... the filter for the TaskTemplates we want to count
+     *   }
+     * })
+    **/
+    count<T extends TaskTemplateCountArgs>(
+      args?: Subset<T, TaskTemplateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TaskTemplateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TaskTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskTemplateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TaskTemplateAggregateArgs>(args: Subset<T, TaskTemplateAggregateArgs>): Prisma.PrismaPromise<GetTaskTemplateAggregateType<T>>
+
+    /**
+     * Group by TaskTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TaskTemplateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TaskTemplateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TaskTemplateGroupByArgs['orderBy'] }
+        : { orderBy?: TaskTemplateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TaskTemplateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaskTemplateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TaskTemplate model
+   */
+  readonly fields: TaskTemplateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TaskTemplate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TaskTemplateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Task<T extends TaskTemplate$TaskArgs<ExtArgs> = {}>(args?: Subset<T, TaskTemplate$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TaskTemplate model
+   */
+  interface TaskTemplateFieldRefs {
+    readonly id: FieldRef<"TaskTemplate", 'Int'>
+    readonly teacherId: FieldRef<"TaskTemplate", 'Int'>
+    readonly name: FieldRef<"TaskTemplate", 'String'>
+    readonly title: FieldRef<"TaskTemplate", 'String'>
+    readonly description: FieldRef<"TaskTemplate", 'String'>
+    readonly category: FieldRef<"TaskTemplate", 'String'>
+    readonly priority: FieldRef<"TaskTemplate", 'String'>
+    readonly defaultDeadlineDays: FieldRef<"TaskTemplate", 'Int'>
+    readonly requireSubmissionNote: FieldRef<"TaskTemplate", 'Boolean'>
+    readonly requireFileUpload: FieldRef<"TaskTemplate", 'Boolean'>
+    readonly requireUrl: FieldRef<"TaskTemplate", 'Boolean'>
+    readonly requireExternalConfirmation: FieldRef<"TaskTemplate", 'Boolean'>
+    readonly externalConfirmationPrompt: FieldRef<"TaskTemplate", 'String'>
+    readonly requireMentorApproval: FieldRef<"TaskTemplate", 'Boolean'>
+    readonly checklist: FieldRef<"TaskTemplate", 'Json'>
+    readonly recurrence: FieldRef<"TaskTemplate", 'String'>
+    readonly usageCount: FieldRef<"TaskTemplate", 'Int'>
+    readonly createdAt: FieldRef<"TaskTemplate", 'DateTime'>
+    readonly updatedAt: FieldRef<"TaskTemplate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TaskTemplate findUnique
+   */
+  export type TaskTemplateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskTemplate to fetch.
+     */
+    where: TaskTemplateWhereUniqueInput
+  }
+
+  /**
+   * TaskTemplate findUniqueOrThrow
+   */
+  export type TaskTemplateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskTemplate to fetch.
+     */
+    where: TaskTemplateWhereUniqueInput
+  }
+
+  /**
+   * TaskTemplate findFirst
+   */
+  export type TaskTemplateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskTemplate to fetch.
+     */
+    where?: TaskTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskTemplates to fetch.
+     */
+    orderBy?: TaskTemplateOrderByWithRelationInput | TaskTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskTemplates.
+     */
+    cursor?: TaskTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskTemplates.
+     */
+    distinct?: TaskTemplateScalarFieldEnum | TaskTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * TaskTemplate findFirstOrThrow
+   */
+  export type TaskTemplateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskTemplate to fetch.
+     */
+    where?: TaskTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskTemplates to fetch.
+     */
+    orderBy?: TaskTemplateOrderByWithRelationInput | TaskTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TaskTemplates.
+     */
+    cursor?: TaskTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TaskTemplates.
+     */
+    distinct?: TaskTemplateScalarFieldEnum | TaskTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * TaskTemplate findMany
+   */
+  export type TaskTemplateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which TaskTemplates to fetch.
+     */
+    where?: TaskTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TaskTemplates to fetch.
+     */
+    orderBy?: TaskTemplateOrderByWithRelationInput | TaskTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TaskTemplates.
+     */
+    cursor?: TaskTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TaskTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TaskTemplates.
+     */
+    skip?: number
+    distinct?: TaskTemplateScalarFieldEnum | TaskTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * TaskTemplate create
+   */
+  export type TaskTemplateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TaskTemplate.
+     */
+    data: XOR<TaskTemplateCreateInput, TaskTemplateUncheckedCreateInput>
+  }
+
+  /**
+   * TaskTemplate createMany
+   */
+  export type TaskTemplateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TaskTemplates.
+     */
+    data: TaskTemplateCreateManyInput | TaskTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TaskTemplate createManyAndReturn
+   */
+  export type TaskTemplateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to create many TaskTemplates.
+     */
+    data: TaskTemplateCreateManyInput | TaskTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskTemplate update
+   */
+  export type TaskTemplateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TaskTemplate.
+     */
+    data: XOR<TaskTemplateUpdateInput, TaskTemplateUncheckedUpdateInput>
+    /**
+     * Choose, which TaskTemplate to update.
+     */
+    where: TaskTemplateWhereUniqueInput
+  }
+
+  /**
+   * TaskTemplate updateMany
+   */
+  export type TaskTemplateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TaskTemplates.
+     */
+    data: XOR<TaskTemplateUpdateManyMutationInput, TaskTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskTemplates to update
+     */
+    where?: TaskTemplateWhereInput
+    /**
+     * Limit how many TaskTemplates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskTemplate updateManyAndReturn
+   */
+  export type TaskTemplateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to update TaskTemplates.
+     */
+    data: XOR<TaskTemplateUpdateManyMutationInput, TaskTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which TaskTemplates to update
+     */
+    where?: TaskTemplateWhereInput
+    /**
+     * Limit how many TaskTemplates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TaskTemplate upsert
+   */
+  export type TaskTemplateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TaskTemplate to update in case it exists.
+     */
+    where: TaskTemplateWhereUniqueInput
+    /**
+     * In case the TaskTemplate found by the `where` argument doesn't exist, create a new TaskTemplate with this data.
+     */
+    create: XOR<TaskTemplateCreateInput, TaskTemplateUncheckedCreateInput>
+    /**
+     * In case the TaskTemplate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TaskTemplateUpdateInput, TaskTemplateUncheckedUpdateInput>
+  }
+
+  /**
+   * TaskTemplate delete
+   */
+  export type TaskTemplateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+    /**
+     * Filter which TaskTemplate to delete.
+     */
+    where: TaskTemplateWhereUniqueInput
+  }
+
+  /**
+   * TaskTemplate deleteMany
+   */
+  export type TaskTemplateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TaskTemplates to delete
+     */
+    where?: TaskTemplateWhereInput
+    /**
+     * Limit how many TaskTemplates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TaskTemplate.Task
+   */
+  export type TaskTemplate$TaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Task
+     */
+    select?: TaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Task
+     */
+    omit?: TaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskInclude<ExtArgs> | null
+    where?: TaskWhereInput
+    orderBy?: TaskOrderByWithRelationInput | TaskOrderByWithRelationInput[]
+    cursor?: TaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * TaskTemplate without action
+   */
+  export type TaskTemplateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TaskTemplate
+     */
+    select?: TaskTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TaskTemplate
+     */
+    omit?: TaskTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TaskTemplateInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -53102,6 +61556,129 @@ export namespace Prisma {
   export type MeetingMinuteRequestScalarFieldEnum = (typeof MeetingMinuteRequestScalarFieldEnum)[keyof typeof MeetingMinuteRequestScalarFieldEnum]
 
 
+  export const StudentTaskScalarFieldEnum: {
+    id: 'id',
+    taskId: 'taskId',
+    studentId: 'studentId',
+    status: 'status',
+    startedAt: 'startedAt',
+    submittedAt: 'submittedAt',
+    completedAt: 'completedAt',
+    submissionNote: 'submissionNote',
+    submissionUrl: 'submissionUrl',
+    submissionFileUrl: 'submissionFileUrl',
+    submissionFileName: 'submissionFileName',
+    submissionExternalConfirmed: 'submissionExternalConfirmed',
+    mentorFeedback: 'mentorFeedback',
+    reviewedAt: 'reviewedAt',
+    reviewedById: 'reviewedById',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    checklistDone: 'checklistDone',
+    dueSoonReminderSentAt: 'dueSoonReminderSentAt',
+    overdueReminderSentAt: 'overdueReminderSentAt'
+  };
+
+  export type StudentTaskScalarFieldEnum = (typeof StudentTaskScalarFieldEnum)[keyof typeof StudentTaskScalarFieldEnum]
+
+
+  export const TaskScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    category: 'category',
+    priority: 'priority',
+    deadline: 'deadline',
+    creatorId: 'creatorId',
+    requireSubmissionNote: 'requireSubmissionNote',
+    requireFileUpload: 'requireFileUpload',
+    requireUrl: 'requireUrl',
+    requireExternalConfirmation: 'requireExternalConfirmation',
+    externalConfirmationPrompt: 'externalConfirmationPrompt',
+    requireMentorApproval: 'requireMentorApproval',
+    isCancelled: 'isCancelled',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    checklist: 'checklist',
+    linkedAssignmentId: 'linkedAssignmentId',
+    linkedMeetingId: 'linkedMeetingId',
+    linkedResourceId: 'linkedResourceId',
+    nextOccurrenceCreatedAt: 'nextOccurrenceCreatedAt',
+    recurrence: 'recurrence',
+    recurrenceEndsAt: 'recurrenceEndsAt',
+    seriesId: 'seriesId',
+    templateId: 'templateId'
+  };
+
+  export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+  export const TaskActivityScalarFieldEnum: {
+    id: 'id',
+    studentTaskId: 'studentTaskId',
+    action: 'action',
+    details: 'details',
+    performedById: 'performedById',
+    performedByRole: 'performedByRole',
+    performedByName: 'performedByName',
+    createdAt: 'createdAt'
+  };
+
+  export type TaskActivityScalarFieldEnum = (typeof TaskActivityScalarFieldEnum)[keyof typeof TaskActivityScalarFieldEnum]
+
+
+  export const TaskCommentScalarFieldEnum: {
+    id: 'id',
+    studentTaskId: 'studentTaskId',
+    authorId: 'authorId',
+    authorRole: 'authorRole',
+    authorName: 'authorName',
+    content: 'content',
+    attachmentUrl: 'attachmentUrl',
+    attachmentName: 'attachmentName',
+    createdAt: 'createdAt'
+  };
+
+  export type TaskCommentScalarFieldEnum = (typeof TaskCommentScalarFieldEnum)[keyof typeof TaskCommentScalarFieldEnum]
+
+
+  export const TaskSavedFilterScalarFieldEnum: {
+    id: 'id',
+    ownerId: 'ownerId',
+    ownerRole: 'ownerRole',
+    name: 'name',
+    query: 'query',
+    createdAt: 'createdAt'
+  };
+
+  export type TaskSavedFilterScalarFieldEnum = (typeof TaskSavedFilterScalarFieldEnum)[keyof typeof TaskSavedFilterScalarFieldEnum]
+
+
+  export const TaskTemplateScalarFieldEnum: {
+    id: 'id',
+    teacherId: 'teacherId',
+    name: 'name',
+    title: 'title',
+    description: 'description',
+    category: 'category',
+    priority: 'priority',
+    defaultDeadlineDays: 'defaultDeadlineDays',
+    requireSubmissionNote: 'requireSubmissionNote',
+    requireFileUpload: 'requireFileUpload',
+    requireUrl: 'requireUrl',
+    requireExternalConfirmation: 'requireExternalConfirmation',
+    externalConfirmationPrompt: 'externalConfirmationPrompt',
+    requireMentorApproval: 'requireMentorApproval',
+    checklist: 'checklist',
+    recurrence: 'recurrence',
+    usageCount: 'usageCount',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TaskTemplateScalarFieldEnum = (typeof TaskTemplateScalarFieldEnum)[keyof typeof TaskTemplateScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -53465,6 +62042,9 @@ export namespace Prisma {
     resources?: ResourceListRelationFilter
     studentGroups?: StudentGroupListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
+    StudentTask?: StudentTaskListRelationFilter
+    Task?: TaskListRelationFilter
+    TaskTemplate?: TaskTemplateListRelationFilter
     students?: TeacherStudentListRelationFilter
   }
 
@@ -53489,6 +62069,9 @@ export namespace Prisma {
     resources?: ResourceOrderByRelationAggregateInput
     studentGroups?: StudentGroupOrderByRelationAggregateInput
     submissionRemarks?: StudentSubmissionRemarkOrderByRelationAggregateInput
+    StudentTask?: StudentTaskOrderByRelationAggregateInput
+    Task?: TaskOrderByRelationAggregateInput
+    TaskTemplate?: TaskTemplateOrderByRelationAggregateInput
     students?: TeacherStudentOrderByRelationAggregateInput
   }
 
@@ -53516,6 +62099,9 @@ export namespace Prisma {
     resources?: ResourceListRelationFilter
     studentGroups?: StudentGroupListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
+    StudentTask?: StudentTaskListRelationFilter
+    Task?: TaskListRelationFilter
+    TaskTemplate?: TaskTemplateListRelationFilter
     students?: TeacherStudentListRelationFilter
   }, "id" | "email">
 
@@ -53589,6 +62175,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberListRelationFilter
     assignedResources?: StudentResourceListRelationFilter
     studentSubmissions?: StudentSubmissionListRelationFilter
+    StudentTask?: StudentTaskListRelationFilter
     submissions?: SubmissionListRelationFilter
     teacherLinks?: TeacherStudentListRelationFilter
     Testimonial?: TestimonialListRelationFilter
@@ -53623,6 +62210,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberOrderByRelationAggregateInput
     assignedResources?: StudentResourceOrderByRelationAggregateInput
     studentSubmissions?: StudentSubmissionOrderByRelationAggregateInput
+    StudentTask?: StudentTaskOrderByRelationAggregateInput
     submissions?: SubmissionOrderByRelationAggregateInput
     teacherLinks?: TeacherStudentOrderByRelationAggregateInput
     Testimonial?: TestimonialOrderByRelationAggregateInput
@@ -53660,6 +62248,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberListRelationFilter
     assignedResources?: StudentResourceListRelationFilter
     studentSubmissions?: StudentSubmissionListRelationFilter
+    StudentTask?: StudentTaskListRelationFilter
     submissions?: SubmissionListRelationFilter
     teacherLinks?: TeacherStudentListRelationFilter
     Testimonial?: TestimonialListRelationFilter
@@ -53914,6 +62503,7 @@ export namespace Prisma {
     resources?: AssignmentResourceListRelationFilter
     AssignmentTarget?: AssignmentTargetListRelationFilter
     submissions?: SubmissionListRelationFilter
+    Task?: TaskListRelationFilter
   }
 
   export type AssignmentOrderByWithRelationInput = {
@@ -53937,6 +62527,7 @@ export namespace Prisma {
     resources?: AssignmentResourceOrderByRelationAggregateInput
     AssignmentTarget?: AssignmentTargetOrderByRelationAggregateInput
     submissions?: SubmissionOrderByRelationAggregateInput
+    Task?: TaskOrderByRelationAggregateInput
   }
 
   export type AssignmentWhereUniqueInput = Prisma.AtLeast<{
@@ -53963,6 +62554,7 @@ export namespace Prisma {
     resources?: AssignmentResourceListRelationFilter
     AssignmentTarget?: AssignmentTargetListRelationFilter
     submissions?: SubmissionListRelationFilter
+    Task?: TaskListRelationFilter
   }, "id">
 
   export type AssignmentOrderByWithAggregationInput = {
@@ -54203,6 +62795,7 @@ export namespace Prisma {
     assignmentLinks?: AssignmentResourceListRelationFilter
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     studentAssignments?: StudentResourceListRelationFilter
+    Task?: TaskListRelationFilter
   }
 
   export type ResourceOrderByWithRelationInput = {
@@ -54224,6 +62817,7 @@ export namespace Prisma {
     assignmentLinks?: AssignmentResourceOrderByRelationAggregateInput
     teacher?: TeacherOrderByWithRelationInput
     studentAssignments?: StudentResourceOrderByRelationAggregateInput
+    Task?: TaskOrderByRelationAggregateInput
   }
 
   export type ResourceWhereUniqueInput = Prisma.AtLeast<{
@@ -54248,6 +62842,7 @@ export namespace Prisma {
     assignmentLinks?: AssignmentResourceListRelationFilter
     teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     studentAssignments?: StudentResourceListRelationFilter
+    Task?: TaskListRelationFilter
   }, "id">
 
   export type ResourceOrderByWithAggregationInput = {
@@ -57015,6 +65610,7 @@ export namespace Prisma {
     ClassSchedule?: XOR<ClassScheduleNullableScalarRelationFilter, ClassScheduleWhereInput> | null
     Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     MeetingMinuteRequest?: MeetingMinuteRequestListRelationFilter
+    Task?: TaskListRelationFilter
   }
 
   export type MeetingMinuteMeetingOrderByWithRelationInput = {
@@ -57036,6 +65632,7 @@ export namespace Prisma {
     ClassSchedule?: ClassScheduleOrderByWithRelationInput
     Teacher?: TeacherOrderByWithRelationInput
     MeetingMinuteRequest?: MeetingMinuteRequestOrderByRelationAggregateInput
+    Task?: TaskOrderByRelationAggregateInput
   }
 
   export type MeetingMinuteMeetingWhereUniqueInput = Prisma.AtLeast<{
@@ -57062,6 +65659,7 @@ export namespace Prisma {
     ClassSchedule?: XOR<ClassScheduleNullableScalarRelationFilter, ClassScheduleWhereInput> | null
     Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
     MeetingMinuteRequest?: MeetingMinuteRequestListRelationFilter
+    Task?: TaskListRelationFilter
   }, "id" | "teacherId_classScheduleId" | "teacherId_googleCalendarEventId">
 
   export type MeetingMinuteMeetingOrderByWithAggregationInput = {
@@ -57202,6 +65800,663 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"MeetingMinuteRequest"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"MeetingMinuteRequest"> | Date | string
     creationMode?: EnumMeetingMinuteCreationModeWithAggregatesFilter<"MeetingMinuteRequest"> | $Enums.MeetingMinuteCreationMode
+  }
+
+  export type StudentTaskWhereInput = {
+    AND?: StudentTaskWhereInput | StudentTaskWhereInput[]
+    OR?: StudentTaskWhereInput[]
+    NOT?: StudentTaskWhereInput | StudentTaskWhereInput[]
+    id?: IntFilter<"StudentTask"> | number
+    taskId?: IntFilter<"StudentTask"> | number
+    studentId?: IntFilter<"StudentTask"> | number
+    status?: StringFilter<"StudentTask"> | string
+    startedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    submittedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    submissionNote?: StringNullableFilter<"StudentTask"> | string | null
+    submissionUrl?: StringNullableFilter<"StudentTask"> | string | null
+    submissionFileUrl?: StringNullableFilter<"StudentTask"> | string | null
+    submissionFileName?: StringNullableFilter<"StudentTask"> | string | null
+    submissionExternalConfirmed?: BoolFilter<"StudentTask"> | boolean
+    mentorFeedback?: StringNullableFilter<"StudentTask"> | string | null
+    reviewedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    reviewedById?: IntNullableFilter<"StudentTask"> | number | null
+    createdAt?: DateTimeFilter<"StudentTask"> | Date | string
+    updatedAt?: DateTimeFilter<"StudentTask"> | Date | string
+    checklistDone?: JsonNullableFilter<"StudentTask">
+    dueSoonReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    overdueReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    Teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    Task?: XOR<TaskScalarRelationFilter, TaskWhereInput>
+    TaskActivity?: TaskActivityListRelationFilter
+    TaskComment?: TaskCommentListRelationFilter
+  }
+
+  export type StudentTaskOrderByWithRelationInput = {
+    id?: SortOrder
+    taskId?: SortOrder
+    studentId?: SortOrder
+    status?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
+    submittedAt?: SortOrderInput | SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    submissionNote?: SortOrderInput | SortOrder
+    submissionUrl?: SortOrderInput | SortOrder
+    submissionFileUrl?: SortOrderInput | SortOrder
+    submissionFileName?: SortOrderInput | SortOrder
+    submissionExternalConfirmed?: SortOrder
+    mentorFeedback?: SortOrderInput | SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    reviewedById?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    checklistDone?: SortOrderInput | SortOrder
+    dueSoonReminderSentAt?: SortOrderInput | SortOrder
+    overdueReminderSentAt?: SortOrderInput | SortOrder
+    Teacher?: TeacherOrderByWithRelationInput
+    Student?: StudentOrderByWithRelationInput
+    Task?: TaskOrderByWithRelationInput
+    TaskActivity?: TaskActivityOrderByRelationAggregateInput
+    TaskComment?: TaskCommentOrderByRelationAggregateInput
+  }
+
+  export type StudentTaskWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    taskId_studentId?: StudentTaskTaskIdStudentIdCompoundUniqueInput
+    AND?: StudentTaskWhereInput | StudentTaskWhereInput[]
+    OR?: StudentTaskWhereInput[]
+    NOT?: StudentTaskWhereInput | StudentTaskWhereInput[]
+    taskId?: IntFilter<"StudentTask"> | number
+    studentId?: IntFilter<"StudentTask"> | number
+    status?: StringFilter<"StudentTask"> | string
+    startedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    submittedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    submissionNote?: StringNullableFilter<"StudentTask"> | string | null
+    submissionUrl?: StringNullableFilter<"StudentTask"> | string | null
+    submissionFileUrl?: StringNullableFilter<"StudentTask"> | string | null
+    submissionFileName?: StringNullableFilter<"StudentTask"> | string | null
+    submissionExternalConfirmed?: BoolFilter<"StudentTask"> | boolean
+    mentorFeedback?: StringNullableFilter<"StudentTask"> | string | null
+    reviewedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    reviewedById?: IntNullableFilter<"StudentTask"> | number | null
+    createdAt?: DateTimeFilter<"StudentTask"> | Date | string
+    updatedAt?: DateTimeFilter<"StudentTask"> | Date | string
+    checklistDone?: JsonNullableFilter<"StudentTask">
+    dueSoonReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    overdueReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    Teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
+    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    Task?: XOR<TaskScalarRelationFilter, TaskWhereInput>
+    TaskActivity?: TaskActivityListRelationFilter
+    TaskComment?: TaskCommentListRelationFilter
+  }, "id" | "taskId_studentId">
+
+  export type StudentTaskOrderByWithAggregationInput = {
+    id?: SortOrder
+    taskId?: SortOrder
+    studentId?: SortOrder
+    status?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
+    submittedAt?: SortOrderInput | SortOrder
+    completedAt?: SortOrderInput | SortOrder
+    submissionNote?: SortOrderInput | SortOrder
+    submissionUrl?: SortOrderInput | SortOrder
+    submissionFileUrl?: SortOrderInput | SortOrder
+    submissionFileName?: SortOrderInput | SortOrder
+    submissionExternalConfirmed?: SortOrder
+    mentorFeedback?: SortOrderInput | SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    reviewedById?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    checklistDone?: SortOrderInput | SortOrder
+    dueSoonReminderSentAt?: SortOrderInput | SortOrder
+    overdueReminderSentAt?: SortOrderInput | SortOrder
+    _count?: StudentTaskCountOrderByAggregateInput
+    _avg?: StudentTaskAvgOrderByAggregateInput
+    _max?: StudentTaskMaxOrderByAggregateInput
+    _min?: StudentTaskMinOrderByAggregateInput
+    _sum?: StudentTaskSumOrderByAggregateInput
+  }
+
+  export type StudentTaskScalarWhereWithAggregatesInput = {
+    AND?: StudentTaskScalarWhereWithAggregatesInput | StudentTaskScalarWhereWithAggregatesInput[]
+    OR?: StudentTaskScalarWhereWithAggregatesInput[]
+    NOT?: StudentTaskScalarWhereWithAggregatesInput | StudentTaskScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"StudentTask"> | number
+    taskId?: IntWithAggregatesFilter<"StudentTask"> | number
+    studentId?: IntWithAggregatesFilter<"StudentTask"> | number
+    status?: StringWithAggregatesFilter<"StudentTask"> | string
+    startedAt?: DateTimeNullableWithAggregatesFilter<"StudentTask"> | Date | string | null
+    submittedAt?: DateTimeNullableWithAggregatesFilter<"StudentTask"> | Date | string | null
+    completedAt?: DateTimeNullableWithAggregatesFilter<"StudentTask"> | Date | string | null
+    submissionNote?: StringNullableWithAggregatesFilter<"StudentTask"> | string | null
+    submissionUrl?: StringNullableWithAggregatesFilter<"StudentTask"> | string | null
+    submissionFileUrl?: StringNullableWithAggregatesFilter<"StudentTask"> | string | null
+    submissionFileName?: StringNullableWithAggregatesFilter<"StudentTask"> | string | null
+    submissionExternalConfirmed?: BoolWithAggregatesFilter<"StudentTask"> | boolean
+    mentorFeedback?: StringNullableWithAggregatesFilter<"StudentTask"> | string | null
+    reviewedAt?: DateTimeNullableWithAggregatesFilter<"StudentTask"> | Date | string | null
+    reviewedById?: IntNullableWithAggregatesFilter<"StudentTask"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"StudentTask"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"StudentTask"> | Date | string
+    checklistDone?: JsonNullableWithAggregatesFilter<"StudentTask">
+    dueSoonReminderSentAt?: DateTimeNullableWithAggregatesFilter<"StudentTask"> | Date | string | null
+    overdueReminderSentAt?: DateTimeNullableWithAggregatesFilter<"StudentTask"> | Date | string | null
+  }
+
+  export type TaskWhereInput = {
+    AND?: TaskWhereInput | TaskWhereInput[]
+    OR?: TaskWhereInput[]
+    NOT?: TaskWhereInput | TaskWhereInput[]
+    id?: IntFilter<"Task"> | number
+    title?: StringFilter<"Task"> | string
+    description?: StringFilter<"Task"> | string
+    category?: StringFilter<"Task"> | string
+    priority?: StringFilter<"Task"> | string
+    deadline?: DateTimeNullableFilter<"Task"> | Date | string | null
+    creatorId?: IntFilter<"Task"> | number
+    requireSubmissionNote?: BoolFilter<"Task"> | boolean
+    requireFileUpload?: BoolFilter<"Task"> | boolean
+    requireUrl?: BoolFilter<"Task"> | boolean
+    requireExternalConfirmation?: BoolFilter<"Task"> | boolean
+    externalConfirmationPrompt?: StringNullableFilter<"Task"> | string | null
+    requireMentorApproval?: BoolFilter<"Task"> | boolean
+    isCancelled?: BoolFilter<"Task"> | boolean
+    createdAt?: DateTimeFilter<"Task"> | Date | string
+    updatedAt?: DateTimeFilter<"Task"> | Date | string
+    checklist?: JsonNullableFilter<"Task">
+    linkedAssignmentId?: IntNullableFilter<"Task"> | number | null
+    linkedMeetingId?: IntNullableFilter<"Task"> | number | null
+    linkedResourceId?: IntNullableFilter<"Task"> | number | null
+    nextOccurrenceCreatedAt?: DateTimeNullableFilter<"Task"> | Date | string | null
+    recurrence?: StringNullableFilter<"Task"> | string | null
+    recurrenceEndsAt?: DateTimeNullableFilter<"Task"> | Date | string | null
+    seriesId?: IntNullableFilter<"Task"> | number | null
+    templateId?: IntNullableFilter<"Task"> | number | null
+    StudentTask?: StudentTaskListRelationFilter
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    Assignment?: XOR<AssignmentNullableScalarRelationFilter, AssignmentWhereInput> | null
+    MeetingMinuteMeeting?: XOR<MeetingMinuteMeetingNullableScalarRelationFilter, MeetingMinuteMeetingWhereInput> | null
+    Resource?: XOR<ResourceNullableScalarRelationFilter, ResourceWhereInput> | null
+    TaskTemplate?: XOR<TaskTemplateNullableScalarRelationFilter, TaskTemplateWhereInput> | null
+  }
+
+  export type TaskOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    deadline?: SortOrderInput | SortOrder
+    creatorId?: SortOrder
+    requireSubmissionNote?: SortOrder
+    requireFileUpload?: SortOrder
+    requireUrl?: SortOrder
+    requireExternalConfirmation?: SortOrder
+    externalConfirmationPrompt?: SortOrderInput | SortOrder
+    requireMentorApproval?: SortOrder
+    isCancelled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    checklist?: SortOrderInput | SortOrder
+    linkedAssignmentId?: SortOrderInput | SortOrder
+    linkedMeetingId?: SortOrderInput | SortOrder
+    linkedResourceId?: SortOrderInput | SortOrder
+    nextOccurrenceCreatedAt?: SortOrderInput | SortOrder
+    recurrence?: SortOrderInput | SortOrder
+    recurrenceEndsAt?: SortOrderInput | SortOrder
+    seriesId?: SortOrderInput | SortOrder
+    templateId?: SortOrderInput | SortOrder
+    StudentTask?: StudentTaskOrderByRelationAggregateInput
+    Teacher?: TeacherOrderByWithRelationInput
+    Assignment?: AssignmentOrderByWithRelationInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingOrderByWithRelationInput
+    Resource?: ResourceOrderByWithRelationInput
+    TaskTemplate?: TaskTemplateOrderByWithRelationInput
+  }
+
+  export type TaskWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TaskWhereInput | TaskWhereInput[]
+    OR?: TaskWhereInput[]
+    NOT?: TaskWhereInput | TaskWhereInput[]
+    title?: StringFilter<"Task"> | string
+    description?: StringFilter<"Task"> | string
+    category?: StringFilter<"Task"> | string
+    priority?: StringFilter<"Task"> | string
+    deadline?: DateTimeNullableFilter<"Task"> | Date | string | null
+    creatorId?: IntFilter<"Task"> | number
+    requireSubmissionNote?: BoolFilter<"Task"> | boolean
+    requireFileUpload?: BoolFilter<"Task"> | boolean
+    requireUrl?: BoolFilter<"Task"> | boolean
+    requireExternalConfirmation?: BoolFilter<"Task"> | boolean
+    externalConfirmationPrompt?: StringNullableFilter<"Task"> | string | null
+    requireMentorApproval?: BoolFilter<"Task"> | boolean
+    isCancelled?: BoolFilter<"Task"> | boolean
+    createdAt?: DateTimeFilter<"Task"> | Date | string
+    updatedAt?: DateTimeFilter<"Task"> | Date | string
+    checklist?: JsonNullableFilter<"Task">
+    linkedAssignmentId?: IntNullableFilter<"Task"> | number | null
+    linkedMeetingId?: IntNullableFilter<"Task"> | number | null
+    linkedResourceId?: IntNullableFilter<"Task"> | number | null
+    nextOccurrenceCreatedAt?: DateTimeNullableFilter<"Task"> | Date | string | null
+    recurrence?: StringNullableFilter<"Task"> | string | null
+    recurrenceEndsAt?: DateTimeNullableFilter<"Task"> | Date | string | null
+    seriesId?: IntNullableFilter<"Task"> | number | null
+    templateId?: IntNullableFilter<"Task"> | number | null
+    StudentTask?: StudentTaskListRelationFilter
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    Assignment?: XOR<AssignmentNullableScalarRelationFilter, AssignmentWhereInput> | null
+    MeetingMinuteMeeting?: XOR<MeetingMinuteMeetingNullableScalarRelationFilter, MeetingMinuteMeetingWhereInput> | null
+    Resource?: XOR<ResourceNullableScalarRelationFilter, ResourceWhereInput> | null
+    TaskTemplate?: XOR<TaskTemplateNullableScalarRelationFilter, TaskTemplateWhereInput> | null
+  }, "id">
+
+  export type TaskOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    deadline?: SortOrderInput | SortOrder
+    creatorId?: SortOrder
+    requireSubmissionNote?: SortOrder
+    requireFileUpload?: SortOrder
+    requireUrl?: SortOrder
+    requireExternalConfirmation?: SortOrder
+    externalConfirmationPrompt?: SortOrderInput | SortOrder
+    requireMentorApproval?: SortOrder
+    isCancelled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    checklist?: SortOrderInput | SortOrder
+    linkedAssignmentId?: SortOrderInput | SortOrder
+    linkedMeetingId?: SortOrderInput | SortOrder
+    linkedResourceId?: SortOrderInput | SortOrder
+    nextOccurrenceCreatedAt?: SortOrderInput | SortOrder
+    recurrence?: SortOrderInput | SortOrder
+    recurrenceEndsAt?: SortOrderInput | SortOrder
+    seriesId?: SortOrderInput | SortOrder
+    templateId?: SortOrderInput | SortOrder
+    _count?: TaskCountOrderByAggregateInput
+    _avg?: TaskAvgOrderByAggregateInput
+    _max?: TaskMaxOrderByAggregateInput
+    _min?: TaskMinOrderByAggregateInput
+    _sum?: TaskSumOrderByAggregateInput
+  }
+
+  export type TaskScalarWhereWithAggregatesInput = {
+    AND?: TaskScalarWhereWithAggregatesInput | TaskScalarWhereWithAggregatesInput[]
+    OR?: TaskScalarWhereWithAggregatesInput[]
+    NOT?: TaskScalarWhereWithAggregatesInput | TaskScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Task"> | number
+    title?: StringWithAggregatesFilter<"Task"> | string
+    description?: StringWithAggregatesFilter<"Task"> | string
+    category?: StringWithAggregatesFilter<"Task"> | string
+    priority?: StringWithAggregatesFilter<"Task"> | string
+    deadline?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
+    creatorId?: IntWithAggregatesFilter<"Task"> | number
+    requireSubmissionNote?: BoolWithAggregatesFilter<"Task"> | boolean
+    requireFileUpload?: BoolWithAggregatesFilter<"Task"> | boolean
+    requireUrl?: BoolWithAggregatesFilter<"Task"> | boolean
+    requireExternalConfirmation?: BoolWithAggregatesFilter<"Task"> | boolean
+    externalConfirmationPrompt?: StringNullableWithAggregatesFilter<"Task"> | string | null
+    requireMentorApproval?: BoolWithAggregatesFilter<"Task"> | boolean
+    isCancelled?: BoolWithAggregatesFilter<"Task"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
+    checklist?: JsonNullableWithAggregatesFilter<"Task">
+    linkedAssignmentId?: IntNullableWithAggregatesFilter<"Task"> | number | null
+    linkedMeetingId?: IntNullableWithAggregatesFilter<"Task"> | number | null
+    linkedResourceId?: IntNullableWithAggregatesFilter<"Task"> | number | null
+    nextOccurrenceCreatedAt?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
+    recurrence?: StringNullableWithAggregatesFilter<"Task"> | string | null
+    recurrenceEndsAt?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
+    seriesId?: IntNullableWithAggregatesFilter<"Task"> | number | null
+    templateId?: IntNullableWithAggregatesFilter<"Task"> | number | null
+  }
+
+  export type TaskActivityWhereInput = {
+    AND?: TaskActivityWhereInput | TaskActivityWhereInput[]
+    OR?: TaskActivityWhereInput[]
+    NOT?: TaskActivityWhereInput | TaskActivityWhereInput[]
+    id?: IntFilter<"TaskActivity"> | number
+    studentTaskId?: IntFilter<"TaskActivity"> | number
+    action?: StringFilter<"TaskActivity"> | string
+    details?: StringNullableFilter<"TaskActivity"> | string | null
+    performedById?: IntFilter<"TaskActivity"> | number
+    performedByRole?: StringFilter<"TaskActivity"> | string
+    performedByName?: StringFilter<"TaskActivity"> | string
+    createdAt?: DateTimeFilter<"TaskActivity"> | Date | string
+    StudentTask?: XOR<StudentTaskScalarRelationFilter, StudentTaskWhereInput>
+  }
+
+  export type TaskActivityOrderByWithRelationInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    action?: SortOrder
+    details?: SortOrderInput | SortOrder
+    performedById?: SortOrder
+    performedByRole?: SortOrder
+    performedByName?: SortOrder
+    createdAt?: SortOrder
+    StudentTask?: StudentTaskOrderByWithRelationInput
+  }
+
+  export type TaskActivityWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TaskActivityWhereInput | TaskActivityWhereInput[]
+    OR?: TaskActivityWhereInput[]
+    NOT?: TaskActivityWhereInput | TaskActivityWhereInput[]
+    studentTaskId?: IntFilter<"TaskActivity"> | number
+    action?: StringFilter<"TaskActivity"> | string
+    details?: StringNullableFilter<"TaskActivity"> | string | null
+    performedById?: IntFilter<"TaskActivity"> | number
+    performedByRole?: StringFilter<"TaskActivity"> | string
+    performedByName?: StringFilter<"TaskActivity"> | string
+    createdAt?: DateTimeFilter<"TaskActivity"> | Date | string
+    StudentTask?: XOR<StudentTaskScalarRelationFilter, StudentTaskWhereInput>
+  }, "id">
+
+  export type TaskActivityOrderByWithAggregationInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    action?: SortOrder
+    details?: SortOrderInput | SortOrder
+    performedById?: SortOrder
+    performedByRole?: SortOrder
+    performedByName?: SortOrder
+    createdAt?: SortOrder
+    _count?: TaskActivityCountOrderByAggregateInput
+    _avg?: TaskActivityAvgOrderByAggregateInput
+    _max?: TaskActivityMaxOrderByAggregateInput
+    _min?: TaskActivityMinOrderByAggregateInput
+    _sum?: TaskActivitySumOrderByAggregateInput
+  }
+
+  export type TaskActivityScalarWhereWithAggregatesInput = {
+    AND?: TaskActivityScalarWhereWithAggregatesInput | TaskActivityScalarWhereWithAggregatesInput[]
+    OR?: TaskActivityScalarWhereWithAggregatesInput[]
+    NOT?: TaskActivityScalarWhereWithAggregatesInput | TaskActivityScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TaskActivity"> | number
+    studentTaskId?: IntWithAggregatesFilter<"TaskActivity"> | number
+    action?: StringWithAggregatesFilter<"TaskActivity"> | string
+    details?: StringNullableWithAggregatesFilter<"TaskActivity"> | string | null
+    performedById?: IntWithAggregatesFilter<"TaskActivity"> | number
+    performedByRole?: StringWithAggregatesFilter<"TaskActivity"> | string
+    performedByName?: StringWithAggregatesFilter<"TaskActivity"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TaskActivity"> | Date | string
+  }
+
+  export type TaskCommentWhereInput = {
+    AND?: TaskCommentWhereInput | TaskCommentWhereInput[]
+    OR?: TaskCommentWhereInput[]
+    NOT?: TaskCommentWhereInput | TaskCommentWhereInput[]
+    id?: IntFilter<"TaskComment"> | number
+    studentTaskId?: IntFilter<"TaskComment"> | number
+    authorId?: IntFilter<"TaskComment"> | number
+    authorRole?: StringFilter<"TaskComment"> | string
+    authorName?: StringFilter<"TaskComment"> | string
+    content?: StringFilter<"TaskComment"> | string
+    attachmentUrl?: StringNullableFilter<"TaskComment"> | string | null
+    attachmentName?: StringNullableFilter<"TaskComment"> | string | null
+    createdAt?: DateTimeFilter<"TaskComment"> | Date | string
+    StudentTask?: XOR<StudentTaskScalarRelationFilter, StudentTaskWhereInput>
+  }
+
+  export type TaskCommentOrderByWithRelationInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    authorId?: SortOrder
+    authorRole?: SortOrder
+    authorName?: SortOrder
+    content?: SortOrder
+    attachmentUrl?: SortOrderInput | SortOrder
+    attachmentName?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    StudentTask?: StudentTaskOrderByWithRelationInput
+  }
+
+  export type TaskCommentWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TaskCommentWhereInput | TaskCommentWhereInput[]
+    OR?: TaskCommentWhereInput[]
+    NOT?: TaskCommentWhereInput | TaskCommentWhereInput[]
+    studentTaskId?: IntFilter<"TaskComment"> | number
+    authorId?: IntFilter<"TaskComment"> | number
+    authorRole?: StringFilter<"TaskComment"> | string
+    authorName?: StringFilter<"TaskComment"> | string
+    content?: StringFilter<"TaskComment"> | string
+    attachmentUrl?: StringNullableFilter<"TaskComment"> | string | null
+    attachmentName?: StringNullableFilter<"TaskComment"> | string | null
+    createdAt?: DateTimeFilter<"TaskComment"> | Date | string
+    StudentTask?: XOR<StudentTaskScalarRelationFilter, StudentTaskWhereInput>
+  }, "id">
+
+  export type TaskCommentOrderByWithAggregationInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    authorId?: SortOrder
+    authorRole?: SortOrder
+    authorName?: SortOrder
+    content?: SortOrder
+    attachmentUrl?: SortOrderInput | SortOrder
+    attachmentName?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: TaskCommentCountOrderByAggregateInput
+    _avg?: TaskCommentAvgOrderByAggregateInput
+    _max?: TaskCommentMaxOrderByAggregateInput
+    _min?: TaskCommentMinOrderByAggregateInput
+    _sum?: TaskCommentSumOrderByAggregateInput
+  }
+
+  export type TaskCommentScalarWhereWithAggregatesInput = {
+    AND?: TaskCommentScalarWhereWithAggregatesInput | TaskCommentScalarWhereWithAggregatesInput[]
+    OR?: TaskCommentScalarWhereWithAggregatesInput[]
+    NOT?: TaskCommentScalarWhereWithAggregatesInput | TaskCommentScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TaskComment"> | number
+    studentTaskId?: IntWithAggregatesFilter<"TaskComment"> | number
+    authorId?: IntWithAggregatesFilter<"TaskComment"> | number
+    authorRole?: StringWithAggregatesFilter<"TaskComment"> | string
+    authorName?: StringWithAggregatesFilter<"TaskComment"> | string
+    content?: StringWithAggregatesFilter<"TaskComment"> | string
+    attachmentUrl?: StringNullableWithAggregatesFilter<"TaskComment"> | string | null
+    attachmentName?: StringNullableWithAggregatesFilter<"TaskComment"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"TaskComment"> | Date | string
+  }
+
+  export type TaskSavedFilterWhereInput = {
+    AND?: TaskSavedFilterWhereInput | TaskSavedFilterWhereInput[]
+    OR?: TaskSavedFilterWhereInput[]
+    NOT?: TaskSavedFilterWhereInput | TaskSavedFilterWhereInput[]
+    id?: IntFilter<"TaskSavedFilter"> | number
+    ownerId?: IntFilter<"TaskSavedFilter"> | number
+    ownerRole?: StringFilter<"TaskSavedFilter"> | string
+    name?: StringFilter<"TaskSavedFilter"> | string
+    query?: StringFilter<"TaskSavedFilter"> | string
+    createdAt?: DateTimeFilter<"TaskSavedFilter"> | Date | string
+  }
+
+  export type TaskSavedFilterOrderByWithRelationInput = {
+    id?: SortOrder
+    ownerId?: SortOrder
+    ownerRole?: SortOrder
+    name?: SortOrder
+    query?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TaskSavedFilterWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    ownerRole_ownerId_name?: TaskSavedFilterOwnerRoleOwnerIdNameCompoundUniqueInput
+    AND?: TaskSavedFilterWhereInput | TaskSavedFilterWhereInput[]
+    OR?: TaskSavedFilterWhereInput[]
+    NOT?: TaskSavedFilterWhereInput | TaskSavedFilterWhereInput[]
+    ownerId?: IntFilter<"TaskSavedFilter"> | number
+    ownerRole?: StringFilter<"TaskSavedFilter"> | string
+    name?: StringFilter<"TaskSavedFilter"> | string
+    query?: StringFilter<"TaskSavedFilter"> | string
+    createdAt?: DateTimeFilter<"TaskSavedFilter"> | Date | string
+  }, "id" | "ownerRole_ownerId_name">
+
+  export type TaskSavedFilterOrderByWithAggregationInput = {
+    id?: SortOrder
+    ownerId?: SortOrder
+    ownerRole?: SortOrder
+    name?: SortOrder
+    query?: SortOrder
+    createdAt?: SortOrder
+    _count?: TaskSavedFilterCountOrderByAggregateInput
+    _avg?: TaskSavedFilterAvgOrderByAggregateInput
+    _max?: TaskSavedFilterMaxOrderByAggregateInput
+    _min?: TaskSavedFilterMinOrderByAggregateInput
+    _sum?: TaskSavedFilterSumOrderByAggregateInput
+  }
+
+  export type TaskSavedFilterScalarWhereWithAggregatesInput = {
+    AND?: TaskSavedFilterScalarWhereWithAggregatesInput | TaskSavedFilterScalarWhereWithAggregatesInput[]
+    OR?: TaskSavedFilterScalarWhereWithAggregatesInput[]
+    NOT?: TaskSavedFilterScalarWhereWithAggregatesInput | TaskSavedFilterScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TaskSavedFilter"> | number
+    ownerId?: IntWithAggregatesFilter<"TaskSavedFilter"> | number
+    ownerRole?: StringWithAggregatesFilter<"TaskSavedFilter"> | string
+    name?: StringWithAggregatesFilter<"TaskSavedFilter"> | string
+    query?: StringWithAggregatesFilter<"TaskSavedFilter"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TaskSavedFilter"> | Date | string
+  }
+
+  export type TaskTemplateWhereInput = {
+    AND?: TaskTemplateWhereInput | TaskTemplateWhereInput[]
+    OR?: TaskTemplateWhereInput[]
+    NOT?: TaskTemplateWhereInput | TaskTemplateWhereInput[]
+    id?: IntFilter<"TaskTemplate"> | number
+    teacherId?: IntFilter<"TaskTemplate"> | number
+    name?: StringFilter<"TaskTemplate"> | string
+    title?: StringFilter<"TaskTemplate"> | string
+    description?: StringFilter<"TaskTemplate"> | string
+    category?: StringFilter<"TaskTemplate"> | string
+    priority?: StringFilter<"TaskTemplate"> | string
+    defaultDeadlineDays?: IntNullableFilter<"TaskTemplate"> | number | null
+    requireSubmissionNote?: BoolFilter<"TaskTemplate"> | boolean
+    requireFileUpload?: BoolFilter<"TaskTemplate"> | boolean
+    requireUrl?: BoolFilter<"TaskTemplate"> | boolean
+    requireExternalConfirmation?: BoolFilter<"TaskTemplate"> | boolean
+    externalConfirmationPrompt?: StringNullableFilter<"TaskTemplate"> | string | null
+    requireMentorApproval?: BoolFilter<"TaskTemplate"> | boolean
+    checklist?: JsonNullableFilter<"TaskTemplate">
+    recurrence?: StringNullableFilter<"TaskTemplate"> | string | null
+    usageCount?: IntFilter<"TaskTemplate"> | number
+    createdAt?: DateTimeFilter<"TaskTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"TaskTemplate"> | Date | string
+    Task?: TaskListRelationFilter
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+  }
+
+  export type TaskTemplateOrderByWithRelationInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    name?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    defaultDeadlineDays?: SortOrderInput | SortOrder
+    requireSubmissionNote?: SortOrder
+    requireFileUpload?: SortOrder
+    requireUrl?: SortOrder
+    requireExternalConfirmation?: SortOrder
+    externalConfirmationPrompt?: SortOrderInput | SortOrder
+    requireMentorApproval?: SortOrder
+    checklist?: SortOrderInput | SortOrder
+    recurrence?: SortOrderInput | SortOrder
+    usageCount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    Task?: TaskOrderByRelationAggregateInput
+    Teacher?: TeacherOrderByWithRelationInput
+  }
+
+  export type TaskTemplateWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    teacherId_name?: TaskTemplateTeacherIdNameCompoundUniqueInput
+    AND?: TaskTemplateWhereInput | TaskTemplateWhereInput[]
+    OR?: TaskTemplateWhereInput[]
+    NOT?: TaskTemplateWhereInput | TaskTemplateWhereInput[]
+    teacherId?: IntFilter<"TaskTemplate"> | number
+    name?: StringFilter<"TaskTemplate"> | string
+    title?: StringFilter<"TaskTemplate"> | string
+    description?: StringFilter<"TaskTemplate"> | string
+    category?: StringFilter<"TaskTemplate"> | string
+    priority?: StringFilter<"TaskTemplate"> | string
+    defaultDeadlineDays?: IntNullableFilter<"TaskTemplate"> | number | null
+    requireSubmissionNote?: BoolFilter<"TaskTemplate"> | boolean
+    requireFileUpload?: BoolFilter<"TaskTemplate"> | boolean
+    requireUrl?: BoolFilter<"TaskTemplate"> | boolean
+    requireExternalConfirmation?: BoolFilter<"TaskTemplate"> | boolean
+    externalConfirmationPrompt?: StringNullableFilter<"TaskTemplate"> | string | null
+    requireMentorApproval?: BoolFilter<"TaskTemplate"> | boolean
+    checklist?: JsonNullableFilter<"TaskTemplate">
+    recurrence?: StringNullableFilter<"TaskTemplate"> | string | null
+    usageCount?: IntFilter<"TaskTemplate"> | number
+    createdAt?: DateTimeFilter<"TaskTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"TaskTemplate"> | Date | string
+    Task?: TaskListRelationFilter
+    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+  }, "id" | "teacherId_name">
+
+  export type TaskTemplateOrderByWithAggregationInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    name?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    defaultDeadlineDays?: SortOrderInput | SortOrder
+    requireSubmissionNote?: SortOrder
+    requireFileUpload?: SortOrder
+    requireUrl?: SortOrder
+    requireExternalConfirmation?: SortOrder
+    externalConfirmationPrompt?: SortOrderInput | SortOrder
+    requireMentorApproval?: SortOrder
+    checklist?: SortOrderInput | SortOrder
+    recurrence?: SortOrderInput | SortOrder
+    usageCount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TaskTemplateCountOrderByAggregateInput
+    _avg?: TaskTemplateAvgOrderByAggregateInput
+    _max?: TaskTemplateMaxOrderByAggregateInput
+    _min?: TaskTemplateMinOrderByAggregateInput
+    _sum?: TaskTemplateSumOrderByAggregateInput
+  }
+
+  export type TaskTemplateScalarWhereWithAggregatesInput = {
+    AND?: TaskTemplateScalarWhereWithAggregatesInput | TaskTemplateScalarWhereWithAggregatesInput[]
+    OR?: TaskTemplateScalarWhereWithAggregatesInput[]
+    NOT?: TaskTemplateScalarWhereWithAggregatesInput | TaskTemplateScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"TaskTemplate"> | number
+    teacherId?: IntWithAggregatesFilter<"TaskTemplate"> | number
+    name?: StringWithAggregatesFilter<"TaskTemplate"> | string
+    title?: StringWithAggregatesFilter<"TaskTemplate"> | string
+    description?: StringWithAggregatesFilter<"TaskTemplate"> | string
+    category?: StringWithAggregatesFilter<"TaskTemplate"> | string
+    priority?: StringWithAggregatesFilter<"TaskTemplate"> | string
+    defaultDeadlineDays?: IntNullableWithAggregatesFilter<"TaskTemplate"> | number | null
+    requireSubmissionNote?: BoolWithAggregatesFilter<"TaskTemplate"> | boolean
+    requireFileUpload?: BoolWithAggregatesFilter<"TaskTemplate"> | boolean
+    requireUrl?: BoolWithAggregatesFilter<"TaskTemplate"> | boolean
+    requireExternalConfirmation?: BoolWithAggregatesFilter<"TaskTemplate"> | boolean
+    externalConfirmationPrompt?: StringNullableWithAggregatesFilter<"TaskTemplate"> | string | null
+    requireMentorApproval?: BoolWithAggregatesFilter<"TaskTemplate"> | boolean
+    checklist?: JsonNullableWithAggregatesFilter<"TaskTemplate">
+    recurrence?: StringNullableWithAggregatesFilter<"TaskTemplate"> | string | null
+    usageCount?: IntWithAggregatesFilter<"TaskTemplate"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"TaskTemplate"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TaskTemplate"> | Date | string
   }
 
   export type WebinarRegistrationCreateInput = {
@@ -57407,6 +66662,9 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
@@ -57431,6 +66689,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -57454,6 +66715,9 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
 
@@ -57478,6 +66742,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -57552,6 +66819,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -57585,6 +66853,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -57617,6 +66886,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -57650,6 +66920,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -57880,6 +67151,7 @@ export namespace Prisma {
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
     AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
+    Task?: TaskCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateInput = {
@@ -57901,6 +67173,7 @@ export namespace Prisma {
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
     AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
+    Task?: TaskUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUpdateInput = {
@@ -57921,6 +67194,7 @@ export namespace Prisma {
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
     AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateInput = {
@@ -57942,6 +67216,7 @@ export namespace Prisma {
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
     AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentCreateManyInput = {
@@ -58189,6 +67464,7 @@ export namespace Prisma {
     assignmentLinks?: AssignmentResourceCreateNestedManyWithoutResourceInput
     teacher: TeacherCreateNestedOneWithoutResourcesInput
     studentAssignments?: StudentResourceCreateNestedManyWithoutResourceInput
+    Task?: TaskCreateNestedManyWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateInput = {
@@ -58209,6 +67485,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     assignmentLinks?: AssignmentResourceUncheckedCreateNestedManyWithoutResourceInput
     studentAssignments?: StudentResourceUncheckedCreateNestedManyWithoutResourceInput
+    Task?: TaskUncheckedCreateNestedManyWithoutResourceInput
   }
 
   export type ResourceUpdateInput = {
@@ -58228,6 +67505,7 @@ export namespace Prisma {
     assignmentLinks?: AssignmentResourceUpdateManyWithoutResourceNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutResourcesNestedInput
     studentAssignments?: StudentResourceUpdateManyWithoutResourceNestedInput
+    Task?: TaskUpdateManyWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateInput = {
@@ -58248,6 +67526,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignmentLinks?: AssignmentResourceUncheckedUpdateManyWithoutResourceNestedInput
     studentAssignments?: StudentResourceUncheckedUpdateManyWithoutResourceNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutResourceNestedInput
   }
 
   export type ResourceCreateManyInput = {
@@ -61397,6 +70676,7 @@ export namespace Prisma {
     ClassSchedule?: ClassScheduleCreateNestedOneWithoutMeetingMinuteMeetingInput
     Teacher: TeacherCreateNestedOneWithoutMeetingMinuteMeetingInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutMeetingMinuteMeetingInput
+    Task?: TaskCreateNestedManyWithoutMeetingMinuteMeetingInput
   }
 
   export type MeetingMinuteMeetingUncheckedCreateInput = {
@@ -61416,6 +70696,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
+    Task?: TaskUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
   }
 
   export type MeetingMinuteMeetingUpdateInput = {
@@ -61434,6 +70715,7 @@ export namespace Prisma {
     ClassSchedule?: ClassScheduleUpdateOneWithoutMeetingMinuteMeetingNestedInput
     Teacher?: TeacherUpdateOneRequiredWithoutMeetingMinuteMeetingNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutMeetingMinuteMeetingNestedInput
+    Task?: TaskUpdateManyWithoutMeetingMinuteMeetingNestedInput
   }
 
   export type MeetingMinuteMeetingUncheckedUpdateInput = {
@@ -61453,6 +70735,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
   }
 
   export type MeetingMinuteMeetingCreateManyInput = {
@@ -61604,6 +70887,728 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+  }
+
+  export type StudentTaskCreateInput = {
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
+    Student: StudentCreateNestedOneWithoutStudentTaskInput
+    Task: TaskCreateNestedOneWithoutStudentTaskInput
+    TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskUncheckedCreateInput = {
+    id?: number
+    taskId: number
+    studentId: number
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskUpdateInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
+    Student?: StudentUpdateOneRequiredWithoutStudentTaskNestedInput
+    Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
+    TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskCreateManyInput = {
+    id?: number
+    taskId: number
+    studentId: number
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+  }
+
+  export type StudentTaskUpdateManyMutationInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type StudentTaskUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TaskCreateInput = {
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
+    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    Assignment?: AssignmentCreateNestedOneWithoutTaskInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
+    Resource?: ResourceCreateNestedOneWithoutTaskInput
+    TaskTemplate?: TaskTemplateCreateNestedOneWithoutTaskInput
+  }
+
+  export type TaskUncheckedCreateInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedMeetingId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
+  }
+
+  export type TaskUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
+    Resource?: ResourceUpdateOneWithoutTaskNestedInput
+    TaskTemplate?: TaskTemplateUpdateOneWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
+  }
+
+  export type TaskCreateManyInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedMeetingId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+  }
+
+  export type TaskUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type TaskUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type TaskActivityCreateInput = {
+    action: string
+    details?: string | null
+    performedById: number
+    performedByRole: string
+    performedByName: string
+    createdAt?: Date | string
+    StudentTask: StudentTaskCreateNestedOneWithoutTaskActivityInput
+  }
+
+  export type TaskActivityUncheckedCreateInput = {
+    id?: number
+    studentTaskId: number
+    action: string
+    details?: string | null
+    performedById: number
+    performedByRole: string
+    performedByName: string
+    createdAt?: Date | string
+  }
+
+  export type TaskActivityUpdateInput = {
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    performedById?: IntFieldUpdateOperationsInput | number
+    performedByRole?: StringFieldUpdateOperationsInput | string
+    performedByName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    StudentTask?: StudentTaskUpdateOneRequiredWithoutTaskActivityNestedInput
+  }
+
+  export type TaskActivityUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentTaskId?: IntFieldUpdateOperationsInput | number
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    performedById?: IntFieldUpdateOperationsInput | number
+    performedByRole?: StringFieldUpdateOperationsInput | string
+    performedByName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskActivityCreateManyInput = {
+    id?: number
+    studentTaskId: number
+    action: string
+    details?: string | null
+    performedById: number
+    performedByRole: string
+    performedByName: string
+    createdAt?: Date | string
+  }
+
+  export type TaskActivityUpdateManyMutationInput = {
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    performedById?: IntFieldUpdateOperationsInput | number
+    performedByRole?: StringFieldUpdateOperationsInput | string
+    performedByName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskActivityUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentTaskId?: IntFieldUpdateOperationsInput | number
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    performedById?: IntFieldUpdateOperationsInput | number
+    performedByRole?: StringFieldUpdateOperationsInput | string
+    performedByName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskCommentCreateInput = {
+    authorId: number
+    authorRole: string
+    authorName: string
+    content: string
+    attachmentUrl?: string | null
+    attachmentName?: string | null
+    createdAt?: Date | string
+    StudentTask: StudentTaskCreateNestedOneWithoutTaskCommentInput
+  }
+
+  export type TaskCommentUncheckedCreateInput = {
+    id?: number
+    studentTaskId: number
+    authorId: number
+    authorRole: string
+    authorName: string
+    content: string
+    attachmentUrl?: string | null
+    attachmentName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TaskCommentUpdateInput = {
+    authorId?: IntFieldUpdateOperationsInput | number
+    authorRole?: StringFieldUpdateOperationsInput | string
+    authorName?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attachmentName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    StudentTask?: StudentTaskUpdateOneRequiredWithoutTaskCommentNestedInput
+  }
+
+  export type TaskCommentUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentTaskId?: IntFieldUpdateOperationsInput | number
+    authorId?: IntFieldUpdateOperationsInput | number
+    authorRole?: StringFieldUpdateOperationsInput | string
+    authorName?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attachmentName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskCommentCreateManyInput = {
+    id?: number
+    studentTaskId: number
+    authorId: number
+    authorRole: string
+    authorName: string
+    content: string
+    attachmentUrl?: string | null
+    attachmentName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TaskCommentUpdateManyMutationInput = {
+    authorId?: IntFieldUpdateOperationsInput | number
+    authorRole?: StringFieldUpdateOperationsInput | string
+    authorName?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attachmentName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskCommentUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentTaskId?: IntFieldUpdateOperationsInput | number
+    authorId?: IntFieldUpdateOperationsInput | number
+    authorRole?: StringFieldUpdateOperationsInput | string
+    authorName?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attachmentName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskSavedFilterCreateInput = {
+    ownerId: number
+    ownerRole: string
+    name: string
+    query: string
+    createdAt?: Date | string
+  }
+
+  export type TaskSavedFilterUncheckedCreateInput = {
+    id?: number
+    ownerId: number
+    ownerRole: string
+    name: string
+    query: string
+    createdAt?: Date | string
+  }
+
+  export type TaskSavedFilterUpdateInput = {
+    ownerId?: IntFieldUpdateOperationsInput | number
+    ownerRole?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    query?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskSavedFilterUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ownerId?: IntFieldUpdateOperationsInput | number
+    ownerRole?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    query?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskSavedFilterCreateManyInput = {
+    id?: number
+    ownerId: number
+    ownerRole: string
+    name: string
+    query: string
+    createdAt?: Date | string
+  }
+
+  export type TaskSavedFilterUpdateManyMutationInput = {
+    ownerId?: IntFieldUpdateOperationsInput | number
+    ownerRole?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    query?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskSavedFilterUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    ownerId?: IntFieldUpdateOperationsInput | number
+    ownerRole?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    query?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskTemplateCreateInput = {
+    name: string
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    defaultDeadlineDays?: number | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: string | null
+    usageCount?: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Task?: TaskCreateNestedManyWithoutTaskTemplateInput
+    Teacher: TeacherCreateNestedOneWithoutTaskTemplateInput
+  }
+
+  export type TaskTemplateUncheckedCreateInput = {
+    id?: number
+    teacherId: number
+    name: string
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    defaultDeadlineDays?: number | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: string | null
+    usageCount?: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Task?: TaskUncheckedCreateNestedManyWithoutTaskTemplateInput
+  }
+
+  export type TaskTemplateUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    defaultDeadlineDays?: NullableIntFieldUpdateOperationsInput | number | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    usageCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Task?: TaskUpdateManyWithoutTaskTemplateNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutTaskTemplateNestedInput
+  }
+
+  export type TaskTemplateUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    defaultDeadlineDays?: NullableIntFieldUpdateOperationsInput | number | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    usageCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Task?: TaskUncheckedUpdateManyWithoutTaskTemplateNestedInput
+  }
+
+  export type TaskTemplateCreateManyInput = {
+    id?: number
+    teacherId: number
+    name: string
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    defaultDeadlineDays?: number | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: string | null
+    usageCount?: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type TaskTemplateUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    defaultDeadlineDays?: NullableIntFieldUpdateOperationsInput | number | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    usageCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskTemplateUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    defaultDeadlineDays?: NullableIntFieldUpdateOperationsInput | number | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    usageCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -62004,6 +72009,24 @@ export namespace Prisma {
     none?: StudentSubmissionRemarkWhereInput
   }
 
+  export type StudentTaskListRelationFilter = {
+    every?: StudentTaskWhereInput
+    some?: StudentTaskWhereInput
+    none?: StudentTaskWhereInput
+  }
+
+  export type TaskListRelationFilter = {
+    every?: TaskWhereInput
+    some?: TaskWhereInput
+    none?: TaskWhereInput
+  }
+
+  export type TaskTemplateListRelationFilter = {
+    every?: TaskTemplateWhereInput
+    some?: TaskTemplateWhereInput
+    none?: TaskTemplateWhereInput
+  }
+
   export type TeacherStudentListRelationFilter = {
     every?: TeacherStudentWhereInput
     some?: TeacherStudentWhereInput
@@ -62035,6 +72058,18 @@ export namespace Prisma {
   }
 
   export type StudentSubmissionRemarkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StudentTaskOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TaskOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TaskTemplateOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -64657,6 +74692,463 @@ export namespace Prisma {
     _max?: NestedEnumMeetingMinuteCreationModeFilter<$PrismaModel>
   }
 
+  export type TaskScalarRelationFilter = {
+    is?: TaskWhereInput
+    isNot?: TaskWhereInput
+  }
+
+  export type TaskActivityListRelationFilter = {
+    every?: TaskActivityWhereInput
+    some?: TaskActivityWhereInput
+    none?: TaskActivityWhereInput
+  }
+
+  export type TaskCommentListRelationFilter = {
+    every?: TaskCommentWhereInput
+    some?: TaskCommentWhereInput
+    none?: TaskCommentWhereInput
+  }
+
+  export type TaskActivityOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TaskCommentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StudentTaskTaskIdStudentIdCompoundUniqueInput = {
+    taskId: number
+    studentId: number
+  }
+
+  export type StudentTaskCountOrderByAggregateInput = {
+    id?: SortOrder
+    taskId?: SortOrder
+    studentId?: SortOrder
+    status?: SortOrder
+    startedAt?: SortOrder
+    submittedAt?: SortOrder
+    completedAt?: SortOrder
+    submissionNote?: SortOrder
+    submissionUrl?: SortOrder
+    submissionFileUrl?: SortOrder
+    submissionFileName?: SortOrder
+    submissionExternalConfirmed?: SortOrder
+    mentorFeedback?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedById?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    checklistDone?: SortOrder
+    dueSoonReminderSentAt?: SortOrder
+    overdueReminderSentAt?: SortOrder
+  }
+
+  export type StudentTaskAvgOrderByAggregateInput = {
+    id?: SortOrder
+    taskId?: SortOrder
+    studentId?: SortOrder
+    reviewedById?: SortOrder
+  }
+
+  export type StudentTaskMaxOrderByAggregateInput = {
+    id?: SortOrder
+    taskId?: SortOrder
+    studentId?: SortOrder
+    status?: SortOrder
+    startedAt?: SortOrder
+    submittedAt?: SortOrder
+    completedAt?: SortOrder
+    submissionNote?: SortOrder
+    submissionUrl?: SortOrder
+    submissionFileUrl?: SortOrder
+    submissionFileName?: SortOrder
+    submissionExternalConfirmed?: SortOrder
+    mentorFeedback?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedById?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    dueSoonReminderSentAt?: SortOrder
+    overdueReminderSentAt?: SortOrder
+  }
+
+  export type StudentTaskMinOrderByAggregateInput = {
+    id?: SortOrder
+    taskId?: SortOrder
+    studentId?: SortOrder
+    status?: SortOrder
+    startedAt?: SortOrder
+    submittedAt?: SortOrder
+    completedAt?: SortOrder
+    submissionNote?: SortOrder
+    submissionUrl?: SortOrder
+    submissionFileUrl?: SortOrder
+    submissionFileName?: SortOrder
+    submissionExternalConfirmed?: SortOrder
+    mentorFeedback?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedById?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    dueSoonReminderSentAt?: SortOrder
+    overdueReminderSentAt?: SortOrder
+  }
+
+  export type StudentTaskSumOrderByAggregateInput = {
+    id?: SortOrder
+    taskId?: SortOrder
+    studentId?: SortOrder
+    reviewedById?: SortOrder
+  }
+
+  export type AssignmentNullableScalarRelationFilter = {
+    is?: AssignmentWhereInput | null
+    isNot?: AssignmentWhereInput | null
+  }
+
+  export type MeetingMinuteMeetingNullableScalarRelationFilter = {
+    is?: MeetingMinuteMeetingWhereInput | null
+    isNot?: MeetingMinuteMeetingWhereInput | null
+  }
+
+  export type ResourceNullableScalarRelationFilter = {
+    is?: ResourceWhereInput | null
+    isNot?: ResourceWhereInput | null
+  }
+
+  export type TaskTemplateNullableScalarRelationFilter = {
+    is?: TaskTemplateWhereInput | null
+    isNot?: TaskTemplateWhereInput | null
+  }
+
+  export type TaskCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    deadline?: SortOrder
+    creatorId?: SortOrder
+    requireSubmissionNote?: SortOrder
+    requireFileUpload?: SortOrder
+    requireUrl?: SortOrder
+    requireExternalConfirmation?: SortOrder
+    externalConfirmationPrompt?: SortOrder
+    requireMentorApproval?: SortOrder
+    isCancelled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    checklist?: SortOrder
+    linkedAssignmentId?: SortOrder
+    linkedMeetingId?: SortOrder
+    linkedResourceId?: SortOrder
+    nextOccurrenceCreatedAt?: SortOrder
+    recurrence?: SortOrder
+    recurrenceEndsAt?: SortOrder
+    seriesId?: SortOrder
+    templateId?: SortOrder
+  }
+
+  export type TaskAvgOrderByAggregateInput = {
+    id?: SortOrder
+    creatorId?: SortOrder
+    linkedAssignmentId?: SortOrder
+    linkedMeetingId?: SortOrder
+    linkedResourceId?: SortOrder
+    seriesId?: SortOrder
+    templateId?: SortOrder
+  }
+
+  export type TaskMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    deadline?: SortOrder
+    creatorId?: SortOrder
+    requireSubmissionNote?: SortOrder
+    requireFileUpload?: SortOrder
+    requireUrl?: SortOrder
+    requireExternalConfirmation?: SortOrder
+    externalConfirmationPrompt?: SortOrder
+    requireMentorApproval?: SortOrder
+    isCancelled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    linkedAssignmentId?: SortOrder
+    linkedMeetingId?: SortOrder
+    linkedResourceId?: SortOrder
+    nextOccurrenceCreatedAt?: SortOrder
+    recurrence?: SortOrder
+    recurrenceEndsAt?: SortOrder
+    seriesId?: SortOrder
+    templateId?: SortOrder
+  }
+
+  export type TaskMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    deadline?: SortOrder
+    creatorId?: SortOrder
+    requireSubmissionNote?: SortOrder
+    requireFileUpload?: SortOrder
+    requireUrl?: SortOrder
+    requireExternalConfirmation?: SortOrder
+    externalConfirmationPrompt?: SortOrder
+    requireMentorApproval?: SortOrder
+    isCancelled?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    linkedAssignmentId?: SortOrder
+    linkedMeetingId?: SortOrder
+    linkedResourceId?: SortOrder
+    nextOccurrenceCreatedAt?: SortOrder
+    recurrence?: SortOrder
+    recurrenceEndsAt?: SortOrder
+    seriesId?: SortOrder
+    templateId?: SortOrder
+  }
+
+  export type TaskSumOrderByAggregateInput = {
+    id?: SortOrder
+    creatorId?: SortOrder
+    linkedAssignmentId?: SortOrder
+    linkedMeetingId?: SortOrder
+    linkedResourceId?: SortOrder
+    seriesId?: SortOrder
+    templateId?: SortOrder
+  }
+
+  export type StudentTaskScalarRelationFilter = {
+    is?: StudentTaskWhereInput
+    isNot?: StudentTaskWhereInput
+  }
+
+  export type TaskActivityCountOrderByAggregateInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    action?: SortOrder
+    details?: SortOrder
+    performedById?: SortOrder
+    performedByRole?: SortOrder
+    performedByName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TaskActivityAvgOrderByAggregateInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    performedById?: SortOrder
+  }
+
+  export type TaskActivityMaxOrderByAggregateInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    action?: SortOrder
+    details?: SortOrder
+    performedById?: SortOrder
+    performedByRole?: SortOrder
+    performedByName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TaskActivityMinOrderByAggregateInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    action?: SortOrder
+    details?: SortOrder
+    performedById?: SortOrder
+    performedByRole?: SortOrder
+    performedByName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TaskActivitySumOrderByAggregateInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    performedById?: SortOrder
+  }
+
+  export type TaskCommentCountOrderByAggregateInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    authorId?: SortOrder
+    authorRole?: SortOrder
+    authorName?: SortOrder
+    content?: SortOrder
+    attachmentUrl?: SortOrder
+    attachmentName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TaskCommentAvgOrderByAggregateInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type TaskCommentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    authorId?: SortOrder
+    authorRole?: SortOrder
+    authorName?: SortOrder
+    content?: SortOrder
+    attachmentUrl?: SortOrder
+    attachmentName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TaskCommentMinOrderByAggregateInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    authorId?: SortOrder
+    authorRole?: SortOrder
+    authorName?: SortOrder
+    content?: SortOrder
+    attachmentUrl?: SortOrder
+    attachmentName?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TaskCommentSumOrderByAggregateInput = {
+    id?: SortOrder
+    studentTaskId?: SortOrder
+    authorId?: SortOrder
+  }
+
+  export type TaskSavedFilterOwnerRoleOwnerIdNameCompoundUniqueInput = {
+    ownerRole: string
+    ownerId: number
+    name: string
+  }
+
+  export type TaskSavedFilterCountOrderByAggregateInput = {
+    id?: SortOrder
+    ownerId?: SortOrder
+    ownerRole?: SortOrder
+    name?: SortOrder
+    query?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TaskSavedFilterAvgOrderByAggregateInput = {
+    id?: SortOrder
+    ownerId?: SortOrder
+  }
+
+  export type TaskSavedFilterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ownerId?: SortOrder
+    ownerRole?: SortOrder
+    name?: SortOrder
+    query?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TaskSavedFilterMinOrderByAggregateInput = {
+    id?: SortOrder
+    ownerId?: SortOrder
+    ownerRole?: SortOrder
+    name?: SortOrder
+    query?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type TaskSavedFilterSumOrderByAggregateInput = {
+    id?: SortOrder
+    ownerId?: SortOrder
+  }
+
+  export type TaskTemplateTeacherIdNameCompoundUniqueInput = {
+    teacherId: number
+    name: string
+  }
+
+  export type TaskTemplateCountOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    name?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    defaultDeadlineDays?: SortOrder
+    requireSubmissionNote?: SortOrder
+    requireFileUpload?: SortOrder
+    requireUrl?: SortOrder
+    requireExternalConfirmation?: SortOrder
+    externalConfirmationPrompt?: SortOrder
+    requireMentorApproval?: SortOrder
+    checklist?: SortOrder
+    recurrence?: SortOrder
+    usageCount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TaskTemplateAvgOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    defaultDeadlineDays?: SortOrder
+    usageCount?: SortOrder
+  }
+
+  export type TaskTemplateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    name?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    defaultDeadlineDays?: SortOrder
+    requireSubmissionNote?: SortOrder
+    requireFileUpload?: SortOrder
+    requireUrl?: SortOrder
+    requireExternalConfirmation?: SortOrder
+    externalConfirmationPrompt?: SortOrder
+    requireMentorApproval?: SortOrder
+    recurrence?: SortOrder
+    usageCount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TaskTemplateMinOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    name?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    defaultDeadlineDays?: SortOrder
+    requireSubmissionNote?: SortOrder
+    requireFileUpload?: SortOrder
+    requireUrl?: SortOrder
+    requireExternalConfirmation?: SortOrder
+    externalConfirmationPrompt?: SortOrder
+    requireMentorApproval?: SortOrder
+    recurrence?: SortOrder
+    usageCount?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TaskTemplateSumOrderByAggregateInput = {
+    id?: SortOrder
+    teacherId?: SortOrder
+    defaultDeadlineDays?: SortOrder
+    usageCount?: SortOrder
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -64740,6 +75232,27 @@ export namespace Prisma {
     connect?: StudentSubmissionRemarkWhereUniqueInput | StudentSubmissionRemarkWhereUniqueInput[]
   }
 
+  export type StudentTaskCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<StudentTaskCreateWithoutTeacherInput, StudentTaskUncheckedCreateWithoutTeacherInput> | StudentTaskCreateWithoutTeacherInput[] | StudentTaskUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTeacherInput | StudentTaskCreateOrConnectWithoutTeacherInput[]
+    createMany?: StudentTaskCreateManyTeacherInputEnvelope
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+  }
+
+  export type TaskCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<TaskCreateWithoutTeacherInput, TaskUncheckedCreateWithoutTeacherInput> | TaskCreateWithoutTeacherInput[] | TaskUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTeacherInput | TaskCreateOrConnectWithoutTeacherInput[]
+    createMany?: TaskCreateManyTeacherInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type TaskTemplateCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<TaskTemplateCreateWithoutTeacherInput, TaskTemplateUncheckedCreateWithoutTeacherInput> | TaskTemplateCreateWithoutTeacherInput[] | TaskTemplateUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TaskTemplateCreateOrConnectWithoutTeacherInput | TaskTemplateCreateOrConnectWithoutTeacherInput[]
+    createMany?: TaskTemplateCreateManyTeacherInputEnvelope
+    connect?: TaskTemplateWhereUniqueInput | TaskTemplateWhereUniqueInput[]
+  }
+
   export type TeacherStudentCreateNestedManyWithoutTeacherInput = {
     create?: XOR<TeacherStudentCreateWithoutTeacherInput, TeacherStudentUncheckedCreateWithoutTeacherInput> | TeacherStudentCreateWithoutTeacherInput[] | TeacherStudentUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: TeacherStudentCreateOrConnectWithoutTeacherInput | TeacherStudentCreateOrConnectWithoutTeacherInput[]
@@ -64800,6 +75313,27 @@ export namespace Prisma {
     connectOrCreate?: StudentSubmissionRemarkCreateOrConnectWithoutTeacherInput | StudentSubmissionRemarkCreateOrConnectWithoutTeacherInput[]
     createMany?: StudentSubmissionRemarkCreateManyTeacherInputEnvelope
     connect?: StudentSubmissionRemarkWhereUniqueInput | StudentSubmissionRemarkWhereUniqueInput[]
+  }
+
+  export type StudentTaskUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<StudentTaskCreateWithoutTeacherInput, StudentTaskUncheckedCreateWithoutTeacherInput> | StudentTaskCreateWithoutTeacherInput[] | StudentTaskUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTeacherInput | StudentTaskCreateOrConnectWithoutTeacherInput[]
+    createMany?: StudentTaskCreateManyTeacherInputEnvelope
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+  }
+
+  export type TaskUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<TaskCreateWithoutTeacherInput, TaskUncheckedCreateWithoutTeacherInput> | TaskCreateWithoutTeacherInput[] | TaskUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTeacherInput | TaskCreateOrConnectWithoutTeacherInput[]
+    createMany?: TaskCreateManyTeacherInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<TaskTemplateCreateWithoutTeacherInput, TaskTemplateUncheckedCreateWithoutTeacherInput> | TaskTemplateCreateWithoutTeacherInput[] | TaskTemplateUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TaskTemplateCreateOrConnectWithoutTeacherInput | TaskTemplateCreateOrConnectWithoutTeacherInput[]
+    createMany?: TaskTemplateCreateManyTeacherInputEnvelope
+    connect?: TaskTemplateWhereUniqueInput | TaskTemplateWhereUniqueInput[]
   }
 
   export type TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput = {
@@ -64926,6 +75460,48 @@ export namespace Prisma {
     deleteMany?: StudentSubmissionRemarkScalarWhereInput | StudentSubmissionRemarkScalarWhereInput[]
   }
 
+  export type StudentTaskUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutTeacherInput, StudentTaskUncheckedCreateWithoutTeacherInput> | StudentTaskCreateWithoutTeacherInput[] | StudentTaskUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTeacherInput | StudentTaskCreateOrConnectWithoutTeacherInput[]
+    upsert?: StudentTaskUpsertWithWhereUniqueWithoutTeacherInput | StudentTaskUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: StudentTaskCreateManyTeacherInputEnvelope
+    set?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    disconnect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    delete?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    update?: StudentTaskUpdateWithWhereUniqueWithoutTeacherInput | StudentTaskUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: StudentTaskUpdateManyWithWhereWithoutTeacherInput | StudentTaskUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
+  }
+
+  export type TaskUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<TaskCreateWithoutTeacherInput, TaskUncheckedCreateWithoutTeacherInput> | TaskCreateWithoutTeacherInput[] | TaskUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTeacherInput | TaskCreateOrConnectWithoutTeacherInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutTeacherInput | TaskUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: TaskCreateManyTeacherInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutTeacherInput | TaskUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutTeacherInput | TaskUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type TaskTemplateUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<TaskTemplateCreateWithoutTeacherInput, TaskTemplateUncheckedCreateWithoutTeacherInput> | TaskTemplateCreateWithoutTeacherInput[] | TaskTemplateUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TaskTemplateCreateOrConnectWithoutTeacherInput | TaskTemplateCreateOrConnectWithoutTeacherInput[]
+    upsert?: TaskTemplateUpsertWithWhereUniqueWithoutTeacherInput | TaskTemplateUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: TaskTemplateCreateManyTeacherInputEnvelope
+    set?: TaskTemplateWhereUniqueInput | TaskTemplateWhereUniqueInput[]
+    disconnect?: TaskTemplateWhereUniqueInput | TaskTemplateWhereUniqueInput[]
+    delete?: TaskTemplateWhereUniqueInput | TaskTemplateWhereUniqueInput[]
+    connect?: TaskTemplateWhereUniqueInput | TaskTemplateWhereUniqueInput[]
+    update?: TaskTemplateUpdateWithWhereUniqueWithoutTeacherInput | TaskTemplateUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: TaskTemplateUpdateManyWithWhereWithoutTeacherInput | TaskTemplateUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: TaskTemplateScalarWhereInput | TaskTemplateScalarWhereInput[]
+  }
+
   export type TeacherStudentUpdateManyWithoutTeacherNestedInput = {
     create?: XOR<TeacherStudentCreateWithoutTeacherInput, TeacherStudentUncheckedCreateWithoutTeacherInput> | TeacherStudentCreateWithoutTeacherInput[] | TeacherStudentUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: TeacherStudentCreateOrConnectWithoutTeacherInput | TeacherStudentCreateOrConnectWithoutTeacherInput[]
@@ -65048,6 +75624,48 @@ export namespace Prisma {
     deleteMany?: StudentSubmissionRemarkScalarWhereInput | StudentSubmissionRemarkScalarWhereInput[]
   }
 
+  export type StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutTeacherInput, StudentTaskUncheckedCreateWithoutTeacherInput> | StudentTaskCreateWithoutTeacherInput[] | StudentTaskUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTeacherInput | StudentTaskCreateOrConnectWithoutTeacherInput[]
+    upsert?: StudentTaskUpsertWithWhereUniqueWithoutTeacherInput | StudentTaskUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: StudentTaskCreateManyTeacherInputEnvelope
+    set?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    disconnect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    delete?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    update?: StudentTaskUpdateWithWhereUniqueWithoutTeacherInput | StudentTaskUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: StudentTaskUpdateManyWithWhereWithoutTeacherInput | StudentTaskUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
+  }
+
+  export type TaskUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<TaskCreateWithoutTeacherInput, TaskUncheckedCreateWithoutTeacherInput> | TaskCreateWithoutTeacherInput[] | TaskUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTeacherInput | TaskCreateOrConnectWithoutTeacherInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutTeacherInput | TaskUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: TaskCreateManyTeacherInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutTeacherInput | TaskUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutTeacherInput | TaskUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<TaskTemplateCreateWithoutTeacherInput, TaskTemplateUncheckedCreateWithoutTeacherInput> | TaskTemplateCreateWithoutTeacherInput[] | TaskTemplateUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TaskTemplateCreateOrConnectWithoutTeacherInput | TaskTemplateCreateOrConnectWithoutTeacherInput[]
+    upsert?: TaskTemplateUpsertWithWhereUniqueWithoutTeacherInput | TaskTemplateUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: TaskTemplateCreateManyTeacherInputEnvelope
+    set?: TaskTemplateWhereUniqueInput | TaskTemplateWhereUniqueInput[]
+    disconnect?: TaskTemplateWhereUniqueInput | TaskTemplateWhereUniqueInput[]
+    delete?: TaskTemplateWhereUniqueInput | TaskTemplateWhereUniqueInput[]
+    connect?: TaskTemplateWhereUniqueInput | TaskTemplateWhereUniqueInput[]
+    update?: TaskTemplateUpdateWithWhereUniqueWithoutTeacherInput | TaskTemplateUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: TaskTemplateUpdateManyWithWhereWithoutTeacherInput | TaskTemplateUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: TaskTemplateScalarWhereInput | TaskTemplateScalarWhereInput[]
+  }
+
   export type TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput = {
     create?: XOR<TeacherStudentCreateWithoutTeacherInput, TeacherStudentUncheckedCreateWithoutTeacherInput> | TeacherStudentCreateWithoutTeacherInput[] | TeacherStudentUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: TeacherStudentCreateOrConnectWithoutTeacherInput | TeacherStudentCreateOrConnectWithoutTeacherInput[]
@@ -65150,6 +75768,13 @@ export namespace Prisma {
     connectOrCreate?: StudentSubmissionCreateOrConnectWithoutStudentInput | StudentSubmissionCreateOrConnectWithoutStudentInput[]
     createMany?: StudentSubmissionCreateManyStudentInputEnvelope
     connect?: StudentSubmissionWhereUniqueInput | StudentSubmissionWhereUniqueInput[]
+  }
+
+  export type StudentTaskCreateNestedManyWithoutStudentInput = {
+    create?: XOR<StudentTaskCreateWithoutStudentInput, StudentTaskUncheckedCreateWithoutStudentInput> | StudentTaskCreateWithoutStudentInput[] | StudentTaskUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutStudentInput | StudentTaskCreateOrConnectWithoutStudentInput[]
+    createMany?: StudentTaskCreateManyStudentInputEnvelope
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
   }
 
   export type SubmissionCreateNestedManyWithoutStudentInput = {
@@ -65255,6 +75880,13 @@ export namespace Prisma {
     connectOrCreate?: StudentSubmissionCreateOrConnectWithoutStudentInput | StudentSubmissionCreateOrConnectWithoutStudentInput[]
     createMany?: StudentSubmissionCreateManyStudentInputEnvelope
     connect?: StudentSubmissionWhereUniqueInput | StudentSubmissionWhereUniqueInput[]
+  }
+
+  export type StudentTaskUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<StudentTaskCreateWithoutStudentInput, StudentTaskUncheckedCreateWithoutStudentInput> | StudentTaskCreateWithoutStudentInput[] | StudentTaskUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutStudentInput | StudentTaskCreateOrConnectWithoutStudentInput[]
+    createMany?: StudentTaskCreateManyStudentInputEnvelope
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
   }
 
   export type SubmissionUncheckedCreateNestedManyWithoutStudentInput = {
@@ -65462,6 +76094,20 @@ export namespace Prisma {
     update?: StudentSubmissionUpdateWithWhereUniqueWithoutStudentInput | StudentSubmissionUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: StudentSubmissionUpdateManyWithWhereWithoutStudentInput | StudentSubmissionUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: StudentSubmissionScalarWhereInput | StudentSubmissionScalarWhereInput[]
+  }
+
+  export type StudentTaskUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutStudentInput, StudentTaskUncheckedCreateWithoutStudentInput> | StudentTaskCreateWithoutStudentInput[] | StudentTaskUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutStudentInput | StudentTaskCreateOrConnectWithoutStudentInput[]
+    upsert?: StudentTaskUpsertWithWhereUniqueWithoutStudentInput | StudentTaskUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: StudentTaskCreateManyStudentInputEnvelope
+    set?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    disconnect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    delete?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    update?: StudentTaskUpdateWithWhereUniqueWithoutStudentInput | StudentTaskUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: StudentTaskUpdateManyWithWhereWithoutStudentInput | StudentTaskUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
   }
 
   export type SubmissionUpdateManyWithoutStudentNestedInput = {
@@ -65672,6 +76318,20 @@ export namespace Prisma {
     update?: StudentSubmissionUpdateWithWhereUniqueWithoutStudentInput | StudentSubmissionUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: StudentSubmissionUpdateManyWithWhereWithoutStudentInput | StudentSubmissionUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: StudentSubmissionScalarWhereInput | StudentSubmissionScalarWhereInput[]
+  }
+
+  export type StudentTaskUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutStudentInput, StudentTaskUncheckedCreateWithoutStudentInput> | StudentTaskCreateWithoutStudentInput[] | StudentTaskUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutStudentInput | StudentTaskCreateOrConnectWithoutStudentInput[]
+    upsert?: StudentTaskUpsertWithWhereUniqueWithoutStudentInput | StudentTaskUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: StudentTaskCreateManyStudentInputEnvelope
+    set?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    disconnect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    delete?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    update?: StudentTaskUpdateWithWhereUniqueWithoutStudentInput | StudentTaskUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: StudentTaskUpdateManyWithWhereWithoutStudentInput | StudentTaskUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
   }
 
   export type SubmissionUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -65903,6 +76563,13 @@ export namespace Prisma {
     connect?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
   }
 
+  export type TaskCreateNestedManyWithoutAssignmentInput = {
+    create?: XOR<TaskCreateWithoutAssignmentInput, TaskUncheckedCreateWithoutAssignmentInput> | TaskCreateWithoutAssignmentInput[] | TaskUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutAssignmentInput | TaskCreateOrConnectWithoutAssignmentInput[]
+    createMany?: TaskCreateManyAssignmentInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
   export type AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput = {
     create?: XOR<AssignmentResourceCreateWithoutAssignmentInput, AssignmentResourceUncheckedCreateWithoutAssignmentInput> | AssignmentResourceCreateWithoutAssignmentInput[] | AssignmentResourceUncheckedCreateWithoutAssignmentInput[]
     connectOrCreate?: AssignmentResourceCreateOrConnectWithoutAssignmentInput | AssignmentResourceCreateOrConnectWithoutAssignmentInput[]
@@ -65922,6 +76589,13 @@ export namespace Prisma {
     connectOrCreate?: SubmissionCreateOrConnectWithoutAssignmentInput | SubmissionCreateOrConnectWithoutAssignmentInput[]
     createMany?: SubmissionCreateManyAssignmentInputEnvelope
     connect?: SubmissionWhereUniqueInput | SubmissionWhereUniqueInput[]
+  }
+
+  export type TaskUncheckedCreateNestedManyWithoutAssignmentInput = {
+    create?: XOR<TaskCreateWithoutAssignmentInput, TaskUncheckedCreateWithoutAssignmentInput> | TaskCreateWithoutAssignmentInput[] | TaskUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutAssignmentInput | TaskCreateOrConnectWithoutAssignmentInput[]
+    createMany?: TaskCreateManyAssignmentInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
   export type StudentUpdateOneWithoutAssignedAssignmentsNestedInput = {
@@ -65984,6 +76658,20 @@ export namespace Prisma {
     deleteMany?: SubmissionScalarWhereInput | SubmissionScalarWhereInput[]
   }
 
+  export type TaskUpdateManyWithoutAssignmentNestedInput = {
+    create?: XOR<TaskCreateWithoutAssignmentInput, TaskUncheckedCreateWithoutAssignmentInput> | TaskCreateWithoutAssignmentInput[] | TaskUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutAssignmentInput | TaskCreateOrConnectWithoutAssignmentInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutAssignmentInput | TaskUpsertWithWhereUniqueWithoutAssignmentInput[]
+    createMany?: TaskCreateManyAssignmentInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutAssignmentInput | TaskUpdateWithWhereUniqueWithoutAssignmentInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutAssignmentInput | TaskUpdateManyWithWhereWithoutAssignmentInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
   export type AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput = {
     create?: XOR<AssignmentResourceCreateWithoutAssignmentInput, AssignmentResourceUncheckedCreateWithoutAssignmentInput> | AssignmentResourceCreateWithoutAssignmentInput[] | AssignmentResourceUncheckedCreateWithoutAssignmentInput[]
     connectOrCreate?: AssignmentResourceCreateOrConnectWithoutAssignmentInput | AssignmentResourceCreateOrConnectWithoutAssignmentInput[]
@@ -66024,6 +76712,20 @@ export namespace Prisma {
     update?: SubmissionUpdateWithWhereUniqueWithoutAssignmentInput | SubmissionUpdateWithWhereUniqueWithoutAssignmentInput[]
     updateMany?: SubmissionUpdateManyWithWhereWithoutAssignmentInput | SubmissionUpdateManyWithWhereWithoutAssignmentInput[]
     deleteMany?: SubmissionScalarWhereInput | SubmissionScalarWhereInput[]
+  }
+
+  export type TaskUncheckedUpdateManyWithoutAssignmentNestedInput = {
+    create?: XOR<TaskCreateWithoutAssignmentInput, TaskUncheckedCreateWithoutAssignmentInput> | TaskCreateWithoutAssignmentInput[] | TaskUncheckedCreateWithoutAssignmentInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutAssignmentInput | TaskCreateOrConnectWithoutAssignmentInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutAssignmentInput | TaskUpsertWithWhereUniqueWithoutAssignmentInput[]
+    createMany?: TaskCreateManyAssignmentInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutAssignmentInput | TaskUpdateWithWhereUniqueWithoutAssignmentInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutAssignmentInput | TaskUpdateManyWithWhereWithoutAssignmentInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
   export type AssignmentCreateNestedOneWithoutSubmissionsInput = {
@@ -66130,6 +76832,13 @@ export namespace Prisma {
     connect?: StudentResourceWhereUniqueInput | StudentResourceWhereUniqueInput[]
   }
 
+  export type TaskCreateNestedManyWithoutResourceInput = {
+    create?: XOR<TaskCreateWithoutResourceInput, TaskUncheckedCreateWithoutResourceInput> | TaskCreateWithoutResourceInput[] | TaskUncheckedCreateWithoutResourceInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutResourceInput | TaskCreateOrConnectWithoutResourceInput[]
+    createMany?: TaskCreateManyResourceInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
   export type AssignmentResourceUncheckedCreateNestedManyWithoutResourceInput = {
     create?: XOR<AssignmentResourceCreateWithoutResourceInput, AssignmentResourceUncheckedCreateWithoutResourceInput> | AssignmentResourceCreateWithoutResourceInput[] | AssignmentResourceUncheckedCreateWithoutResourceInput[]
     connectOrCreate?: AssignmentResourceCreateOrConnectWithoutResourceInput | AssignmentResourceCreateOrConnectWithoutResourceInput[]
@@ -66142,6 +76851,13 @@ export namespace Prisma {
     connectOrCreate?: StudentResourceCreateOrConnectWithoutResourceInput | StudentResourceCreateOrConnectWithoutResourceInput[]
     createMany?: StudentResourceCreateManyResourceInputEnvelope
     connect?: StudentResourceWhereUniqueInput | StudentResourceWhereUniqueInput[]
+  }
+
+  export type TaskUncheckedCreateNestedManyWithoutResourceInput = {
+    create?: XOR<TaskCreateWithoutResourceInput, TaskUncheckedCreateWithoutResourceInput> | TaskCreateWithoutResourceInput[] | TaskUncheckedCreateWithoutResourceInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutResourceInput | TaskCreateOrConnectWithoutResourceInput[]
+    createMany?: TaskCreateManyResourceInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
   export type AssignmentResourceUpdateManyWithoutResourceNestedInput = {
@@ -66180,6 +76896,20 @@ export namespace Prisma {
     deleteMany?: StudentResourceScalarWhereInput | StudentResourceScalarWhereInput[]
   }
 
+  export type TaskUpdateManyWithoutResourceNestedInput = {
+    create?: XOR<TaskCreateWithoutResourceInput, TaskUncheckedCreateWithoutResourceInput> | TaskCreateWithoutResourceInput[] | TaskUncheckedCreateWithoutResourceInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutResourceInput | TaskCreateOrConnectWithoutResourceInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutResourceInput | TaskUpsertWithWhereUniqueWithoutResourceInput[]
+    createMany?: TaskCreateManyResourceInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutResourceInput | TaskUpdateWithWhereUniqueWithoutResourceInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutResourceInput | TaskUpdateManyWithWhereWithoutResourceInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
   export type AssignmentResourceUncheckedUpdateManyWithoutResourceNestedInput = {
     create?: XOR<AssignmentResourceCreateWithoutResourceInput, AssignmentResourceUncheckedCreateWithoutResourceInput> | AssignmentResourceCreateWithoutResourceInput[] | AssignmentResourceUncheckedCreateWithoutResourceInput[]
     connectOrCreate?: AssignmentResourceCreateOrConnectWithoutResourceInput | AssignmentResourceCreateOrConnectWithoutResourceInput[]
@@ -66206,6 +76936,20 @@ export namespace Prisma {
     update?: StudentResourceUpdateWithWhereUniqueWithoutResourceInput | StudentResourceUpdateWithWhereUniqueWithoutResourceInput[]
     updateMany?: StudentResourceUpdateManyWithWhereWithoutResourceInput | StudentResourceUpdateManyWithWhereWithoutResourceInput[]
     deleteMany?: StudentResourceScalarWhereInput | StudentResourceScalarWhereInput[]
+  }
+
+  export type TaskUncheckedUpdateManyWithoutResourceNestedInput = {
+    create?: XOR<TaskCreateWithoutResourceInput, TaskUncheckedCreateWithoutResourceInput> | TaskCreateWithoutResourceInput[] | TaskUncheckedCreateWithoutResourceInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutResourceInput | TaskCreateOrConnectWithoutResourceInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutResourceInput | TaskUpsertWithWhereUniqueWithoutResourceInput[]
+    createMany?: TaskCreateManyResourceInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutResourceInput | TaskUpdateWithWhereUniqueWithoutResourceInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutResourceInput | TaskUpdateManyWithWhereWithoutResourceInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
   export type AssignmentCreateNestedOneWithoutResourcesInput = {
@@ -66826,11 +77570,25 @@ export namespace Prisma {
     connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
   }
 
+  export type TaskCreateNestedManyWithoutMeetingMinuteMeetingInput = {
+    create?: XOR<TaskCreateWithoutMeetingMinuteMeetingInput, TaskUncheckedCreateWithoutMeetingMinuteMeetingInput> | TaskCreateWithoutMeetingMinuteMeetingInput[] | TaskUncheckedCreateWithoutMeetingMinuteMeetingInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutMeetingMinuteMeetingInput | TaskCreateOrConnectWithoutMeetingMinuteMeetingInput[]
+    createMany?: TaskCreateManyMeetingMinuteMeetingInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
   export type MeetingMinuteRequestUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput = {
     create?: XOR<MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput, MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput> | MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput[] | MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput[]
     connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput[]
     createMany?: MeetingMinuteRequestCreateManyMeetingMinuteMeetingInputEnvelope
     connect?: MeetingMinuteRequestWhereUniqueInput | MeetingMinuteRequestWhereUniqueInput[]
+  }
+
+  export type TaskUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput = {
+    create?: XOR<TaskCreateWithoutMeetingMinuteMeetingInput, TaskUncheckedCreateWithoutMeetingMinuteMeetingInput> | TaskCreateWithoutMeetingMinuteMeetingInput[] | TaskUncheckedCreateWithoutMeetingMinuteMeetingInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutMeetingMinuteMeetingInput | TaskCreateOrConnectWithoutMeetingMinuteMeetingInput[]
+    createMany?: TaskCreateManyMeetingMinuteMeetingInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
   export type EnumMeetingSourceFieldUpdateOperationsInput = {
@@ -66869,6 +77627,20 @@ export namespace Prisma {
     deleteMany?: MeetingMinuteRequestScalarWhereInput | MeetingMinuteRequestScalarWhereInput[]
   }
 
+  export type TaskUpdateManyWithoutMeetingMinuteMeetingNestedInput = {
+    create?: XOR<TaskCreateWithoutMeetingMinuteMeetingInput, TaskUncheckedCreateWithoutMeetingMinuteMeetingInput> | TaskCreateWithoutMeetingMinuteMeetingInput[] | TaskUncheckedCreateWithoutMeetingMinuteMeetingInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutMeetingMinuteMeetingInput | TaskCreateOrConnectWithoutMeetingMinuteMeetingInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutMeetingMinuteMeetingInput | TaskUpsertWithWhereUniqueWithoutMeetingMinuteMeetingInput[]
+    createMany?: TaskCreateManyMeetingMinuteMeetingInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput | TaskUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutMeetingMinuteMeetingInput | TaskUpdateManyWithWhereWithoutMeetingMinuteMeetingInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
   export type MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput = {
     create?: XOR<MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput, MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput> | MeetingMinuteRequestCreateWithoutMeetingMinuteMeetingInput[] | MeetingMinuteRequestUncheckedCreateWithoutMeetingMinuteMeetingInput[]
     connectOrCreate?: MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestCreateOrConnectWithoutMeetingMinuteMeetingInput[]
@@ -66881,6 +77653,20 @@ export namespace Prisma {
     update?: MeetingMinuteRequestUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput[]
     updateMany?: MeetingMinuteRequestUpdateManyWithWhereWithoutMeetingMinuteMeetingInput | MeetingMinuteRequestUpdateManyWithWhereWithoutMeetingMinuteMeetingInput[]
     deleteMany?: MeetingMinuteRequestScalarWhereInput | MeetingMinuteRequestScalarWhereInput[]
+  }
+
+  export type TaskUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput = {
+    create?: XOR<TaskCreateWithoutMeetingMinuteMeetingInput, TaskUncheckedCreateWithoutMeetingMinuteMeetingInput> | TaskCreateWithoutMeetingMinuteMeetingInput[] | TaskUncheckedCreateWithoutMeetingMinuteMeetingInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutMeetingMinuteMeetingInput | TaskCreateOrConnectWithoutMeetingMinuteMeetingInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutMeetingMinuteMeetingInput | TaskUpsertWithWhereUniqueWithoutMeetingMinuteMeetingInput[]
+    createMany?: TaskCreateManyMeetingMinuteMeetingInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput | TaskUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutMeetingMinuteMeetingInput | TaskUpdateManyWithWhereWithoutMeetingMinuteMeetingInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
   export type MeetingMinuteMeetingCreateNestedOneWithoutMeetingMinuteRequestInput = {
@@ -66917,6 +77703,338 @@ export namespace Prisma {
     upsert?: StudentUpsertWithoutMeetingMinuteRequestInput
     connect?: StudentWhereUniqueInput
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutMeetingMinuteRequestInput, StudentUpdateWithoutMeetingMinuteRequestInput>, StudentUncheckedUpdateWithoutMeetingMinuteRequestInput>
+  }
+
+  export type TeacherCreateNestedOneWithoutStudentTaskInput = {
+    create?: XOR<TeacherCreateWithoutStudentTaskInput, TeacherUncheckedCreateWithoutStudentTaskInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutStudentTaskInput
+    connect?: TeacherWhereUniqueInput
+  }
+
+  export type StudentCreateNestedOneWithoutStudentTaskInput = {
+    create?: XOR<StudentCreateWithoutStudentTaskInput, StudentUncheckedCreateWithoutStudentTaskInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutStudentTaskInput
+    connect?: StudentWhereUniqueInput
+  }
+
+  export type TaskCreateNestedOneWithoutStudentTaskInput = {
+    create?: XOR<TaskCreateWithoutStudentTaskInput, TaskUncheckedCreateWithoutStudentTaskInput>
+    connectOrCreate?: TaskCreateOrConnectWithoutStudentTaskInput
+    connect?: TaskWhereUniqueInput
+  }
+
+  export type TaskActivityCreateNestedManyWithoutStudentTaskInput = {
+    create?: XOR<TaskActivityCreateWithoutStudentTaskInput, TaskActivityUncheckedCreateWithoutStudentTaskInput> | TaskActivityCreateWithoutStudentTaskInput[] | TaskActivityUncheckedCreateWithoutStudentTaskInput[]
+    connectOrCreate?: TaskActivityCreateOrConnectWithoutStudentTaskInput | TaskActivityCreateOrConnectWithoutStudentTaskInput[]
+    createMany?: TaskActivityCreateManyStudentTaskInputEnvelope
+    connect?: TaskActivityWhereUniqueInput | TaskActivityWhereUniqueInput[]
+  }
+
+  export type TaskCommentCreateNestedManyWithoutStudentTaskInput = {
+    create?: XOR<TaskCommentCreateWithoutStudentTaskInput, TaskCommentUncheckedCreateWithoutStudentTaskInput> | TaskCommentCreateWithoutStudentTaskInput[] | TaskCommentUncheckedCreateWithoutStudentTaskInput[]
+    connectOrCreate?: TaskCommentCreateOrConnectWithoutStudentTaskInput | TaskCommentCreateOrConnectWithoutStudentTaskInput[]
+    createMany?: TaskCommentCreateManyStudentTaskInputEnvelope
+    connect?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
+  }
+
+  export type TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput = {
+    create?: XOR<TaskActivityCreateWithoutStudentTaskInput, TaskActivityUncheckedCreateWithoutStudentTaskInput> | TaskActivityCreateWithoutStudentTaskInput[] | TaskActivityUncheckedCreateWithoutStudentTaskInput[]
+    connectOrCreate?: TaskActivityCreateOrConnectWithoutStudentTaskInput | TaskActivityCreateOrConnectWithoutStudentTaskInput[]
+    createMany?: TaskActivityCreateManyStudentTaskInputEnvelope
+    connect?: TaskActivityWhereUniqueInput | TaskActivityWhereUniqueInput[]
+  }
+
+  export type TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput = {
+    create?: XOR<TaskCommentCreateWithoutStudentTaskInput, TaskCommentUncheckedCreateWithoutStudentTaskInput> | TaskCommentCreateWithoutStudentTaskInput[] | TaskCommentUncheckedCreateWithoutStudentTaskInput[]
+    connectOrCreate?: TaskCommentCreateOrConnectWithoutStudentTaskInput | TaskCommentCreateOrConnectWithoutStudentTaskInput[]
+    createMany?: TaskCommentCreateManyStudentTaskInputEnvelope
+    connect?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
+  }
+
+  export type TeacherUpdateOneWithoutStudentTaskNestedInput = {
+    create?: XOR<TeacherCreateWithoutStudentTaskInput, TeacherUncheckedCreateWithoutStudentTaskInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutStudentTaskInput
+    upsert?: TeacherUpsertWithoutStudentTaskInput
+    disconnect?: TeacherWhereInput | boolean
+    delete?: TeacherWhereInput | boolean
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutStudentTaskInput, TeacherUpdateWithoutStudentTaskInput>, TeacherUncheckedUpdateWithoutStudentTaskInput>
+  }
+
+  export type StudentUpdateOneRequiredWithoutStudentTaskNestedInput = {
+    create?: XOR<StudentCreateWithoutStudentTaskInput, StudentUncheckedCreateWithoutStudentTaskInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutStudentTaskInput
+    upsert?: StudentUpsertWithoutStudentTaskInput
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutStudentTaskInput, StudentUpdateWithoutStudentTaskInput>, StudentUncheckedUpdateWithoutStudentTaskInput>
+  }
+
+  export type TaskUpdateOneRequiredWithoutStudentTaskNestedInput = {
+    create?: XOR<TaskCreateWithoutStudentTaskInput, TaskUncheckedCreateWithoutStudentTaskInput>
+    connectOrCreate?: TaskCreateOrConnectWithoutStudentTaskInput
+    upsert?: TaskUpsertWithoutStudentTaskInput
+    connect?: TaskWhereUniqueInput
+    update?: XOR<XOR<TaskUpdateToOneWithWhereWithoutStudentTaskInput, TaskUpdateWithoutStudentTaskInput>, TaskUncheckedUpdateWithoutStudentTaskInput>
+  }
+
+  export type TaskActivityUpdateManyWithoutStudentTaskNestedInput = {
+    create?: XOR<TaskActivityCreateWithoutStudentTaskInput, TaskActivityUncheckedCreateWithoutStudentTaskInput> | TaskActivityCreateWithoutStudentTaskInput[] | TaskActivityUncheckedCreateWithoutStudentTaskInput[]
+    connectOrCreate?: TaskActivityCreateOrConnectWithoutStudentTaskInput | TaskActivityCreateOrConnectWithoutStudentTaskInput[]
+    upsert?: TaskActivityUpsertWithWhereUniqueWithoutStudentTaskInput | TaskActivityUpsertWithWhereUniqueWithoutStudentTaskInput[]
+    createMany?: TaskActivityCreateManyStudentTaskInputEnvelope
+    set?: TaskActivityWhereUniqueInput | TaskActivityWhereUniqueInput[]
+    disconnect?: TaskActivityWhereUniqueInput | TaskActivityWhereUniqueInput[]
+    delete?: TaskActivityWhereUniqueInput | TaskActivityWhereUniqueInput[]
+    connect?: TaskActivityWhereUniqueInput | TaskActivityWhereUniqueInput[]
+    update?: TaskActivityUpdateWithWhereUniqueWithoutStudentTaskInput | TaskActivityUpdateWithWhereUniqueWithoutStudentTaskInput[]
+    updateMany?: TaskActivityUpdateManyWithWhereWithoutStudentTaskInput | TaskActivityUpdateManyWithWhereWithoutStudentTaskInput[]
+    deleteMany?: TaskActivityScalarWhereInput | TaskActivityScalarWhereInput[]
+  }
+
+  export type TaskCommentUpdateManyWithoutStudentTaskNestedInput = {
+    create?: XOR<TaskCommentCreateWithoutStudentTaskInput, TaskCommentUncheckedCreateWithoutStudentTaskInput> | TaskCommentCreateWithoutStudentTaskInput[] | TaskCommentUncheckedCreateWithoutStudentTaskInput[]
+    connectOrCreate?: TaskCommentCreateOrConnectWithoutStudentTaskInput | TaskCommentCreateOrConnectWithoutStudentTaskInput[]
+    upsert?: TaskCommentUpsertWithWhereUniqueWithoutStudentTaskInput | TaskCommentUpsertWithWhereUniqueWithoutStudentTaskInput[]
+    createMany?: TaskCommentCreateManyStudentTaskInputEnvelope
+    set?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
+    disconnect?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
+    delete?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
+    connect?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
+    update?: TaskCommentUpdateWithWhereUniqueWithoutStudentTaskInput | TaskCommentUpdateWithWhereUniqueWithoutStudentTaskInput[]
+    updateMany?: TaskCommentUpdateManyWithWhereWithoutStudentTaskInput | TaskCommentUpdateManyWithWhereWithoutStudentTaskInput[]
+    deleteMany?: TaskCommentScalarWhereInput | TaskCommentScalarWhereInput[]
+  }
+
+  export type TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput = {
+    create?: XOR<TaskActivityCreateWithoutStudentTaskInput, TaskActivityUncheckedCreateWithoutStudentTaskInput> | TaskActivityCreateWithoutStudentTaskInput[] | TaskActivityUncheckedCreateWithoutStudentTaskInput[]
+    connectOrCreate?: TaskActivityCreateOrConnectWithoutStudentTaskInput | TaskActivityCreateOrConnectWithoutStudentTaskInput[]
+    upsert?: TaskActivityUpsertWithWhereUniqueWithoutStudentTaskInput | TaskActivityUpsertWithWhereUniqueWithoutStudentTaskInput[]
+    createMany?: TaskActivityCreateManyStudentTaskInputEnvelope
+    set?: TaskActivityWhereUniqueInput | TaskActivityWhereUniqueInput[]
+    disconnect?: TaskActivityWhereUniqueInput | TaskActivityWhereUniqueInput[]
+    delete?: TaskActivityWhereUniqueInput | TaskActivityWhereUniqueInput[]
+    connect?: TaskActivityWhereUniqueInput | TaskActivityWhereUniqueInput[]
+    update?: TaskActivityUpdateWithWhereUniqueWithoutStudentTaskInput | TaskActivityUpdateWithWhereUniqueWithoutStudentTaskInput[]
+    updateMany?: TaskActivityUpdateManyWithWhereWithoutStudentTaskInput | TaskActivityUpdateManyWithWhereWithoutStudentTaskInput[]
+    deleteMany?: TaskActivityScalarWhereInput | TaskActivityScalarWhereInput[]
+  }
+
+  export type TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput = {
+    create?: XOR<TaskCommentCreateWithoutStudentTaskInput, TaskCommentUncheckedCreateWithoutStudentTaskInput> | TaskCommentCreateWithoutStudentTaskInput[] | TaskCommentUncheckedCreateWithoutStudentTaskInput[]
+    connectOrCreate?: TaskCommentCreateOrConnectWithoutStudentTaskInput | TaskCommentCreateOrConnectWithoutStudentTaskInput[]
+    upsert?: TaskCommentUpsertWithWhereUniqueWithoutStudentTaskInput | TaskCommentUpsertWithWhereUniqueWithoutStudentTaskInput[]
+    createMany?: TaskCommentCreateManyStudentTaskInputEnvelope
+    set?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
+    disconnect?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
+    delete?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
+    connect?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
+    update?: TaskCommentUpdateWithWhereUniqueWithoutStudentTaskInput | TaskCommentUpdateWithWhereUniqueWithoutStudentTaskInput[]
+    updateMany?: TaskCommentUpdateManyWithWhereWithoutStudentTaskInput | TaskCommentUpdateManyWithWhereWithoutStudentTaskInput[]
+    deleteMany?: TaskCommentScalarWhereInput | TaskCommentScalarWhereInput[]
+  }
+
+  export type StudentTaskCreateNestedManyWithoutTaskInput = {
+    create?: XOR<StudentTaskCreateWithoutTaskInput, StudentTaskUncheckedCreateWithoutTaskInput> | StudentTaskCreateWithoutTaskInput[] | StudentTaskUncheckedCreateWithoutTaskInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTaskInput | StudentTaskCreateOrConnectWithoutTaskInput[]
+    createMany?: StudentTaskCreateManyTaskInputEnvelope
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+  }
+
+  export type TeacherCreateNestedOneWithoutTaskInput = {
+    create?: XOR<TeacherCreateWithoutTaskInput, TeacherUncheckedCreateWithoutTaskInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutTaskInput
+    connect?: TeacherWhereUniqueInput
+  }
+
+  export type AssignmentCreateNestedOneWithoutTaskInput = {
+    create?: XOR<AssignmentCreateWithoutTaskInput, AssignmentUncheckedCreateWithoutTaskInput>
+    connectOrCreate?: AssignmentCreateOrConnectWithoutTaskInput
+    connect?: AssignmentWhereUniqueInput
+  }
+
+  export type MeetingMinuteMeetingCreateNestedOneWithoutTaskInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutTaskInput, MeetingMinuteMeetingUncheckedCreateWithoutTaskInput>
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutTaskInput
+    connect?: MeetingMinuteMeetingWhereUniqueInput
+  }
+
+  export type ResourceCreateNestedOneWithoutTaskInput = {
+    create?: XOR<ResourceCreateWithoutTaskInput, ResourceUncheckedCreateWithoutTaskInput>
+    connectOrCreate?: ResourceCreateOrConnectWithoutTaskInput
+    connect?: ResourceWhereUniqueInput
+  }
+
+  export type TaskTemplateCreateNestedOneWithoutTaskInput = {
+    create?: XOR<TaskTemplateCreateWithoutTaskInput, TaskTemplateUncheckedCreateWithoutTaskInput>
+    connectOrCreate?: TaskTemplateCreateOrConnectWithoutTaskInput
+    connect?: TaskTemplateWhereUniqueInput
+  }
+
+  export type StudentTaskUncheckedCreateNestedManyWithoutTaskInput = {
+    create?: XOR<StudentTaskCreateWithoutTaskInput, StudentTaskUncheckedCreateWithoutTaskInput> | StudentTaskCreateWithoutTaskInput[] | StudentTaskUncheckedCreateWithoutTaskInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTaskInput | StudentTaskCreateOrConnectWithoutTaskInput[]
+    createMany?: StudentTaskCreateManyTaskInputEnvelope
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+  }
+
+  export type StudentTaskUpdateManyWithoutTaskNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutTaskInput, StudentTaskUncheckedCreateWithoutTaskInput> | StudentTaskCreateWithoutTaskInput[] | StudentTaskUncheckedCreateWithoutTaskInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTaskInput | StudentTaskCreateOrConnectWithoutTaskInput[]
+    upsert?: StudentTaskUpsertWithWhereUniqueWithoutTaskInput | StudentTaskUpsertWithWhereUniqueWithoutTaskInput[]
+    createMany?: StudentTaskCreateManyTaskInputEnvelope
+    set?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    disconnect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    delete?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    update?: StudentTaskUpdateWithWhereUniqueWithoutTaskInput | StudentTaskUpdateWithWhereUniqueWithoutTaskInput[]
+    updateMany?: StudentTaskUpdateManyWithWhereWithoutTaskInput | StudentTaskUpdateManyWithWhereWithoutTaskInput[]
+    deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
+  }
+
+  export type TeacherUpdateOneRequiredWithoutTaskNestedInput = {
+    create?: XOR<TeacherCreateWithoutTaskInput, TeacherUncheckedCreateWithoutTaskInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutTaskInput
+    upsert?: TeacherUpsertWithoutTaskInput
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutTaskInput, TeacherUpdateWithoutTaskInput>, TeacherUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type AssignmentUpdateOneWithoutTaskNestedInput = {
+    create?: XOR<AssignmentCreateWithoutTaskInput, AssignmentUncheckedCreateWithoutTaskInput>
+    connectOrCreate?: AssignmentCreateOrConnectWithoutTaskInput
+    upsert?: AssignmentUpsertWithoutTaskInput
+    disconnect?: AssignmentWhereInput | boolean
+    delete?: AssignmentWhereInput | boolean
+    connect?: AssignmentWhereUniqueInput
+    update?: XOR<XOR<AssignmentUpdateToOneWithWhereWithoutTaskInput, AssignmentUpdateWithoutTaskInput>, AssignmentUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput = {
+    create?: XOR<MeetingMinuteMeetingCreateWithoutTaskInput, MeetingMinuteMeetingUncheckedCreateWithoutTaskInput>
+    connectOrCreate?: MeetingMinuteMeetingCreateOrConnectWithoutTaskInput
+    upsert?: MeetingMinuteMeetingUpsertWithoutTaskInput
+    disconnect?: MeetingMinuteMeetingWhereInput | boolean
+    delete?: MeetingMinuteMeetingWhereInput | boolean
+    connect?: MeetingMinuteMeetingWhereUniqueInput
+    update?: XOR<XOR<MeetingMinuteMeetingUpdateToOneWithWhereWithoutTaskInput, MeetingMinuteMeetingUpdateWithoutTaskInput>, MeetingMinuteMeetingUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type ResourceUpdateOneWithoutTaskNestedInput = {
+    create?: XOR<ResourceCreateWithoutTaskInput, ResourceUncheckedCreateWithoutTaskInput>
+    connectOrCreate?: ResourceCreateOrConnectWithoutTaskInput
+    upsert?: ResourceUpsertWithoutTaskInput
+    disconnect?: ResourceWhereInput | boolean
+    delete?: ResourceWhereInput | boolean
+    connect?: ResourceWhereUniqueInput
+    update?: XOR<XOR<ResourceUpdateToOneWithWhereWithoutTaskInput, ResourceUpdateWithoutTaskInput>, ResourceUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type TaskTemplateUpdateOneWithoutTaskNestedInput = {
+    create?: XOR<TaskTemplateCreateWithoutTaskInput, TaskTemplateUncheckedCreateWithoutTaskInput>
+    connectOrCreate?: TaskTemplateCreateOrConnectWithoutTaskInput
+    upsert?: TaskTemplateUpsertWithoutTaskInput
+    disconnect?: TaskTemplateWhereInput | boolean
+    delete?: TaskTemplateWhereInput | boolean
+    connect?: TaskTemplateWhereUniqueInput
+    update?: XOR<XOR<TaskTemplateUpdateToOneWithWhereWithoutTaskInput, TaskTemplateUpdateWithoutTaskInput>, TaskTemplateUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type StudentTaskUncheckedUpdateManyWithoutTaskNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutTaskInput, StudentTaskUncheckedCreateWithoutTaskInput> | StudentTaskCreateWithoutTaskInput[] | StudentTaskUncheckedCreateWithoutTaskInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTaskInput | StudentTaskCreateOrConnectWithoutTaskInput[]
+    upsert?: StudentTaskUpsertWithWhereUniqueWithoutTaskInput | StudentTaskUpsertWithWhereUniqueWithoutTaskInput[]
+    createMany?: StudentTaskCreateManyTaskInputEnvelope
+    set?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    disconnect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    delete?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    update?: StudentTaskUpdateWithWhereUniqueWithoutTaskInput | StudentTaskUpdateWithWhereUniqueWithoutTaskInput[]
+    updateMany?: StudentTaskUpdateManyWithWhereWithoutTaskInput | StudentTaskUpdateManyWithWhereWithoutTaskInput[]
+    deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
+  }
+
+  export type StudentTaskCreateNestedOneWithoutTaskActivityInput = {
+    create?: XOR<StudentTaskCreateWithoutTaskActivityInput, StudentTaskUncheckedCreateWithoutTaskActivityInput>
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTaskActivityInput
+    connect?: StudentTaskWhereUniqueInput
+  }
+
+  export type StudentTaskUpdateOneRequiredWithoutTaskActivityNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutTaskActivityInput, StudentTaskUncheckedCreateWithoutTaskActivityInput>
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTaskActivityInput
+    upsert?: StudentTaskUpsertWithoutTaskActivityInput
+    connect?: StudentTaskWhereUniqueInput
+    update?: XOR<XOR<StudentTaskUpdateToOneWithWhereWithoutTaskActivityInput, StudentTaskUpdateWithoutTaskActivityInput>, StudentTaskUncheckedUpdateWithoutTaskActivityInput>
+  }
+
+  export type StudentTaskCreateNestedOneWithoutTaskCommentInput = {
+    create?: XOR<StudentTaskCreateWithoutTaskCommentInput, StudentTaskUncheckedCreateWithoutTaskCommentInput>
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTaskCommentInput
+    connect?: StudentTaskWhereUniqueInput
+  }
+
+  export type StudentTaskUpdateOneRequiredWithoutTaskCommentNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutTaskCommentInput, StudentTaskUncheckedCreateWithoutTaskCommentInput>
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTaskCommentInput
+    upsert?: StudentTaskUpsertWithoutTaskCommentInput
+    connect?: StudentTaskWhereUniqueInput
+    update?: XOR<XOR<StudentTaskUpdateToOneWithWhereWithoutTaskCommentInput, StudentTaskUpdateWithoutTaskCommentInput>, StudentTaskUncheckedUpdateWithoutTaskCommentInput>
+  }
+
+  export type TaskCreateNestedManyWithoutTaskTemplateInput = {
+    create?: XOR<TaskCreateWithoutTaskTemplateInput, TaskUncheckedCreateWithoutTaskTemplateInput> | TaskCreateWithoutTaskTemplateInput[] | TaskUncheckedCreateWithoutTaskTemplateInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTaskTemplateInput | TaskCreateOrConnectWithoutTaskTemplateInput[]
+    createMany?: TaskCreateManyTaskTemplateInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type TeacherCreateNestedOneWithoutTaskTemplateInput = {
+    create?: XOR<TeacherCreateWithoutTaskTemplateInput, TeacherUncheckedCreateWithoutTaskTemplateInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutTaskTemplateInput
+    connect?: TeacherWhereUniqueInput
+  }
+
+  export type TaskUncheckedCreateNestedManyWithoutTaskTemplateInput = {
+    create?: XOR<TaskCreateWithoutTaskTemplateInput, TaskUncheckedCreateWithoutTaskTemplateInput> | TaskCreateWithoutTaskTemplateInput[] | TaskUncheckedCreateWithoutTaskTemplateInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTaskTemplateInput | TaskCreateOrConnectWithoutTaskTemplateInput[]
+    createMany?: TaskCreateManyTaskTemplateInputEnvelope
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type TaskUpdateManyWithoutTaskTemplateNestedInput = {
+    create?: XOR<TaskCreateWithoutTaskTemplateInput, TaskUncheckedCreateWithoutTaskTemplateInput> | TaskCreateWithoutTaskTemplateInput[] | TaskUncheckedCreateWithoutTaskTemplateInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTaskTemplateInput | TaskCreateOrConnectWithoutTaskTemplateInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutTaskTemplateInput | TaskUpsertWithWhereUniqueWithoutTaskTemplateInput[]
+    createMany?: TaskCreateManyTaskTemplateInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutTaskTemplateInput | TaskUpdateWithWhereUniqueWithoutTaskTemplateInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutTaskTemplateInput | TaskUpdateManyWithWhereWithoutTaskTemplateInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type TeacherUpdateOneRequiredWithoutTaskTemplateNestedInput = {
+    create?: XOR<TeacherCreateWithoutTaskTemplateInput, TeacherUncheckedCreateWithoutTaskTemplateInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutTaskTemplateInput
+    upsert?: TeacherUpsertWithoutTaskTemplateInput
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutTaskTemplateInput, TeacherUpdateWithoutTaskTemplateInput>, TeacherUncheckedUpdateWithoutTaskTemplateInput>
+  }
+
+  export type TaskUncheckedUpdateManyWithoutTaskTemplateNestedInput = {
+    create?: XOR<TaskCreateWithoutTaskTemplateInput, TaskUncheckedCreateWithoutTaskTemplateInput> | TaskCreateWithoutTaskTemplateInput[] | TaskUncheckedCreateWithoutTaskTemplateInput[]
+    connectOrCreate?: TaskCreateOrConnectWithoutTaskTemplateInput | TaskCreateOrConnectWithoutTaskTemplateInput[]
+    upsert?: TaskUpsertWithWhereUniqueWithoutTaskTemplateInput | TaskUpsertWithWhereUniqueWithoutTaskTemplateInput[]
+    createMany?: TaskCreateManyTaskTemplateInputEnvelope
+    set?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    disconnect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    delete?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+    update?: TaskUpdateWithWhereUniqueWithoutTaskTemplateInput | TaskUpdateWithWhereUniqueWithoutTaskTemplateInput[]
+    updateMany?: TaskUpdateManyWithWhereWithoutTaskTemplateInput | TaskUpdateManyWithWhereWithoutTaskTemplateInput[]
+    deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -67250,6 +78368,7 @@ export namespace Prisma {
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
     AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
+    Task?: TaskCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateWithoutTeacherInput = {
@@ -67270,6 +78389,7 @@ export namespace Prisma {
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
     AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
+    Task?: TaskUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentCreateOrConnectWithoutTeacherInput = {
@@ -67360,6 +78480,7 @@ export namespace Prisma {
     updatedAt: Date | string
     ClassSchedule?: ClassScheduleCreateNestedOneWithoutMeetingMinuteMeetingInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutMeetingMinuteMeetingInput
+    Task?: TaskCreateNestedManyWithoutMeetingMinuteMeetingInput
   }
 
   export type MeetingMinuteMeetingUncheckedCreateWithoutTeacherInput = {
@@ -67378,6 +78499,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
+    Task?: TaskUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
   }
 
   export type MeetingMinuteMeetingCreateOrConnectWithoutTeacherInput = {
@@ -67507,6 +78629,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     assignmentLinks?: AssignmentResourceCreateNestedManyWithoutResourceInput
     studentAssignments?: StudentResourceCreateNestedManyWithoutResourceInput
+    Task?: TaskCreateNestedManyWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutTeacherInput = {
@@ -67526,6 +78649,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     assignmentLinks?: AssignmentResourceUncheckedCreateNestedManyWithoutResourceInput
     studentAssignments?: StudentResourceUncheckedCreateNestedManyWithoutResourceInput
+    Task?: TaskUncheckedCreateNestedManyWithoutResourceInput
   }
 
   export type ResourceCreateOrConnectWithoutTeacherInput = {
@@ -67587,6 +78711,181 @@ export namespace Prisma {
 
   export type StudentSubmissionRemarkCreateManyTeacherInputEnvelope = {
     data: StudentSubmissionRemarkCreateManyTeacherInput | StudentSubmissionRemarkCreateManyTeacherInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StudentTaskCreateWithoutTeacherInput = {
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    Student: StudentCreateNestedOneWithoutStudentTaskInput
+    Task: TaskCreateNestedOneWithoutStudentTaskInput
+    TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskUncheckedCreateWithoutTeacherInput = {
+    id?: number
+    taskId: number
+    studentId: number
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskCreateOrConnectWithoutTeacherInput = {
+    where: StudentTaskWhereUniqueInput
+    create: XOR<StudentTaskCreateWithoutTeacherInput, StudentTaskUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type StudentTaskCreateManyTeacherInputEnvelope = {
+    data: StudentTaskCreateManyTeacherInput | StudentTaskCreateManyTeacherInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TaskCreateWithoutTeacherInput = {
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
+    Assignment?: AssignmentCreateNestedOneWithoutTaskInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
+    Resource?: ResourceCreateNestedOneWithoutTaskInput
+    TaskTemplate?: TaskTemplateCreateNestedOneWithoutTaskInput
+  }
+
+  export type TaskUncheckedCreateWithoutTeacherInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedMeetingId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
+  }
+
+  export type TaskCreateOrConnectWithoutTeacherInput = {
+    where: TaskWhereUniqueInput
+    create: XOR<TaskCreateWithoutTeacherInput, TaskUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type TaskCreateManyTeacherInputEnvelope = {
+    data: TaskCreateManyTeacherInput | TaskCreateManyTeacherInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TaskTemplateCreateWithoutTeacherInput = {
+    name: string
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    defaultDeadlineDays?: number | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: string | null
+    usageCount?: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Task?: TaskCreateNestedManyWithoutTaskTemplateInput
+  }
+
+  export type TaskTemplateUncheckedCreateWithoutTeacherInput = {
+    id?: number
+    name: string
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    defaultDeadlineDays?: number | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: string | null
+    usageCount?: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Task?: TaskUncheckedCreateNestedManyWithoutTaskTemplateInput
+  }
+
+  export type TaskTemplateCreateOrConnectWithoutTeacherInput = {
+    where: TaskTemplateWhereUniqueInput
+    create: XOR<TaskTemplateCreateWithoutTeacherInput, TaskTemplateUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type TaskTemplateCreateManyTeacherInputEnvelope = {
+    data: TaskTemplateCreateManyTeacherInput | TaskTemplateCreateManyTeacherInput[]
     skipDuplicates?: boolean
   }
 
@@ -67918,6 +79217,136 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"StudentSubmissionRemark"> | Date | string
   }
 
+  export type StudentTaskUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: StudentTaskWhereUniqueInput
+    update: XOR<StudentTaskUpdateWithoutTeacherInput, StudentTaskUncheckedUpdateWithoutTeacherInput>
+    create: XOR<StudentTaskCreateWithoutTeacherInput, StudentTaskUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type StudentTaskUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: StudentTaskWhereUniqueInput
+    data: XOR<StudentTaskUpdateWithoutTeacherInput, StudentTaskUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type StudentTaskUpdateManyWithWhereWithoutTeacherInput = {
+    where: StudentTaskScalarWhereInput
+    data: XOR<StudentTaskUpdateManyMutationInput, StudentTaskUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type StudentTaskScalarWhereInput = {
+    AND?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
+    OR?: StudentTaskScalarWhereInput[]
+    NOT?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
+    id?: IntFilter<"StudentTask"> | number
+    taskId?: IntFilter<"StudentTask"> | number
+    studentId?: IntFilter<"StudentTask"> | number
+    status?: StringFilter<"StudentTask"> | string
+    startedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    submittedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    completedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    submissionNote?: StringNullableFilter<"StudentTask"> | string | null
+    submissionUrl?: StringNullableFilter<"StudentTask"> | string | null
+    submissionFileUrl?: StringNullableFilter<"StudentTask"> | string | null
+    submissionFileName?: StringNullableFilter<"StudentTask"> | string | null
+    submissionExternalConfirmed?: BoolFilter<"StudentTask"> | boolean
+    mentorFeedback?: StringNullableFilter<"StudentTask"> | string | null
+    reviewedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    reviewedById?: IntNullableFilter<"StudentTask"> | number | null
+    createdAt?: DateTimeFilter<"StudentTask"> | Date | string
+    updatedAt?: DateTimeFilter<"StudentTask"> | Date | string
+    checklistDone?: JsonNullableFilter<"StudentTask">
+    dueSoonReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    overdueReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+  }
+
+  export type TaskUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: TaskWhereUniqueInput
+    update: XOR<TaskUpdateWithoutTeacherInput, TaskUncheckedUpdateWithoutTeacherInput>
+    create: XOR<TaskCreateWithoutTeacherInput, TaskUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type TaskUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: TaskWhereUniqueInput
+    data: XOR<TaskUpdateWithoutTeacherInput, TaskUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type TaskUpdateManyWithWhereWithoutTeacherInput = {
+    where: TaskScalarWhereInput
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type TaskScalarWhereInput = {
+    AND?: TaskScalarWhereInput | TaskScalarWhereInput[]
+    OR?: TaskScalarWhereInput[]
+    NOT?: TaskScalarWhereInput | TaskScalarWhereInput[]
+    id?: IntFilter<"Task"> | number
+    title?: StringFilter<"Task"> | string
+    description?: StringFilter<"Task"> | string
+    category?: StringFilter<"Task"> | string
+    priority?: StringFilter<"Task"> | string
+    deadline?: DateTimeNullableFilter<"Task"> | Date | string | null
+    creatorId?: IntFilter<"Task"> | number
+    requireSubmissionNote?: BoolFilter<"Task"> | boolean
+    requireFileUpload?: BoolFilter<"Task"> | boolean
+    requireUrl?: BoolFilter<"Task"> | boolean
+    requireExternalConfirmation?: BoolFilter<"Task"> | boolean
+    externalConfirmationPrompt?: StringNullableFilter<"Task"> | string | null
+    requireMentorApproval?: BoolFilter<"Task"> | boolean
+    isCancelled?: BoolFilter<"Task"> | boolean
+    createdAt?: DateTimeFilter<"Task"> | Date | string
+    updatedAt?: DateTimeFilter<"Task"> | Date | string
+    checklist?: JsonNullableFilter<"Task">
+    linkedAssignmentId?: IntNullableFilter<"Task"> | number | null
+    linkedMeetingId?: IntNullableFilter<"Task"> | number | null
+    linkedResourceId?: IntNullableFilter<"Task"> | number | null
+    nextOccurrenceCreatedAt?: DateTimeNullableFilter<"Task"> | Date | string | null
+    recurrence?: StringNullableFilter<"Task"> | string | null
+    recurrenceEndsAt?: DateTimeNullableFilter<"Task"> | Date | string | null
+    seriesId?: IntNullableFilter<"Task"> | number | null
+    templateId?: IntNullableFilter<"Task"> | number | null
+  }
+
+  export type TaskTemplateUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: TaskTemplateWhereUniqueInput
+    update: XOR<TaskTemplateUpdateWithoutTeacherInput, TaskTemplateUncheckedUpdateWithoutTeacherInput>
+    create: XOR<TaskTemplateCreateWithoutTeacherInput, TaskTemplateUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type TaskTemplateUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: TaskTemplateWhereUniqueInput
+    data: XOR<TaskTemplateUpdateWithoutTeacherInput, TaskTemplateUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type TaskTemplateUpdateManyWithWhereWithoutTeacherInput = {
+    where: TaskTemplateScalarWhereInput
+    data: XOR<TaskTemplateUpdateManyMutationInput, TaskTemplateUncheckedUpdateManyWithoutTeacherInput>
+  }
+
+  export type TaskTemplateScalarWhereInput = {
+    AND?: TaskTemplateScalarWhereInput | TaskTemplateScalarWhereInput[]
+    OR?: TaskTemplateScalarWhereInput[]
+    NOT?: TaskTemplateScalarWhereInput | TaskTemplateScalarWhereInput[]
+    id?: IntFilter<"TaskTemplate"> | number
+    teacherId?: IntFilter<"TaskTemplate"> | number
+    name?: StringFilter<"TaskTemplate"> | string
+    title?: StringFilter<"TaskTemplate"> | string
+    description?: StringFilter<"TaskTemplate"> | string
+    category?: StringFilter<"TaskTemplate"> | string
+    priority?: StringFilter<"TaskTemplate"> | string
+    defaultDeadlineDays?: IntNullableFilter<"TaskTemplate"> | number | null
+    requireSubmissionNote?: BoolFilter<"TaskTemplate"> | boolean
+    requireFileUpload?: BoolFilter<"TaskTemplate"> | boolean
+    requireUrl?: BoolFilter<"TaskTemplate"> | boolean
+    requireExternalConfirmation?: BoolFilter<"TaskTemplate"> | boolean
+    externalConfirmationPrompt?: StringNullableFilter<"TaskTemplate"> | string | null
+    requireMentorApproval?: BoolFilter<"TaskTemplate"> | boolean
+    checklist?: JsonNullableFilter<"TaskTemplate">
+    recurrence?: StringNullableFilter<"TaskTemplate"> | string | null
+    usageCount?: IntFilter<"TaskTemplate"> | number
+    createdAt?: DateTimeFilter<"TaskTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"TaskTemplate"> | Date | string
+  }
+
   export type TeacherStudentUpsertWithWhereUniqueWithoutTeacherInput = {
     where: TeacherStudentWhereUniqueInput
     update: XOR<TeacherStudentUpdateWithoutTeacherInput, TeacherStudentUncheckedUpdateWithoutTeacherInput>
@@ -67962,6 +79391,7 @@ export namespace Prisma {
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
     AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
+    Task?: TaskCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateWithoutTargetStudentInput = {
@@ -67982,6 +79412,7 @@ export namespace Prisma {
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
     AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
+    Task?: TaskUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentCreateOrConnectWithoutTargetStudentInput = {
@@ -68459,6 +79890,63 @@ export namespace Prisma {
 
   export type StudentSubmissionCreateManyStudentInputEnvelope = {
     data: StudentSubmissionCreateManyStudentInput | StudentSubmissionCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StudentTaskCreateWithoutStudentInput = {
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
+    Task: TaskCreateNestedOneWithoutStudentTaskInput
+    TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskUncheckedCreateWithoutStudentInput = {
+    id?: number
+    taskId: number
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskCreateOrConnectWithoutStudentInput = {
+    where: StudentTaskWhereUniqueInput
+    create: XOR<StudentTaskCreateWithoutStudentInput, StudentTaskUncheckedCreateWithoutStudentInput>
+  }
+
+  export type StudentTaskCreateManyStudentInputEnvelope = {
+    data: StudentTaskCreateManyStudentInput | StudentTaskCreateManyStudentInput[]
     skipDuplicates?: boolean
   }
 
@@ -68967,6 +80455,22 @@ export namespace Prisma {
     teacherIds?: IntNullableListFilter<"StudentSubmission">
   }
 
+  export type StudentTaskUpsertWithWhereUniqueWithoutStudentInput = {
+    where: StudentTaskWhereUniqueInput
+    update: XOR<StudentTaskUpdateWithoutStudentInput, StudentTaskUncheckedUpdateWithoutStudentInput>
+    create: XOR<StudentTaskCreateWithoutStudentInput, StudentTaskUncheckedCreateWithoutStudentInput>
+  }
+
+  export type StudentTaskUpdateWithWhereUniqueWithoutStudentInput = {
+    where: StudentTaskWhereUniqueInput
+    data: XOR<StudentTaskUpdateWithoutStudentInput, StudentTaskUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type StudentTaskUpdateManyWithWhereWithoutStudentInput = {
+    where: StudentTaskScalarWhereInput
+    data: XOR<StudentTaskUpdateManyMutationInput, StudentTaskUncheckedUpdateManyWithoutStudentInput>
+  }
+
   export type SubmissionUpsertWithWhereUniqueWithoutStudentInput = {
     where: SubmissionWhereUniqueInput
     update: XOR<SubmissionUpdateWithoutStudentInput, SubmissionUncheckedUpdateWithoutStudentInput>
@@ -69094,6 +80598,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
   }
@@ -69126,6 +80631,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
   }
@@ -69155,6 +80661,9 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
   }
 
   export type TeacherUncheckedCreateWithoutStudentsInput = {
@@ -69178,6 +80687,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
   }
 
   export type TeacherCreateOrConnectWithoutStudentsInput = {
@@ -69223,6 +80735,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
   }
@@ -69255,6 +80768,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
   }
@@ -69290,6 +80804,9 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
   }
 
   export type TeacherUncheckedUpdateWithoutStudentsInput = {
@@ -69313,6 +80830,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
   export type ClassScheduleCreateWithoutGroupInput = {
@@ -69397,6 +80917,9 @@ export namespace Prisma {
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
@@ -69420,6 +80943,9 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -69495,6 +81021,9 @@ export namespace Prisma {
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
 
@@ -69518,6 +81047,9 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -69585,6 +81117,7 @@ export namespace Prisma {
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -69617,6 +81150,7 @@ export namespace Prisma {
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -69692,6 +81226,7 @@ export namespace Prisma {
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -69724,6 +81259,7 @@ export namespace Prisma {
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -69755,6 +81291,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -69787,6 +81324,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -69816,6 +81354,9 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
@@ -69839,6 +81380,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -69928,6 +81472,71 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TaskCreateWithoutAssignmentInput = {
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
+    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
+    Resource?: ResourceCreateNestedOneWithoutTaskInput
+    TaskTemplate?: TaskTemplateCreateNestedOneWithoutTaskInput
+  }
+
+  export type TaskUncheckedCreateWithoutAssignmentInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedMeetingId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
+  }
+
+  export type TaskCreateOrConnectWithoutAssignmentInput = {
+    where: TaskWhereUniqueInput
+    create: XOR<TaskCreateWithoutAssignmentInput, TaskUncheckedCreateWithoutAssignmentInput>
+  }
+
+  export type TaskCreateManyAssignmentInputEnvelope = {
+    data: TaskCreateManyAssignmentInput | TaskCreateManyAssignmentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type StudentUpsertWithoutAssignedAssignmentsInput = {
     update: XOR<StudentUpdateWithoutAssignedAssignmentsInput, StudentUncheckedUpdateWithoutAssignedAssignmentsInput>
     create: XOR<StudentCreateWithoutAssignedAssignmentsInput, StudentUncheckedCreateWithoutAssignedAssignmentsInput>
@@ -69965,6 +81574,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -69997,6 +81607,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -70032,6 +81643,9 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
 
@@ -70055,6 +81669,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -70116,6 +81733,22 @@ export namespace Prisma {
     data: XOR<SubmissionUpdateManyMutationInput, SubmissionUncheckedUpdateManyWithoutAssignmentInput>
   }
 
+  export type TaskUpsertWithWhereUniqueWithoutAssignmentInput = {
+    where: TaskWhereUniqueInput
+    update: XOR<TaskUpdateWithoutAssignmentInput, TaskUncheckedUpdateWithoutAssignmentInput>
+    create: XOR<TaskCreateWithoutAssignmentInput, TaskUncheckedCreateWithoutAssignmentInput>
+  }
+
+  export type TaskUpdateWithWhereUniqueWithoutAssignmentInput = {
+    where: TaskWhereUniqueInput
+    data: XOR<TaskUpdateWithoutAssignmentInput, TaskUncheckedUpdateWithoutAssignmentInput>
+  }
+
+  export type TaskUpdateManyWithWhereWithoutAssignmentInput = {
+    where: TaskScalarWhereInput
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutAssignmentInput>
+  }
+
   export type AssignmentCreateWithoutSubmissionsInput = {
     title: string
     description: string
@@ -70133,6 +81766,7 @@ export namespace Prisma {
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
     AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
+    Task?: TaskCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateWithoutSubmissionsInput = {
@@ -70153,6 +81787,7 @@ export namespace Prisma {
     dueDateTimezone?: string | null
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
     AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
+    Task?: TaskUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentCreateOrConnectWithoutSubmissionsInput = {
@@ -70187,6 +81822,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
   }
@@ -70219,6 +81855,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
   }
@@ -70256,6 +81893,7 @@ export namespace Prisma {
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
     AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutSubmissionsInput = {
@@ -70276,6 +81914,7 @@ export namespace Prisma {
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
     AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type StudentUpsertWithoutSubmissionsInput = {
@@ -70316,6 +81955,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
   }
@@ -70348,6 +81988,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
   }
@@ -70378,6 +82019,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -70410,6 +82052,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -70516,6 +82159,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -70548,6 +82192,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -70609,6 +82254,9 @@ export namespace Prisma {
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
@@ -70632,6 +82280,9 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -70660,6 +82311,71 @@ export namespace Prisma {
 
   export type StudentResourceCreateManyResourceInputEnvelope = {
     data: StudentResourceCreateManyResourceInput | StudentResourceCreateManyResourceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TaskCreateWithoutResourceInput = {
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
+    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    Assignment?: AssignmentCreateNestedOneWithoutTaskInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
+    TaskTemplate?: TaskTemplateCreateNestedOneWithoutTaskInput
+  }
+
+  export type TaskUncheckedCreateWithoutResourceInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedMeetingId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
+  }
+
+  export type TaskCreateOrConnectWithoutResourceInput = {
+    where: TaskWhereUniqueInput
+    create: XOR<TaskCreateWithoutResourceInput, TaskUncheckedCreateWithoutResourceInput>
+  }
+
+  export type TaskCreateManyResourceInputEnvelope = {
+    data: TaskCreateManyResourceInput | TaskCreateManyResourceInput[]
     skipDuplicates?: boolean
   }
 
@@ -70709,6 +82425,9 @@ export namespace Prisma {
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
 
@@ -70732,6 +82451,9 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -70751,6 +82473,22 @@ export namespace Prisma {
     data: XOR<StudentResourceUpdateManyMutationInput, StudentResourceUncheckedUpdateManyWithoutResourceInput>
   }
 
+  export type TaskUpsertWithWhereUniqueWithoutResourceInput = {
+    where: TaskWhereUniqueInput
+    update: XOR<TaskUpdateWithoutResourceInput, TaskUncheckedUpdateWithoutResourceInput>
+    create: XOR<TaskCreateWithoutResourceInput, TaskUncheckedCreateWithoutResourceInput>
+  }
+
+  export type TaskUpdateWithWhereUniqueWithoutResourceInput = {
+    where: TaskWhereUniqueInput
+    data: XOR<TaskUpdateWithoutResourceInput, TaskUncheckedUpdateWithoutResourceInput>
+  }
+
+  export type TaskUpdateManyWithWhereWithoutResourceInput = {
+    where: TaskScalarWhereInput
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutResourceInput>
+  }
+
   export type AssignmentCreateWithoutResourcesInput = {
     title: string
     description: string
@@ -70768,6 +82506,7 @@ export namespace Prisma {
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
     AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
+    Task?: TaskCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateWithoutResourcesInput = {
@@ -70788,6 +82527,7 @@ export namespace Prisma {
     dueDateTimezone?: string | null
     AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
+    Task?: TaskUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentCreateOrConnectWithoutResourcesInput = {
@@ -70811,6 +82551,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     teacher: TeacherCreateNestedOneWithoutResourcesInput
     studentAssignments?: StudentResourceCreateNestedManyWithoutResourceInput
+    Task?: TaskCreateNestedManyWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutAssignmentLinksInput = {
@@ -70830,6 +82571,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     studentAssignments?: StudentResourceUncheckedCreateNestedManyWithoutResourceInput
+    Task?: TaskUncheckedCreateNestedManyWithoutResourceInput
   }
 
   export type ResourceCreateOrConnectWithoutAssignmentLinksInput = {
@@ -70865,6 +82607,7 @@ export namespace Prisma {
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
     AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutResourcesInput = {
@@ -70885,6 +82628,7 @@ export namespace Prisma {
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type ResourceUpsertWithoutAssignmentLinksInput = {
@@ -70914,6 +82658,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     teacher?: TeacherUpdateOneRequiredWithoutResourcesNestedInput
     studentAssignments?: StudentResourceUpdateManyWithoutResourceNestedInput
+    Task?: TaskUpdateManyWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutAssignmentLinksInput = {
@@ -70933,6 +82678,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     studentAssignments?: StudentResourceUncheckedUpdateManyWithoutResourceNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutResourceNestedInput
   }
 
   export type ResourceCreateWithoutStudentAssignmentsInput = {
@@ -70951,6 +82697,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     assignmentLinks?: AssignmentResourceCreateNestedManyWithoutResourceInput
     teacher: TeacherCreateNestedOneWithoutResourcesInput
+    Task?: TaskCreateNestedManyWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutStudentAssignmentsInput = {
@@ -70970,6 +82717,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     assignmentLinks?: AssignmentResourceUncheckedCreateNestedManyWithoutResourceInput
+    Task?: TaskUncheckedCreateNestedManyWithoutResourceInput
   }
 
   export type ResourceCreateOrConnectWithoutStudentAssignmentsInput = {
@@ -71003,6 +82751,7 @@ export namespace Prisma {
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -71035,6 +82784,7 @@ export namespace Prisma {
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -71072,6 +82822,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignmentLinks?: AssignmentResourceUpdateManyWithoutResourceNestedInput
     teacher?: TeacherUpdateOneRequiredWithoutResourcesNestedInput
+    Task?: TaskUpdateManyWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutStudentAssignmentsInput = {
@@ -71091,6 +82842,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignmentLinks?: AssignmentResourceUncheckedUpdateManyWithoutResourceNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutResourceNestedInput
   }
 
   export type StudentUpsertWithoutAssignedResourcesInput = {
@@ -71130,6 +82882,7 @@ export namespace Prisma {
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -71162,6 +82915,7 @@ export namespace Prisma {
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -71193,6 +82947,7 @@ export namespace Prisma {
     parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -71225,6 +82980,7 @@ export namespace Prisma {
     Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -71297,6 +83053,7 @@ export namespace Prisma {
     parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -71329,6 +83086,7 @@ export namespace Prisma {
     Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -71401,6 +83159,9 @@ export namespace Prisma {
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
@@ -71424,6 +83185,9 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -71500,6 +83264,9 @@ export namespace Prisma {
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
 
@@ -71523,6 +83290,9 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -71574,6 +83344,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -71606,6 +83377,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -71635,6 +83407,9 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
@@ -71658,6 +83433,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -71681,6 +83459,7 @@ export namespace Prisma {
     updatedAt: Date | string
     Teacher: TeacherCreateNestedOneWithoutMeetingMinuteMeetingInput
     MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutMeetingMinuteMeetingInput
+    Task?: TaskCreateNestedManyWithoutMeetingMinuteMeetingInput
   }
 
   export type MeetingMinuteMeetingUncheckedCreateWithoutClassScheduleInput = {
@@ -71699,6 +83478,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
+    Task?: TaskUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
   }
 
   export type MeetingMinuteMeetingCreateOrConnectWithoutClassScheduleInput = {
@@ -71776,6 +83556,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -71808,6 +83589,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -71843,6 +83625,9 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
 
@@ -71866,6 +83651,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -71935,6 +83723,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -71967,6 +83756,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -72044,6 +83834,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -72076,6 +83867,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -72108,6 +83900,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
   }
@@ -72140,6 +83933,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
   }
@@ -72187,6 +83981,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
   }
@@ -72219,6 +84014,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
   }
@@ -72249,6 +84045,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -72281,6 +84078,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -72352,6 +84150,9 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
@@ -72375,6 +84176,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -72413,6 +84217,9 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
 
@@ -72436,6 +84243,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -72465,6 +84275,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -72497,6 +84308,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -72526,6 +84338,9 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
@@ -72549,6 +84364,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -72594,6 +84412,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -72626,6 +84445,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -72661,6 +84481,9 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
 
@@ -72684,6 +84507,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -73107,6 +84933,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -73139,6 +84966,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -73216,6 +85044,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -73248,6 +85077,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -73279,6 +85109,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -73311,6 +85142,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -73358,6 +85190,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -73390,6 +85223,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -73412,6 +85246,7 @@ export namespace Prisma {
     teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
     resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
+    Task?: TaskCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentUncheckedCreateWithoutAssignmentTargetInput = {
@@ -73432,6 +85267,7 @@ export namespace Prisma {
     dueDateTimezone?: string | null
     resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
+    Task?: TaskUncheckedCreateNestedManyWithoutAssignmentInput
   }
 
   export type AssignmentCreateOrConnectWithoutAssignmentTargetInput = {
@@ -73465,6 +85301,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -73497,6 +85334,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -73535,6 +85373,7 @@ export namespace Prisma {
     teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutAssignmentTargetInput = {
@@ -73555,6 +85394,7 @@ export namespace Prisma {
     dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type StudentUpsertWithoutAssignmentTargetInput = {
@@ -73594,6 +85434,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -73626,6 +85467,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -73708,6 +85550,9 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
   }
 
@@ -73731,6 +85576,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
   }
 
@@ -73773,6 +85621,71 @@ export namespace Prisma {
 
   export type MeetingMinuteRequestCreateManyMeetingMinuteMeetingInputEnvelope = {
     data: MeetingMinuteRequestCreateManyMeetingMinuteMeetingInput | MeetingMinuteRequestCreateManyMeetingMinuteMeetingInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TaskCreateWithoutMeetingMinuteMeetingInput = {
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
+    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    Assignment?: AssignmentCreateNestedOneWithoutTaskInput
+    Resource?: ResourceCreateNestedOneWithoutTaskInput
+    TaskTemplate?: TaskTemplateCreateNestedOneWithoutTaskInput
+  }
+
+  export type TaskUncheckedCreateWithoutMeetingMinuteMeetingInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
+  }
+
+  export type TaskCreateOrConnectWithoutMeetingMinuteMeetingInput = {
+    where: TaskWhereUniqueInput
+    create: XOR<TaskCreateWithoutMeetingMinuteMeetingInput, TaskUncheckedCreateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type TaskCreateManyMeetingMinuteMeetingInputEnvelope = {
+    data: TaskCreateManyMeetingMinuteMeetingInput | TaskCreateManyMeetingMinuteMeetingInput[]
     skipDuplicates?: boolean
   }
 
@@ -73870,6 +85783,9 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
   }
 
@@ -73893,6 +85809,9 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
@@ -73912,6 +85831,22 @@ export namespace Prisma {
     data: XOR<MeetingMinuteRequestUpdateManyMutationInput, MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingInput>
   }
 
+  export type TaskUpsertWithWhereUniqueWithoutMeetingMinuteMeetingInput = {
+    where: TaskWhereUniqueInput
+    update: XOR<TaskUpdateWithoutMeetingMinuteMeetingInput, TaskUncheckedUpdateWithoutMeetingMinuteMeetingInput>
+    create: XOR<TaskCreateWithoutMeetingMinuteMeetingInput, TaskUncheckedCreateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type TaskUpdateWithWhereUniqueWithoutMeetingMinuteMeetingInput = {
+    where: TaskWhereUniqueInput
+    data: XOR<TaskUpdateWithoutMeetingMinuteMeetingInput, TaskUncheckedUpdateWithoutMeetingMinuteMeetingInput>
+  }
+
+  export type TaskUpdateManyWithWhereWithoutMeetingMinuteMeetingInput = {
+    where: TaskScalarWhereInput
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutMeetingMinuteMeetingInput>
+  }
+
   export type MeetingMinuteMeetingCreateWithoutMeetingMinuteRequestInput = {
     source?: $Enums.MeetingSource
     googleCalendarEventId?: string | null
@@ -73927,6 +85862,7 @@ export namespace Prisma {
     updatedAt: Date | string
     ClassSchedule?: ClassScheduleCreateNestedOneWithoutMeetingMinuteMeetingInput
     Teacher: TeacherCreateNestedOneWithoutMeetingMinuteMeetingInput
+    Task?: TaskCreateNestedManyWithoutMeetingMinuteMeetingInput
   }
 
   export type MeetingMinuteMeetingUncheckedCreateWithoutMeetingMinuteRequestInput = {
@@ -73945,6 +85881,7 @@ export namespace Prisma {
     attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt: Date | string
+    Task?: TaskUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
   }
 
   export type MeetingMinuteMeetingCreateOrConnectWithoutMeetingMinuteRequestInput = {
@@ -73978,6 +85915,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutStudentInput
     submissions?: SubmissionCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
@@ -74010,6 +85948,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
     assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
     studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutStudentInput
     submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
     Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
@@ -74046,6 +85985,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClassSchedule?: ClassScheduleUpdateOneWithoutMeetingMinuteMeetingNestedInput
     Teacher?: TeacherUpdateOneRequiredWithoutMeetingMinuteMeetingNestedInput
+    Task?: TaskUpdateManyWithoutMeetingMinuteMeetingNestedInput
   }
 
   export type MeetingMinuteMeetingUncheckedUpdateWithoutMeetingMinuteRequestInput = {
@@ -74064,6 +86004,7 @@ export namespace Prisma {
     attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Task?: TaskUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
   }
 
   export type StudentUpsertWithoutMeetingMinuteRequestInput = {
@@ -74103,6 +86044,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -74135,9 +86077,1515 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type TeacherCreateWithoutStudentTaskInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherUncheckedCreateWithoutStudentTaskInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherCreateOrConnectWithoutStudentTaskInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutStudentTaskInput, TeacherUncheckedCreateWithoutStudentTaskInput>
+  }
+
+  export type StudentCreateWithoutStudentTaskInput = {
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutStudentInput
+    Blog?: BlogCreateNestedManyWithoutStudentInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutStudentInput
+    Payment?: PaymentCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportCreateNestedManyWithoutStudentInput
+    Research?: ResearchCreateNestedManyWithoutStudentInput
+    parentAccount?: ParentAccountCreateNestedOneWithoutStudentsInput
+    groupMemberships?: StudentGroupMemberCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutStudentTaskInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    grade: string
+    schoolName: string
+    parentName: string
+    parentEmail: string
+    parentPhone: string
+    program: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    parentAccountId?: number | null
+    graduationYear?: number | null
+    assignedAssignments?: AssignmentUncheckedCreateNestedManyWithoutTargetStudentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutStudentInput
+    Blog?: BlogUncheckedCreateNestedManyWithoutStudentInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutStudentInput
+    enrollments?: EnrollmentUncheckedCreateNestedManyWithoutStudentInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutStudentInput
+    Payment?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutStudentInput
+    Research?: ResearchUncheckedCreateNestedManyWithoutStudentInput
+    groupMemberships?: StudentGroupMemberUncheckedCreateNestedManyWithoutStudentInput
+    assignedResources?: StudentResourceUncheckedCreateNestedManyWithoutStudentInput
+    studentSubmissions?: StudentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherLinks?: TeacherStudentUncheckedCreateNestedManyWithoutStudentInput
+    Testimonial?: TestimonialUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutStudentTaskInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutStudentTaskInput, StudentUncheckedCreateWithoutStudentTaskInput>
+  }
+
+  export type TaskCreateWithoutStudentTaskInput = {
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    Assignment?: AssignmentCreateNestedOneWithoutTaskInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
+    Resource?: ResourceCreateNestedOneWithoutTaskInput
+    TaskTemplate?: TaskTemplateCreateNestedOneWithoutTaskInput
+  }
+
+  export type TaskUncheckedCreateWithoutStudentTaskInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedMeetingId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+  }
+
+  export type TaskCreateOrConnectWithoutStudentTaskInput = {
+    where: TaskWhereUniqueInput
+    create: XOR<TaskCreateWithoutStudentTaskInput, TaskUncheckedCreateWithoutStudentTaskInput>
+  }
+
+  export type TaskActivityCreateWithoutStudentTaskInput = {
+    action: string
+    details?: string | null
+    performedById: number
+    performedByRole: string
+    performedByName: string
+    createdAt?: Date | string
+  }
+
+  export type TaskActivityUncheckedCreateWithoutStudentTaskInput = {
+    id?: number
+    action: string
+    details?: string | null
+    performedById: number
+    performedByRole: string
+    performedByName: string
+    createdAt?: Date | string
+  }
+
+  export type TaskActivityCreateOrConnectWithoutStudentTaskInput = {
+    where: TaskActivityWhereUniqueInput
+    create: XOR<TaskActivityCreateWithoutStudentTaskInput, TaskActivityUncheckedCreateWithoutStudentTaskInput>
+  }
+
+  export type TaskActivityCreateManyStudentTaskInputEnvelope = {
+    data: TaskActivityCreateManyStudentTaskInput | TaskActivityCreateManyStudentTaskInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TaskCommentCreateWithoutStudentTaskInput = {
+    authorId: number
+    authorRole: string
+    authorName: string
+    content: string
+    attachmentUrl?: string | null
+    attachmentName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TaskCommentUncheckedCreateWithoutStudentTaskInput = {
+    id?: number
+    authorId: number
+    authorRole: string
+    authorName: string
+    content: string
+    attachmentUrl?: string | null
+    attachmentName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TaskCommentCreateOrConnectWithoutStudentTaskInput = {
+    where: TaskCommentWhereUniqueInput
+    create: XOR<TaskCommentCreateWithoutStudentTaskInput, TaskCommentUncheckedCreateWithoutStudentTaskInput>
+  }
+
+  export type TaskCommentCreateManyStudentTaskInputEnvelope = {
+    data: TaskCommentCreateManyStudentTaskInput | TaskCommentCreateManyStudentTaskInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TeacherUpsertWithoutStudentTaskInput = {
+    update: XOR<TeacherUpdateWithoutStudentTaskInput, TeacherUncheckedUpdateWithoutStudentTaskInput>
+    create: XOR<TeacherCreateWithoutStudentTaskInput, TeacherUncheckedCreateWithoutStudentTaskInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutStudentTaskInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutStudentTaskInput, TeacherUncheckedUpdateWithoutStudentTaskInput>
+  }
+
+  export type TeacherUpdateWithoutStudentTaskInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutStudentTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type StudentUpsertWithoutStudentTaskInput = {
+    update: XOR<StudentUpdateWithoutStudentTaskInput, StudentUncheckedUpdateWithoutStudentTaskInput>
+    create: XOR<StudentCreateWithoutStudentTaskInput, StudentUncheckedCreateWithoutStudentTaskInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutStudentTaskInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutStudentTaskInput, StudentUncheckedUpdateWithoutStudentTaskInput>
+  }
+
+  export type StudentUpdateWithoutStudentTaskInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUpdateManyWithoutStudentNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUpdateManyWithoutStudentNestedInput
+    parentAccount?: ParentAccountUpdateOneWithoutStudentsNestedInput
+    groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutStudentTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: StringFieldUpdateOperationsInput | string
+    schoolName?: StringFieldUpdateOperationsInput | string
+    parentName?: StringFieldUpdateOperationsInput | string
+    parentEmail?: StringFieldUpdateOperationsInput | string
+    parentPhone?: StringFieldUpdateOperationsInput | string
+    program?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    parentAccountId?: NullableIntFieldUpdateOperationsInput | number | null
+    graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+    assignedAssignments?: AssignmentUncheckedUpdateManyWithoutTargetStudentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutStudentNestedInput
+    Blog?: BlogUncheckedUpdateManyWithoutStudentNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutStudentNestedInput
+    enrollments?: EnrollmentUncheckedUpdateManyWithoutStudentNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutStudentNestedInput
+    Payment?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutStudentNestedInput
+    Research?: ResearchUncheckedUpdateManyWithoutStudentNestedInput
+    groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
+    assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
+    studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
+    Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type TaskUpsertWithoutStudentTaskInput = {
+    update: XOR<TaskUpdateWithoutStudentTaskInput, TaskUncheckedUpdateWithoutStudentTaskInput>
+    create: XOR<TaskCreateWithoutStudentTaskInput, TaskUncheckedCreateWithoutStudentTaskInput>
+    where?: TaskWhereInput
+  }
+
+  export type TaskUpdateToOneWithWhereWithoutStudentTaskInput = {
+    where?: TaskWhereInput
+    data: XOR<TaskUpdateWithoutStudentTaskInput, TaskUncheckedUpdateWithoutStudentTaskInput>
+  }
+
+  export type TaskUpdateWithoutStudentTaskInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
+    Resource?: ResourceUpdateOneWithoutTaskNestedInput
+    TaskTemplate?: TaskTemplateUpdateOneWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateWithoutStudentTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type TaskActivityUpsertWithWhereUniqueWithoutStudentTaskInput = {
+    where: TaskActivityWhereUniqueInput
+    update: XOR<TaskActivityUpdateWithoutStudentTaskInput, TaskActivityUncheckedUpdateWithoutStudentTaskInput>
+    create: XOR<TaskActivityCreateWithoutStudentTaskInput, TaskActivityUncheckedCreateWithoutStudentTaskInput>
+  }
+
+  export type TaskActivityUpdateWithWhereUniqueWithoutStudentTaskInput = {
+    where: TaskActivityWhereUniqueInput
+    data: XOR<TaskActivityUpdateWithoutStudentTaskInput, TaskActivityUncheckedUpdateWithoutStudentTaskInput>
+  }
+
+  export type TaskActivityUpdateManyWithWhereWithoutStudentTaskInput = {
+    where: TaskActivityScalarWhereInput
+    data: XOR<TaskActivityUpdateManyMutationInput, TaskActivityUncheckedUpdateManyWithoutStudentTaskInput>
+  }
+
+  export type TaskActivityScalarWhereInput = {
+    AND?: TaskActivityScalarWhereInput | TaskActivityScalarWhereInput[]
+    OR?: TaskActivityScalarWhereInput[]
+    NOT?: TaskActivityScalarWhereInput | TaskActivityScalarWhereInput[]
+    id?: IntFilter<"TaskActivity"> | number
+    studentTaskId?: IntFilter<"TaskActivity"> | number
+    action?: StringFilter<"TaskActivity"> | string
+    details?: StringNullableFilter<"TaskActivity"> | string | null
+    performedById?: IntFilter<"TaskActivity"> | number
+    performedByRole?: StringFilter<"TaskActivity"> | string
+    performedByName?: StringFilter<"TaskActivity"> | string
+    createdAt?: DateTimeFilter<"TaskActivity"> | Date | string
+  }
+
+  export type TaskCommentUpsertWithWhereUniqueWithoutStudentTaskInput = {
+    where: TaskCommentWhereUniqueInput
+    update: XOR<TaskCommentUpdateWithoutStudentTaskInput, TaskCommentUncheckedUpdateWithoutStudentTaskInput>
+    create: XOR<TaskCommentCreateWithoutStudentTaskInput, TaskCommentUncheckedCreateWithoutStudentTaskInput>
+  }
+
+  export type TaskCommentUpdateWithWhereUniqueWithoutStudentTaskInput = {
+    where: TaskCommentWhereUniqueInput
+    data: XOR<TaskCommentUpdateWithoutStudentTaskInput, TaskCommentUncheckedUpdateWithoutStudentTaskInput>
+  }
+
+  export type TaskCommentUpdateManyWithWhereWithoutStudentTaskInput = {
+    where: TaskCommentScalarWhereInput
+    data: XOR<TaskCommentUpdateManyMutationInput, TaskCommentUncheckedUpdateManyWithoutStudentTaskInput>
+  }
+
+  export type TaskCommentScalarWhereInput = {
+    AND?: TaskCommentScalarWhereInput | TaskCommentScalarWhereInput[]
+    OR?: TaskCommentScalarWhereInput[]
+    NOT?: TaskCommentScalarWhereInput | TaskCommentScalarWhereInput[]
+    id?: IntFilter<"TaskComment"> | number
+    studentTaskId?: IntFilter<"TaskComment"> | number
+    authorId?: IntFilter<"TaskComment"> | number
+    authorRole?: StringFilter<"TaskComment"> | string
+    authorName?: StringFilter<"TaskComment"> | string
+    content?: StringFilter<"TaskComment"> | string
+    attachmentUrl?: StringNullableFilter<"TaskComment"> | string | null
+    attachmentName?: StringNullableFilter<"TaskComment"> | string | null
+    createdAt?: DateTimeFilter<"TaskComment"> | Date | string
+  }
+
+  export type StudentTaskCreateWithoutTaskInput = {
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
+    Student: StudentCreateNestedOneWithoutStudentTaskInput
+    TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskUncheckedCreateWithoutTaskInput = {
+    id?: number
+    studentId: number
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskCreateOrConnectWithoutTaskInput = {
+    where: StudentTaskWhereUniqueInput
+    create: XOR<StudentTaskCreateWithoutTaskInput, StudentTaskUncheckedCreateWithoutTaskInput>
+  }
+
+  export type StudentTaskCreateManyTaskInputEnvelope = {
+    data: StudentTaskCreateManyTaskInput | StudentTaskCreateManyTaskInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TeacherCreateWithoutTaskInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherUncheckedCreateWithoutTaskInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherCreateOrConnectWithoutTaskInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutTaskInput, TeacherUncheckedCreateWithoutTaskInput>
+  }
+
+  export type AssignmentCreateWithoutTaskInput = {
+    title: string
+    description: string
+    instructions?: string | null
+    program: string
+    subject: string
+    dueDate: Date | string
+    totalPoints?: number
+    isActive?: boolean
+    allowLateSubmission?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    dueDateTimezone?: string | null
+    targetStudent?: StudentCreateNestedOneWithoutAssignedAssignmentsInput
+    teacher?: TeacherCreateNestedOneWithoutAssignmentsInput
+    resources?: AssignmentResourceCreateNestedManyWithoutAssignmentInput
+    AssignmentTarget?: AssignmentTargetCreateNestedManyWithoutAssignmentInput
+    submissions?: SubmissionCreateNestedManyWithoutAssignmentInput
+  }
+
+  export type AssignmentUncheckedCreateWithoutTaskInput = {
+    id?: number
+    title: string
+    description: string
+    instructions?: string | null
+    program: string
+    subject: string
+    dueDate: Date | string
+    totalPoints?: number
+    isActive?: boolean
+    allowLateSubmission?: boolean
+    teacherId?: number
+    targetStudentId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    dueDateTimezone?: string | null
+    resources?: AssignmentResourceUncheckedCreateNestedManyWithoutAssignmentInput
+    AssignmentTarget?: AssignmentTargetUncheckedCreateNestedManyWithoutAssignmentInput
+    submissions?: SubmissionUncheckedCreateNestedManyWithoutAssignmentInput
+  }
+
+  export type AssignmentCreateOrConnectWithoutTaskInput = {
+    where: AssignmentWhereUniqueInput
+    create: XOR<AssignmentCreateWithoutTaskInput, AssignmentUncheckedCreateWithoutTaskInput>
+  }
+
+  export type MeetingMinuteMeetingCreateWithoutTaskInput = {
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    ClassSchedule?: ClassScheduleCreateNestedOneWithoutMeetingMinuteMeetingInput
+    Teacher: TeacherCreateNestedOneWithoutMeetingMinuteMeetingInput
+    MeetingMinuteRequest?: MeetingMinuteRequestCreateNestedManyWithoutMeetingMinuteMeetingInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedCreateWithoutTaskInput = {
+    id?: number
+    teacherId: number
+    source?: $Enums.MeetingSource
+    googleCalendarEventId?: string | null
+    classScheduleId?: number | null
+    title: string
+    description?: string | null
+    meetingLink?: string | null
+    location?: string | null
+    startDateTime: Date | string
+    endDateTime: Date | string
+    timezone: string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedCreateNestedManyWithoutMeetingMinuteMeetingInput
+  }
+
+  export type MeetingMinuteMeetingCreateOrConnectWithoutTaskInput = {
+    where: MeetingMinuteMeetingWhereUniqueInput
+    create: XOR<MeetingMinuteMeetingCreateWithoutTaskInput, MeetingMinuteMeetingUncheckedCreateWithoutTaskInput>
+  }
+
+  export type ResourceCreateWithoutTaskInput = {
+    title: string
+    description?: string | null
+    type: string
+    fileUrl?: string | null
+    linkUrl?: string | null
+    fileName?: string | null
+    fileSize?: number | null
+    program: string
+    subject: string
+    grade: string
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignmentLinks?: AssignmentResourceCreateNestedManyWithoutResourceInput
+    teacher: TeacherCreateNestedOneWithoutResourcesInput
+    studentAssignments?: StudentResourceCreateNestedManyWithoutResourceInput
+  }
+
+  export type ResourceUncheckedCreateWithoutTaskInput = {
+    id?: number
+    title: string
+    description?: string | null
+    type: string
+    fileUrl?: string | null
+    linkUrl?: string | null
+    fileName?: string | null
+    fileSize?: number | null
+    program: string
+    subject: string
+    grade: string
+    teacherId: number
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    assignmentLinks?: AssignmentResourceUncheckedCreateNestedManyWithoutResourceInput
+    studentAssignments?: StudentResourceUncheckedCreateNestedManyWithoutResourceInput
+  }
+
+  export type ResourceCreateOrConnectWithoutTaskInput = {
+    where: ResourceWhereUniqueInput
+    create: XOR<ResourceCreateWithoutTaskInput, ResourceUncheckedCreateWithoutTaskInput>
+  }
+
+  export type TaskTemplateCreateWithoutTaskInput = {
+    name: string
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    defaultDeadlineDays?: number | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: string | null
+    usageCount?: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Teacher: TeacherCreateNestedOneWithoutTaskTemplateInput
+  }
+
+  export type TaskTemplateUncheckedCreateWithoutTaskInput = {
+    id?: number
+    teacherId: number
+    name: string
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    defaultDeadlineDays?: number | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: string | null
+    usageCount?: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type TaskTemplateCreateOrConnectWithoutTaskInput = {
+    where: TaskTemplateWhereUniqueInput
+    create: XOR<TaskTemplateCreateWithoutTaskInput, TaskTemplateUncheckedCreateWithoutTaskInput>
+  }
+
+  export type StudentTaskUpsertWithWhereUniqueWithoutTaskInput = {
+    where: StudentTaskWhereUniqueInput
+    update: XOR<StudentTaskUpdateWithoutTaskInput, StudentTaskUncheckedUpdateWithoutTaskInput>
+    create: XOR<StudentTaskCreateWithoutTaskInput, StudentTaskUncheckedCreateWithoutTaskInput>
+  }
+
+  export type StudentTaskUpdateWithWhereUniqueWithoutTaskInput = {
+    where: StudentTaskWhereUniqueInput
+    data: XOR<StudentTaskUpdateWithoutTaskInput, StudentTaskUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type StudentTaskUpdateManyWithWhereWithoutTaskInput = {
+    where: StudentTaskScalarWhereInput
+    data: XOR<StudentTaskUpdateManyMutationInput, StudentTaskUncheckedUpdateManyWithoutTaskInput>
+  }
+
+  export type TeacherUpsertWithoutTaskInput = {
+    update: XOR<TeacherUpdateWithoutTaskInput, TeacherUncheckedUpdateWithoutTaskInput>
+    create: XOR<TeacherCreateWithoutTaskInput, TeacherUncheckedCreateWithoutTaskInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutTaskInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutTaskInput, TeacherUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type TeacherUpdateWithoutTaskInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type AssignmentUpsertWithoutTaskInput = {
+    update: XOR<AssignmentUpdateWithoutTaskInput, AssignmentUncheckedUpdateWithoutTaskInput>
+    create: XOR<AssignmentCreateWithoutTaskInput, AssignmentUncheckedCreateWithoutTaskInput>
+    where?: AssignmentWhereInput
+  }
+
+  export type AssignmentUpdateToOneWithWhereWithoutTaskInput = {
+    where?: AssignmentWhereInput
+    data: XOR<AssignmentUpdateWithoutTaskInput, AssignmentUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type AssignmentUpdateWithoutTaskInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    instructions?: NullableStringFieldUpdateOperationsInput | string | null
+    program?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    targetStudent?: StudentUpdateOneWithoutAssignedAssignmentsNestedInput
+    teacher?: TeacherUpdateOneRequiredWithoutAssignmentsNestedInput
+    resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
+    AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
+    submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
+  }
+
+  export type AssignmentUncheckedUpdateWithoutTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    instructions?: NullableStringFieldUpdateOperationsInput | string | null
+    program?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    totalPoints?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    allowLateSubmission?: BoolFieldUpdateOperationsInput | boolean
+    teacherId?: IntFieldUpdateOperationsInput | number
+    targetStudentId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dueDateTimezone?: NullableStringFieldUpdateOperationsInput | string | null
+    resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
+    AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
+    submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
+  }
+
+  export type MeetingMinuteMeetingUpsertWithoutTaskInput = {
+    update: XOR<MeetingMinuteMeetingUpdateWithoutTaskInput, MeetingMinuteMeetingUncheckedUpdateWithoutTaskInput>
+    create: XOR<MeetingMinuteMeetingCreateWithoutTaskInput, MeetingMinuteMeetingUncheckedCreateWithoutTaskInput>
+    where?: MeetingMinuteMeetingWhereInput
+  }
+
+  export type MeetingMinuteMeetingUpdateToOneWithWhereWithoutTaskInput = {
+    where?: MeetingMinuteMeetingWhereInput
+    data: XOR<MeetingMinuteMeetingUpdateWithoutTaskInput, MeetingMinuteMeetingUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type MeetingMinuteMeetingUpdateWithoutTaskInput = {
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ClassSchedule?: ClassScheduleUpdateOneWithoutMeetingMinuteMeetingNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutMeetingMinuteMeetingNestedInput
+    MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutMeetingMinuteMeetingNestedInput
+  }
+
+  export type MeetingMinuteMeetingUncheckedUpdateWithoutTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    source?: EnumMeetingSourceFieldUpdateOperationsInput | $Enums.MeetingSource
+    googleCalendarEventId?: NullableStringFieldUpdateOperationsInput | string | null
+    classScheduleId?: NullableIntFieldUpdateOperationsInput | number | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    meetingLink?: NullableStringFieldUpdateOperationsInput | string | null
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    startDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDateTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    timezone?: StringFieldUpdateOperationsInput | string
+    attendeeSnapshot?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
+  }
+
+  export type ResourceUpsertWithoutTaskInput = {
+    update: XOR<ResourceUpdateWithoutTaskInput, ResourceUncheckedUpdateWithoutTaskInput>
+    create: XOR<ResourceCreateWithoutTaskInput, ResourceUncheckedCreateWithoutTaskInput>
+    where?: ResourceWhereInput
+  }
+
+  export type ResourceUpdateToOneWithWhereWithoutTaskInput = {
+    where?: ResourceWhereInput
+    data: XOR<ResourceUpdateWithoutTaskInput, ResourceUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type ResourceUpdateWithoutTaskInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    program?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    grade?: StringFieldUpdateOperationsInput | string
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignmentLinks?: AssignmentResourceUpdateManyWithoutResourceNestedInput
+    teacher?: TeacherUpdateOneRequiredWithoutResourcesNestedInput
+    studentAssignments?: StudentResourceUpdateManyWithoutResourceNestedInput
+  }
+
+  export type ResourceUncheckedUpdateWithoutTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: StringFieldUpdateOperationsInput | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    program?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    grade?: StringFieldUpdateOperationsInput | string
+    teacherId?: IntFieldUpdateOperationsInput | number
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignmentLinks?: AssignmentResourceUncheckedUpdateManyWithoutResourceNestedInput
+    studentAssignments?: StudentResourceUncheckedUpdateManyWithoutResourceNestedInput
+  }
+
+  export type TaskTemplateUpsertWithoutTaskInput = {
+    update: XOR<TaskTemplateUpdateWithoutTaskInput, TaskTemplateUncheckedUpdateWithoutTaskInput>
+    create: XOR<TaskTemplateCreateWithoutTaskInput, TaskTemplateUncheckedCreateWithoutTaskInput>
+    where?: TaskTemplateWhereInput
+  }
+
+  export type TaskTemplateUpdateToOneWithWhereWithoutTaskInput = {
+    where?: TaskTemplateWhereInput
+    data: XOR<TaskTemplateUpdateWithoutTaskInput, TaskTemplateUncheckedUpdateWithoutTaskInput>
+  }
+
+  export type TaskTemplateUpdateWithoutTaskInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    defaultDeadlineDays?: NullableIntFieldUpdateOperationsInput | number | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    usageCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Teacher?: TeacherUpdateOneRequiredWithoutTaskTemplateNestedInput
+  }
+
+  export type TaskTemplateUncheckedUpdateWithoutTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    teacherId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    defaultDeadlineDays?: NullableIntFieldUpdateOperationsInput | number | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    usageCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentTaskCreateWithoutTaskActivityInput = {
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
+    Student: StudentCreateNestedOneWithoutStudentTaskInput
+    Task: TaskCreateNestedOneWithoutStudentTaskInput
+    TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskUncheckedCreateWithoutTaskActivityInput = {
+    id?: number
+    taskId: number
+    studentId: number
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskCreateOrConnectWithoutTaskActivityInput = {
+    where: StudentTaskWhereUniqueInput
+    create: XOR<StudentTaskCreateWithoutTaskActivityInput, StudentTaskUncheckedCreateWithoutTaskActivityInput>
+  }
+
+  export type StudentTaskUpsertWithoutTaskActivityInput = {
+    update: XOR<StudentTaskUpdateWithoutTaskActivityInput, StudentTaskUncheckedUpdateWithoutTaskActivityInput>
+    create: XOR<StudentTaskCreateWithoutTaskActivityInput, StudentTaskUncheckedCreateWithoutTaskActivityInput>
+    where?: StudentTaskWhereInput
+  }
+
+  export type StudentTaskUpdateToOneWithWhereWithoutTaskActivityInput = {
+    where?: StudentTaskWhereInput
+    data: XOR<StudentTaskUpdateWithoutTaskActivityInput, StudentTaskUncheckedUpdateWithoutTaskActivityInput>
+  }
+
+  export type StudentTaskUpdateWithoutTaskActivityInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
+    Student?: StudentUpdateOneRequiredWithoutStudentTaskNestedInput
+    Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateWithoutTaskActivityInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskCreateWithoutTaskCommentInput = {
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
+    Student: StudentCreateNestedOneWithoutStudentTaskInput
+    Task: TaskCreateNestedOneWithoutStudentTaskInput
+    TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskUncheckedCreateWithoutTaskCommentInput = {
+    id?: number
+    taskId: number
+    studentId: number
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskCreateOrConnectWithoutTaskCommentInput = {
+    where: StudentTaskWhereUniqueInput
+    create: XOR<StudentTaskCreateWithoutTaskCommentInput, StudentTaskUncheckedCreateWithoutTaskCommentInput>
+  }
+
+  export type StudentTaskUpsertWithoutTaskCommentInput = {
+    update: XOR<StudentTaskUpdateWithoutTaskCommentInput, StudentTaskUncheckedUpdateWithoutTaskCommentInput>
+    create: XOR<StudentTaskCreateWithoutTaskCommentInput, StudentTaskUncheckedCreateWithoutTaskCommentInput>
+    where?: StudentTaskWhereInput
+  }
+
+  export type StudentTaskUpdateToOneWithWhereWithoutTaskCommentInput = {
+    where?: StudentTaskWhereInput
+    data: XOR<StudentTaskUpdateWithoutTaskCommentInput, StudentTaskUncheckedUpdateWithoutTaskCommentInput>
+  }
+
+  export type StudentTaskUpdateWithoutTaskCommentInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
+    Student?: StudentUpdateOneRequiredWithoutStudentTaskNestedInput
+    Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
+    TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateWithoutTaskCommentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type TaskCreateWithoutTaskTemplateInput = {
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
+    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    Assignment?: AssignmentCreateNestedOneWithoutTaskInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
+    Resource?: ResourceCreateNestedOneWithoutTaskInput
+  }
+
+  export type TaskUncheckedCreateWithoutTaskTemplateInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedMeetingId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
+  }
+
+  export type TaskCreateOrConnectWithoutTaskTemplateInput = {
+    where: TaskWhereUniqueInput
+    create: XOR<TaskCreateWithoutTaskTemplateInput, TaskUncheckedCreateWithoutTaskTemplateInput>
+  }
+
+  export type TaskCreateManyTaskTemplateInputEnvelope = {
+    data: TaskCreateManyTaskTemplateInput | TaskCreateManyTaskTemplateInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TeacherCreateWithoutTaskTemplateInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherUncheckedCreateWithoutTaskTemplateInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherCreateOrConnectWithoutTaskTemplateInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutTaskTemplateInput, TeacherUncheckedCreateWithoutTaskTemplateInput>
+  }
+
+  export type TaskUpsertWithWhereUniqueWithoutTaskTemplateInput = {
+    where: TaskWhereUniqueInput
+    update: XOR<TaskUpdateWithoutTaskTemplateInput, TaskUncheckedUpdateWithoutTaskTemplateInput>
+    create: XOR<TaskCreateWithoutTaskTemplateInput, TaskUncheckedCreateWithoutTaskTemplateInput>
+  }
+
+  export type TaskUpdateWithWhereUniqueWithoutTaskTemplateInput = {
+    where: TaskWhereUniqueInput
+    data: XOR<TaskUpdateWithoutTaskTemplateInput, TaskUncheckedUpdateWithoutTaskTemplateInput>
+  }
+
+  export type TaskUpdateManyWithWhereWithoutTaskTemplateInput = {
+    where: TaskScalarWhereInput
+    data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutTaskTemplateInput>
+  }
+
+  export type TeacherUpsertWithoutTaskTemplateInput = {
+    update: XOR<TeacherUpdateWithoutTaskTemplateInput, TeacherUncheckedUpdateWithoutTaskTemplateInput>
+    create: XOR<TeacherCreateWithoutTaskTemplateInput, TeacherUncheckedCreateWithoutTaskTemplateInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutTaskTemplateInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutTaskTemplateInput, TeacherUncheckedUpdateWithoutTaskTemplateInput>
+  }
+
+  export type TeacherUpdateWithoutTaskTemplateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutTaskTemplateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
   export type AssignmentCreateManyTeacherInput = {
@@ -74257,6 +87705,76 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type StudentTaskCreateManyTeacherInput = {
+    id?: number
+    taskId: number
+    studentId: number
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+  }
+
+  export type TaskCreateManyTeacherInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedMeetingId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+  }
+
+  export type TaskTemplateCreateManyTeacherInput = {
+    id?: number
+    name: string
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    defaultDeadlineDays?: number | null
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: string | null
+    usageCount?: number
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
   export type TeacherStudentCreateManyTeacherInput = {
     id?: number
     studentId: number
@@ -74281,6 +87799,7 @@ export namespace Prisma {
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
     AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutTeacherInput = {
@@ -74301,6 +87820,7 @@ export namespace Prisma {
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
     AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateManyWithoutTeacherInput = {
@@ -74414,6 +87934,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ClassSchedule?: ClassScheduleUpdateOneWithoutMeetingMinuteMeetingNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutMeetingMinuteMeetingNestedInput
+    Task?: TaskUpdateManyWithoutMeetingMinuteMeetingNestedInput
   }
 
   export type MeetingMinuteMeetingUncheckedUpdateWithoutTeacherInput = {
@@ -74432,6 +87953,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
   }
 
   export type MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherInput = {
@@ -74541,6 +88063,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignmentLinks?: AssignmentResourceUpdateManyWithoutResourceNestedInput
     studentAssignments?: StudentResourceUpdateManyWithoutResourceNestedInput
+    Task?: TaskUpdateManyWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutTeacherInput = {
@@ -74560,6 +88083,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     assignmentLinks?: AssignmentResourceUncheckedUpdateManyWithoutResourceNestedInput
     studentAssignments?: StudentResourceUncheckedUpdateManyWithoutResourceNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateManyWithoutTeacherInput = {
@@ -74622,6 +88146,221 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     studentSubmissionId?: IntFieldUpdateOperationsInput | number
     remark?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentTaskUpdateWithoutTeacherInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Student?: StudentUpdateOneRequiredWithoutStudentTaskNestedInput
+    Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
+    TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateManyWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TaskUpdateWithoutTeacherInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
+    Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
+    Resource?: ResourceUpdateOneWithoutTaskNestedInput
+    TaskTemplate?: TaskTemplateUpdateOneWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateManyWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type TaskTemplateUpdateWithoutTeacherInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    defaultDeadlineDays?: NullableIntFieldUpdateOperationsInput | number | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    usageCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Task?: TaskUpdateManyWithoutTaskTemplateNestedInput
+  }
+
+  export type TaskTemplateUncheckedUpdateWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    defaultDeadlineDays?: NullableIntFieldUpdateOperationsInput | number | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    usageCount?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Task?: TaskUncheckedUpdateManyWithoutTaskTemplateNestedInput
+  }
+
+  export type TaskTemplateUncheckedUpdateManyWithoutTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    defaultDeadlineDays?: NullableIntFieldUpdateOperationsInput | number | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    usageCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -74830,6 +88569,28 @@ export namespace Prisma {
     teacherIds?: StudentSubmissionCreateteacherIdsInput | number[]
   }
 
+  export type StudentTaskCreateManyStudentInput = {
+    id?: number
+    taskId: number
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+  }
+
   export type SubmissionCreateManyStudentInput = {
     id?: number
     assignmentId: number
@@ -74898,6 +88659,7 @@ export namespace Prisma {
     resources?: AssignmentResourceUpdateManyWithoutAssignmentNestedInput
     AssignmentTarget?: AssignmentTargetUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateWithoutTargetStudentInput = {
@@ -74918,6 +88680,7 @@ export namespace Prisma {
     resources?: AssignmentResourceUncheckedUpdateManyWithoutAssignmentNestedInput
     AssignmentTarget?: AssignmentTargetUncheckedUpdateManyWithoutAssignmentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutAssignmentNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutAssignmentNestedInput
   }
 
   export type AssignmentUncheckedUpdateManyWithoutTargetStudentInput = {
@@ -75436,6 +89199,75 @@ export namespace Prisma {
     teacherIds?: StudentSubmissionUpdateteacherIdsInput | number[]
   }
 
+  export type StudentTaskUpdateWithoutStudentInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
+    Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
+    TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateManyWithoutStudentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type SubmissionUpdateWithoutStudentInput = {
     content?: NullableStringFieldUpdateOperationsInput | string | null
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -75741,6 +89573,33 @@ export namespace Prisma {
     submissionNumber?: number
   }
 
+  export type TaskCreateManyAssignmentInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedMeetingId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+  }
+
   export type AssignmentResourceUpdateWithoutAssignmentInput = {
     isRequired?: BoolFieldUpdateOperationsInput | boolean
     resource?: ResourceUpdateOneRequiredWithoutAssignmentLinksNestedInput
@@ -75817,6 +89676,88 @@ export namespace Prisma {
     feedback?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
     submissionNumber?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TaskUpdateWithoutAssignmentInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
+    Resource?: ResourceUpdateOneWithoutTaskNestedInput
+    TaskTemplate?: TaskTemplateUpdateOneWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateWithoutAssignmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateManyWithoutAssignmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PaymentCreateManyEnrollmentInput = {
@@ -75931,6 +89872,33 @@ export namespace Prisma {
     viewedAt?: Date | string | null
   }
 
+  export type TaskCreateManyResourceInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedMeetingId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+  }
+
   export type AssignmentResourceUpdateWithoutResourceInput = {
     isRequired?: BoolFieldUpdateOperationsInput | boolean
     assignment?: AssignmentUpdateOneRequiredWithoutResourcesNestedInput
@@ -75966,6 +89934,88 @@ export namespace Prisma {
     studentId?: IntFieldUpdateOperationsInput | number
     assignedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TaskUpdateWithoutResourceInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
+    TaskTemplate?: TaskTemplateUpdateOneWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateWithoutResourceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateManyWithoutResourceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type StudentSubmissionRemarkCreateManyStudentSubmissionInput = {
@@ -76031,6 +90081,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Teacher?: TeacherUpdateOneRequiredWithoutMeetingMinuteMeetingNestedInput
     MeetingMinuteRequest?: MeetingMinuteRequestUpdateManyWithoutMeetingMinuteMeetingNestedInput
+    Task?: TaskUpdateManyWithoutMeetingMinuteMeetingNestedInput
   }
 
   export type MeetingMinuteMeetingUncheckedUpdateWithoutClassScheduleInput = {
@@ -76049,6 +90100,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     MeetingMinuteRequest?: MeetingMinuteRequestUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutMeetingMinuteMeetingNestedInput
   }
 
   export type MeetingMinuteMeetingUncheckedUpdateManyWithoutClassScheduleInput = {
@@ -76111,6 +90163,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUpdateManyWithoutStudentNestedInput
@@ -76143,6 +90196,7 @@ export namespace Prisma {
     groupMemberships?: StudentGroupMemberUncheckedUpdateManyWithoutStudentNestedInput
     assignedResources?: StudentResourceUncheckedUpdateManyWithoutStudentNestedInput
     studentSubmissions?: StudentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutStudentNestedInput
     submissions?: SubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherLinks?: TeacherStudentUncheckedUpdateManyWithoutStudentNestedInput
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
@@ -76326,6 +90380,33 @@ export namespace Prisma {
     creationMode?: $Enums.MeetingMinuteCreationMode
   }
 
+  export type TaskCreateManyMeetingMinuteMeetingInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+    templateId?: number | null
+  }
+
   export type MeetingMinuteRequestUpdateWithoutMeetingMinuteMeetingInput = {
     status?: EnumMeetingMinuteStatusFieldUpdateOperationsInput | $Enums.MeetingMinuteStatus
     studentMinutes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -76365,6 +90446,370 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     creationMode?: EnumMeetingMinuteCreationModeFieldUpdateOperationsInput | $Enums.MeetingMinuteCreationMode
+  }
+
+  export type TaskUpdateWithoutMeetingMinuteMeetingInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
+    Resource?: ResourceUpdateOneWithoutTaskNestedInput
+    TaskTemplate?: TaskTemplateUpdateOneWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateWithoutMeetingMinuteMeetingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateManyWithoutMeetingMinuteMeetingInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    templateId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type TaskActivityCreateManyStudentTaskInput = {
+    id?: number
+    action: string
+    details?: string | null
+    performedById: number
+    performedByRole: string
+    performedByName: string
+    createdAt?: Date | string
+  }
+
+  export type TaskCommentCreateManyStudentTaskInput = {
+    id?: number
+    authorId: number
+    authorRole: string
+    authorName: string
+    content: string
+    attachmentUrl?: string | null
+    attachmentName?: string | null
+    createdAt?: Date | string
+  }
+
+  export type TaskActivityUpdateWithoutStudentTaskInput = {
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    performedById?: IntFieldUpdateOperationsInput | number
+    performedByRole?: StringFieldUpdateOperationsInput | string
+    performedByName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskActivityUncheckedUpdateWithoutStudentTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    performedById?: IntFieldUpdateOperationsInput | number
+    performedByRole?: StringFieldUpdateOperationsInput | string
+    performedByName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskActivityUncheckedUpdateManyWithoutStudentTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    action?: StringFieldUpdateOperationsInput | string
+    details?: NullableStringFieldUpdateOperationsInput | string | null
+    performedById?: IntFieldUpdateOperationsInput | number
+    performedByRole?: StringFieldUpdateOperationsInput | string
+    performedByName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskCommentUpdateWithoutStudentTaskInput = {
+    authorId?: IntFieldUpdateOperationsInput | number
+    authorRole?: StringFieldUpdateOperationsInput | string
+    authorName?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attachmentName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskCommentUncheckedUpdateWithoutStudentTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    authorId?: IntFieldUpdateOperationsInput | number
+    authorRole?: StringFieldUpdateOperationsInput | string
+    authorName?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attachmentName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TaskCommentUncheckedUpdateManyWithoutStudentTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    authorId?: IntFieldUpdateOperationsInput | number
+    authorRole?: StringFieldUpdateOperationsInput | string
+    authorName?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    attachmentUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attachmentName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StudentTaskCreateManyTaskInput = {
+    id?: number
+    studentId: number
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+  }
+
+  export type StudentTaskUpdateWithoutTaskInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
+    Student?: StudentUpdateOneRequiredWithoutStudentTaskNestedInput
+    TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateWithoutTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateManyWithoutTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    studentId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type TaskCreateManyTaskTemplateInput = {
+    id?: number
+    title: string
+    description: string
+    category?: string
+    priority?: string
+    deadline?: Date | string | null
+    creatorId: number
+    requireSubmissionNote?: boolean
+    requireFileUpload?: boolean
+    requireUrl?: boolean
+    requireExternalConfirmation?: boolean
+    externalConfirmationPrompt?: string | null
+    requireMentorApproval?: boolean
+    isCancelled?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: number | null
+    linkedMeetingId?: number | null
+    linkedResourceId?: number | null
+    nextOccurrenceCreatedAt?: Date | string | null
+    recurrence?: string | null
+    recurrenceEndsAt?: Date | string | null
+    seriesId?: number | null
+  }
+
+  export type TaskUpdateWithoutTaskTemplateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
+    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
+    Resource?: ResourceUpdateOneWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateWithoutTaskTemplateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
+  }
+
+  export type TaskUncheckedUpdateManyWithoutTaskTemplateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    priority?: StringFieldUpdateOperationsInput | string
+    deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    creatorId?: IntFieldUpdateOperationsInput | number
+    requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
+    requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
+    requireUrl?: BoolFieldUpdateOperationsInput | boolean
+    requireExternalConfirmation?: BoolFieldUpdateOperationsInput | boolean
+    externalConfirmationPrompt?: NullableStringFieldUpdateOperationsInput | string | null
+    requireMentorApproval?: BoolFieldUpdateOperationsInput | boolean
+    isCancelled?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklist?: NullableJsonNullValueInput | InputJsonValue
+    linkedAssignmentId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedMeetingId?: NullableIntFieldUpdateOperationsInput | number | null
+    linkedResourceId?: NullableIntFieldUpdateOperationsInput | number | null
+    nextOccurrenceCreatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recurrence?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    seriesId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
 

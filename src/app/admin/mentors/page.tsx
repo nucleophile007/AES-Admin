@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Search, User, Plus, Edit, Trash2, Loader2, Upload, X, MoveUp, MoveDown } from "lucide-react"
 import Image from "next/image"
+import { toast } from "sonner"
 
 interface Teacher {
   id: number
@@ -95,8 +96,8 @@ export default function MentorsPage() {
     fetchTeachers()
   }, [session, status])
 
-  const fetchMentors = async () => {
-    setLoading(true)
+  const fetchMentors = async (showLoading = true) => {
+    if (showLoading) setLoading(true)
     try {
       const res = await fetch("/api/admin/mentors")
       if (!res.ok) throw new Error("Failed to load mentors")
@@ -105,7 +106,7 @@ export default function MentorsPage() {
     } catch (error) {
       console.error("Error fetching mentors:", error)
     } finally {
-      setLoading(false)
+      if (showLoading) setLoading(false)
     }
   }
 
@@ -124,7 +125,7 @@ export default function MentorsPage() {
     const file = e.target.files?.[0]
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        alert("Image size must be less than 5MB")
+        toast.error("Image size must be less than 5MB")
         return
       }
       setImageFile(file)
@@ -174,12 +175,12 @@ export default function MentorsPage() {
         throw new Error(error.error || "Failed to save mentor")
       }
 
-      await fetchMentors()
+      await fetchMentors(false)
       resetForm()
-      alert(editingMentor ? "Mentor updated successfully!" : "Mentor added successfully!")
+      toast.success(editingMentor ? "Mentor updated successfully!" : "Mentor added successfully!")
     } catch (error) {
       console.error("Error saving mentor:", error)
-      alert(error instanceof Error ? error.message : "Failed to save mentor")
+      toast.error(error instanceof Error ? error.message : "Failed to save mentor")
     } finally {
       setFormLoading(false)
     }
@@ -211,11 +212,11 @@ export default function MentorsPage() {
     try {
       const res = await fetch(`/api/admin/mentors/${id}`, { method: "DELETE" })
       if (!res.ok) throw new Error("Failed to delete mentor")
-      await fetchMentors()
-      alert("Mentor deleted successfully!")
+      await fetchMentors(false)
+      toast.success("Mentor deleted successfully!")
     } catch (error) {
       console.error("Error deleting mentor:", error)
-      alert("Failed to delete mentor")
+      toast.error("Failed to delete mentor")
     }
   }
 

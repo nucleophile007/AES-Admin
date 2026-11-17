@@ -59,6 +59,23 @@ export async function PATCH(
       return NextResponse.json({ error: "Teacher not found" }, { status: 404 })
     }
     
+    if (data.programs !== undefined) {
+      if (!Array.isArray(data.programs)) {
+        return NextResponse.json({ error: "Programs must be an array" }, { status: 400 })
+      }
+
+      const programs = data.programs
+        .filter((program: unknown): program is string => typeof program === "string")
+        .map((program: string) => program.trim())
+        .filter(Boolean)
+
+      if (programs.length === 0) {
+        return NextResponse.json({ error: "At least one valid program is required" }, { status: 400 })
+      }
+
+      data.programs = programs
+    }
+
     // Update teacher
     const updatedTeacher = await prisma.teacher.update({
       where: { id },

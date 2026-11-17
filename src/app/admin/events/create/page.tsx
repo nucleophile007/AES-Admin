@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Plus, Trash2, Save, Globe } from "lucide-react"
 import EventCarouselComposer from "@/components/events/EventCarouselComposer"
+import { toast } from "sonner"
 
 interface CustomField {
   id: string
@@ -89,7 +90,7 @@ export default function CreateEventPage() {
 
   const handleAddCustomField = () => {
     if (!newField.name || !newField.label) {
-      alert("Please fill in field name and label")
+      toast.error("Please fill in field name and label")
       return
     }
 
@@ -180,11 +181,11 @@ export default function CreateEventPage() {
         const data = await response.json()
         router.push(`/admin/events/${data.id}`)
       } else {
-        alert("Failed to create event")
+        toast.error("Failed to create event")
       }
     } catch (error) {
       console.error("Error creating event:", error)
-      alert("Error creating event")
+      toast.error("Error creating event")
     } finally {
       setLoading(false)
     }

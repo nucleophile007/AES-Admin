@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Search, Users, Phone, Filter, CheckCircle, Loader2, X } from "lucide-react"
+import { toast } from "sonner"
 
 
 interface SessionApproval {
@@ -137,7 +138,7 @@ export default function SessionApprovalPage() {
       setData(prev => prev.map(r => r.id === updated.id ? { ...r, approved: updated.approved, adminEmail: updated.adminEmail } : r))
     } catch (e) {
       console.error(e)
-      alert('Approve failed')
+      toast.error('Approve failed')
     } finally {
       setApproving(prev => {
         const next = new Set(prev)
@@ -166,7 +167,7 @@ export default function SessionApprovalPage() {
       setData(prev => prev.map(r => r.id === updated.id ? { ...r, approved: updated.approved, adminEmail: updated.adminEmail } : r))
     } catch (e) {
       console.error(e)
-      alert(e instanceof Error ? e.message : 'Unapprove failed')
+      toast.error(e instanceof Error ? e.message : 'Unapprove failed')
     } finally {
       setApproving(prev => {
         const next = new Set(prev)

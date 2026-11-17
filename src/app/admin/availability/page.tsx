@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { ChevronLeft, ChevronRight, ArrowLeft, Calendar } from "lucide-react"
 import Link from "next/link"
+import { toast } from "sonner"
 
 function generateTimeSlots(interval: number) {
   const slots: string[] = []
@@ -86,8 +87,8 @@ export default function AdminAvailabilityPage() {
 
   const calendarDays = getDaysInMonth(currentMonth)
 
-  const loadAllAvailability = async () => {
-    setInitialLoading(true)
+  const loadAllAvailability = async (showLoading = true) => {
+    if (showLoading) setInitialLoading(true)
     try {
       const res = await fetch("/api/admin/availability")
       if (!res.ok) {
@@ -122,7 +123,7 @@ export default function AdminAvailabilityPage() {
       setDraftChanges({})
       setDirtyDates(new Set())
     } finally {
-      setInitialLoading(false)
+      if (showLoading) setInitialLoading(false)
     }
   }
 
@@ -182,10 +183,10 @@ export default function AdminAvailabilityPage() {
         body: JSON.stringify(payload)
       })
       if (!res.ok) throw new Error("Save failed")
-      await loadAllAvailability()
+      await loadAllAvailability(false)
     } catch (e) {
       console.error(e)
-      alert("Failed to save availability")
+      toast.error("Failed to save availability")
     } finally {
       setLoading(false)
     }
