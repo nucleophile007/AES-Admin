@@ -1,38 +1,119 @@
 @import "tailwindcss";
 
+/*
+ * Acharya Admin design tokens
+ * ---------------------------------------------------------------
+ * Brand  : deep Acharya navy (brand-*) with a gold accent (gold-*)
+ * Neutral: semantic surface / line / ink tokens. Prefer these over raw
+ *          slate/gray utilities so every page shares one look.
+ *
+ * Usage examples:
+ *   bg-canvas, bg-surface, border-line, text-ink, text-muted,
+ *   bg-brand-600, text-brand-700, bg-gold-50, font-display, shadow-card
+ */
+
+@theme {
+  /* Typography */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Brand navy */
+  --color-brand-50: #eef3ff;
+  --color-brand-100: #dce6fe;
+  --color-brand-200: #b9ccfc;
+  --color-brand-300: #8eabf7;
+  --color-brand-400: #5f83ee;
+  --color-brand-500: #3b5fdb;
+  --color-brand-600: #2747c0;
+  --color-brand-700: #1f389b;
+  --color-brand-800: #1c307c;
+  --color-brand-900: #1a2b63;
+  --color-brand-950: #111a3d;
+
+  /* Gold accent (matches the public site's #F4BE4A) */
+  --color-gold-50: #fff8e8;
+  --color-gold-100: #feedc4;
+  --color-gold-200: #fbdc93;
+  --color-gold-300: #f8cf6e;
+  --color-gold-400: #f4be4a;
+  --color-gold-500: #e5a325;
+  --color-gold-600: #c4831a;
+  --color-gold-700: #9a6316;
+
+  /* Semantic neutrals */
+  --color-canvas: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f9fafb;
+  --color-line: #e6e8ec;
+  --color-line-strong: #d0d5dd;
+  --color-ink: #101828;
+  --color-ink-soft: #344054;
+  --color-muted: #667085;
+  --color-subtle: #98a2b3;
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px 0 rgb(16 24 40 / 0.05);
+  --shadow-card-hover: 0 12px 24px -10px rgb(16 24 40 / 0.14), 0 2px 4px -2px rgb(16 24 40 / 0.05);
+  --shadow-pop: 0 20px 40px -12px rgb(16 24 40 / 0.22);
+
+  /* Radius */
+  --radius-card: 0.875rem;
+}
+
+/* Legacy tokens kept for older pages that reference them */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f6f8;
+  --foreground: #101828;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
 
-body {
-  background: #f8fafc;
-  color: #0f172a;
-  font-family: Arial, Helvetica, sans-serif;
-  min-height: 100vh;
-}
+  body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    min-height: 100vh;
+  }
 
-input,
-select,
-textarea {
-  color: #0f172a;
-  background-color: #ffffff;
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
 
-input::placeholder,
-textarea::placeholder {
-  color: #64748b;
-  opacity: 1;
-}
+  ::selection {
+    background: var(--color-brand-100);
+    color: var(--color-brand-900);
+  }
 
-select option {
-  color: #0f172a;
-  background-color: #ffffff;
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+
+  input,
+  select,
+  textarea {
+    color: var(--color-ink);
+    background-color: #ffffff;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-subtle);
+    opacity: 1;
+  }
+
+  select option {
+    color: var(--color-ink);
+    background-color: #ffffff;
+  }
 }
