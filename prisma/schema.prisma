@@ -39,31 +39,32 @@ model AvailabilityDay {
 }
 
 model Teacher {
-  id                      Int                       @id @default(autoincrement())
-  name                    String
-  email                   String                    @unique
-  password                String?
-  programs                String[]
-  createdAt               DateTime                  @default(now())
-  updatedAt               DateTime                  @updatedAt
-  isActivated             Boolean                   @default(false)
-  googleAccessToken       String?
-  googleCalendarConnected Boolean                   @default(false)
-  googleRefreshToken      String?
-  googleTokenExpiry       DateTime?
-  assignments             Assignment[]
-  classSchedules          ClassSchedule[]
-  MeetingMinuteMeeting    MeetingMinuteMeeting[]
-  mentorProfile           Mentor?
-  MentorAvailabilitySlot  MentorAvailabilitySlot[]
-  progressReports         ProgressReport[]
-  resources               Resource[]
-  studentGroups           StudentGroup[]
-  submissionRemarks       StudentSubmissionRemark[]
-  StudentTask             StudentTask[]
-  Task                    Task[]
-  TaskTemplate            TaskTemplate[]
-  students                TeacherStudent[]
+  id                                                 Int                       @id @default(autoincrement())
+  name                                               String
+  email                                              String                    @unique
+  password                                           String?
+  programs                                           String[]
+  createdAt                                          DateTime                  @default(now())
+  updatedAt                                          DateTime                  @updatedAt
+  isActivated                                        Boolean                   @default(false)
+  googleAccessToken                                  String?
+  googleCalendarConnected                            Boolean                   @default(false)
+  googleRefreshToken                                 String?
+  googleTokenExpiry                                  DateTime?
+  assignments                                        Assignment[]
+  classSchedules                                     ClassSchedule[]
+  MeetingMinuteMeeting                               MeetingMinuteMeeting[]
+  mentorProfile                                      Mentor?
+  MentorAvailabilitySlot                             MentorAvailabilitySlot[]
+  progressReports                                    ProgressReport[]
+  resources                                          Resource[]
+  studentGroups                                      StudentGroup[]
+  submissionRemarks                                  StudentSubmissionRemark[]
+  StudentTask_StudentTask_assigneeTeacherIdToTeacher StudentTask[]             @relation("StudentTask_assigneeTeacherIdToTeacher")
+  StudentTask                                        StudentTask[]
+  Task                                               Task[]
+  TaskTemplate                                       TaskTemplate[]
+  students                                           TeacherStudent[]
 }
 
 model Student {
@@ -515,15 +516,16 @@ model ContactSubmission {
 }
 
 model ParentAccount {
-  id          Int       @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   name        String
-  email       String    @unique
+  email       String        @unique
   phone       String?
   password    String?
-  isActivated Boolean   @default(false)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  isActivated Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
   students    Student[]
+  StudentTask StudentTask[]
 }
 
 model TransactionReceipt {
@@ -814,37 +816,47 @@ model MeetingMinuteRequest {
 }
 
 model StudentTask {
-  id                          Int            @id @default(autoincrement())
-  taskId                      Int
-  studentId                   Int
-  status                      String         @default("TODO")
-  startedAt                   DateTime?
-  submittedAt                 DateTime?
-  completedAt                 DateTime?
-  submissionNote              String?
-  submissionUrl               String?
-  submissionFileUrl           String?
-  submissionFileName          String?
-  submissionExternalConfirmed Boolean        @default(false)
-  mentorFeedback              String?
-  reviewedAt                  DateTime?
-  reviewedById                Int?
-  createdAt                   DateTime       @default(now())
-  updatedAt                   DateTime
-  checklistDone               Json?
-  dueSoonReminderSentAt       DateTime?
-  overdueReminderSentAt       DateTime?
-  Teacher                     Teacher?       @relation(fields: [reviewedById], references: [id])
-  Student                     Student        @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  Task                        Task           @relation(fields: [taskId], references: [id], onDelete: Cascade)
-  TaskActivity                TaskActivity[]
-  TaskComment                 TaskComment[]
+  id                                             Int            @id @default(autoincrement())
+  taskId                                         Int
+  studentId                                      Int?
+  status                                         String         @default("TODO")
+  startedAt                                      DateTime?
+  submittedAt                                    DateTime?
+  completedAt                                    DateTime?
+  submissionNote                                 String?
+  submissionUrl                                  String?
+  submissionFileUrl                              String?
+  submissionFileName                             String?
+  submissionExternalConfirmed                    Boolean        @default(false)
+  mentorFeedback                                 String?
+  reviewedAt                                     DateTime?
+  reviewedById                                   Int?
+  createdAt                                      DateTime       @default(now())
+  updatedAt                                      DateTime
+  checklistDone                                  Json?
+  dueSoonReminderSentAt                          DateTime?
+  overdueReminderSentAt                          DateTime?
+  assigneeParentId                               Int?
+  assigneeRole                                   String         @default("STUDENT")
+  assigneeTeacherId                              Int?
+  reviewedByAdminEmail                           String?
+  ParentAccount                                  ParentAccount? @relation(fields: [assigneeParentId], references: [id], onDelete: Cascade)
+  Teacher_StudentTask_assigneeTeacherIdToTeacher Teacher?       @relation("StudentTask_assigneeTeacherIdToTeacher", fields: [assigneeTeacherId], references: [id], onDelete: Cascade)
+  Teacher                                        Teacher?       @relation(fields: [reviewedById], references: [id])
+  Student                                        Student?       @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  Task                                           Task           @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  TaskActivity                                   TaskActivity[]
+  TaskComment                                    TaskComment[]
 
   @@unique([taskId, studentId])
+  @@unique([taskId, assigneeParentId])
+  @@unique([taskId, assigneeTeacherId])
   @@index([reviewedById])
   @@index([status])
   @@index([studentId, status])
   @@index([taskId])
+  @@index([assigneeParentId, status])
+  @@index([assigneeTeacherId, status])
 }
 
 model Task {
@@ -854,7 +866,7 @@ model Task {
   category                    String                @default("General")
   priority                    String                @default("MEDIUM")
   deadline                    DateTime?
-  creatorId                   Int
+  creatorId                   Int?
   requireSubmissionNote       Boolean               @default(false)
   requireFileUpload           Boolean               @default(false)
   requireUrl                  Boolean               @default(false)
@@ -874,8 +886,11 @@ model Task {
   seriesId                    Int?
   templateId                  Int?
   requireChecklistComplete    Boolean               @default(false)
+  creatorAdminEmail           String?
+  creatorName                 String?
+  creatorRole                 String                @default("TEACHER")
   StudentTask                 StudentTask[]
-  Teacher                     Teacher               @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  Teacher                     Teacher?              @relation(fields: [creatorId], references: [id], onDelete: Cascade)
   Assignment                  Assignment?           @relation(fields: [linkedAssignmentId], references: [id])
   MeetingMinuteMeeting        MeetingMinuteMeeting? @relation(fields: [linkedMeetingId], references: [id])
   Resource                    Resource?             @relation(fields: [linkedResourceId], references: [id])
@@ -888,6 +903,7 @@ model Task {
   @@index([priority])
   @@index([recurrence, nextOccurrenceCreatedAt])
   @@index([seriesId])
+  @@index([creatorRole])
 }
 
 model TaskActivity {
@@ -997,6 +1013,26 @@ model MentorSlotBooking {
   @@index([studentId, status])
 }
 
+/// Video testimonials uploaded from AES-Admin. Files live in the R2 bucket under "video-testimonials/".
+/// The table is created by the AES migration 20261117000000_video_testimonials.
+model VideoTestimonial {
+  id           Int      @id @default(autoincrement())
+  name         String
+  designation  String?
+  program      String?
+  description  String?
+  videoKey     String   @unique
+  videoUrl     String
+  mimeType     String
+  fileSize     Int
+  isVisible    Boolean  @default(true)
+  displayOrder Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([isVisible, displayOrder])
+}
+
 enum MeetingMinuteCreationMode {
   STUDENT_ASSIGNED
   MENTOR_DIRECT
@@ -1024,24 +1060,4 @@ enum MentorSlotBookingStatus {
   APPROVED
   DECLINED
   CANCELLED
-}
-
-/// Video testimonials uploaded from AES-Admin. Files live in the R2 bucket under "video-testimonials/".
-/// The table is created by the AES migration 20261117000000_video_testimonials.
-model VideoTestimonial {
-  id           Int      @id @default(autoincrement())
-  name         String
-  designation  String?
-  program      String?
-  description  String?
-  videoKey     String   @unique
-  videoUrl     String
-  mimeType     String
-  fileSize     Int
-  isVisible    Boolean  @default(true)
-  displayOrder Int      @default(0)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  @@index([isVisible, displayOrder])
 }
