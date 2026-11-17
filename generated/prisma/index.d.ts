@@ -5211,6 +5211,7 @@ export namespace Prisma {
     resources: number
     studentGroups: number
     submissionRemarks: number
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher: number
     StudentTask: number
     Task: number
     TaskTemplate: number
@@ -5226,6 +5227,7 @@ export namespace Prisma {
     resources?: boolean | TeacherCountOutputTypeCountResourcesArgs
     studentGroups?: boolean | TeacherCountOutputTypeCountStudentGroupsArgs
     submissionRemarks?: boolean | TeacherCountOutputTypeCountSubmissionRemarksArgs
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: boolean | TeacherCountOutputTypeCountStudentTask_StudentTask_assigneeTeacherIdToTeacherArgs
     StudentTask?: boolean | TeacherCountOutputTypeCountStudentTaskArgs
     Task?: boolean | TeacherCountOutputTypeCountTaskArgs
     TaskTemplate?: boolean | TeacherCountOutputTypeCountTaskTemplateArgs
@@ -5297,6 +5299,13 @@ export namespace Prisma {
    */
   export type TeacherCountOutputTypeCountSubmissionRemarksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StudentSubmissionRemarkWhereInput
+  }
+
+  /**
+   * TeacherCountOutputType without action
+   */
+  export type TeacherCountOutputTypeCountStudentTask_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentTaskWhereInput
   }
 
   /**
@@ -5749,10 +5758,12 @@ export namespace Prisma {
 
   export type ParentAccountCountOutputType = {
     students: number
+    StudentTask: number
   }
 
   export type ParentAccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     students?: boolean | ParentAccountCountOutputTypeCountStudentsArgs
+    StudentTask?: boolean | ParentAccountCountOutputTypeCountStudentTaskArgs
   }
 
   // Custom InputTypes
@@ -5771,6 +5782,13 @@ export namespace Prisma {
    */
   export type ParentAccountCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StudentWhereInput
+  }
+
+  /**
+   * ParentAccountCountOutputType without action
+   */
+  export type ParentAccountCountOutputTypeCountStudentTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentTaskWhereInput
   }
 
 
@@ -8465,6 +8483,7 @@ export namespace Prisma {
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     studentGroups?: boolean | Teacher$studentGroupsArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: boolean | Teacher$StudentTask_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs>
     StudentTask?: boolean | Teacher$StudentTaskArgs<ExtArgs>
     Task?: boolean | Teacher$TaskArgs<ExtArgs>
     TaskTemplate?: boolean | Teacher$TaskTemplateArgs<ExtArgs>
@@ -8528,6 +8547,7 @@ export namespace Prisma {
     resources?: boolean | Teacher$resourcesArgs<ExtArgs>
     studentGroups?: boolean | Teacher$studentGroupsArgs<ExtArgs>
     submissionRemarks?: boolean | Teacher$submissionRemarksArgs<ExtArgs>
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: boolean | Teacher$StudentTask_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs>
     StudentTask?: boolean | Teacher$StudentTaskArgs<ExtArgs>
     Task?: boolean | Teacher$TaskArgs<ExtArgs>
     TaskTemplate?: boolean | Teacher$TaskTemplateArgs<ExtArgs>
@@ -8549,6 +8569,7 @@ export namespace Prisma {
       resources: Prisma.$ResourcePayload<ExtArgs>[]
       studentGroups: Prisma.$StudentGroupPayload<ExtArgs>[]
       submissionRemarks: Prisma.$StudentSubmissionRemarkPayload<ExtArgs>[]
+      StudentTask_StudentTask_assigneeTeacherIdToTeacher: Prisma.$StudentTaskPayload<ExtArgs>[]
       StudentTask: Prisma.$StudentTaskPayload<ExtArgs>[]
       Task: Prisma.$TaskPayload<ExtArgs>[]
       TaskTemplate: Prisma.$TaskTemplatePayload<ExtArgs>[]
@@ -8970,6 +8991,7 @@ export namespace Prisma {
     resources<T extends Teacher$resourcesArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$resourcesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     studentGroups<T extends Teacher$studentGroupsArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$studentGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     submissionRemarks<T extends Teacher$submissionRemarksArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$submissionRemarksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentSubmissionRemarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher<T extends Teacher$StudentTask_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$StudentTask_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     StudentTask<T extends Teacher$StudentTaskArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$StudentTaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Task<T extends Teacher$TaskArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$TaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TaskTemplate<T extends Teacher$TaskTemplateArgs<ExtArgs> = {}>(args?: Subset<T, Teacher$TaskTemplateArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -9611,6 +9633,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StudentSubmissionRemarkScalarFieldEnum | StudentSubmissionRemarkScalarFieldEnum[]
+  }
+
+  /**
+   * Teacher.StudentTask_StudentTask_assigneeTeacherIdToTeacher
+   */
+  export type Teacher$StudentTask_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    where?: StudentTaskWhereInput
+    orderBy?: StudentTaskOrderByWithRelationInput | StudentTaskOrderByWithRelationInput[]
+    cursor?: StudentTaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentTaskScalarFieldEnum | StudentTaskScalarFieldEnum[]
   }
 
   /**
@@ -37861,6 +37907,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     students?: boolean | ParentAccount$studentsArgs<ExtArgs>
+    StudentTask?: boolean | ParentAccount$StudentTaskArgs<ExtArgs>
     _count?: boolean | ParentAccountCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["parentAccount"]>
 
@@ -37900,6 +37947,7 @@ export namespace Prisma {
   export type ParentAccountOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "password" | "isActivated" | "createdAt" | "updatedAt", ExtArgs["result"]["parentAccount"]>
   export type ParentAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     students?: boolean | ParentAccount$studentsArgs<ExtArgs>
+    StudentTask?: boolean | ParentAccount$StudentTaskArgs<ExtArgs>
     _count?: boolean | ParentAccountCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ParentAccountIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -37909,6 +37957,7 @@ export namespace Prisma {
     name: "ParentAccount"
     objects: {
       students: Prisma.$StudentPayload<ExtArgs>[]
+      StudentTask: Prisma.$StudentTaskPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -38314,6 +38363,7 @@ export namespace Prisma {
   export interface Prisma__ParentAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     students<T extends ParentAccount$studentsArgs<ExtArgs> = {}>(args?: Subset<T, ParentAccount$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    StudentTask<T extends ParentAccount$StudentTaskArgs<ExtArgs> = {}>(args?: Subset<T, ParentAccount$StudentTaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -38760,6 +38810,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StudentScalarFieldEnum | StudentScalarFieldEnum[]
+  }
+
+  /**
+   * ParentAccount.StudentTask
+   */
+  export type ParentAccount$StudentTaskArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StudentTask
+     */
+    select?: StudentTaskSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the StudentTask
+     */
+    omit?: StudentTaskOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentTaskInclude<ExtArgs> | null
+    where?: StudentTaskWhereInput
+    orderBy?: StudentTaskOrderByWithRelationInput | StudentTaskOrderByWithRelationInput[]
+    cursor?: StudentTaskWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentTaskScalarFieldEnum | StudentTaskScalarFieldEnum[]
   }
 
   /**
@@ -53696,6 +53770,8 @@ export namespace Prisma {
     taskId: number | null
     studentId: number | null
     reviewedById: number | null
+    assigneeParentId: number | null
+    assigneeTeacherId: number | null
   }
 
   export type StudentTaskSumAggregateOutputType = {
@@ -53703,6 +53779,8 @@ export namespace Prisma {
     taskId: number | null
     studentId: number | null
     reviewedById: number | null
+    assigneeParentId: number | null
+    assigneeTeacherId: number | null
   }
 
   export type StudentTaskMinAggregateOutputType = {
@@ -53725,6 +53803,10 @@ export namespace Prisma {
     updatedAt: Date | null
     dueSoonReminderSentAt: Date | null
     overdueReminderSentAt: Date | null
+    assigneeParentId: number | null
+    assigneeRole: string | null
+    assigneeTeacherId: number | null
+    reviewedByAdminEmail: string | null
   }
 
   export type StudentTaskMaxAggregateOutputType = {
@@ -53747,6 +53829,10 @@ export namespace Prisma {
     updatedAt: Date | null
     dueSoonReminderSentAt: Date | null
     overdueReminderSentAt: Date | null
+    assigneeParentId: number | null
+    assigneeRole: string | null
+    assigneeTeacherId: number | null
+    reviewedByAdminEmail: string | null
   }
 
   export type StudentTaskCountAggregateOutputType = {
@@ -53770,6 +53856,10 @@ export namespace Prisma {
     checklistDone: number
     dueSoonReminderSentAt: number
     overdueReminderSentAt: number
+    assigneeParentId: number
+    assigneeRole: number
+    assigneeTeacherId: number
+    reviewedByAdminEmail: number
     _all: number
   }
 
@@ -53779,6 +53869,8 @@ export namespace Prisma {
     taskId?: true
     studentId?: true
     reviewedById?: true
+    assigneeParentId?: true
+    assigneeTeacherId?: true
   }
 
   export type StudentTaskSumAggregateInputType = {
@@ -53786,6 +53878,8 @@ export namespace Prisma {
     taskId?: true
     studentId?: true
     reviewedById?: true
+    assigneeParentId?: true
+    assigneeTeacherId?: true
   }
 
   export type StudentTaskMinAggregateInputType = {
@@ -53808,6 +53902,10 @@ export namespace Prisma {
     updatedAt?: true
     dueSoonReminderSentAt?: true
     overdueReminderSentAt?: true
+    assigneeParentId?: true
+    assigneeRole?: true
+    assigneeTeacherId?: true
+    reviewedByAdminEmail?: true
   }
 
   export type StudentTaskMaxAggregateInputType = {
@@ -53830,6 +53928,10 @@ export namespace Prisma {
     updatedAt?: true
     dueSoonReminderSentAt?: true
     overdueReminderSentAt?: true
+    assigneeParentId?: true
+    assigneeRole?: true
+    assigneeTeacherId?: true
+    reviewedByAdminEmail?: true
   }
 
   export type StudentTaskCountAggregateInputType = {
@@ -53853,6 +53955,10 @@ export namespace Prisma {
     checklistDone?: true
     dueSoonReminderSentAt?: true
     overdueReminderSentAt?: true
+    assigneeParentId?: true
+    assigneeRole?: true
+    assigneeTeacherId?: true
+    reviewedByAdminEmail?: true
     _all?: true
   }
 
@@ -53945,7 +54051,7 @@ export namespace Prisma {
   export type StudentTaskGroupByOutputType = {
     id: number
     taskId: number
-    studentId: number
+    studentId: number | null
     status: string
     startedAt: Date | null
     submittedAt: Date | null
@@ -53963,6 +54069,10 @@ export namespace Prisma {
     checklistDone: JsonValue | null
     dueSoonReminderSentAt: Date | null
     overdueReminderSentAt: Date | null
+    assigneeParentId: number | null
+    assigneeRole: string
+    assigneeTeacherId: number | null
+    reviewedByAdminEmail: string | null
     _count: StudentTaskCountAggregateOutputType | null
     _avg: StudentTaskAvgAggregateOutputType | null
     _sum: StudentTaskSumAggregateOutputType | null
@@ -54005,8 +54115,14 @@ export namespace Prisma {
     checklistDone?: boolean
     dueSoonReminderSentAt?: boolean
     overdueReminderSentAt?: boolean
+    assigneeParentId?: boolean
+    assigneeRole?: boolean
+    assigneeTeacherId?: boolean
+    reviewedByAdminEmail?: boolean
+    ParentAccount?: boolean | StudentTask$ParentAccountArgs<ExtArgs>
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: boolean | StudentTask$Teacher_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs>
     Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentTask$StudentArgs<ExtArgs>
     Task?: boolean | TaskDefaultArgs<ExtArgs>
     TaskActivity?: boolean | StudentTask$TaskActivityArgs<ExtArgs>
     TaskComment?: boolean | StudentTask$TaskCommentArgs<ExtArgs>
@@ -54034,8 +54150,14 @@ export namespace Prisma {
     checklistDone?: boolean
     dueSoonReminderSentAt?: boolean
     overdueReminderSentAt?: boolean
+    assigneeParentId?: boolean
+    assigneeRole?: boolean
+    assigneeTeacherId?: boolean
+    reviewedByAdminEmail?: boolean
+    ParentAccount?: boolean | StudentTask$ParentAccountArgs<ExtArgs>
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: boolean | StudentTask$Teacher_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs>
     Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentTask$StudentArgs<ExtArgs>
     Task?: boolean | TaskDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentTask"]>
 
@@ -54060,8 +54182,14 @@ export namespace Prisma {
     checklistDone?: boolean
     dueSoonReminderSentAt?: boolean
     overdueReminderSentAt?: boolean
+    assigneeParentId?: boolean
+    assigneeRole?: boolean
+    assigneeTeacherId?: boolean
+    reviewedByAdminEmail?: boolean
+    ParentAccount?: boolean | StudentTask$ParentAccountArgs<ExtArgs>
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: boolean | StudentTask$Teacher_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs>
     Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentTask$StudentArgs<ExtArgs>
     Task?: boolean | TaskDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["studentTask"]>
 
@@ -54086,33 +54214,45 @@ export namespace Prisma {
     checklistDone?: boolean
     dueSoonReminderSentAt?: boolean
     overdueReminderSentAt?: boolean
+    assigneeParentId?: boolean
+    assigneeRole?: boolean
+    assigneeTeacherId?: boolean
+    reviewedByAdminEmail?: boolean
   }
 
-  export type StudentTaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "taskId" | "studentId" | "status" | "startedAt" | "submittedAt" | "completedAt" | "submissionNote" | "submissionUrl" | "submissionFileUrl" | "submissionFileName" | "submissionExternalConfirmed" | "mentorFeedback" | "reviewedAt" | "reviewedById" | "createdAt" | "updatedAt" | "checklistDone" | "dueSoonReminderSentAt" | "overdueReminderSentAt", ExtArgs["result"]["studentTask"]>
+  export type StudentTaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "taskId" | "studentId" | "status" | "startedAt" | "submittedAt" | "completedAt" | "submissionNote" | "submissionUrl" | "submissionFileUrl" | "submissionFileName" | "submissionExternalConfirmed" | "mentorFeedback" | "reviewedAt" | "reviewedById" | "createdAt" | "updatedAt" | "checklistDone" | "dueSoonReminderSentAt" | "overdueReminderSentAt" | "assigneeParentId" | "assigneeRole" | "assigneeTeacherId" | "reviewedByAdminEmail", ExtArgs["result"]["studentTask"]>
   export type StudentTaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ParentAccount?: boolean | StudentTask$ParentAccountArgs<ExtArgs>
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: boolean | StudentTask$Teacher_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs>
     Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentTask$StudentArgs<ExtArgs>
     Task?: boolean | TaskDefaultArgs<ExtArgs>
     TaskActivity?: boolean | StudentTask$TaskActivityArgs<ExtArgs>
     TaskComment?: boolean | StudentTask$TaskCommentArgs<ExtArgs>
     _count?: boolean | StudentTaskCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type StudentTaskIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ParentAccount?: boolean | StudentTask$ParentAccountArgs<ExtArgs>
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: boolean | StudentTask$Teacher_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs>
     Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentTask$StudentArgs<ExtArgs>
     Task?: boolean | TaskDefaultArgs<ExtArgs>
   }
   export type StudentTaskIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ParentAccount?: boolean | StudentTask$ParentAccountArgs<ExtArgs>
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: boolean | StudentTask$Teacher_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs>
     Teacher?: boolean | StudentTask$TeacherArgs<ExtArgs>
-    Student?: boolean | StudentDefaultArgs<ExtArgs>
+    Student?: boolean | StudentTask$StudentArgs<ExtArgs>
     Task?: boolean | TaskDefaultArgs<ExtArgs>
   }
 
   export type $StudentTaskPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "StudentTask"
     objects: {
+      ParentAccount: Prisma.$ParentAccountPayload<ExtArgs> | null
+      Teacher_StudentTask_assigneeTeacherIdToTeacher: Prisma.$TeacherPayload<ExtArgs> | null
       Teacher: Prisma.$TeacherPayload<ExtArgs> | null
-      Student: Prisma.$StudentPayload<ExtArgs>
+      Student: Prisma.$StudentPayload<ExtArgs> | null
       Task: Prisma.$TaskPayload<ExtArgs>
       TaskActivity: Prisma.$TaskActivityPayload<ExtArgs>[]
       TaskComment: Prisma.$TaskCommentPayload<ExtArgs>[]
@@ -54120,7 +54260,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       taskId: number
-      studentId: number
+      studentId: number | null
       status: string
       startedAt: Date | null
       submittedAt: Date | null
@@ -54138,6 +54278,10 @@ export namespace Prisma {
       checklistDone: Prisma.JsonValue | null
       dueSoonReminderSentAt: Date | null
       overdueReminderSentAt: Date | null
+      assigneeParentId: number | null
+      assigneeRole: string
+      assigneeTeacherId: number | null
+      reviewedByAdminEmail: string | null
     }, ExtArgs["result"]["studentTask"]>
     composites: {}
   }
@@ -54532,8 +54676,10 @@ export namespace Prisma {
    */
   export interface Prisma__StudentTaskClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    ParentAccount<T extends StudentTask$ParentAccountArgs<ExtArgs> = {}>(args?: Subset<T, StudentTask$ParentAccountArgs<ExtArgs>>): Prisma__ParentAccountClient<$Result.GetResult<Prisma.$ParentAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Teacher_StudentTask_assigneeTeacherIdToTeacher<T extends StudentTask$Teacher_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs> = {}>(args?: Subset<T, StudentTask$Teacher_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Teacher<T extends StudentTask$TeacherArgs<ExtArgs> = {}>(args?: Subset<T, StudentTask$TeacherArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    Student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Student<T extends StudentTask$StudentArgs<ExtArgs> = {}>(args?: Subset<T, StudentTask$StudentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Task<T extends TaskDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TaskDefaultArgs<ExtArgs>>): Prisma__TaskClient<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     TaskActivity<T extends StudentTask$TaskActivityArgs<ExtArgs> = {}>(args?: Subset<T, StudentTask$TaskActivityArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TaskComment<T extends StudentTask$TaskCommentArgs<ExtArgs> = {}>(args?: Subset<T, StudentTask$TaskCommentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -54586,6 +54732,10 @@ export namespace Prisma {
     readonly checklistDone: FieldRef<"StudentTask", 'Json'>
     readonly dueSoonReminderSentAt: FieldRef<"StudentTask", 'DateTime'>
     readonly overdueReminderSentAt: FieldRef<"StudentTask", 'DateTime'>
+    readonly assigneeParentId: FieldRef<"StudentTask", 'Int'>
+    readonly assigneeRole: FieldRef<"StudentTask", 'String'>
+    readonly assigneeTeacherId: FieldRef<"StudentTask", 'Int'>
+    readonly reviewedByAdminEmail: FieldRef<"StudentTask", 'String'>
   }
     
 
@@ -54982,6 +55132,44 @@ export namespace Prisma {
   }
 
   /**
+   * StudentTask.ParentAccount
+   */
+  export type StudentTask$ParentAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ParentAccount
+     */
+    select?: ParentAccountSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ParentAccount
+     */
+    omit?: ParentAccountOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ParentAccountInclude<ExtArgs> | null
+    where?: ParentAccountWhereInput
+  }
+
+  /**
+   * StudentTask.Teacher_StudentTask_assigneeTeacherIdToTeacher
+   */
+  export type StudentTask$Teacher_StudentTask_assigneeTeacherIdToTeacherArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Teacher
+     */
+    select?: TeacherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Teacher
+     */
+    omit?: TeacherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
+    where?: TeacherWhereInput
+  }
+
+  /**
    * StudentTask.Teacher
    */
   export type StudentTask$TeacherArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -54998,6 +55186,25 @@ export namespace Prisma {
      */
     include?: TeacherInclude<ExtArgs> | null
     where?: TeacherWhereInput
+  }
+
+  /**
+   * StudentTask.Student
+   */
+  export type StudentTask$StudentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Student
+     */
+    omit?: StudentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
   }
 
   /**
@@ -55125,6 +55332,9 @@ export namespace Prisma {
     seriesId: number | null
     templateId: number | null
     requireChecklistComplete: boolean | null
+    creatorAdminEmail: string | null
+    creatorName: string | null
+    creatorRole: string | null
   }
 
   export type TaskMaxAggregateOutputType = {
@@ -55153,6 +55363,9 @@ export namespace Prisma {
     seriesId: number | null
     templateId: number | null
     requireChecklistComplete: boolean | null
+    creatorAdminEmail: string | null
+    creatorName: string | null
+    creatorRole: string | null
   }
 
   export type TaskCountAggregateOutputType = {
@@ -55182,6 +55395,9 @@ export namespace Prisma {
     seriesId: number
     templateId: number
     requireChecklistComplete: number
+    creatorAdminEmail: number
+    creatorName: number
+    creatorRole: number
     _all: number
   }
 
@@ -55232,6 +55448,9 @@ export namespace Prisma {
     seriesId?: true
     templateId?: true
     requireChecklistComplete?: true
+    creatorAdminEmail?: true
+    creatorName?: true
+    creatorRole?: true
   }
 
   export type TaskMaxAggregateInputType = {
@@ -55260,6 +55479,9 @@ export namespace Prisma {
     seriesId?: true
     templateId?: true
     requireChecklistComplete?: true
+    creatorAdminEmail?: true
+    creatorName?: true
+    creatorRole?: true
   }
 
   export type TaskCountAggregateInputType = {
@@ -55289,6 +55511,9 @@ export namespace Prisma {
     seriesId?: true
     templateId?: true
     requireChecklistComplete?: true
+    creatorAdminEmail?: true
+    creatorName?: true
+    creatorRole?: true
     _all?: true
   }
 
@@ -55385,7 +55610,7 @@ export namespace Prisma {
     category: string
     priority: string
     deadline: Date | null
-    creatorId: number
+    creatorId: number | null
     requireSubmissionNote: boolean
     requireFileUpload: boolean
     requireUrl: boolean
@@ -55405,6 +55630,9 @@ export namespace Prisma {
     seriesId: number | null
     templateId: number | null
     requireChecklistComplete: boolean
+    creatorAdminEmail: string | null
+    creatorName: string | null
+    creatorRole: string
     _count: TaskCountAggregateOutputType | null
     _avg: TaskAvgAggregateOutputType | null
     _sum: TaskSumAggregateOutputType | null
@@ -55453,8 +55681,11 @@ export namespace Prisma {
     seriesId?: boolean
     templateId?: boolean
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: boolean
+    creatorName?: boolean
+    creatorRole?: boolean
     StudentTask?: boolean | Task$StudentTaskArgs<ExtArgs>
-    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    Teacher?: boolean | Task$TeacherArgs<ExtArgs>
     Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
     Resource?: boolean | Task$ResourceArgs<ExtArgs>
@@ -55489,7 +55720,10 @@ export namespace Prisma {
     seriesId?: boolean
     templateId?: boolean
     requireChecklistComplete?: boolean
-    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    creatorAdminEmail?: boolean
+    creatorName?: boolean
+    creatorRole?: boolean
+    Teacher?: boolean | Task$TeacherArgs<ExtArgs>
     Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
     Resource?: boolean | Task$ResourceArgs<ExtArgs>
@@ -55523,7 +55757,10 @@ export namespace Prisma {
     seriesId?: boolean
     templateId?: boolean
     requireChecklistComplete?: boolean
-    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    creatorAdminEmail?: boolean
+    creatorName?: boolean
+    creatorRole?: boolean
+    Teacher?: boolean | Task$TeacherArgs<ExtArgs>
     Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
     Resource?: boolean | Task$ResourceArgs<ExtArgs>
@@ -55557,12 +55794,15 @@ export namespace Prisma {
     seriesId?: boolean
     templateId?: boolean
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: boolean
+    creatorName?: boolean
+    creatorRole?: boolean
   }
 
-  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "priority" | "deadline" | "creatorId" | "requireSubmissionNote" | "requireFileUpload" | "requireUrl" | "requireExternalConfirmation" | "externalConfirmationPrompt" | "requireMentorApproval" | "isCancelled" | "createdAt" | "updatedAt" | "checklist" | "linkedAssignmentId" | "linkedMeetingId" | "linkedResourceId" | "nextOccurrenceCreatedAt" | "recurrence" | "recurrenceEndsAt" | "seriesId" | "templateId" | "requireChecklistComplete", ExtArgs["result"]["task"]>
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "priority" | "deadline" | "creatorId" | "requireSubmissionNote" | "requireFileUpload" | "requireUrl" | "requireExternalConfirmation" | "externalConfirmationPrompt" | "requireMentorApproval" | "isCancelled" | "createdAt" | "updatedAt" | "checklist" | "linkedAssignmentId" | "linkedMeetingId" | "linkedResourceId" | "nextOccurrenceCreatedAt" | "recurrence" | "recurrenceEndsAt" | "seriesId" | "templateId" | "requireChecklistComplete" | "creatorAdminEmail" | "creatorName" | "creatorRole", ExtArgs["result"]["task"]>
   export type TaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     StudentTask?: boolean | Task$StudentTaskArgs<ExtArgs>
-    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    Teacher?: boolean | Task$TeacherArgs<ExtArgs>
     Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
     Resource?: boolean | Task$ResourceArgs<ExtArgs>
@@ -55570,14 +55810,14 @@ export namespace Prisma {
     _count?: boolean | TaskCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type TaskIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    Teacher?: boolean | Task$TeacherArgs<ExtArgs>
     Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
     Resource?: boolean | Task$ResourceArgs<ExtArgs>
     TaskTemplate?: boolean | Task$TaskTemplateArgs<ExtArgs>
   }
   export type TaskIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Teacher?: boolean | TeacherDefaultArgs<ExtArgs>
+    Teacher?: boolean | Task$TeacherArgs<ExtArgs>
     Assignment?: boolean | Task$AssignmentArgs<ExtArgs>
     MeetingMinuteMeeting?: boolean | Task$MeetingMinuteMeetingArgs<ExtArgs>
     Resource?: boolean | Task$ResourceArgs<ExtArgs>
@@ -55588,7 +55828,7 @@ export namespace Prisma {
     name: "Task"
     objects: {
       StudentTask: Prisma.$StudentTaskPayload<ExtArgs>[]
-      Teacher: Prisma.$TeacherPayload<ExtArgs>
+      Teacher: Prisma.$TeacherPayload<ExtArgs> | null
       Assignment: Prisma.$AssignmentPayload<ExtArgs> | null
       MeetingMinuteMeeting: Prisma.$MeetingMinuteMeetingPayload<ExtArgs> | null
       Resource: Prisma.$ResourcePayload<ExtArgs> | null
@@ -55601,7 +55841,7 @@ export namespace Prisma {
       category: string
       priority: string
       deadline: Date | null
-      creatorId: number
+      creatorId: number | null
       requireSubmissionNote: boolean
       requireFileUpload: boolean
       requireUrl: boolean
@@ -55621,6 +55861,9 @@ export namespace Prisma {
       seriesId: number | null
       templateId: number | null
       requireChecklistComplete: boolean
+      creatorAdminEmail: string | null
+      creatorName: string | null
+      creatorRole: string
     }, ExtArgs["result"]["task"]>
     composites: {}
   }
@@ -56016,7 +56259,7 @@ export namespace Prisma {
   export interface Prisma__TaskClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     StudentTask<T extends Task$StudentTaskArgs<ExtArgs> = {}>(args?: Subset<T, Task$StudentTaskArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Teacher<T extends TeacherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TeacherDefaultArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Teacher<T extends Task$TeacherArgs<ExtArgs> = {}>(args?: Subset<T, Task$TeacherArgs<ExtArgs>>): Prisma__TeacherClient<$Result.GetResult<Prisma.$TeacherPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Assignment<T extends Task$AssignmentArgs<ExtArgs> = {}>(args?: Subset<T, Task$AssignmentArgs<ExtArgs>>): Prisma__AssignmentClient<$Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     MeetingMinuteMeeting<T extends Task$MeetingMinuteMeetingArgs<ExtArgs> = {}>(args?: Subset<T, Task$MeetingMinuteMeetingArgs<ExtArgs>>): Prisma__MeetingMinuteMeetingClient<$Result.GetResult<Prisma.$MeetingMinuteMeetingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Resource<T extends Task$ResourceArgs<ExtArgs> = {}>(args?: Subset<T, Task$ResourceArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -56076,6 +56319,9 @@ export namespace Prisma {
     readonly seriesId: FieldRef<"Task", 'Int'>
     readonly templateId: FieldRef<"Task", 'Int'>
     readonly requireChecklistComplete: FieldRef<"Task", 'Boolean'>
+    readonly creatorAdminEmail: FieldRef<"Task", 'String'>
+    readonly creatorName: FieldRef<"Task", 'String'>
+    readonly creatorRole: FieldRef<"Task", 'String'>
   }
     
 
@@ -56493,6 +56739,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: StudentTaskScalarFieldEnum | StudentTaskScalarFieldEnum[]
+  }
+
+  /**
+   * Task.Teacher
+   */
+  export type Task$TeacherArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Teacher
+     */
+    select?: TeacherSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Teacher
+     */
+    omit?: TeacherOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherInclude<ExtArgs> | null
+    where?: TeacherWhereInput
   }
 
   /**
@@ -65541,7 +65806,11 @@ export namespace Prisma {
     updatedAt: 'updatedAt',
     checklistDone: 'checklistDone',
     dueSoonReminderSentAt: 'dueSoonReminderSentAt',
-    overdueReminderSentAt: 'overdueReminderSentAt'
+    overdueReminderSentAt: 'overdueReminderSentAt',
+    assigneeParentId: 'assigneeParentId',
+    assigneeRole: 'assigneeRole',
+    assigneeTeacherId: 'assigneeTeacherId',
+    reviewedByAdminEmail: 'reviewedByAdminEmail'
   };
 
   export type StudentTaskScalarFieldEnum = (typeof StudentTaskScalarFieldEnum)[keyof typeof StudentTaskScalarFieldEnum]
@@ -65573,7 +65842,10 @@ export namespace Prisma {
     recurrenceEndsAt: 'recurrenceEndsAt',
     seriesId: 'seriesId',
     templateId: 'templateId',
-    requireChecklistComplete: 'requireChecklistComplete'
+    requireChecklistComplete: 'requireChecklistComplete',
+    creatorAdminEmail: 'creatorAdminEmail',
+    creatorName: 'creatorName',
+    creatorRole: 'creatorRole'
   };
 
   export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
@@ -66087,6 +66359,7 @@ export namespace Prisma {
     resources?: ResourceListRelationFilter
     studentGroups?: StudentGroupListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskListRelationFilter
     StudentTask?: StudentTaskListRelationFilter
     Task?: TaskListRelationFilter
     TaskTemplate?: TaskTemplateListRelationFilter
@@ -66115,6 +66388,7 @@ export namespace Prisma {
     resources?: ResourceOrderByRelationAggregateInput
     studentGroups?: StudentGroupOrderByRelationAggregateInput
     submissionRemarks?: StudentSubmissionRemarkOrderByRelationAggregateInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskOrderByRelationAggregateInput
     StudentTask?: StudentTaskOrderByRelationAggregateInput
     Task?: TaskOrderByRelationAggregateInput
     TaskTemplate?: TaskTemplateOrderByRelationAggregateInput
@@ -66146,6 +66420,7 @@ export namespace Prisma {
     resources?: ResourceListRelationFilter
     studentGroups?: StudentGroupListRelationFilter
     submissionRemarks?: StudentSubmissionRemarkListRelationFilter
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskListRelationFilter
     StudentTask?: StudentTaskListRelationFilter
     Task?: TaskListRelationFilter
     TaskTemplate?: TaskTemplateListRelationFilter
@@ -68444,6 +68719,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"ParentAccount"> | Date | string
     updatedAt?: DateTimeFilter<"ParentAccount"> | Date | string
     students?: StudentListRelationFilter
+    StudentTask?: StudentTaskListRelationFilter
   }
 
   export type ParentAccountOrderByWithRelationInput = {
@@ -68456,6 +68732,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     students?: StudentOrderByRelationAggregateInput
+    StudentTask?: StudentTaskOrderByRelationAggregateInput
   }
 
   export type ParentAccountWhereUniqueInput = Prisma.AtLeast<{
@@ -68471,6 +68748,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"ParentAccount"> | Date | string
     updatedAt?: DateTimeFilter<"ParentAccount"> | Date | string
     students?: StudentListRelationFilter
+    StudentTask?: StudentTaskListRelationFilter
   }, "id" | "email">
 
   export type ParentAccountOrderByWithAggregationInput = {
@@ -69861,7 +70139,7 @@ export namespace Prisma {
     NOT?: StudentTaskWhereInput | StudentTaskWhereInput[]
     id?: IntFilter<"StudentTask"> | number
     taskId?: IntFilter<"StudentTask"> | number
-    studentId?: IntFilter<"StudentTask"> | number
+    studentId?: IntNullableFilter<"StudentTask"> | number | null
     status?: StringFilter<"StudentTask"> | string
     startedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
     submittedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
@@ -69879,8 +70157,14 @@ export namespace Prisma {
     checklistDone?: JsonNullableFilter<"StudentTask">
     dueSoonReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
     overdueReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    assigneeParentId?: IntNullableFilter<"StudentTask"> | number | null
+    assigneeRole?: StringFilter<"StudentTask"> | string
+    assigneeTeacherId?: IntNullableFilter<"StudentTask"> | number | null
+    reviewedByAdminEmail?: StringNullableFilter<"StudentTask"> | string | null
+    ParentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
     Teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
-    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     Task?: XOR<TaskScalarRelationFilter, TaskWhereInput>
     TaskActivity?: TaskActivityListRelationFilter
     TaskComment?: TaskCommentListRelationFilter
@@ -69889,7 +70173,7 @@ export namespace Prisma {
   export type StudentTaskOrderByWithRelationInput = {
     id?: SortOrder
     taskId?: SortOrder
-    studentId?: SortOrder
+    studentId?: SortOrderInput | SortOrder
     status?: SortOrder
     startedAt?: SortOrderInput | SortOrder
     submittedAt?: SortOrderInput | SortOrder
@@ -69907,6 +70191,12 @@ export namespace Prisma {
     checklistDone?: SortOrderInput | SortOrder
     dueSoonReminderSentAt?: SortOrderInput | SortOrder
     overdueReminderSentAt?: SortOrderInput | SortOrder
+    assigneeParentId?: SortOrderInput | SortOrder
+    assigneeRole?: SortOrder
+    assigneeTeacherId?: SortOrderInput | SortOrder
+    reviewedByAdminEmail?: SortOrderInput | SortOrder
+    ParentAccount?: ParentAccountOrderByWithRelationInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherOrderByWithRelationInput
     Teacher?: TeacherOrderByWithRelationInput
     Student?: StudentOrderByWithRelationInput
     Task?: TaskOrderByWithRelationInput
@@ -69917,11 +70207,13 @@ export namespace Prisma {
   export type StudentTaskWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     taskId_studentId?: StudentTaskTaskIdStudentIdCompoundUniqueInput
+    taskId_assigneeParentId?: StudentTaskTaskIdAssigneeParentIdCompoundUniqueInput
+    taskId_assigneeTeacherId?: StudentTaskTaskIdAssigneeTeacherIdCompoundUniqueInput
     AND?: StudentTaskWhereInput | StudentTaskWhereInput[]
     OR?: StudentTaskWhereInput[]
     NOT?: StudentTaskWhereInput | StudentTaskWhereInput[]
     taskId?: IntFilter<"StudentTask"> | number
-    studentId?: IntFilter<"StudentTask"> | number
+    studentId?: IntNullableFilter<"StudentTask"> | number | null
     status?: StringFilter<"StudentTask"> | string
     startedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
     submittedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
@@ -69939,17 +70231,23 @@ export namespace Prisma {
     checklistDone?: JsonNullableFilter<"StudentTask">
     dueSoonReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
     overdueReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    assigneeParentId?: IntNullableFilter<"StudentTask"> | number | null
+    assigneeRole?: StringFilter<"StudentTask"> | string
+    assigneeTeacherId?: IntNullableFilter<"StudentTask"> | number | null
+    reviewedByAdminEmail?: StringNullableFilter<"StudentTask"> | string | null
+    ParentAccount?: XOR<ParentAccountNullableScalarRelationFilter, ParentAccountWhereInput> | null
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
     Teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
-    Student?: XOR<StudentScalarRelationFilter, StudentWhereInput>
+    Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     Task?: XOR<TaskScalarRelationFilter, TaskWhereInput>
     TaskActivity?: TaskActivityListRelationFilter
     TaskComment?: TaskCommentListRelationFilter
-  }, "id" | "taskId_studentId">
+  }, "id" | "taskId_studentId" | "taskId_assigneeParentId" | "taskId_assigneeTeacherId">
 
   export type StudentTaskOrderByWithAggregationInput = {
     id?: SortOrder
     taskId?: SortOrder
-    studentId?: SortOrder
+    studentId?: SortOrderInput | SortOrder
     status?: SortOrder
     startedAt?: SortOrderInput | SortOrder
     submittedAt?: SortOrderInput | SortOrder
@@ -69967,6 +70265,10 @@ export namespace Prisma {
     checklistDone?: SortOrderInput | SortOrder
     dueSoonReminderSentAt?: SortOrderInput | SortOrder
     overdueReminderSentAt?: SortOrderInput | SortOrder
+    assigneeParentId?: SortOrderInput | SortOrder
+    assigneeRole?: SortOrder
+    assigneeTeacherId?: SortOrderInput | SortOrder
+    reviewedByAdminEmail?: SortOrderInput | SortOrder
     _count?: StudentTaskCountOrderByAggregateInput
     _avg?: StudentTaskAvgOrderByAggregateInput
     _max?: StudentTaskMaxOrderByAggregateInput
@@ -69980,7 +70282,7 @@ export namespace Prisma {
     NOT?: StudentTaskScalarWhereWithAggregatesInput | StudentTaskScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"StudentTask"> | number
     taskId?: IntWithAggregatesFilter<"StudentTask"> | number
-    studentId?: IntWithAggregatesFilter<"StudentTask"> | number
+    studentId?: IntNullableWithAggregatesFilter<"StudentTask"> | number | null
     status?: StringWithAggregatesFilter<"StudentTask"> | string
     startedAt?: DateTimeNullableWithAggregatesFilter<"StudentTask"> | Date | string | null
     submittedAt?: DateTimeNullableWithAggregatesFilter<"StudentTask"> | Date | string | null
@@ -69998,6 +70300,10 @@ export namespace Prisma {
     checklistDone?: JsonNullableWithAggregatesFilter<"StudentTask">
     dueSoonReminderSentAt?: DateTimeNullableWithAggregatesFilter<"StudentTask"> | Date | string | null
     overdueReminderSentAt?: DateTimeNullableWithAggregatesFilter<"StudentTask"> | Date | string | null
+    assigneeParentId?: IntNullableWithAggregatesFilter<"StudentTask"> | number | null
+    assigneeRole?: StringWithAggregatesFilter<"StudentTask"> | string
+    assigneeTeacherId?: IntNullableWithAggregatesFilter<"StudentTask"> | number | null
+    reviewedByAdminEmail?: StringNullableWithAggregatesFilter<"StudentTask"> | string | null
   }
 
   export type TaskWhereInput = {
@@ -70010,7 +70316,7 @@ export namespace Prisma {
     category?: StringFilter<"Task"> | string
     priority?: StringFilter<"Task"> | string
     deadline?: DateTimeNullableFilter<"Task"> | Date | string | null
-    creatorId?: IntFilter<"Task"> | number
+    creatorId?: IntNullableFilter<"Task"> | number | null
     requireSubmissionNote?: BoolFilter<"Task"> | boolean
     requireFileUpload?: BoolFilter<"Task"> | boolean
     requireUrl?: BoolFilter<"Task"> | boolean
@@ -70030,8 +70336,11 @@ export namespace Prisma {
     seriesId?: IntNullableFilter<"Task"> | number | null
     templateId?: IntNullableFilter<"Task"> | number | null
     requireChecklistComplete?: BoolFilter<"Task"> | boolean
+    creatorAdminEmail?: StringNullableFilter<"Task"> | string | null
+    creatorName?: StringNullableFilter<"Task"> | string | null
+    creatorRole?: StringFilter<"Task"> | string
     StudentTask?: StudentTaskListRelationFilter
-    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    Teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
     Assignment?: XOR<AssignmentNullableScalarRelationFilter, AssignmentWhereInput> | null
     MeetingMinuteMeeting?: XOR<MeetingMinuteMeetingNullableScalarRelationFilter, MeetingMinuteMeetingWhereInput> | null
     Resource?: XOR<ResourceNullableScalarRelationFilter, ResourceWhereInput> | null
@@ -70045,7 +70354,7 @@ export namespace Prisma {
     category?: SortOrder
     priority?: SortOrder
     deadline?: SortOrderInput | SortOrder
-    creatorId?: SortOrder
+    creatorId?: SortOrderInput | SortOrder
     requireSubmissionNote?: SortOrder
     requireFileUpload?: SortOrder
     requireUrl?: SortOrder
@@ -70065,6 +70374,9 @@ export namespace Prisma {
     seriesId?: SortOrderInput | SortOrder
     templateId?: SortOrderInput | SortOrder
     requireChecklistComplete?: SortOrder
+    creatorAdminEmail?: SortOrderInput | SortOrder
+    creatorName?: SortOrderInput | SortOrder
+    creatorRole?: SortOrder
     StudentTask?: StudentTaskOrderByRelationAggregateInput
     Teacher?: TeacherOrderByWithRelationInput
     Assignment?: AssignmentOrderByWithRelationInput
@@ -70083,7 +70395,7 @@ export namespace Prisma {
     category?: StringFilter<"Task"> | string
     priority?: StringFilter<"Task"> | string
     deadline?: DateTimeNullableFilter<"Task"> | Date | string | null
-    creatorId?: IntFilter<"Task"> | number
+    creatorId?: IntNullableFilter<"Task"> | number | null
     requireSubmissionNote?: BoolFilter<"Task"> | boolean
     requireFileUpload?: BoolFilter<"Task"> | boolean
     requireUrl?: BoolFilter<"Task"> | boolean
@@ -70103,8 +70415,11 @@ export namespace Prisma {
     seriesId?: IntNullableFilter<"Task"> | number | null
     templateId?: IntNullableFilter<"Task"> | number | null
     requireChecklistComplete?: BoolFilter<"Task"> | boolean
+    creatorAdminEmail?: StringNullableFilter<"Task"> | string | null
+    creatorName?: StringNullableFilter<"Task"> | string | null
+    creatorRole?: StringFilter<"Task"> | string
     StudentTask?: StudentTaskListRelationFilter
-    Teacher?: XOR<TeacherScalarRelationFilter, TeacherWhereInput>
+    Teacher?: XOR<TeacherNullableScalarRelationFilter, TeacherWhereInput> | null
     Assignment?: XOR<AssignmentNullableScalarRelationFilter, AssignmentWhereInput> | null
     MeetingMinuteMeeting?: XOR<MeetingMinuteMeetingNullableScalarRelationFilter, MeetingMinuteMeetingWhereInput> | null
     Resource?: XOR<ResourceNullableScalarRelationFilter, ResourceWhereInput> | null
@@ -70118,7 +70433,7 @@ export namespace Prisma {
     category?: SortOrder
     priority?: SortOrder
     deadline?: SortOrderInput | SortOrder
-    creatorId?: SortOrder
+    creatorId?: SortOrderInput | SortOrder
     requireSubmissionNote?: SortOrder
     requireFileUpload?: SortOrder
     requireUrl?: SortOrder
@@ -70138,6 +70453,9 @@ export namespace Prisma {
     seriesId?: SortOrderInput | SortOrder
     templateId?: SortOrderInput | SortOrder
     requireChecklistComplete?: SortOrder
+    creatorAdminEmail?: SortOrderInput | SortOrder
+    creatorName?: SortOrderInput | SortOrder
+    creatorRole?: SortOrder
     _count?: TaskCountOrderByAggregateInput
     _avg?: TaskAvgOrderByAggregateInput
     _max?: TaskMaxOrderByAggregateInput
@@ -70155,7 +70473,7 @@ export namespace Prisma {
     category?: StringWithAggregatesFilter<"Task"> | string
     priority?: StringWithAggregatesFilter<"Task"> | string
     deadline?: DateTimeNullableWithAggregatesFilter<"Task"> | Date | string | null
-    creatorId?: IntWithAggregatesFilter<"Task"> | number
+    creatorId?: IntNullableWithAggregatesFilter<"Task"> | number | null
     requireSubmissionNote?: BoolWithAggregatesFilter<"Task"> | boolean
     requireFileUpload?: BoolWithAggregatesFilter<"Task"> | boolean
     requireUrl?: BoolWithAggregatesFilter<"Task"> | boolean
@@ -70175,6 +70493,9 @@ export namespace Prisma {
     seriesId?: IntNullableWithAggregatesFilter<"Task"> | number | null
     templateId?: IntNullableWithAggregatesFilter<"Task"> | number | null
     requireChecklistComplete?: BoolWithAggregatesFilter<"Task"> | boolean
+    creatorAdminEmail?: StringNullableWithAggregatesFilter<"Task"> | string | null
+    creatorName?: StringNullableWithAggregatesFilter<"Task"> | string | null
+    creatorRole?: StringWithAggregatesFilter<"Task"> | string
   }
 
   export type TaskActivityWhereInput = {
@@ -70984,6 +71305,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -71012,6 +71334,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -71039,6 +71362,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -71067,6 +71391,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -73598,6 +73923,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     students?: StudentCreateNestedManyWithoutParentAccountInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutParentAccountInput
   }
 
   export type ParentAccountUncheckedCreateInput = {
@@ -73610,6 +73936,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     students?: StudentUncheckedCreateNestedManyWithoutParentAccountInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutParentAccountInput
   }
 
   export type ParentAccountUpdateInput = {
@@ -73621,6 +73948,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     students?: StudentUpdateManyWithoutParentAccountNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutParentAccountNestedInput
   }
 
   export type ParentAccountUncheckedUpdateInput = {
@@ -73633,6 +73961,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     students?: StudentUncheckedUpdateManyWithoutParentAccountNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutParentAccountNestedInput
   }
 
   export type ParentAccountCreateManyInput = {
@@ -75239,8 +75568,12 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeRole?: string
+    reviewedByAdminEmail?: string | null
+    ParentAccount?: ParentAccountCreateNestedOneWithoutStudentTaskInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherCreateNestedOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput
     Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
-    Student: StudentCreateNestedOneWithoutStudentTaskInput
+    Student?: StudentCreateNestedOneWithoutStudentTaskInput
     Task: TaskCreateNestedOneWithoutStudentTaskInput
     TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
     TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
@@ -75249,7 +75582,7 @@ export namespace Prisma {
   export type StudentTaskUncheckedCreateInput = {
     id?: number
     taskId: number
-    studentId: number
+    studentId?: number | null
     status?: string
     startedAt?: Date | string | null
     submittedAt?: Date | string | null
@@ -75267,6 +75600,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
     TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
     TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
   }
@@ -75288,8 +75625,12 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    ParentAccount?: ParentAccountUpdateOneWithoutStudentTaskNestedInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherUpdateOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherNestedInput
     Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
-    Student?: StudentUpdateOneRequiredWithoutStudentTaskNestedInput
+    Student?: StudentUpdateOneWithoutStudentTaskNestedInput
     Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
     TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
     TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
@@ -75298,7 +75639,7 @@ export namespace Prisma {
   export type StudentTaskUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     taskId?: IntFieldUpdateOperationsInput | number
-    studentId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -75316,6 +75657,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
     TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
     TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
   }
@@ -75323,7 +75668,7 @@ export namespace Prisma {
   export type StudentTaskCreateManyInput = {
     id?: number
     taskId: number
-    studentId: number
+    studentId?: number | null
     status?: string
     startedAt?: Date | string | null
     submittedAt?: Date | string | null
@@ -75341,6 +75686,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
   }
 
   export type StudentTaskUpdateManyMutationInput = {
@@ -75360,12 +75709,14 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StudentTaskUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     taskId?: IntFieldUpdateOperationsInput | number
-    studentId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -75383,6 +75734,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TaskCreateInput = {
@@ -75406,8 +75761,11 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
-    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    Teacher?: TeacherCreateNestedOneWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
     Resource?: ResourceCreateNestedOneWithoutTaskInput
@@ -75421,7 +75779,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -75441,6 +75799,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -75465,8 +75826,11 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
-    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    Teacher?: TeacherUpdateOneWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
     Resource?: ResourceUpdateOneWithoutTaskNestedInput
@@ -75480,7 +75844,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -75500,6 +75864,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -75510,7 +75877,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -75530,6 +75897,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
   }
 
   export type TaskUpdateManyMutationInput = {
@@ -75553,6 +75923,9 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskUncheckedUpdateManyInput = {
@@ -75562,7 +75935,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -75582,6 +75955,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskActivityCreateInput = {
@@ -79365,6 +79741,16 @@ export namespace Prisma {
     studentId: number
   }
 
+  export type StudentTaskTaskIdAssigneeParentIdCompoundUniqueInput = {
+    taskId: number
+    assigneeParentId: number
+  }
+
+  export type StudentTaskTaskIdAssigneeTeacherIdCompoundUniqueInput = {
+    taskId: number
+    assigneeTeacherId: number
+  }
+
   export type StudentTaskCountOrderByAggregateInput = {
     id?: SortOrder
     taskId?: SortOrder
@@ -79386,6 +79772,10 @@ export namespace Prisma {
     checklistDone?: SortOrder
     dueSoonReminderSentAt?: SortOrder
     overdueReminderSentAt?: SortOrder
+    assigneeParentId?: SortOrder
+    assigneeRole?: SortOrder
+    assigneeTeacherId?: SortOrder
+    reviewedByAdminEmail?: SortOrder
   }
 
   export type StudentTaskAvgOrderByAggregateInput = {
@@ -79393,6 +79783,8 @@ export namespace Prisma {
     taskId?: SortOrder
     studentId?: SortOrder
     reviewedById?: SortOrder
+    assigneeParentId?: SortOrder
+    assigneeTeacherId?: SortOrder
   }
 
   export type StudentTaskMaxOrderByAggregateInput = {
@@ -79415,6 +79807,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     dueSoonReminderSentAt?: SortOrder
     overdueReminderSentAt?: SortOrder
+    assigneeParentId?: SortOrder
+    assigneeRole?: SortOrder
+    assigneeTeacherId?: SortOrder
+    reviewedByAdminEmail?: SortOrder
   }
 
   export type StudentTaskMinOrderByAggregateInput = {
@@ -79437,6 +79833,10 @@ export namespace Prisma {
     updatedAt?: SortOrder
     dueSoonReminderSentAt?: SortOrder
     overdueReminderSentAt?: SortOrder
+    assigneeParentId?: SortOrder
+    assigneeRole?: SortOrder
+    assigneeTeacherId?: SortOrder
+    reviewedByAdminEmail?: SortOrder
   }
 
   export type StudentTaskSumOrderByAggregateInput = {
@@ -79444,6 +79844,8 @@ export namespace Prisma {
     taskId?: SortOrder
     studentId?: SortOrder
     reviewedById?: SortOrder
+    assigneeParentId?: SortOrder
+    assigneeTeacherId?: SortOrder
   }
 
   export type AssignmentNullableScalarRelationFilter = {
@@ -79493,6 +79895,9 @@ export namespace Prisma {
     seriesId?: SortOrder
     templateId?: SortOrder
     requireChecklistComplete?: SortOrder
+    creatorAdminEmail?: SortOrder
+    creatorName?: SortOrder
+    creatorRole?: SortOrder
   }
 
   export type TaskAvgOrderByAggregateInput = {
@@ -79531,6 +79936,9 @@ export namespace Prisma {
     seriesId?: SortOrder
     templateId?: SortOrder
     requireChecklistComplete?: SortOrder
+    creatorAdminEmail?: SortOrder
+    creatorName?: SortOrder
+    creatorRole?: SortOrder
   }
 
   export type TaskMinOrderByAggregateInput = {
@@ -79559,6 +79967,9 @@ export namespace Prisma {
     seriesId?: SortOrder
     templateId?: SortOrder
     requireChecklistComplete?: SortOrder
+    creatorAdminEmail?: SortOrder
+    creatorName?: SortOrder
+    creatorRole?: SortOrder
   }
 
   export type TaskSumOrderByAggregateInput = {
@@ -80088,6 +80499,13 @@ export namespace Prisma {
     connect?: StudentSubmissionRemarkWhereUniqueInput | StudentSubmissionRemarkWhereUniqueInput[]
   }
 
+  export type StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
+    create?: XOR<StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput, StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput> | StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[] | StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskCreateOrConnectWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    createMany?: StudentTaskCreateManyTeacher_StudentTask_assigneeTeacherIdToTeacherInputEnvelope
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+  }
+
   export type StudentTaskCreateNestedManyWithoutTeacherInput = {
     create?: XOR<StudentTaskCreateWithoutTeacherInput, StudentTaskUncheckedCreateWithoutTeacherInput> | StudentTaskCreateWithoutTeacherInput[] | StudentTaskUncheckedCreateWithoutTeacherInput[]
     connectOrCreate?: StudentTaskCreateOrConnectWithoutTeacherInput | StudentTaskCreateOrConnectWithoutTeacherInput[]
@@ -80176,6 +80594,13 @@ export namespace Prisma {
     connectOrCreate?: StudentSubmissionRemarkCreateOrConnectWithoutTeacherInput | StudentSubmissionRemarkCreateOrConnectWithoutTeacherInput[]
     createMany?: StudentSubmissionRemarkCreateManyTeacherInputEnvelope
     connect?: StudentSubmissionRemarkWhereUniqueInput | StudentSubmissionRemarkWhereUniqueInput[]
+  }
+
+  export type StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
+    create?: XOR<StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput, StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput> | StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[] | StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskCreateOrConnectWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    createMany?: StudentTaskCreateManyTeacher_StudentTask_assigneeTeacherIdToTeacherInputEnvelope
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
   }
 
   export type StudentTaskUncheckedCreateNestedManyWithoutTeacherInput = {
@@ -80335,6 +80760,20 @@ export namespace Prisma {
     update?: StudentSubmissionRemarkUpdateWithWhereUniqueWithoutTeacherInput | StudentSubmissionRemarkUpdateWithWhereUniqueWithoutTeacherInput[]
     updateMany?: StudentSubmissionRemarkUpdateManyWithWhereWithoutTeacherInput | StudentSubmissionRemarkUpdateManyWithWhereWithoutTeacherInput[]
     deleteMany?: StudentSubmissionRemarkScalarWhereInput | StudentSubmissionRemarkScalarWhereInput[]
+  }
+
+  export type StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput, StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput> | StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[] | StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskCreateOrConnectWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    upsert?: StudentTaskUpsertWithWhereUniqueWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskUpsertWithWhereUniqueWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    createMany?: StudentTaskCreateManyTeacher_StudentTask_assigneeTeacherIdToTeacherInputEnvelope
+    set?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    disconnect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    delete?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    update?: StudentTaskUpdateWithWhereUniqueWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskUpdateWithWhereUniqueWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    updateMany?: StudentTaskUpdateManyWithWhereWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskUpdateManyWithWhereWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
   }
 
   export type StudentTaskUpdateManyWithoutTeacherNestedInput = {
@@ -80513,6 +80952,20 @@ export namespace Prisma {
     update?: StudentSubmissionRemarkUpdateWithWhereUniqueWithoutTeacherInput | StudentSubmissionRemarkUpdateWithWhereUniqueWithoutTeacherInput[]
     updateMany?: StudentSubmissionRemarkUpdateManyWithWhereWithoutTeacherInput | StudentSubmissionRemarkUpdateManyWithWhereWithoutTeacherInput[]
     deleteMany?: StudentSubmissionRemarkScalarWhereInput | StudentSubmissionRemarkScalarWhereInput[]
+  }
+
+  export type StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput, StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput> | StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[] | StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskCreateOrConnectWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    upsert?: StudentTaskUpsertWithWhereUniqueWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskUpsertWithWhereUniqueWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    createMany?: StudentTaskCreateManyTeacher_StudentTask_assigneeTeacherIdToTeacherInputEnvelope
+    set?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    disconnect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    delete?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    update?: StudentTaskUpdateWithWhereUniqueWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskUpdateWithWhereUniqueWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    updateMany?: StudentTaskUpdateManyWithWhereWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskUpdateManyWithWhereWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
   }
 
   export type StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput = {
@@ -82221,11 +82674,25 @@ export namespace Prisma {
     connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
   }
 
+  export type StudentTaskCreateNestedManyWithoutParentAccountInput = {
+    create?: XOR<StudentTaskCreateWithoutParentAccountInput, StudentTaskUncheckedCreateWithoutParentAccountInput> | StudentTaskCreateWithoutParentAccountInput[] | StudentTaskUncheckedCreateWithoutParentAccountInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutParentAccountInput | StudentTaskCreateOrConnectWithoutParentAccountInput[]
+    createMany?: StudentTaskCreateManyParentAccountInputEnvelope
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+  }
+
   export type StudentUncheckedCreateNestedManyWithoutParentAccountInput = {
     create?: XOR<StudentCreateWithoutParentAccountInput, StudentUncheckedCreateWithoutParentAccountInput> | StudentCreateWithoutParentAccountInput[] | StudentUncheckedCreateWithoutParentAccountInput[]
     connectOrCreate?: StudentCreateOrConnectWithoutParentAccountInput | StudentCreateOrConnectWithoutParentAccountInput[]
     createMany?: StudentCreateManyParentAccountInputEnvelope
     connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
+  export type StudentTaskUncheckedCreateNestedManyWithoutParentAccountInput = {
+    create?: XOR<StudentTaskCreateWithoutParentAccountInput, StudentTaskUncheckedCreateWithoutParentAccountInput> | StudentTaskCreateWithoutParentAccountInput[] | StudentTaskUncheckedCreateWithoutParentAccountInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutParentAccountInput | StudentTaskCreateOrConnectWithoutParentAccountInput[]
+    createMany?: StudentTaskCreateManyParentAccountInputEnvelope
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
   }
 
   export type StudentUpdateManyWithoutParentAccountNestedInput = {
@@ -82242,6 +82709,20 @@ export namespace Prisma {
     deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
   }
 
+  export type StudentTaskUpdateManyWithoutParentAccountNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutParentAccountInput, StudentTaskUncheckedCreateWithoutParentAccountInput> | StudentTaskCreateWithoutParentAccountInput[] | StudentTaskUncheckedCreateWithoutParentAccountInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutParentAccountInput | StudentTaskCreateOrConnectWithoutParentAccountInput[]
+    upsert?: StudentTaskUpsertWithWhereUniqueWithoutParentAccountInput | StudentTaskUpsertWithWhereUniqueWithoutParentAccountInput[]
+    createMany?: StudentTaskCreateManyParentAccountInputEnvelope
+    set?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    disconnect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    delete?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    update?: StudentTaskUpdateWithWhereUniqueWithoutParentAccountInput | StudentTaskUpdateWithWhereUniqueWithoutParentAccountInput[]
+    updateMany?: StudentTaskUpdateManyWithWhereWithoutParentAccountInput | StudentTaskUpdateManyWithWhereWithoutParentAccountInput[]
+    deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
+  }
+
   export type StudentUncheckedUpdateManyWithoutParentAccountNestedInput = {
     create?: XOR<StudentCreateWithoutParentAccountInput, StudentUncheckedCreateWithoutParentAccountInput> | StudentCreateWithoutParentAccountInput[] | StudentUncheckedCreateWithoutParentAccountInput[]
     connectOrCreate?: StudentCreateOrConnectWithoutParentAccountInput | StudentCreateOrConnectWithoutParentAccountInput[]
@@ -82254,6 +82735,20 @@ export namespace Prisma {
     update?: StudentUpdateWithWhereUniqueWithoutParentAccountInput | StudentUpdateWithWhereUniqueWithoutParentAccountInput[]
     updateMany?: StudentUpdateManyWithWhereWithoutParentAccountInput | StudentUpdateManyWithWhereWithoutParentAccountInput[]
     deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
+  export type StudentTaskUncheckedUpdateManyWithoutParentAccountNestedInput = {
+    create?: XOR<StudentTaskCreateWithoutParentAccountInput, StudentTaskUncheckedCreateWithoutParentAccountInput> | StudentTaskCreateWithoutParentAccountInput[] | StudentTaskUncheckedCreateWithoutParentAccountInput[]
+    connectOrCreate?: StudentTaskCreateOrConnectWithoutParentAccountInput | StudentTaskCreateOrConnectWithoutParentAccountInput[]
+    upsert?: StudentTaskUpsertWithWhereUniqueWithoutParentAccountInput | StudentTaskUpsertWithWhereUniqueWithoutParentAccountInput[]
+    createMany?: StudentTaskCreateManyParentAccountInputEnvelope
+    set?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    disconnect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    delete?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    connect?: StudentTaskWhereUniqueInput | StudentTaskWhereUniqueInput[]
+    update?: StudentTaskUpdateWithWhereUniqueWithoutParentAccountInput | StudentTaskUpdateWithWhereUniqueWithoutParentAccountInput[]
+    updateMany?: StudentTaskUpdateManyWithWhereWithoutParentAccountInput | StudentTaskUpdateManyWithWhereWithoutParentAccountInput[]
+    deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
   }
 
   export type MentorCreatespecialtiesInput = {
@@ -82670,6 +83165,18 @@ export namespace Prisma {
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutMeetingMinuteRequestInput, StudentUpdateWithoutMeetingMinuteRequestInput>, StudentUncheckedUpdateWithoutMeetingMinuteRequestInput>
   }
 
+  export type ParentAccountCreateNestedOneWithoutStudentTaskInput = {
+    create?: XOR<ParentAccountCreateWithoutStudentTaskInput, ParentAccountUncheckedCreateWithoutStudentTaskInput>
+    connectOrCreate?: ParentAccountCreateOrConnectWithoutStudentTaskInput
+    connect?: ParentAccountWhereUniqueInput
+  }
+
+  export type TeacherCreateNestedOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput = {
+    create?: XOR<TeacherCreateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput, TeacherUncheckedCreateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput
+    connect?: TeacherWhereUniqueInput
+  }
+
   export type TeacherCreateNestedOneWithoutStudentTaskInput = {
     create?: XOR<TeacherCreateWithoutStudentTaskInput, TeacherUncheckedCreateWithoutStudentTaskInput>
     connectOrCreate?: TeacherCreateOrConnectWithoutStudentTaskInput
@@ -82716,6 +83223,26 @@ export namespace Prisma {
     connect?: TaskCommentWhereUniqueInput | TaskCommentWhereUniqueInput[]
   }
 
+  export type ParentAccountUpdateOneWithoutStudentTaskNestedInput = {
+    create?: XOR<ParentAccountCreateWithoutStudentTaskInput, ParentAccountUncheckedCreateWithoutStudentTaskInput>
+    connectOrCreate?: ParentAccountCreateOrConnectWithoutStudentTaskInput
+    upsert?: ParentAccountUpsertWithoutStudentTaskInput
+    disconnect?: ParentAccountWhereInput | boolean
+    delete?: ParentAccountWhereInput | boolean
+    connect?: ParentAccountWhereUniqueInput
+    update?: XOR<XOR<ParentAccountUpdateToOneWithWhereWithoutStudentTaskInput, ParentAccountUpdateWithoutStudentTaskInput>, ParentAccountUncheckedUpdateWithoutStudentTaskInput>
+  }
+
+  export type TeacherUpdateOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherNestedInput = {
+    create?: XOR<TeacherCreateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput, TeacherUncheckedCreateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput>
+    connectOrCreate?: TeacherCreateOrConnectWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput
+    upsert?: TeacherUpsertWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput
+    disconnect?: TeacherWhereInput | boolean
+    delete?: TeacherWhereInput | boolean
+    connect?: TeacherWhereUniqueInput
+    update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput, TeacherUpdateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput>, TeacherUncheckedUpdateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput>
+  }
+
   export type TeacherUpdateOneWithoutStudentTaskNestedInput = {
     create?: XOR<TeacherCreateWithoutStudentTaskInput, TeacherUncheckedCreateWithoutStudentTaskInput>
     connectOrCreate?: TeacherCreateOrConnectWithoutStudentTaskInput
@@ -82726,10 +83253,12 @@ export namespace Prisma {
     update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutStudentTaskInput, TeacherUpdateWithoutStudentTaskInput>, TeacherUncheckedUpdateWithoutStudentTaskInput>
   }
 
-  export type StudentUpdateOneRequiredWithoutStudentTaskNestedInput = {
+  export type StudentUpdateOneWithoutStudentTaskNestedInput = {
     create?: XOR<StudentCreateWithoutStudentTaskInput, StudentUncheckedCreateWithoutStudentTaskInput>
     connectOrCreate?: StudentCreateOrConnectWithoutStudentTaskInput
     upsert?: StudentUpsertWithoutStudentTaskInput
+    disconnect?: StudentWhereInput | boolean
+    delete?: StudentWhereInput | boolean
     connect?: StudentWhereUniqueInput
     update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutStudentTaskInput, StudentUpdateWithoutStudentTaskInput>, StudentUncheckedUpdateWithoutStudentTaskInput>
   }
@@ -82856,10 +83385,12 @@ export namespace Prisma {
     deleteMany?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
   }
 
-  export type TeacherUpdateOneRequiredWithoutTaskNestedInput = {
+  export type TeacherUpdateOneWithoutTaskNestedInput = {
     create?: XOR<TeacherCreateWithoutTaskInput, TeacherUncheckedCreateWithoutTaskInput>
     connectOrCreate?: TeacherCreateOrConnectWithoutTaskInput
     upsert?: TeacherUpsertWithoutTaskInput
+    disconnect?: TeacherWhereInput | boolean
+    delete?: TeacherWhereInput | boolean
     connect?: TeacherWhereUniqueInput
     update?: XOR<XOR<TeacherUpdateToOneWithWhereWithoutTaskInput, TeacherUpdateWithoutTaskInput>, TeacherUncheckedUpdateWithoutTaskInput>
   }
@@ -83854,6 +84385,71 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    assigneeRole?: string
+    reviewedByAdminEmail?: string | null
+    ParentAccount?: ParentAccountCreateNestedOneWithoutStudentTaskInput
+    Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
+    Student?: StudentCreateNestedOneWithoutStudentTaskInput
+    Task: TaskCreateNestedOneWithoutStudentTaskInput
+    TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
+    id?: number
+    taskId: number
+    studentId?: number | null
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    reviewedByAdminEmail?: string | null
+    TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskCreateOrConnectWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
+    where: StudentTaskWhereUniqueInput
+    create: XOR<StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput, StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput>
+  }
+
+  export type StudentTaskCreateManyTeacher_StudentTask_assigneeTeacherIdToTeacherInputEnvelope = {
+    data: StudentTaskCreateManyTeacher_StudentTask_assigneeTeacherIdToTeacherInput | StudentTaskCreateManyTeacher_StudentTask_assigneeTeacherIdToTeacherInput[]
+    skipDuplicates?: boolean
+  }
+
   export type StudentTaskCreateWithoutTeacherInput = {
     status?: string
     startedAt?: Date | string | null
@@ -83871,7 +84467,11 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
-    Student: StudentCreateNestedOneWithoutStudentTaskInput
+    assigneeRole?: string
+    reviewedByAdminEmail?: string | null
+    ParentAccount?: ParentAccountCreateNestedOneWithoutStudentTaskInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherCreateNestedOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput
+    Student?: StudentCreateNestedOneWithoutStudentTaskInput
     Task: TaskCreateNestedOneWithoutStudentTaskInput
     TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
     TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
@@ -83880,7 +84480,7 @@ export namespace Prisma {
   export type StudentTaskUncheckedCreateWithoutTeacherInput = {
     id?: number
     taskId: number
-    studentId: number
+    studentId?: number | null
     status?: string
     startedAt?: Date | string | null
     submittedAt?: Date | string | null
@@ -83897,6 +84497,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
     TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
     TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
   }
@@ -83932,6 +84536,9 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
@@ -83965,6 +84572,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -84391,20 +85001,20 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"StudentSubmissionRemark"> | Date | string
   }
 
-  export type StudentTaskUpsertWithWhereUniqueWithoutTeacherInput = {
+  export type StudentTaskUpsertWithWhereUniqueWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
     where: StudentTaskWhereUniqueInput
-    update: XOR<StudentTaskUpdateWithoutTeacherInput, StudentTaskUncheckedUpdateWithoutTeacherInput>
-    create: XOR<StudentTaskCreateWithoutTeacherInput, StudentTaskUncheckedCreateWithoutTeacherInput>
+    update: XOR<StudentTaskUpdateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput, StudentTaskUncheckedUpdateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput>
+    create: XOR<StudentTaskCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput, StudentTaskUncheckedCreateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput>
   }
 
-  export type StudentTaskUpdateWithWhereUniqueWithoutTeacherInput = {
+  export type StudentTaskUpdateWithWhereUniqueWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
     where: StudentTaskWhereUniqueInput
-    data: XOR<StudentTaskUpdateWithoutTeacherInput, StudentTaskUncheckedUpdateWithoutTeacherInput>
+    data: XOR<StudentTaskUpdateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput, StudentTaskUncheckedUpdateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput>
   }
 
-  export type StudentTaskUpdateManyWithWhereWithoutTeacherInput = {
+  export type StudentTaskUpdateManyWithWhereWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
     where: StudentTaskScalarWhereInput
-    data: XOR<StudentTaskUpdateManyMutationInput, StudentTaskUncheckedUpdateManyWithoutTeacherInput>
+    data: XOR<StudentTaskUpdateManyMutationInput, StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput>
   }
 
   export type StudentTaskScalarWhereInput = {
@@ -84413,7 +85023,7 @@ export namespace Prisma {
     NOT?: StudentTaskScalarWhereInput | StudentTaskScalarWhereInput[]
     id?: IntFilter<"StudentTask"> | number
     taskId?: IntFilter<"StudentTask"> | number
-    studentId?: IntFilter<"StudentTask"> | number
+    studentId?: IntNullableFilter<"StudentTask"> | number | null
     status?: StringFilter<"StudentTask"> | string
     startedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
     submittedAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
@@ -84431,6 +85041,26 @@ export namespace Prisma {
     checklistDone?: JsonNullableFilter<"StudentTask">
     dueSoonReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
     overdueReminderSentAt?: DateTimeNullableFilter<"StudentTask"> | Date | string | null
+    assigneeParentId?: IntNullableFilter<"StudentTask"> | number | null
+    assigneeRole?: StringFilter<"StudentTask"> | string
+    assigneeTeacherId?: IntNullableFilter<"StudentTask"> | number | null
+    reviewedByAdminEmail?: StringNullableFilter<"StudentTask"> | string | null
+  }
+
+  export type StudentTaskUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: StudentTaskWhereUniqueInput
+    update: XOR<StudentTaskUpdateWithoutTeacherInput, StudentTaskUncheckedUpdateWithoutTeacherInput>
+    create: XOR<StudentTaskCreateWithoutTeacherInput, StudentTaskUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type StudentTaskUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: StudentTaskWhereUniqueInput
+    data: XOR<StudentTaskUpdateWithoutTeacherInput, StudentTaskUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type StudentTaskUpdateManyWithWhereWithoutTeacherInput = {
+    where: StudentTaskScalarWhereInput
+    data: XOR<StudentTaskUpdateManyMutationInput, StudentTaskUncheckedUpdateManyWithoutTeacherInput>
   }
 
   export type TaskUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -84459,7 +85089,7 @@ export namespace Prisma {
     category?: StringFilter<"Task"> | string
     priority?: StringFilter<"Task"> | string
     deadline?: DateTimeNullableFilter<"Task"> | Date | string | null
-    creatorId?: IntFilter<"Task"> | number
+    creatorId?: IntNullableFilter<"Task"> | number | null
     requireSubmissionNote?: BoolFilter<"Task"> | boolean
     requireFileUpload?: BoolFilter<"Task"> | boolean
     requireUrl?: BoolFilter<"Task"> | boolean
@@ -84479,6 +85109,9 @@ export namespace Prisma {
     seriesId?: IntNullableFilter<"Task"> | number | null
     templateId?: IntNullableFilter<"Task"> | number | null
     requireChecklistComplete?: BoolFilter<"Task"> | boolean
+    creatorAdminEmail?: StringNullableFilter<"Task"> | string | null
+    creatorName?: StringNullableFilter<"Task"> | string | null
+    creatorRole?: StringFilter<"Task"> | string
   }
 
   export type TaskTemplateUpsertWithWhereUniqueWithoutTeacherInput = {
@@ -85005,6 +85638,7 @@ export namespace Prisma {
     isActivated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    StudentTask?: StudentTaskCreateNestedManyWithoutParentAccountInput
   }
 
   export type ParentAccountUncheckedCreateWithoutStudentsInput = {
@@ -85016,6 +85650,7 @@ export namespace Prisma {
     isActivated?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutParentAccountInput
   }
 
   export type ParentAccountCreateOrConnectWithoutStudentsInput = {
@@ -85121,6 +85756,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeRole?: string
+    reviewedByAdminEmail?: string | null
+    ParentAccount?: ParentAccountCreateNestedOneWithoutStudentTaskInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherCreateNestedOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput
     Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
     Task: TaskCreateNestedOneWithoutStudentTaskInput
     TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
@@ -85147,6 +85786,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
     TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
     TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
   }
@@ -85599,6 +86242,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    StudentTask?: StudentTaskUpdateManyWithoutParentAccountNestedInput
   }
 
   export type ParentAccountUncheckedUpdateWithoutStudentsInput = {
@@ -85610,6 +86254,7 @@ export namespace Prisma {
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutParentAccountNestedInput
   }
 
   export type StudentGroupMemberUpsertWithWhereUniqueWithoutStudentInput = {
@@ -85907,6 +86552,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -85934,6 +86580,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -86054,6 +86701,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -86081,6 +86729,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -86171,6 +86820,7 @@ export namespace Prisma {
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -86198,6 +86848,7 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -86277,6 +86928,7 @@ export namespace Prisma {
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -86304,6 +86956,7 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -86618,6 +87271,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -86645,6 +87299,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -86758,8 +87413,11 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
-    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    Teacher?: TeacherCreateNestedOneWithoutTaskInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
     Resource?: ResourceCreateNestedOneWithoutTaskInput
     TaskTemplate?: TaskTemplateCreateNestedOneWithoutTaskInput
@@ -86772,7 +87430,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -86791,6 +87449,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -86913,6 +87574,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -86940,6 +87602,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -87534,6 +88197,7 @@ export namespace Prisma {
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -87561,6 +88225,7 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -87616,8 +88281,11 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
-    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    Teacher?: TeacherCreateNestedOneWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
     TaskTemplate?: TaskTemplateCreateNestedOneWithoutTaskInput
@@ -87630,7 +88298,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -87649,6 +88317,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -87709,6 +88380,7 @@ export namespace Prisma {
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -87736,6 +88408,7 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -88453,6 +89126,7 @@ export namespace Prisma {
     progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -88480,6 +89154,7 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -88560,6 +89235,7 @@ export namespace Prisma {
     progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -88587,6 +89263,7 @@ export namespace Prisma {
     progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -88707,6 +89384,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -88734,6 +89412,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -88957,6 +89636,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -88984,6 +89664,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -89471,6 +90152,71 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type StudentTaskCreateWithoutParentAccountInput = {
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    assigneeRole?: string
+    reviewedByAdminEmail?: string | null
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherCreateNestedOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput
+    Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
+    Student?: StudentCreateNestedOneWithoutStudentTaskInput
+    Task: TaskCreateNestedOneWithoutStudentTaskInput
+    TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskUncheckedCreateWithoutParentAccountInput = {
+    id?: number
+    taskId: number
+    studentId?: number | null
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
+    TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
+    TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
+  }
+
+  export type StudentTaskCreateOrConnectWithoutParentAccountInput = {
+    where: StudentTaskWhereUniqueInput
+    create: XOR<StudentTaskCreateWithoutParentAccountInput, StudentTaskUncheckedCreateWithoutParentAccountInput>
+  }
+
+  export type StudentTaskCreateManyParentAccountInputEnvelope = {
+    data: StudentTaskCreateManyParentAccountInput | StudentTaskCreateManyParentAccountInput[]
+    skipDuplicates?: boolean
+  }
+
   export type StudentUpsertWithWhereUniqueWithoutParentAccountInput = {
     where: StudentWhereUniqueInput
     update: XOR<StudentUpdateWithoutParentAccountInput, StudentUncheckedUpdateWithoutParentAccountInput>
@@ -89508,6 +90254,22 @@ export namespace Prisma {
     graduationYear?: IntNullableFilter<"Student"> | number | null
   }
 
+  export type StudentTaskUpsertWithWhereUniqueWithoutParentAccountInput = {
+    where: StudentTaskWhereUniqueInput
+    update: XOR<StudentTaskUpdateWithoutParentAccountInput, StudentTaskUncheckedUpdateWithoutParentAccountInput>
+    create: XOR<StudentTaskCreateWithoutParentAccountInput, StudentTaskUncheckedCreateWithoutParentAccountInput>
+  }
+
+  export type StudentTaskUpdateWithWhereUniqueWithoutParentAccountInput = {
+    where: StudentTaskWhereUniqueInput
+    data: XOR<StudentTaskUpdateWithoutParentAccountInput, StudentTaskUncheckedUpdateWithoutParentAccountInput>
+  }
+
+  export type StudentTaskUpdateManyWithWhereWithoutParentAccountInput = {
+    where: StudentTaskScalarWhereInput
+    data: XOR<StudentTaskUpdateManyMutationInput, StudentTaskUncheckedUpdateManyWithoutParentAccountInput>
+  }
+
   export type TeacherCreateWithoutMentorProfileInput = {
     name: string
     email: string
@@ -89528,6 +90290,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -89555,6 +90318,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -89597,6 +90361,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -89624,6 +90389,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -89722,6 +90488,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -89749,6 +90516,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -89869,6 +90637,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -89896,6 +90665,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -90954,6 +91724,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -90981,6 +91752,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -91050,8 +91822,11 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
-    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    Teacher?: TeacherCreateNestedOneWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
     Resource?: ResourceCreateNestedOneWithoutTaskInput
     TaskTemplate?: TaskTemplateCreateNestedOneWithoutTaskInput
@@ -91064,7 +91839,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -91083,6 +91858,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -91193,6 +91971,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -91220,6 +91999,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -91498,6 +92278,94 @@ export namespace Prisma {
     Testimonial?: TestimonialUncheckedUpdateManyWithoutStudentNestedInput
   }
 
+  export type ParentAccountCreateWithoutStudentTaskInput = {
+    name: string
+    email: string
+    phone?: string | null
+    password?: string | null
+    isActivated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    students?: StudentCreateNestedManyWithoutParentAccountInput
+  }
+
+  export type ParentAccountUncheckedCreateWithoutStudentTaskInput = {
+    id?: number
+    name: string
+    email: string
+    phone?: string | null
+    password?: string | null
+    isActivated?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    students?: StudentUncheckedCreateNestedManyWithoutParentAccountInput
+  }
+
+  export type ParentAccountCreateOrConnectWithoutStudentTaskInput = {
+    where: ParentAccountWhereUniqueInput
+    create: XOR<ParentAccountCreateWithoutStudentTaskInput, ParentAccountUncheckedCreateWithoutStudentTaskInput>
+  }
+
+  export type TeacherCreateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput = {
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotCreateNestedManyWithoutTeacherInput
+    progressReports?: ProgressReportCreateNestedManyWithoutTeacherInput
+    resources?: ResourceCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
+    Task?: TaskCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherUncheckedCreateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput = {
+    id?: number
+    name: string
+    email: string
+    password?: string | null
+    programs?: TeacherCreateprogramsInput | string[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    isActivated?: boolean
+    googleAccessToken?: string | null
+    googleCalendarConnected?: boolean
+    googleRefreshToken?: string | null
+    googleTokenExpiry?: Date | string | null
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    classSchedules?: ClassScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedCreateNestedManyWithoutTeacherInput
+    mentorProfile?: MentorUncheckedCreateNestedOneWithoutTeacherInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedCreateNestedManyWithoutTeacherInput
+    progressReports?: ProgressReportUncheckedCreateNestedManyWithoutTeacherInput
+    resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
+    studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
+    Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
+    TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
+    students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
+  }
+
+  export type TeacherCreateOrConnectWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput = {
+    where: TeacherWhereUniqueInput
+    create: XOR<TeacherCreateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput, TeacherUncheckedCreateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput>
+  }
+
   export type TeacherCreateWithoutStudentTaskInput = {
     name: string
     email: string
@@ -91519,6 +92387,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -91546,6 +92415,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -91649,7 +92519,10 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     requireChecklistComplete?: boolean
-    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
+    Teacher?: TeacherCreateNestedOneWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
     Resource?: ResourceCreateNestedOneWithoutTaskInput
@@ -91663,7 +92536,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -91683,6 +92556,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
   }
 
   export type TaskCreateOrConnectWithoutStudentTaskInput = {
@@ -91750,6 +92626,106 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ParentAccountUpsertWithoutStudentTaskInput = {
+    update: XOR<ParentAccountUpdateWithoutStudentTaskInput, ParentAccountUncheckedUpdateWithoutStudentTaskInput>
+    create: XOR<ParentAccountCreateWithoutStudentTaskInput, ParentAccountUncheckedCreateWithoutStudentTaskInput>
+    where?: ParentAccountWhereInput
+  }
+
+  export type ParentAccountUpdateToOneWithWhereWithoutStudentTaskInput = {
+    where?: ParentAccountWhereInput
+    data: XOR<ParentAccountUpdateWithoutStudentTaskInput, ParentAccountUncheckedUpdateWithoutStudentTaskInput>
+  }
+
+  export type ParentAccountUpdateWithoutStudentTaskInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    students?: StudentUpdateManyWithoutParentAccountNestedInput
+  }
+
+  export type ParentAccountUncheckedUpdateWithoutStudentTaskInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    students?: StudentUncheckedUpdateManyWithoutParentAccountNestedInput
+  }
+
+  export type TeacherUpsertWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput = {
+    update: XOR<TeacherUpdateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput, TeacherUncheckedUpdateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput>
+    create: XOR<TeacherCreateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput, TeacherUncheckedCreateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput>
+    where?: TeacherWhereInput
+  }
+
+  export type TeacherUpdateToOneWithWhereWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput = {
+    where?: TeacherWhereInput
+    data: XOR<TeacherUpdateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput, TeacherUncheckedUpdateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput>
+  }
+
+  export type TeacherUpdateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUpdateManyWithoutTeacherNestedInput
+    progressReports?: ProgressReportUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
+  }
+
+  export type TeacherUncheckedUpdateWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    programs?: TeacherUpdateprogramsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    isActivated?: BoolFieldUpdateOperationsInput | boolean
+    googleAccessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleCalendarConnected?: BoolFieldUpdateOperationsInput | boolean
+    googleRefreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    googleTokenExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    classSchedules?: ClassScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    MeetingMinuteMeeting?: MeetingMinuteMeetingUncheckedUpdateManyWithoutTeacherNestedInput
+    mentorProfile?: MentorUncheckedUpdateOneWithoutTeacherNestedInput
+    MentorAvailabilitySlot?: MentorAvailabilitySlotUncheckedUpdateManyWithoutTeacherNestedInput
+    progressReports?: ProgressReportUncheckedUpdateManyWithoutTeacherNestedInput
+    resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
+    studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
+    submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
+    Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
+    TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
+    students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
+  }
+
   export type TeacherUpsertWithoutStudentTaskInput = {
     update: XOR<TeacherUpdateWithoutStudentTaskInput, TeacherUncheckedUpdateWithoutStudentTaskInput>
     create: XOR<TeacherCreateWithoutStudentTaskInput, TeacherUncheckedCreateWithoutStudentTaskInput>
@@ -91782,6 +92758,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -91809,6 +92786,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -91924,7 +92902,10 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
-    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
+    Teacher?: TeacherUpdateOneWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
     Resource?: ResourceUpdateOneWithoutTaskNestedInput
@@ -91938,7 +92919,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -91958,6 +92939,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskActivityUpsertWithWhereUniqueWithoutStudentTaskInput = {
@@ -92038,15 +93022,19 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeRole?: string
+    reviewedByAdminEmail?: string | null
+    ParentAccount?: ParentAccountCreateNestedOneWithoutStudentTaskInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherCreateNestedOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput
     Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
-    Student: StudentCreateNestedOneWithoutStudentTaskInput
+    Student?: StudentCreateNestedOneWithoutStudentTaskInput
     TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
     TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
   }
 
   export type StudentTaskUncheckedCreateWithoutTaskInput = {
     id?: number
-    studentId: number
+    studentId?: number | null
     status?: string
     startedAt?: Date | string | null
     submittedAt?: Date | string | null
@@ -92064,6 +93052,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
     TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
     TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
   }
@@ -92099,6 +93091,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -92126,6 +93119,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -92366,6 +93360,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -92393,6 +93388,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -92621,8 +93617,12 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeRole?: string
+    reviewedByAdminEmail?: string | null
+    ParentAccount?: ParentAccountCreateNestedOneWithoutStudentTaskInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherCreateNestedOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput
     Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
-    Student: StudentCreateNestedOneWithoutStudentTaskInput
+    Student?: StudentCreateNestedOneWithoutStudentTaskInput
     Task: TaskCreateNestedOneWithoutStudentTaskInput
     TaskComment?: TaskCommentCreateNestedManyWithoutStudentTaskInput
   }
@@ -92630,7 +93630,7 @@ export namespace Prisma {
   export type StudentTaskUncheckedCreateWithoutTaskActivityInput = {
     id?: number
     taskId: number
-    studentId: number
+    studentId?: number | null
     status?: string
     startedAt?: Date | string | null
     submittedAt?: Date | string | null
@@ -92648,6 +93648,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
     TaskComment?: TaskCommentUncheckedCreateNestedManyWithoutStudentTaskInput
   }
 
@@ -92684,8 +93688,12 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    ParentAccount?: ParentAccountUpdateOneWithoutStudentTaskNestedInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherUpdateOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherNestedInput
     Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
-    Student?: StudentUpdateOneRequiredWithoutStudentTaskNestedInput
+    Student?: StudentUpdateOneWithoutStudentTaskNestedInput
     Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
     TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
   }
@@ -92693,7 +93701,7 @@ export namespace Prisma {
   export type StudentTaskUncheckedUpdateWithoutTaskActivityInput = {
     id?: IntFieldUpdateOperationsInput | number
     taskId?: IntFieldUpdateOperationsInput | number
-    studentId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -92711,6 +93719,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
     TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
   }
 
@@ -92731,8 +93743,12 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeRole?: string
+    reviewedByAdminEmail?: string | null
+    ParentAccount?: ParentAccountCreateNestedOneWithoutStudentTaskInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherCreateNestedOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherInput
     Teacher?: TeacherCreateNestedOneWithoutStudentTaskInput
-    Student: StudentCreateNestedOneWithoutStudentTaskInput
+    Student?: StudentCreateNestedOneWithoutStudentTaskInput
     Task: TaskCreateNestedOneWithoutStudentTaskInput
     TaskActivity?: TaskActivityCreateNestedManyWithoutStudentTaskInput
   }
@@ -92740,7 +93756,7 @@ export namespace Prisma {
   export type StudentTaskUncheckedCreateWithoutTaskCommentInput = {
     id?: number
     taskId: number
-    studentId: number
+    studentId?: number | null
     status?: string
     startedAt?: Date | string | null
     submittedAt?: Date | string | null
@@ -92758,6 +93774,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
     TaskActivity?: TaskActivityUncheckedCreateNestedManyWithoutStudentTaskInput
   }
 
@@ -92794,8 +93814,12 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    ParentAccount?: ParentAccountUpdateOneWithoutStudentTaskNestedInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherUpdateOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherNestedInput
     Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
-    Student?: StudentUpdateOneRequiredWithoutStudentTaskNestedInput
+    Student?: StudentUpdateOneWithoutStudentTaskNestedInput
     Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
     TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
   }
@@ -92803,7 +93827,7 @@ export namespace Prisma {
   export type StudentTaskUncheckedUpdateWithoutTaskCommentInput = {
     id?: IntFieldUpdateOperationsInput | number
     taskId?: IntFieldUpdateOperationsInput | number
-    studentId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -92821,6 +93845,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
     TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
   }
 
@@ -92845,8 +93873,11 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskCreateNestedManyWithoutTaskInput
-    Teacher: TeacherCreateNestedOneWithoutTaskInput
+    Teacher?: TeacherCreateNestedOneWithoutTaskInput
     Assignment?: AssignmentCreateNestedOneWithoutTaskInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingCreateNestedOneWithoutTaskInput
     Resource?: ResourceCreateNestedOneWithoutTaskInput
@@ -92859,7 +93890,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -92878,6 +93909,9 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -92912,6 +93946,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentCreateNestedManyWithoutTeacherInput
@@ -92939,6 +93974,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     students?: TeacherStudentUncheckedCreateNestedManyWithoutTeacherInput
@@ -92997,6 +94033,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUpdateManyWithoutTeacherNestedInput
@@ -93024,6 +94061,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     students?: TeacherStudentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -93049,6 +94087,7 @@ export namespace Prisma {
     resources?: ResourceCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskCreateNestedManyWithoutTeacherInput
     Task?: TaskCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateCreateNestedManyWithoutTeacherInput
@@ -93076,6 +94115,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedCreateNestedManyWithoutTeacherInput
     studentGroups?: StudentGroupUncheckedCreateNestedManyWithoutTeacherInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedCreateNestedManyWithoutTeacherInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedCreateNestedManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput
     StudentTask?: StudentTaskUncheckedCreateNestedManyWithoutTeacherInput
     Task?: TaskUncheckedCreateNestedManyWithoutTeacherInput
     TaskTemplate?: TaskTemplateUncheckedCreateNestedManyWithoutTeacherInput
@@ -93151,6 +94191,7 @@ export namespace Prisma {
     resources?: ResourceUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUpdateManyWithoutTeacherNestedInput
     Task?: TaskUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUpdateManyWithoutTeacherNestedInput
@@ -93178,6 +94219,7 @@ export namespace Prisma {
     resources?: ResourceUncheckedUpdateManyWithoutTeacherNestedInput
     studentGroups?: StudentGroupUncheckedUpdateManyWithoutTeacherNestedInput
     submissionRemarks?: StudentSubmissionRemarkUncheckedUpdateManyWithoutTeacherNestedInput
+    StudentTask_StudentTask_assigneeTeacherIdToTeacher?: StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherNestedInput
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTeacherNestedInput
     Task?: TaskUncheckedUpdateManyWithoutTeacherNestedInput
     TaskTemplate?: TaskTemplateUncheckedUpdateManyWithoutTeacherNestedInput
@@ -93661,10 +94703,36 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type StudentTaskCreateManyTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
+    id?: number
+    taskId: number
+    studentId?: number | null
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    reviewedByAdminEmail?: string | null
+  }
+
   export type StudentTaskCreateManyTeacherInput = {
     id?: number
     taskId: number
-    studentId: number
+    studentId?: number | null
     status?: string
     startedAt?: Date | string | null
     submittedAt?: Date | string | null
@@ -93681,6 +94749,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
   }
 
   export type TaskCreateManyTeacherInput = {
@@ -93709,6 +94781,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
   }
 
   export type TaskTemplateCreateManyTeacherInput = {
@@ -94141,6 +95216,87 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type StudentTaskUpdateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    ParentAccount?: ParentAccountUpdateOneWithoutStudentTaskNestedInput
+    Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
+    Student?: StudentUpdateOneWithoutStudentTaskNestedInput
+    Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
+    TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateManyWithoutTeacher_StudentTask_assigneeTeacherIdToTeacherInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type StudentTaskUpdateWithoutTeacherInput = {
     status?: StringFieldUpdateOperationsInput | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -94158,7 +95314,11 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Student?: StudentUpdateOneRequiredWithoutStudentTaskNestedInput
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    ParentAccount?: ParentAccountUpdateOneWithoutStudentTaskNestedInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherUpdateOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherNestedInput
+    Student?: StudentUpdateOneWithoutStudentTaskNestedInput
     Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
     TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
     TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
@@ -94167,7 +95327,7 @@ export namespace Prisma {
   export type StudentTaskUncheckedUpdateWithoutTeacherInput = {
     id?: IntFieldUpdateOperationsInput | number
     taskId?: IntFieldUpdateOperationsInput | number
-    studentId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -94184,6 +95344,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
     TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
     TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
   }
@@ -94191,7 +95355,7 @@ export namespace Prisma {
   export type StudentTaskUncheckedUpdateManyWithoutTeacherInput = {
     id?: IntFieldUpdateOperationsInput | number
     taskId?: IntFieldUpdateOperationsInput | number
-    studentId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -94208,6 +95372,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TaskUpdateWithoutTeacherInput = {
@@ -94231,6 +95399,9 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
@@ -94264,6 +95435,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -94293,6 +95467,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskTemplateUpdateWithoutTeacherInput = {
@@ -94598,6 +95775,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
   }
 
   export type SubmissionCreateManyStudentInput = {
@@ -95262,6 +96443,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    ParentAccount?: ParentAccountUpdateOneWithoutStudentTaskNestedInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherUpdateOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherNestedInput
     Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
     Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
     TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
@@ -95288,6 +96473,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
     TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
     TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
   }
@@ -95312,6 +96501,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SubmissionUpdateWithoutStudentInput = {
@@ -95628,7 +96821,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -95647,6 +96840,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
   }
 
   export type AssignmentResourceUpdateWithoutAssignmentInput = {
@@ -95748,8 +96944,11 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
-    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    Teacher?: TeacherUpdateOneWithoutTaskNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
     Resource?: ResourceUpdateOneWithoutTaskNestedInput
     TaskTemplate?: TaskTemplateUpdateOneWithoutTaskNestedInput
@@ -95762,7 +96961,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -95781,6 +96980,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -95791,7 +96993,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -95810,6 +97012,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
   }
 
   export type PaymentCreateManyEnrollmentInput = {
@@ -95931,7 +97136,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -95950,6 +97155,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
   }
 
   export type AssignmentResourceUpdateWithoutResourceInput = {
@@ -96010,8 +97218,11 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
-    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    Teacher?: TeacherUpdateOneWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
     TaskTemplate?: TaskTemplateUpdateOneWithoutTaskNestedInput
@@ -96024,7 +97235,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -96043,6 +97254,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -96053,7 +97267,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -96072,6 +97286,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentSubmissionRemarkCreateManyStudentSubmissionInput = {
@@ -96193,6 +97410,32 @@ export namespace Prisma {
     graduationYear?: number | null
   }
 
+  export type StudentTaskCreateManyParentAccountInput = {
+    id?: number
+    taskId: number
+    studentId?: number | null
+    status?: string
+    startedAt?: Date | string | null
+    submittedAt?: Date | string | null
+    completedAt?: Date | string | null
+    submissionNote?: string | null
+    submissionUrl?: string | null
+    submissionFileUrl?: string | null
+    submissionFileName?: string | null
+    submissionExternalConfirmed?: boolean
+    mentorFeedback?: string | null
+    reviewedAt?: Date | string | null
+    reviewedById?: number | null
+    createdAt?: Date | string
+    updatedAt: Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: Date | string | null
+    overdueReminderSentAt?: Date | string | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
+  }
+
   export type StudentUpdateWithoutParentAccountInput = {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
@@ -96275,6 +97518,87 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isActivated?: BoolFieldUpdateOperationsInput | boolean
     graduationYear?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type StudentTaskUpdateWithoutParentAccountInput = {
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherUpdateOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherNestedInput
+    Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
+    Student?: StudentUpdateOneWithoutStudentTaskNestedInput
+    Task?: TaskUpdateOneRequiredWithoutStudentTaskNestedInput
+    TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateWithoutParentAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
+    TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
+  }
+
+  export type StudentTaskUncheckedUpdateManyWithoutParentAccountInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    taskId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    completedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    submissionNote?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    submissionExternalConfirmed?: BoolFieldUpdateOperationsInput | boolean
+    mentorFeedback?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedById?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    checklistDone?: NullableJsonNullValueInput | InputJsonValue
+    dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EventRegistrationCreateManyEventInput = {
@@ -96445,7 +97769,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -96464,6 +97788,9 @@ export namespace Prisma {
     seriesId?: number | null
     templateId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
   }
 
   export type MeetingMinuteRequestUpdateWithoutMeetingMinuteMeetingInput = {
@@ -96528,8 +97855,11 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
-    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    Teacher?: TeacherUpdateOneWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
     Resource?: ResourceUpdateOneWithoutTaskNestedInput
     TaskTemplate?: TaskTemplateUpdateOneWithoutTaskNestedInput
@@ -96542,7 +97872,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -96561,6 +97891,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -96571,7 +97904,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -96590,6 +97923,9 @@ export namespace Prisma {
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     templateId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
   }
 
   export type TaskActivityCreateManyStudentTaskInput = {
@@ -96676,7 +98012,7 @@ export namespace Prisma {
 
   export type StudentTaskCreateManyTaskInput = {
     id?: number
-    studentId: number
+    studentId?: number | null
     status?: string
     startedAt?: Date | string | null
     submittedAt?: Date | string | null
@@ -96694,6 +98030,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: Date | string | null
     overdueReminderSentAt?: Date | string | null
+    assigneeParentId?: number | null
+    assigneeRole?: string
+    assigneeTeacherId?: number | null
+    reviewedByAdminEmail?: string | null
   }
 
   export type StudentTaskUpdateWithoutTaskInput = {
@@ -96713,15 +98053,19 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    ParentAccount?: ParentAccountUpdateOneWithoutStudentTaskNestedInput
+    Teacher_StudentTask_assigneeTeacherIdToTeacher?: TeacherUpdateOneWithoutStudentTask_StudentTask_assigneeTeacherIdToTeacherNestedInput
     Teacher?: TeacherUpdateOneWithoutStudentTaskNestedInput
-    Student?: StudentUpdateOneRequiredWithoutStudentTaskNestedInput
+    Student?: StudentUpdateOneWithoutStudentTaskNestedInput
     TaskActivity?: TaskActivityUpdateManyWithoutStudentTaskNestedInput
     TaskComment?: TaskCommentUpdateManyWithoutStudentTaskNestedInput
   }
 
   export type StudentTaskUncheckedUpdateWithoutTaskInput = {
     id?: IntFieldUpdateOperationsInput | number
-    studentId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -96739,13 +98083,17 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
     TaskActivity?: TaskActivityUncheckedUpdateManyWithoutStudentTaskNestedInput
     TaskComment?: TaskCommentUncheckedUpdateManyWithoutStudentTaskNestedInput
   }
 
   export type StudentTaskUncheckedUpdateManyWithoutTaskInput = {
     id?: IntFieldUpdateOperationsInput | number
-    studentId?: IntFieldUpdateOperationsInput | number
+    studentId?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     submittedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -96763,6 +98111,10 @@ export namespace Prisma {
     checklistDone?: NullableJsonNullValueInput | InputJsonValue
     dueSoonReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     overdueReminderSentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    assigneeParentId?: NullableIntFieldUpdateOperationsInput | number | null
+    assigneeRole?: StringFieldUpdateOperationsInput | string
+    assigneeTeacherId?: NullableIntFieldUpdateOperationsInput | number | null
+    reviewedByAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TaskCreateManyTaskTemplateInput = {
@@ -96772,7 +98124,7 @@ export namespace Prisma {
     category?: string
     priority?: string
     deadline?: Date | string | null
-    creatorId: number
+    creatorId?: number | null
     requireSubmissionNote?: boolean
     requireFileUpload?: boolean
     requireUrl?: boolean
@@ -96791,6 +98143,9 @@ export namespace Prisma {
     recurrenceEndsAt?: Date | string | null
     seriesId?: number | null
     requireChecklistComplete?: boolean
+    creatorAdminEmail?: string | null
+    creatorName?: string | null
+    creatorRole?: string
   }
 
   export type TaskUpdateWithoutTaskTemplateInput = {
@@ -96814,8 +98169,11 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUpdateManyWithoutTaskNestedInput
-    Teacher?: TeacherUpdateOneRequiredWithoutTaskNestedInput
+    Teacher?: TeacherUpdateOneWithoutTaskNestedInput
     Assignment?: AssignmentUpdateOneWithoutTaskNestedInput
     MeetingMinuteMeeting?: MeetingMinuteMeetingUpdateOneWithoutTaskNestedInput
     Resource?: ResourceUpdateOneWithoutTaskNestedInput
@@ -96828,7 +98186,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -96847,6 +98205,9 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
     StudentTask?: StudentTaskUncheckedUpdateManyWithoutTaskNestedInput
   }
 
@@ -96857,7 +98218,7 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     priority?: StringFieldUpdateOperationsInput | string
     deadline?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    creatorId?: IntFieldUpdateOperationsInput | number
+    creatorId?: NullableIntFieldUpdateOperationsInput | number | null
     requireSubmissionNote?: BoolFieldUpdateOperationsInput | boolean
     requireFileUpload?: BoolFieldUpdateOperationsInput | boolean
     requireUrl?: BoolFieldUpdateOperationsInput | boolean
@@ -96876,6 +98237,9 @@ export namespace Prisma {
     recurrenceEndsAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     seriesId?: NullableIntFieldUpdateOperationsInput | number | null
     requireChecklistComplete?: BoolFieldUpdateOperationsInput | boolean
+    creatorAdminEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorName?: NullableStringFieldUpdateOperationsInput | string | null
+    creatorRole?: StringFieldUpdateOperationsInput | string
   }
 
   export type MentorSlotBookingCreateManyMentorAvailabilitySlotInput = {

@@ -768,7 +768,11 @@ exports.Prisma.StudentTaskScalarFieldEnum = {
   updatedAt: 'updatedAt',
   checklistDone: 'checklistDone',
   dueSoonReminderSentAt: 'dueSoonReminderSentAt',
-  overdueReminderSentAt: 'overdueReminderSentAt'
+  overdueReminderSentAt: 'overdueReminderSentAt',
+  assigneeParentId: 'assigneeParentId',
+  assigneeRole: 'assigneeRole',
+  assigneeTeacherId: 'assigneeTeacherId',
+  reviewedByAdminEmail: 'reviewedByAdminEmail'
 };
 
 exports.Prisma.TaskScalarFieldEnum = {
@@ -797,7 +801,10 @@ exports.Prisma.TaskScalarFieldEnum = {
   recurrenceEndsAt: 'recurrenceEndsAt',
   seriesId: 'seriesId',
   templateId: 'templateId',
-  requireChecklistComplete: 'requireChecklistComplete'
+  requireChecklistComplete: 'requireChecklistComplete',
+  creatorAdminEmail: 'creatorAdminEmail',
+  creatorName: 'creatorName',
+  creatorRole: 'creatorRole'
 };
 
 exports.Prisma.TaskActivityScalarFieldEnum = {
