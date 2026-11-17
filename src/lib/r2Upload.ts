@@ -1,4 +1,5 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand, HeadObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 // Validate environment variables
 const R2_ENDPOINT = process.env.R2_ENDPOINT;
@@ -85,4 +86,51 @@ export async function uploadToR2(
     console.error('Error uploading to R2:', error);
     throw new Error(`Failed to upload file to R2: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
+}
+
+/**
+ * Create a short-lived presigned PUT URL so the browser can upload a large file
+ * (e.g. a video) straight to R2 without passing it through the server.
+ */
+export async function createPresignedUploadUrl(
+  key: string,
+  contentType: string,
+  expiresInSeconds = 15 * 60
+): Promise<{ uploadUrl: string; fileUrl: string }> {
+  if (!R2_BUCKET_NAME || !R2_PUBLIC_URL) {
+    throw new Error('R2 storage is not configured');
+  }
+
+  const command = new PutObjectCommand({
+    Bucket: R2_BUCKET_NAME,
+    Key: key,
+    ContentType: contentType,
+  });
+  const uploadUrl = await getSignedUrl(r2Client, command, { expiresIn: expiresInSeconds });
+
+  return { uploadUrl, fileUrl: getR2PublicUrl(key) };
+}
+
+/** Public URL for an object key, served through R2_PUBLIC_URL. */
+export function getR2PublicUrl(key: string): string {
+  return `${(R2_PUBLIC_URL || '').replace(/\/+$/, '')}/${key}`;
+}
+
+/** Returns the object's size and type, or null if it does not exist. */
+export async function getR2ObjectInfo(key: string): Promise<{ size: number; contentType?: string } | null> {
+  if (!R2_BUCKET_NAME) throw new Error('R2_BUCKET_NAME is not configured');
+  try {
+    const result = await r2Client.send(new HeadObjectCommand({ Bucket: R2_BUCKET_NAME, Key: key }));
+    return { size: result.ContentLength ?? 0, contentType: result.ContentType };
+  } catch (error) {
+    const status = (error as { $metadata?: { httpStatusCode?: number } })?.$metadata?.httpStatusCode;
+    if (status === 404 || (error as { name?: string })?.name === 'NotFound') return null;
+    throw error;
+  }
+}
+
+/** Delete an object from R2. */
+export async function deleteFromR2(key: string): Promise<void> {
+  if (!R2_BUCKET_NAME) throw new Error('R2_BUCKET_NAME is not configured');
+  await r2Client.send(new DeleteObjectCommand({ Bucket: R2_BUCKET_NAME, Key: key }));
 }
