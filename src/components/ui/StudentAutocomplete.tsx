@@ -144,19 +144,19 @@ export default function StudentAutocomplete({
           disabled={disabled}
           placeholder={placeholder}
           required={required}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed text-black"
+          className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100 disabled:cursor-not-allowed disabled:opacity-50"
           autoComplete="off"
         />
         {isSearching && (
           <div className="absolute right-3 top-1/2 -translate-y-1/2">
-            <Loader2 className="w-4 h-4 animate-spin text-gray-400" />
+            <Loader2 className="w-4 h-4 animate-spin text-subtle" />
           </div>
         )}
       </div>
 
       {/* Dropdown */}
       {showDropdown && suggestions.length > 0 && (
-        <div className="absolute z-[100] w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+        <div className="absolute z-[100] mt-1 max-h-60 w-full overflow-y-auto rounded-lg border border-line bg-surface p-1 shadow-pop">
           {suggestions.map((student, index) => (
             <div
               key={student.id}
@@ -164,12 +164,12 @@ export default function StudentAutocomplete({
               onMouseEnter={() => setSelectedIndex(index)}
               className={`px-4 py-2 cursor-pointer transition-colors ${
                 selectedIndex === index
-                  ? "bg-blue-100 text-blue-900"
-                  : "hover:bg-gray-100 text-gray-900"
+                  ? "bg-brand-100 text-brand-900"
+                  : "hover:bg-surface-muted text-ink"
               }`}
             >
               <div className="font-medium">{student.name}</div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-muted">
                 Grade {student.grade} • {student.schoolName}
               </div>
             </div>

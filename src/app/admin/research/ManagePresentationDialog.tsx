@@ -93,10 +93,10 @@ export default function ManagePresentationDialog({ researchId, onClose, onUpdate
 
   if (loading) {
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg shadow-xl p-8">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto" />
-          <p className="mt-4 text-gray-600">Loading presentation info...</p>
+      <div className="fixed inset-0 bg-brand-950/40 flex items-center justify-center z-50 backdrop-blur-[2px] p-4">
+        <div className="bg-surface rounded-2xl shadow-pop p-8 border border-line">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto" />
+          <p className="mt-4 text-muted">Loading presentation info...</p>
         </div>
       </div>
     )
@@ -104,10 +104,10 @@ export default function ManagePresentationDialog({ researchId, onClose, onUpdate
 
   if (!research) {
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg shadow-xl p-8">
+      <div className="fixed inset-0 bg-brand-950/40 flex items-center justify-center z-50 backdrop-blur-[2px] p-4">
+        <div className="bg-surface rounded-2xl shadow-pop p-8 border border-line">
           <p className="text-red-600">Failed to load research</p>
-          <button onClick={onClose} className="mt-4 px-4 py-2 bg-gray-600 text-white rounded-lg">
+          <button onClick={onClose} className="mt-4 px-4 py-2 bg-ink-soft text-white rounded-lg">
             Close
           </button>
         </div>
@@ -116,14 +116,14 @@ export default function ManagePresentationDialog({ researchId, onClose, onUpdate
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+    <div className="fixed inset-0 bg-brand-950/40 flex items-center justify-center z-50 p-4 backdrop-blur-[2px]">
+      <div className="bg-surface rounded-2xl shadow-pop max-w-2xl w-full max-h-[90vh] overflow-hidden border border-line">
         <div className="flex items-center justify-between p-6 border-b">
           <div>
-            <h3 className="text-xl font-semibold text-gray-900">Manage Presentation PDF</h3>
-            <p className="text-sm text-gray-500 mt-1">{research.title}</p>
+            <h3 className="text-xl font-semibold text-ink">Manage Presentation PDF</h3>
+            <p className="text-sm text-muted mt-1">{research.title}</p>
           </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <button onClick={onClose} className="text-subtle hover:text-muted">
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -131,29 +131,29 @@ export default function ManagePresentationDialog({ researchId, onClose, onUpdate
         <div className="p-6 space-y-6 max-h-[calc(90vh-140px)] overflow-y-auto">
           {research.presentationPdfFilename ? (
             <>
-              <div className="border rounded-lg p-4 bg-indigo-50">
+              <div className="border rounded-lg p-4 bg-brand-50">
                 <div className="flex items-start gap-4">
-                  <FileText className="w-12 h-12 text-indigo-600 flex-shrink-0" />
+                  <FileText className="w-12 h-12 text-brand-600 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-md font-semibold text-gray-900 mb-2">Presentation PDF</h4>
-                    <p className="text-sm text-gray-700 break-all">{research.presentationPdfFilename}</p>
-                    <p className="text-xs text-gray-500 mt-2">Stored in the presentation bucket and watermarked automatically.</p>
+                    <h4 className="text-md font-semibold text-ink mb-2">Presentation PDF</h4>
+                    <p className="text-sm text-ink-soft break-all">{research.presentationPdfFilename}</p>
+                    <p className="text-xs text-muted mt-2">Stored in the presentation bucket and watermarked automatically.</p>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <h4 className="text-md font-semibold text-gray-900">Actions</h4>
+                <h4 className="text-md font-semibold text-ink">Actions</h4>
 
                 <button
                   type="button"
                   onClick={openSignedPresentation}
-                  className="w-full flex items-center gap-3 p-3 border rounded-lg hover:bg-gray-50 transition-colors text-left"
+                  className="w-full flex items-center gap-3 p-3 border rounded-lg hover:bg-surface-muted transition-colors text-left"
                 >
-                  <Download className="w-5 h-5 text-indigo-600" />
+                  <Download className="w-5 h-5 text-brand-600" />
                   <div>
-                    <p className="text-sm font-medium text-gray-900">View Presentation PDF</p>
-                    <p className="text-xs text-gray-500">Opens the signed presentation PDF in a new tab</p>
+                    <p className="text-sm font-medium text-ink">View Presentation PDF</p>
+                    <p className="text-xs text-muted">Opens the signed presentation PDF in a new tab</p>
                   </div>
                 </button>
 
@@ -164,8 +164,8 @@ export default function ManagePresentationDialog({ researchId, onClose, onUpdate
                 >
                   <Upload className="w-5 h-5 text-purple-600" />
                   <div>
-                    <p className="text-sm font-medium text-gray-900">Replace Presentation PDF</p>
-                    <p className="text-xs text-gray-500">Upload a new file to replace the current one</p>
+                    <p className="text-sm font-medium text-ink">Replace Presentation PDF</p>
+                    <p className="text-xs text-muted">Upload a new file to replace the current one</p>
                   </div>
                 </button>
 
@@ -185,20 +185,20 @@ export default function ManagePresentationDialog({ researchId, onClose, onUpdate
           ) : (
             <>
               <div className="text-center py-8">
-                <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-600 mb-2">No presentation PDF uploaded</p>
-                <p className="text-sm text-gray-500">Upload a presentation PDF to make it available here</p>
+                <FileText className="w-16 h-16 text-subtle mx-auto mb-4" />
+                <p className="text-muted mb-2">No presentation PDF uploaded</p>
+                <p className="text-sm text-muted">Upload a presentation PDF to make it available here</p>
               </div>
 
               <button
                 type="button"
                 onClick={() => window.location.assign(`/admin/research/${researchId}/upload`)}
-                className="w-full flex items-center justify-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors"
+                className="w-full flex items-center justify-center gap-3 p-4 border-2 border-dashed border-line-strong rounded-lg hover:border-brand-500 hover:bg-brand-50 transition-colors"
               >
-                <Upload className="w-6 h-6 text-blue-600" />
+                <Upload className="w-6 h-6 text-brand-600" />
                 <div className="text-left">
-                  <p className="text-sm font-medium text-gray-900">Upload Presentation PDF</p>
-                  <p className="text-xs text-gray-500">Go to upload page</p>
+                  <p className="text-sm font-medium text-ink">Upload Presentation PDF</p>
+                  <p className="text-xs text-muted">Go to upload page</p>
                 </div>
               </button>
             </>
@@ -206,7 +206,7 @@ export default function ManagePresentationDialog({ researchId, onClose, onUpdate
         </div>
 
         <div className="flex justify-end gap-3 p-6 border-t">
-          <button onClick={onClose} className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+          <button onClick={onClose} className="px-4 py-2 bg-ink-soft text-white rounded-lg hover:bg-ink">
             Close
           </button>
         </div>

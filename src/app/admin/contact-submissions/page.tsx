@@ -3,8 +3,9 @@
 import { useEffect, useMemo, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { Inbox, Search, Filter, Loader2, RefreshCw } from "lucide-react"
+import { AlertTriangle, ChevronDown, Inbox, Mail, Phone, RefreshCw, Search, X } from "lucide-react"
+import AdminPageShell from "@/components/admin/AdminPageShell"
+import { Badge, EmptyState, LoadingState, Panel, buttonClass, cx, inputClass, selectClass, type BadgeTone } from "@/components/admin/ui"
 
 interface ContactSubmission {
   id: number
@@ -26,13 +27,16 @@ interface ContactSubmission {
   updatedAt: string
 }
 
-function getStatusClass(status: string) {
+function getStatusTone(status: string): BadgeTone {
   const s = status.toLowerCase()
-  if (s === "new") return "bg-blue-100 text-blue-800"
-  if (s === "contacted") return "bg-yellow-100 text-yellow-800"
-  if (s === "resolved" || s === "closed") return "bg-green-100 text-green-800"
-  return "bg-gray-100 text-gray-800"
+  if (s === "new") return "brand"
+  if (s === "contacted") return "amber"
+  if (s === "resolved" || s === "closed") return "emerald"
+  return "slate"
 }
+
+const titleCase = (value: string) => value.charAt(0).toUpperCase() + value.slice(1)
+const initials = (name: string) => name.split(/\s+/).map((part) => part[0]).slice(0, 2).join("")
 
 export default function ContactSubmissionsPage() {
   const { data: session, status } = useSession()
@@ -118,279 +122,175 @@ export default function ContactSubmissionsPage() {
     return Array.from(new Set(data.map((item) => item.source))).sort()
   }, [data])
 
-  if (status === "loading" || loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
-          <p className="text-gray-600">Loading contact submissions...</p>
-        </div>
-      </div>
-    )
-  }
-
-  if (!session) {
+  if (status !== "loading" && !session) {
     return null
   }
 
-  if (error === "Not authorized") {
-    return <p className="p-6 text-red-600 font-medium">Not authorized to view this page.</p>
-  }
-
-  if (error) {
-    return <p className="p-6 text-red-600 font-medium">{error}</p>
-  }
+  const selectWrap = "relative block sm:w-48"
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <Inbox className="h-6 w-6 text-yellow-300" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Contact Submissions</h1>
-                <p className="text-sm text-gray-700">Review messages submitted from the public site</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => fetchSubmissions(true)}
-                disabled={refreshing}
-                className={`inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg ${
-                  refreshing
-                    ? "bg-gray-400 text-white cursor-not-allowed"
-                    : "bg-blue-600 text-white hover:bg-blue-700"
-                }`}
-              >
-                {refreshing ? <Loader2 className="w-4 h-4 animate-spin" /> : <RefreshCw className="w-4 h-4" />}
-                Refresh
-              </button>
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
-              >
-                Back to Dashboard
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="flex flex-col lg:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-              <input
-                type="text"
-                placeholder="Search by name, email, phone, subject, message..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-              />
-            </div>
-            <div className="lg:w-52 relative">
-              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-              <select
-                value={selectedStatus}
-                onChange={(e) => setSelectedStatus(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg appearance-none bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="all">All Statuses</option>
+    <AdminPageShell
+      moduleId="contact-submissions"
+      description="Messages sent through the website's contact form."
+      actions={
+        <button type="button" onClick={() => fetchSubmissions(true)} disabled={refreshing || loading} className={buttonClass("secondary")}>
+          <RefreshCw className={cx("h-4 w-4", refreshing && "animate-spin")} /> Refresh
+        </button>
+      }
+    >
+      <Panel className="overflow-hidden">
+        <div className="flex flex-col gap-3 border-b border-line p-4 lg:flex-row lg:items-center">
+          <label className="relative block flex-1">
+            <span className="sr-only">Search messages</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            <input
+              type="text"
+              placeholder="Search name, email, phone, subject or message…"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={cx(inputClass, "pl-9")}
+            />
+          </label>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <label className={selectWrap}>
+              <span className="sr-only">Status</span>
+              <select value={selectedStatus} onChange={(e) => setSelectedStatus(e.target.value)} className={selectClass}>
+                <option value="all">All statuses</option>
                 {statusOptions.map((statusValue) => (
-                  <option key={statusValue} value={statusValue}>
-                    {statusValue}
-                  </option>
+                  <option key={statusValue} value={statusValue}>{titleCase(statusValue)}</option>
                 ))}
               </select>
-            </div>
-            <div className="lg:w-52 relative">
-              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-              <select
-                value={selectedSource}
-                onChange={(e) => setSelectedSource(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg appearance-none bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="all">All Sources</option>
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            </label>
+            <label className={selectWrap}>
+              <span className="sr-only">Source</span>
+              <select value={selectedSource} onChange={(e) => setSelectedSource(e.target.value)} className={selectClass}>
+                <option value="all">All sources</option>
                 {sourceOptions.map((sourceValue) => (
-                  <option key={sourceValue} value={sourceValue}>
-                    {sourceValue}
-                  </option>
+                  <option key={sourceValue} value={sourceValue}>{sourceValue}</option>
                 ))}
               </select>
-            </div>
-          </div>
-          <div className="mt-4 text-sm text-gray-800 font-medium">
-            Showing {filteredData.length} of {data.length} submissions
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            </label>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          {filteredData.length === 0 ? (
-            <div className="text-center py-12">
-              <Inbox className="h-12 w-12 text-gray-500 mx-auto mb-4" />
-              <p className="text-gray-700 font-medium">No contact submissions found</p>
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Date</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Contact</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Role / Program</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Subject</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Message</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Preferred</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Student</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Status</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Source</th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredData.map((submission, idx) => (
-                    <tr key={submission.id} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                      <td className="px-4 py-3 text-sm text-gray-900 whitespace-nowrap">
-                        {new Date(submission.createdAt).toLocaleString("en-US", {
-                          month: "short",
-                          day: "numeric",
-                          year: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </td>
-                      <td className="px-4 py-3 text-sm">
-                        <div className="font-semibold text-gray-900">{submission.fullName}</div>
-                        <div className="text-gray-700">{submission.email}</div>
-                        <div className="text-gray-600 text-xs">{submission.phone || "-"}</div>
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-700">
-                        <div>{submission.role || "-"}</div>
-                        <div className="text-xs text-gray-600">{submission.programInterest || "-"}</div>
-                      </td>
-                      <td className="px-4 py-3 text-sm font-medium text-gray-900 max-w-[220px] truncate">
-                        {submission.subject}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-700 max-w-[320px]">
-                        <button
-                          onClick={() => setSelectedSubmission(submission)}
-                          className="text-left hover:text-blue-600 hover:underline line-clamp-2"
-                        >
-                          {submission.message}
-                        </button>
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-700">{submission.preferredContact || "-"}</td>
-                      <td className="px-4 py-3 text-sm text-gray-700">
-                        <div>{submission.studentName || "-"}</div>
-                        <div className="text-xs text-gray-600">{submission.studentGrade || "-"}</div>
-                      </td>
-                      <td className="px-4 py-3 text-sm">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusClass(submission.status)}`}>
-                          {submission.status}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-700">{submission.source}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
-      </div>
+        {!loading && !error && (
+          <div className="border-b border-line bg-surface-muted/60 px-5 py-2 text-xs text-muted">
+            Showing <span className="font-semibold text-ink">{filteredData.length}</span> of {data.length} messages
+          </div>
+        )}
+
+        {status === "loading" || loading ? (
+          <LoadingState label="Loading messages…" />
+        ) : error ? (
+          <EmptyState
+            icon={AlertTriangle}
+            title={error === "Not authorized" ? "Not authorized to view this page" : "Couldn't load messages"}
+            description={error === "Not authorized" ? undefined : error}
+          />
+        ) : filteredData.length === 0 ? (
+          <EmptyState icon={Inbox} title={data.length ? "No messages match your filters" : "No messages yet"} description={data.length ? "Try a different search, status or source." : "Messages from the website's contact form appear here."} />
+        ) : (
+          <ul className="divide-y divide-line">
+            {filteredData.map((submission) => (
+              <li key={submission.id}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedSubmission(submission)}
+                  className="group flex w-full items-start gap-4 px-5 py-4 text-left transition-colors hover:bg-surface-muted/60"
+                >
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-50 text-xs font-semibold uppercase text-gold-700 ring-1 ring-inset ring-gold-200">
+                    {initials(submission.fullName)}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <span className="font-semibold text-ink">{submission.fullName}</span>
+                      {submission.role && <Badge tone="slate">{submission.role}</Badge>}
+                      {submission.programInterest && <Badge tone="brand">{submission.programInterest}</Badge>}
+                    </span>
+                    <span className="mt-0.5 block truncate text-xs text-muted">
+                      {submission.email}{submission.phone ? ` · ${submission.phone}` : ""}
+                    </span>
+                    <span className="mt-2 block truncate text-sm font-medium text-ink group-hover:text-brand-700">{submission.subject}</span>
+                    <span className="mt-0.5 line-clamp-2 block text-sm text-muted">{submission.message}</span>
+                  </span>
+                  <span className="flex shrink-0 flex-col items-end gap-1.5">
+                    <span className="whitespace-nowrap text-xs text-subtle">
+                      {new Date(submission.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                    </span>
+                    <Badge tone={getStatusTone(submission.status)} dot>{titleCase(submission.status)}</Badge>
+                    <span className="text-[11px] text-subtle">{submission.source}</span>
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Panel>
 
       {selectedSubmission && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-xl w-full max-w-3xl max-h-[85vh] overflow-hidden">
-            <div className="flex items-center justify-between p-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">
-                Submission #{selectedSubmission.id} • {selectedSubmission.fullName}
-              </h3>
-              <button
-                onClick={() => setSelectedSubmission(null)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                Close
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]" onClick={() => setSelectedSubmission(null)}>
+          <div className="flex max-h-[88vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-pop" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-start justify-between gap-4 border-b border-line px-6 py-4">
+              <div className="min-w-0">
+                <p className="text-xs font-medium text-subtle">Message #{selectedSubmission.id}</p>
+                <h3 className="mt-0.5 truncate text-lg font-semibold tracking-tight text-ink">{selectedSubmission.subject}</h3>
+                <p className="mt-0.5 text-sm text-muted">
+                  From {selectedSubmission.fullName} · {new Date(selectedSubmission.createdAt).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" })}
+                </p>
+              </div>
+              <button type="button" onClick={() => setSelectedSubmission(null)} className={buttonClass("ghost", "icon")} aria-label="Close">
+                <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="p-5 overflow-y-auto max-h-[calc(85vh-72px)] space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div>
-                  <div className="text-gray-500">Email</div>
-                  <div className="font-medium text-gray-900">{selectedSubmission.email}</div>
-                </div>
-                <div>
-                  <div className="text-gray-500">Phone</div>
-                  <div className="font-medium text-gray-900">{selectedSubmission.phone || "-"}</div>
-                </div>
-                <div>
-                  <div className="text-gray-500">Role</div>
-                  <div className="font-medium text-gray-900">{selectedSubmission.role || "-"}</div>
-                </div>
-                <div>
-                  <div className="text-gray-500">Program Interest</div>
-                  <div className="font-medium text-gray-900">{selectedSubmission.programInterest || "-"}</div>
-                </div>
-                <div>
-                  <div className="text-gray-500">Preferred Contact</div>
-                  <div className="font-medium text-gray-900">{selectedSubmission.preferredContact || "-"}</div>
-                </div>
-                <div>
-                  <div className="text-gray-500">Status</div>
-                  <div className="font-medium text-gray-900">{selectedSubmission.status}</div>
-                </div>
-                <div>
-                  <div className="text-gray-500">Source</div>
-                  <div className="font-medium text-gray-900">{selectedSubmission.source}</div>
-                </div>
-                <div>
-                  <div className="text-gray-500">Submitted At</div>
-                  <div className="font-medium text-gray-900">
-                    {new Date(selectedSubmission.createdAt).toLocaleString("en-US")}
+
+            <div className="space-y-5 overflow-y-auto px-6 py-5">
+              <div className="flex flex-wrap gap-2">
+                <a href={`mailto:${selectedSubmission.email}?subject=${encodeURIComponent(`Re: ${selectedSubmission.subject}`)}`} className={buttonClass("primary", "sm")}>
+                  <Mail className="h-4 w-4" /> Reply by email
+                </a>
+                {selectedSubmission.phone && (
+                  <a href={`tel:${selectedSubmission.phone}`} className={buttonClass("secondary", "sm")}>
+                    <Phone className="h-4 w-4" /> Call {selectedSubmission.phone}
+                  </a>
+                )}
+              </div>
+
+              <div className="whitespace-pre-wrap rounded-lg border border-line bg-surface-muted/60 p-4 text-sm leading-relaxed text-ink-soft">
+                {selectedSubmission.message}
+              </div>
+
+              <dl className="grid grid-cols-1 gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
+                {[
+                  ["Email", selectedSubmission.email],
+                  ["Phone", selectedSubmission.phone],
+                  ["Role", selectedSubmission.role],
+                  ["Program interest", selectedSubmission.programInterest],
+                  ["Preferred contact", selectedSubmission.preferredContact],
+                  ["Student", [selectedSubmission.studentName, selectedSubmission.studentGrade && `Grade ${selectedSubmission.studentGrade}`].filter(Boolean).join(" · ")],
+                  ["Status", titleCase(selectedSubmission.status)],
+                  ["Source", selectedSubmission.source],
+                  ["Last updated", new Date(selectedSubmission.updatedAt).toLocaleString("en-US")],
+                  ["IP address", selectedSubmission.ipAddress],
+                ].map(([label, value]) => (
+                  <div key={label as string} className="min-w-0">
+                    <dt className="text-xs text-muted">{label}</dt>
+                    <dd className="mt-0.5 truncate font-medium text-ink">{value || "—"}</dd>
                   </div>
-                </div>
-                <div>
-                  <div className="text-gray-500">Student Name</div>
-                  <div className="font-medium text-gray-900">{selectedSubmission.studentName || "-"}</div>
-                </div>
-                <div>
-                  <div className="text-gray-500">Student Grade</div>
-                  <div className="font-medium text-gray-900">{selectedSubmission.studentGrade || "-"}</div>
-                </div>
-                <div>
-                  <div className="text-gray-500">IP Address</div>
-                  <div className="font-medium text-gray-900">{selectedSubmission.ipAddress || "-"}</div>
-                </div>
-                <div>
-                  <div className="text-gray-500">Updated At</div>
-                  <div className="font-medium text-gray-900">
-                    {new Date(selectedSubmission.updatedAt).toLocaleString("en-US")}
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="text-sm text-gray-500 mb-1">Subject</div>
-                <div className="text-sm font-medium text-gray-900">{selectedSubmission.subject}</div>
-              </div>
-              <div>
-                <div className="text-sm text-gray-500 mb-1">Message</div>
-                <div className="text-sm text-gray-800 whitespace-pre-wrap bg-gray-50 border rounded-lg p-3">
-                  {selectedSubmission.message}
-                </div>
-              </div>
-              <div>
-                <div className="text-sm text-gray-500 mb-1">User Agent</div>
-                <div className="text-xs text-gray-700 whitespace-pre-wrap break-all bg-gray-50 border rounded-lg p-3">
-                  {selectedSubmission.userAgent || "-"}
-                </div>
-              </div>
+                ))}
+              </dl>
+
+              {selectedSubmission.userAgent && (
+                <details className="rounded-lg border border-line bg-surface-muted/60 px-3 py-2 text-xs text-muted">
+                  <summary className="cursor-pointer font-medium text-ink-soft">Browser details</summary>
+                  <p className="mt-2 break-all">{selectedSubmission.userAgent}</p>
+                </details>
+              )}
             </div>
           </div>
         </div>
       )}
-    </div>
+    </AdminPageShell>
   )
 }

@@ -3,9 +3,10 @@
 import { useDeferredValue, useEffect, useMemo, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { Search, Receipt, Filter, CheckCircle, X, Loader2, Eye, Download, FileText } from "lucide-react"
+import { CheckCircle2, Download, Eye, FileText, Loader2, Receipt, Search, X } from "lucide-react"
 import { toast } from "sonner"
+import AdminPageShell from "@/components/admin/AdminPageShell"
+import { Badge, EmptyState, LoadingState, Panel, Segmented, buttonClass, cx, inputClass, type BadgeTone } from "@/components/admin/ui"
 
 interface TransactionReceipt {
   id: number
@@ -154,262 +155,198 @@ export default function TransactionReceiptsPage() {
   }
 
   // Check admin access before rendering dashboard
-  if (status === 'loading' || loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
-          <p className="text-gray-600">Loading transaction receipts...</p>
-        </div>
-      </div>
-    )
-  }
-
-  if (!session) {
+  if (status !== 'loading' && !session) {
     return null // Will redirect to sign in via useEffect
   }
 
   const allowedEmails = ['deepak@acharyatutoring.com', 'acharyatutoring@gmail.com', 'dkdps3212@gmail.com', '220030007@iitdh.ac.in', 'acharya.folsom@gmail.com', 'luvshanker14@gmail.com']
 
-  if (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase())) {
+  if (status !== 'loading' && (!session?.user?.email || !allowedEmails.includes(session.user.email.toLowerCase()))) {
     return null // Will redirect to unauthorized via useEffect
   }
 
-  const statusColors = {
-    pending: "bg-yellow-100 text-yellow-800",
-    verified: "bg-green-100 text-green-800",
-    rejected: "bg-red-100 text-red-800"
+  const STATUS_BADGE: Record<string, { tone: BadgeTone; label: string }> = {
+    pending: { tone: 'amber', label: 'Pending review' },
+    verified: { tone: 'emerald', label: 'Verified' },
+    rejected: { tone: 'rose', label: 'Rejected' },
   }
 
+  const closeReview = () => {
+    setShowReviewModal(false)
+    setAdminNotes("")
+    setSelectedReceipt(null)
+    setReviewAction(null)
+  }
+
+  const formatDay = (value: string) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <Receipt className="h-6 w-6 text-yellow-300" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Transaction Receipts</h1>
-                <p className="text-sm text-gray-700">Review and verify payment receipts from parents</p>
-              </div>
-            </div>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
-            >
-              Back to Dashboard
-            </Link>
-          </div>
+    <AdminPageShell moduleId="transaction-receipts" description="Review payment receipts uploaded by parents, then verify or reject them.">
+      <Panel className="overflow-hidden">
+        <div className="flex flex-col gap-3 border-b border-line p-4 lg:flex-row lg:items-center">
+          <label className="relative block flex-1">
+            <span className="sr-only">Search receipts</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            <input
+              type="text"
+              placeholder="Search parent, email, transaction ID or amount…"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={cx(inputClass, 'pl-9')}
+            />
+          </label>
+          <Segmented
+            label="Status"
+            value={selectedStatus as 'all' | 'pending' | 'verified' | 'rejected'}
+            onChange={setSelectedStatus}
+            options={[
+              { value: 'all', label: 'All' },
+              { value: 'pending', label: 'Pending' },
+              { value: 'verified', label: 'Verified' },
+              { value: 'rejected', label: 'Rejected' },
+            ]}
+          />
         </div>
-      </header>
 
-      {/* Filters */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-              <input
-                type="text"
-                placeholder="Search by parent name, email, transaction ID, or amount..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-              />
-            </div>
-            <div className="sm:w-48 relative">
-              <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-              <select
-                value={selectedStatus}
-                onChange={(e) => setSelectedStatus(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-gray-900"
-              >
-                <option value="all">All Status</option>
-                <option value="pending">Pending</option>
-                <option value="verified">Verified</option>
-                <option value="rejected">Rejected</option>
-              </select>
-            </div>
+        {!loading && filteredData.length !== data.length && (
+          <div className="flex items-center justify-between border-b border-line bg-surface-muted/60 px-5 py-2 text-xs text-muted">
+            <span>Showing <span className="font-semibold text-ink">{filteredData.length}</span> of {data.length} receipts</span>
+            <button type="button" onClick={() => setSearchTerm('')} className="font-medium text-brand-700 hover:underline">Clear search</button>
           </div>
-          {filteredData.length !== data.length && (
-            <div className="mt-4 text-sm text-gray-800 font-medium">
-              Showing {filteredData.length} of {data.length} receipts
-            </div>
-          )}
-        </div>
-      </div>
+        )}
 
-      {/* Receipts List */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          {filteredData.length === 0 ? (
-            <div className="text-center py-12">
-              <Receipt className="h-12 w-12 text-gray-500 mx-auto mb-4" />
-              <p className="text-gray-700 font-medium">No transaction receipts found</p>
-              {!data.length && (
-                <p className="text-gray-500 mt-2">No receipts have been submitted yet</p>
-              )}
-            </div>
-          ) : (
-            <div className="divide-y divide-gray-200">
-              {filteredData.map((receipt) => (
-                <div key={receipt.id} className="p-6 hover:bg-gray-50">
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-semibold text-gray-900">{receipt.parentName}</h3>
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[receipt.status as keyof typeof statusColors] || statusColors.pending}`}>
-                          {receipt.status}
-                        </span>
+        {status === 'loading' || loading ? (
+          <LoadingState label="Loading transaction receipts…" />
+        ) : filteredData.length === 0 ? (
+          <EmptyState
+            icon={Receipt}
+            title={data.length ? 'No receipts match your search' : selectedStatus === 'all' ? 'No receipts yet' : `No ${selectedStatus} receipts`}
+            description={data.length ? 'Try a different name, email, ID or amount.' : 'Receipts appear here when parents upload them.'}
+          />
+        ) : (
+          <ul className="divide-y divide-line">
+            {filteredData.map((receipt) => {
+              const badge = STATUS_BADGE[receipt.status] ?? STATUS_BADGE.pending
+              return (
+                <li key={receipt.id} className="px-5 py-5 transition-colors hover:bg-surface-muted/40">
+                  <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
+                    {/* Amount */}
+                    <div className="lg:w-40 lg:shrink-0">
+                      <p className="font-display text-2xl font-bold tracking-tight text-ink tabular-nums">${receipt.amount}</p>
+                      <p className="mt-0.5 text-xs text-muted">Paid {receipt.transactionDate}</p>
+                    </div>
+
+                    {/* Details */}
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="font-semibold text-ink">{receipt.parentName}</p>
+                        <Badge tone={badge.tone} dot>{badge.label}</Badge>
                       </div>
-                      <p className="text-sm text-gray-600 mb-2">{receipt.parentEmail}</p>
-                      <div className="flex items-center gap-4 text-sm">
-                        <div>
-                          <span className="text-gray-500">Amount: </span>
-                          <span className="font-semibold text-green-700">${receipt.amount}</span>
-                        </div>
-                        <div>
-                          <span className="text-gray-500">Date: </span>
-                          <span className="text-gray-900">{receipt.transactionDate}</span>
-                        </div>
+                      <a href={`mailto:${receipt.parentEmail}`} className="mt-0.5 block truncate text-sm text-muted hover:text-brand-700">{receipt.parentEmail}</a>
+                      <dl className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-xs text-muted">
                         {receipt.transactionId && (
-                          <div>
-                            <span className="text-gray-500">Transaction ID: </span>
-                            <span className="text-gray-900 font-mono text-xs">{receipt.transactionId}</span>
+                          <div className="flex items-center gap-1.5">
+                            <dt>Transaction ID</dt>
+                            <dd className="rounded bg-surface-muted px-1.5 py-0.5 font-mono text-[11px] text-ink-soft ring-1 ring-inset ring-line">{receipt.transactionId}</dd>
                           </div>
                         )}
-                      </div>
-                    </div>
-                    <div className="text-right text-sm text-gray-500">
-                      <div>Submitted</div>
-                      <div>{new Date(receipt.createdAt).toLocaleDateString()}</div>
-                      {receipt.reviewedAt && (
-                        <>
-                          <div className="mt-2">Reviewed</div>
-                          <div>{new Date(receipt.reviewedAt).toLocaleDateString()}</div>
-                        </>
+                        <div className="flex items-center gap-1"><dt>Submitted</dt><dd className="text-ink-soft">{formatDay(receipt.createdAt)}</dd></div>
+                        {receipt.reviewedAt && <div className="flex items-center gap-1"><dt>Reviewed</dt><dd className="text-ink-soft">{formatDay(receipt.reviewedAt)}</dd></div>}
+                      </dl>
+
+                      {receipt.description && (
+                        <p className="mt-3 whitespace-pre-wrap rounded-lg border border-line bg-surface-muted/60 px-3 py-2 text-sm text-ink-soft">{receipt.description}</p>
                       )}
-                    </div>
-                  </div>
+                      {receipt.adminNotes && (
+                        <div className="mt-2 rounded-lg border-l-2 border-brand-400 bg-brand-50 px-3 py-2 text-sm">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-brand-700">Admin notes</p>
+                          <p className="mt-0.5 whitespace-pre-wrap text-brand-900">{receipt.adminNotes}</p>
+                        </div>
+                      )}
 
-                  {receipt.description && (
-                    <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                      <p className="text-sm font-medium text-gray-700 mb-1">Description:</p>
-                      <p className="text-gray-800 whitespace-pre-wrap">{receipt.description}</p>
-                    </div>
-                  )}
-
-                  {receipt.adminNotes && (
-                    <div className="bg-blue-50 border-l-4 border-blue-500 rounded p-4 mb-4">
-                      <p className="text-sm font-medium text-blue-900 mb-1">Admin Notes:</p>
-                      <p className="text-blue-800 whitespace-pre-wrap">{receipt.adminNotes}</p>
-                    </div>
-                  )}
-
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
                       <a
                         href={receipt.receiptUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-3 py-1 rounded-lg text-xs font-medium bg-blue-100 text-blue-800 hover:bg-blue-200"
+                        className="mt-3 inline-flex max-w-full items-center gap-2 rounded-lg border border-line bg-surface px-2.5 py-1.5 text-xs shadow-card transition hover:border-brand-200 hover:bg-brand-50/40"
                       >
-                        <Download className="w-3 h-3" />
-                        Download Receipt
+                        <FileText className="h-4 w-4 shrink-0 text-brand-700" />
+                        <span className="truncate font-medium text-ink-soft">{receipt.receiptFileName}</span>
+                        <span className="shrink-0 text-subtle">{formatFileSize(receipt.receiptFileSize)}</span>
+                        <Download className="h-3.5 w-3.5 shrink-0 text-muted" />
                       </a>
-                      <span className="text-xs text-gray-500">
-                        <FileText className="w-3 h-3 inline mr-1" />
-                        {receipt.receiptFileName} ({formatFileSize(receipt.receiptFileSize)})
-                      </span>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      {receipt.status === "pending" && (
+                    {/* Actions */}
+                    <div className="flex shrink-0 items-center gap-2 lg:flex-col lg:items-stretch">
+                      {receipt.status === "pending" ? (
                         <>
-                          <button
-                            onClick={() => openReviewModal(receipt, "verify")}
-                            className="px-3 py-1 rounded-lg text-xs font-medium bg-green-100 text-green-800 hover:bg-green-200 flex items-center gap-1"
-                          >
-                            <CheckCircle className="w-3 h-3" />
-                            Verify
+                          <button type="button" onClick={() => openReviewModal(receipt, "verify")} className={buttonClass('success', 'sm', 'min-w-[96px]')}>
+                            <CheckCircle2 className="h-3.5 w-3.5" /> Verify
                           </button>
-                          <button
-                            onClick={() => openReviewModal(receipt, "reject")}
-                            className="px-3 py-1 rounded-lg text-xs font-medium bg-red-100 text-red-800 hover:bg-red-200 flex items-center gap-1"
-                          >
-                            <X className="w-3 h-3" />
-                            Reject
+                          <button type="button" onClick={() => openReviewModal(receipt, "reject")} className={buttonClass('dangerOutline', 'sm', 'min-w-[96px]')}>
+                            <X className="h-3.5 w-3.5" /> Reject
                           </button>
                         </>
-                      )}
-                      {receipt.status !== "pending" && (
+                      ) : (
                         <button
+                          type="button"
                           onClick={() => openReviewModal(receipt, receipt.status === "verified" ? "verify" : "reject")}
-                          className="px-3 py-1 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 hover:bg-gray-200 flex items-center gap-1"
+                          className={buttonClass('secondary', 'sm', 'min-w-[96px]')}
                         >
-                          <Eye className="w-3 h-3" />
-                          Review
+                          <Eye className="h-3.5 w-3.5" /> Review
                         </button>
                       )}
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
+                </li>
+              )
+            })}
+          </ul>
+        )}
+      </Panel>
 
       {/* Review Modal */}
       {showReviewModal && selectedReceipt && reviewAction && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">
-              {reviewAction === "verify" ? "Verify Receipt" : "Reject Receipt"}
-            </h2>
-            <div className="mb-4">
-              <p className="text-sm text-gray-600 mb-2">
-                {reviewAction === "verify" ? "Verifying receipt for" : "Rejecting receipt for"}: {selectedReceipt.parentName} ({selectedReceipt.parentEmail})
-              </p>
-              <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <span className="text-gray-500">Amount: </span>
-                    <span className="font-semibold text-green-700">${selectedReceipt.amount}</span>
-                  </div>
-                  <div>
-                    <span className="text-gray-500">Transaction Date: </span>
-                    <span className="text-gray-900">{selectedReceipt.transactionDate}</span>
-                  </div>
-                </div>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]">
+          <div className="flex w-full max-w-lg flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-pop">
+            <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
+              <div>
+                <h2 className="text-lg font-semibold tracking-tight text-ink">
+                  {reviewAction === "verify" ? "Verify receipt" : "Reject receipt"}
+                </h2>
+                <p className="mt-0.5 text-sm text-muted">{selectedReceipt.parentName} · {selectedReceipt.parentEmail}</p>
               </div>
-            </div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Admin Notes {reviewAction === "reject" && "(required)"}
-            </label>
-            <textarea
-              value={adminNotes}
-              onChange={(e) => setAdminNotes(e.target.value)}
-              placeholder={reviewAction === "verify" ? "Add optional notes..." : "Please provide a reason for rejection..."}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32 mb-4"
-              required={reviewAction === "reject"}
-            />
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={() => {
-                  setShowReviewModal(false)
-                  setAdminNotes("")
-                  setSelectedReceipt(null)
-                  setReviewAction(null)
-                }}
-                className="px-4 py-2 rounded-lg text-gray-700 bg-gray-100 hover:bg-gray-200"
-              >
-                Cancel
+              <button type="button" onClick={closeReview} className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink" aria-label="Close">
+                <X className="h-5 w-5" />
               </button>
+            </div>
+            <div className="space-y-4 px-5 py-4">
+              <dl className="grid grid-cols-2 gap-3 rounded-lg border border-line bg-surface-muted/60 p-3 text-sm">
+                <div>
+                  <dt className="text-xs text-muted">Amount</dt>
+                  <dd className="font-display text-lg font-bold text-ink tabular-nums">${selectedReceipt.amount}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs text-muted">Transaction date</dt>
+                  <dd className="mt-1 text-ink">{selectedReceipt.transactionDate}</dd>
+                </div>
+              </dl>
+              <label className="block text-sm font-medium text-ink-soft">
+                Admin notes {reviewAction === "reject" ? <span className="text-rose-600">(required)</span> : <span className="font-normal text-subtle">(optional)</span>}
+                <textarea
+                  value={adminNotes}
+                  onChange={(e) => setAdminNotes(e.target.value)}
+                  placeholder={reviewAction === "verify" ? "Add optional notes…" : "Please provide a reason for rejection…"}
+                  className="mt-1.5 h-32 w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
+                  required={reviewAction === "reject"}
+                />
+              </label>
+            </div>
+            <div className="flex justify-end gap-2 border-t border-line bg-surface-muted/60 px-5 py-3">
+              <button type="button" onClick={closeReview} className={buttonClass('secondary')}>Cancel</button>
               <button
+                type="button"
                 onClick={() => {
                   if (reviewAction === "reject" && !adminNotes.trim()) {
                     toast.error("Please provide a reason for rejection")
@@ -418,21 +355,15 @@ export default function TransactionReceiptsPage() {
                   updateReceiptStatus(selectedReceipt.id, reviewAction === "verify" ? "verified" : "rejected", adminNotes)
                 }}
                 disabled={actionLoading[`status-${selectedReceipt.id}`]}
-                className={`px-4 py-2 rounded-lg text-white flex items-center gap-2 ${
-                  reviewAction === "verify"
-                    ? "bg-green-600 hover:bg-green-700 disabled:bg-green-300"
-                    : "bg-red-600 hover:bg-red-700 disabled:bg-red-300"
-                }`}
+                className={buttonClass(reviewAction === "verify" ? 'success' : 'danger')}
               >
-                {actionLoading[`status-${selectedReceipt.id}`] && (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                )}
-                {reviewAction === "verify" ? "Verify Receipt" : "Reject Receipt"}
+                {actionLoading[`status-${selectedReceipt.id}`] && <Loader2 className="h-4 w-4 animate-spin" />}
+                {reviewAction === "verify" ? "Verify receipt" : "Reject receipt"}
               </button>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </AdminPageShell>
   )
 }

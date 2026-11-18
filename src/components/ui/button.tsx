@@ -19,17 +19,17 @@ export function Button({
   onClick,
   type = 'button'
 }: ButtonProps) {
-  const baseClasses = 'inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2'
+  const baseClasses = 'inline-flex items-center justify-center gap-1.5 font-medium transition focus:outline-none focus-visible:ring-4'
   
   const variantClasses: Record<'default' | 'ghost' | 'outline', string> = {
-    default: 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500',
-    ghost: 'bg-transparent hover:bg-gray-100 text-gray-700 focus:ring-gray-500',
-    outline: 'border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 focus:ring-gray-500'
+    default: 'bg-brand-700 text-white shadow-card hover:bg-brand-800 focus-visible:ring-brand-100',
+    ghost: 'bg-transparent text-ink-soft hover:bg-canvas hover:text-ink focus-visible:ring-brand-100',
+    outline: 'border border-line bg-surface text-ink-soft shadow-card hover:bg-canvas hover:text-ink focus-visible:ring-brand-100'
   }
   
   const sizeClasses = {
-    default: 'px-4 py-2 text-sm rounded-md',
-    sm: 'px-3 py-1.5 text-sm rounded-md'
+    default: 'h-10 px-4 text-sm rounded-lg',
+    sm: 'h-8 px-3 text-xs rounded-lg'
   }
   
   const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed' : ''

@@ -2,10 +2,11 @@
 
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { useEffect, useState, useRef } from 'react'
-import { MessageCircle, X, Send } from 'lucide-react'
+import { BellRing, BookOpen, Lock, MessageCircle, Search, Send, Unlock, X } from 'lucide-react'
 import { toast } from 'sonner'
+import AdminPageShell from '@/components/admin/AdminPageShell'
+import { Badge, EmptyState, LoadingState, Panel, buttonClass, cx, inputClass } from '@/components/admin/ui'
 
 interface Enrollment {
   id: number
@@ -42,6 +43,7 @@ export default function EnrollmentsPage() {
   const [enrollments, setEnrollments] = useState<Enrollment[]>([])
   const [filteredEnrollments, setFilteredEnrollments] = useState<Enrollment[]>([])
   const [selectedProgram, setSelectedProgram] = useState<string>('all')
+  const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [showReminderModal, setShowReminderModal] = useState(false)
@@ -279,278 +281,200 @@ export default function EnrollmentsPage() {
     }
   }
 
-  if (status === 'loading' || loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
-          <p className="mt-4 text-gray-600">Loading enrollments...</p>
-        </div>
-      </div>
+  const q = search.trim().toLowerCase()
+  const visibleEnrollments = q
+    ? filteredEnrollments.filter((e) =>
+        [e.student.email, e.student.parentEmail ?? '', e.program, e.subject, ...e.teacherStudents.map((ts) => ts.teacher.name)]
+          .join(' ')
+          .toLowerCase()
+          .includes(q),
+      )
+    : filteredEnrollments
+
+  const programChip = (active: boolean) =>
+    cx(
+      'inline-flex h-8 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3 text-sm font-medium transition',
+      active ? 'bg-brand-700 text-white shadow-card' : 'bg-surface-muted text-ink-soft ring-1 ring-inset ring-line hover:bg-canvas hover:text-ink',
     )
-  }
+
+  const fieldLabel = 'block text-sm font-medium text-ink-soft'
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <MessageCircle className="h-6 w-6 text-yellow-300" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">
-                  Student Enrollments
-                </h1>
-                <p className="text-sm text-gray-700">
-                  Manage enrollments, access, reminders, and chat
-                </p>
-              </div>
-            </div>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
-            >
-              Back to Dashboard
-            </Link>
-          </div>
-        </div>
-      </header>
+    <AdminPageShell moduleId="enrollments" description="Manage enrollments, program access, payment reminders and chat.">
+      {error && (
+        <div role="alert" className="mb-4 rounded-card border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">{error}</div>
+      )}
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {error}
-          </div>
-        )}
-
-        {/* Program Filter Buttons */}
-        {uniquePrograms.length > 0 && (
-          <div className="mb-6 bg-white rounded-lg shadow-sm border border-blue-100 p-4">
-            <h2 className="text-sm font-semibold text-gray-700 mb-3">
-              Filter by Program:
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => setSelectedProgram('all')}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  selectedProgram === 'all'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                All Programs ({enrollments.length})
+      <Panel className="overflow-hidden">
+        {/* Search + program filter */}
+        <div className="space-y-3 border-b border-line p-4">
+          <label className="relative block">
+            <span className="sr-only">Search enrollments</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search student, parent, subject or teacher…"
+              className={cx(inputClass, 'pl-9')}
+            />
+          </label>
+          {uniquePrograms.length > 0 && (
+            <div className="flex gap-2 overflow-x-auto pb-0.5" role="group" aria-label="Filter by program">
+              <button type="button" onClick={() => setSelectedProgram('all')} className={programChip(selectedProgram === 'all')}>
+                All programs <span className="text-xs opacity-70 tabular-nums">{enrollments.length}</span>
               </button>
               {uniquePrograms.map((program) => {
-                const count = enrollments.filter(
-                  (e) => e.program === program
-                ).length
+                const count = enrollments.filter((e) => e.program === program).length
                 return (
-                  <button
-                    key={program}
-                    onClick={() => setSelectedProgram(program)}
-                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                      selectedProgram === program
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {program} ({count})
+                  <button key={program} type="button" onClick={() => setSelectedProgram(program)} className={programChip(selectedProgram === program)}>
+                    {program} <span className="text-xs opacity-70 tabular-nums">{count}</span>
                   </button>
                 )
               })}
             </div>
-            {selectedProgram !== 'all' && (
-              <p className="text-sm text-gray-600 mt-3">
-                Showing {filteredEnrollments.length} enrollment(s) for{' '}
-                <span className="font-semibold">{selectedProgram}</span>
-              </p>
-            )}
+          )}
+        </div>
+
+        {status === 'loading' || loading ? (
+          <LoadingState label="Loading enrollments…" />
+        ) : visibleEnrollments.length === 0 ? (
+          <EmptyState
+            icon={BookOpen}
+            title={enrollments.length ? 'No enrollments match your filters' : 'No enrollments found'}
+            description={
+              enrollments.length
+                ? selectedProgram === 'all' ? 'Try a different search.' : `Nothing matches in ${selectedProgram}.`
+                : 'Enrollments appear here once students are enrolled in a program.'
+            }
+          />
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[1000px] text-left text-sm">
+              <thead>
+                <tr className="border-b border-line bg-surface-muted text-xs font-semibold uppercase tracking-[0.06em] text-muted">
+                  <th className="px-5 py-3">Student</th>
+                  <th className="px-4 py-3">Program</th>
+                  <th className="px-4 py-3">Teacher</th>
+                  <th className="px-4 py-3">Access</th>
+                  <th className="px-4 py-3">Chat</th>
+                  <th className="px-5 py-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-line">
+                {visibleEnrollments.map((enrollment) => {
+                  const blocked = enrollment.access === 'blocked'
+                  const parentEmail = enrollment.student.parentEmail
+                  return (
+                    <tr key={enrollment.id} className="align-top transition-colors hover:bg-surface-muted/60">
+                      <td className="max-w-[260px] px-5 py-4">
+                        <p className="truncate font-medium text-ink" title={enrollment.student.email}>{enrollment.student.email}</p>
+                        <p className="mt-1 truncate text-xs text-muted" title={parentEmail ?? undefined}>
+                          Parent: {parentEmail || <span className="text-subtle">not on file</span>}
+                        </p>
+                      </td>
+                      <td className="max-w-[220px] px-4 py-4">
+                        <Badge tone="brand">{enrollment.program}</Badge>
+                        <p className="mt-1.5 truncate text-xs text-muted">{enrollment.subject}</p>
+                      </td>
+                      <td className="max-w-[200px] px-4 py-4">
+                        {enrollment.teacherStudents.length > 0 ? (
+                          <p className="truncate text-ink-soft">{enrollment.teacherStudents.map((ts) => ts.teacher.name).join(', ')}</p>
+                        ) : (
+                          <span className="text-xs text-subtle">No teacher assigned</span>
+                        )}
+                      </td>
+                      <td className="px-4 py-4">
+                        {blocked ? <Badge tone="rose" icon={Lock}>Blocked</Badge> : <Badge tone="emerald" icon={Unlock}>Unblocked</Badge>}
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="inline-flex rounded-lg border border-line bg-surface-muted p-0.5">
+                          <button
+                            type="button"
+                            onClick={() => openChat(enrollment.studentId, 'student', enrollment.student.email)}
+                            className="inline-flex h-7 items-center gap-1 rounded-md px-2 text-xs font-medium text-ink-soft transition hover:bg-surface hover:text-brand-700 hover:shadow-card"
+                            title="Chat with student"
+                          >
+                            <MessageCircle className="h-3.5 w-3.5" /> Student
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => parentEmail && openChat(enrollment.studentId, 'parent', parentEmail)}
+                            disabled={!parentEmail}
+                            className="inline-flex h-7 items-center gap-1 rounded-md px-2 text-xs font-medium text-ink-soft transition hover:bg-surface hover:text-brand-700 hover:shadow-card disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:shadow-none"
+                            title={parentEmail ? 'Chat with parent' : 'No parent email available'}
+                          >
+                            <MessageCircle className="h-3.5 w-3.5" /> Parent
+                          </button>
+                        </div>
+                      </td>
+                      <td className="px-5 py-4">
+                        <div className="flex justify-end gap-2">
+                          <button
+                            type="button"
+                            onClick={() => openReminderModal(enrollment)}
+                            disabled={!parentEmail}
+                            className={buttonClass('secondary', 'sm')}
+                            title={!parentEmail ? 'No parent email available' : 'Send payment reminder'}
+                          >
+                            <BellRing className="h-3.5 w-3.5" /> Reminder
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => toggleAccess(enrollment.id, enrollment.access)}
+                            className={buttonClass(blocked ? 'success' : 'dangerOutline', 'sm', 'min-w-[84px]')}
+                          >
+                            {blocked ? <Unlock className="h-3.5 w-3.5" /> : <Lock className="h-3.5 w-3.5" />}
+                            {blocked ? 'Unblock' : 'Block'}
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
           </div>
         )}
-
-        <div className="overflow-x-auto bg-white rounded-lg shadow-sm border border-gray-200">
-        <table className="min-w-full table-auto">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Student Email
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Parent Email
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Program
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Subject
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Teacher
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Access Status
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Actions
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Payment Reminder
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Chat
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {filteredEnrollments.length === 0 ? (
-              <tr>
-                <td colSpan={9} className="px-6 py-4 text-center text-gray-500">
-                  {selectedProgram === 'all' ? 'No enrollments found' : `No enrollments found for ${selectedProgram}`}
-                </td>
-              </tr>
-            ) : (
-              filteredEnrollments.map((enrollment) => (
-                <tr key={enrollment.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {enrollment.student.email}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {enrollment.student.parentEmail || 'N/A'}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {enrollment.program}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {enrollment.subject}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {enrollment.teacherStudents.length > 0
-                      ? enrollment.teacherStudents.map(ts => ts.teacher.name).join(', ')
-                      : 'No teacher assigned'}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span
-                      className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                        enrollment.access === 'blocked'
-                          ? 'bg-red-100 text-red-800'
-                          : 'bg-green-100 text-green-800'
-                      }`}
-                    >
-                      {enrollment.access === 'blocked' ? 'Blocked' : 'Unblocked'}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <button
-                      onClick={() => toggleAccess(enrollment.id, enrollment.access)}
-                      className={`px-4 py-2 rounded ${
-                        enrollment.access === 'blocked'
-                          ? 'bg-green-600 hover:bg-green-700 text-white'
-                          : 'bg-red-600 hover:bg-red-700 text-white'
-                      } transition-colors`}
-                    >
-                      {enrollment.access === 'blocked' ? 'Unblock' : 'Block'}
-                    </button>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <button
-                      onClick={() => openReminderModal(enrollment)}
-                      disabled={!enrollment.student.parentEmail}
-                      className={`px-4 py-2 rounded transition-colors ${
-                        enrollment.student.parentEmail
-                          ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                          : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                      }`}
-                      title={!enrollment.student.parentEmail ? 'No parent email available' : 'Send payment reminder'}
-                    >
-                      Send Reminder
-                    </button>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <div className="relative inline-block">
-                      <select
-                        onChange={(e) => {
-                          const value = e.target.value
-                          if (value === 'student') {
-                            openChat(enrollment.studentId, 'student', enrollment.student.email)
-                          } else if (value === 'parent' && enrollment.student.parentEmail) {
-                            openChat(enrollment.studentId, 'parent', enrollment.student.parentEmail)
-                          }
-                          e.target.value = '' // Reset dropdown
-                        }}
-                        className="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-700 cursor-pointer"
-                        defaultValue=""
-                      >
-                        <option value="" disabled>Chat with...</option>
-                        <option value="student">Student</option>
-                        <option value="parent" disabled={!enrollment.student.parentEmail}>
-                          Parent{!enrollment.student.parentEmail ? ' (N/A)' : ''}
-                        </option>
-                      </select>
-                    </div>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+      </Panel>
 
       {/* Chat Modal */}
       {showChatModal && chatRecipient && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg w-full max-w-2xl h-[600px] flex flex-col">
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200">
-              <div className="flex items-center gap-3">
-                <MessageCircle className="w-6 h-6 text-blue-600" />
-                <div>
-                  <h2 className="text-xl font-bold">Chat with {chatRecipient.role === 'student' ? 'Student' : 'Parent'}</h2>
-                  <p className="text-sm text-gray-600">{chatRecipient.name}</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]">
+          <div className="flex h-[600px] max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-pop">
+            <div className="flex items-center justify-between gap-4 border-b border-line px-5 py-4">
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-100">
+                  <MessageCircle className="h-5 w-5" />
+                </span>
+                <div className="min-w-0">
+                  <h2 className="text-lg font-semibold tracking-tight text-ink">Chat with {chatRecipient.role === 'student' ? 'student' : 'parent'}</h2>
+                  <p className="truncate text-sm text-muted">{chatRecipient.name}</p>
                 </div>
               </div>
-              <button
-                onClick={closeChatModal}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-              >
-                <X className="w-5 h-5 text-gray-500" />
+              <button type="button" onClick={closeChatModal} className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink" aria-label="Close chat">
+                <X className="h-5 w-5" />
               </button>
             </div>
 
-            {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
+            <div className="flex-1 overflow-y-auto bg-surface-muted/70 p-5">
               {loadingMessages ? (
-                <div className="flex justify-center items-center h-full">
-                  <p className="text-gray-500">Loading messages...</p>
-                </div>
+                <LoadingState label="Loading messages…" />
               ) : messages.length === 0 ? (
-                <div className="flex justify-center items-center h-full">
-                  <p className="text-gray-500">No messages yet. Start the conversation!</p>
-                </div>
+                <div className="flex h-full items-center justify-center text-sm text-muted">No messages yet. Start the conversation!</div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {messages.map((message) => {
                     const isAdmin = message.senderRole === 'admin'
                     return (
-                      <div
-                        key={message.id}
-                        className={`flex ${isAdmin ? 'justify-end' : 'justify-start'}`}
-                      >
+                      <div key={message.id} className={`flex ${isAdmin ? 'justify-end' : 'justify-start'}`}>
                         <div
-                          className={`max-w-[70%] rounded-lg p-3 ${
-                            isAdmin
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-white text-gray-900 border border-gray-200'
-                          }`}
+                          className={cx(
+                            'max-w-[75%] rounded-2xl px-3.5 py-2.5 shadow-card',
+                            isAdmin ? 'rounded-br-md bg-brand-700 text-white' : 'rounded-bl-md border border-line bg-surface text-ink',
+                          )}
                         >
-                          <p className="text-sm whitespace-pre-wrap break-words">{message.content}</p>
-                          <p
-                            className={`text-xs mt-1 ${
-                              isAdmin ? 'text-blue-100' : 'text-gray-500'
-                            }`}
-                          >
+                          <p className="whitespace-pre-wrap break-words text-sm">{message.content}</p>
+                          <p className={`mt-1 text-[11px] ${isAdmin ? 'text-brand-100' : 'text-subtle'}`}>
                             {new Date(message.createdAt).toLocaleString()}
                           </p>
                         </div>
@@ -562,28 +486,23 @@ export default function EnrollmentsPage() {
               )}
             </div>
 
-            {/* Message Input */}
-            <div className="p-4 border-t border-gray-200 bg-white">
-              <div className="flex gap-2">
+            <div className="border-t border-line bg-surface p-4">
+              <div className="flex items-end gap-2">
                 <textarea
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Type your message..."
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  placeholder="Type your message…"
+                  className="min-h-[44px] flex-1 resize-none rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
                   rows={2}
                   disabled={sendingMessage}
                 />
-                <button
-                  onClick={sendMessage}
-                  disabled={sendingMessage || !newMessage.trim()}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-                >
-                  <Send className="w-4 h-4" />
-                  {sendingMessage ? 'Sending...' : 'Send'}
+                <button type="button" onClick={sendMessage} disabled={sendingMessage || !newMessage.trim()} className={buttonClass('primary')}>
+                  <Send className="h-4 w-4" />
+                  {sendingMessage ? 'Sending…' : 'Send'}
                 </button>
               </div>
-              <p className="text-xs text-gray-500 mt-2">Press Enter to send, Shift+Enter for new line</p>
+              <p className="mt-2 text-xs text-subtle">Press Enter to send, Shift+Enter for a new line</p>
             </div>
           </div>
         </div>
@@ -591,103 +510,75 @@ export default function EnrollmentsPage() {
 
       {/* Payment Reminder Modal */}
       {showReminderModal && selectedEnrollment && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
-            <h2 className="text-2xl font-bold mb-4">Send Payment Reminder</h2>
-            
-            <div className="mb-4">
-              <p className="text-sm text-gray-600 mb-2">
-                <strong>Student:</strong> {selectedEnrollment.student.email}
-              </p>
-              <p className="text-sm text-gray-600 mb-2">
-                <strong>Parent:</strong> {selectedEnrollment.student.parentEmail}
-              </p>
-              <p className="text-sm text-gray-600 mb-2">
-                <strong>Program:</strong> {selectedEnrollment.program}
-              </p>
-              <p className="text-sm text-gray-600 mb-4">
-                <strong>Subject:</strong> {selectedEnrollment.subject}
-              </p>
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Payment Information *
-              </label>
-              <textarea
-                value={paymentInfo}
-                onChange={(e) => setPaymentInfo(e.target.value)}
-                placeholder="Enter payment details (e.g., invoice number, payment method, notes)"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                rows={3}
-                required
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Amount *
-              </label>
-              <input
-                type="text"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                placeholder="Enter amount (e.g., $500, ₹10000)"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Due Date *
-              </label>
-              <input
-                type="date"
-                value={dueDate}
-                onChange={(e) => setDueDate(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-
-            <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Attach Invoice/Receipt (Optional)
-              </label>
-              <input
-                type="file"
-                accept=".pdf,.csv,.jpg,.jpeg,.png"
-                onChange={(e) => setPaymentFile(e.target.files?.[0] || null)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-              />
-              {paymentFile && (
-                <p className="text-sm text-gray-600 mt-2">
-                  Selected: {paymentFile.name} ({(paymentFile.size / 1024).toFixed(2)} KB)
-                </p>
-              )}
-            </div>
-
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={closeReminderModal}
-                disabled={sendingEmail}
-                className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors disabled:opacity-50"
-              >
-                Cancel
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]">
+          <div className="flex max-h-[92vh] w-full max-w-md flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-pop">
+            <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
+              <div>
+                <h2 className="text-lg font-semibold tracking-tight text-ink">Send payment reminder</h2>
+                <p className="mt-0.5 text-sm text-muted">Emails the parent with the details below.</p>
+              </div>
+              <button type="button" onClick={closeReminderModal} disabled={sendingEmail} className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink" aria-label="Close">
+                <X className="h-5 w-5" />
               </button>
-              <button
-                onClick={sendPaymentReminder}
-                disabled={sendingEmail || !paymentInfo || !dueDate}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {sendingEmail ? 'Sending...' : 'Send Reminder'}
+            </div>
+
+            <div className="space-y-4 overflow-y-auto px-5 py-4">
+              <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 rounded-lg border border-line bg-surface-muted/60 p-3 text-sm">
+                <dt className="text-muted">Student</dt><dd className="truncate text-ink">{selectedEnrollment.student.email}</dd>
+                <dt className="text-muted">Parent</dt><dd className="truncate text-ink">{selectedEnrollment.student.parentEmail}</dd>
+                <dt className="text-muted">Program</dt><dd className="truncate text-ink">{selectedEnrollment.program}</dd>
+                <dt className="text-muted">Subject</dt><dd className="truncate text-ink">{selectedEnrollment.subject}</dd>
+              </dl>
+
+              <label className={fieldLabel}>
+                Payment information <span className="text-rose-600">*</span>
+                <textarea
+                  value={paymentInfo}
+                  onChange={(e) => setPaymentInfo(e.target.value)}
+                  placeholder="Invoice number, payment method, notes…"
+                  className="mt-1.5 w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
+                  rows={3}
+                  required
+                />
+              </label>
+
+              <div className="grid grid-cols-2 gap-3">
+                <label className={fieldLabel}>
+                  Amount <span className="text-rose-600">*</span>
+                  <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="$500" className={cx(inputClass, 'mt-1.5')} required />
+                </label>
+                <label className={fieldLabel}>
+                  Due date <span className="text-rose-600">*</span>
+                  <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} className={cx(inputClass, 'mt-1.5')} required />
+                </label>
+              </div>
+
+              <label className={fieldLabel}>
+                Attach invoice or receipt <span className="font-normal text-subtle">(optional)</span>
+                <input
+                  type="file"
+                  accept=".pdf,.csv,.jpg,.jpeg,.png"
+                  onChange={(e) => setPaymentFile(e.target.files?.[0] || null)}
+                  className="mt-1.5 block w-full rounded-lg border border-dashed border-line-strong bg-surface-muted/60 p-2 text-sm text-muted file:mr-3 file:rounded-md file:border-0 file:bg-brand-50 file:px-3 file:py-1.5 file:text-sm file:font-semibold file:text-brand-700 hover:file:bg-brand-100"
+                />
+                {paymentFile && (
+                  <span className="mt-1.5 block text-xs font-normal text-muted">
+                    Selected: {paymentFile.name} ({(paymentFile.size / 1024).toFixed(2)} KB)
+                  </span>
+                )}
+              </label>
+            </div>
+
+            <div className="flex justify-end gap-2 border-t border-line bg-surface-muted/60 px-5 py-3">
+              <button type="button" onClick={closeReminderModal} disabled={sendingEmail} className={buttonClass('secondary')}>Cancel</button>
+              <button type="button" onClick={sendPaymentReminder} disabled={sendingEmail || !paymentInfo || !dueDate} className={buttonClass('primary')}>
+                <BellRing className="h-4 w-4" />
+                {sendingEmail ? 'Sending…' : 'Send reminder'}
               </button>
             </div>
           </div>
         </div>
       )}
-      </main>
-    </div>
+    </AdminPageShell>
   )
 }

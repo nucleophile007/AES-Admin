@@ -151,8 +151,8 @@ export function PeoplePicker({
   const chips = ROLES.flatMap((r) => Object.values(value[r]).map((p) => ({ role: r, person: p })))
 
   return (
-    <div className="rounded-lg border border-slate-200">
-      <div className="flex flex-wrap gap-1 border-b border-slate-200 bg-slate-50 p-1.5" role="tablist" aria-label="Who to assign">
+    <div className="rounded-lg border border-line">
+      <div className="flex flex-wrap gap-1 border-b border-line bg-surface-muted p-1.5" role="tablist" aria-label="Who to assign">
         {roles.map((r) => {
           const count = Object.keys(value[r]).length
           return (
@@ -162,10 +162,10 @@ export function PeoplePicker({
               role="tab"
               aria-selected={role === r}
               onClick={() => setRole(r)}
-              className={`rounded-md px-3 py-1.5 text-sm font-medium ${role === r ? 'bg-white text-slate-900 shadow-sm ring-1 ring-slate-200' : 'text-slate-600 hover:text-slate-900'}`}
+              className={`rounded-md px-3 py-1.5 text-sm font-medium ${role === r ? 'bg-white text-ink shadow-sm ring-1 ring-line' : 'text-muted hover:text-ink'}`}
             >
               {ROLE_META[r].plural}
-              {count > 0 && <span className="ml-1.5 rounded-full bg-blue-600 px-1.5 text-xs text-white">{count}</span>}
+              {count > 0 && <span className="ml-1.5 rounded-full bg-brand-700 px-1.5 text-xs text-white">{count}</span>}
             </button>
           )
         })}
@@ -174,7 +174,7 @@ export function PeoplePicker({
       <div className="space-y-2 p-3">
         <div className="flex flex-wrap gap-2">
           <div className="relative min-w-[180px] flex-1">
-            <Search className="pointer-events-none absolute left-2.5 top-2.5 h-4 w-4 text-slate-400" />
+            <Search className="pointer-events-none absolute left-2.5 top-2.5 h-4 w-4 text-subtle" />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -191,7 +191,7 @@ export function PeoplePicker({
                   <option key={p} value={p}>{p}</option>
                 ))}
               </select>
-              <select value={mentorId} onChange={(e) => setMentorId(e.target.value)} disabled={locked} className={`${fieldClass} w-auto disabled:bg-slate-50`} aria-label="Filter by mentor">
+              <select value={mentorId} onChange={(e) => setMentorId(e.target.value)} disabled={locked} className={`${fieldClass} w-auto disabled:bg-surface-muted`} aria-label="Filter by mentor">
                 <option value="">Any mentor</option>
                 {mentors.map((m) => (
                   <option key={m.id} value={m.id}>{m.name}&apos;s students</option>
@@ -201,7 +201,7 @@ export function PeoplePicker({
           )}
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600">
+        <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted">
           <span>{loading ? 'Searching…' : `${data?.total ?? 0} match${data?.total === 1 ? '' : 'es'}`}</span>
           <div className="flex flex-wrap gap-2">
             {role === 'PARENT' && (
@@ -216,29 +216,29 @@ export function PeoplePicker({
           </div>
         </div>
 
-        <ul className="max-h-56 divide-y divide-slate-100 overflow-y-auto rounded-md border border-slate-200" aria-label="Search results">
+        <ul className="max-h-56 divide-y divide-line overflow-y-auto rounded-md border border-line" aria-label="Search results">
           {loading && !data ? (
-            <li className="flex items-center justify-center p-6 text-slate-400"><LoaderCircle className="h-5 w-5 animate-spin" /></li>
+            <li className="flex items-center justify-center p-6 text-subtle"><LoaderCircle className="h-5 w-5 animate-spin" /></li>
           ) : !data?.people.length ? (
-            <li className="p-4 text-center text-sm text-slate-500">No {ROLE_META[role].plural.toLowerCase()} found.</li>
+            <li className="p-4 text-center text-sm text-muted">No {ROLE_META[role].plural.toLowerCase()} found.</li>
           ) : (
             data.people.map((p) => {
               const assigned = alreadyAssigned?.has(`${role}:${p.id}`)
               const isSelected = Boolean(selected[p.id])
               return (
                 <li key={p.id}>
-                  <label className={`flex cursor-pointer items-center gap-3 px-3 py-2 text-sm hover:bg-slate-50 ${assigned ? 'cursor-not-allowed opacity-60' : ''}`}>
-                    <input type="checkbox" checked={assigned || isSelected} disabled={assigned} onChange={() => toggle(p)} className="h-4 w-4 rounded border-slate-300" />
+                  <label className={`flex cursor-pointer items-center gap-3 px-3 py-2 text-sm hover:bg-surface-muted ${assigned ? 'cursor-not-allowed opacity-60' : ''}`}>
+                    <input type="checkbox" checked={assigned || isSelected} disabled={assigned} onChange={() => toggle(p)} className="h-4 w-4 rounded border-line-strong" />
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate font-medium text-slate-900">{p.name}</span>
-                      <span className="block truncate text-xs text-slate-500">
+                      <span className="block truncate font-medium text-ink">{p.name}</span>
+                      <span className="block truncate text-xs text-muted">
                         {p.email}
                         {p.program ? ` · ${p.program}` : ''}
                         {p.grade ? ` · Grade ${p.grade}` : ''}
                         {p.students?.length ? ` · Parent of ${p.students.map((s) => s.name).join(', ')}` : ''}
                       </span>
                     </span>
-                    {assigned && <span className="text-xs text-slate-500">Already assigned</span>}
+                    {assigned && <span className="text-xs text-muted">Already assigned</span>}
                   </label>
                 </li>
               )
@@ -246,14 +246,14 @@ export function PeoplePicker({
           )}
         </ul>
         {data && data.total > data.people.length && (
-          <p className="text-xs text-slate-500">Showing the first {data.people.length}. Search to narrow, or use “Select all”.</p>
+          <p className="text-xs text-muted">Showing the first {data.people.length}. Search to narrow, or use “Select all”.</p>
         )}
 
         {chips.length > 0 && (
-          <div className="space-y-1.5 border-t border-slate-100 pt-2">
-            <div className="flex items-center justify-between text-xs font-semibold text-slate-700">
+          <div className="space-y-1.5 border-t border-line pt-2">
+            <div className="flex items-center justify-between text-xs font-semibold text-ink-soft">
               <span><Check className="mr-1 inline h-3.5 w-3.5 text-emerald-600" />{chips.length} selected</span>
-              <button type="button" className="text-blue-700 hover:underline" onClick={() => onChange(emptySelection())}>Clear all</button>
+              <button type="button" className="text-brand-700 hover:underline" onClick={() => onChange(emptySelection())}>Clear all</button>
             </div>
             <div className="flex max-h-28 flex-wrap gap-1.5 overflow-y-auto">
               {chips.slice(0, 60).map(({ role: r, person }) => (
@@ -273,7 +273,7 @@ export function PeoplePicker({
                   </button>
                 </span>
               ))}
-              {chips.length > 60 && <span className="text-xs text-slate-500">+{chips.length - 60} more</span>}
+              {chips.length > 60 && <span className="text-xs text-muted">+{chips.length - 60} more</span>}
             </div>
           </div>
         )}

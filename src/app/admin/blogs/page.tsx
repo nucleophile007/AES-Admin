@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { CheckCircle2, ChevronDown, ExternalLink, EyeOff, FileText, Globe, ImageIcon, Loader2, Pencil, Plus, Search, Trash2, X } from 'lucide-react'
+import AdminPageShell from '@/components/admin/AdminPageShell'
+import { Badge, EmptyState, LoadingState, Panel, Segmented, buttonClass, cx, inputClass, selectClass } from '@/components/admin/ui'
 import StudentAutocomplete from '@/components/ui/StudentAutocomplete'
 import { toast } from 'sonner'
 
@@ -359,430 +359,254 @@ export default function BlogsAdminPage() {
   // Get unique years from blogs
   const availableYears = Array.from(new Set(blogs.map(b => b.publicationYear))).sort((a, b) => b - a)
 
-  if (status === 'loading' || loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    )
-  }
+  const fieldClass = cx(inputClass, 'mt-1.5')
+  const labelClass = 'block text-sm font-medium text-ink-soft'
+  const req = <span className="text-rose-600">*</span>
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <div className="max-w-7xl mx-auto">
-        {/* Back Button */}
-        <div className="mb-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Dashboard
-          </Link>
-        </div>
-
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">AES Student Blogs</h1>
-          <p className="text-gray-600">Manage student blog posts and external links</p>
-        </div>
-
-        {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-sm text-gray-600">Total Blogs</p>
-            <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-sm text-gray-600">Approved</p>
-            <p className="text-2xl font-bold text-green-600">{stats.approved}</p>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-sm text-gray-600">Pending</p>
-            <p className="text-2xl font-bold text-yellow-600">{stats.pending}</p>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-sm text-gray-600">Published</p>
-            <p className="text-2xl font-bold text-blue-600">{stats.published}</p>
-          </div>
-        </div>
-
-        {/* Filters */}
-        <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <AdminPageShell
+      moduleId="blogs"
+      description="Manage student blog posts, approve them and choose what's published on the website."
+      actions={
+        <button type="button" onClick={() => setShowForm(true)} className={buttonClass('primary')}>
+          <Plus className="h-4 w-4" /> Add blog
+        </button>
+      }
+    >
+      <Panel className="overflow-hidden">
+        <div className="flex flex-col gap-3 border-b border-line p-4 lg:flex-row lg:items-center">
+          <label className="relative block flex-1">
+            <span className="sr-only">Search blogs</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
             <input
               type="text"
-              placeholder="Search by title or student..."
+              placeholder="Search by title or student…"
               value={filters.search}
               onChange={(e) => setFilters({ ...filters, search: e.target.value })}
-              className="px-4 py-2 border border-gray-300 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={cx(inputClass, 'pl-9')}
             />
-            <select
-              value={filters.year}
-              onChange={(e) => setFilters({ ...filters, year: e.target.value })}
-              className="px-4 py-2 border border-gray-300 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">All Years</option>
-              {availableYears.map(year => (
-                <option key={year} value={year}>{year}</option>
-              ))}
-            </select>
-            <select
-              value={filters.status}
-              onChange={(e) => setFilters({ ...filters, status: e.target.value })}
-              className="px-4 py-2 border border-gray-300 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">All Status</option>
-              <option value="approved">Approved</option>
-              <option value="pending">Pending</option>
-              <option value="published">Published</option>
-            </select>
-            <Button
-              onClick={() => setShowForm(true)}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
-            >
-              + Add New Blog
-            </Button>
+          </label>
+          <div className="flex flex-wrap items-center gap-2">
+            <label className="relative block w-36">
+              <span className="sr-only">Year</span>
+              <select value={filters.year} onChange={(e) => setFilters({ ...filters, year: e.target.value })} className={selectClass}>
+                <option value="all">All years</option>
+                {availableYears.map((year) => <option key={year} value={year}>{year}</option>)}
+              </select>
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            </label>
+            <Segmented
+              label="Status"
+              value={filters.status as 'all' | 'pending' | 'approved' | 'published'}
+              onChange={(value) => setFilters({ ...filters, status: value })}
+              options={[
+                { value: 'all', label: 'All', count: stats.total },
+                { value: 'pending', label: 'Pending', count: stats.pending },
+                { value: 'approved', label: 'Approved', count: stats.approved },
+                { value: 'published', label: 'Published', count: stats.published },
+              ]}
+            />
           </div>
         </div>
 
-        {/* Blogs Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Student
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Blog Title
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Abstract
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Publication
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredBlogs.length === 0 ? (
-                  <tr>
-                    <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
-                      No blogs found. Click "Add New Blog" to create one.
-                    </td>
-                  </tr>
-                ) : (
-                  filteredBlogs.map((blog) => (
-                    <tr key={blog.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
-                        <div className="flex items-center">
-                          {blog.studentPhoto && (
-                            <img
-                              src={blog.studentPhoto}
-                              alt={blog.student?.name || 'Student'}
-                              className="w-12 h-12 rounded-full object-cover mr-3"
-                            />
-                          )}
-                          <div>
-                            <div className="font-medium text-gray-900">
-                              {blog.student?.name || 'Unknown'}
-                            </div>
-                            <div className="text-sm text-gray-500">
-                              {blog.student?.grade} • {blog.student?.schoolName}
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="text-sm font-medium text-gray-900">{blog.title}</div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="text-sm text-gray-600 max-w-xs truncate">
-                          {blog.abstract}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
-                          {MONTHS[blog.publicationMonth - 1]} {blog.publicationYear}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="flex flex-col gap-1">
-                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                            blog.isApproved 
-                              ? 'bg-green-100 text-green-800' 
-                              : 'bg-yellow-100 text-yellow-800'
-                          }`}>
-                            {blog.isApproved ? 'Approved' : 'Pending'}
-                          </span>
-                          {blog.published && (
-                            <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
-                              Published
-                            </span>
-                          )}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <div className="flex flex-col gap-2">
-                          <a
-                            href={blog.externalUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-900 text-left"
-                          >
-                            View Blog ↗
-                          </a>
-                          <button
-                            onClick={() => handleEdit(blog)}
-                            className="text-indigo-600 hover:text-indigo-900 text-left"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => toggleApproval(blog)}
-                            className="text-green-600 hover:text-green-900 text-left"
-                          >
-                            {blog.isApproved ? 'Unapprove' : 'Approve'}
-                          </button>
-                          <button
-                            onClick={() => togglePublished(blog)}
-                            className="text-purple-600 hover:text-purple-900 text-left"
-                          >
-                            {blog.published ? 'Unpublish' : 'Publish'}
-                          </button>
-                          <button
-                            onClick={() => handleDelete(blog)}
-                            className="text-red-600 hover:text-red-900 text-left"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+        {status === 'loading' || loading ? (
+          <LoadingState label="Loading blogs…" />
+        ) : filteredBlogs.length === 0 ? (
+          <EmptyState
+            icon={FileText}
+            title={blogs.length ? 'No blogs match your filters' : 'No blogs yet'}
+            description={blogs.length ? 'Try a different search, year or status.' : 'Add a student blog to feature it on the website.'}
+            action={!blogs.length ? (
+              <button type="button" onClick={() => setShowForm(true)} className={buttonClass('primary', 'sm')}>
+                <Plus className="h-3.5 w-3.5" /> Add blog
+              </button>
+            ) : undefined}
+          />
+        ) : (
+          <ul className="divide-y divide-line">
+            {filteredBlogs.map((blog) => (
+              <li key={blog.id} className="flex flex-col gap-4 px-5 py-4 transition-colors hover:bg-surface-muted/40 lg:flex-row lg:items-start">
+                <div className="flex min-w-0 flex-1 items-start gap-4">
+                  {blog.studentPhoto ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={blog.studentPhoto} alt={blog.student?.name || 'Student'} className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-surface shadow-card" />
+                  ) : (
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-violet-50 text-sm font-semibold uppercase text-violet-800 ring-1 ring-inset ring-violet-100">
+                      {(blog.student?.name || '?').split(/\s+/).map((part) => part[0]).slice(0, 2).join('')}
+                    </span>
+                  )}
+                  <div className="min-w-0">
+                    <a href={blog.externalUrl} target="_blank" rel="noopener noreferrer" className="group inline-flex items-start gap-1.5 font-semibold text-ink hover:text-brand-700">
+                      <span>{blog.title}</span>
+                      <ExternalLink className="mt-1 h-3.5 w-3.5 shrink-0 text-subtle group-hover:text-brand-700" />
+                    </a>
+                    <p className="mt-0.5 text-sm text-muted">
+                      <span className="font-medium text-ink-soft">{blog.student?.name || 'Unknown student'}</span>
+                      {blog.student?.grade && <> · Grade {blog.student.grade}</>}
+                      {blog.student?.schoolName && <> · {blog.student.schoolName}</>}
+                      <> · {MONTHS[blog.publicationMonth - 1]} {blog.publicationYear}</>
+                    </p>
+                    {blog.abstract && <p className="mt-2 line-clamp-2 max-w-3xl text-sm text-ink-soft">{blog.abstract}</p>}
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {blog.isApproved ? <Badge tone="emerald" icon={CheckCircle2}>Approved</Badge> : <Badge tone="amber" dot>Pending approval</Badge>}
+                      {blog.published ? <Badge tone="brand" icon={Globe}>Published</Badge> : <Badge tone="slate" icon={EyeOff}>Not published</Badge>}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex shrink-0 flex-wrap items-center gap-2 lg:justify-end">
+                  <button type="button" onClick={() => toggleApproval(blog)} className={buttonClass(blog.isApproved ? 'secondary' : 'success', 'sm')}>
+                    {blog.isApproved ? <X className="h-3.5 w-3.5" /> : <CheckCircle2 className="h-3.5 w-3.5" />}
+                    {blog.isApproved ? 'Unapprove' : 'Approve'}
+                  </button>
+                  <button type="button" onClick={() => togglePublished(blog)} className={buttonClass('secondary', 'sm')}>
+                    {blog.published ? <EyeOff className="h-3.5 w-3.5" /> : <Globe className="h-3.5 w-3.5" />}
+                    {blog.published ? 'Unpublish' : 'Publish'}
+                  </button>
+                  <button type="button" onClick={() => handleEdit(blog)} title="Edit blog" aria-label={`Edit ${blog.title}`} className={buttonClass('ghost', 'icon')}>
+                    <Pencil className="h-3.5 w-3.5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(blog)}
+                    title="Delete blog"
+                    aria-label={`Delete ${blog.title}`}
+                    className={buttonClass('ghost', 'icon', 'text-rose-600 hover:bg-rose-50 hover:text-rose-700')}
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </Panel>
 
       {/* Create/Edit Form Modal */}
       {showForm && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               resetForm()
             }
           }}
         >
-          <div 
-            className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 my-8"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">
-                {editingBlog ? 'Edit Blog' : 'Add New Blog'}
-              </h2>
-              <button
-                type="button"
-                onClick={resetForm}
-                className="text-gray-400 hover:text-gray-600"
-                disabled={formLoading}
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+          <div className="flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-pop" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-start justify-between gap-4 border-b border-line px-6 py-4">
+              <div>
+                <h2 className="text-lg font-semibold tracking-tight text-ink">{editingBlog ? 'Edit blog' : 'Add new blog'}</h2>
+                <p className="mt-0.5 text-sm text-muted">Link a student's published blog post.</p>
+              </div>
+              <button type="button" onClick={resetForm} disabled={formLoading} className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink" aria-label="Close">
+                <X className="h-5 w-5" />
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Student Selection */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Student <span className="text-red-500">*</span>
-                </label>
-                <StudentAutocomplete
-                  value={formData.author}
-                  onChange={(value) => setFormData({ ...formData, author: value })}
-                  onStudentSelect={handleStudentSelect}
-                  placeholder="Start typing student name..."
-                  disabled={formLoading}
-                  required
-                />
-                {selectedStudent && (
-                  <p className="mt-1 text-sm text-gray-500">
-                    Selected: {selectedStudent.name} • Grade {selectedStudent.grade} • {selectedStudent.schoolName}
-                  </p>
-                )}
+            <form id="blog-form" onSubmit={handleSubmit} className="flex-1 space-y-5 overflow-y-auto px-6 py-5">
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-[1fr_auto]">
+                <div>
+                  <p className={labelClass}>Student {req}</p>
+                  <div className="mt-1.5">
+                    <StudentAutocomplete
+                      value={formData.author}
+                      onChange={(value) => setFormData({ ...formData, author: value })}
+                      onStudentSelect={handleStudentSelect}
+                      placeholder="Start typing student name…"
+                      disabled={formLoading}
+                      required
+                    />
+                  </div>
+                  {selectedStudent && (
+                    <p className="mt-1.5 text-xs text-muted">
+                      Selected: {selectedStudent.name} · Grade {selectedStudent.grade} · {selectedStudent.schoolName}
+                    </p>
+                  )}
+                </div>
+                <div>
+                  <p className={labelClass}>Student photo {req}</p>
+                  <label className="mt-1.5 flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-line-strong bg-surface-muted/60 p-2 pr-4 transition hover:border-brand-300 hover:bg-brand-50/40">
+                    {photoPreview ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={photoPreview} alt="Preview" className="h-12 w-12 rounded-full object-cover" />
+                    ) : (
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-surface text-subtle ring-1 ring-inset ring-line">
+                        <ImageIcon className="h-5 w-5" />
+                      </span>
+                    )}
+                    <span className="text-sm font-medium text-brand-700">{photoPreview ? 'Change photo' : 'Upload photo'}</span>
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/jpg,image/png,image/webp"
+                      onChange={handlePhotoChange}
+                      disabled={formLoading}
+                      className="sr-only"
+                    />
+                  </label>
+                </div>
               </div>
 
-              {/* Student Photo */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Student Photo <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="file"
-                  accept="image/jpeg,image/jpg,image/png,image/webp"
-                  onChange={handlePhotoChange}
-                  disabled={formLoading}
-                  className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-                />
-                {photoPreview && (
-                  <img
-                    src={photoPreview}
-                    alt="Preview"
-                    className="mt-2 w-24 h-24 rounded-full object-cover"
-                  />
-                )}
-              </div>
+              <label className={labelClass}>
+                Blog title {req}
+                <input type="text" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} className={fieldClass} placeholder="Enter blog title" disabled={formLoading} required />
+              </label>
 
-              {/* Blog Title */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Blog Title <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter blog title"
-                  disabled={formLoading}
-                  required
-                />
-              </div>
-
-              {/* Abstract */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Abstract <span className="text-red-500">*</span>
-                </label>
+              <label className={labelClass}>
+                Abstract {req}
                 <textarea
                   value={formData.abstract}
                   onChange={(e) => setFormData({ ...formData, abstract: e.target.value })}
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 resize-none"
-                  placeholder="Brief summary of the blog (200-300 characters)"
+                  className="mt-1.5 w-full resize-none rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
+                  placeholder="Brief summary of the blog (200–300 characters)"
                   disabled={formLoading}
                   required
                 />
-                <p className="mt-1 text-sm text-gray-500">
-                  {formData.abstract.length} characters
-                </p>
-              </div>
+                <span className="mt-1 block text-right text-xs font-normal tabular-nums text-subtle">{formData.abstract.length} characters</span>
+              </label>
 
-              {/* External URL */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  External Blog URL <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="url"
-                  value={formData.externalUrl}
-                  onChange={(e) => setFormData({ ...formData, externalUrl: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500"
-                  placeholder="https://medium.com/@student/blog-post"
-                  disabled={formLoading}
-                  required
-                />
-              </div>
+              <label className={labelClass}>
+                External blog URL {req}
+                <input type="url" value={formData.externalUrl} onChange={(e) => setFormData({ ...formData, externalUrl: e.target.value })} className={fieldClass} placeholder="https://medium.com/@student/blog-post" disabled={formLoading} required />
+              </label>
 
-              {/* Publication Date */}
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Publication Year <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    value={formData.publicationYear}
-                    onChange={(e) => setFormData({ ...formData, publicationYear: parseInt(e.target.value) })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500"
-                    disabled={formLoading}
-                    required
-                  >
-                    {YEARS.map(year => (
-                      <option key={year} value={year}>{year}</option>
-                    ))}
+                <label className={labelClass}>
+                  Publication year {req}
+                  <select value={formData.publicationYear} onChange={(e) => setFormData({ ...formData, publicationYear: parseInt(e.target.value) })} className={fieldClass} disabled={formLoading} required>
+                    {YEARS.map((year) => <option key={year} value={year}>{year}</option>)}
                   </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Publication Month <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    value={formData.publicationMonth}
-                    onChange={(e) => setFormData({ ...formData, publicationMonth: parseInt(e.target.value) })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500"
-                    disabled={formLoading}
-                    required
-                  >
-                    {MONTHS.map((month, index) => (
-                      <option key={index} value={index + 1}>{month}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Status Checkboxes */}
-              <div className="space-y-2">
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={formData.isApproved}
-                    onChange={(e) => setFormData({ ...formData, isApproved: e.target.checked })}
-                    className="h-4 w-4"
-                    disabled={formLoading}
-                  />
-                  <span className="ml-2 text-sm text-gray-700">Approved</span>
                 </label>
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={formData.published}
-                    onChange={(e) => setFormData({ ...formData, published: e.target.checked })}
-                    className="h-4 w-4"
-                    disabled={formLoading}
-                  />
-                  <span className="ml-2 text-gray-700">Published (visible on site)</span>
+                <label className={labelClass}>
+                  Publication month {req}
+                  <select value={formData.publicationMonth} onChange={(e) => setFormData({ ...formData, publicationMonth: parseInt(e.target.value) })} className={fieldClass} disabled={formLoading} required>
+                    {MONTHS.map((month, index) => <option key={index} value={index + 1}>{month}</option>)}
+                  </select>
                 </label>
               </div>
 
-              {/* Actions */}
-              <div className="flex justify-end gap-3 pt-4">
-                <Button
-                  type="button"
-                  onClick={resetForm}
-                  variant="outline"
-                  disabled={formLoading}
-                >
-                  Cancel
-                </Button>
-                <button
-                  type="submit"
-                  disabled={formLoading}
-                  className="inline-flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-300"
-                >
-                  {formLoading ? 'Saving...' : editingBlog ? 'Update Blog' : 'Create Blog'}
-                </button>
+              <div className="flex flex-wrap gap-x-6 gap-y-2 rounded-lg border border-line bg-surface-muted/60 px-4 py-3">
+                <label className="flex items-center gap-2 text-sm text-ink-soft">
+                  <input type="checkbox" checked={formData.isApproved} onChange={(e) => setFormData({ ...formData, isApproved: e.target.checked })} className="h-4 w-4 accent-brand-700" disabled={formLoading} />
+                  Approved
+                </label>
+                <label className="flex items-center gap-2 text-sm text-ink-soft">
+                  <input type="checkbox" checked={formData.published} onChange={(e) => setFormData({ ...formData, published: e.target.checked })} className="h-4 w-4 accent-brand-700" disabled={formLoading} />
+                  Published (visible on the website)
+                </label>
               </div>
             </form>
+
+            <div className="flex justify-end gap-2 border-t border-line bg-surface-muted/60 px-6 py-3">
+              <button type="button" onClick={resetForm} disabled={formLoading} className={buttonClass('secondary')}>Cancel</button>
+              <button type="submit" form="blog-form" disabled={formLoading} className={buttonClass('primary')}>
+                {formLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+                {formLoading ? 'Saving…' : editingBlog ? 'Update blog' : 'Create blog'}
+              </button>
+            </div>
           </div>
         </div>
       )}
-    </div>
+    </AdminPageShell>
   )
 }

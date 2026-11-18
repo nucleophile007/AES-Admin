@@ -3,10 +3,11 @@
 import { useDeferredValue, useEffect, useMemo, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { Search, User, Filter, CheckCircle, Loader2, X, Plus, Mail, Trash2, ChevronDown } from "lucide-react"
+import { Search, UserRound, CheckCircle2, Loader2, X, Plus, Mail, Trash2, ChevronDown } from "lucide-react"
 import { toast } from "sonner"
 import TablePagination from "@/components/ui/table-pagination"
+import AdminPageShell from "@/components/admin/AdminPageShell"
+import { Badge, EmptyState, LoadingState, Panel, PanelHeader, buttonClass, cx, inputClass, selectClass } from "@/components/admin/ui"
 import { PROGRAM_OPTIONS } from "@/lib/programCatalog"
 
 interface Teacher {
@@ -55,17 +56,17 @@ function ProgramPicker({
 }) {
   return (
     <details className="group relative">
-      <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700">
-        <span className={selectedPrograms.length ? "text-gray-900" : "text-gray-400"}>
+      <summary className="flex h-10 cursor-pointer list-none items-center justify-between rounded-lg border border-line bg-surface px-3 text-sm text-ink-soft shadow-card transition hover:border-line-strong">
+        <span className={selectedPrograms.length ? "text-ink" : "text-subtle"}>
           {selectedPrograms.length
             ? `${selectedPrograms.length} program${selectedPrograms.length === 1 ? "" : "s"} selected`
             : "Select programs..."}
         </span>
         <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
       </summary>
-      <div className="absolute z-20 mt-1 max-h-64 w-full overflow-y-auto rounded-lg border border-gray-200 bg-white p-2 shadow-lg">
+      <div className="absolute z-20 mt-1 max-h-64 w-full overflow-y-auto rounded-lg border border-line bg-surface p-1.5 shadow-pop">
         {PROGRAM_OPTIONS.map((program) => (
-          <label key={program} className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-sm text-gray-700 hover:bg-gray-50">
+          <label key={program} className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-sm text-ink-soft hover:bg-surface-muted">
             <input
               type="checkbox"
               checked={selectedPrograms.includes(program)}
@@ -74,7 +75,7 @@ function ProgramPicker({
                   ? [...selectedPrograms, program]
                   : selectedPrograms.filter((selectedProgram) => selectedProgram !== program)
               )}
-              className="h-4 w-4 rounded border-gray-300 text-blue-600"
+              className="h-4 w-4 rounded border-line-strong accent-brand-700"
             />
             <span>{program}</span>
           </label>
@@ -400,7 +401,11 @@ export default function TeachersPage() {
 
   // Check admin access before rendering dashboard
   if (status === 'loading') {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>
+    return (
+      <AdminPageShell moduleId="teachers">
+        <Panel><LoadingState label="Checking access…" /></Panel>
+      </AdminPageShell>
+    )
   }
 
   if (!session) {
@@ -413,306 +418,231 @@ export default function TeachersPage() {
     return null // Will redirect to unauthorized via useEffect
   }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
-          <p className="text-gray-600">Loading teacher data...</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <User className="h-6 w-6 text-yellow-300" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Teacher Management</h1>
-                <p className="text-sm text-gray-700">Add and manage teachers/mentors</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
-              >
-                Back to Dashboard
-              </Link>
-              <button
-                onClick={() => setShowForm(!showForm)}
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
-              >
-                <Plus className="w-4 h-4" />
-                {showForm ? 'Cancel' : 'Add Teacher'}
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
+    <AdminPageShell
+      moduleId="teachers"
+      description="Add mentors, choose the programs they teach and manage their accounts."
+      actions={
+        <button type="button" onClick={() => setShowForm(!showForm)} className={buttonClass(showForm ? 'secondary' : 'primary')}>
+          {showForm ? <X className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+          {showForm ? 'Close form' : 'Add teacher'}
+        </button>
+      }
+    >
       {/* Add Teacher Form */}
       {showForm && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h2 className="text-xl font-semibold text-gray-900">Add New Teacher</h2>
-                <p className="text-sm text-gray-600">
-                  Create a new mentor profile and assign their programs.
-                </p>
-              </div>
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-yellow-50 text-yellow-800 border border-yellow-200">
-                New Teacher
-              </span>
-            </div>
-            <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter teacher name"
-                    value={formData.name}
-                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Enter teacher email"
-                    value={formData.email}
-                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <label className="mb-2 block text-sm font-medium text-gray-700">
-                  Programs they teach
-                </label>
-                <ProgramPicker
-                  selectedPrograms={formData.programs}
-                  onChange={(programs) => setFormData((prev) => ({ ...prev, programs }))}
+        <Panel className="mb-6">
+          <PanelHeader title="Add new teacher" description="Create a mentor account and assign the programs they teach." />
+          <form onSubmit={handleSubmit} className="p-5">
+            <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2">
+              <label htmlFor="name" className="block text-sm font-medium text-ink-soft">
+                Name
+                <input
+                  type="text"
+                  id="name"
+                  className={cx(inputClass, 'mt-1.5')}
+                  placeholder="Enter teacher name"
+                  value={formData.name}
+                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  required
                 />
-                <p className="mt-2 text-xs text-gray-500">
-                  Select every program this teacher can support. You can choose multiple programs without holding a key.
-                </p>
-              </div>
-
-              {formError && (
-                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
-                  {formError}
-                </div>
-              )}
-
-              <div className="flex justify-end">
-                <button
-                  type="submit"
-                  disabled={formLoading}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-300"
-                >
-                  {formLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-                  Save Teacher
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Filters */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-              <input
-                type="text"
-                placeholder="Search by name or email..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-              />
+              </label>
+              <label htmlFor="email" className="block text-sm font-medium text-ink-soft">
+                Email
+                <input
+                  type="email"
+                  id="email"
+                  className={cx(inputClass, 'mt-1.5')}
+                  placeholder="Enter teacher email"
+                  value={formData.email}
+                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  required
+                />
+              </label>
             </div>
-            {programs.length > 0 && (
-              <div className="sm:w-48 relative">
-                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-                <select
-                  value={selectedProgram}
-                  onChange={(e) => setSelectedProgram(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-gray-900"
-                >
-                  <option value="all">All Programs</option>
-                  {programs.map((program) => (
-                    <option key={program} value={program}>
-                      {program}
-                    </option>
-                  ))}
-                </select>
+
+            <div className="mb-5">
+              <p className="mb-1.5 text-sm font-medium text-ink-soft">Programs they teach</p>
+              <ProgramPicker
+                selectedPrograms={formData.programs}
+                onChange={(programs) => setFormData((prev) => ({ ...prev, programs }))}
+              />
+              <p className="mt-2 text-xs text-muted">
+                Select every program this teacher can support. You can choose several.
+              </p>
+            </div>
+
+            {formError && (
+              <div role="alert" className="mb-4 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-800">
+                {formError}
               </div>
             )}
-          </div>
-          {filteredData.length !== data.length && (
-            <div className="mt-4 text-sm text-gray-800 font-medium">
-              Showing {filteredData.length} of {data.length} teachers
+
+            <div className="flex justify-end gap-2 border-t border-line pt-4">
+              <button type="button" onClick={() => setShowForm(false)} className={buttonClass('secondary')}>Cancel</button>
+              <button type="submit" disabled={formLoading} className={buttonClass('primary')}>
+                {formLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
+                Save teacher
+              </button>
             </div>
+          </form>
+        </Panel>
+      )}
+
+      <Panel className="overflow-hidden">
+        {/* Filters */}
+        <div className="flex flex-col gap-3 border-b border-line p-4 sm:flex-row sm:items-center">
+          <label className="relative block flex-1">
+            <span className="sr-only">Search teachers</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            <input
+              type="text"
+              placeholder="Search by name or email…"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={cx(inputClass, 'pl-9')}
+            />
+          </label>
+          {programs.length > 0 && (
+            <label className="relative block sm:w-60">
+              <span className="sr-only">Program</span>
+              <select value={selectedProgram} onChange={(e) => setSelectedProgram(e.target.value)} className={selectClass}>
+                <option value="all">All programs</option>
+                {programs.map((program) => (
+                  <option key={program} value={program}>{program}</option>
+                ))}
+              </select>
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            </label>
           )}
         </div>
-      </div>
 
-      {/* Teacher List */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          {filteredData.length === 0 ? (
-            <div className="text-center py-12">
-              <User className="h-12 w-12 text-gray-500 mx-auto mb-4" />
-              <p className="text-gray-700 font-medium">No teachers found</p>
-              {!data.length && (
-                <p className="text-gray-500 mt-2">Start by adding your first teacher</p>
-              )}
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Name</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Email</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Programs</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Status</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Joined</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {paginatedData.map((teacher, idx) => (
-                    <tr key={teacher.id} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                      <td className="px-4 py-4">
-                        <div className="font-medium text-gray-900">{teacher.name}</div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="text-gray-700">{teacher.email}</div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="flex flex-wrap gap-1">
+        {!loading && filteredData.length !== data.length && (
+          <div className="flex items-center justify-between border-b border-line bg-surface-muted/60 px-5 py-2 text-xs text-muted">
+            <span>Showing <span className="font-semibold text-ink">{filteredData.length}</span> of {data.length} teachers</span>
+            <button type="button" onClick={() => { setSearchTerm(''); setSelectedProgram('all') }} className="font-medium text-brand-700 hover:underline">
+              Clear filters
+            </button>
+          </div>
+        )}
+
+        {/* Teacher List */}
+        {loading ? (
+          <LoadingState label="Loading teachers…" />
+        ) : filteredData.length === 0 ? (
+          <EmptyState
+            icon={UserRound}
+            title={data.length ? 'No teachers match your filters' : 'No teachers yet'}
+            description={data.length ? 'Try a different name, email or program.' : 'Start by adding your first teacher.'}
+            action={!data.length ? (
+              <button type="button" onClick={() => setShowForm(true)} className={buttonClass('primary', 'sm')}>
+                <Plus className="h-3.5 w-3.5" /> Add teacher
+              </button>
+            ) : undefined}
+          />
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[900px] text-left text-sm">
+              <thead>
+                <tr className="border-b border-line bg-surface-muted text-xs font-semibold uppercase tracking-[0.06em] text-muted">
+                  <th className="px-5 py-3">Teacher</th>
+                  <th className="px-4 py-3">Programs</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3">Joined</th>
+                  <th className="px-5 py-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-line">
+                {paginatedData.map((teacher) => (
+                  <tr key={teacher.id} className="align-top transition-colors hover:bg-surface-muted/60">
+                    <td className="px-5 py-4">
+                      <div className="flex items-center gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-xs font-semibold uppercase text-emerald-800 ring-1 ring-inset ring-emerald-100">
+                          {teacher.name.split(/\s+/).map((part) => part[0]).slice(0, 2).join('')}
+                        </span>
+                        <div className="min-w-0">
+                          <p className="truncate font-medium text-ink">{teacher.name}</p>
+                          <a href={`mailto:${teacher.email}`} className="block truncate text-xs text-muted hover:text-brand-700">{teacher.email}</a>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      {teacher.programs.length ? (
+                        <div className="flex max-w-sm flex-wrap gap-1">
                           {teacher.programs.map((program, i) => (
-                            <span 
-                              key={i} 
-                              className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
-                            >
-                              {program}
-                            </span>
+                            <Badge key={i} tone="brand">{program}</Badge>
                           ))}
                         </div>
-                      </td>
-                      <td className="px-4 py-4">
+                      ) : (
+                        <span className="text-xs text-subtle">No programs</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex flex-col items-start gap-1.5">
                         {teacher.isActive ? (
-                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                            <CheckCircle className="w-3 h-3" />
-                            Active
-                          </span>
+                          <Badge tone="emerald" icon={CheckCircle2}>Active</Badge>
                         ) : (
-                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">
-                            <X className="w-3 h-3" />
-                            Inactive
-                          </span>
+                          <Badge tone="rose" icon={X}>Inactive</Badge>
                         )}
+                        {!teacher.isActivated && <Badge tone="amber" dot>Pending activation</Badge>}
+                      </div>
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-muted">
+                      {new Date(teacher.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </td>
+                    <td className="px-5 py-4">
+                      <div className="flex items-center justify-end gap-2">
                         {!teacher.isActivated && (
-                          <span className="ml-1 inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">
-                            Pending Activation
-                          </span>
+                          <button
+                            type="button"
+                            onClick={() => sendActivationEmail(teacher.id, teacher.email)}
+                            disabled={actionLoading[`activate-${teacher.id}`]}
+                            className={buttonClass('secondary', 'sm')}
+                          >
+                            {actionLoading[`activate-${teacher.id}`] ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Mail className="h-3.5 w-3.5" />}
+                            Send activation
+                          </button>
                         )}
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="text-sm text-gray-700">
-                          {new Date(teacher.createdAt).toLocaleDateString()}
-                        </div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => toggleTeacherStatus(teacher.id, !teacher.isActive)}
-                            disabled={actionLoading[`status-${teacher.id}`]}
-                            className={`px-3 py-1 rounded-lg text-xs font-medium ${
-                              teacher.isActive
-                                ? 'bg-red-100 text-red-800 hover:bg-red-200'
-                                : 'bg-green-100 text-green-800 hover:bg-green-200'
-                            }`}
-                          >
-                            {actionLoading[`status-${teacher.id}`] ? (
-                              <Loader2 className="w-3 h-3 animate-spin" />
-                            ) : teacher.isActive ? (
-                              'Deactivate'
-                            ) : (
-                              'Activate'
-                            )}
-                          </button>
-                          
-                          {!teacher.isActivated && (
-                            <button
-                              onClick={() => sendActivationEmail(teacher.id, teacher.email)}
-                              disabled={actionLoading[`activate-${teacher.id}`]}
-                              className="px-3 py-1 rounded-lg text-xs font-medium bg-blue-100 text-blue-800 hover:bg-blue-200"
-                            >
-                              {actionLoading[`activate-${teacher.id}`] ? (
-                                <Loader2 className="w-3 h-3 animate-spin" />
-                              ) : (
-                                <div className="flex items-center gap-1">
-                                  <Mail className="w-3 h-3" />
-                                  Send Activation
-                                </div>
-                              )}
-                            </button>
+                        <button
+                          type="button"
+                          onClick={() => toggleTeacherStatus(teacher.id, !teacher.isActive)}
+                          disabled={actionLoading[`status-${teacher.id}`]}
+                          className={buttonClass(teacher.isActive ? 'dangerOutline' : 'success', 'sm', 'min-w-[92px]')}
+                        >
+                          {actionLoading[`status-${teacher.id}`] ? (
+                            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                          ) : teacher.isActive ? (
+                            'Deactivate'
+                          ) : (
+                            'Activate'
                           )}
-                          <button
-                            onClick={() => handleDeleteTeacher(teacher)}
-                            disabled={actionLoading[`delete-${teacher.id}`]}
-                            aria-label={`Delete ${teacher.name}`}
-                            className="px-3 py-1 rounded-lg text-xs font-medium bg-red-100 text-red-800 hover:bg-red-200 disabled:opacity-50"
-                          >
-                            {actionLoading[`delete-${teacher.id}`] ? (
-                              <Loader2 className="w-3 h-3 animate-spin" />
-                            ) : (
-                              <Trash2 className="w-3 h-3" />
-                            )}
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-          <TablePagination
-            currentPage={currentPage}
-            pageSize={PAGE_SIZE}
-            totalItems={filteredData.length}
-            itemLabel="teachers"
-            onPageChange={setCurrentPage}
-          />
-        </div>
-      </div>
-    </div>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteTeacher(teacher)}
+                          disabled={actionLoading[`delete-${teacher.id}`]}
+                          aria-label={`Delete ${teacher.name}`}
+                          title="Delete teacher"
+                          className={buttonClass('ghost', 'icon', 'text-rose-600 hover:bg-rose-50 hover:text-rose-700')}
+                        >
+                          {actionLoading[`delete-${teacher.id}`] ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Trash2 className="h-3.5 w-3.5" />}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+        <TablePagination
+          currentPage={currentPage}
+          pageSize={PAGE_SIZE}
+          totalItems={filteredData.length}
+          itemLabel="teachers"
+          onPageChange={setCurrentPage}
+        />
+      </Panel>
+    </AdminPageShell>
   )
 }

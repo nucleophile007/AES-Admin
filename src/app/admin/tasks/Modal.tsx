@@ -43,7 +43,7 @@ export function Modal({
   if (!open) return null
   return (
     <div className="fixed inset-0 z-50 flex" role="presentation">
-      <div className="absolute inset-0 bg-slate-900/40" onClick={onClose} aria-hidden="true" />
+      <div className="absolute inset-0 bg-brand-950/40 backdrop-blur-[2px]" onClick={onClose} aria-hidden="true" />
       <div
         ref={panelRef}
         tabIndex={-1}
@@ -51,21 +51,21 @@ export function Modal({
         aria-modal="true"
         className={
           variant === 'side'
-            ? `relative ml-auto flex h-full w-full ${width} flex-col bg-white shadow-2xl outline-none`
-            : `relative m-auto flex max-h-[92vh] w-[calc(100%-2rem)] ${width} flex-col rounded-xl bg-white shadow-2xl outline-none`
+            ? `relative ml-auto flex h-full w-full ${width} flex-col bg-surface shadow-pop outline-none`
+            : `relative m-auto flex max-h-[92vh] w-[calc(100%-2rem)] ${width} flex-col rounded-2xl border border-line bg-surface shadow-pop outline-none`
         }
       >
-        <div className="flex items-start justify-between gap-4 border-b border-slate-200 px-5 py-4">
+        <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
           <div className="min-w-0">
-            <h2 className="text-lg font-semibold text-slate-950">{title}</h2>
-            {description && <div className="mt-0.5 text-sm text-slate-600">{description}</div>}
+            <h2 className="text-lg font-semibold tracking-tight text-ink">{title}</h2>
+            {description && <div className="mt-0.5 text-sm text-muted">{description}</div>}
           </div>
-          <button type="button" onClick={onClose} className="rounded-md p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-900" aria-label="Close">
+          <button type="button" onClick={onClose} className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink" aria-label="Close">
             <X className="h-5 w-5" />
           </button>
         </div>
         <div className="flex-1 overflow-y-auto px-5 py-4">{children}</div>
-        {footer && <div className="flex flex-wrap justify-end gap-2 border-t border-slate-200 px-5 py-3">{footer}</div>}
+        {footer && <div className="flex flex-wrap justify-end gap-2 border-t border-line bg-surface-muted/60 px-5 py-3">{footer}</div>}
       </div>
     </div>
   )

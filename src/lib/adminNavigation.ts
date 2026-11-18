@@ -10,6 +10,7 @@ import {
   FlaskConical,
   GraduationCap,
   Heart,
+  Inbox,
   MessageSquare,
   MessageSquareQuote,
   Receipt,
@@ -212,6 +213,15 @@ export const ADMIN_MODULE_GROUPS: AdminModuleGroup[] = [
         href: "/admin/feedback",
         icon: MessageSquare,
         tag: "Engagement",
+      },
+      {
+        id: "contact-submissions",
+        title: "Contact Inbox",
+        description: "Messages sent through the website's contact form",
+        href: "/admin/contact-submissions",
+        icon: Inbox,
+        tag: "Inquiries",
+        keywords: ["contact", "messages", "inquiries", "submissions"],
       },
       {
         id: "backup",

@@ -2,7 +2,9 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
-import { CheckCircle, X, Loader2, User, Lock } from "lucide-react"
+import { ArrowRight, CheckCircle2, KeyRound, Loader2, Lock, User, XCircle } from "lucide-react"
+import AuthScreen from "@/components/admin/AuthScreen"
+import { buttonClass } from "@/components/admin/ui"
 
 const STUDENT_PORTAL_URL = process.env.NEXT_PUBLIC_STUDENT_PORTAL_URL || process.env.NEXT_PUBLIC_USER_SITE_URL || 'http://localhost:3001'
 const PARENT_PORTAL_URL = process.env.NEXT_PUBLIC_PARENT_PORTAL_URL || STUDENT_PORTAL_URL
@@ -101,35 +103,19 @@ function ActivateContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-md p-8 max-w-md w-full text-center">
-          <div className="flex justify-center mb-4">
-            <Loader2 className="w-12 h-12 text-blue-600 animate-spin" />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Verifying Your Activation Link</h2>
-          <p className="text-gray-600">Please wait while we verify your account...</p>
+      <AuthScreen audience="account" eyebrow="Account setup" icon={Loader2} iconClassName="animate-spin" title="Verifying your activation link" description="Please wait while we check your account…">
+        <div className="h-1.5 overflow-hidden rounded-full bg-surface-muted ring-1 ring-inset ring-line">
+          <div className="h-full w-1/3 animate-pulse rounded-full bg-brand-600" />
         </div>
-      </div>
+      </AuthScreen>
     )
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-md p-8 max-w-md w-full text-center">
-          <div className="flex justify-center mb-4">
-            <X className="w-12 h-12 text-red-600" />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Activation Failed</h2>
-          <p className="text-gray-600 mb-6">{error}</p>
-          <a
-            href="/auth/signin"
-            className="inline-block bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700"
-          >
-            Return to Sign In
-          </a>
-        </div>
-      </div>
+      <AuthScreen audience="account" eyebrow="Account setup" icon={XCircle} tone="rose" title="Activation failed" description={error}>
+        <a href="/auth/signin" className={buttonClass("primary", "md", "h-12 w-full rounded-xl text-[15px]")}>Return to sign in</a>
+      </AuthScreen>
     )
   }
 
@@ -150,154 +136,110 @@ function ActivateContent() {
     }
 
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-md p-8 max-w-md w-full text-center">
-          <div className="flex justify-center mb-4">
-            <CheckCircle className="w-12 h-12 text-green-600" />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Account Activated!</h2>
-          <p className="text-gray-600 mb-6">
-            Your account has been successfully activated. You can now sign in to the {roleMessage} with your email and the password you just created.
-          </p>
-          <a
-            href={redirectUrl}
-            className="inline-block bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700"
-          >
-            Go to {roleMessage === 'admin dashboard' ? 'Sign In' : 'Portal'}
-          </a>
-          {(userData?.role === 'TEACHER' || userData?.role === 'STUDENT') && (
-            <p className="text-sm text-gray-500 mt-4">
-              You will be redirected to: <span className="font-mono text-blue-600">{redirectUrl}</span>
-            </p>
-          )}
-        </div>
-      </div>
+      <AuthScreen
+        audience="account"
+        eyebrow="All set"
+        icon={CheckCircle2}
+        tone="emerald"
+        title="Account activated"
+        description={`Your account is ready. Sign in to the ${roleMessage} with your email and the password you just created.`}
+        footer={
+          (userData?.role === 'TEACHER' || userData?.role === 'STUDENT') ? (
+            <>You will be taken to <span className="font-mono text-ink-soft">{redirectUrl}</span></>
+          ) : undefined
+        }
+      >
+        <a href={redirectUrl} className={buttonClass("primary", "md", "h-12 w-full rounded-xl text-[15px]")}>
+          Go to {roleMessage === 'admin dashboard' ? 'sign in' : 'portal'} <ArrowRight className="h-4 w-4" />
+        </a>
+      </AuthScreen>
     )
   }
 
+  const fieldClass = "h-10 w-full rounded-lg border border-line bg-surface pl-10 pr-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-md p-8 max-w-md w-full">
-        <div className="flex justify-center mb-6">
-          <div className="bg-blue-100 p-3 rounded-full">
-            <User className="w-8 h-8 text-blue-600" />
+    <AuthScreen
+      audience="account"
+      eyebrow="Account setup"
+      icon={KeyRound}
+      title="Set your password"
+      description="Create a password to activate your Acharya account."
+      footer={
+        <>Already have an account? <a href="/auth/signin" className="font-medium text-brand-700 hover:underline">Sign in</a></>
+      }
+    >
+      {userData && (
+        <div className="mb-5 flex items-center gap-3 rounded-lg border border-line bg-surface p-3 shadow-card">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-100">
+            <User className="h-5 w-5" />
+          </span>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-ink">{userData.name}</p>
+            <p className="truncate text-xs text-muted">{userData.email}</p>
+          </div>
+          <span className="ml-auto shrink-0 rounded-full bg-surface-muted px-2.5 py-0.5 text-xs font-medium capitalize text-ink-soft ring-1 ring-inset ring-line">
+            {userData.role.toLowerCase()}
+          </span>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="password" className="mb-1.5 block text-sm font-medium text-ink-soft">New password</label>
+          <div className="relative">
+            <Lock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            <input
+              id="password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={`${fieldClass} pr-16`}
+              placeholder="Create a strong password"
+              required
+            />
+            <button
+              type="button"
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md px-2 py-1 text-xs font-semibold text-brand-700 hover:bg-brand-50"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
           </div>
         </div>
-        <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">Set Your Password</h2>
-        
-        {userData && (
-          <div className="mb-6">
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <div className="mb-2">
-                <span className="text-sm font-medium text-gray-600">Name:</span>
-                <span className="ml-2 text-gray-900">{userData.name}</span>
-              </div>
-              <div className="mb-2">
-                <span className="text-sm font-medium text-gray-600">Email:</span>
-                <span className="ml-2 text-gray-900">{userData.email}</span>
-              </div>
-              <div>
-                <span className="text-sm font-medium text-gray-600">Role:</span>
-                <span className="ml-2 text-gray-900 capitalize">
-                  {userData.role.toLowerCase()}
-                </span>
-              </div>
-            </div>
+
+        <div>
+          <label htmlFor="confirmPassword" className="mb-1.5 block text-sm font-medium text-ink-soft">Confirm password</label>
+          <div className="relative">
+            <Lock className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            <input
+              id="confirmPassword"
+              type={showPassword ? "text" : "password"}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className={fieldClass}
+              placeholder="Confirm your password"
+              required
+            />
           </div>
+        </div>
+
+        {formError && (
+          <div role="alert" className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-800">{formError}</div>
         )}
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              New Password
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-gray-400" />
-              </div>
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="pl-10 pr-10 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Create a strong password"
-                required
-              />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                <span className="text-xs text-blue-600 font-medium">
-                  {showPassword ? "HIDE" : "SHOW"}
-                </span>
-              </button>
-            </div>
-          </div>
-
-          <div className="mb-6">
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
-              Confirm Password
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-gray-400" />
-              </div>
-              <input
-                id="confirmPassword"
-                type={showPassword ? "text" : "password"}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="pl-10 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Confirm your password"
-                required
-              />
-            </div>
-          </div>
-
-          {formError && (
-            <div className="mb-4 p-3 bg-red-50 text-red-700 rounded-md text-sm">
-              {formError}
-            </div>
-          )}
-
-          <button
-            type="submit"
-            disabled={submitting}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-300 flex items-center justify-center"
-          >
-            {submitting ? (
-              <>
-                <Loader2 className="animate-spin h-5 w-5 mr-2" />
-                Activating...
-              </>
-            ) : (
-              "Activate Account"
-            )}
-          </button>
-        </form>
-
-        <div className="mt-6 text-center text-sm text-gray-600">
-          Already have an account?{" "}
-          <a href="/auth/signin" className="text-blue-600 hover:text-blue-800 font-medium">
-            Sign in
-          </a>
-        </div>
-      </div>
-    </div>
+        <button type="submit" disabled={submitting} className={buttonClass("primary", "md", "h-12 w-full rounded-xl text-[15px]")}>
+          {submitting ? <><Loader2 className="h-4 w-4 animate-spin" /> Activating…</> : "Activate account"}
+        </button>
+      </form>
+    </AuthScreen>
   )
 }
 
 export default function ActivatePage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-md p-8 max-w-md w-full text-center">
-          <Loader2 className="h-12 w-12 animate-spin text-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600">Loading...</p>
-        </div>
-      </div>
+      <AuthScreen audience="account" icon={Loader2} iconClassName="animate-spin" title="Loading…" />
     }>
       <ActivateContent />
     </Suspense>

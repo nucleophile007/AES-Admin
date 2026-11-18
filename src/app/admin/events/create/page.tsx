@@ -3,7 +3,9 @@
 import { useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Plus, Trash2, Save, Globe } from "lucide-react"
+import { ArrowLeft, ArrowRight, Check, Globe, Plus, Save, Trash2 } from "lucide-react"
+import AdminPageShell from "@/components/admin/AdminPageShell"
+import { Panel, buttonClass, cx } from "@/components/admin/ui"
 import EventCarouselComposer from "@/components/events/EventCarouselComposer"
 import { toast } from "sonner"
 
@@ -193,15 +195,15 @@ export default function CreateEventPage() {
 
   const renderStep1 = () => (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold">Basic Information</h2>
+      <h2 className="text-lg font-semibold tracking-tight text-ink">Basic Information</h2>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="mb-1.5 block text-sm font-medium text-ink-soft">
           Event Title *
         </label>
         <input
           type="text"
-          className="w-full px-4 py-2 border rounded-lg"
+          className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
           value={formData.title}
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           placeholder="SAT Prep Workshop: Mastering Math"
@@ -209,11 +211,11 @@ export default function CreateEventPage() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="mb-1.5 block text-sm font-medium text-ink-soft">
           Description *
         </label>
         <textarea
-          className="w-full px-4 py-2 border rounded-lg h-32"
+          className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100 h-32"
           value={formData.description}
           onChange={(e) =>
             setFormData({ ...formData, description: e.target.value })
@@ -224,11 +226,11 @@ export default function CreateEventPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1.5 block text-sm font-medium text-ink-soft">
             Category *
           </label>
           <select
-            className="w-full px-4 py-2 border rounded-lg"
+            className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
             value={formData.category}
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
@@ -244,12 +246,12 @@ export default function CreateEventPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1.5 block text-sm font-medium text-ink-soft">
             Event Date *
           </label>
           <input
             type="date"
-            className="w-full px-4 py-2 border rounded-lg"
+            className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
             value={formData.eventDate}
             onChange={(e) =>
               setFormData({ ...formData, eventDate: e.target.value })
@@ -258,11 +260,11 @@ export default function CreateEventPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1.5 block text-sm font-medium text-ink-soft">
             Event Start Time *
           </label>
           <select
-            className="w-full px-4 py-2 border rounded-lg"
+            className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
             value={formData.eventStartTime}
             onChange={(e) =>
               setFormData({ ...formData, eventStartTime: e.target.value })
@@ -277,11 +279,11 @@ export default function CreateEventPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1.5 block text-sm font-medium text-ink-soft">
             Event End Time *
           </label>
           <select
-            className="w-full px-4 py-2 border rounded-lg"
+            className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
             value={formData.eventEndTime}
             onChange={(e) =>
               setFormData({ ...formData, eventEndTime: e.target.value })
@@ -296,12 +298,12 @@ export default function CreateEventPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1.5 block text-sm font-medium text-ink-soft">
             Location *
           </label>
           <input
             type="text"
-            className="w-full px-4 py-2 border rounded-lg"
+            className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
             value={formData.location}
             onChange={(e) =>
               setFormData({ ...formData, location: e.target.value })
@@ -310,7 +312,7 @@ export default function CreateEventPage() {
           />
         </div>
 
-        <div className="md:col-span-2 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div className="md:col-span-2 rounded-xl border border-line bg-white p-4 shadow-sm">
           <EventCarouselComposer
             value={formData.image}
             onChange={(image) => setFormData((prev) => ({ ...prev, image }))}
@@ -319,12 +321,12 @@ export default function CreateEventPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1.5 block text-sm font-medium text-ink-soft">
             Max Participants
           </label>
           <input
             type="number"
-            className="w-full px-4 py-2 border rounded-lg"
+            className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
             value={formData.maxParticipants}
             onChange={(e) =>
               setFormData({ ...formData, maxParticipants: e.target.value })
@@ -334,12 +336,12 @@ export default function CreateEventPage() {
         </div>
 
         <div className="md:col-span-2">
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1.5 block text-sm font-medium text-ink-soft">
             Registration Deadline
           </label>
           <input
             type="datetime-local"
-            className="w-full px-4 py-2 border rounded-lg"
+            className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
             value={formData.registrationDeadline}
             onChange={(e) =>
               setFormData({
@@ -355,10 +357,10 @@ export default function CreateEventPage() {
 
   const renderStep2 = () => (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold">Registration Form Builder</h2>
+      <h2 className="text-lg font-semibold tracking-tight text-ink">Registration Form Builder</h2>
 
-      <div className="bg-blue-50 p-4 rounded-lg">
-        <p className="text-sm text-gray-700">
+      <div className="bg-brand-50 p-4 rounded-lg">
+        <p className="text-sm text-ink-soft">
           Configure which standard fields are required, optional, or hidden in
           the registration form. Student Name and Email are always required.
         </p>
@@ -372,7 +374,7 @@ export default function CreateEventPage() {
           { key: "parentPhone", label: "Parent Phone" },
           { key: "specialRequirements", label: "Special Requirements" },
         ].map(({ key, label }) => (
-          <div key={key} className="bg-white p-4 rounded-lg border">
+          <div key={key} className="rounded-lg border border-line bg-surface-muted/60 p-4">
             <div className="font-medium mb-2">{label}</div>
             <div className="flex gap-4">
               {["required", "optional", "hidden"].map((option) => (
@@ -405,7 +407,7 @@ export default function CreateEventPage() {
       </div>
 
       <div className="border-t pt-6">
-        <h3 className="text-xl font-semibold mb-4">Custom Fields</h3>
+        <h3 className="mb-3 text-sm font-semibold text-ink">Custom Fields</h3>
 
         {/* Existing Custom Fields */}
         {formData.customFields.length > 0 && (
@@ -413,11 +415,11 @@ export default function CreateEventPage() {
             {formData.customFields.map((field) => (
               <div
                 key={field.id}
-                className="bg-gray-50 p-3 rounded-lg flex justify-between items-center"
+                className="flex items-center justify-between rounded-lg border border-line bg-surface px-3 py-2"
               >
                 <div>
                   <div className="font-medium">{field.label}</div>
-                  <div className="text-sm text-gray-600">
+                  <div className="text-sm text-muted">
                     Type: {field.type} | {field.required ? "Required" : "Optional"}
                   </div>
                 </div>
@@ -434,7 +436,7 @@ export default function CreateEventPage() {
         )}
 
         {/* Add New Field */}
-        <div className="bg-white p-4 rounded-lg border space-y-3">
+        <div className="space-y-3 rounded-lg border border-line bg-surface-muted/60 p-4">
           <h4 className="font-medium">Add Custom Field</h4>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -565,7 +567,7 @@ export default function CreateEventPage() {
 
   const renderStep3 = () => (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold">Pricing & Payment</h2>
+      <h2 className="text-lg font-semibold tracking-tight text-ink">Pricing & Payment</h2>
 
       <div>
         <label className="flex items-center gap-2 mb-4">
@@ -584,13 +586,13 @@ export default function CreateEventPage() {
         <div className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="mb-1.5 block text-sm font-medium text-ink-soft">
                 Registration Fee ($) *
               </label>
               <input
                 type="number"
                 step="0.01"
-                className="w-full px-4 py-2 border rounded-lg"
+                className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
                 value={formData.registrationFee}
                 onChange={(e) =>
                   setFormData({ ...formData, registrationFee: e.target.value })
@@ -600,13 +602,13 @@ export default function CreateEventPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="mb-1.5 block text-sm font-medium text-ink-soft">
                 Early Bird Fee ($)
               </label>
               <input
                 type="number"
                 step="0.01"
-                className="w-full px-4 py-2 border rounded-lg"
+                className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
                 value={formData.earlyBirdFee}
                 onChange={(e) =>
                   setFormData({ ...formData, earlyBirdFee: e.target.value })
@@ -617,12 +619,12 @@ export default function CreateEventPage() {
 
             {formData.earlyBirdFee && (
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="mb-1.5 block text-sm font-medium text-ink-soft">
                   Early Bird Deadline
                 </label>
                 <input
                   type="datetime-local"
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
                   value={formData.earlyBirdDeadline}
                   onChange={(e) =>
                     setFormData({
@@ -641,15 +643,15 @@ export default function CreateEventPage() {
 
   const renderStep4 = () => (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold">Additional Details</h2>
+      <h2 className="text-lg font-semibold tracking-tight text-ink">Additional Details</h2>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="mb-1.5 block text-sm font-medium text-ink-soft">
           Target Audience
         </label>
         <input
           type="text"
-          className="w-full px-4 py-2 border rounded-lg"
+          className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
           value={formData.targetAudience}
           onChange={(e) =>
             setFormData({ ...formData, targetAudience: e.target.value })
@@ -659,11 +661,11 @@ export default function CreateEventPage() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="mb-1.5 block text-sm font-medium text-ink-soft">
           Requirements/Prerequisites
         </label>
         <textarea
-          className="w-full px-4 py-2 border rounded-lg h-24"
+          className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100 h-24"
           value={formData.requirements}
           onChange={(e) =>
             setFormData({ ...formData, requirements: e.target.value })
@@ -673,11 +675,11 @@ export default function CreateEventPage() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="mb-1.5 block text-sm font-medium text-ink-soft">
           Agenda/Schedule
         </label>
         <textarea
-          className="w-full px-4 py-2 border rounded-lg h-32"
+          className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100 h-32"
           value={formData.agenda}
           onChange={(e) =>
             setFormData({ ...formData, agenda: e.target.value })
@@ -688,12 +690,12 @@ export default function CreateEventPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1.5 block text-sm font-medium text-ink-soft">
             Contact Email
           </label>
           <input
             type="email"
-            className="w-full px-4 py-2 border rounded-lg"
+            className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
             value={formData.contactEmail}
             onChange={(e) =>
               setFormData({ ...formData, contactEmail: e.target.value })
@@ -703,12 +705,12 @@ export default function CreateEventPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="mb-1.5 block text-sm font-medium text-ink-soft">
             Contact Phone
           </label>
           <input
             type="tel"
-            className="w-full px-4 py-2 border rounded-lg"
+            className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
             value={formData.contactPhone}
             onChange={(e) =>
               setFormData({ ...formData, contactPhone: e.target.value })
@@ -719,12 +721,12 @@ export default function CreateEventPage() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="mb-1.5 block text-sm font-medium text-ink-soft">
           Tags (comma-separated)
         </label>
         <input
           type="text"
-          className="w-full px-4 py-2 border rounded-lg"
+          className="h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
           value={formData.tags}
           onChange={(e) => setFormData({ ...formData, tags: e.target.value })}
           placeholder="SAT, Math, Test Prep, Workshop"
@@ -735,36 +737,36 @@ export default function CreateEventPage() {
 
   const renderStep5 = () => (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold">Review & Publish</h2>
+      <h2 className="text-lg font-semibold tracking-tight text-ink">Review & Publish</h2>
 
-      <div className="bg-blue-50 p-4 rounded-lg">
-        <p className="text-sm text-gray-700 mb-4">
+      <div className="bg-brand-50 p-4 rounded-lg">
+        <p className="text-sm text-ink-soft mb-4">
           Review your event details below. You can save as draft or publish
           directly to your website.
         </p>
       </div>
 
-      <div className="bg-white p-6 rounded-lg border space-y-3">
+      <div className="space-y-3 rounded-lg border border-line bg-surface-muted/60 p-5">
         <div>
-          <div className="text-sm font-medium text-gray-500">Event Title</div>
+          <div className="text-sm font-medium text-muted">Event Title</div>
           <div className="text-lg font-semibold">{formData.title}</div>
         </div>
         <div>
-          <div className="text-sm font-medium text-gray-500">Category</div>
+          <div className="text-sm font-medium text-muted">Category</div>
           <div>{formData.category}</div>
         </div>
         <div>
-          <div className="text-sm font-medium text-gray-500">Date & Time</div>
+          <div className="text-sm font-medium text-muted">Date & Time</div>
           <div>
             {formData.eventDate} from {formData.eventStartTime} to {formData.eventEndTime}
           </div>
         </div>
         <div>
-          <div className="text-sm font-medium text-gray-500">Location</div>
+          <div className="text-sm font-medium text-muted">Location</div>
           <div>{formData.location}</div>
         </div>
         <div>
-          <div className="text-sm font-medium text-gray-500">
+          <div className="text-sm font-medium text-muted">
             Registration Fee
           </div>
           <div>
@@ -774,7 +776,7 @@ export default function CreateEventPage() {
           </div>
         </div>
         <div>
-          <div className="text-sm font-medium text-gray-500">
+          <div className="text-sm font-medium text-muted">
             Custom Fields
           </div>
           <div>{formData.customFields.length} custom fields configured</div>
@@ -821,94 +823,76 @@ export default function CreateEventPage() {
     }
   }
 
+  const STEPS = ["Basic info", "Registration form", "Pricing", "Details", "Publish"]
+
   return (
-    <div className="p-8 max-w-4xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="flex items-center gap-4">
-        <Button variant="ghost" onClick={() => router.push("/admin/events")}>
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back
-        </Button>
-        <h1 className="text-3xl font-bold">Create New Event</h1>
-      </div>
+    <AdminPageShell
+      moduleId="events"
+      title="Create Event"
+      description="Set up the event, its registration form and pricing, then publish it."
+      parent={{ label: "Events", href: "/admin/events" }}
+    >
+      <div className="mx-auto max-w-4xl space-y-5">
+        {/* Progress Steps */}
+        <ol className="flex items-center gap-2 overflow-x-auto rounded-card border border-line bg-surface px-4 py-3 shadow-card">
+          {STEPS.map((label, index) => {
+            const n = index + 1
+            const done = step > n
+            const current = step === n
+            return (
+              <li key={label} className="flex shrink-0 items-center gap-2">
+                {index > 0 && <span aria-hidden className={cx("mr-1 h-px w-6 sm:w-10", done || current ? "bg-brand-300" : "bg-line-strong")} />}
+                <span
+                  className={cx(
+                    "flex h-7 w-7 items-center justify-center rounded-full text-xs font-semibold",
+                    current && "bg-brand-700 text-white",
+                    done && "bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-100",
+                    !current && !done && "bg-surface-muted text-muted ring-1 ring-inset ring-line",
+                  )}
+                  aria-current={current ? "step" : undefined}
+                >
+                  {done ? <Check className="h-3.5 w-3.5" /> : n}
+                </span>
+                <span className={cx("text-sm", current ? "font-medium text-ink" : "text-muted")}>{label}</span>
+              </li>
+            )
+          })}
+        </ol>
 
-      {/* Progress Steps */}
-      <div className="bg-white p-6 rounded-lg shadow-sm">
-        <div className="flex justify-between items-center mb-4">
-          {[
-            "Basic Info",
-            "Registration Form",
-            "Pricing",
-            "Details",
-            "Publish",
-          ].map((label, index) => (
-            <div
-              key={index}
-              className={`flex-1 text-center ${
-                step === index + 1
-                  ? "text-blue-600 font-semibold"
-                  : "text-gray-400"
-              }`}
-            >
-              <div
-                className={`w-8 h-8 mx-auto rounded-full flex items-center justify-center mb-2 ${
-                  step === index + 1
-                    ? "bg-blue-600 text-white"
-                    : step > index + 1
-                    ? "bg-green-500 text-white"
-                    : "bg-gray-200"
-                }`}
-              >
-                {step > index + 1 ? "✓" : index + 1}
-              </div>
-              <div className="text-xs">{label}</div>
+        {/* Form Content */}
+        <Panel>
+          <div className="p-6">
+            {step === 1 && renderStep1()}
+            {step === 2 && renderStep2()}
+            {step === 3 && renderStep3()}
+            {step === 4 && renderStep4()}
+            {step === 5 && renderStep5()}
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex items-center justify-between gap-2 border-t border-line bg-surface-muted/60 px-6 py-3">
+            <button type="button" onClick={() => setStep(Math.max(1, step - 1))} disabled={step === 1} className={buttonClass("secondary")}>
+              <ArrowLeft className="h-4 w-4" /> Previous
+            </button>
+            <div className="flex gap-2">
+              {step < 5 ? (
+                <button type="button" onClick={() => setStep(step + 1)} disabled={!isStepValid()} className={buttonClass("primary")}>
+                  Next step <ArrowRight className="h-4 w-4" />
+                </button>
+              ) : (
+                <>
+                  <button type="button" onClick={() => handleSubmit(false)} disabled={loading} className={buttonClass("secondary")}>
+                    <Save className="h-4 w-4" /> Save as draft
+                  </button>
+                  <button type="button" onClick={() => handleSubmit(true)} disabled={loading} className={buttonClass("primary")}>
+                    <Globe className="h-4 w-4" /> Publish event
+                  </button>
+                </>
+              )}
             </div>
-          ))}
-        </div>
+          </div>
+        </Panel>
       </div>
-
-      {/* Form Content */}
-      <div className="bg-white p-6 rounded-lg shadow-sm">
-        {step === 1 && renderStep1()}
-        {step === 2 && renderStep2()}
-        {step === 3 && renderStep3()}
-        {step === 4 && renderStep4()}
-        {step === 5 && renderStep5()}
-      </div>
-
-      {/* Navigation Buttons */}
-      <div className="flex justify-between">
-        <Button
-          variant="outline"
-          onClick={() => setStep(Math.max(1, step - 1))}
-          disabled={step === 1}
-        >
-          Previous
-        </Button>
-
-        <div className="flex gap-2">
-          {step < 5 ? (
-            <Button onClick={() => setStep(step + 1)} disabled={!isStepValid()}>
-              Next Step
-            </Button>
-          ) : (
-            <>
-              <Button
-                variant="outline"
-                onClick={() => handleSubmit(false)}
-                disabled={loading}
-              >
-                <Save className="w-4 h-4 mr-2" />
-                Save as Draft
-              </Button>
-              <Button onClick={() => handleSubmit(true)} disabled={loading}>
-                <Globe className="w-4 h-4 mr-2" />
-                Publish Event
-              </Button>
-            </>
-          )}
-        </div>
-      </div>
-    </div>
+    </AdminPageShell>
   )
 }

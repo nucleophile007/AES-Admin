@@ -136,17 +136,17 @@ export default function EditMetadataModal({ research, onClose, onSave }: EditMet
   }, [studentSearchTerm])
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-gray-900/50 via-slate-900/50 to-gray-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden border border-gray-100 flex flex-col">
+    <div className="fixed inset-0 bg-brand-950/40 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200 backdrop-blur-[2px]">
+      <div className="bg-surface rounded-2xl shadow-pop max-w-4xl w-full max-h-[90vh] overflow-hidden border border-line flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 flex-shrink-0">
+        <div className="flex items-center justify-between p-6 border-b border-line bg-surface flex-shrink-0">
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 tracking-tight">Edit Research Metadata</h3>
-            <p className="text-sm text-gray-600 mt-1">Update research information and settings</p>
+            <h3 className="text-lg font-semibold tracking-tight text-ink">Edit research details</h3>
+            <p className="text-sm text-muted mt-1">Update research information and settings</p>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 hover:bg-white/50 rounded-full p-2 transition-all duration-200"
+            className="text-subtle hover:text-muted hover:bg-canvas rounded-lg p-1.5 transition-all duration-200"
             disabled={saving}
           >
             <X className="w-5 h-5" />
@@ -154,81 +154,81 @@ export default function EditMetadataModal({ research, onClose, onSave }: EditMet
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="overflow-y-auto flex-1 bg-gray-50">
+        <form onSubmit={handleSubmit} className="overflow-y-auto flex-1 bg-surface-muted">
           <div className="p-6 space-y-8">
             {/* Basic Information */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-              <h4 className="text-lg font-bold text-gray-900 mb-6 pb-2 border-b border-gray-200">Basic Information</h4>
+            <div className="bg-surface rounded-xl p-6 shadow-sm border border-line">
+              <h4 className="text-lg font-bold text-ink mb-6 pb-2 border-b border-line">Basic Information</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     Title <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-black font-medium shadow-sm hover:border-gray-400"
+                    className="w-full px-4 py-3 border border-line rounded-lg focus:ring-4 focus:ring-brand-100 focus:border-brand-300 transition-all duration-200 text-ink font-medium shadow-sm hover:border-line-strong bg-surface shadow-card outline-none placeholder:text-subtle text-sm"
                     required
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     Description
                   </label>
                   <textarea
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                     rows={3}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-black shadow-sm hover:border-gray-400 resize-none"
+                    className="w-full px-4 py-3 border border-line rounded-lg focus:ring-4 focus:ring-brand-100 focus:border-brand-300 transition-all duration-200 text-ink shadow-sm hover:border-line-strong resize-none bg-surface shadow-card outline-none placeholder:text-subtle text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     Author
                   </label>
                   <input
                     type="text"
                     value={formData.author}
                     onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-black shadow-sm hover:border-gray-400"
+                    className="w-full px-4 py-3 border border-line rounded-lg focus:ring-4 focus:ring-brand-100 focus:border-brand-300 transition-all duration-200 text-ink shadow-sm hover:border-line-strong bg-surface shadow-card outline-none placeholder:text-subtle text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     Grade
                   </label>
                   <input
                     type="text"
                     value={formData.grade}
                     onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-black shadow-sm hover:border-gray-400"
+                    className="w-full px-4 py-3 border border-line rounded-lg focus:ring-4 focus:ring-brand-100 focus:border-brand-300 transition-all duration-200 text-ink shadow-sm hover:border-line-strong bg-surface shadow-card outline-none placeholder:text-subtle text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     School
                   </label>
                   <input
                     type="text"
                     value={formData.school}
                     onChange={(e) => setFormData({ ...formData, school: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-black shadow-sm hover:border-gray-400"
+                    className="w-full px-4 py-3 border border-line rounded-lg focus:ring-4 focus:ring-brand-100 focus:border-brand-300 transition-all duration-200 text-ink shadow-sm hover:border-line-strong bg-surface shadow-card outline-none placeholder:text-subtle text-sm"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     Category
                   </label>
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-black shadow-sm hover:border-gray-400 bg-white"
+                    className="w-full px-4 py-3 border border-line rounded-lg focus:ring-4 focus:ring-brand-100 focus:border-brand-300 transition-all duration-200 text-ink shadow-sm hover:border-line-strong bg-surface shadow-card outline-none placeholder:text-subtle text-sm"
                   >
                     <option value="">None</option>
                     <option value="IGNITE">IGNITE</option>
@@ -238,13 +238,13 @@ export default function EditMetadataModal({ research, onClose, onSave }: EditMet
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     Domain
                   </label>
                   <select
                     value={formData.domain}
                     onChange={(e) => setFormData({ ...formData, domain: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-black shadow-sm hover:border-gray-400 bg-white"
+                    className="w-full px-4 py-3 border border-line rounded-lg focus:ring-4 focus:ring-brand-100 focus:border-brand-300 transition-all duration-200 text-ink shadow-sm hover:border-line-strong bg-surface shadow-card outline-none placeholder:text-subtle text-sm"
                   >
                     <option value="">None</option>
                     <option value="AI/ML">AI/ML</option>
@@ -255,24 +255,24 @@ export default function EditMetadataModal({ research, onClose, onSave }: EditMet
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     Published Status
                   </label>
-                  <div className="flex items-center gap-4 mt-3 bg-gray-50 rounded-lg p-3 border border-gray-200">
+                  <div className="flex items-center gap-4 mt-3 bg-surface-muted rounded-lg p-3 border border-line">
                     <label className="flex items-center cursor-pointer">
                       <input
                         type="checkbox"
                         checked={formData.published}
                         onChange={(e) => setFormData({ ...formData, published: e.target.checked })}
-                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500 w-5 h-5 cursor-pointer transition-transform hover:scale-110"
+                        className="rounded border-line-strong text-brand-600 focus:ring-brand-500 w-5 h-5 cursor-pointer transition-transform hover:scale-110"
                       />
-                      <span className="ml-3 text-sm font-medium text-gray-700">Published</span>
+                      <span className="ml-3 text-sm font-medium text-ink-soft">Published</span>
                     </label>
                   </div>
                 </div>
 
                 <div className="relative">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     Link to Student (Optional)
                   </label>
                   <div className="relative">
@@ -281,33 +281,33 @@ export default function EditMetadataModal({ research, onClose, onSave }: EditMet
                       value={studentSearchTerm}
                       onChange={(e) => setStudentSearchTerm(e.target.value)}
                       placeholder="Search for student by name..."
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-black shadow-sm hover:border-gray-400"
+                      className="w-full px-4 py-3 border border-line rounded-lg focus:ring-4 focus:ring-brand-100 focus:border-brand-300 transition-all duration-200 text-ink shadow-sm hover:border-line-strong bg-surface shadow-card outline-none placeholder:text-subtle text-sm"
                     />
                     {formData.studentId && (
                       <button
                         type="button"
                         onClick={clearStudent}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full p-1 transition-all duration-200"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-subtle hover:text-muted hover:bg-surface-muted rounded-full p-1 transition-all duration-200"
                       >
                         <X className="w-4 h-4" />
                       </button>
                     )}
                   </div>
                   {searchingStudents && (
-                    <div className="absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg p-3">
-                      <p className="text-sm text-gray-500">Searching...</p>
+                    <div className="absolute z-10 w-full mt-2 bg-surface border border-line-strong rounded-lg shadow-lg p-3">
+                      <p className="text-sm text-muted">Searching...</p>
                     </div>
                   )}
                   {studentResults.length > 0 && !formData.studentId && (
-                    <div className="absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-xl shadow-xl max-h-60 overflow-y-auto">
+                    <div className="absolute z-10 w-full mt-2 bg-surface border border-line-strong rounded-2xl shadow-pop max-h-60 overflow-y-auto border border-line">
                       {studentResults.map((student) => (
                         <button
                           key={student.id}
                           type="button"
                           onClick={() => selectStudent(student)}
-                          className="w-full text-left px-4 py-3 hover:bg-blue-50 focus:bg-blue-50 focus:outline-none transition-colors duration-150 first:rounded-t-xl last:rounded-b-xl"
+                          className="w-full text-left px-4 py-3 hover:bg-brand-50 focus:bg-brand-50 focus:outline-none transition-colors duration-150 first:rounded-t-xl last:rounded-b-xl"
                         >
-                          <p className="text-sm font-medium text-gray-900">{student.name}</p>
+                          <p className="text-sm font-medium text-ink">{student.name}</p>
                         </button>
                       ))}
                     </div>
@@ -317,31 +317,31 @@ export default function EditMetadataModal({ research, onClose, onSave }: EditMet
             </div>
 
             {/* Academic Content */}
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-              <h4 className="text-lg font-bold text-gray-900 mb-6 pb-2 border-b border-gray-200">Academic Content</h4>
+            <div className="bg-surface rounded-xl p-6 shadow-sm border border-line">
+              <h4 className="text-lg font-bold text-ink mb-6 pb-2 border-b border-line">Academic Content</h4>
               <div className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     Abstract
                   </label>
                   <textarea
                     value={formData.abstract}
                     onChange={(e) => setFormData({ ...formData, abstract: e.target.value })}
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-black shadow-sm hover:border-gray-400 resize-none"
+                    className="w-full px-4 py-3 border border-line rounded-lg focus:ring-4 focus:ring-brand-100 focus:border-brand-300 transition-all duration-200 text-ink shadow-sm hover:border-line-strong resize-none bg-surface shadow-card outline-none placeholder:text-subtle text-sm"
                     placeholder="Brief summary of the research..."
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-ink-soft mb-2">
                     Keywords (comma-separated)
                   </label>
                   <input
                     type="text"
                     value={formData.keywords}
                     onChange={(e) => setFormData({ ...formData, keywords: e.target.value })}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-black shadow-sm hover:border-gray-400"
+                    className="w-full px-4 py-3 border border-line rounded-lg focus:ring-4 focus:ring-brand-100 focus:border-brand-300 transition-all duration-200 text-ink shadow-sm hover:border-line-strong bg-surface shadow-card outline-none placeholder:text-subtle text-sm"
                     placeholder="science, environment, climate change"
                   />
                 </div>
@@ -351,12 +351,12 @@ export default function EditMetadataModal({ research, onClose, onSave }: EditMet
         </form>
 
         {/* Footer */}
-        <div className="flex justify-end gap-4 p-6 border-t border-gray-200 bg-gray-50 flex-shrink-0">
+        <div className="flex justify-end gap-4 p-6 border-t border-line bg-surface-muted flex-shrink-0">
           <button
             type="button"
             onClick={onClose}
             disabled={saving}
-            className="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-semibold hover:bg-white hover:shadow-md disabled:opacity-50 transition-all duration-200"
+            className="px-6 py-3 border border-line-strong rounded-lg text-ink-soft font-semibold hover:bg-white hover:shadow-md disabled:opacity-50 transition-all duration-200"
           >
             Cancel
           </button>
@@ -364,7 +364,7 @@ export default function EditMetadataModal({ research, onClose, onSave }: EditMet
             type="submit"
             onClick={handleSubmit}
             disabled={saving}
-            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02]"
+            className="px-6 py-3 bg-brand-700 text-white font-semibold rounded-lg hover:bg-brand-800 disabled:opacity-50 shadow-card transition"
           >
             {saving ? (
               <span className="flex items-center gap-2">
