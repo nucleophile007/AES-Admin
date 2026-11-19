@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { ArrowDown, ArrowUp, Edit3, Eye, EyeOff, Loader2, Save, Trash2, Upload, Video, X } from "lucide-react"
+import { ArrowDown, ArrowUp, Edit3, Eye, EyeOff, FileVideo, Loader2, MessageSquareQuote, Save, Trash2, Upload, Video, X } from "lucide-react"
 import { toast } from "sonner"
+import AdminPageShell from "@/components/admin/AdminPageShell"
+import { Badge, EmptyState, LoadingState, Panel, PanelHeader, buttonClass, cx, inputClass } from "@/components/admin/ui"
 import { PROGRAM_OPTIONS } from "@/lib/programCatalog"
 import {
   VIDEO_TESTIMONIAL_MAX_BYTES,
@@ -61,35 +63,36 @@ const uploadWithProgress = (url: string, file: File, onProgress: (percent: numbe
   })
 
 function DetailsFields({ value, onChange }: { value: DetailsForm; onChange: (value: DetailsForm) => void }) {
+  // Container query: one column in the narrow upload panel, two in the wider edit dialog.
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-      <label className="block text-sm font-medium text-gray-700">
-        Name <span className="text-red-500">*</span>
+    <div className="@container"><div className="grid grid-cols-1 gap-4 @md:grid-cols-2">
+      <label className="block text-sm font-medium text-ink-soft">
+        Name <span className="text-rose-600">*</span>
         <input
           value={value.name}
           onChange={(event) => onChange({ ...value, name: event.target.value })}
           placeholder="e.g. Priya S."
           maxLength={120}
           required
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900"
+          className={cx(inputClass, "mt-1.5")}
         />
       </label>
-      <label className="block text-sm font-medium text-gray-700">
+      <label className="block text-sm font-medium text-ink-soft">
         Designation
         <input
           value={value.designation}
           onChange={(event) => onChange({ ...value, designation: event.target.value })}
           placeholder="e.g. Grade 11, Folsom High School / Parent"
           maxLength={160}
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900"
+          className={cx(inputClass, "mt-1.5")}
         />
       </label>
-      <label className="block text-sm font-medium text-gray-700">
+      <label className="block text-sm font-medium text-ink-soft">
         Program
         <select
           value={value.program}
           onChange={(event) => onChange({ ...value, program: event.target.value })}
-          className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900"
+          className={cx(inputClass, "mt-1.5")}
         >
           <option value="">No program</option>
           {value.program && !(PROGRAM_OPTIONS as readonly string[]).includes(value.program) && (
@@ -98,7 +101,7 @@ function DetailsFields({ value, onChange }: { value: DetailsForm; onChange: (val
           {PROGRAM_OPTIONS.map((program) => <option key={program} value={program}>{program}</option>)}
         </select>
       </label>
-      <label className="block text-sm font-medium text-gray-700 md:col-span-2">
+      <label className="block text-sm font-medium text-ink-soft @md:col-span-2">
         Short description
         <textarea
           value={value.description}
@@ -106,10 +109,10 @@ function DetailsFields({ value, onChange }: { value: DetailsForm; onChange: (val
           placeholder="Optional caption shown under the video"
           maxLength={1000}
           rows={3}
-          className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900"
+          className="mt-1.5 w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100"
         />
       </label>
-    </div>
+    </div></div>
   )
 }
 
@@ -299,201 +302,241 @@ export default function VideoTestimonialsPage() {
     }
   }
 
-  if (status === "loading" || !session) return <div className="p-8">Loading...</div>
-
   const visibleCount = videos.filter((video) => video.isVisible).length
 
+  if (status === "loading" || !session) {
+    return (
+      <AdminPageShell moduleId="video-testimonials">
+        <Panel><LoadingState label="Checking access…" /></Panel>
+      </AdminPageShell>
+    )
+  }
+
   return (
-    <main className="min-h-screen bg-gray-50 p-6">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">Admin Dashboard</p>
-            <h1 className="text-3xl font-bold text-gray-900">Video Testimonials</h1>
-            <p className="mt-1 text-gray-600">
-              Upload videos for the website testimonials page. They appear as the first section, above all program sections.
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <Link href="/admin/testimonials" className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-              Written Testimonials
-            </Link>
-            <button onClick={() => router.push("/")} className="rounded-lg bg-gray-700 px-4 py-2 text-sm text-white hover:bg-gray-800">
-              Back to Dashboard
-            </button>
-          </div>
-        </div>
+    <AdminPageShell
+      moduleId="video-testimonials"
+      description="Upload videos for the website testimonials page. They appear first, above all program sections."
+      actions={
+        <Link href="/admin/testimonials" className={buttonClass("secondary")}>
+          <MessageSquareQuote className="h-4 w-4" /> Written testimonials
+        </Link>
+      }
+    >
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)]">
+        {/* Upload */}
+        <Panel className="h-fit lg:sticky lg:top-[84px]">
+          <PanelHeader title="Upload a video" description="Goes straight to cloud storage." />
+          <form onSubmit={handleUpload} className="space-y-4 p-5">
+            <label
+              className={cx(
+                "flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed px-4 py-6 text-center transition",
+                file ? "border-brand-300 bg-brand-50/50" : "border-line-strong bg-surface-muted/60 hover:border-brand-300 hover:bg-brand-50/40",
+                uploading && "pointer-events-none opacity-60",
+              )}
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-surface text-brand-700 shadow-card ring-1 ring-inset ring-line">
+                {file ? <FileVideo className="h-5 w-5" /> : <Upload className="h-5 w-5" />}
+              </span>
+              <span className="mt-2 text-sm font-medium text-ink">
+                {file ? file.name : "Choose a video file"}
+              </span>
+              <span className="mt-0.5 text-xs text-muted">
+                {file ? formatFileSize(file.size) : "MP4, WebM or MOV · up to 500MB"}
+              </span>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept={Object.keys(VIDEO_TESTIMONIAL_TYPES).join(",")}
+                onChange={handleFileChange}
+                disabled={uploading}
+                className="sr-only"
+              />
+            </label>
+            <p className="-mt-2 text-xs text-subtle">MP4 (H.264) plays on every browser.</p>
 
-        <div className={`mb-6 rounded-xl border p-4 text-sm ${visibleCount ? "border-green-200 bg-green-50 text-green-800" : "border-amber-200 bg-amber-50 text-amber-800"}`}>
-          {visibleCount
-            ? `The Video Testimonials section is live on the website with ${visibleCount} visible video${visibleCount === 1 ? "" : "s"}.`
-            : "No visible videos, so the Video Testimonials section is hidden on the website."}
-          {" "}Changes can take up to a minute to show on the site.
-        </div>
+            <DetailsFields value={details} onChange={setDetails} />
 
-        <form onSubmit={handleUpload} className="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-4 flex items-center gap-2 text-lg font-semibold text-gray-900">
-            <Upload className="h-5 w-5 text-blue-600" /> Upload a video
-          </h2>
+            <label className="flex items-center gap-2 text-sm text-ink-soft">
+              <input
+                type="checkbox"
+                checked={visibleOnSite}
+                onChange={(event) => setVisibleOnSite(event.target.checked)}
+                className="h-4 w-4 rounded border-line-strong accent-brand-700"
+              />
+              Show on the website right away
+            </label>
 
-          <label className="mb-4 block text-sm font-medium text-gray-700">
-            Video file <span className="text-red-500">*</span>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept={Object.keys(VIDEO_TESTIMONIAL_TYPES).join(",")}
-              onChange={handleFileChange}
-              disabled={uploading}
-              className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-900 file:mr-3 file:rounded-md file:border-0 file:bg-blue-50 file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-blue-700"
-            />
-            <span className="mt-1 block text-xs font-normal text-gray-500">
-              MP4, WebM or MOV, up to 500MB. MP4 (H.264) plays on every browser.
-              {file && ` Selected: ${file.name} (${formatFileSize(file.size)})`}
-            </span>
-          </label>
-
-          <DetailsFields value={details} onChange={setDetails} />
-
-          <label className="mt-4 flex items-center gap-2 text-sm text-gray-700">
-            <input
-              type="checkbox"
-              checked={visibleOnSite}
-              onChange={(event) => setVisibleOnSite(event.target.checked)}
-              className="h-4 w-4 rounded border-gray-300"
-            />
-            Show on the website right away
-          </label>
-
-          {uploading && (
-            <div className="mt-4">
-              <div className="mb-1 flex justify-between text-xs text-gray-600">
-                <span>{progress < 100 ? "Uploading to storage..." : "Saving..."}</span>
-                <span>{progress}%</span>
-              </div>
-              <div className="h-2 overflow-hidden rounded-full bg-gray-200">
-                <div className="h-full bg-blue-600 transition-all" style={{ width: `${progress}%` }} />
-              </div>
-            </div>
-          )}
-
-          {uploadError && <div className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{uploadError}</div>}
-
-          <button
-            type="submit"
-            disabled={uploading || !file}
-            className="mt-5 inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-blue-300"
-          >
-            {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
-            {uploading ? "Uploading..." : "Upload Video"}
-          </button>
-        </form>
-
-        {loadError && <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{loadError}</div>}
-
-        {loading ? (
-          <div className="rounded-xl bg-white p-12 text-center"><Loader2 className="mx-auto h-8 w-8 animate-spin text-blue-600" /></div>
-        ) : videos.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-gray-300 bg-white p-12 text-center text-gray-500">
-            <Video className="mx-auto mb-3 h-10 w-10 text-gray-400" />
-            No video testimonials yet.
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {videos.map((video, index) => (
-              <div key={video.id} className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm md:flex-row">
-                <video
-                  className="aspect-video w-full shrink-0 rounded-lg bg-black md:w-72"
-                  controls
-                  playsInline
-                  preload="metadata"
-                >
-                  <source src={`${video.videoUrl}#t=0.1`} type={video.mimeType} />
-                </video>
-                <div className="flex min-w-0 flex-1 flex-col gap-2">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-lg font-semibold text-gray-900">{video.name}</h3>
-                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${video.isVisible ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-600"}`}>
-                      {video.isVisible ? "Visible" : "Hidden"}
-                    </span>
-                  </div>
-                  {video.designation && <p className="text-sm text-gray-600">{video.designation}</p>}
-                  {video.program && <p className="text-xs font-medium text-blue-700">{video.program}</p>}
-                  {video.description && <p className="text-sm text-gray-700">{video.description}</p>}
-                  <p className="text-xs text-gray-400">
-                    {formatFileSize(video.fileSize)} · uploaded {new Date(video.createdAt).toLocaleDateString()}
-                  </p>
-                  <div className="mt-auto flex flex-wrap gap-2 pt-2">
-                    <button
-                      onClick={() => void moveVideo(index, -1)}
-                      disabled={index === 0 || busy.reorder}
-                      aria-label={`Move ${video.name} up`}
-                      className="rounded-lg border border-gray-300 p-2 text-gray-700 hover:bg-gray-50 disabled:opacity-40"
-                    >
-                      <ArrowUp className="h-4 w-4" />
-                    </button>
-                    <button
-                      onClick={() => void moveVideo(index, 1)}
-                      disabled={index === videos.length - 1 || busy.reorder}
-                      aria-label={`Move ${video.name} down`}
-                      className="rounded-lg border border-gray-300 p-2 text-gray-700 hover:bg-gray-50 disabled:opacity-40"
-                    >
-                      <ArrowDown className="h-4 w-4" />
-                    </button>
-                    <button
-                      onClick={() => void toggleVisibility(video)}
-                      disabled={busy[`visible-${video.id}`]}
-                      className="inline-flex items-center gap-1 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
-                    >
-                      {video.isVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                      {video.isVisible ? "Hide" : "Show"}
-                    </button>
-                    <button
-                      onClick={() => setEditing({
-                        id: video.id,
-                        form: {
-                          name: video.name,
-                          designation: video.designation || "",
-                          program: video.program || "",
-                          description: video.description || "",
-                        },
-                      })}
-                      className="inline-flex items-center gap-1 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                    >
-                      <Edit3 className="h-4 w-4" /> Edit
-                    </button>
-                    <button
-                      onClick={() => void deleteVideo(video)}
-                      disabled={busy[`delete-${video.id}`]}
-                      className="inline-flex items-center gap-1 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 hover:bg-red-100 disabled:opacity-50"
-                    >
-                      {busy[`delete-${video.id}`] ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />} Delete
-                    </button>
-                  </div>
+            {uploading && (
+              <div>
+                <div className="mb-1 flex justify-between text-xs text-muted">
+                  <span>{progress < 100 ? "Uploading to storage…" : "Saving…"}</span>
+                  <span className="tabular-nums">{progress}%</span>
+                </div>
+                <div className="h-2 overflow-hidden rounded-full bg-surface-muted ring-1 ring-inset ring-line">
+                  <div className="h-full rounded-full bg-brand-700 transition-all" style={{ width: `${progress}%` }} />
                 </div>
               </div>
-            ))}
-          </div>
-        )}
+            )}
+
+            {uploadError && (
+              <div role="alert" className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-800">{uploadError}</div>
+            )}
+
+            <button type="submit" disabled={uploading || !file} className={buttonClass("primary", "md", "w-full")}>
+              {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
+              {uploading ? "Uploading…" : "Upload video"}
+            </button>
+          </form>
+        </Panel>
+
+        {/* Library */}
+        <Panel className="self-start overflow-hidden">
+          <PanelHeader
+            title="Library"
+            description={`${videos.length} ${videos.length === 1 ? "video" : "videos"} · shown on the site in this order`}
+            actions={
+              <Badge tone={visibleCount ? "emerald" : "amber"} dot>
+                {visibleCount ? `Live · ${visibleCount} visible` : "Hidden on website"}
+              </Badge>
+            }
+          />
+          {!visibleCount && !loading && videos.length > 0 && (
+            <p className="border-b border-line bg-gold-50/60 px-5 py-2 text-xs text-gold-700">
+              No visible videos, so the Video Testimonials section is hidden on the website.
+            </p>
+          )}
+
+          {loadError && (
+            <div role="alert" className="m-4 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-800">{loadError}</div>
+          )}
+
+          {loading ? (
+            <LoadingState label="Loading videos…" />
+          ) : videos.length === 0 ? (
+            <EmptyState icon={Video} title="No video testimonials yet" description="Upload your first video using the form." />
+          ) : (
+            <ul className="divide-y divide-line">
+              {videos.map((video, index) => (
+                <li key={video.id} className="flex flex-col gap-4 p-4 sm:flex-row">
+                  <div className="relative shrink-0">
+                    <video
+                      className={cx("aspect-video w-full rounded-lg bg-ink sm:w-56", !video.isVisible && "opacity-60")}
+                      controls
+                      playsInline
+                      preload="metadata"
+                    >
+                      <source src={`${video.videoUrl}#t=0.1`} type={video.mimeType} />
+                    </video>
+                    <span className="absolute left-2 top-2 rounded-md bg-ink/75 px-1.5 py-0.5 font-mono text-[11px] font-semibold text-white">
+                      #{index + 1}
+                    </span>
+                  </div>
+
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="font-semibold text-ink">{video.name}</h3>
+                      {video.isVisible ? <Badge tone="emerald" icon={Eye}>Visible</Badge> : <Badge tone="slate" icon={EyeOff}>Hidden</Badge>}
+                      {video.program && <Badge tone="brand">{video.program}</Badge>}
+                    </div>
+                    {video.designation && <p className="mt-0.5 text-sm text-muted">{video.designation}</p>}
+                    {video.description && <p className="mt-2 line-clamp-2 text-sm text-ink-soft">{video.description}</p>}
+                    <p className="mt-2 text-xs text-subtle">
+                      {formatFileSize(video.fileSize)} · uploaded {new Date(video.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                    </p>
+
+                    <div className="mt-auto flex flex-wrap items-center gap-2 pt-3">
+                      <div className="inline-flex rounded-lg border border-line bg-surface shadow-card">
+                        <button
+                          type="button"
+                          onClick={() => void moveVideo(index, -1)}
+                          disabled={index === 0 || busy.reorder}
+                          aria-label={`Move ${video.name} up`}
+                          title="Move up"
+                          className="flex h-8 w-8 items-center justify-center rounded-l-lg text-ink-soft transition hover:bg-canvas disabled:opacity-35"
+                        >
+                          <ArrowUp className="h-4 w-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => void moveVideo(index, 1)}
+                          disabled={index === videos.length - 1 || busy.reorder}
+                          aria-label={`Move ${video.name} down`}
+                          title="Move down"
+                          className="flex h-8 w-8 items-center justify-center rounded-r-lg border-l border-line text-ink-soft transition hover:bg-canvas disabled:opacity-35"
+                        >
+                          <ArrowDown className="h-4 w-4" />
+                        </button>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => void toggleVisibility(video)}
+                        disabled={busy[`visible-${video.id}`]}
+                        className={buttonClass("secondary", "sm")}
+                      >
+                        {video.isVisible ? <EyeOff className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
+                        {video.isVisible ? "Hide" : "Show"}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setEditing({
+                          id: video.id,
+                          form: {
+                            name: video.name,
+                            designation: video.designation || "",
+                            program: video.program || "",
+                            description: video.description || "",
+                          },
+                        })}
+                        className={buttonClass("secondary", "sm")}
+                      >
+                        <Edit3 className="h-3.5 w-3.5" /> Edit
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => void deleteVideo(video)}
+                        disabled={busy[`delete-${video.id}`]}
+                        className={buttonClass("dangerOutline", "sm")}
+                      >
+                        {busy[`delete-${video.id}`] ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Trash2 className="h-3.5 w-3.5" />} Delete
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="border-t border-line bg-surface-muted/60 px-5 py-2.5 text-xs text-subtle">Changes can take up to a minute to show on the website.</p>
+        </Panel>
       </div>
 
       {editing && (
-        <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/40 p-4">
-          <form onSubmit={saveEdit} className="w-full max-w-2xl rounded-xl bg-white p-6 shadow-xl">
-            <div className="mb-5 flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-gray-900">Edit Video Testimonial</h2>
-              <button type="button" onClick={() => setEditing(null)} aria-label="Close"><X className="h-5 w-5 text-gray-500" /></button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]" onClick={() => setEditing(null)}>
+          <form
+            onSubmit={saveEdit}
+            onClick={(event) => event.stopPropagation()}
+            className="w-full max-w-2xl overflow-hidden rounded-2xl border border-line bg-surface shadow-pop"
+          >
+            <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
+              <div>
+                <h2 className="text-lg font-semibold tracking-tight text-ink">Edit video testimonial</h2>
+                <p className="mt-0.5 text-sm text-muted">Update the details shown with the video.</p>
+              </div>
+              <button type="button" onClick={() => setEditing(null)} aria-label="Close" className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink">
+                <X className="h-5 w-5" />
+              </button>
             </div>
-            <DetailsFields value={editing.form} onChange={(form) => setEditing({ ...editing, form })} />
-            <button
-              type="submit"
-              disabled={busy.edit}
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-blue-300"
-            >
-              {busy.edit ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} Save Changes
-            </button>
+            <div className="px-5 py-4">
+              <DetailsFields value={editing.form} onChange={(form) => setEditing({ ...editing, form })} />
+            </div>
+            <div className="flex justify-end gap-2 border-t border-line bg-surface-muted/60 px-5 py-3">
+              <button type="button" onClick={() => setEditing(null)} className={buttonClass("secondary")}>Cancel</button>
+              <button type="submit" disabled={busy.edit} className={buttonClass("primary")}>
+                {busy.edit ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} Save changes
+              </button>
+            </div>
           </form>
         </div>
       )}
-    </main>
+    </AdminPageShell>
   )
 }

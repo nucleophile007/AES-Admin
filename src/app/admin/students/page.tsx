@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { Search, GraduationCap, Filter, CheckCircle, Loader2, X, Plus, Mail, Pencil, Trash2, ChevronDown } from "lucide-react"
+import { BookOpen, CheckCircle2, ChevronDown, GraduationCap, Loader2, Mail, Pencil, Phone, Plus, Search, Send, Trash2, X } from "lucide-react"
 import { toast } from "sonner"
+import AdminPageShell from "@/components/admin/AdminPageShell"
+import { Badge, EmptyState, LoadingState, Panel, PanelHeader, buttonClass, cx, inputClass, selectClass } from "@/components/admin/ui"
 import { getSubjectGroupsForProgram, getSubjectsForProgram, isSingleLevelProgram, PROGRAM_OPTIONS } from "@/lib/programCatalog"
 
 interface Student {
@@ -69,26 +70,25 @@ function SubjectPicker({
   const [expandedGroup, setExpandedGroup] = useState<string | null>(null)
 
   if (isSingleLevelProgram(program)) {
-    return <div className="flex items-center rounded-lg border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-500">No subject selection needed</div>
+    return <div className="flex h-10 items-center rounded-lg border border-line bg-surface-muted px-3 text-sm text-muted">No subject selection needed</div>
   }
 
   if (program === "Tutoring" || program === "AES Champions") {
     return (
       <div className="relative">
-        <label className="mb-1 block text-sm font-medium text-gray-700">Subject</label>
         <details className="group">
-          <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700">
-            <span className={value ? "text-gray-900" : "text-gray-400"}>{value || "Select a subject..."}</span>
+          <summary className="flex h-10 cursor-pointer list-none items-center justify-between rounded-lg border border-line bg-surface px-3 text-sm text-ink-soft shadow-card transition hover:border-line-strong">
+            <span className={value ? "text-ink" : "text-subtle"}>{value || "Select a subject..."}</span>
             <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
           </summary>
-          <div className="absolute z-20 mt-1 w-full rounded-lg border border-gray-200 bg-white p-2 shadow-lg">
+          <div className="absolute z-20 mt-1 w-full rounded-lg border border-line bg-surface p-1.5 shadow-pop">
             {groups.map((group) => (
-              <div key={group.name} className="border-b border-gray-100 last:border-0">
+              <div key={group.name} className="border-b border-line last:border-0">
                 {group.subjects.length ? (
                   <>
                     <button
                       type="button"
-                      className="flex w-full items-center gap-2 px-2 py-2 text-left text-sm font-medium text-gray-800 hover:bg-gray-50"
+                      className="flex w-full items-center gap-2 px-2 py-2 text-left text-sm font-medium text-ink-soft hover:bg-surface-muted"
                       onClick={() => setExpandedGroup(expandedGroup === group.name ? null : group.name)}
                     >
                       <Plus className={`h-4 w-4 transition-transform ${expandedGroup === group.name ? "rotate-45" : ""}`} />
@@ -100,7 +100,7 @@ function SubjectPicker({
                           <button
                             type="button"
                             key={subject}
-                            className={`block w-full rounded px-2 py-1.5 text-left text-sm ${value === subject ? "bg-blue-50 text-blue-700" : "text-gray-600 hover:bg-gray-50"}`}
+                            className={`block w-full rounded px-2 py-1.5 text-left text-sm ${value === subject ? "bg-brand-50 text-brand-700" : "text-muted hover:bg-surface-muted"}`}
                             onClick={(event) => {
                               onChange(subject)
                               event.currentTarget.closest("details")?.removeAttribute("open")
@@ -115,7 +115,7 @@ function SubjectPicker({
                 ) : (
                   <button
                     type="button"
-                    className={`block w-full rounded px-2 py-2 text-left text-sm ${value === group.name ? "bg-blue-50 text-blue-700" : "font-medium text-gray-800 hover:bg-gray-50"}`}
+                    className={`block w-full rounded px-2 py-2 text-left text-sm ${value === group.name ? "bg-brand-50 text-brand-700" : "font-medium text-ink-soft hover:bg-surface-muted"}`}
                     onClick={(event) => {
                       onChange(group.name)
                       event.currentTarget.closest("details")?.removeAttribute("open")
@@ -134,7 +134,7 @@ function SubjectPicker({
 
   return (
     <select
-      className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-black"
+      className={inputClass}
       value={value}
       onChange={(event) => onChange(event.target.value)}
       required
@@ -186,37 +186,37 @@ function MentorPicker({
         type="button"
         aria-expanded={open}
         onClick={() => setOpen((value) => !value)}
-        className={`flex min-h-[42px] w-full items-center justify-between rounded-lg border bg-white px-3 py-2 text-left text-sm transition ${
-          open ? "border-blue-500 ring-2 ring-blue-100" : "border-slate-300 hover:border-slate-400"
+        className={`flex h-10 w-full items-center justify-between rounded-lg border bg-surface px-3 text-left text-sm shadow-card transition ${
+          open ? "border-brand-300 ring-4 ring-brand-100" : "border-line hover:border-line-strong"
         }`}
       >
-        <span className={selectedTeachers.length ? "text-slate-900" : "text-slate-400"}>
+        <span className={selectedTeachers.length ? "text-ink" : "text-subtle"}>
           {selectedTeachers.length
             ? `${selectedTeachers.length} mentor${selectedTeachers.length === 1 ? "" : "s"} selected`
             : "Select mentors"}
         </span>
-        <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform ${open ? "rotate-180" : ""}`} />
+        <ChevronDown className={`h-4 w-4 text-muted transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <div className="absolute left-0 right-0 z-30 mt-2 max-h-64 overflow-y-auto rounded-xl border border-slate-200 bg-white p-2 shadow-xl ring-1 ring-black/5">
-          <div className="border-b border-slate-100 px-2 pb-2 text-xs text-slate-500">
+        <div className="absolute left-0 right-0 z-30 mt-1 max-h-64 overflow-y-auto rounded-lg border border-line bg-surface p-1.5 shadow-pop">
+          <div className="border-b border-line px-2 pb-2 text-xs text-muted">
             Select one or more mentors
           </div>
-          {loading && <p className="px-2 py-3 text-sm text-slate-500">Loading mentors...</p>}
-          {!loading && !teachers.length && <p className="px-2 py-3 text-sm text-slate-500">No mentors available.</p>}
+          {loading && <p className="px-2 py-3 text-sm text-muted">Loading mentors...</p>}
+          {!loading && !teachers.length && <p className="px-2 py-3 text-sm text-muted">No mentors available.</p>}
           {teachers.map((teacher) => {
           const id = String(teacher.id)
           return (
-            <label key={teacher.id} className="flex cursor-pointer items-start gap-3 rounded-lg px-2 py-2.5 text-sm text-slate-700 hover:bg-slate-50">
+            <label key={teacher.id} className="flex cursor-pointer items-start gap-3 rounded-lg px-2 py-2.5 text-sm text-ink-soft hover:bg-surface-muted">
               <input
                 type="checkbox"
                 checked={selectedIds.includes(id)}
                 onChange={(event) => onChange(event.target.checked ? [...selectedIds, id] : selectedIds.filter((selectedId) => selectedId !== id))}
-                className="mt-0.5 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                className="mt-0.5 h-4 w-4 rounded border-line-strong accent-brand-700"
               />
               <span className="min-w-0">
-                <span className="block font-medium text-slate-800">{teacher.name}</span>
-                <span className="block truncate text-xs text-slate-500">{teacher.email}</span>
+                <span className="block font-medium text-ink-soft">{teacher.name}</span>
+                <span className="block truncate text-xs text-muted">{teacher.email}</span>
               </span>
             </label>
           )
@@ -812,7 +812,11 @@ export default function StudentsPage() {
 
   // Check admin access before rendering dashboard
   if (status === 'loading') {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>
+    return (
+      <AdminPageShell moduleId="students">
+        <Panel><LoadingState label="Checking access…" /></Panel>
+      </AdminPageShell>
+    )
   }
 
   if (!session) {
@@ -828,76 +832,32 @@ export default function StudentsPage() {
   // Get all unique programs from student data
   const programs = Array.from(new Set(data.flatMap(getStudentPrograms)))
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-blue-600" />
-          <p className="text-gray-600">Loading student data...</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <GraduationCap className="h-6 w-6 text-yellow-300" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Student Management</h1>
-                <p className="text-sm text-gray-700">Add and manage students</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
-              >
-                Back to Dashboard
-              </Link>
-              <button
-                onClick={() => setShowForm(!showForm)}
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
-              >
-                <Plus className="w-4 h-4" />
-                {showForm ? 'Cancel' : 'Add Student'}
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
+    <AdminPageShell
+      moduleId="students"
+      description="Add students, manage their program enrollments and mentors, and send activation links."
+      actions={
+        <button type="button" onClick={() => setShowForm(!showForm)} className={buttonClass(showForm ? 'secondary' : 'primary')}>
+          {showForm ? <X className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+          {showForm ? 'Close form' : 'Add student'}
+        </button>
+      }
+    >
       {/* Add Student Form */}
       {showForm && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="bg-white rounded-xl shadow-sm border border-blue-100 p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h2 className="text-xl font-semibold text-gray-900">Add New Student</h2>
-                <p className="text-sm text-gray-600">
-                  Capture student and parent details for enrollment.
-                </p>
-              </div>
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-yellow-50 text-yellow-800 border border-yellow-200">
-                New Student
-              </span>
-            </div>
+        <Panel className="mb-6">
+          <PanelHeader title="Add new student" description="Capture student and parent details, then choose their programs." />
+          <div className="p-5">
             <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     Student Name
                   </label>
                   <input
                     type="text"
                     id="name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClass}
                     placeholder="Enter student name"
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
@@ -906,13 +866,13 @@ export default function StudentsPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     Student Email
                   </label>
                   <input
                     type="email"
                     id="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClass}
                     placeholder="Enter student email"
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
@@ -921,13 +881,13 @@ export default function StudentsPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="grade" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="grade" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     Grade
                   </label>
                   <input
                     type="text"
                     id="grade"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClass}
                     placeholder="Enter student grade"
                     value={formData.grade}
                     onChange={(e) => setFormData(prev => ({ ...prev, grade: e.target.value }))}
@@ -936,7 +896,7 @@ export default function StudentsPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="graduationYear" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="graduationYear" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     Graduation Year
                   </label>
                   <input
@@ -945,7 +905,7 @@ export default function StudentsPage() {
                     min={2000}
                     max={2100}
                     step={1}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClass}
                     placeholder="Enter graduation year"
                     value={formData.graduationYear}
                     onChange={(e) => setFormData(prev => ({ ...prev, graduationYear: e.target.value }))}
@@ -953,13 +913,13 @@ export default function StudentsPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="schoolName" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="schoolName" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     School Name
                   </label>
                   <input
                     type="text"
                     id="schoolName"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClass}
                     placeholder="Enter school name"
                     value={formData.schoolName}
                     onChange={(e) => setFormData(prev => ({ ...prev, schoolName: e.target.value }))}
@@ -967,35 +927,35 @@ export default function StudentsPage() {
                   />
                 </div>
                 
-                <div className="col-span-2">
+                <div className="md:col-span-2">
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <h3 className="text-md font-medium text-gray-900">Program Enrollments</h3>
-                      <p className="text-sm text-gray-500">Add one or more programs for this student.</p>
+                      <h3 className="text-sm font-semibold text-ink">Program enrollments</h3>
+                      <p className="text-sm text-muted">Add one or more programs for this student.</p>
                     </div>
                     <button
                       type="button"
                       onClick={addEnrollmentDraft}
-                      className="inline-flex items-center gap-1 px-3 py-2 text-sm text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-50"
+                      className={buttonClass('secondary', 'sm')}
                     >
-                      <Plus className="w-4 h-4" /> Add Program
+                      <Plus className="h-3.5 w-3.5" /> Add program
                     </button>
                   </div>
                   <div className="space-y-4">
                     {formData.enrollments.map((enrollment, index) => {
                       return (
-                        <div key={index} className="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                        <div key={index} className="rounded-lg border border-line bg-surface-muted/60 p-4">
                           <div className="flex justify-between items-center mb-3">
-                            <span className="font-medium text-gray-700">Enrollment {index + 1}</span>
+                            <span className="text-xs font-semibold uppercase tracking-[0.06em] text-muted">Enrollment {index + 1}</span>
                             {formData.enrollments.length > 1 && (
-                              <button type="button" onClick={() => removeEnrollmentDraft(index)} className="text-sm text-red-600 hover:text-red-700">
+                              <button type="button" onClick={() => removeEnrollmentDraft(index)} className="text-xs font-medium text-rose-600 hover:text-rose-700 hover:underline">
                                 Remove
                               </button>
                             )}
                           </div>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <select
-                              className="px-4 py-2 border border-gray-300 rounded-lg text-black bg-white"
+                              className={inputClass}
                               value={enrollment.program}
                               onChange={(e) => updateEnrollmentDraft(index, {
                                 program: e.target.value,
@@ -1025,17 +985,17 @@ export default function StudentsPage() {
                   </div>
                 </div>
                 
-                <div className="col-span-2">
-                  <h3 className="text-md font-medium text-gray-900 mb-2">Parent Information</h3>
+                <div className="md:col-span-2 border-t border-line pt-5">
+                  <h3 className="mb-3 text-sm font-semibold text-ink">Parent information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                      <label htmlFor="parentName" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="parentName" className="mb-1.5 block text-sm font-medium text-ink-soft">
                         Parent Name
                       </label>
                       <input
                         type="text"
                         id="parentName"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className={inputClass}
                         placeholder="Enter parent name"
                         value={formData.parentName}
                         onChange={(e) => setFormData(prev => ({ ...prev, parentName: e.target.value }))}
@@ -1044,13 +1004,13 @@ export default function StudentsPage() {
                     </div>
                     
                     <div>
-                      <label htmlFor="parentEmail" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="parentEmail" className="mb-1.5 block text-sm font-medium text-ink-soft">
                         Parent Email
                       </label>
                       <input
                         type="email"
                         id="parentEmail"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className={inputClass}
                         placeholder="Enter parent email"
                         value={formData.parentEmail}
                         onChange={(e) => setFormData(prev => ({ ...prev, parentEmail: e.target.value }))}
@@ -1059,13 +1019,13 @@ export default function StudentsPage() {
                     </div>
                     
                     <div>
-                      <label htmlFor="parentPhone" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="parentPhone" className="mb-1.5 block text-sm font-medium text-ink-soft">
                         Parent Phone
                       </label>
                       <input
                         type="tel"
                         id="parentPhone"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className={inputClass}
                         placeholder="Enter parent phone"
                         value={formData.parentPhone}
                         onChange={(e) => setFormData(prev => ({ ...prev, parentPhone: e.target.value }))}
@@ -1077,66 +1037,63 @@ export default function StudentsPage() {
               </div>
 
               {formError && (
-                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
+                <div role="alert" className="mb-4 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-800">
                   {formError}
                 </div>
               )}
 
-              <div className="flex justify-end">
-                <button
-                  type="submit"
-                  disabled={formLoading}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-300"
-                >
-                  {formLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-                  Save Student
+              <div className="flex justify-end gap-2 border-t border-line pt-4">
+                <button type="button" onClick={() => setShowForm(false)} className={buttonClass('secondary')}>Cancel</button>
+                <button type="submit" disabled={formLoading} className={buttonClass('primary')}>
+                  {formLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
+                  Save student
                 </button>
               </div>
             </form>
           </div>
-        </div>
+        </Panel>
       )}
 
       {/* Add Enrollment Form Modal */}
       {showEnrollmentForm && selectedStudentForEnrollment && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
-          <div className="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-white shadow-2xl">
-            <div className="sticky top-0 z-10 flex items-start justify-between border-b border-slate-200 bg-white px-6 py-5">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]">
+          <div className="max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-2xl border border-line bg-surface shadow-pop">
+            <div className="sticky top-0 z-10 flex items-start justify-between border-b border-line bg-surface px-6 py-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600">Student enrollment</p>
-                <h2 className="mt-1 text-2xl font-bold text-slate-900">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700">Student enrollment</p>
+                <h2 className="mt-1 text-lg font-semibold tracking-tight text-ink">
                   {editingEnrollmentId ? "Edit enrollment" : "Manage enrollments"}
                 </h2>
-                <p className="mt-1 text-sm text-slate-500">{selectedStudentForEnrollment.name}</p>
+                <p className="mt-1 text-sm text-muted">{selectedStudentForEnrollment.name}</p>
               </div>
               <button
                 type="button"
                 onClick={closeEnrollmentForm}
-                className="rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink"
                 aria-label="Close enrollment manager"
               >
-                <X className="h-6 w-6" />
+                <X className="h-5 w-5" />
               </button>
             </div>
             <div className="space-y-6 p-6">
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <div className="rounded-card border border-line bg-surface-muted/60 p-4">
               <div className="mb-3 flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900">Current enrollments</h3>
-                  <p className="mt-0.5 text-xs text-slate-500">Choose an enrollment to edit or remove it.</p>
+                  <h3 className="text-sm font-bold text-ink">Current enrollments</h3>
+                  <p className="mt-0.5 text-xs text-muted">Choose an enrollment to edit or remove it.</p>
                 </div>
-                <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">
+                <span className="rounded-full bg-surface px-2.5 py-0.5 text-xs font-semibold text-muted ring-1 ring-inset ring-line">
                   {(selectedStudentForEnrollment.enrollments || []).length} total
                 </span>
               </div>
               <div className="space-y-2">
                 {(selectedStudentForEnrollment.enrollments || []).map((enrollment) => (
-                  <div key={enrollment.id} className={`flex items-center justify-between gap-3 rounded-xl border bg-white p-4 text-sm shadow-sm ${
-                    editingEnrollmentId === enrollment.id ? "border-blue-500 ring-2 ring-blue-100" : "border-slate-200"
+                  <div key={enrollment.id} className={`flex items-center justify-between gap-3 rounded-lg border bg-surface p-3.5 text-sm shadow-card ${
+                    editingEnrollmentId === enrollment.id ? "border-brand-300 ring-4 ring-brand-100" : "border-line"
                   }`}>
                     <div>
-                      <p className="font-semibold text-slate-900">{enrollment.program}</p>
-                      <p className="mt-1 text-slate-500">{enrollment.subject}</p>
+                      <p className="font-semibold text-ink">{enrollment.program}</p>
+                      <p className="mt-1 text-muted">{enrollment.subject}</p>
                     </div>
                     <div className="flex gap-2">
                       <button
@@ -1146,38 +1103,38 @@ export default function StudentsPage() {
                           event.stopPropagation()
                           editEnrollment(selectedStudentForEnrollment, enrollment)
                         }}
-                        className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-100"
+                        className={buttonClass('secondary', 'sm')}
                       >
-                        Edit
+                        <Pencil className="h-3.5 w-3.5" /> Edit
                       </button>
-                      <button type="button" onClick={() => void deleteEnrollment(selectedStudentForEnrollment, enrollment)} disabled={actionLoading[`enrollment-delete-${enrollment.id}`]} className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs font-semibold text-red-700 transition hover:bg-red-100 disabled:opacity-50">Delete</button>
+                      <button type="button" onClick={() => void deleteEnrollment(selectedStudentForEnrollment, enrollment)} disabled={actionLoading[`enrollment-delete-${enrollment.id}`]} className={buttonClass('dangerOutline', 'sm')}><Trash2 className="h-3.5 w-3.5" /> Delete</button>
                     </div>
                   </div>
                 ))}
-                {!(selectedStudentForEnrollment.enrollments || []).length && <p className="text-sm text-slate-500">No enrollments found.</p>}
+                {!(selectedStudentForEnrollment.enrollments || []).length && <p className="text-sm text-muted">No enrollments found.</p>}
               </div>
             </div>
-            <div className="rounded-xl border border-slate-200 bg-white">
-              <div className="border-b border-slate-100 px-5 py-4">
-                <h3 className="font-bold text-slate-900">{editingEnrollmentId ? "Update selected enrollment" : "Add a new enrollment"}</h3>
-                <p className="mt-1 text-sm text-slate-500">Assign the program, subject, and mentors for this student.</p>
+            <div className="rounded-card border border-line bg-surface">
+              <div className="border-b border-line px-5 py-4">
+                <h3 className="text-[15px] font-semibold text-ink">{editingEnrollmentId ? "Update selected enrollment" : "Add a new enrollment"}</h3>
+                <p className="mt-1 text-sm text-muted">Assign the program, subject, and mentors for this student.</p>
               </div>
               <div className="p-5">
             {editingEnrollmentId && (
-              <div className="mb-4 flex items-center justify-between rounded-lg bg-blue-50 px-4 py-3 text-sm text-blue-800">
+              <div className="mb-4 flex items-center justify-between rounded-lg bg-brand-50 px-4 py-3 text-sm text-brand-800">
                 <span>You are editing the highlighted enrollment.</span>
                 <button type="button" onClick={() => { setEditingEnrollmentId(null); setEnrollmentData({ program: "", subject: "", teacherIds: [] }); setEnrollmentError(null) }} className="font-semibold underline underline-offset-2">Cancel edit</button>
               </div>
             )}
             <form onSubmit={handleEnrollmentSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div className="mb-5 grid grid-cols-1 gap-4 md:grid-cols-3">
                 <div>
-                  <label htmlFor="enrollProgram" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="enrollProgram" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     Program
                   </label>
                   <select
                     id="enrollProgram"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    className={inputClass}
                     value={enrollmentData.program}
                     onChange={(e) => setEnrollmentData(prev => ({
                       ...prev,
@@ -1195,39 +1152,37 @@ export default function StudentsPage() {
                   </select>
                 </div>
 
-                <SubjectPicker
-                  program={enrollmentData.program}
-                  value={enrollmentData.subject}
-                  onChange={(subject) => setEnrollmentData(prev => ({ ...prev, subject }))}
-                />
-                <MentorPicker
-                  teachers={teachers}
-                  selectedIds={enrollmentData.teacherIds}
-                  onChange={(teacherIds) => setEnrollmentData(prev => ({ ...prev, teacherIds }))}
-                  loading={teachersLoading}
-                />
+                <div>
+                  <p className="mb-1.5 block text-sm font-medium text-ink-soft">Subject</p>
+                  <SubjectPicker
+                    program={enrollmentData.program}
+                    value={enrollmentData.subject}
+                    onChange={(subject) => setEnrollmentData(prev => ({ ...prev, subject }))}
+                  />
+                </div>
+                <div>
+                  <p className="mb-1.5 block text-sm font-medium text-ink-soft">Mentors</p>
+                  <MentorPicker
+                    teachers={teachers}
+                    selectedIds={enrollmentData.teacherIds}
+                    onChange={(teacherIds) => setEnrollmentData(prev => ({ ...prev, teacherIds }))}
+                    loading={teachersLoading}
+                  />
+                </div>
               </div>
 
               {enrollmentError && (
-                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
+                <div role="alert" className="mb-4 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-800">
                   {enrollmentError}
                 </div>
               )}
 
-              <div className="flex justify-end gap-2">
-                <button
-                  type="button"
-                  onClick={closeEnrollmentForm}
-                  className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200"
-                >
+              <div className="flex justify-end gap-2 border-t border-line pt-4">
+                <button type="button" onClick={closeEnrollmentForm} className={buttonClass('secondary')}>
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  disabled={enrollmentLoading}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-300"
-                >
-                  {enrollmentLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+                <button type="submit" disabled={enrollmentLoading} className={buttonClass('primary')}>
+                  {enrollmentLoading && <Loader2 className="h-4 w-4 animate-spin" />}
                   {editingEnrollmentId ? "Update Enrollment" : "Add Enrollment"}
                 </button>
               </div>
@@ -1242,7 +1197,7 @@ export default function StudentsPage() {
       {/* Edit Student Modal */}
       {showEditForm && selectedStudentForEdit && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]"
           onClick={(e) => {
             if (e.target === e.currentTarget && !editLoading) {
               closeEditForm()
@@ -1250,31 +1205,35 @@ export default function StudentsPage() {
           }}
         >
           <div
-            className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 my-8"
+            className="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-line bg-surface shadow-pop"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Edit Student</h2>
+            <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-line bg-surface px-6 py-4">
+              <div>
+                <h2 className="text-lg font-semibold tracking-tight text-ink">Edit student</h2>
+                <p className="mt-0.5 text-sm text-muted">{selectedStudentForEdit.name}</p>
+              </div>
               <button
                 type="button"
                 onClick={closeEditForm}
-                className="text-gray-400 hover:text-gray-600"
+                className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink"
                 disabled={editLoading}
+                aria-label="Close"
               >
-                <X className="w-6 h-6" />
+                <X className="h-5 w-5" />
               </button>
             </div>
 
-            <form onSubmit={handleEditSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <form onSubmit={handleEditSubmit} className="p-6">
+              <div className="mb-5 grid grid-cols-1 gap-5 md:grid-cols-2">
                 <div>
-                  <label htmlFor="edit-name" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="edit-name" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     Student Name
                   </label>
                   <input
                     type="text"
                     id="edit-name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClass}
                     value={editData.name}
                     onChange={(e) => setEditData(prev => ({ ...prev, name: e.target.value }))}
                     required
@@ -1282,13 +1241,13 @@ export default function StudentsPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="edit-email" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="edit-email" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     Student Email
                   </label>
                   <input
                     type="email"
                     id="edit-email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClass}
                     value={editData.email}
                     onChange={(e) => setEditData(prev => ({ ...prev, email: e.target.value }))}
                     required
@@ -1296,13 +1255,13 @@ export default function StudentsPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="edit-grade" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="edit-grade" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     Grade
                   </label>
                   <input
                     type="text"
                     id="edit-grade"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClass}
                     value={editData.grade}
                     onChange={(e) => setEditData(prev => ({ ...prev, grade: e.target.value }))}
                     required
@@ -1310,7 +1269,7 @@ export default function StudentsPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="edit-graduation-year" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="edit-graduation-year" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     Graduation Year
                   </label>
                   <input
@@ -1319,20 +1278,20 @@ export default function StudentsPage() {
                     min={2000}
                     max={2100}
                     step={1}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClass}
                     value={editData.graduationYear}
                     onChange={(e) => setEditData(prev => ({ ...prev, graduationYear: e.target.value }))}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="edit-school" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="edit-school" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     School Name
                   </label>
                   <input
                     type="text"
                     id="edit-school"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className={inputClass}
                     value={editData.schoolName}
                     onChange={(e) => setEditData(prev => ({ ...prev, schoolName: e.target.value }))}
                     required
@@ -1340,13 +1299,13 @@ export default function StudentsPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="edit-program" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="edit-program" className="mb-1.5 block text-sm font-medium text-ink-soft">
                     Active Program
                   </label>
-                  <p className="mb-1 text-xs text-gray-500">Only enrolled programs can be selected here. Use Add Enrollment for a new program and teacher assignment.</p>
+                  <p className="mb-1 text-xs text-muted">Only enrolled programs can be selected here. Use Add Enrollment for a new program and teacher assignment.</p>
                   <select
                     id="edit-program"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+                    className={inputClass}
                     value={editData.program}
                     onChange={(e) => setEditData(prev => ({ ...prev, program: e.target.value }))}
                     required
@@ -1360,43 +1319,43 @@ export default function StudentsPage() {
                   </select>
                 </div>
 
-                <div className="md:col-span-2">
-                  <h3 className="text-md font-medium text-gray-900 mb-2">Parent Information</h3>
+                <div className="md:col-span-2 border-t border-line pt-5">
+                  <h3 className="mb-3 text-sm font-semibold text-ink">Parent information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                      <label htmlFor="edit-parent-name" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="edit-parent-name" className="mb-1.5 block text-sm font-medium text-ink-soft">
                         Parent Name
                       </label>
                       <input
                         type="text"
                         id="edit-parent-name"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className={inputClass}
                         value={editData.parentName}
                         onChange={(e) => setEditData(prev => ({ ...prev, parentName: e.target.value }))}
                         required
                       />
                     </div>
                     <div>
-                      <label htmlFor="edit-parent-email" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="edit-parent-email" className="mb-1.5 block text-sm font-medium text-ink-soft">
                         Parent Email
                       </label>
                       <input
                         type="email"
                         id="edit-parent-email"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className={inputClass}
                         value={editData.parentEmail}
                         onChange={(e) => setEditData(prev => ({ ...prev, parentEmail: e.target.value }))}
                         required
                       />
                     </div>
                     <div>
-                      <label htmlFor="edit-parent-phone" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="edit-parent-phone" className="mb-1.5 block text-sm font-medium text-ink-soft">
                         Parent Phone
                       </label>
                       <input
                         type="tel"
                         id="edit-parent-phone"
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg text-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className={inputClass}
                         value={editData.parentPhone}
                         onChange={(e) => setEditData(prev => ({ ...prev, parentPhone: e.target.value }))}
                         required
@@ -1407,27 +1366,18 @@ export default function StudentsPage() {
               </div>
 
               {editError && (
-                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
+                <div role="alert" className="mb-4 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-800">
                   {editError}
                 </div>
               )}
 
-              <div className="flex justify-end gap-2">
-                <button
-                  type="button"
-                  onClick={closeEditForm}
-                  disabled={editLoading}
-                  className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 disabled:opacity-60"
-                >
+              <div className="flex justify-end gap-2 border-t border-line pt-4">
+                <button type="button" onClick={closeEditForm} disabled={editLoading} className={buttonClass('secondary')}>
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  disabled={editLoading}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-blue-300"
-                >
-                  {editLoading && <Loader2 className="w-4 h-4 animate-spin" />}
-                  Update Student
+                <button type="submit" disabled={editLoading} className={buttonClass('primary')}>
+                  {editLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+                  Update student
                 </button>
               </div>
             </form>
@@ -1435,166 +1385,148 @@ export default function StudentsPage() {
         </div>
       )}
 
-      {/* Filters */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-              <input
-                type="text"
-                placeholder="Search by name, email, parent or school..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-              />
-            </div>
-            {programs.length > 0 && (
-              <div className="sm:w-48 relative">
-                <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-600" />
-                <select
-                  value={selectedProgram}
-                  onChange={(e) => setSelectedProgram(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white text-gray-900"
-                >
-                  <option value="all">All Programs</option>
-                  {programs.map((program) => (
-                    <option key={program} value={program}>
-                      {program}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-          </div>
-          {filteredData.length !== data.length && (
-            <div className="mt-4 text-sm text-gray-800 font-medium">
-              Showing {filteredData.length} of {data.length} students
-            </div>
+      <Panel className="overflow-hidden">
+        {/* Filters */}
+        <div className="flex flex-col gap-3 border-b border-line p-4 sm:flex-row sm:items-center">
+          <label className="relative block flex-1">
+            <span className="sr-only">Search students</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            <input
+              type="text"
+              placeholder="Search by name, email, parent or school…"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className={cx(inputClass, 'pl-9')}
+            />
+          </label>
+          {programs.length > 0 && (
+            <label className="relative block sm:w-60">
+              <span className="sr-only">Program</span>
+              <select value={selectedProgram} onChange={(e) => setSelectedProgram(e.target.value)} className={selectClass}>
+                <option value="all">All programs</option>
+                {programs.map((program) => (
+                  <option key={program} value={program}>{program}</option>
+                ))}
+              </select>
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            </label>
           )}
         </div>
-      </div>
 
-      {/* Student List */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          {filteredData.length === 0 ? (
-            <div className="text-center py-12">
-              <GraduationCap className="h-12 w-12 text-gray-500 mx-auto mb-4" />
-              <p className="text-gray-700 font-medium">No students found</p>
-              {!data.length && (
-                <p className="text-gray-500 mt-2">Start by adding your first student</p>
-              )}
-            </div>
-          ) : (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Student</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Contact</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Parent</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Program</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Status</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredData.map((student, idx) => (
-                    <tr key={student.id} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                      <td className="px-4 py-4">
-                        <div className="font-medium text-gray-900">{student.name}</div>
-                        <div className="text-xs text-gray-600">
-                          Grade {student.grade}
-                          {student.graduationYear ? ` • Class of ${student.graduationYear}` : ""}
-                          {` • ${student.schoolName}`}
-                        </div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="text-sm text-gray-700">{student.email}</div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="text-sm font-medium text-gray-800">{student.parentName}</div>
-                        <div className="text-xs text-gray-600">{student.parentEmail}</div>
-                        <div className="text-xs text-gray-600">{student.parentPhone}</div>
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className="inline-flex items-center px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">
-                          {getStudentPrograms(student).join(", ")}
+        {!loading && filteredData.length !== data.length && (
+          <div className="flex items-center justify-between border-b border-line bg-surface-muted/60 px-5 py-2 text-xs text-muted">
+            <span>Showing <span className="font-semibold text-ink">{filteredData.length}</span> of {data.length} students</span>
+            <button type="button" onClick={() => { setSearchTerm(''); setSelectedProgram('all') }} className="font-medium text-brand-700 hover:underline">
+              Clear filters
+            </button>
+          </div>
+        )}
+
+        {/* Student List */}
+        {loading ? (
+          <LoadingState label="Loading students…" />
+        ) : filteredData.length === 0 ? (
+          <EmptyState
+            icon={GraduationCap}
+            title={data.length ? 'No students match your filters' : 'No students yet'}
+            description={data.length ? 'Try a different name, email, school or program.' : 'Start by adding your first student.'}
+            action={!data.length ? (
+              <button type="button" onClick={() => setShowForm(true)} className={buttonClass('primary', 'sm')}>
+                <Plus className="h-3.5 w-3.5" /> Add student
+              </button>
+            ) : undefined}
+          />
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[1040px] text-left text-sm">
+              <thead>
+                <tr className="border-b border-line bg-surface-muted text-xs font-semibold uppercase tracking-[0.06em] text-muted">
+                  <th className="px-5 py-3">Student</th>
+                  <th className="px-4 py-3">Parent</th>
+                  <th className="px-4 py-3">Programs</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-5 py-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-line">
+                {filteredData.map((student) => (
+                  <tr key={student.id} className="align-top transition-colors hover:bg-surface-muted/60">
+                    <td className="max-w-[300px] px-5 py-4">
+                      <div className="flex items-start gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-50 text-xs font-semibold uppercase text-brand-800 ring-1 ring-inset ring-brand-100">
+                          {student.name.split(/\s+/).map((part) => part[0]).slice(0, 2).join('')}
                         </span>
-                      </td>
-                      <td className="px-4 py-4">
-                        {student.isActivated ? (
-                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                            <CheckCircle className="w-3 h-3" />
-                            Activated
-                          </span>
-                        ) : (
-                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">
-                            Pending Activation
-                          </span>
-                        )}
-                      </td>
-                      <td className="px-4 py-4">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          {!student.isActivated && (
-                            <button
-                              onClick={() => sendActivationEmail(student.id, student.email)}
-                              disabled={actionLoading[`activate-${student.id}`]}
-                              className="px-3 py-1 rounded-lg text-xs font-medium bg-blue-100 text-blue-800 hover:bg-blue-200"
-                            >
-                              {actionLoading[`activate-${student.id}`] ? (
-                                <Loader2 className="w-3 h-3 animate-spin" />
-                              ) : (
-                                <div className="flex items-center gap-1">
-                                  <Mail className="w-3 h-3" />
-                                  Send Activation
-                                </div>
-                              )}
-                            </button>
-                          )}
-                          <button
-                            onClick={() => openEditForm(student)}
-                            className="px-3 py-1 rounded-lg text-xs font-medium bg-amber-100 text-amber-800 hover:bg-amber-200"
-                          >
-                            <div className="flex items-center gap-1">
-                              <Pencil className="w-3 h-3" />
-                              Edit
-                            </div>
-                          </button>
-                          <button
-                            onClick={() => openEnrollmentForm(student)}
-                            className="px-3 py-1 rounded-lg text-xs font-medium bg-purple-100 text-purple-800 hover:bg-purple-200"
-                          >
-                            <div className="flex items-center gap-1">
-                              <Plus className="w-3 h-3" />
-                              Add Enrollment
-                            </div>
-                          </button>
-                          <button
-                            onClick={() => handleDeleteStudent(student)}
-                            disabled={actionLoading[`delete-${student.id}`]}
-                            className="px-3 py-1 rounded-lg text-xs font-medium bg-red-100 text-red-800 hover:bg-red-200 disabled:opacity-60"
-                          >
-                            {actionLoading[`delete-${student.id}`] ? (
-                              <Loader2 className="w-3 h-3 animate-spin" />
-                            ) : (
-                              <div className="flex items-center gap-1">
-                                <Trash2 className="w-3 h-3" />
-                                Delete
-                              </div>
-                            )}
-                          </button>
+                        <div className="min-w-0">
+                          <p className="truncate font-medium text-ink">{student.name}</p>
+                          <a href={`mailto:${student.email}`} className="block truncate text-xs text-muted hover:text-brand-700">{student.email}</a>
+                          <p className="mt-0.5 truncate text-xs text-subtle" title={student.schoolName}>
+                            Grade {student.grade}
+                            {student.graduationYear ? ` · Class of ${student.graduationYear}` : ''}
+                            {` · ${student.schoolName}`}
+                          </p>
                         </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
+                      </div>
+                    </td>
+                    <td className="max-w-[240px] px-4 py-4">
+                      <p className="truncate font-medium text-ink-soft">{student.parentName}</p>
+                      <a href={`mailto:${student.parentEmail}`} className="mt-0.5 flex items-center gap-1.5 truncate text-xs text-muted hover:text-brand-700">
+                        <Mail className="h-3 w-3 shrink-0" />{student.parentEmail}
+                      </a>
+                      <a href={`tel:${student.parentPhone}`} className="mt-0.5 flex items-center gap-1.5 text-xs text-muted hover:text-brand-700">
+                        <Phone className="h-3 w-3 shrink-0" />{student.parentPhone}
+                      </a>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex max-w-[240px] flex-wrap gap-1">
+                        {getStudentPrograms(student).map((program) => <Badge key={program} tone="brand">{program}</Badge>)}
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      {student.isActivated ? (
+                        <Badge tone="emerald" icon={CheckCircle2}>Activated</Badge>
+                      ) : (
+                        <Badge tone="amber" dot>Pending activation</Badge>
+                      )}
+                    </td>
+                    <td className="px-5 py-4">
+                      <div className="flex items-center justify-end gap-1.5 whitespace-nowrap">
+                        {!student.isActivated && (
+                          <button
+                            type="button"
+                            onClick={() => sendActivationEmail(student.id, student.email)}
+                            disabled={actionLoading[`activate-${student.id}`]}
+                            className={buttonClass('secondary', 'sm')}
+                            title="Send activation email"
+                          >
+                            {actionLoading[`activate-${student.id}`] ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Send className="h-3.5 w-3.5" />}
+                            Activate
+                          </button>
+                        )}
+                        <button type="button" onClick={() => openEnrollmentForm(student)} className={buttonClass('secondary', 'sm')} title="Manage enrollments">
+                          <BookOpen className="h-3.5 w-3.5" /> Enrollments
+                        </button>
+                        <button type="button" onClick={() => openEditForm(student)} className={buttonClass('ghost', 'icon')} title="Edit student" aria-label={`Edit ${student.name}`}>
+                          <Pencil className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteStudent(student)}
+                          disabled={actionLoading[`delete-${student.id}`]}
+                          className={buttonClass('ghost', 'icon', 'text-rose-600 hover:bg-rose-50 hover:text-rose-700')}
+                          title="Delete student"
+                          aria-label={`Delete ${student.name}`}
+                        >
+                          {actionLoading[`delete-${student.id}`] ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Trash2 className="h-3.5 w-3.5" />}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Panel>
+    </AdminPageShell>
   )
 }

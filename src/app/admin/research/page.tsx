@@ -2,11 +2,10 @@
 
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { 
-  FileText, Users, CheckCircle, XCircle, Eye, EyeOff,
-  Edit, Trash2, FolderOpen, Search, ArrowLeft 
-} from 'lucide-react'
+import { Eye, EyeOff, FileText, FlaskConical, Pencil, Plus, Presentation, Search, Trash2, Users } from 'lucide-react'
 import { toast } from 'sonner'
+import AdminPageShell from '@/components/admin/AdminPageShell'
+import { Badge, EmptyState, LoadingState, Panel, buttonClass, cx, inputClass, type BadgeTone } from '@/components/admin/ui'
 import EditMetadataModal from '@/app/admin/research/EditMetadataModal'
 import ManagePdfDialog from '@/app/admin/research/ManagePdfDialog'
 import ManagePresentationDialog from '@/app/admin/research/ManagePresentationDialog'
@@ -149,396 +148,168 @@ export default function ResearchAdminPage() {
     withPdf: research.filter(r => r.pdfFilename).length,
   }
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading research...</p>
-        </div>
-      </div>
+  const CATEGORY_TONE: Record<string, BadgeTone> = { IGNITE: 'amber', ELEVATE: 'brand', TRANSFORM: 'violet' }
+  const filterChip = (active: boolean) =>
+    cx(
+      'inline-flex h-8 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3 text-sm font-medium transition',
+      active ? 'bg-brand-700 text-white shadow-card' : 'bg-surface-muted text-ink-soft ring-1 ring-inset ring-line hover:bg-canvas hover:text-ink',
     )
-  }
+  const CATEGORIES = ['IGNITE', 'ELEVATE', 'TRANSFORM'] as const
+  const DOMAINS = ['AI/ML', 'Pre-Med/BIO/CHEM', 'Engineering', 'Law & Political Sciences'] as const
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-6">
-          <div className="flex items-center gap-4 mb-4">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Dashboard
-            </Link>
-          </div>
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Research Management</h1>
-              <p className="text-gray-600">Manage all research papers, presentation PDFs, and report PDFs</p>
-            </div>
-            <a
-              href="/admin/new-research"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02]"
-            >
-              <FileText className="w-5 h-5" />
-              Add New Research
-            </a>
-          </div>
-        </div>
-
+    <AdminPageShell
+      moduleId="research"
+      description="Manage research papers, their presentation and report PDFs, and access requests."
+      actions={
+        <Link href="/admin/new-research" className={buttonClass('primary')}>
+          <Plus className="h-4 w-4" /> Add research
+        </Link>
+      }
+    >
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
-            {error}
-          </div>
+          <div role="alert" className="mb-4 rounded-card border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">{error}</div>
         )}
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Total Research</p>
-                <p className="text-2xl font-bold text-blue-600">{stats.total}</p>
+        <Panel className="overflow-hidden">
+          <div className="space-y-3 border-b border-line p-4">
+            <label className="relative block">
+              <span className="sr-only">Search research</span>
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+              <input
+                type="text"
+                placeholder="Search by title, author or school…"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className={cx(inputClass, 'pl-9')}
+              />
+            </label>
+            <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-6">
+              <div className="flex items-center gap-2 overflow-x-auto pb-0.5" role="group" aria-label="Category">
+                <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.06em] text-subtle">Category</span>
+                <button type="button" onClick={() => setCategoryFilter('all')} className={filterChip(categoryFilter === 'all')}>All</button>
+                {CATEGORIES.map((c) => (
+                  <button key={c} type="button" onClick={() => setCategoryFilter(c)} className={filterChip(categoryFilter === c)}>{c}</button>
+                ))}
               </div>
-              <FileText className="w-8 h-8 text-blue-500" />
-            </div>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Published</p>
-                <p className="text-2xl font-bold text-green-600">{stats.published}</p>
-              </div>
-              <CheckCircle className="w-8 h-8 text-green-500" />
-            </div>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Drafts</p>
-                <p className="text-2xl font-bold text-orange-600">{stats.draft}</p>
-              </div>
-              <XCircle className="w-8 h-8 text-orange-500" />
-            </div>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">With Presentation</p>
-                <p className="text-2xl font-bold text-purple-600">{stats.withPresentation}</p>
-              </div>
-              <FolderOpen className="w-8 h-8 text-purple-500" />
-            </div>
-          </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">With PDF</p>
-                <p className="text-2xl font-bold text-indigo-600">{stats.withPdf}</p>
-              </div>
-              <FolderOpen className="w-8 h-8 text-indigo-500" />
-            </div>
-          </div>
-        </div>
-
-        {/* Filters and Search */}
-        <div className="bg-white rounded-lg shadow p-4 mb-6">
-          <div className="flex flex-col lg:flex-row gap-4">
-            {/* Search */}
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Search</label>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Search by title, author, or school..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-                />
-              </div>
-            </div>
-
-            {/* Category Filter */}
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-              <div className="flex gap-2 flex-wrap">
-                <button
-                  onClick={() => setCategoryFilter('all')}
-                  className={`px-3 py-2 rounded-lg font-medium transition-colors text-sm ${
-                    categoryFilter === 'all'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  All
-                </button>
-                <button
-                  onClick={() => setCategoryFilter('IGNITE')}
-                  className={`px-3 py-2 rounded-lg font-medium transition-colors text-sm ${
-                    categoryFilter === 'IGNITE'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  IGNITE
-                </button>
-                <button
-                  onClick={() => setCategoryFilter('ELEVATE')}
-                  className={`px-3 py-2 rounded-lg font-medium transition-colors text-sm ${
-                    categoryFilter === 'ELEVATE'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  ELEVATE
-                </button>
-                <button
-                  onClick={() => setCategoryFilter('TRANSFORM')}
-                  className={`px-3 py-2 rounded-lg font-medium transition-colors text-sm ${
-                    categoryFilter === 'TRANSFORM'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  TRANSFORM
-                </button>
-              </div>
-            </div>
-
-            {/* Domain Filter */}
-            <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Domain</label>
-              <div className="flex gap-2 flex-wrap">
-                <button
-                  onClick={() => setDomainFilter('all')}
-                  className={`px-3 py-2 rounded-lg font-medium transition-colors text-sm ${
-                    domainFilter === 'all'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  All
-                </button>
-                <button
-                  onClick={() => setDomainFilter('AI/ML')}
-                  className={`px-3 py-2 rounded-lg font-medium transition-colors text-sm ${
-                    domainFilter === 'AI/ML'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  AI/ML
-                </button>
-                <button
-                  onClick={() => setDomainFilter('Pre-Med/BIO/CHEM')}
-                  className={`px-3 py-2 rounded-lg font-medium transition-colors text-sm ${
-                    domainFilter === 'Pre-Med/BIO/CHEM'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  Pre-Med/BIO/CHEM
-                </button>
-                <button
-                  onClick={() => setDomainFilter('Engineering')}
-                  className={`px-3 py-2 rounded-lg font-medium transition-colors text-sm ${
-                    domainFilter === 'Engineering'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  Engineering
-                </button>
-                <button
-                  onClick={() => setDomainFilter('Law & Political Sciences')}
-                  className={`px-3 py-2 rounded-lg font-medium transition-colors text-sm ${
-                    domainFilter === 'Law & Political Sciences'
-                      ? 'bg-indigo-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
-                >
-                  Law & Political Sciences
-                </button>
+              <div className="flex items-center gap-2 overflow-x-auto pb-0.5" role="group" aria-label="Domain">
+                <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.06em] text-subtle">Domain</span>
+                <button type="button" onClick={() => setDomainFilter('all')} className={filterChip(domainFilter === 'all')}>All</button>
+                {DOMAINS.map((d) => (
+                  <button key={d} type="button" onClick={() => setDomainFilter(d)} className={filterChip(domainFilter === d)}>{d}</button>
+                ))}
               </div>
             </div>
           </div>
 
-          <p className="text-sm text-gray-600 mt-4">
-            Showing {filteredResearch.length} research paper{filteredResearch.length !== 1 ? 's' : ''}
-          </p>
-        </div>
+          {!loading && (
+            <div className="flex items-center justify-between border-b border-line bg-surface-muted/60 px-5 py-2 text-xs text-muted">
+              <span>
+                Showing <span className="font-semibold text-ink">{filteredResearch.length}</span> of {stats.total} papers · {stats.published} published · {stats.draft} drafts
+              </span>
+            </div>
+          )}
 
-        {/* Research Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Research Details
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Category
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Domain
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Files
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Access Requests
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredResearch.length === 0 ? (
-                  <tr>
-                    <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
-                      No research found matching your filters
-                    </td>
+          {loading ? (
+            <LoadingState label="Loading research…" />
+          ) : filteredResearch.length === 0 ? (
+            <EmptyState
+              icon={FlaskConical}
+              title={research.length ? 'No research matches your filters' : 'No research yet'}
+              description={research.length ? 'Try a different search, category or domain.' : 'Add a research paper to get started.'}
+            />
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[980px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-line bg-surface-muted text-xs font-semibold uppercase tracking-[0.06em] text-muted">
+                    <th className="px-5 py-3">Research</th>
+                    <th className="px-4 py-3">Category · Domain</th>
+                    <th className="px-4 py-3">Status</th>
+                    <th className="px-4 py-3">Files</th>
+                    <th className="px-4 py-3">Access</th>
+                    <th className="px-5 py-3 text-right">Actions</th>
                   </tr>
-                ) : (
-                  filteredResearch.map((item) => (
-                    <tr key={item.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
-                        <div className="flex flex-col">
-                          <p className="text-sm font-medium text-gray-900">{item.title}</p>
-                          <p className="text-xs text-gray-500 mt-1">
-                            {item.author && `By ${item.author}`}
-                            {item.grade && ` • Grade ${item.grade}`}
-                            {item.school && ` • ${item.school}`}
+                </thead>
+                <tbody className="divide-y divide-line">
+                  {filteredResearch.map((item) => {
+                    const pending = item.pendingAccessRequestCount || 0
+                    return (
+                      <tr key={item.id} className="align-top transition-colors hover:bg-surface-muted/60">
+                        <td className="max-w-[360px] px-5 py-4">
+                          <p className="font-medium leading-snug text-ink">{item.title}</p>
+                          <p className="mt-1 text-xs text-muted">
+                            {[item.author && `By ${item.author}`, item.grade && `Grade ${item.grade}`, item.school].filter(Boolean).join(' · ')}
                           </p>
-                          {item.student && (
-                            <p className="text-xs text-blue-600 mt-1">
-                              Student: {item.student.name}
+                          {item.student && <p className="mt-0.5 text-xs text-brand-700">Student account: {item.student.name}</p>}
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="flex max-w-[200px] flex-col items-start gap-1.5">
+                            {item.category ? <Badge tone={CATEGORY_TONE[item.category] ?? 'slate'}>{item.category}</Badge> : <span className="text-xs text-subtle">No category</span>}
+                            {item.domain ? <Badge tone="slate">{item.domain}</Badge> : <span className="text-xs text-subtle">No domain</span>}
+                          </div>
+                        </td>
+                        <td className="px-4 py-4">
+                          <button
+                            type="button"
+                            onClick={() => togglePublished(item.id, item.published)}
+                            title={item.published ? 'Published. Click to unpublish.' : 'Draft. Click to publish.'}
+                            className={cx(
+                              'inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset transition',
+                              item.published ? 'bg-emerald-50 text-emerald-700 ring-emerald-100 hover:bg-emerald-100' : 'bg-surface-muted text-ink-soft ring-line hover:bg-canvas',
+                            )}
+                          >
+                            {item.published ? <Eye className="h-3.5 w-3.5" /> : <EyeOff className="h-3.5 w-3.5" />}
+                            {item.published ? 'Published' : 'Draft'}
+                          </button>
+                        </td>
+                        <td className="px-4 py-4">
+                          <div className="space-y-1 text-xs">
+                            <p className={cx('flex items-center gap-1.5', item.presentationPdfFilename ? 'text-ink-soft' : 'text-subtle')}>
+                              <Presentation className="h-3.5 w-3.5" />
+                              {item.presentationPdfFilename ? 'Presentation' : 'No presentation'}
                             </p>
-                          )}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {item.category ? (
-                          <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                            item.category === 'IGNITE' ? 'bg-yellow-100 text-yellow-800' :
-                            item.category === 'ELEVATE' ? 'bg-blue-100 text-blue-800' :
-                            'bg-purple-100 text-purple-800'
-                          }`}>
-                            {item.category}
-                          </span>
-                        ) : (
-                          <span className="text-gray-400 text-sm">None</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {item.domain ? (
-                          <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
-                            {item.domain}
-                          </span>
-                        ) : (
-                          <span className="text-gray-400 text-sm">None</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <button
-                          onClick={() => togglePublished(item.id, item.published)}
-                          className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
-                            item.published
-                              ? 'bg-green-100 text-green-800 hover:bg-green-200'
-                              : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
-                          }`}
-                        >
-                          {item.published ? (
-                            <>
-                              <Eye className="w-3 h-3" />
-                              Published
-                            </>
-                          ) : (
-                            <>
-                              <EyeOff className="w-3 h-3" />
-                              Draft
-                            </>
-                          )}
-                        </button>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex flex-col gap-1">
-                          <div className="flex items-center gap-2">
-                            <FolderOpen className="w-4 h-4 text-purple-500" />
-                            <span className="text-sm text-gray-900">
-                              {item.presentationPdfFilename ? 'Presentation PDF' : 'No Presentation PDF'}
-                            </span>
+                            <p className={cx('flex items-center gap-1.5', item.pdfFilename ? 'text-ink-soft' : 'text-subtle')}>
+                              <FileText className="h-3.5 w-3.5" />
+                              {item.pdfFilename ? 'Report PDF' : 'No report PDF'}
+                            </p>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <FileText className="w-4 h-4 text-red-500" />
-                            <span className="text-sm text-gray-900">
-                              {item.pdfFilename ? 'PDF' : 'No PDF'}
-                            </span>
+                        </td>
+                        <td className="px-4 py-4">
+                          <Link
+                            href={`/admin/research/${item.id}/access-requests`}
+                            title="View access requests"
+                            className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm text-ink-soft transition hover:bg-canvas hover:text-ink"
+                          >
+                            <Users className="h-4 w-4 text-muted" />
+                            <span className="tabular-nums">{item._count?.AccessRequest || 0}</span>
+                            {pending > 0 && <Badge tone="rose">{pending} new</Badge>}
+                          </Link>
+                        </td>
+                        <td className="px-5 py-4">
+                          <div className="flex justify-end gap-1">
+                            <button type="button" onClick={() => setEditingResearch(item)} title="Edit details" aria-label={`Edit ${item.title}`} className={buttonClass('ghost', 'icon')}>
+                              <Pencil className="h-3.5 w-3.5" />
+                            </button>
+                            <button type="button" onClick={() => setManagingPresentationId(item.id)} title="Manage presentation PDF" aria-label="Manage presentation PDF" className={buttonClass('ghost', 'icon')}>
+                              <Presentation className="h-3.5 w-3.5" />
+                            </button>
+                            <button type="button" onClick={() => setManagingPdfId(item.id)} title="Manage report PDF" aria-label="Manage report PDF" className={buttonClass('ghost', 'icon')}>
+                              <FileText className="h-3.5 w-3.5" />
+                            </button>
+                            <button type="button" onClick={() => deleteResearch(item)} title="Delete research" aria-label={`Delete ${item.title}`} className={buttonClass('ghost', 'icon', 'text-rose-600 hover:bg-rose-50 hover:text-rose-700')}>
+                              <Trash2 className="h-3.5 w-3.5" />
+                            </button>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <Link
-                          href={`/admin/research/${item.id}/access-requests`}
-                          className="relative inline-flex items-center gap-2 rounded-lg px-2 py-1 text-sm text-gray-900 hover:bg-gray-100 transition-colors"
-                          title="View access requests"
-                        >
-                          <Users className="w-4 h-4 text-gray-500" />
-                          <span>{item._count?.AccessRequest || 0}</span>
-                          {(item.pendingAccessRequestCount || 0) > 0 && (
-                            <span className="absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full bg-red-600 ring-2 ring-white" aria-label={`${item.pendingAccessRequestCount || 0} pending access requests`} />
-                          )}
-                        </Link>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div className="flex justify-end gap-2">
-                          <button
-                            onClick={() => setEditingResearch(item)}
-                            className="text-blue-600 hover:text-blue-900"
-                            title="Edit metadata"
-                          >
-                            <Edit className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => setManagingPresentationId(item.id)}
-                            className="text-indigo-600 hover:text-indigo-900"
-                            title="Manage presentation PDF"
-                          >
-                            <FolderOpen className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => setManagingPdfId(item.id)}
-                            className="text-red-600 hover:text-red-900"
-                            title="Manage report PDF"
-                          >
-                            <FileText className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => deleteResearch(item)}
-                            className="text-red-600 hover:text-red-900"
-                            title="Delete research"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </Panel>
 
       {/* Modals */}
       {editingResearch && (
@@ -564,6 +335,6 @@ export default function ResearchAdminPage() {
           onUpdate={handlePdfUpdated}
         />
       )}
-    </div>
+    </AdminPageShell>
   )
 }

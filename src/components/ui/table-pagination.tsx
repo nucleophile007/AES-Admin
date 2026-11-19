@@ -22,8 +22,8 @@ export default function TablePagination({
   const endItem = Math.min(currentPage * pageSize, totalItems)
 
   return (
-    <div className="flex flex-col gap-3 border-t border-gray-200 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
-      <p className="text-sm text-gray-700">
+    <div className="flex flex-col gap-3 border-t border-line px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+      <p className="text-sm text-muted">
         Showing {startItem}-{endItem} of {totalItems} {itemLabel}
       </p>
       <div className="flex items-center gap-2">
@@ -31,18 +31,18 @@ export default function TablePagination({
           type="button"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage <= 1}
-          className="rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+          className="h-8 rounded-lg border border-line bg-surface px-3 text-sm font-medium text-ink-soft shadow-card transition hover:bg-canvas hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
         >
           Previous
         </button>
-        <span className="text-sm font-medium text-gray-700">
+        <span className="text-sm font-medium text-ink-soft">
           Page {currentPage} of {totalPages}
         </span>
         <button
           type="button"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage >= totalPages}
-          className="rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+          className="h-8 rounded-lg border border-line bg-surface px-3 text-sm font-medium text-ink-soft shadow-card transition hover:bg-canvas hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
         >
           Next
         </button>

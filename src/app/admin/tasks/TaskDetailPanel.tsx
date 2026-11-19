@@ -146,7 +146,7 @@ export function TaskDetailPanel({
       onClose={onClose}
       variant="side"
       width="max-w-4xl"
-      title={task ? <span><span className="mr-2 font-mono text-sm text-slate-500">{taskKey(task.id)}</span>{task.title}</span> : 'Task'}
+      title={task ? <span><span className="mr-2 font-mono text-sm text-muted">{taskKey(task.id)}</span>{task.title}</span> : 'Task'}
       description={
         task && (
           <span>
@@ -156,7 +156,7 @@ export function TaskDetailPanel({
       }
     >
       {!task ? (
-        <div className="flex h-64 items-center justify-center text-sm text-slate-500">
+        <div className="flex h-64 items-center justify-center text-sm text-muted">
           {error ? (error as Error).message : isLoading ? <LoaderCircle className="h-6 w-6 animate-spin" /> : 'Task not found'}
         </div>
       ) : (
@@ -171,14 +171,14 @@ export function TaskDetailPanel({
             </div>
           )}
           {task.isCancelled && (
-            <div className="flex items-center gap-2 rounded-lg border border-slate-300 bg-slate-100 p-3 text-sm text-slate-700">
+            <div className="flex items-center gap-2 rounded-lg border border-line-strong bg-surface-muted p-3 text-sm text-ink-soft">
               <Ban className="h-4 w-4" /> This task is cancelled. Assignees no longer see it.
             </div>
           )}
 
           <div className="flex flex-wrap items-center gap-2 text-xs">
             <span className={`rounded border px-2 py-0.5 font-medium ${PRIORITY_META[task.priority].className}`}>{PRIORITY_META[task.priority].label} priority</span>
-            <span className="rounded border border-slate-200 bg-white px-2 py-0.5 text-slate-700">{deadlineLabel(task.deadline)}</span>
+            <span className="rounded border border-line bg-white px-2 py-0.5 text-ink-soft">{deadlineLabel(task.deadline)}</span>
             {task.recurrence && <span className="rounded border border-indigo-200 bg-indigo-50 px-2 py-0.5 text-indigo-700">Repeats {task.recurrence.toLowerCase()}</span>}
             {Object.entries(counts).map(([status, n]) => (
               <span key={status} className={`rounded-full border px-2 py-0.5 ${STATUS_META[status as keyof typeof STATUS_META].className}`}>
@@ -216,20 +216,20 @@ export function TaskDetailPanel({
 
           <div className="grid gap-5 lg:grid-cols-[minmax(0,15rem)_1fr]">
             <section aria-label="Assignees" className="space-y-2">
-              <h3 className="text-sm font-semibold text-slate-900">Assigned to ({items.length})</h3>
-              <ul className="max-h-[28rem] divide-y divide-slate-100 overflow-y-auto rounded-lg border border-slate-200">
+              <h3 className="text-sm font-semibold text-ink">Assigned to ({items.length})</h3>
+              <ul className="max-h-[28rem] divide-y divide-line overflow-y-auto rounded-lg border border-line">
                 {items.map((item) => {
                   const person = assigneeOf(item as TaskItem)
                   const progress = checklistProgress(task, item.checklistDone)
                   const active = selected?.id === item.id
                   return (
                     <li key={item.id}>
-                      <button type="button" onClick={() => setSelectedId(item.id)} aria-pressed={active} className={`w-full px-3 py-2 text-left text-sm ${active ? 'bg-blue-50' : 'hover:bg-slate-50'}`}>
-                        <span className="block truncate font-medium text-slate-900">{person?.name ?? 'Unknown'}</span>
+                      <button type="button" onClick={() => setSelectedId(item.id)} aria-pressed={active} className={`w-full px-3 py-2 text-left text-sm ${active ? 'bg-brand-50' : 'hover:bg-surface-muted'}`}>
+                        <span className="block truncate font-medium text-ink">{person?.name ?? 'Unknown'}</span>
                         <span className="mt-1 flex flex-wrap items-center gap-1 text-[11px]">
                           <span className={`rounded border px-1.5 ${ROLE_META[item.assigneeRole].className}`}>{ROLE_META[item.assigneeRole].label}</span>
                           <span className={`rounded-full border px-1.5 ${STATUS_META[item.status].className}`}>{STATUS_META[item.status].label}</span>
-                          {progress.total > 0 && <span className="text-slate-500">{progress.done}/{progress.total} steps</span>}
+                          {progress.total > 0 && <span className="text-muted">{progress.done}/{progress.total} steps</span>}
                           {isOverdue(task.deadline, item.status) && <span className="font-semibold text-rose-600">Overdue</span>}
                         </span>
                       </button>
@@ -285,13 +285,13 @@ function TaskSummary({ task }: { task: TaskRecord }) {
   ].filter(Boolean)
   return (
     <div className="space-y-3">
-      <p className="whitespace-pre-wrap break-words rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm text-slate-800 [overflow-wrap:anywhere]">{task.description}</p>
-      <p className="text-xs text-slate-600">
+      <p className="whitespace-pre-wrap break-words rounded-lg border border-line bg-surface-muted p-3 text-sm text-ink-soft [overflow-wrap:anywhere]">{task.description}</p>
+      <p className="text-xs text-muted">
         <strong>Must provide:</strong> {requirements.length ? requirements.join(', ') : 'nothing extra'} ·{' '}
         <strong>Approval:</strong> {task.requireMentorApproval ? 'needs review' : 'completes on submit'}
       </p>
       {checklist.length > 0 && (
-        <ol className="list-decimal space-y-0.5 pl-5 text-sm text-slate-700">
+        <ol className="list-decimal space-y-0.5 pl-5 text-sm text-ink-soft">
           {checklist.map((c) => <li key={c.id}>{c.title}</li>)}
         </ol>
       )}
@@ -321,7 +321,7 @@ function EditTaskForm({
   const [priority, setPriority] = useState<TaskPriority>(task.priority)
   const [deadline, setDeadline] = useState(toLocal(task.deadline))
   return (
-    <div className="space-y-3 rounded-lg border border-blue-200 bg-blue-50/40 p-3">
+    <div className="space-y-3 rounded-lg border border-brand-200 bg-brand-50/40 p-3">
       <input className={inputClass} value={title} onChange={(e) => setTitle(e.target.value)} aria-label="Title" />
       <textarea className={`${inputClass} h-24 py-2`} value={description} onChange={(e) => setDescription(e.target.value)} aria-label="Description" />
       <div className="grid gap-2 sm:grid-cols-3">
@@ -468,8 +468,8 @@ function AssigneeWork({
     <section className="min-w-0 space-y-4" aria-label={`${person?.name ?? 'Assignee'}'s work`}>
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <h3 className="text-base font-semibold text-slate-950">{person?.name ?? 'Unknown'}</h3>
-          <p className="text-xs text-slate-500">{ROLE_META[item.assigneeRole].label} · {person?.email}</p>
+          <h3 className="text-base font-semibold text-ink">{person?.name ?? 'Unknown'}</h3>
+          <p className="text-xs text-muted">{ROLE_META[item.assigneeRole].label} · {person?.email}</p>
         </div>
         <span className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${STATUS_META[item.status].className}`}>{STATUS_META[item.status].label}</span>
       </div>
@@ -481,41 +481,41 @@ function AssigneeWork({
           ['Completed', item.completedAt],
           ['Reviewed', item.reviewedAt],
         ] as const).map(([label, value]) => (
-          <div key={label} className="rounded border border-slate-200 p-2">
-            <dt className="text-[10px] font-bold uppercase tracking-wide text-slate-400">{label}</dt>
-            <dd className="mt-0.5 text-slate-700">{formatDateTime(value)}</dd>
+          <div key={label} className="rounded border border-line p-2">
+            <dt className="text-[10px] font-bold uppercase tracking-wide text-subtle">{label}</dt>
+            <dd className="mt-0.5 text-ink-soft">{formatDateTime(value)}</dd>
           </div>
         ))}
       </dl>
 
       {checklist.length > 0 && (
-        <div className="rounded-lg border border-slate-200 p-3">
-          <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-slate-500">Checklist · {checklist.filter((c) => done.has(c.id)).length}/{checklist.length}</p>
+        <div className="rounded-lg border border-line p-3">
+          <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-muted">Checklist · {checklist.filter((c) => done.has(c.id)).length}/{checklist.length}</p>
           <ul className="space-y-1 text-sm">
             {checklist.map((c) => (
               <li key={c.id} className="flex items-center gap-2">
-                {done.has(c.id) ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : <span className="h-4 w-4 rounded-full border border-slate-300" />}
-                <span className={done.has(c.id) ? 'text-slate-500 line-through' : 'text-slate-800'}>{c.title}</span>
+                {done.has(c.id) ? <CheckCircle2 className="h-4 w-4 text-emerald-600" /> : <span className="h-4 w-4 rounded-full border border-line-strong" />}
+                <span className={done.has(c.id) ? 'text-muted line-through' : 'text-ink-soft'}>{c.title}</span>
               </li>
             ))}
           </ul>
         </div>
       )}
 
-      <div className="rounded-lg border border-slate-200 p-3 text-sm">
-        <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-slate-500">Submission</p>
+      <div className="rounded-lg border border-line p-3 text-sm">
+        <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-muted">Submission</p>
         {!hasSubmission ? (
-          <p className="text-slate-500">Nothing submitted yet.</p>
+          <p className="text-muted">Nothing submitted yet.</p>
         ) : (
           <div className="space-y-1.5">
-            {item.submissionNote && <p className="whitespace-pre-wrap text-slate-800 [overflow-wrap:anywhere]">{item.submissionNote}</p>}
+            {item.submissionNote && <p className="whitespace-pre-wrap text-ink-soft [overflow-wrap:anywhere]">{item.submissionNote}</p>}
             {isSafeHttpUrl(item.submissionUrl) && (
-              <a href={item.submissionUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 break-all text-blue-700 underline">
+              <a href={item.submissionUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 break-all text-brand-700 underline">
                 {item.submissionUrl} <ExternalLink className="h-3 w-3 shrink-0" />
               </a>
             )}
             {isSafeHttpUrl(item.submissionFileUrl) && (
-              <a href={item.submissionFileUrl} target="_blank" rel="noopener noreferrer" className="block break-all text-blue-700 underline">
+              <a href={item.submissionFileUrl} target="_blank" rel="noopener noreferrer" className="block break-all text-brand-700 underline">
                 {item.submissionFileName || 'Attached file'}
               </a>
             )}
@@ -523,13 +523,13 @@ function AssigneeWork({
           </div>
         )}
         {item.mentorFeedback && (
-          <p className="mt-2 rounded border border-slate-200 bg-slate-50 p-2 text-xs text-slate-700"><strong>Last feedback:</strong> {item.mentorFeedback}</p>
+          <p className="mt-2 rounded border border-line bg-surface-muted p-2 text-xs text-ink-soft"><strong>Last feedback:</strong> {item.mentorFeedback}</p>
         )}
       </div>
 
       {canAct && (canReview('APPROVE', item.status) || canReview('REQUEST_CHANGES', item.status) || canReview('REOPEN', item.status)) && (
-        <div className="space-y-2 rounded-lg border border-blue-200 bg-blue-50/40 p-3">
-          <p className="text-xs font-bold uppercase tracking-wide text-blue-900">Review</p>
+        <div className="space-y-2 rounded-lg border border-brand-200 bg-brand-50/40 p-3">
+          <p className="text-xs font-bold uppercase tracking-wide text-brand-900">Review</p>
           <textarea className={`${inputClass} h-16 py-2`} value={feedback} onChange={(e) => setFeedback(e.target.value)} placeholder="Feedback (required when requesting changes)" />
           <div className="flex flex-wrap gap-2">
             {canReview('APPROVE', item.status) && (
@@ -552,20 +552,20 @@ function AssigneeWork({
       )}
 
       <div className="space-y-2">
-        <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-slate-500"><MessageSquare className="h-3.5 w-3.5" /> Comments ({item.comments?.length ?? 0})</p>
+        <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-muted"><MessageSquare className="h-3.5 w-3.5" /> Comments ({item.comments?.length ?? 0})</p>
         <ul className="space-y-2">
           {(item.comments ?? []).map((c) => (
-            <li key={c.id} className={`rounded-lg border p-2.5 text-sm ${c.authorRole === 'admin' ? 'border-amber-200 bg-amber-50/50' : 'border-slate-200 bg-white'}`}>
-              <p className="text-[11px] text-slate-500">
-                <span className="font-semibold text-slate-800">{c.authorName}</span> · {ROLE_WORD[c.authorRole] ?? c.authorRole} · {formatDateTime(c.createdAt)}
+            <li key={c.id} className={`rounded-lg border p-2.5 text-sm ${c.authorRole === 'admin' ? 'border-amber-200 bg-amber-50/50' : 'border-line bg-white'}`}>
+              <p className="text-[11px] text-muted">
+                <span className="font-semibold text-ink-soft">{c.authorName}</span> · {ROLE_WORD[c.authorRole] ?? c.authorRole} · {formatDateTime(c.createdAt)}
               </p>
-              {c.content && <p className="mt-0.5 whitespace-pre-wrap text-slate-800 [overflow-wrap:anywhere]">{c.content}</p>}
+              {c.content && <p className="mt-0.5 whitespace-pre-wrap text-ink-soft [overflow-wrap:anywhere]">{c.content}</p>}
               {isSafeHttpUrl(c.attachmentUrl) && (
-                <a href={c.attachmentUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-700 underline">{c.attachmentName || 'Attachment'}</a>
+                <a href={c.attachmentUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-brand-700 underline">{c.attachmentName || 'Attachment'}</a>
               )}
             </li>
           ))}
-          {!item.comments?.length && <li className="text-sm text-slate-500">No comments yet.</li>}
+          {!item.comments?.length && <li className="text-sm text-muted">No comments yet.</li>}
         </ul>
         {canAct && (
           <div className="flex gap-2">
@@ -578,12 +578,12 @@ function AssigneeWork({
       </div>
 
       <div className="space-y-2">
-        <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-slate-500"><History className="h-3.5 w-3.5" /> Activity</p>
-        <ul className="space-y-1.5 border-l-2 border-slate-200 pl-3 text-xs">
+        <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-muted"><History className="h-3.5 w-3.5" /> Activity</p>
+        <ul className="space-y-1.5 border-l-2 border-line pl-3 text-xs">
           {(item.activities ?? []).map((a) => (
             <li key={a.id}>
-              <span className="text-slate-800">{a.details || a.action}</span>
-              <span className="text-slate-500"> · {a.performedByName} ({(ROLE_WORD[a.performedByRole] ?? a.performedByRole).toLowerCase()}) · {formatDateTime(a.createdAt)}</span>
+              <span className="text-ink-soft">{a.details || a.action}</span>
+              <span className="text-muted"> · {a.performedByName} ({(ROLE_WORD[a.performedByRole] ?? a.performedByRole).toLowerCase()}) · {formatDateTime(a.createdAt)}</span>
             </li>
           ))}
         </ul>

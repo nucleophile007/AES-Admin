@@ -104,23 +104,23 @@ export interface StatusCounts {
 export const STATUSES: TaskStatus[] = ['TODO', 'IN_PROGRESS', 'SUBMITTED', 'CHANGES_REQUESTED', 'COMPLETED']
 
 export const STATUS_META: Record<TaskStatus, { label: string; className: string }> = {
-  TODO: { label: 'To do', className: 'bg-slate-100 text-slate-700 border-slate-300' },
-  IN_PROGRESS: { label: 'In progress', className: 'bg-blue-50 text-blue-700 border-blue-200' },
-  SUBMITTED: { label: 'Needs review', className: 'bg-amber-50 text-amber-800 border-amber-200' },
-  CHANGES_REQUESTED: { label: 'Changes requested', className: 'bg-rose-50 text-rose-700 border-rose-200' },
-  COMPLETED: { label: 'Completed', className: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+  TODO: { label: 'To do', className: 'bg-surface-muted text-ink-soft border-line' },
+  IN_PROGRESS: { label: 'In progress', className: 'bg-brand-50 text-brand-700 border-brand-100' },
+  SUBMITTED: { label: 'Needs review', className: 'bg-gold-50 text-gold-700 border-gold-200' },
+  CHANGES_REQUESTED: { label: 'Changes requested', className: 'bg-rose-50 text-rose-700 border-rose-100' },
+  COMPLETED: { label: 'Completed', className: 'bg-emerald-50 text-emerald-700 border-emerald-100' },
 }
 
 export const PRIORITY_META: Record<TaskPriority, { label: string; className: string }> = {
-  LOW: { label: 'Low', className: 'bg-slate-100 text-slate-600 border-slate-200' },
+  LOW: { label: 'Low', className: 'bg-surface-muted text-muted border-line' },
   MEDIUM: { label: 'Medium', className: 'bg-sky-50 text-sky-700 border-sky-200' },
-  HIGH: { label: 'High', className: 'bg-amber-50 text-amber-700 border-amber-200' },
+  HIGH: { label: 'High', className: 'bg-gold-50 text-gold-700 border-gold-200' },
   URGENT: { label: 'Urgent', className: 'bg-rose-50 text-rose-700 border-rose-200' },
 }
 
 export const ROLE_META: Record<AssigneeRole, { label: string; plural: string; className: string }> = {
   STUDENT: { label: 'Student', plural: 'Students', className: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-  TEACHER: { label: 'Mentor', plural: 'Mentors', className: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
+  TEACHER: { label: 'Mentor', plural: 'Mentors', className: 'bg-violet-50 text-violet-700 border-violet-100' },
   PARENT: { label: 'Parent', plural: 'Parents', className: 'bg-sky-50 text-sky-700 border-sky-200' },
 }
 
@@ -209,11 +209,11 @@ export async function taskApi<T = unknown>(path: string, init?: { method?: strin
   return data as T
 }
 
-/** Field look without a width (for selects that size to their content). */
+/** Field look without a width (for selects that size to their content). Matches the admin theme. */
 export const fieldClass =
-  'h-9 rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100'
+  'h-9 rounded-lg border border-line bg-surface px-3 text-sm text-ink shadow-card placeholder:text-subtle focus:border-brand-300 focus:outline-none focus:ring-4 focus:ring-brand-100'
 export const inputClass = `${fieldClass} w-full`
 export const buttonClass =
-  'inline-flex items-center justify-center gap-1.5 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-800 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-50'
+  'inline-flex h-9 items-center justify-center gap-1.5 rounded-lg border border-line bg-surface px-3 text-sm font-medium text-ink-soft shadow-card transition hover:bg-canvas hover:text-ink disabled:cursor-not-allowed disabled:opacity-50'
 export const primaryButtonClass =
-  'inline-flex items-center justify-center gap-1.5 rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50'
+  'inline-flex h-9 items-center justify-center gap-1.5 rounded-lg bg-brand-700 px-3.5 text-sm font-semibold text-white shadow-card transition hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-50'

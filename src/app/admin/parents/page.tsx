@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import { Edit3, Loader2, Mail, Save, Users, X } from "lucide-react"
+import { CheckCircle2, Edit3, GraduationCap, Loader2, Mail, Phone, Save, Search, Send, Users, X } from "lucide-react"
 import { toast } from "sonner"
+import AdminPageShell from "@/components/admin/AdminPageShell"
+import { Badge, EmptyState, LoadingState, Panel, Segmented, buttonClass, cx, inputClass } from "@/components/admin/ui"
 
 interface Parent {
   id: number
@@ -24,6 +26,8 @@ export default function ParentsPage() {
   const [editing, setEditing] = useState<Parent | null>(null)
   const [saving, setSaving] = useState(false)
   const [sendingId, setSendingId] = useState<number | null>(null)
+  const [search, setSearch] = useState("")
+  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "inactive">("all")
 
   const loadParents = async () => {
     setLoading(true)
@@ -82,82 +86,176 @@ export default function ParentsPage() {
     }
   }
 
-  if (status === "loading" || !session) return <div className="p-8">Loading...</div>
+  const q = search.trim().toLowerCase()
+  const counts = {
+    all: parents.length,
+    active: parents.filter((p) => p.isActivated).length,
+    inactive: parents.filter((p) => !p.isActivated).length,
+  }
+  const visible = parents.filter((parent) => {
+    if (statusFilter === "active" && !parent.isActivated) return false
+    if (statusFilter === "inactive" && parent.isActivated) return false
+    if (!q) return true
+    return [parent.name, parent.email, parent.phone ?? "", ...parent.students.map((s) => s.name)].join(" ").toLowerCase().includes(q)
+  })
+
+  if (status === "loading" || !session) {
+    return (
+      <AdminPageShell moduleId="parents">
+        <Panel><LoadingState label="Checking access…" /></Panel>
+      </AdminPageShell>
+    )
+  }
 
   return (
-    <main className="min-h-screen bg-gray-50 p-6">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-6 flex items-center justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">Admin Dashboard</p>
-            <h1 className="text-3xl font-bold text-gray-900">Parent Management</h1>
-            <p className="mt-1 text-gray-600">Edit parent contact details and resend activation links.</p>
-          </div>
-          <button onClick={() => router.push("/")} className="rounded-lg bg-gray-700 px-4 py-2 text-sm text-white hover:bg-gray-800">Back to Dashboard</button>
+    <AdminPageShell moduleId="parents" description="Edit parent contact details and resend activation links.">
+      {error && <div role="alert" className="mb-4 rounded-card border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">{error}</div>}
+
+      <Panel className="overflow-hidden">
+        <div className="flex flex-col gap-3 border-b border-line p-4 sm:flex-row sm:items-center">
+          <label className="relative block flex-1">
+            <span className="sr-only">Search parents</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search parent, email, phone or student…"
+              className={cx(inputClass, "pl-9")}
+            />
+          </label>
+          <Segmented
+            label="Activation"
+            value={statusFilter}
+            onChange={setStatusFilter}
+            options={[
+              { value: "all", label: "All", count: counts.all },
+              { value: "active", label: "Activated", count: counts.active },
+              { value: "inactive", label: "Not activated", count: counts.inactive },
+            ]}
+          />
         </div>
 
-        {error && <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</div>}
         {loading ? (
-          <div className="rounded-xl bg-white p-12 text-center"><Loader2 className="mx-auto h-8 w-8 animate-spin text-blue-600" /></div>
+          <LoadingState label="Loading parents…" />
+        ) : visible.length === 0 ? (
+          <EmptyState
+            icon={Users}
+            title={parents.length ? "No parents match your filters" : "No parent accounts found"}
+            description={parents.length ? "Try a different name, email or status." : "Parent accounts appear here once families sign up."}
+          />
         ) : (
-          <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-            <div className="divide-y divide-gray-200">
-              {parents.map((parent) => (
-                <div key={parent.id} className="p-5">
-                  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                    <div className="flex items-start gap-3">
-                      <div className="rounded-lg bg-blue-100 p-2 text-blue-700"><Users className="h-5 w-5" /></div>
-                      <div>
-                        <h2 className="font-semibold text-gray-900">{parent.name}</h2>
-                        <p className="text-sm text-gray-600">{parent.email}{parent.phone ? ` · ${parent.phone}` : ""}</p>
-                        <p className="mt-1 text-xs text-gray-500">Student{parent.students.length === 1 ? "" : "s"}: {parent.students.map((student) => student.name).join(", ") || "None"}</p>
-                        <span className={`mt-2 inline-flex rounded-full px-2.5 py-1 text-xs font-semibold ${parent.isActivated ? "bg-green-100 text-green-700" : "bg-amber-100 text-amber-700"}`}>
-                          {parent.isActivated ? "Activated" : "Not activated"}
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[760px] text-left text-sm">
+              <thead>
+                <tr className="border-b border-line bg-surface-muted text-xs font-semibold uppercase tracking-[0.06em] text-muted">
+                  <th className="px-5 py-3">Parent</th>
+                  <th className="px-4 py-3">Students</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-5 py-3 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-line">
+                {visible.map((parent) => (
+                  <tr key={parent.id} className="align-top transition-colors hover:bg-surface-muted/60">
+                    <td className="px-5 py-4">
+                      <div className="flex items-start gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-xs font-semibold uppercase text-emerald-800 ring-1 ring-inset ring-emerald-100">
+                          {parent.name.split(/\s+/).map((part) => part[0]).slice(0, 2).join("")}
                         </span>
+                        <div className="min-w-0">
+                          <p className="truncate font-medium text-ink">{parent.name}</p>
+                          <a href={`mailto:${parent.email}`} className="mt-0.5 flex items-center gap-1.5 truncate text-xs text-muted hover:text-brand-700">
+                            <Mail className="h-3.5 w-3.5 shrink-0" />{parent.email}
+                          </a>
+                          {parent.phone && (
+                            <a href={`tel:${parent.phone}`} className="mt-0.5 flex items-center gap-1.5 text-xs text-muted hover:text-brand-700">
+                              <Phone className="h-3.5 w-3.5 shrink-0" />{parent.phone}
+                            </a>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      <button onClick={() => setEditing(parent)} className="inline-flex items-center gap-1 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700 hover:bg-gray-50"><Edit3 className="h-4 w-4" /> Edit</button>
-                      <button onClick={() => void resendActivation(parent)} disabled={sendingId === parent.id} className="inline-flex items-center gap-1 rounded-lg bg-blue-600 px-3 py-2 text-sm text-white hover:bg-blue-700 disabled:bg-blue-300">
-                        {sendingId === parent.id ? <Loader2 className="h-4 w-4 animate-spin" /> : <Mail className="h-4 w-4" />} Resend Activation
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {!parents.length && <div className="p-12 text-center text-gray-500">No parent accounts found.</div>}
-            </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      {parent.students.length ? (
+                        <div className="flex max-w-xs flex-wrap gap-1.5">
+                          {parent.students.map((student) => (
+                            <Badge key={student.id} tone="slate" icon={GraduationCap}>{student.name}</Badge>
+                          ))}
+                        </div>
+                      ) : (
+                        <span className="text-xs text-subtle">No students linked</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-4">
+                      {parent.isActivated ? (
+                        <Badge tone="emerald" icon={CheckCircle2}>Activated</Badge>
+                      ) : (
+                        <Badge tone="amber" dot>Not activated</Badge>
+                      )}
+                    </td>
+                    <td className="px-5 py-4">
+                      <div className="flex justify-end gap-2">
+                        <button type="button" onClick={() => setEditing(parent)} className={buttonClass("secondary", "sm")}>
+                          <Edit3 className="h-3.5 w-3.5" /> Edit
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => void resendActivation(parent)}
+                          disabled={sendingId === parent.id}
+                          className={buttonClass("primary", "sm")}
+                        >
+                          {sendingId === parent.id ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Send className="h-3.5 w-3.5" />}
+                          Resend activation
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         )}
-      </div>
+      </Panel>
 
       {editing && (
-        <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/40 p-4">
-          <form onSubmit={saveParent} className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
-            <div className="mb-5 flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-gray-900">Edit Parent</h2>
-              <button type="button" onClick={() => setEditing(null)}><X className="h-5 w-5 text-gray-500" /></button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]" onClick={() => setEditing(null)}>
+          <form
+            onSubmit={saveParent}
+            onClick={(event) => event.stopPropagation()}
+            className="w-full max-w-md overflow-hidden rounded-2xl border border-line bg-surface shadow-pop"
+          >
+            <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4">
+              <div>
+                <h2 className="text-lg font-semibold tracking-tight text-ink">Edit parent</h2>
+                <p className="mt-0.5 text-sm text-muted">Update contact details for {editing.name}.</p>
+              </div>
+              <button type="button" onClick={() => setEditing(null)} className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink" aria-label="Close">
+                <X className="h-5 w-5" />
+              </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 px-5 py-4">
               {(["name", "email", "phone"] as const).map((field) => (
-                <label key={field} className="block text-sm font-medium capitalize text-gray-700">
+                <label key={field} className="block text-sm font-medium capitalize text-ink-soft">
                   {field}
                   <input
                     type={field === "email" ? "email" : "text"}
                     value={editing[field] || ""}
                     onChange={(event) => setEditing({ ...editing, [field]: event.target.value })}
-                    className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900"
+                    className={cx(inputClass, "mt-1.5")}
                     required={field !== "phone"}
                   />
                 </label>
               ))}
             </div>
-            <button type="submit" disabled={saving} className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:bg-blue-300">
-              {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} Save Changes
-            </button>
+            <div className="flex justify-end gap-2 border-t border-line bg-surface-muted/60 px-5 py-3">
+              <button type="button" onClick={() => setEditing(null)} className={buttonClass("secondary")}>Cancel</button>
+              <button type="submit" disabled={saving} className={buttonClass("primary")}>
+                {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />} Save changes
+              </button>
+            </div>
           </form>
         </div>
       )}
-    </main>
+    </AdminPageShell>
   )
 }

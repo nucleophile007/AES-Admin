@@ -145,23 +145,23 @@ export function CreateTaskDialog({
     >
       <div className="space-y-5">
         <div className="grid gap-3">
-          <label className="block text-sm font-medium text-slate-800">
+          <label className="block text-sm font-medium text-ink-soft">
             Title
             <input className={`${inputClass} mt-1`} value={form.title} onChange={(e) => set('title', e.target.value)} maxLength={300} placeholder="e.g. Submit your SAT registration confirmation" />
           </label>
-          <label className="block text-sm font-medium text-slate-800">
+          <label className="block text-sm font-medium text-ink-soft">
             Description & instructions
             <textarea className={`${inputClass} mt-1 h-24 py-2`} value={form.description} onChange={(e) => set('description', e.target.value)} placeholder="What needs to be done, and how?" />
           </label>
           <div className="grid gap-3 sm:grid-cols-3">
-            <label className="block text-sm font-medium text-slate-800">
+            <label className="block text-sm font-medium text-ink-soft">
               Category
               <input className={`${inputClass} mt-1`} list="admin-task-categories" value={form.category} onChange={(e) => set('category', e.target.value)} />
               <datalist id="admin-task-categories">
                 {allCategories.map((c) => <option key={c} value={c} />)}
               </datalist>
             </label>
-            <label className="block text-sm font-medium text-slate-800">
+            <label className="block text-sm font-medium text-ink-soft">
               Priority
               <select className={`${inputClass} mt-1`} value={form.priority} onChange={(e) => set('priority', e.target.value as TaskPriority)}>
                 <option value="LOW">Low</option>
@@ -170,13 +170,13 @@ export function CreateTaskDialog({
                 <option value="URGENT">Urgent</option>
               </select>
             </label>
-            <label className="block text-sm font-medium text-slate-800">
+            <label className="block text-sm font-medium text-ink-soft">
               Deadline
               <input type="datetime-local" className={`${inputClass} mt-1`} value={form.deadline} onChange={(e) => set('deadline', e.target.value)} />
             </label>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <label className="block text-sm font-medium text-slate-800">
+            <label className="block text-sm font-medium text-ink-soft">
               Repeats
               <select className={`${inputClass} mt-1`} value={form.recurrence} onChange={(e) => set('recurrence', e.target.value as FormState['recurrence'])}>
                 <option value="">Does not repeat</option>
@@ -186,7 +186,7 @@ export function CreateTaskDialog({
               </select>
             </label>
             {form.recurrence && (
-              <label className="block text-sm font-medium text-slate-800">
+              <label className="block text-sm font-medium text-ink-soft">
                 Repeat until (optional)
                 <input type="date" className={`${inputClass} mt-1`} value={form.recurrenceEndsAt} onChange={(e) => set('recurrenceEndsAt', e.target.value)} />
               </label>
@@ -196,12 +196,12 @@ export function CreateTaskDialog({
         </div>
 
         <section className="space-y-2">
-          <h3 className="text-sm font-semibold text-slate-900">Checklist (optional)</h3>
+          <h3 className="text-sm font-semibold text-ink">Checklist (optional)</h3>
           {form.checklist.map((step, i) => (
             <div key={i} className="flex items-center gap-2">
-              <span className="w-5 text-right text-xs text-slate-500">{i + 1}.</span>
+              <span className="w-5 text-right text-xs text-muted">{i + 1}.</span>
               <input className={inputClass} value={step} onChange={(e) => set('checklist', form.checklist.map((s, j) => (j === i ? e.target.value : s)))} />
-              <button type="button" className="rounded p-1 text-slate-500 hover:bg-slate-100" aria-label={`Remove step ${i + 1}`} onClick={() => set('checklist', form.checklist.filter((_, j) => j !== i))}>
+              <button type="button" className="rounded p-1 text-muted hover:bg-surface-muted" aria-label={`Remove step ${i + 1}`} onClick={() => set('checklist', form.checklist.filter((_, j) => j !== i))}>
                 <Trash2 className="h-4 w-4" />
               </button>
             </div>
@@ -222,15 +222,15 @@ export function CreateTaskDialog({
             <button type="button" className={buttonClass} onClick={addStep} disabled={!newStep.trim()}><Plus className="h-4 w-4" /> Add</button>
           </div>
           {steps.length > 0 && (
-            <label className="flex items-center gap-2 text-sm text-slate-700">
-              <input type="checkbox" checked={form.requireChecklistComplete} onChange={(e) => set('requireChecklistComplete', e.target.checked)} className="h-4 w-4 rounded border-slate-300" />
+            <label className="flex items-center gap-2 text-sm text-ink-soft">
+              <input type="checkbox" checked={form.requireChecklistComplete} onChange={(e) => set('requireChecklistComplete', e.target.checked)} className="h-4 w-4 rounded border-line-strong" />
               All steps must be ticked before submitting
             </label>
           )}
         </section>
 
         <section className="space-y-2">
-          <h3 className="text-sm font-semibold text-slate-900">What they must provide</h3>
+          <h3 className="text-sm font-semibold text-ink">What they must provide</h3>
           <div className="grid gap-2 sm:grid-cols-2">
             {([
               ['requireSubmissionNote', 'A written note'],
@@ -238,8 +238,8 @@ export function CreateTaskDialog({
               ['requireUrl', 'A link (URL)'],
               ['requireExternalConfirmation', 'Confirm an outside step'],
             ] as const).map(([key, label]) => (
-              <label key={key} className="flex items-center gap-2 text-sm text-slate-700">
-                <input type="checkbox" checked={form[key]} onChange={(e) => set(key, e.target.checked)} className="h-4 w-4 rounded border-slate-300" />
+              <label key={key} className="flex items-center gap-2 text-sm text-ink-soft">
+                <input type="checkbox" checked={form[key]} onChange={(e) => set(key, e.target.checked)} className="h-4 w-4 rounded border-line-strong" />
                 {label}
               </label>
             ))}
@@ -247,14 +247,14 @@ export function CreateTaskDialog({
           {form.requireExternalConfirmation && (
             <input className={inputClass} value={form.externalConfirmationPrompt} onChange={(e) => set('externalConfirmationPrompt', e.target.value)} placeholder='e.g. "I have registered on the College Board website"' />
           )}
-          <label className="flex items-center gap-2 text-sm text-slate-700">
-            <input type="checkbox" checked={form.requireMentorApproval} onChange={(e) => set('requireMentorApproval', e.target.checked)} className="h-4 w-4 rounded border-slate-300" />
+          <label className="flex items-center gap-2 text-sm text-ink-soft">
+            <input type="checkbox" checked={form.requireMentorApproval} onChange={(e) => set('requireMentorApproval', e.target.checked)} className="h-4 w-4 rounded border-line-strong" />
             Requires admin approval (otherwise it completes when submitted)
           </label>
         </section>
 
         <section className="space-y-2">
-          <h3 className="text-sm font-semibold text-slate-900">Assign to</h3>
+          <h3 className="text-sm font-semibold text-ink">Assign to</h3>
           <PeoplePicker value={people} onChange={setPeople} mentors={mentors} />
         </section>
       </div>

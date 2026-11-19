@@ -202,14 +202,14 @@ export default function UploadForms({
   return (
     <div className="space-y-6">
       {/* Tab Navigation */}
-      <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-        <div className="flex border-b border-slate-200">
+      <div className="bg-surface rounded-2xl shadow-lg border border-line overflow-hidden">
+        <div className="flex border-b border-line">
           <button
             onClick={() => setActiveTab('presentation')}
             className={`flex-1 px-6 py-4 text-sm font-medium transition-all relative ${
               activeTab === 'presentation'
-                ? 'text-indigo-600 bg-indigo-50'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                ? 'text-brand-600 bg-brand-50'
+                : 'text-muted hover:text-ink hover:bg-surface-muted'
             }`}
           >
             <div className="flex items-center justify-center gap-2">
@@ -220,7 +220,7 @@ export default function UploadForms({
               )}
             </div>
             {activeTab === 'presentation' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-600 to-violet-600" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-700" />
             )}
           </button>
 
@@ -229,7 +229,7 @@ export default function UploadForms({
             className={`flex-1 px-6 py-4 text-sm font-medium transition-all relative ${
               activeTab === 'report'
                 ? 'text-violet-600 bg-violet-50'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                : 'text-muted hover:text-ink hover:bg-surface-muted'
             }`}
           >
             <div className="flex items-center justify-center gap-2">
@@ -240,7 +240,7 @@ export default function UploadForms({
               )}
             </div>
             {activeTab === 'report' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-violet-600 to-fuchsia-600" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-700" />
             )}
           </button>
         </div>
@@ -250,13 +250,13 @@ export default function UploadForms({
           {activeTab === 'presentation' && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                <h3 className="text-lg font-semibold text-ink mb-2">
                   Upload Presentation PDF
                 </h3>
-                <p className="text-sm text-slate-600 mb-3">
+                <p className="text-sm text-muted mb-3">
                   Upload the presentation PDF. It will be watermarked automatically.
                 </p>
-                <div className="flex items-start gap-2 text-xs text-indigo-700 bg-indigo-50 border border-indigo-100 p-3 rounded-lg">
+                <div className="flex items-start gap-2 text-xs text-brand-700 bg-brand-50 border border-brand-100 p-3 rounded-lg">
                   <Sparkles className="w-4 h-4 flex-shrink-0 mt-0.5" />
                   <div>
                     <span className="font-semibold">Viewer Note:</span> Client-side viewer will display first 2 pages with remaining pages locked for preview
@@ -268,8 +268,8 @@ export default function UploadForms({
                 <div
                   className={`relative border-2 border-dashed rounded-xl p-12 text-center transition-all ${
                     dragActive
-                      ? 'border-indigo-500 bg-indigo-50'
-                      : 'border-slate-300 bg-slate-50 hover:border-indigo-400 hover:bg-indigo-50/50'
+                      ? 'border-brand-500 bg-brand-50'
+                      : 'border-line-strong bg-surface-muted hover:border-brand-400 hover:bg-brand-50/50'
                   }`}
                   onDragEnter={() => setDragActive(true)}
                   onDragLeave={() => setDragActive(false)}
@@ -291,13 +291,13 @@ export default function UploadForms({
                   />
                   
                   <div className="pointer-events-none">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-700 flex items-center justify-center">
                       <Upload className="w-8 h-8 text-white" />
                     </div>
-                    <p className="text-base font-medium text-slate-900 mb-1">
+                    <p className="text-base font-medium text-ink mb-1">
                       Choose PDF or drag & drop
                     </p>
-                    <p className="text-sm text-slate-500">
+                    <p className="text-sm text-muted">
                       PDF up to 50MB
                     </p>
                   </div>
@@ -305,23 +305,23 @@ export default function UploadForms({
 
                 {/* Selected File Preview */}
                 {selectedPresentation && (
-                  <div className="mt-4 p-4 bg-indigo-50 border border-indigo-200 rounded-xl">
+                  <div className="mt-4 p-4 bg-brand-50 border border-brand-200 rounded-xl">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm font-medium text-indigo-900">
+                      <p className="text-sm font-medium text-brand-900">
                         File selected
                       </p>
                       <button
                         onClick={clearSelectedPresentation}
                         type="button"
-                        className="text-xs text-indigo-600 hover:text-indigo-800 font-medium"
+                        className="text-xs text-brand-600 hover:text-brand-800 font-medium"
                       >
                         Clear
                       </button>
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-indigo-700 bg-white px-3 py-2 rounded-lg">
+                    <div className="flex items-center gap-2 text-xs text-brand-700 bg-surface px-3 py-2 rounded-lg">
                       <FileText className="w-3.5 h-3.5 flex-shrink-0" />
                       <span className="flex-1 truncate">{selectedPresentation.name}</span>
-                      <span className="text-indigo-500">
+                      <span className="text-brand-500">
                         {(selectedPresentation.size / 1024 / 1024).toFixed(2)} MB
                       </span>
                       <button
@@ -330,7 +330,7 @@ export default function UploadForms({
                         className="ml-1 p-1 hover:bg-red-100 rounded transition-colors"
                         title="Remove file"
                       >
-                        <X className="w-3.5 h-3.5 text-slate-400 hover:text-red-600" />
+                        <X className="w-3.5 h-3.5 text-subtle hover:text-red-600" />
                       </button>
                     </div>
                   </div>
@@ -339,7 +339,7 @@ export default function UploadForms({
                 <button
                   type="submit"
                   disabled={isUploadingPresentation || !selectedPresentation}
-                  className="mt-6 w-full px-6 py-3.5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-xl hover:from-indigo-700 hover:to-violet-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-lg shadow-indigo-500/30 transition-all flex items-center justify-center gap-2"
+                  className="mt-6 w-full px-6 py-3.5 bg-brand-700 text-white rounded-lg hover:bg-brand-800 disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-card transition-all flex items-center justify-center gap-2"
                 >
                   {isUploadingPresentation ? (
                     <>
@@ -374,10 +374,10 @@ export default function UploadForms({
           {activeTab === 'report' && (
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                <h3 className="text-lg font-semibold text-ink mb-2">
                   Upload Technical Report
                 </h3>
-                <p className="text-sm text-slate-600 mb-3">
+                <p className="text-sm text-muted mb-3">
                   Upload the research PDF. Content will be automatically extracted and watermarked.
                 </p>
                 <div className="flex items-start gap-2 text-xs text-violet-700 bg-violet-50 border border-violet-100 p-3 rounded-lg">
@@ -394,7 +394,7 @@ export default function UploadForms({
                   className={`relative border-2 border-dashed rounded-xl p-12 text-center transition-all ${
                     dragActive
                       ? 'border-violet-500 bg-violet-50'
-                      : 'border-slate-300 bg-slate-50 hover:border-violet-400 hover:bg-violet-50/50'
+                      : 'border-line-strong bg-surface-muted hover:border-violet-400 hover:bg-violet-50/50'
                   }`}
                   onDragEnter={() => setDragActive(true)}
                   onDragLeave={() => setDragActive(false)}
@@ -416,13 +416,13 @@ export default function UploadForms({
                   />
                   
                   <div className="pointer-events-none">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
+                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-700 flex items-center justify-center">
                       <FileText className="w-8 h-8 text-white" />
                     </div>
-                    <p className="text-base font-medium text-slate-900 mb-1">
+                    <p className="text-base font-medium text-ink mb-1">
                       Choose PDF or drag & drop
                     </p>
-                    <p className="text-sm text-slate-500">
+                    <p className="text-sm text-muted">
                       PDF up to 50MB
                     </p>
                   </div>
@@ -443,7 +443,7 @@ export default function UploadForms({
                         Clear
                       </button>
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-violet-700 bg-white px-3 py-2 rounded-lg">
+                    <div className="flex items-center gap-2 text-xs text-violet-700 bg-surface px-3 py-2 rounded-lg">
                       <FileText className="w-3.5 h-3.5 flex-shrink-0" />
                       <span className="flex-1 truncate">{selectedPdf.name}</span>
                       <span className="text-violet-500">
@@ -455,7 +455,7 @@ export default function UploadForms({
                         className="ml-1 p-1 hover:bg-red-100 rounded transition-colors"
                         title="Remove file"
                       >
-                        <X className="w-3.5 h-3.5 text-slate-400 hover:text-red-600" />
+                        <X className="w-3.5 h-3.5 text-subtle hover:text-red-600" />
                       </button>
                     </div>
                   </div>
@@ -464,7 +464,7 @@ export default function UploadForms({
                 <button
                   type="submit"
                   disabled={isUploadingPdf || !selectedPdf}
-                  className="mt-6 w-full px-6 py-3.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-xl hover:from-violet-700 hover:to-fuchsia-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-lg shadow-violet-500/30 transition-all flex items-center justify-center gap-2"
+                  className="mt-6 w-full px-6 py-3.5 bg-brand-700 text-white rounded-lg hover:bg-brand-800 disabled:opacity-50 disabled:cursor-not-allowed font-medium shadow-card transition-all flex items-center justify-center gap-2"
                 >
                   {isUploadingPdf ? (
                     <>
@@ -498,13 +498,13 @@ export default function UploadForms({
                   {localExtractionStatus && (
                     <div className="space-y-3">
                       {localExtractionStatus === 'completed' && (
-                        <div className="flex items-start gap-3 p-4 bg-indigo-50 border border-indigo-200 rounded-xl">
-                          <Sparkles className="w-5 h-5 text-indigo-600 flex-shrink-0 mt-0.5" />
+                        <div className="flex items-start gap-3 p-4 bg-brand-50 border border-brand-200 rounded-xl">
+                          <Sparkles className="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" />
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-indigo-900">
+                            <p className="text-sm font-medium text-brand-900">
                               Content Extracted Successfully
                             </p>
-                            <p className="text-xs text-indigo-700 mt-1">
+                            <p className="text-xs text-brand-700 mt-1">
                               {localSectionsCount} section{localSectionsCount !== 1 ? 's' : ''} extracted
                               {extractedAt && (
                                 <span className="ml-2 opacity-75" suppressHydrationWarning>
@@ -549,7 +549,7 @@ export default function UploadForms({
                         <button
                           onClick={handleReExtract}
                           disabled={isReExtracting}
-                          className="w-full px-5 py-3 bg-white border-2 border-indigo-200 text-indigo-700 rounded-xl hover:bg-indigo-50 hover:border-indigo-300 disabled:opacity-50 disabled:cursor-not-allowed font-medium transition-all flex items-center justify-center gap-2"
+                          className="w-full px-5 py-3 bg-surface border-2 border-brand-200 text-brand-700 rounded-xl hover:bg-brand-50 hover:border-brand-300 disabled:opacity-50 disabled:cursor-not-allowed font-medium transition-all flex items-center justify-center gap-2"
                         >
                           {isReExtracting ? (
                             <>

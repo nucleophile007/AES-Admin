@@ -1,9 +1,11 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { CheckCircle, XCircle, User, Users, Calendar, Mail, Phone, School, GraduationCap, Eye, EyeOff, MessageSquareQuote, ChevronDown, ChevronUp, Trash2, Edit } from 'lucide-react'
+import { Check, CheckCircle2, ChevronDown, ChevronsDownUp, ChevronsUpDown, Circle, Eye, Loader2, MessageSquareQuote, Pencil, RefreshCw, Search, Star, Trash2, User, Users, Video, X } from 'lucide-react'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import AdminPageShell from '@/components/admin/AdminPageShell'
+import { Badge, EmptyState, LoadingState, Panel, Segmented, buttonClass, cx, inputClass } from '@/components/admin/ui'
 
 interface Student {
   id: number
@@ -59,6 +61,7 @@ export default function TestimonialsPage() {
   const [editingTestimonial, setEditingTestimonial] = useState<Testimonial | null>(null)
   const [editFormData, setEditFormData] = useState<any>({})
   const [saving, setSaving] = useState(false)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     // Auto-sync on page load, then fetch testimonials
@@ -305,527 +308,281 @@ export default function TestimonialsPage() {
     // fromParents: testimonials.filter(t => t.authorType === 'parent').length,
   }
 
-  if (loading) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
-          <p className="mt-4 text-gray-600">
-            {syncing ? 'Syncing from Google Sheets...' : 'Loading testimonials...'}
-          </p>
-        </div>
-      </div>
-    )
-  }
+  const q = search.trim().toLowerCase()
+  const visibleTestimonials = q
+    ? filteredTestimonials.filter((t) =>
+        [t.authorName, t.studentName ?? '', t.student?.schoolName ?? '', t.student?.grade ?? '', t.content ?? '', ...(t.programs || [])]
+          .join(' ')
+          .toLowerCase()
+          .includes(q),
+      )
+    : filteredTestimonials
+  const allOpen = visibleTestimonials.length > 0 && visibleTestimonials.every((t) => expandedRows.has(t.id))
+
+  const fieldClass = cx(inputClass, 'mt-1.5')
+  const areaClass =
+    'mt-1.5 w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink shadow-card outline-none transition placeholder:text-subtle focus:border-brand-300 focus:ring-4 focus:ring-brand-100'
+  const labelClass = 'block text-sm font-medium text-ink-soft'
+
+  /** Per-section switch: whether this part of the testimonial may appear on the website. */
+  const SectionToggle = ({ id, field, on }: { id: number; field: string; on: boolean }) => (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation()
+        toggleSectionApproval(id, field)
+      }}
+      title={on ? 'Shown on the website. Click to hide.' : 'Hidden from the website. Click to approve.'}
+      className={cx(
+        'inline-flex h-6 shrink-0 items-center gap-1 rounded-full px-2 text-[11px] font-semibold ring-1 ring-inset transition',
+        on ? 'bg-emerald-50 text-emerald-700 ring-emerald-100 hover:bg-emerald-100' : 'bg-surface text-muted ring-line hover:text-ink',
+      )}
+    >
+      {on ? <Check className="h-3 w-3" /> : <Circle className="h-3 w-3" />}
+      {on ? 'On site' : 'Hidden'}
+    </button>
+  )
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <MessageSquareQuote className="h-6 w-6 text-yellow-300" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Manage Student Testimonials</h1>
-                <p className="text-sm text-gray-700">Review and approve testimonials from students</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/admin/video-testimonials"
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
-              >
-                Video Testimonials
-              </Link>
-              <button
-                onClick={syncFromSheet}
-                disabled={syncing}
-                className={`inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg ${
-                  syncing 
-                    ? 'bg-gray-400 text-white cursor-not-allowed' 
-                    : 'bg-green-600 text-white hover:bg-green-700'
-                }`}
-              >
-                {syncing ? (
-                  <>
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-r-transparent"></div>
-                    Syncing...
-                  </>
-                ) : (
-                  <>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                    Sync from Sheet
-                  </>
-                )}
-              </button>
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
-              >
-                Back to Dashboard
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
+    <AdminPageShell
+      moduleId="testimonials"
+      description="Review student testimonials and choose which parts appear on the website."
+      actions={
+        <>
+          <Link href="/admin/video-testimonials" className={buttonClass('secondary')}>
+            <Video className="h-4 w-4" /> Video testimonials
+          </Link>
+          <button type="button" onClick={syncFromSheet} disabled={syncing} className={buttonClass('secondary')}>
+            <RefreshCw className={cx('h-4 w-4', syncing && 'animate-spin')} />
+            {syncing ? 'Syncing…' : 'Sync from sheet'}
+          </button>
+        </>
+      }
+    >
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
-          {error}
-        </div>
+        <div role="alert" className="mb-4 rounded-card border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">{error}</div>
       )}
-
       {syncMessage && (
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
+        <div className="mb-4 flex items-center gap-2 rounded-card border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+          <CheckCircle2 className="h-4 w-4 shrink-0" />
           {syncMessage}
         </div>
       )}
 
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Total</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
-            </div>
-            <Users className="w-8 h-8 text-blue-500" />
+      <Panel className="overflow-hidden">
+        <div className="flex flex-col gap-3 border-b border-line p-4 lg:flex-row lg:items-center">
+          <label className="relative block flex-1">
+            <span className="sr-only">Search testimonials</span>
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search name, school, program or text…"
+              className={cx(inputClass, 'pl-9')}
+            />
+          </label>
+          <div className="flex flex-wrap items-center gap-2">
+            <Segmented
+              label="Approval"
+              value={filter}
+              onChange={setFilter}
+              options={[
+                { value: 'all', label: 'All', count: stats.total },
+                { value: 'pending', label: 'Pending', count: stats.pending },
+                { value: 'approved', label: 'Approved', count: stats.approved },
+              ]}
+            />
+            <Segmented
+              label="Author"
+              value={authorFilter}
+              onChange={setAuthorFilter}
+              options={[
+                { value: 'all', label: 'Everyone' },
+                { value: 'student', label: 'Students', count: stats.fromStudents },
+              ]}
+            />
+            {visibleTestimonials.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setExpandedRows(allOpen ? new Set() : new Set(visibleTestimonials.map((t) => t.id)))}
+                className={buttonClass('secondary')}
+              >
+                {allOpen ? <ChevronsDownUp className="h-4 w-4" /> : <ChevronsUpDown className="h-4 w-4" />}
+                {allOpen ? 'Collapse all' : 'Expand all'}
+              </button>
+            )}
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Approved</p>
-              <p className="text-2xl font-bold text-green-600">{stats.approved}</p>
-            </div>
-            <CheckCircle className="w-8 h-8 text-green-500" />
-          </div>
-        </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Pending</p>
-              <p className="text-2xl font-bold text-orange-600">{stats.pending}</p>
-            </div>
-            <XCircle className="w-8 h-8 text-orange-500" />
-          </div>
-        </div>
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">From Students</p>
-              <p className="text-2xl font-bold text-purple-600">{stats.fromStudents}</p>
-            </div>
-            <GraduationCap className="w-8 h-8 text-purple-500" />
-          </div>
-        </div>
-      </div>
 
-      {/* Filters */}
-      <div className="bg-white rounded-lg shadow p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Approval Status</label>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setFilter('all')}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  filter === 'all'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                All ({testimonials.length})
-              </button>
-              <button
-                onClick={() => setFilter('approved')}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  filter === 'approved'
-                    ? 'bg-green-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                Approved ({testimonials.filter(t => t.isApproved).length})
-              </button>
-              <button
-                onClick={() => setFilter('pending')}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  filter === 'pending'
-                    ? 'bg-orange-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                Pending ({testimonials.filter(t => !t.isApproved).length})
-              </button>
-            </div>
-          </div>
-          <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Author Type</label>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setAuthorFilter('all')}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  authorFilter === 'all'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                All
-              </button>
-              <button
-                onClick={() => setAuthorFilter('student')}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  authorFilter === 'student'
-                    ? 'bg-purple-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                Students
-              </button>
-              {/* <button
-                onClick={() => setAuthorFilter('parent')}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  authorFilter === 'parent'
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
-              >
-                Parents
-              </button> */}
-            </div>
-          </div>
-        </div>
-        {filteredTestimonials.length > 0 && (
-          <p className="text-sm text-gray-600 mt-4">
-            Showing {filteredTestimonials.length} testimonial{filteredTestimonials.length !== 1 ? 's' : ''}
-          </p>
+        {loading ? (
+          <LoadingState label={syncing ? 'Syncing from Google Sheets…' : 'Loading testimonials…'} />
+        ) : visibleTestimonials.length === 0 ? (
+          <EmptyState
+            icon={MessageSquareQuote}
+            title={testimonials.length ? 'No testimonials match your filters' : 'No testimonials yet'}
+            description={testimonials.length ? 'Try a different search or filter.' : 'Submissions appear here after a sync from the Google Sheet.'}
+          />
+        ) : (
+          <ul className="divide-y divide-line">
+            {visibleTestimonials.map((t) => {
+              const open = expandedRows.has(t.id)
+              const isStudent = t.authorType === 'student'
+              const beforeAfter = [t.beforeExpectations && `Before: ${t.beforeExpectations}`, t.afterChanges && `After: ${t.afterChanges}`].filter(Boolean).join('\n\n')
+              const sections = [
+                { title: 'Experience', field: 'contentApproved', on: t.contentApproved, text: t.content },
+                { title: 'Before / after', field: 'beforeAfterApproved', on: t.beforeAfterApproved, text: beforeAfter },
+                { title: 'Success story', field: 'successStoryApproved', on: t.successStoryApproved, text: t.successStory },
+              ].filter((sec) => sec.text)
+              return (
+                <li key={t.id} className={cx('transition-colors', open ? 'bg-surface-muted/30' : 'hover:bg-surface-muted/40')}>
+                  <div onClick={() => toggleRowExpansion(t.id)} className="flex cursor-pointer flex-col gap-4 px-5 py-4 lg:flex-row lg:items-start lg:justify-between">
+                    <div className="flex min-w-0 items-start gap-3">
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          toggleRowExpansion(t.id)
+                        }}
+                        aria-expanded={open}
+                        aria-label={open ? 'Collapse testimonial' : 'Expand testimonial'}
+                        className="mt-2.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-subtle transition hover:bg-surface hover:text-ink"
+                      >
+                        <ChevronDown className={cx('h-4 w-4 transition-transform duration-200', !open && '-rotate-90')} />
+                      </button>
+                      <span
+                        className={cx(
+                          'flex h-10 w-10 shrink-0 items-center justify-center rounded-full ring-1 ring-inset',
+                          isStudent ? 'bg-violet-50 text-violet-700 ring-violet-100' : 'bg-brand-50 text-brand-700 ring-brand-100',
+                        )}
+                      >
+                        {isStudent ? <User className="h-5 w-5" /> : <Users className="h-5 w-5" />}
+                      </span>
+                      <div className="min-w-0">
+                        <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                          <span className="font-semibold text-ink">{t.authorName}</span>
+                          <Badge tone={isStudent ? 'violet' : 'brand'}>{isStudent ? 'Student' : 'Parent'}</Badge>
+                          {t.consentToFeature && <Badge tone="amber" icon={Star}>Consent to feature</Badge>}
+                        </p>
+                        <p className="mt-0.5 text-sm text-muted">
+                          {[t.student?.grade, t.student?.schoolName].filter(Boolean).join(' · ') || 'No school on file'}
+                          {t.submittedAt && <> · {new Date(t.submittedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</>}
+                          {!open && <span className="text-subtle"> · {sections.length} {sections.length === 1 ? 'section' : 'sections'}</span>}
+                        </p>
+                        {t.programs?.length > 0 && (
+                          <div className="mt-2 flex flex-wrap gap-1.5">
+                            {t.programs.map((program, idx) => <Badge key={idx} tone="brand">{program}</Badge>)}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex shrink-0 flex-wrap items-center gap-2 lg:justify-end">
+                      {t.rating ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-gold-50 py-0.5 pl-2.5 pr-0.5 text-xs font-semibold text-gold-700 ring-1 ring-inset ring-gold-200">
+                          <Star className="h-3.5 w-3.5 fill-gold-500 text-gold-500" /> {t.rating}/5
+                          <SectionToggle id={t.id} field="ratingApproved" on={t.ratingApproved} />
+                        </span>
+                      ) : null}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          toggleApproval(t.id, t.isApproved)
+                        }}
+                        title={t.isApproved ? 'Approved. Click to unapprove.' : 'Approve testimonial'}
+                        className={buttonClass(t.isApproved ? 'success' : 'secondary', 'sm', 'min-w-[104px]')}
+                      >
+                        {t.isApproved ? <CheckCircle2 className="h-3.5 w-3.5" /> : <Eye className="h-3.5 w-3.5" />}
+                        {t.isApproved ? 'Approved' : 'Approve'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          openEditModal(t)
+                        }}
+                        title="Edit testimonial"
+                        aria-label={`Edit testimonial from ${t.authorName}`}
+                        className={buttonClass('ghost', 'icon')}
+                      >
+                        <Pencil className="h-3.5 w-3.5" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          deleteTestimonial(t.id, t.authorName)
+                        }}
+                        title="Delete testimonial"
+                        aria-label={`Delete testimonial from ${t.authorName}`}
+                        className={buttonClass('ghost', 'icon', 'text-rose-600 hover:bg-rose-50 hover:text-rose-700')}
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {open && (
+                    <div className="space-y-3 px-5 pb-5 lg:pl-[88px]">
+                      {sections.length > 0 ? (
+                        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                          {sections.map((sec) => (
+                            <div key={sec.field} className="rounded-lg border border-line bg-surface p-3">
+                              <div className="flex items-center justify-between gap-2">
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-subtle">{sec.title}</p>
+                                <SectionToggle id={t.id} field={sec.field} on={sec.on} />
+                              </div>
+                              <p className="mt-1.5 line-clamp-4 whitespace-pre-wrap text-sm leading-relaxed text-ink-soft">{sec.text}</p>
+                              <button
+                                type="button"
+                                onClick={() => viewFullContent(sec.title, sec.text || '')}
+                                className="mt-1.5 text-xs font-medium text-brand-700 hover:underline"
+                              >
+                                Read full text →
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm italic text-subtle">No written sections.</p>
+                      )}
+
+                      <dl className="grid grid-cols-1 gap-x-6 gap-y-1.5 rounded-lg border border-line bg-surface-muted/60 p-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
+                        <div className="min-w-0"><dt className="text-xs text-muted">Student email</dt><dd className="truncate text-ink-soft">{t.student?.email || '—'}</dd></div>
+                        <div className="min-w-0"><dt className="text-xs text-muted">Parent</dt><dd className="truncate text-ink-soft">{t.student?.parentName || '—'}</dd></div>
+                        <div className="min-w-0"><dt className="text-xs text-muted">Parent email</dt><dd className="truncate text-ink-soft">{t.student?.parentEmail || '—'}</dd></div>
+                        <div className="min-w-0"><dt className="text-xs text-muted">Parent phone</dt><dd className="truncate text-ink-soft">{t.student?.parentPhone || '—'}</dd></div>
+                        {t.videoLink && (
+                          <div className="min-w-0 sm:col-span-2 lg:col-span-4">
+                            <dt className="text-xs text-muted">Video link</dt>
+                            <dd className="truncate"><a href={t.videoLink} target="_blank" rel="noreferrer" className="text-brand-700 hover:underline">{t.videoLink}</a></dd>
+                          </div>
+                        )}
+                      </dl>
+                    </div>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
         )}
-      </div>
-
-      {/* Student Testimonials Table */}
-      {filteredTestimonials.length === 0 ? (
-        <div className="bg-white rounded-lg shadow p-8 text-center">
-          <p className="text-gray-500">No testimonials found matching the current filters.</p>
-        </div>
-      ) : (
-        <div className="bg-white rounded-lg shadow overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-8"></th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Grade/School</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Experience</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Programs</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Before/After</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Success Story</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredTestimonials.map((testimonial) => (
-                  <React.Fragment key={testimonial.id}>
-                    {/* Main Row */}
-                    <tr className="hover:bg-gray-50">
-                      <td className="px-4 py-3">
-                        <button
-                          onClick={() => toggleRowExpansion(testimonial.id)}
-                          className="text-gray-500 hover:text-gray-700"
-                        >
-                          {expandedRows.has(testimonial.id) ? (
-                            <ChevronUp className="w-5 h-5" />
-                          ) : (
-                            <ChevronDown className="w-5 h-5" />
-                          )}
-                        </button>
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-2">
-                          <div className={`p-1.5 rounded-full ${
-                            testimonial.authorType === 'student' ? 'bg-purple-100' : 'bg-indigo-100'
-                          }`}>
-                            {testimonial.authorType === 'student' ? (
-                              <User className="w-4 h-4 text-purple-600" />
-                            ) : (
-                              <Users className="w-4 h-4 text-indigo-600" />
-                            )}
-                          </div>
-                          <div>
-                            <div className="text-sm font-medium text-gray-900">{testimonial.authorName}</div>
-                            <div className="text-xs text-gray-500 capitalize">{testimonial.authorType}</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="text-sm text-gray-900">{testimonial.student.grade}</div>
-                        <div className="text-xs text-gray-500">{testimonial.student.schoolName}</div>
-                      </td>
-                      <td className="px-4 py-3 max-w-xs">
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => toggleSectionApproval(testimonial.id, 'contentApproved')}
-                            className={`flex-shrink-0 w-6 h-6 rounded flex items-center justify-center ${
-                              testimonial.contentApproved ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-400'
-                            }`}
-                            title={testimonial.contentApproved ? 'Approved' : 'Not approved'}
-                          >
-                            {testimonial.contentApproved ? '✓' : '○'}
-                          </button>
-                          <button
-                            onClick={() => viewFullContent('Experience Description', testimonial.content || '')}
-                            className="text-sm text-gray-600 truncate hover:text-blue-600 text-left"
-                          >
-                            {testimonial.content?.substring(0, 50)}...
-                          </button>
-                        </div>
-                      </td>
-                      <td className="px-4 py-3">
-                        {testimonial.rating && (
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => toggleSectionApproval(testimonial.id, 'ratingApproved')}
-                              className={`flex-shrink-0 w-6 h-6 rounded flex items-center justify-center ${
-                                testimonial.ratingApproved ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-400'
-                              }`}
-                              title={testimonial.ratingApproved ? 'Approved' : 'Not approved'}
-                            >
-                              {testimonial.ratingApproved ? '✓' : '○'}
-                            </button>
-                            <div className="flex items-center gap-1">
-                              <span className="text-yellow-400">★</span>
-                              <span className="text-sm font-medium">{testimonial.rating}</span>
-                            </div>
-                          </div>
-                        )}
-                      </td>
-                      <td className="px-4 py-3 max-w-xs">
-                        {testimonial.programs && testimonial.programs.length > 0 && (
-                          <div className="flex flex-wrap gap-1">
-                            {testimonial.programs.map((program, idx) => (
-                              <span key={idx} className="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded">
-                                {program}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </td>
-                      <td className="px-4 py-3 max-w-xs">
-                        {(testimonial.beforeExpectations || testimonial.afterChanges) && (
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => toggleSectionApproval(testimonial.id, 'beforeAfterApproved')}
-                              className={`flex-shrink-0 w-6 h-6 rounded flex items-center justify-center ${
-                                testimonial.beforeAfterApproved ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-400'
-                              }`}
-                              title={testimonial.beforeAfterApproved ? 'Approved' : 'Not approved'}
-                            >
-                              {testimonial.beforeAfterApproved ? '✓' : '○'}
-                            </button>
-                            <button
-                              onClick={() => {
-                                const combined = [
-                                  testimonial.beforeExpectations && `Before: ${testimonial.beforeExpectations}`,
-                                  testimonial.afterChanges && `After: ${testimonial.afterChanges}`
-                                ].filter(Boolean).join('\n\n')
-                                viewFullContent('Before/After Expectations', combined)
-                              }}
-                              className="text-sm text-gray-600 truncate hover:text-blue-600 text-left"
-                            >
-                              {(testimonial.beforeExpectations || testimonial.afterChanges || '').substring(0, 50)}...
-                            </button>
-                          </div>
-                        )}
-                      </td>
-                      <td className="px-4 py-3 max-w-xs">
-                        {testimonial.successStory && (
-                          <div className="flex items-center gap-2">
-                            <button
-                              onClick={() => toggleSectionApproval(testimonial.id, 'successStoryApproved')}
-                              className={`flex-shrink-0 w-6 h-6 rounded flex items-center justify-center ${
-                                testimonial.successStoryApproved ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-400'
-                              }`}
-                              title={testimonial.successStoryApproved ? 'Approved' : 'Not approved'}
-                            >
-                              {testimonial.successStoryApproved ? '✓' : '○'}
-                            </button>
-                            <button
-                              onClick={() => viewFullContent('Success Story', testimonial.successStory || '')}
-                              className="text-sm text-gray-600 truncate hover:text-blue-600 text-left"
-                            >
-                              {testimonial.successStory.substring(0, 50)}...
-                            </button>
-                          </div>
-                        )}
-                      </td>
-                      <td className="px-4 py-3 text-sm text-gray-500">
-                        {testimonial.submittedAt 
-                          ? new Date(testimonial.submittedAt).toLocaleDateString('en-US', {
-                              month: 'short',
-                              day: 'numeric',
-                              year: 'numeric'
-                            })
-                          : 'N/A'}
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-2">
-                          <button
-                            onClick={() => toggleApproval(testimonial.id, testimonial.isApproved)}
-                            className={`px-3 py-1.5 rounded text-xs font-medium ${
-                              testimonial.isApproved
-                                ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                                : 'bg-orange-100 text-orange-700 hover:bg-orange-200'
-                            }`}
-                          >
-                            {testimonial.isApproved ? 'Approved' : 'Approve'}
-                          </button>
-                          <button
-                            onClick={() => openEditModal(testimonial)}
-                            className="p-1.5 rounded text-blue-600 hover:bg-blue-50"
-                            title="Edit testimonial"
-                          >
-                            <Edit className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => deleteTestimonial(testimonial.id, testimonial.authorName)}
-                            className="p-1.5 rounded text-red-600 hover:bg-red-50"
-                            title="Delete testimonial"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    {/* Expanded Details Row */}
-                    {expandedRows.has(testimonial.id) && (
-                      <tr key={`${testimonial.id}-details`} className="bg-gray-50">
-                        <td colSpan={10} className="px-4 py-6">
-                          <div className="space-y-4">
-                            {/* Full Content */}
-                            <div className="bg-white rounded-lg p-4">
-                              <h4 className="text-sm font-semibold text-gray-700 mb-2">Experience Description</h4>
-                              <p className="text-sm text-gray-600 leading-relaxed italic">"{testimonial.content}"</p>
-                            </div>
-
-                            {/* Programs List */}
-                            {testimonial.programs && testimonial.programs.length > 0 && (
-                              <div className="bg-white rounded-lg p-4">
-                                <h4 className="text-sm font-semibold text-gray-700 mb-2">Programs Enrolled</h4>
-                                <div className="flex flex-wrap gap-2">
-                                  {testimonial.programs.map((program, idx) => (
-                                    <span key={idx} className="px-3 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-700">
-                                      {program}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-
-                            {/* Before/After */}
-                            {(testimonial.beforeExpectations || testimonial.afterChanges) && (
-                              <div className="bg-white rounded-lg p-4">
-                                <h4 className="text-sm font-semibold text-gray-700 mb-2">Before/After Expectations</h4>
-                                <div className="space-y-3">
-                                  {testimonial.beforeExpectations && (
-                                    <div>
-                                      <p className="text-xs font-semibold text-gray-500 mb-1">BEFORE:</p>
-                                      <p className="text-sm text-gray-600 leading-relaxed">{testimonial.beforeExpectations}</p>
-                                    </div>
-                                  )}
-                                  {testimonial.afterChanges && (
-                                    <div>
-                                      <p className="text-xs font-semibold text-gray-500 mb-1">AFTER:</p>
-                                      <p className="text-sm text-gray-600 leading-relaxed">{testimonial.afterChanges}</p>
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            )}
-
-                            {/* Success Story */}
-                            {testimonial.successStory && (
-                              <div className="bg-white rounded-lg p-4">
-                                <h4 className="text-sm font-semibold text-gray-700 mb-2">Success Story</h4>
-                                <p className="text-sm text-gray-600 leading-relaxed">{testimonial.successStory}</p>
-                              </div>
-                            )}
-
-                            {/* Student Details */}
-                            <div className="bg-white rounded-lg p-4">
-                              <h4 className="text-sm font-semibold text-gray-700 mb-3">Student Details</h4>
-                              <div className="grid grid-cols-3 gap-4 text-sm">
-                                <div>
-                                  <span className="text-gray-500">Email:</span>
-                                  <span className="ml-2 font-medium">{testimonial.student.email || 'N/A'}</span>
-                                </div>
-                                <div>
-                                  <span className="text-gray-500">Parent Name:</span>
-                                  <span className="ml-2 font-medium">{testimonial.student.parentName || 'N/A'}</span>
-                                </div>
-                                <div>
-                                  <span className="text-gray-500">Parent Email:</span>
-                                  <span className="ml-2 font-medium">{testimonial.student.parentEmail || 'N/A'}</span>
-                                </div>
-                                <div>
-                                  <span className="text-gray-500">Parent Phone:</span>
-                                  <span className="ml-2 font-medium">{testimonial.student.parentPhone || 'N/A'}</span>
-                                </div>
-                                {testimonial.consentToFeature && (
-                                  <div>
-                                    <span className="px-2 py-1 rounded text-xs font-medium bg-amber-100 text-amber-700">
-                                      ⭐ Consent to Feature
-                                    </span>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    )}
-                  </React.Fragment>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
+      </Panel>
 
       {/* Full Content Modal */}
       {viewingContent && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
-            <div className="flex items-center justify-between p-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">{viewingContent.title}</h3>
-              <button
-                onClick={() => setViewingContent(null)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]" onClick={() => setViewingContent(null)}>
+          <div className="flex max-h-[80vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-pop" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between gap-4 border-b border-line px-5 py-4">
+              <h3 className="text-lg font-semibold tracking-tight text-ink">{viewingContent.title}</h3>
+              <button type="button" onClick={() => setViewingContent(null)} className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink" aria-label="Close">
+                <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="p-6 overflow-y-auto max-h-[calc(80vh-80px)]">
-              <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{viewingContent.content}</p>
+            <div className="overflow-y-auto px-5 py-4">
+              <p className="whitespace-pre-wrap leading-relaxed text-ink-soft">{viewingContent.content}</p>
             </div>
-            <div className="flex justify-end p-4 border-t">
-              <button
-                onClick={() => setViewingContent(null)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Close
-              </button>
+            <div className="flex justify-end border-t border-line bg-surface-muted/60 px-5 py-3">
+              <button type="button" onClick={() => setViewingContent(null)} className={buttonClass('primary')}>Close</button>
             </div>
           </div>
         </div>
@@ -833,189 +590,101 @@ export default function TestimonialsPage() {
 
       {/* Edit Testimonial Modal */}
       {editingTestimonial && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full my-8">
-            <div className="flex items-center justify-between p-4 border-b">
-              <h3 className="text-lg font-semibold text-gray-900">Edit Testimonial</h3>
-              <button
-                onClick={closeEditModal}
-                className="text-gray-400 hover:text-gray-600"
-                disabled={saving}
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/40 p-4 backdrop-blur-[2px]">
+          <div className="flex max-h-[92vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-pop">
+            <div className="flex items-start justify-between gap-4 border-b border-line px-6 py-4">
+              <div>
+                <h3 className="text-lg font-semibold tracking-tight text-ink">Edit testimonial</h3>
+                <p className="mt-0.5 text-sm text-muted">{editingTestimonial.authorName}</p>
+              </div>
+              <button type="button" onClick={closeEditModal} disabled={saving} className="rounded-lg p-1.5 text-muted transition hover:bg-canvas hover:text-ink" aria-label="Close">
+                <X className="h-5 w-5" />
               </button>
             </div>
-            <form onSubmit={handleEditSubmit} className="p-6 overflow-y-auto max-h-[calc(80vh-120px)]">
+            <form onSubmit={handleEditSubmit} className="flex-1 overflow-y-auto px-6 py-5">
               <div className="space-y-6">
-                {/* Basic Information */}
-                <div className="border-b pb-4">
-                  <h4 className="text-md font-semibold text-black mb-4">Basic Information</h4>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">Author Name *</label>
-                      <input
-                        type="text"
-                        value={editFormData.authorName}
-                        onChange={(e) => setEditFormData({ ...editFormData, authorName: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">Author Type *</label>
-                      <select
-                        value={editFormData.authorType}
-                        onChange={(e) => setEditFormData({ ...editFormData, authorType: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                        required
-                      >
+                <section>
+                  <h4 className="mb-3 text-sm font-semibold text-ink">Basic information</h4>
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <label className={labelClass}>
+                      Author name <span className="text-rose-600">*</span>
+                      <input type="text" value={editFormData.authorName} onChange={(e) => setEditFormData({ ...editFormData, authorName: e.target.value })} className={fieldClass} required />
+                    </label>
+                    <label className={labelClass}>
+                      Author type <span className="text-rose-600">*</span>
+                      <select value={editFormData.authorType} onChange={(e) => setEditFormData({ ...editFormData, authorType: e.target.value })} className={fieldClass} required>
                         <option value="student">Student</option>
                         <option value="parent">Parent</option>
                       </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">Student Name</label>
-                      <input
-                        type="text"
-                        value={editFormData.studentName}
-                        onChange={(e) => setEditFormData({ ...editFormData, studentName: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">Grade</label>
-                      <input
-                        type="text"
-                        value={editFormData.grade}
-                        onChange={(e) => setEditFormData({ ...editFormData, grade: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">School</label>
-                      <input
-                        type="text"
-                        value={editFormData.school}
-                        onChange={(e) => setEditFormData({ ...editFormData, school: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">Rating (1-5)</label>
-                      <input
-                        type="number"
-                        min="1"
-                        max="5"
-                        value={editFormData.rating}
-                        onChange={(e) => setEditFormData({ ...editFormData, rating: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                      />
-                    </div>
+                    </label>
+                    <label className={labelClass}>
+                      Student name
+                      <input type="text" value={editFormData.studentName} onChange={(e) => setEditFormData({ ...editFormData, studentName: e.target.value })} className={fieldClass} />
+                    </label>
+                    <label className={labelClass}>
+                      Grade
+                      <input type="text" value={editFormData.grade} onChange={(e) => setEditFormData({ ...editFormData, grade: e.target.value })} className={fieldClass} />
+                    </label>
+                    <label className={labelClass}>
+                      School
+                      <input type="text" value={editFormData.school} onChange={(e) => setEditFormData({ ...editFormData, school: e.target.value })} className={fieldClass} />
+                    </label>
+                    <label className={labelClass}>
+                      Rating (1–5)
+                      <input type="number" min="1" max="5" value={editFormData.rating} onChange={(e) => setEditFormData({ ...editFormData, rating: e.target.value })} className={fieldClass} />
+                    </label>
                   </div>
-                </div>
+                </section>
 
-                {/* Content Fields */}
-                <div className="border-b pb-4">
-                  <h4 className="text-md font-semibold text-black mb-4">Content</h4>
+                <section className="border-t border-line pt-5">
+                  <h4 className="mb-3 text-sm font-semibold text-ink">Content</h4>
                   <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">Experience Description *</label>
-                      <textarea
-                        value={editFormData.content}
-                        onChange={(e) => setEditFormData({ ...editFormData, content: e.target.value })}
-                        rows={4}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                        required
-                      />
+                    <label className={labelClass}>
+                      Experience description <span className="text-rose-600">*</span>
+                      <textarea value={editFormData.content} onChange={(e) => setEditFormData({ ...editFormData, content: e.target.value })} rows={4} className={areaClass} required />
+                    </label>
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      <label className={labelClass}>
+                        Before expectations
+                        <textarea value={editFormData.beforeExpectations} onChange={(e) => setEditFormData({ ...editFormData, beforeExpectations: e.target.value })} rows={3} className={areaClass} />
+                      </label>
+                      <label className={labelClass}>
+                        After changes
+                        <textarea value={editFormData.afterChanges} onChange={(e) => setEditFormData({ ...editFormData, afterChanges: e.target.value })} rows={3} className={areaClass} />
+                      </label>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">Before Expectations</label>
-                      <textarea
-                        value={editFormData.beforeExpectations}
-                        onChange={(e) => setEditFormData({ ...editFormData, beforeExpectations: e.target.value })}
-                        rows={3}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">After Changes</label>
-                      <textarea
-                        value={editFormData.afterChanges}
-                        onChange={(e) => setEditFormData({ ...editFormData, afterChanges: e.target.value })}
-                        rows={3}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-black mb-1">Success Story</label>
-                      <textarea
-                        value={editFormData.successStory}
-                        onChange={(e) => setEditFormData({ ...editFormData, successStory: e.target.value })}
-                        rows={3}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                      />
-                    </div>
+                    <label className={labelClass}>
+                      Success story
+                      <textarea value={editFormData.successStory} onChange={(e) => setEditFormData({ ...editFormData, successStory: e.target.value })} rows={3} className={areaClass} />
+                    </label>
                   </div>
-                </div>
+                </section>
 
-                {/* Additional Fields */}
-                <div>
-                  <h4 className="text-md font-semibold text-black mb-4">Additional Information</h4>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="col-span-2">
-                      <label className="block text-sm font-medium text-black mb-1">Programs (comma-separated)</label>
-                      <input
-                        type="text"
-                        value={editFormData.programs}
-                        onChange={(e) => setEditFormData({ ...editFormData, programs: e.target.value })}
-                        placeholder="e.g., Math Olympiad, Science Research"
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                      />
-                    </div>
-                    <div className="col-span-2">
-                      <label className="block text-sm font-medium text-black mb-1">Video Link</label>
-                      <input
-                        type="url"
-                        value={editFormData.videoLink}
-                        onChange={(e) => setEditFormData({ ...editFormData, videoLink: e.target.value })}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
-                      />
-                    </div>
+                <section className="border-t border-line pt-5">
+                  <h4 className="mb-3 text-sm font-semibold text-ink">Additional information</h4>
+                  <div className="grid grid-cols-1 gap-4">
+                    <label className={labelClass}>
+                      Programs <span className="font-normal text-subtle">(comma-separated)</span>
+                      <input type="text" value={editFormData.programs} onChange={(e) => setEditFormData({ ...editFormData, programs: e.target.value })} placeholder="e.g., Math Olympiad, Science Research" className={fieldClass} />
+                    </label>
+                    <label className={labelClass}>
+                      Video link
+                      <input type="url" value={editFormData.videoLink} onChange={(e) => setEditFormData({ ...editFormData, videoLink: e.target.value })} className={fieldClass} />
+                    </label>
                   </div>
-                </div>
+                </section>
               </div>
             </form>
-            <div className="flex justify-end gap-3 p-4 border-t bg-gray-50">
-              <button
-                type="button"
-                onClick={closeEditModal}
-                disabled={saving}
-                className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                onClick={handleEditSubmit}
-                disabled={saving}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
-              >
-                {saving ? (
-                  <>
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-solid border-white border-r-transparent"></div>
-                    Saving...
-                  </>
-                ) : (
-                  'Save Changes'
-                )}
+            <div className="flex justify-end gap-2 border-t border-line bg-surface-muted/60 px-6 py-3">
+              <button type="button" onClick={closeEditModal} disabled={saving} className={buttonClass('secondary')}>Cancel</button>
+              <button type="button" onClick={handleEditSubmit} disabled={saving} className={buttonClass('primary')}>
+                {saving && <Loader2 className="h-4 w-4 animate-spin" />}
+                {saving ? 'Saving…' : 'Save changes'}
               </button>
             </div>
           </div>
         </div>
       )}
-      </div>
-    </div>
+    </AdminPageShell>
   )
 }

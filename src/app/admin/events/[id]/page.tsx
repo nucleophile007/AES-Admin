@@ -3,21 +3,20 @@
 import { useState, useEffect, useMemo } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
 import {
-  Calendar,
-  MapPin,
-  Users,
+  Calendar as CalendarIcon,
+  CalendarX2,
+  CheckCircle2,
   DollarSign,
   Download,
-  Mail,
-  CheckCircle,
-  XCircle,
-  Clock,
-  Edit,
-  ArrowLeft,
   ImageIcon,
+  MapPin,
+  Pencil,
+  UserCheck,
+  Users,
 } from "lucide-react"
+import AdminPageShell from "@/components/admin/AdminPageShell"
+import { Badge, EmptyState, LoadingState, Panel, PanelHeader, buttonClass, type BadgeTone } from "@/components/admin/ui"
 import EventCarouselComposer from "@/components/events/EventCarouselComposer"
 
 interface Registration {
@@ -186,24 +185,17 @@ export default function EventDetailPage() {
     }
   }
 
-  if (loading) {
+  if (loading || !event) {
     return (
-      <div className="p-8">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-gray-200 rounded w-1/4"></div>
-          <div className="h-64 bg-gray-200 rounded"></div>
-        </div>
-      </div>
-    )
-  }
-
-  if (!event) {
-    return (
-      <div className="p-8">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-700">Event not found</h2>
-        </div>
-      </div>
+      <AdminPageShell moduleId="events" title="Event" parent={{ label: "Events", href: "/admin/events" }}>
+        <Panel>
+          {loading ? (
+            <LoadingState label="Loading event…" />
+          ) : (
+            <EmptyState icon={CalendarX2} title="Event not found" description="It may have been deleted." />
+          )}
+        </Panel>
+      </AdminPageShell>
     )
   }
 
@@ -222,262 +214,155 @@ export default function EventDetailPage() {
     ).reduce((sum, r) => sum + (r.paymentAmount || 0), 0),
   }
 
-  const getStatusBadge = (status: string) => {
-    const colors: { [key: string]: string } = {
-      pending: "bg-yellow-100 text-yellow-800",
-      confirmed: "bg-green-100 text-green-800",
-      cancelled: "bg-red-100 text-red-800",
-      attended: "bg-blue-100 text-blue-800",
-      "no-show": "bg-gray-100 text-gray-800",
-    }
-    return colors[status] || colors.pending
+  const REG_TONE: Record<string, BadgeTone> = {
+    pending: "amber",
+    confirmed: "emerald",
+    cancelled: "rose",
+    attended: "brand",
+    "no-show": "slate",
   }
+  const titleCase = (value: string) => value.charAt(0).toUpperCase() + value.slice(1)
 
   return (
-    <div className="p-8 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" onClick={() => router.push("/admin/events")}>
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Events
-          </Button>
-        </div>
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            onClick={() => router.push(`/admin/events/${eventId}/edit`)}
-          >
-            <Edit className="w-4 h-4 mr-2" />
-            Edit Event
-          </Button>
-          <Button variant="outline" onClick={() => handleExport("csv")}>
-            <Download className="w-4 h-4 mr-2" />
-            Export CSV
-          </Button>
-        </div>
-      </div>
-
-      {/* Event Info */}
-      <div className="bg-white p-6 rounded-lg shadow-sm">
-        <h1 className="text-3xl font-bold mb-4">{event.title}</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-gray-600">
-          <div className="flex items-center gap-2">
-            <Calendar className="w-5 h-5" />
-            <div>
-              <div className="font-medium">Date & Time</div>
-              <div className="text-sm">
-                {new Date(event.eventDate).toLocaleDateString()}
+    <AdminPageShell
+      moduleId="events"
+      title={event.title}
+      description="Event details, carousel image and registrations."
+      parent={{ label: "Events", href: "/admin/events" }}
+      actions={
+        <>
+          <button type="button" onClick={() => handleExport("csv")} className={buttonClass("secondary")}>
+            <Download className="h-4 w-4" /> Export CSV
+          </button>
+          <button type="button" onClick={() => router.push(`/admin/events/${eventId}/edit`)} className={buttonClass("secondary")}>
+            <Pencil className="h-4 w-4" /> Edit event
+          </button>
+        </>
+      }
+    >
+      <div className="space-y-6">
+        {/* Event Info */}
+        <Panel>
+          <dl className="grid grid-cols-1 divide-y divide-line sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
+            {[
+              { icon: CalendarIcon, label: "Date & time", value: `${new Date(event.eventDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} · ${event.eventTime}` },
+              { icon: MapPin, label: "Location", value: event.location },
+              { icon: Users, label: "Capacity", value: `${stats.total}${event.maxParticipants ? ` / ${event.maxParticipants}` : ""} registered` },
+              { icon: DollarSign, label: "Registration fee", value: `$${event.registrationFee}` },
+            ].map(({ icon: Icon, label, value }) => (
+              <div key={label} className="flex items-start gap-3 p-4">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-violet-50 text-violet-700 ring-1 ring-inset ring-violet-100">
+                  <Icon className="h-4 w-4" />
+                </span>
+                <div className="min-w-0">
+                  <dt className="text-xs font-medium text-muted">{label}</dt>
+                  <dd className="mt-0.5 text-sm font-medium text-ink">{value}</dd>
+                </div>
               </div>
-              <div className="text-sm">{event.eventTime}</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <MapPin className="w-5 h-5" />
-            <div>
-              <div className="font-medium">Location</div>
-              <div className="text-sm">{event.location}</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <Users className="w-5 h-5" />
-            <div>
-              <div className="font-medium">Capacity</div>
-              <div className="text-sm">
-                {stats.total}
-                {event.maxParticipants && ` / ${event.maxParticipants}`}{" "}
-                registered
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <DollarSign className="w-5 h-5" />
-            <div>
-              <div className="font-medium">Registration Fee</div>
-              <div className="text-sm">${event.registrationFee}</div>
-            </div>
-          </div>
-        </div>
-      </div>
+            ))}
+          </dl>
+        </Panel>
 
-      {/* Main-site carousel card */}
-      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <ImageIcon className="h-5 w-5 text-amber-600" />
-            <div>
-              <h2 className="text-lg font-semibold text-slate-900">
-                Carousel card
-              </h2>
-              <p className="text-xs text-slate-500">
-                Compose the fixed 1200×675 image the main site shows in the
-                event carousel.
-              </p>
-            </div>
+        {/* Main-site carousel card */}
+        <Panel>
+          <PanelHeader
+            title={<span className="flex items-center gap-2"><ImageIcon className="h-4 w-4 text-gold-600" /> Carousel card</span>}
+            description="Compose the 1200×675 image the main site shows in the event carousel."
+            actions={
+              <button
+                type="button"
+                onClick={() => void saveCarouselImage()}
+                disabled={savingCarousel || carouselImage === (event.image || "")}
+                className={buttonClass("primary", "sm")}
+              >
+                {savingCarousel ? "Saving…" : "Save carousel image"}
+              </button>
+            }
+          />
+          <div className="p-5">
+            <EventCarouselComposer value={carouselImage} onChange={setCarouselImage} defaults={carouselDefaults} />
           </div>
-          <Button
-            type="button"
-            onClick={() => void saveCarouselImage()}
-            disabled={savingCarousel || carouselImage === (event.image || "")}
-            className="bg-slate-900 text-white hover:bg-slate-800"
-          >
-            {savingCarousel ? "Saving…" : "Save carousel image"}
-          </Button>
-        </div>
-        <EventCarouselComposer
-          value={carouselImage}
-          onChange={setCarouselImage}
-          defaults={carouselDefaults}
-        />
-      </div>
+        </Panel>
 
-      {/* Statistics */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow-sm">
-          <div className="text-2xl font-bold text-blue-600">{stats.total}</div>
-          <div className="text-sm text-gray-600">Total Registrations</div>
-        </div>
-        <div className="bg-white p-4 rounded-lg shadow-sm">
-          <div className="text-2xl font-bold text-green-600">
-            {stats.confirmed}
-          </div>
-          <div className="text-sm text-gray-600">Confirmed</div>
-        </div>
-        <div className="bg-white p-4 rounded-lg shadow-sm">
-          <div className="text-2xl font-bold text-yellow-600">
-            {stats.pending}
-          </div>
-          <div className="text-sm text-gray-600">Pending</div>
-        </div>
-        <div className="bg-white p-4 rounded-lg shadow-sm">
-          <div className="text-2xl font-bold text-purple-600">
-            {stats.attended}
-          </div>
-          <div className="text-sm text-gray-600">Attended</div>
-        </div>
-        <div className="bg-white p-4 rounded-lg shadow-sm">
-          <div className="text-2xl font-bold text-emerald-600">
-            ${stats.totalPayments.toFixed(0)}
-          </div>
-          <div className="text-sm text-gray-600">Total Collected</div>
-        </div>
-      </div>
-
-      {/* Registrations Table */}
-      <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-        <div className="p-4 border-b">
-          <h2 className="text-xl font-semibold">Registrations</h2>
-        </div>
-        {event.registrations.length === 0 ? (
-          <div className="p-8 text-center text-gray-500">
-            No registrations yet
-          </div>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Student
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Parent
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Status
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Payment
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Registered
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {event.registrations.map((reg) => (
-                  <tr key={reg.id} className="hover:bg-gray-50">
-                    <td className="px-4 py-3">
-                      <div className="font-medium">{reg.studentName}</div>
-                      <div className="text-sm text-gray-500">
-                        {reg.studentEmail}
-                      </div>
-                      {reg.studentGrade && (
-                        <div className="text-xs text-gray-400">
-                          Grade {reg.studentGrade}
-                        </div>
-                      )}
-                    </td>
-                    <td className="px-4 py-3">
-                      <div>{reg.parentName}</div>
-                      <div className="text-sm text-gray-500">
-                        {reg.parentEmail}
-                      </div>
-                    </td>
-                    <td className="px-4 py-3">
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusBadge(
-                          reg.registrationStatus
-                        )}`}
-                      >
-                        {reg.registrationStatus}
-                      </span>
-                      {reg.attendanceConfirmed && (
-                        <div className="text-xs text-green-600 mt-1">
-                          ✓ Checked in
-                        </div>
-                      )}
-                    </td>
-                    <td className="px-4 py-3">
-                      {reg.paymentStatus === "completed" ? (
-                        <div className="text-green-600">
-                          <div className="font-medium">
-                            ${reg.paymentAmount}
-                          </div>
-                          <div className="text-xs">Paid</div>
-                        </div>
-                      ) : (
-                        <div className="text-yellow-600 text-sm">Pending</div>
-                      )}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-500">
-                      {new Date(reg.createdAt).toLocaleDateString()}
-                    </td>
-                    <td className="px-4 py-3">
-                      <div className="flex gap-2">
-                        {!reg.attendanceConfirmed && (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => handleCheckIn(reg.id)}
-                          >
-                            <CheckCircle className="w-3 h-3 mr-1" />
-                            Check In
-                          </Button>
-                        )}
-                        {reg.registrationStatus === "pending" && (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() =>
-                              handleUpdateStatus(reg.id, "confirmed")
-                            }
-                          >
-                            Approve
-                          </Button>
-                        )}
-                      </div>
-                    </td>
+        {/* Registrations */}
+        <Panel className="overflow-hidden">
+          <PanelHeader
+            title="Registrations"
+            description={
+              <span className="flex flex-wrap items-center gap-1.5 pt-1">
+                <Badge tone="slate">{stats.total} total</Badge>
+                <Badge tone="emerald">{stats.confirmed} confirmed</Badge>
+                <Badge tone="amber">{stats.pending} pending</Badge>
+                <Badge tone="brand">{stats.attended} attended</Badge>
+                <Badge tone="emerald" icon={DollarSign}>${stats.totalPayments.toFixed(0)} collected</Badge>
+              </span>
+            }
+          />
+          {event.registrations.length === 0 ? (
+            <EmptyState icon={Users} title="No registrations yet" description="Registrations appear here once families sign up." />
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[860px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-line bg-surface-muted text-xs font-semibold uppercase tracking-[0.06em] text-muted">
+                    <th className="px-5 py-3">Student</th>
+                    <th className="px-4 py-3">Parent</th>
+                    <th className="px-4 py-3">Status</th>
+                    <th className="px-4 py-3">Payment</th>
+                    <th className="px-4 py-3">Registered</th>
+                    <th className="px-5 py-3 text-right">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+                </thead>
+                <tbody className="divide-y divide-line">
+                  {event.registrations.map((reg) => (
+                    <tr key={reg.id} className="align-top transition-colors hover:bg-surface-muted/60">
+                      <td className="px-5 py-4">
+                        <p className="font-medium text-ink">{reg.studentName}</p>
+                        <p className="text-xs text-muted">{reg.studentEmail}</p>
+                        {reg.studentGrade && <p className="text-xs text-subtle">Grade {reg.studentGrade}</p>}
+                      </td>
+                      <td className="px-4 py-4">
+                        <p className="text-ink-soft">{reg.parentName}</p>
+                        <p className="text-xs text-muted">{reg.parentEmail}</p>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="flex flex-col items-start gap-1">
+                          <Badge tone={REG_TONE[reg.registrationStatus] ?? "amber"}>{titleCase(reg.registrationStatus)}</Badge>
+                          {reg.attendanceConfirmed && <Badge tone="brand" icon={CheckCircle2}>Checked in</Badge>}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        {reg.paymentStatus === "completed" ? (
+                          <Badge tone="emerald" icon={CheckCircle2}>${reg.paymentAmount} paid</Badge>
+                        ) : (
+                          <Badge tone="amber" dot>Payment pending</Badge>
+                        )}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-4 text-xs text-muted">
+                        {new Date(reg.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                      </td>
+                      <td className="px-5 py-4">
+                        <div className="flex justify-end gap-2">
+                          {reg.registrationStatus === "pending" && (
+                            <button type="button" onClick={() => handleUpdateStatus(reg.id, "confirmed")} className={buttonClass("success", "sm")}>
+                              <CheckCircle2 className="h-3.5 w-3.5" /> Approve
+                            </button>
+                          )}
+                          {!reg.attendanceConfirmed && (
+                            <button type="button" onClick={() => handleCheckIn(reg.id)} className={buttonClass("secondary", "sm")}>
+                              <UserCheck className="h-3.5 w-3.5" /> Check in
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </Panel>
       </div>
-    </div>
+    </AdminPageShell>
   )
 }

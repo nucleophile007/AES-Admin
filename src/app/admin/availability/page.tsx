@@ -1,9 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { ChevronLeft, ChevronRight, ArrowLeft, Calendar } from "lucide-react"
-import Link from "next/link"
+import { CalendarDays, ChevronLeft, ChevronRight, Loader2, MousePointerClick, RotateCcw, Save, Trash2 } from "lucide-react"
 import { toast } from "sonner"
+import AdminPageShell from "@/components/admin/AdminPageShell"
+import { LoadingState, Panel, PanelHeader, buttonClass, cx } from "@/components/admin/ui"
 
 function generateTimeSlots(interval: number) {
   const slots: string[] = []
@@ -27,6 +28,27 @@ function generateTimeSlots(interval: number) {
 }
 
 const SLOT_INTERVAL_MINUTES = 30
+const ALL_SLOTS = generateTimeSlots(SLOT_INTERVAL_MINUTES)
+const SLOT_INDEX = new Map(ALL_SLOTS.map((slot, i) => [slot, i]))
+const slotsPerHour = 60 / SLOT_INTERVAL_MINUTES
+
+/** Day split into four 6-hour blocks so 48 slots are easy to scan. */
+const PERIODS = [
+  { label: "Night", range: "12 AM – 6 AM", from: 0, to: 6 },
+  { label: "Morning", range: "6 AM – 12 PM", from: 6, to: 12 },
+  { label: "Afternoon", range: "12 PM – 6 PM", from: 12, to: 18 },
+  { label: "Evening", range: "6 PM – 12 AM", from: 18, to: 24 },
+].map((p) => ({ ...p, slots: ALL_SLOTS.slice(p.from * slotsPerHour, p.to * slotsPerHour) }))
+
+/** Chronological order for display (stored order is unchanged). */
+const byTimeOfDay = (a: string, b: string) => (SLOT_INDEX.get(a) ?? 999) - (SLOT_INDEX.get(b) ?? 999) || a.localeCompare(b)
+
+/** "11/18/2026" → "Wednesday, November 18, 2026" */
+const prettyDate = (date: string) => {
+  const [m, d, y] = date.split("/").map(Number)
+  if (!m || !d || !y) return date
+  return new Date(y, m - 1, d).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })
+}
 
 export default function AdminAvailabilityPage() {
   const [selectedDate, setSelectedDate] = useState<string>("")
@@ -71,6 +93,9 @@ export default function AdminAvailabilityPage() {
     return `${month}/${day}/${year}`
   }
 
+  const now = new Date()
+  const todayKey = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`
+
   const isSelectedDate = (day: number) => selectedDate === formatDate(day)
 
   const getCurrentTimesForDate = (date: string): string[] => {
@@ -80,10 +105,7 @@ export default function AdminAvailabilityPage() {
     return allAvailability[date] || []
   }
 
-  const dayHasAvailability = (day: number) => {
-    const date = formatDate(day)
-    return getCurrentTimesForDate(date).length > 0
-  }
+  const slotCountForDay = (day: number) => getCurrentTimesForDate(formatDate(day)).length
 
   const calendarDays = getDaysInMonth(currentMonth)
 
@@ -145,6 +167,17 @@ export default function AdminAvailabilityPage() {
     setDirtyDates(newDirtyDates)
   }
 
+  /** Replace the selected date's times as a draft (same path a single toggle takes). */
+  const setTimesForSelectedDate = (newTimes: string[]) => {
+    if (!selectedDate) return
+    setSelectedTimes(newTimes)
+    setDraftChanges((prev) => ({
+      ...prev,
+      [selectedDate]: newTimes
+    }))
+    markDirty(selectedDate)
+  }
+
   const toggleTime = (time: string) => {
     if (!selectedDate) return
 
@@ -152,14 +185,22 @@ export default function AdminAvailabilityPage() {
       ? selectedTimes.filter((t) => t !== time)
       : [...selectedTimes, time].sort()
 
-    setSelectedTimes(newTimes)
+    setTimesForSelectedDate(newTimes)
+  }
 
-    setDraftChanges((prev) => ({
-      ...prev,
-      [selectedDate]: newTimes
-    }))
+  /** Select every slot in a period, or clear them all if they're already selected. */
+  const togglePeriod = (slots: string[]) => {
+    if (!selectedDate) return
+    const allOn = slots.every((s) => selectedTimes.includes(s))
+    const newTimes = allOn
+      ? selectedTimes.filter((t) => !slots.includes(t))
+      : Array.from(new Set([...selectedTimes, ...slots])).sort()
+    setTimesForSelectedDate(newTimes)
+  }
 
-    markDirty(selectedDate)
+  const discardChanges = () => {
+    setDraftChanges({})
+    setDirtyDates(new Set())
   }
 
   const saveAll = async () => {
@@ -184,6 +225,7 @@ export default function AdminAvailabilityPage() {
       })
       if (!res.ok) throw new Error("Save failed")
       await loadAllAvailability(false)
+      toast.success(`Availability saved for ${payload.length} ${payload.length === 1 ? "date" : "dates"}`)
     } catch (e) {
       console.error(e)
       toast.error("Failed to save availability")
@@ -192,191 +234,237 @@ export default function AdminAvailabilityPage() {
     }
   }
 
+  const unsaved = dirtyDates.size
+
+  const headerActions = (
+    <>
+      {unsaved > 0 && (
+        <span className="inline-flex items-center gap-2 rounded-full bg-gold-50 px-3 py-1 text-xs font-medium text-gold-700 ring-1 ring-inset ring-gold-200">
+          <span className="h-1.5 w-1.5 rounded-full bg-gold-500" />
+          {unsaved} unsaved {unsaved === 1 ? "date" : "dates"}
+        </span>
+      )}
+      <button type="button" onClick={discardChanges} disabled={loading || unsaved === 0} className={buttonClass("secondary")}>
+        <RotateCcw className="h-4 w-4" />
+        Discard
+      </button>
+      <button type="button" onClick={saveAll} disabled={loading || unsaved === 0} className={buttonClass("primary")}>
+        {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+        {loading ? "Saving…" : unsaved > 0 ? `Save changes (${unsaved})` : "Save changes"}
+      </button>
+    </>
+  )
+
   if (initialLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
-          <p className="mt-4 text-gray-600">Loading availability...</p>
-        </div>
-      </div>
+      <AdminPageShell moduleId="availability">
+        <Panel>
+          <LoadingState label="Loading availability…" />
+        </Panel>
+      </AdminPageShell>
     )
   }
 
+  const sortedSelected = [...selectedTimes].sort(byTimeOfDay)
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <Calendar className="h-6 w-6 text-yellow-300" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Manage Availability Slots</h1>
-                <p className="text-sm text-gray-700">Select only date and time slots</p>
-              </div>
-            </div>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
+    <AdminPageShell
+      moduleId="availability"
+      description="Pick a date, then choose the time slots families can book."
+      actions={headerActions}
+    >
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)]">
+        {/* Calendar */}
+        <Panel className="h-fit">
+          <div className="flex items-center justify-between border-b border-line px-5 py-4">
+            <button
+              type="button"
+              onClick={(e: React.MouseEvent) => navigateMonth("prev", e)}
+              className={buttonClass("ghost", "icon")}
+              aria-label="Previous month"
             >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Dashboard
-            </Link>
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <h2 className="text-[15px] font-semibold text-ink">
+              {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+            </h2>
+            <button
+              type="button"
+              onClick={(e: React.MouseEvent) => navigateMonth("next", e)}
+              className={buttonClass("ghost", "icon")}
+              aria-label="Next month"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
-        </div>
-      </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-semibold text-blue-900">Slot Availability</h3>
-              <p className="text-sm text-blue-700">Choose date first, then select one or more time slots</p>
-            </div>
-            <div className="flex items-center gap-3 text-sm text-blue-600">
-              <span className="inline-flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-green-500" /> has slots
-              </span>
-              {dirtyDates.size > 0 && (
-                <span className="inline-flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-yellow-400" /> unsaved changes ({dirtyDates.size})
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Calendar column */}
-          <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-6">
-            <div className="flex items-center justify-between mb-6">
-              <button
-                className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
-                type="button"
-                onClick={(e: React.MouseEvent) => navigateMonth("prev", e)}
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <h4 className="text-xl font-semibold text-gray-900">
-                {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
-              </h4>
-              <button
-                className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
-                type="button"
-                onClick={(e: React.MouseEvent) => navigateMonth("next", e)}
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
-
-            <div className="grid grid-cols-7 gap-2 mb-3">
+          <div className="p-4">
+            <div className="mb-1 grid grid-cols-7">
               {daysOfWeek.map((d) => (
-                <div key={d} className="text-center text-sm font-semibold text-gray-700 py-2">
+                <div key={d} className="py-2 text-center text-[11px] font-semibold uppercase tracking-wider text-subtle">
                   {d}
                 </div>
               ))}
             </div>
 
-            <div className="grid grid-cols-7 gap-2">
-              {calendarDays.map((day, idx) => (
-                <div key={idx} className="aspect-square flex items-center justify-center">
-                  {day && (
-                    <button
-                      type="button"
-                      onClick={() => setSelectedDate(formatDate(day))}
-                      className={`w-12 h-12 rounded-full text-sm font-semibold transition-all ${
-                        isSelectedDate(day)
-                          ? "bg-blue-600 text-white shadow-lg ring-2 ring-blue-300"
-                          : "bg-white text-gray-700 border border-gray-200 hover:bg-blue-50 hover:border-blue-300"
-                      }`}
-                    >
-                      <span className="relative">
-                        {day}
-                        {dayHasAvailability(day) && (
-                          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-green-500 rounded-full" />
-                        )}
-                      </span>
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Times column */}
-          <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h2 className="text-xl font-semibold text-gray-900">Time Slots</h2>
-                <p className="text-sm text-gray-600">
-                  {selectedDate ? `Selected: ${selectedDate}` : "Select a date from calendar"}
-                </p>
-              </div>
-              <button
-                onClick={saveAll}
-                disabled={loading || dirtyDates.size === 0}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                {loading ? "Saving..." : `Save All ${dirtyDates.size > 0 ? `(${dirtyDates.size})` : ""}`}
-              </button>
-            </div>
-
-            {/* Legend */}
-            <div className="mb-4 flex flex-wrap gap-4 text-xs bg-blue-50 p-3 rounded-lg border border-blue-100">
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-4 bg-blue-500 border border-blue-500 rounded"></span>
-                <span className="text-gray-700">Selected slot</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 h-4 bg-white border border-gray-200 rounded"></span>
-                <span className="text-gray-700">Available to select</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
-              {generateTimeSlots(SLOT_INTERVAL_MINUTES).map((time) => {
-                const active = selectedTimes.includes(time)
-
+            <div className="grid grid-cols-7 gap-1">
+              {calendarDays.map((day, idx) => {
+                if (!day) return <div key={idx} />
+                const key = formatDate(day)
+                const selected = isSelectedDate(day)
+                const count = slotCountForDay(day)
+                const dirty = dirtyDates.has(key)
+                const isToday = key === todayKey
                 return (
                   <button
-                    key={time}
+                    key={idx}
                     type="button"
-                    onClick={() => toggleTime(time)}
-                    className={`p-2 rounded border text-xs font-medium transition-all ${
-                      active
-                        ? "bg-blue-500 text-white border-blue-500 shadow"
-                        : "bg-white text-gray-700 border-gray-200 hover:bg-blue-50 hover:border-blue-300"
-                    }`}
-                    disabled={!selectedDate}
+                    onClick={() => setSelectedDate(key)}
+                    aria-pressed={selected}
+                    aria-label={`${prettyDate(key)}${count ? `, ${count} slots` : ""}${dirty ? ", unsaved" : ""}`}
+                    className={cx(
+                      "relative flex aspect-square flex-col items-center justify-center rounded-lg text-sm font-medium transition",
+                      selected
+                        ? "bg-brand-700 text-white shadow-card"
+                        : count > 0
+                          ? "bg-emerald-50 text-emerald-800 hover:bg-emerald-100"
+                          : "text-ink-soft hover:bg-surface-muted",
+                      isToday && !selected && "ring-1 ring-inset ring-brand-300"
+                    )}
                   >
-                    {time}
+                    <span className="tabular-nums">{day}</span>
+                    {count > 0 && (
+                      <span className={cx("text-[10px] leading-none tabular-nums", selected ? "text-brand-100" : "text-emerald-700/80")}>
+                        {count}
+                      </span>
+                    )}
+                    {dirty && (
+                      <span className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-gold-500" />
+                    )}
                   </button>
                 )
               })}
             </div>
+          </div>
 
-            {selectedDate && (
-              <div className="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
-                <h3 className="font-semibold mb-3 text-gray-900">Selected Times for {selectedDate}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {selectedTimes.length > 0 ? (
-                    [...selectedTimes].sort((a, b) => a.localeCompare(b)).map((t) => (
-                      <span key={t} className="px-3 py-1 text-sm rounded-full font-medium bg-blue-100 text-blue-800">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-line px-5 py-3 text-xs text-muted">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded bg-emerald-100 ring-1 ring-inset ring-emerald-200" /> Has slots
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-gold-500" /> Unsaved
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded ring-1 ring-inset ring-brand-300" /> Today
+            </span>
+          </div>
+        </Panel>
+
+        {/* Time slots */}
+        <Panel>
+          <PanelHeader
+            title={selectedDate ? prettyDate(selectedDate) : "Time slots"}
+            description={
+              selectedDate
+                ? `${selectedTimes.length} of ${ALL_SLOTS.length} slots selected · ${SLOT_INTERVAL_MINUTES}-minute slots`
+                : "Select a date on the calendar to edit its slots."
+            }
+            actions={
+              selectedDate && selectedTimes.length > 0 ? (
+                <button type="button" onClick={() => setTimesForSelectedDate([])} className={buttonClass("ghost", "sm")}>
+                  <Trash2 className="h-3.5 w-3.5" />
+                  Clear day
+                </button>
+              ) : undefined
+            }
+          />
+
+          {!selectedDate ? (
+            <div className="flex flex-col items-center px-6 py-16 text-center">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-50 text-brand-700 ring-1 ring-inset ring-brand-100">
+                <MousePointerClick className="h-5 w-5" />
+              </span>
+              <p className="mt-4 text-sm font-semibold text-ink">No date selected</p>
+              <p className="mt-1 max-w-xs text-sm text-muted">
+                Choose a day on the calendar. Days in green already have slots.
+              </p>
+            </div>
+          ) : (
+            <div className="divide-y divide-line">
+              {PERIODS.map((period) => {
+                const selectedInPeriod = period.slots.filter((s) => selectedTimes.includes(s)).length
+                const allOn = selectedInPeriod === period.slots.length
+                return (
+                  <div key={period.label} className="px-5 py-4">
+                    <div className="mb-3 flex items-center justify-between gap-3">
+                      <div className="flex items-baseline gap-2">
+                        <h3 className="text-sm font-semibold text-ink">{period.label}</h3>
+                        <span className="text-xs text-subtle">{period.range}</span>
+                        {selectedInPeriod > 0 && (
+                          <span className="text-xs font-medium text-brand-700">{selectedInPeriod} selected</span>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => togglePeriod(period.slots)}
+                        className="text-xs font-medium text-brand-700 hover:underline"
+                      >
+                        {allOn ? "Clear all" : "Select all"}
+                      </button>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
+                      {period.slots.map((time) => {
+                        const active = selectedTimes.includes(time)
+                        return (
+                          <button
+                            key={time}
+                            type="button"
+                            onClick={() => toggleTime(time)}
+                            aria-pressed={active}
+                            className={cx(
+                              "h-9 rounded-lg border text-xs font-medium tabular-nums transition",
+                              active
+                                ? "border-brand-700 bg-brand-700 text-white shadow-card"
+                                : "border-line bg-surface text-ink-soft hover:border-brand-200 hover:bg-brand-50 hover:text-brand-800"
+                            )}
+                          >
+                            {time}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )
+              })}
+
+              <div className="bg-surface-muted/60 px-5 py-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.06em] text-muted">Selected for this day</p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {sortedSelected.length > 0 ? (
+                    sortedSelected.map((t) => (
+                      <button
+                        key={t}
+                        type="button"
+                        onClick={() => toggleTime(t)}
+                        title="Remove this slot"
+                        className="inline-flex items-center gap-1 rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-800 ring-1 ring-inset ring-brand-100 transition hover:bg-rose-50 hover:text-rose-700 hover:ring-rose-100"
+                      >
                         {t}
-                      </span>
+                        <span aria-hidden className="text-[10px] opacity-60">✕</span>
+                      </button>
                     ))
                   ) : (
-                    <span className="text-gray-700 text-sm font-medium">No times selected</span>
+                    <span className="inline-flex items-center gap-2 text-sm text-muted">
+                      <CalendarDays className="h-4 w-4 text-subtle" />
+                      No slots yet. Click a time above to add it.
+                    </span>
                   )}
                 </div>
               </div>
-            )}
-          </div>
-        </div>
+            </div>
+          )}
+        </Panel>
       </div>
-    </div>
+    </AdminPageShell>
   )
 }

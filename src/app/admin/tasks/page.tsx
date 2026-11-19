@@ -1,13 +1,11 @@
 'use client'
 
 import { Suspense, useCallback, useEffect, useMemo, useState } from 'react'
-import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import useSWR from 'swr'
 import {
-  ArrowLeft,
   BarChart3,
-  CheckSquare,
+  ClipboardList,
   Download,
   Kanban,
   List,
@@ -18,6 +16,8 @@ import {
   Search,
 } from 'lucide-react'
 import { toast } from 'sonner'
+import AdminPageShell from '@/components/admin/AdminPageShell'
+import { EmptyState, LoadingState, Panel, cx } from '@/components/admin/ui'
 import { CreateTaskDialog } from './CreateTaskDialog'
 import { TaskDetailPanel } from './TaskDetailPanel'
 import { InsightsView } from './InsightsView'
@@ -87,7 +87,7 @@ type View = 'list' | 'board' | 'insights'
 
 export default function AdminTasksPage() {
   return (
-    <Suspense fallback={<div className="flex min-h-screen items-center justify-center"><LoaderCircle className="h-8 w-8 animate-spin text-slate-400" /></div>}>
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center"><LoaderCircle className="h-8 w-8 animate-spin text-subtle" /></div>}>
       <AdminTasks />
     </Suspense>
   )
@@ -197,73 +197,84 @@ function AdminTasks() {
     }
   }
 
-  const metricCards: Array<{ label: string; value: number | undefined; status?: TaskStatus; overdue?: boolean; className: string }> = [
-    { label: 'All', value: metrics?.total, className: 'border-l-slate-700' },
-    { label: 'To do', value: metrics?.todo, status: 'TODO', className: 'border-l-slate-400' },
-    { label: 'In progress', value: metrics?.inProgress, status: 'IN_PROGRESS', className: 'border-l-blue-500' },
-    { label: 'Needs review', value: metrics?.pendingReview, status: 'SUBMITTED', className: 'border-l-amber-500' },
-    { label: 'Changes requested', value: metrics?.changesRequested, status: 'CHANGES_REQUESTED', className: 'border-l-rose-500' },
-    { label: 'Completed', value: metrics?.completed, status: 'COMPLETED', className: 'border-l-emerald-500' },
-    { label: 'Overdue', value: metrics?.overdue, overdue: true, className: 'border-l-red-600' },
+  const statusTabs: Array<{ label: string; value: number | undefined; status?: TaskStatus; overdue?: boolean; dot: string }> = [
+    { label: 'All', value: metrics?.total, dot: 'bg-ink-soft' },
+    { label: 'To do', value: metrics?.todo, status: 'TODO', dot: 'bg-subtle' },
+    { label: 'In progress', value: metrics?.inProgress, status: 'IN_PROGRESS', dot: 'bg-brand-500' },
+    { label: 'Needs review', value: metrics?.pendingReview, status: 'SUBMITTED', dot: 'bg-gold-500' },
+    { label: 'Changes requested', value: metrics?.changesRequested, status: 'CHANGES_REQUESTED', dot: 'bg-rose-500' },
+    { label: 'Completed', value: metrics?.completed, status: 'COMPLETED', dot: 'bg-emerald-500' },
+    { label: 'Overdue', value: metrics?.overdue, overdue: true, dot: 'bg-rose-600' },
   ]
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-8 sm:px-6">
-      <div className="mx-auto max-w-7xl space-y-6">
-        <header className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <Link href="/" className="mb-3 inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-950">
-              <ArrowLeft className="h-4 w-4" /> Admin dashboard
-            </Link>
-            <h1 className="flex items-center gap-3 text-2xl font-bold text-slate-950"><CheckSquare className="h-7 w-7 text-blue-700" /> Task management</h1>
-            <p className="mt-1 text-sm text-slate-600">Assign tasks to any student, mentor or parent, review their work, and follow every mentor&apos;s tasks.</p>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <button type="button" className={buttonClass} onClick={() => void mutate()} disabled={isValidating} aria-label="Refresh">
-              <RefreshCw className={`h-4 w-4 ${isValidating ? 'animate-spin' : ''}`} /> Refresh
-            </button>
-            <a className={buttonClass} href={`/api/admin/tasks/export?${listQuery}`}>
-              <Download className="h-4 w-4" /> Export CSV
-            </a>
-            <button type="button" className={primaryButtonClass} onClick={() => setCreateOpen(true)}>
-              <Plus className="h-4 w-4" /> New task
-            </button>
-          </div>
-        </header>
-
+    <AdminPageShell
+      moduleId="tasks"
+      description="Assign tasks to any student, mentor or parent, review their work, and follow every mentor's tasks."
+      actions={
+        <>
+          <button type="button" className={buttonClass} onClick={() => void mutate()} disabled={isValidating} aria-label="Refresh">
+            <RefreshCw className={`h-4 w-4 ${isValidating ? 'animate-spin' : ''}`} /> Refresh
+          </button>
+          <a className={buttonClass} href={`/api/admin/tasks/export?${listQuery}`}>
+            <Download className="h-4 w-4" /> Export CSV
+          </a>
+          <button type="button" className={primaryButtonClass} onClick={() => setCreateOpen(true)}>
+            <Plus className="h-4 w-4" /> New task
+          </button>
+        </>
+      }
+    >
+      <div className="space-y-4">
         {error && !data && (
-          <div role="alert" className="rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-800">{(error as Error).message}</div>
+          <div role="alert" className="rounded-card border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">{(error as Error).message}</div>
         )}
 
-        <section aria-label="Totals" className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-          {metricCards.map((m) => {
-            const active = m.overdue ? filters.deadlineFilter === 'overdue' : m.status ? filters.status === m.status : !filters.status && !filters.deadlineFilter
-            return (
-              <button
-                key={m.label}
-                type="button"
-                aria-pressed={active}
-                onClick={() =>
-                  setFilters((f) =>
-                    m.overdue
-                      ? { ...f, status: '', deadlineFilter: f.deadlineFilter === 'overdue' ? '' : 'overdue' }
-                      : { ...f, deadlineFilter: '', status: m.status && f.status !== m.status ? m.status : '' }
-                  )
-                }
-                className={`rounded-xl border border-slate-200 border-l-4 bg-white p-3 text-left shadow-sm transition hover:shadow ${m.className} ${active ? 'ring-2 ring-blue-200' : ''}`}
-              >
-                <p className="text-xs font-medium text-slate-500">{m.label}</p>
-                <p className="mt-1 text-2xl font-bold text-slate-950">{m.value ?? <span className="inline-block h-6 w-8 animate-pulse rounded bg-slate-200" />}</p>
-              </button>
-            )
-          })}
-        </section>
+        <Panel>
+          {/* Status tabs (replace the old number cards, same filtering) */}
+          <div className="border-b border-line px-4 pt-3">
+            <div role="tablist" aria-label="Status" className="-mb-px flex flex-1 gap-1 overflow-x-auto">
+              {statusTabs.map((m) => {
+                const active = m.overdue ? filters.deadlineFilter === 'overdue' : m.status ? filters.status === m.status : !filters.status && !filters.deadlineFilter
+                return (
+                  <button
+                    key={m.label}
+                    type="button"
+                    role="tab"
+                    aria-selected={active}
+                    onClick={() =>
+                      setFilters((f) =>
+                        m.overdue
+                          ? { ...f, status: '', deadlineFilter: f.deadlineFilter === 'overdue' ? '' : 'overdue' }
+                          : { ...f, deadlineFilter: '', status: m.status && f.status !== m.status ? m.status : '' }
+                      )
+                    }
+                    className={cx(
+                      'inline-flex shrink-0 items-center gap-2 whitespace-nowrap border-b-2 px-3 pb-3 pt-1.5 text-sm font-medium transition',
+                      active ? 'border-brand-700 text-ink' : 'border-transparent text-muted hover:border-line-strong hover:text-ink'
+                    )}
+                  >
+                    <span className={`h-1.5 w-1.5 rounded-full ${m.dot}`} />
+                    {m.label}
+                    <span
+                      className={cx(
+                        'min-w-[1.5rem] rounded-full px-1.5 py-px text-center text-xs tabular-nums',
+                        m.overdue && m.value ? 'bg-rose-50 text-rose-700' : active ? 'bg-brand-50 text-brand-700' : 'bg-surface-muted text-muted'
+                      )}
+                    >
+                      {m.value ?? '–'}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
 
-        <section aria-label="Filters" className="space-y-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-          <div className="flex flex-wrap gap-2">
-            <div className="relative min-w-[220px] flex-1">
-              <Search className="pointer-events-none absolute left-2.5 top-2.5 h-4 w-4 text-slate-400" />
-              <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} placeholder="Search title, person, or TSK-123…" className={`${inputClass} pl-8`} aria-label="Search tasks" />
+          {/* Filters */}
+          <div aria-label="Filters" className="flex flex-wrap items-center gap-2 p-4">
+            <div className="relative min-w-[200px] flex-1">
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
+              <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} placeholder="Search title, person, or TSK-123…" className={`${inputClass} pl-9`} aria-label="Search tasks" />
             </div>
             <select className={`${fieldClass} w-auto`} value={filters.source} onChange={(e) => setFilters((f) => ({ ...f, source: e.target.value as Filters['source'], creatorTeacherId: e.target.value === 'admin' ? '' : f.creatorTeacherId }))} aria-label="Created by">
               <option value="all">All tasks</option>
@@ -279,12 +290,6 @@ function AdminTasks() {
               <option value="STUDENT">Students</option>
               <option value="TEACHER">Mentors</option>
               <option value="PARENT">Parents</option>
-            </select>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <select className={`${fieldClass} w-auto`} value={filters.status} onChange={(e) => setFilter('status', e.target.value)} aria-label="Status">
-              <option value="">Any status</option>
-              {STATUSES.map((s) => <option key={s} value={s}>{STATUS_META[s].label}</option>)}
             </select>
             <select className={`${fieldClass} w-auto`} value={filters.priority} onChange={(e) => setFilter('priority', e.target.value)} aria-label="Priority">
               <option value="">Any priority</option>
@@ -302,8 +307,8 @@ function AdminTasks() {
               <option value="upcoming">Upcoming</option>
               <option value="none">No deadline</option>
             </select>
-            {hasFilters && <button type="button" className="text-sm font-medium text-blue-700 hover:underline" onClick={resetFilters}>Reset filters</button>}
-            <div className="ml-auto inline-flex rounded-lg border border-slate-200 bg-slate-50 p-1" role="tablist" aria-label="View">
+            {hasFilters && <button type="button" className="px-1 text-sm font-medium text-brand-700 hover:underline" onClick={resetFilters}>Reset filters</button>}
+            <div className="ml-auto inline-flex h-9 shrink-0 items-center rounded-lg border border-line bg-surface-muted p-1" role="tablist" aria-label="View">
               {([
                 ['list', 'List', List],
                 ['board', 'Board', Kanban],
@@ -315,18 +320,21 @@ function AdminTasks() {
                   role="tab"
                   aria-selected={view === value}
                   onClick={() => setView(value)}
-                  className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1 text-sm font-medium ${view === value ? 'bg-white text-slate-900 shadow-sm ring-1 ring-slate-200' : 'text-slate-600 hover:text-slate-900'}`}
+                  className={cx(
+                    'inline-flex items-center gap-1.5 rounded-md px-3 py-1 text-sm font-medium transition',
+                    view === value ? 'bg-surface text-ink shadow-card' : 'text-muted hover:text-ink'
+                  )}
                 >
                   <Icon className="h-4 w-4" /> {label}
                 </button>
               ))}
             </div>
           </div>
-        </section>
+        </Panel>
 
         {view !== 'insights' && selected.size > 0 && (
-          <div className="sticky top-2 z-10 flex flex-wrap items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 p-3 text-sm shadow">
-            <span className="font-semibold text-blue-900">{selected.size} selected</span>
+          <div className="sticky top-[72px] z-30 flex flex-wrap items-center gap-2 rounded-card border border-brand-100 bg-brand-50/95 p-3 text-sm shadow-card-hover backdrop-blur">
+            <span className="font-semibold text-brand-900">{selected.size} selected</span>
             <button type="button" className={buttonClass} disabled={bulkBusy} onClick={() => void runBulk({ action: 'APPROVE' }, 'Approved')}>Approve</button>
             <button
               type="button"
@@ -363,24 +371,34 @@ function AdminTasks() {
             <button type="button" className={buttonClass} disabled={bulkBusy} onClick={() => window.confirm('Cancel the tasks of the selected rows for everyone assigned?') && void runBulk({ action: 'CANCEL' }, 'Cancelled')}>Cancel tasks</button>
             <button type="button" className={buttonClass} disabled={bulkBusy} onClick={() => void runBulk({ action: 'RESTORE' }, 'Restored')}>Restore</button>
             <button type="button" className={`${buttonClass} border-rose-200 text-rose-700 hover:bg-rose-50`} disabled={bulkBusy} onClick={() => window.confirm(`Remove ${selected.size} people from their tasks? Their work on those tasks will be deleted.`) && void runBulk({ action: 'UNASSIGN' }, 'Unassigned')}>Unassign</button>
-            <button type="button" className="ml-auto text-sm text-blue-800 hover:underline" onClick={() => setSelected(new Set())}>Clear</button>
-            {bulkBusy && <LoaderCircle className="h-4 w-4 animate-spin text-blue-700" />}
+            <button type="button" className="ml-auto text-sm text-brand-800 hover:underline" onClick={() => setSelected(new Set())}>Clear</button>
+            {bulkBusy && <LoaderCircle className="h-4 w-4 animate-spin text-brand-700" />}
           </div>
         )}
 
         {data?.truncated && view !== 'insights' && (
-          <p className="rounded-md border border-sky-200 bg-sky-50 p-3 text-sm text-sky-900">Showing the first {items.length} rows. Use search or filters to narrow the list.</p>
+          <p className="rounded-card border border-brand-100 bg-brand-50 px-4 py-3 text-sm text-brand-800">Showing the first {items.length} rows. Use search or filters to narrow the list.</p>
         )}
 
         {view === 'insights' ? (
           <InsightsView scopeQuery={scopeQuery} onOpen={(taskId, itemId) => setDetail({ taskId, itemId })} />
         ) : !data ? (
-          <div className="flex h-64 items-center justify-center">{isLoading && <LoaderCircle className="h-8 w-8 animate-spin text-slate-400" />}</div>
+          <Panel>{isLoading ? <LoadingState label="Loading tasks…" /> : <div className="h-40" />}</Panel>
         ) : items.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-slate-300 bg-white p-12 text-center">
-            <p className="font-semibold text-slate-900">{hasFilters ? 'No tasks match these filters' : 'No tasks yet'}</p>
-            <p className="mt-1 text-sm text-slate-500">{hasFilters ? 'Try another search, or reset the filters.' : 'Create a task to assign it to students, mentors or parents.'}</p>
-          </div>
+          <Panel>
+            <EmptyState
+              icon={ClipboardList}
+              title={hasFilters ? 'No tasks match these filters' : 'No tasks yet'}
+              description={hasFilters ? 'Try another search, or reset the filters.' : 'Create a task to assign it to students, mentors or parents.'}
+              action={
+                hasFilters ? (
+                  <button type="button" className={buttonClass} onClick={resetFilters}>Reset filters</button>
+                ) : (
+                  <button type="button" className={primaryButtonClass} onClick={() => setCreateOpen(true)}><Plus className="h-4 w-4" /> New task</button>
+                )
+              }
+            />
+          </Panel>
         ) : view === 'board' ? (
           <Board items={items} counts={data.columnCounts} truncated={data.truncated} onOpen={(i) => setDetail({ taskId: i.taskId, itemId: i.id })} />
         ) : (
@@ -408,15 +426,15 @@ function AdminTasks() {
         onChanged={() => void mutate()}
         mentors={mentors}
       />
-    </main>
+    </AdminPageShell>
   )
 }
 
 function SourceBadge({ item }: { item: TaskItem }) {
   return isAdminTask(item.task) ? (
-    <span className="rounded border border-blue-200 bg-blue-50 px-1.5 text-[11px] font-medium text-blue-700">Admin</span>
+    <span className="rounded-md border border-brand-100 bg-brand-50 px-1.5 text-[11px] font-medium text-brand-700">Admin</span>
   ) : (
-    <span className="rounded border border-slate-200 bg-slate-50 px-1.5 text-[11px] text-slate-600" title="Created by a mentor. You act with the mentor's permissions.">
+    <span className="rounded-md border border-line bg-surface-muted px-1.5 text-[11px] text-muted" title="Created by a mentor. You act with the mentor's permissions.">
       Mentor
     </span>
   )
@@ -438,66 +456,66 @@ function TaskTable({
   onOpen: (item: TaskItem) => void
 }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm">
+    <div className="overflow-x-auto rounded-card border border-line bg-surface shadow-card">
       <table className="w-full min-w-[900px] text-sm">
-        <thead className="bg-slate-50 text-left text-xs uppercase tracking-wide text-slate-500">
+        <thead className="border-b border-line bg-surface-muted text-left text-xs font-semibold uppercase tracking-[0.06em] text-muted">
           <tr>
-            <th className="w-10 px-3 py-2.5">
+            <th className="w-10 px-4 py-3">
               <input
                 type="checkbox"
                 aria-label="Select all tasks"
                 checked={selectableIds.length > 0 && selected.size === selectableIds.length}
                 disabled={!selectableIds.length}
                 onChange={onToggleAll}
-                className="h-4 w-4 rounded border-slate-300"
+                className="h-4 w-4 rounded border-line-strong accent-brand-700"
               />
             </th>
-            <th className="px-3 py-2.5">Task</th>
-            <th className="px-3 py-2.5">Assigned to</th>
-            <th className="px-3 py-2.5">Created by</th>
-            <th className="px-3 py-2.5">Status</th>
-            <th className="px-3 py-2.5">Deadline</th>
-            <th className="px-3 py-2.5">Progress</th>
+            <th className="px-3 py-3">Task</th>
+            <th className="px-3 py-3">Assigned to</th>
+            <th className="px-3 py-3">Created by</th>
+            <th className="px-3 py-3">Status</th>
+            <th className="px-3 py-3">Deadline</th>
+            <th className="px-3 py-3">Progress</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-100">
+        <tbody className="divide-y divide-line">
           {items.map((item) => {
             const person = assigneeOf(item)
             const progress = checklistProgress(item.task, item.checklistDone)
             const overdue = isOverdue(item.task.deadline, item.status)
             return (
-              <tr key={item.id} className={`cursor-pointer hover:bg-slate-50 ${item.task.isCancelled ? 'opacity-60' : ''}`} onClick={() => onOpen(item)}>
-                <td className="px-3 py-2.5" onClick={(e) => e.stopPropagation()}>
+              <tr key={item.id} className={`cursor-pointer transition-colors hover:bg-surface-muted/60 ${item.task.isCancelled ? 'opacity-60' : ''}`} onClick={() => onOpen(item)}>
+                <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
                   <input
                     type="checkbox"
                     aria-label={`Select ${taskKey(item.taskId)} for ${person?.name ?? 'assignee'}`}
                     checked={selected.has(item.id)}
                     onChange={() => onToggle(item.id)}
-                    className="h-4 w-4 rounded border-slate-300 disabled:opacity-30"
+                    className="h-4 w-4 rounded border-line-strong accent-brand-700 disabled:opacity-30"
                   />
                 </td>
                 <td className="max-w-[280px] px-3 py-2.5">
-                  <p className="truncate font-medium text-slate-900"><span className="mr-1.5 font-mono text-xs text-slate-500">{taskKey(item.taskId)}</span>{item.task.title}</p>
-                  <p className="mt-0.5 flex items-center gap-1.5 text-xs text-slate-500">
+                  <p className="truncate font-medium text-ink"><span className="mr-1.5 font-mono text-xs text-muted">{taskKey(item.taskId)}</span>{item.task.title}</p>
+                  <p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted">
                     <span className={`rounded border px-1 ${PRIORITY_META[item.task.priority].className}`}>{PRIORITY_META[item.task.priority].label}</span>
                     {item.task.category}
-                    {item.task.isCancelled && <span className="font-semibold text-slate-600">· Cancelled</span>}
+                    {item.task.isCancelled && <span className="font-semibold text-muted">· Cancelled</span>}
                     {!!item._count?.comments && <span className="inline-flex items-center gap-0.5"><MessageSquare className="h-3 w-3" />{item._count.comments}</span>}
                   </p>
                 </td>
-                <td className="px-3 py-2.5">
-                  <p className="font-medium text-slate-800">{person?.name ?? 'Unknown'}</p>
+                <td className="px-3 py-3">
+                  <p className="font-medium text-ink-soft">{person?.name ?? 'Unknown'}</p>
                   <span className={`rounded border px-1.5 text-[11px] ${ROLE_META[item.assigneeRole].className}`}>{ROLE_META[item.assigneeRole].label}</span>
                 </td>
-                <td className="px-3 py-2.5">
-                  <p className="text-slate-800">{creatorLabel(item.task)}</p>
+                <td className="px-3 py-3">
+                  <p className="text-ink-soft">{creatorLabel(item.task)}</p>
                   <SourceBadge item={item} />
                 </td>
-                <td className="px-3 py-2.5">
+                <td className="px-3 py-3">
                   <span className={`rounded-full border px-2 py-0.5 text-xs font-medium ${STATUS_META[item.status].className}`}>{STATUS_META[item.status].label}</span>
                 </td>
-                <td className={`px-3 py-2.5 text-xs ${overdue ? 'font-semibold text-rose-600' : 'text-slate-600'}`}>{deadlineLabel(item.task.deadline)}</td>
-                <td className="px-3 py-2.5 text-xs text-slate-600">{progress.total ? `${progress.done}/${progress.total} steps` : '—'}</td>
+                <td className={`px-3 py-3 text-xs ${overdue ? 'font-semibold text-rose-600' : 'text-muted'}`}>{deadlineLabel(item.task.deadline)}</td>
+                <td className="px-3 py-3 text-xs text-muted">{progress.total ? `${progress.done}/${progress.total} steps` : '—'}</td>
               </tr>
             )
           })}
@@ -513,29 +531,29 @@ function Board({ items, counts, truncated, onOpen }: { items: TaskItem[]; counts
       {STATUSES.map((status) => {
         const column = items.filter((i) => i.status === status)
         return (
-          <section key={status} className="min-h-[200px] rounded-xl bg-slate-100/80 p-2.5" aria-label={STATUS_META[status].label}>
-            <h3 className="mb-2 flex items-center justify-between px-1 text-xs font-semibold uppercase tracking-wide text-slate-600">
+          <section key={status} className="min-h-[200px] rounded-card border border-line bg-surface-muted/70 p-2.5" aria-label={STATUS_META[status].label}>
+            <h3 className="mb-2 flex items-center justify-between px-1 text-xs font-semibold uppercase tracking-wide text-muted">
               {STATUS_META[status].label}
-              <span className="rounded-full bg-white px-2 text-slate-700">{counts[status]}</span>
+              <span className="rounded-full bg-surface px-2 text-ink-soft ring-1 ring-inset ring-line">{counts[status]}</span>
             </h3>
             <div className="space-y-2">
               {column.map((item) => {
                 const person = assigneeOf(item)
                 const overdue = isOverdue(item.task.deadline, item.status)
                 return (
-                  <button key={item.id} type="button" onClick={() => onOpen(item)} className={`w-full rounded-lg border bg-white p-2.5 text-left shadow-sm hover:shadow ${overdue ? 'border-rose-300' : 'border-slate-200'} ${item.task.isCancelled ? 'opacity-60' : ''}`}>
-                    <p className="text-[11px] font-mono text-slate-500">{taskKey(item.taskId)}</p>
-                    <p className="line-clamp-2 text-sm font-medium text-slate-900">{item.task.title}</p>
+                  <button key={item.id} type="button" onClick={() => onOpen(item)} className={`w-full rounded-lg border bg-surface p-3 text-left shadow-card transition hover:-translate-y-px hover:shadow-card-hover ${overdue ? 'border-rose-200' : 'border-line'} ${item.task.isCancelled ? 'opacity-60' : ''}`}>
+                    <p className="text-[11px] font-mono text-muted">{taskKey(item.taskId)}</p>
+                    <p className="line-clamp-2 text-sm font-medium text-ink">{item.task.title}</p>
                     <p className="mt-1.5 flex flex-wrap items-center gap-1 text-[11px]">
-                      <span className="font-medium text-slate-700">{person?.name ?? 'Unknown'}</span>
+                      <span className="font-medium text-ink-soft">{person?.name ?? 'Unknown'}</span>
                       <span className={`rounded border px-1 ${ROLE_META[item.assigneeRole].className}`}>{ROLE_META[item.assigneeRole].label}</span>
                       <SourceBadge item={item} />
                     </p>
-                    <p className={`mt-1 text-[11px] ${overdue ? 'font-semibold text-rose-600' : 'text-slate-500'}`}>{deadlineLabel(item.task.deadline)}</p>
+                    <p className={`mt-1 text-[11px] ${overdue ? 'font-semibold text-rose-600' : 'text-muted'}`}>{deadlineLabel(item.task.deadline)}</p>
                   </button>
                 )
               })}
-              {truncated && column.length < counts[status] && <p className="px-1 text-[11px] text-slate-500">+{counts[status] - column.length} more (narrow the filters)</p>}
+              {truncated && column.length < counts[status] && <p className="px-1 text-[11px] text-muted">+{counts[status] - column.length} more (narrow the filters)</p>}
             </div>
           </section>
         )

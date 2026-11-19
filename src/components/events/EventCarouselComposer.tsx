@@ -418,27 +418,27 @@ export default function EventCarouselComposer({
     <div className={`space-y-4 ${className}`}>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <div className="flex items-center gap-2 text-sm font-semibold text-slate-900">
+          <div className="flex items-center gap-2 text-sm font-semibold text-ink">
             <Sparkles className="h-4 w-4 text-amber-600" />
             Main-site carousel card
           </div>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-xs text-muted">
             Fixed template{" "}
-            <span className="font-mono text-slate-700">
+            <span className="font-mono text-ink-soft">
               {EVENT_CAROUSEL.width}×{EVENT_CAROUSEL.height}
             </span>{" "}
             ({EVENT_CAROUSEL.aspectLabel}) — same size every time, like a QR
             stamp.
           </p>
         </div>
-        <div className="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-0.5 text-xs">
+        <div className="inline-flex rounded-lg border border-line bg-surface-muted p-0.5 text-xs">
           <button
             type="button"
             onClick={() => setMode("compose")}
             className={`rounded-md px-3 py-1.5 font-medium transition ${
               mode === "compose"
-                ? "bg-white text-slate-900 shadow-sm"
-                : "text-slate-500 hover:text-slate-700"
+                ? "bg-surface text-ink shadow-sm"
+                : "text-muted hover:text-ink-soft"
             }`}
           >
             Compose template
@@ -448,8 +448,8 @@ export default function EventCarouselComposer({
             onClick={() => setMode("custom")}
             className={`rounded-md px-3 py-1.5 font-medium transition ${
               mode === "custom"
-                ? "bg-white text-slate-900 shadow-sm"
-                : "text-slate-500 hover:text-slate-700"
+                ? "bg-surface text-ink shadow-sm"
+                : "text-muted hover:text-ink-soft"
             }`}
           >
             Custom upload
@@ -462,7 +462,7 @@ export default function EventCarouselComposer({
           {/* Controls */}
           <div className="space-y-5">
             <div>
-              <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-muted">
                 Select person ({EVENT_CAROUSEL_PEOPLE.length} options)
               </label>
               <div className="grid grid-cols-4 gap-2">
@@ -481,7 +481,7 @@ export default function EventCarouselComposer({
                       className={`group relative overflow-hidden rounded-xl border-2 transition ${
                         selected
                           ? "border-amber-500 ring-2 ring-amber-200"
-                          : "border-slate-200 hover:border-slate-300"
+                          : "border-line hover:border-line-strong"
                       }`}
                     >
                       <img
@@ -505,11 +505,11 @@ export default function EventCarouselComposer({
 
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-600">
+                <label className="mb-1 block text-xs font-medium text-muted">
                   Brand
                 </label>
                 <input
-                  className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-line px-3 py-2 text-sm"
                   value={draft.brand}
                   maxLength={CAROUSEL_LIMITS.brand}
                   onChange={(e) =>
@@ -518,11 +518,11 @@ export default function EventCarouselComposer({
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-600">
+                <label className="mb-1 block text-xs font-medium text-muted">
                   Category badge
                 </label>
                 <input
-                  className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-line px-3 py-2 text-sm"
                   value={draft.category}
                   maxLength={CAROUSEL_LIMITS.category}
                   onChange={(e) =>
@@ -533,11 +533,11 @@ export default function EventCarouselComposer({
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-600">
+              <label className="mb-1 block text-xs font-medium text-muted">
                 Headline *
               </label>
               <input
-                className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
+                className="w-full rounded-lg border border-line px-3 py-2 text-sm"
                 value={draft.headline}
                 maxLength={CAROUSEL_LIMITS.headline}
                 placeholder="Write the main line for the carousel"
@@ -545,17 +545,17 @@ export default function EventCarouselComposer({
                   setDraft((d) => ({ ...d, headline: e.target.value }))
                 }
               />
-              <p className="mt-1 text-[11px] text-slate-400">
+              <p className="mt-1 text-[11px] text-subtle">
                 {draft.headline.length}/{CAROUSEL_LIMITS.headline}
               </p>
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-600">
+              <label className="mb-1 block text-xs font-medium text-muted">
                 Supporting line
               </label>
               <input
-                className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
+                className="w-full rounded-lg border border-line px-3 py-2 text-sm"
                 value={draft.subtitle}
                 maxLength={CAROUSEL_LIMITS.subtitle}
                 placeholder="One short supporting sentence"
@@ -567,7 +567,7 @@ export default function EventCarouselComposer({
 
             <div>
               <div className="mb-2 flex items-center justify-between">
-                <label className="text-xs font-medium text-slate-600">
+                <label className="text-xs font-medium text-muted">
                   Points ({filledPoints}/{CAROUSEL_LIMITS.maxPoints})
                 </label>
                 <button
@@ -585,7 +585,7 @@ export default function EventCarouselComposer({
                   <div key={index} className="flex gap-2">
                     <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
                     <input
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
+                      className="w-full rounded-lg border border-line px-3 py-2 text-sm"
                       value={point}
                       maxLength={CAROUSEL_LIMITS.point}
                       placeholder={`Point ${index + 1}`}
@@ -594,7 +594,7 @@ export default function EventCarouselComposer({
                     <button
                       type="button"
                       onClick={() => removePoint(index)}
-                      className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-red-500"
+                      className="rounded-lg p-2 text-subtle hover:bg-surface-muted hover:text-red-500"
                       aria-label="Remove point"
                     >
                       <Trash2 className="h-4 w-4" />
@@ -606,11 +606,11 @@ export default function EventCarouselComposer({
 
             <div className="grid gap-3 sm:grid-cols-2">
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-600">
+                <label className="mb-1 block text-xs font-medium text-muted">
                   Footer meta (date · time · place)
                 </label>
                 <input
-                  className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-line px-3 py-2 text-sm"
                   value={draft.metaLine}
                   maxLength={CAROUSEL_LIMITS.metaLine}
                   placeholder="Sat Mar 14 · 10:00 AM · Zoom"
@@ -620,11 +620,11 @@ export default function EventCarouselComposer({
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-600">
+                <label className="mb-1 block text-xs font-medium text-muted">
                   CTA label
                 </label>
                 <input
-                  className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
+                  className="w-full rounded-lg border border-line px-3 py-2 text-sm"
                   value={draft.cta}
                   maxLength={CAROUSEL_LIMITS.cta}
                   onChange={(e) =>
@@ -638,7 +638,7 @@ export default function EventCarouselComposer({
               type="button"
               onClick={() => void applyComposedImage()}
               disabled={applying || rendering}
-              className="w-full bg-slate-900 text-white hover:bg-slate-800 sm:w-auto"
+              className="w-full bg-ink text-white hover:bg-ink sm:w-auto"
             >
               {applying ? (
                 <>
@@ -656,14 +656,14 @@ export default function EventCarouselComposer({
 
           {/* Live preview */}
           <div className="space-y-3">
-            <div className="flex items-center justify-between text-xs text-slate-500">
-              <span className="font-medium text-slate-700">Live preview</span>
-              <span className="rounded-full bg-slate-100 px-2 py-0.5 font-mono">
+            <div className="flex items-center justify-between text-xs text-muted">
+              <span className="font-medium text-ink-soft">Live preview</span>
+              <span className="rounded-full bg-surface-muted px-2 py-0.5 font-mono">
                 {EVENT_CAROUSEL.width}×{EVENT_CAROUSEL.height} ·{" "}
                 {EVENT_CAROUSEL.aspectLabel}
               </span>
             </div>
-            <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-950 shadow-lg">
+            <div className="overflow-hidden rounded-xl border border-line bg-slate-950 shadow-lg">
               <div className="relative aspect-[16/9] w-full">
                 <canvas
                   ref={previewRef}
@@ -677,15 +677,15 @@ export default function EventCarouselComposer({
                 )}
               </div>
             </div>
-            <p className="text-[11px] leading-relaxed text-slate-500">
+            <p className="text-[11px] leading-relaxed text-muted">
               This exact PNG is what the main site pulls into the event
               carousel. Always exports at the fixed size — no crop surprises.
             </p>
           </div>
         </div>
       ) : (
-        <div className="space-y-3 rounded-xl border border-dashed border-slate-300 bg-slate-50/80 p-4">
-          <label className="flex cursor-pointer flex-col items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-6 transition hover:border-amber-400 hover:bg-amber-50/40">
+        <div className="space-y-3 rounded-xl border border-dashed border-line-strong bg-surface-muted/80 p-4">
+          <label className="flex cursor-pointer flex-col items-center gap-2 rounded-lg border border-line bg-surface px-4 py-6 transition hover:border-amber-400 hover:bg-amber-50/40">
             {uploadingCustom ? (
               <div className="flex items-center gap-2 text-sm text-amber-700">
                 <Loader2 className="h-5 w-5 animate-spin" />
@@ -693,11 +693,11 @@ export default function EventCarouselComposer({
               </div>
             ) : (
               <>
-                <ImageIcon className="h-6 w-6 text-slate-400" />
-                <span className="text-sm text-slate-600">
+                <ImageIcon className="h-6 w-6 text-subtle" />
+                <span className="text-sm text-muted">
                   Upload a custom image (max 5MB)
                 </span>
-                <span className="text-[11px] text-slate-400">
+                <span className="text-[11px] text-subtle">
                   Prefer the compose template for consistent carousel sizing
                 </span>
               </>
@@ -713,7 +713,7 @@ export default function EventCarouselComposer({
           <div>
             <input
               type="text"
-              className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm"
+              className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm"
               value={value}
               onChange={(e) => onChange(e.target.value)}
               placeholder="Or paste a direct image URL"

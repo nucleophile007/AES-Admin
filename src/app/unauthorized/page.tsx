@@ -1,7 +1,9 @@
 'use client'
 
 import { useSession, signOut } from 'next-auth/react'
-import { AlertTriangle } from 'lucide-react'
+import { LogOut, ShieldAlert } from 'lucide-react'
+import AuthScreen from '@/components/admin/AuthScreen'
+import { buttonClass } from '@/components/admin/ui'
 
 export default function UnauthorizedPage() {
   const { data: session } = useSession()
@@ -11,35 +13,22 @@ export default function UnauthorizedPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
-        <div className="flex justify-center mb-4">
-          <AlertTriangle className="w-16 h-16 text-red-500" />
+    <AuthScreen
+      icon={ShieldAlert}
+      tone="rose"
+      eyebrow="Access check"
+      title="Access denied"
+      description="This account doesn't have permission to use the admin console. Sign out and try an authorized account, or ask the administrator for access."
+    >
+      {session?.user?.email && (
+        <div className="mb-4 rounded-xl border border-line bg-surface-muted px-4 py-3 text-sm">
+          <p className="text-xs text-muted">Signed in as</p>
+          <p className="truncate font-medium text-ink">{session.user.email}</p>
         </div>
-        
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">
-          Access Denied
-        </h1>
-        
-        <p className="text-gray-600 mb-6">
-          You don&apos;t have permission to access the admin area. Please contact the administrator if you believe this is an error.
-        </p>
-        
-        {session?.user?.email && (
-          <div className="mb-6 p-3 bg-gray-100 rounded-lg">
-            <p className="text-sm text-gray-600">
-              Signed in as: <span className="font-medium">{session.user.email}</span>
-            </p>
-          </div>
-        )}
-        
-        <button
-          onClick={handleSignOut}
-          className="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition-colors"
-        >
-          Sign Out
-        </button>
-      </div>
-    </div>
+      )}
+      <button type="button" onClick={handleSignOut} className={buttonClass('primary', 'md', 'h-12 w-full rounded-xl text-[15px]')}>
+        <LogOut className="h-4 w-4" /> Sign out and switch account
+      </button>
+    </AuthScreen>
   )
 }

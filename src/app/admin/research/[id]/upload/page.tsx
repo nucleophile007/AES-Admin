@@ -3,8 +3,7 @@
 // import { authOptions } from "@/lib/authOptions"
 // import { allowedEmails } from "@/lib/adminConfig"
 // import prisma from "@/lib/prisma"
-// import Link from "next/link"
-// import { Upload, FileText, ArrowLeft } from "lucide-react"
+// // import { Upload, FileText, ArrowLeft } from "lucide-react"
 
 // interface Props {
 //   params: { id: string }
@@ -31,23 +30,23 @@
 //   }
 
 //   return (
-//     <div className="min-h-screen bg-gray-50 p-8">
+//     <div className="min-h-screen bg-surface-muted p-8">
 //       <div className="max-w-4xl mx-auto">
 //         {/* Header */}
 //         <div className="flex items-center gap-4 mb-8">
 //           <Link
 //             href="/admin"
-//             className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gray-600 text-white hover:bg-gray-700"
+//             className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-ink-soft text-white hover:bg-ink"
 //           >
 //             <ArrowLeft className="w-4 h-4" />
 //             Dashboard
 //           </Link>
 
 //           <div>
-//             <h1 className="text-2xl font-bold text-gray-900">
+//             <h1 className="text-2xl font-bold text-ink">
 //               Upload Research Files
 //             </h1>
-//             <p className="text-sm text-gray-600">
+//             <p className="text-sm text-muted">
 //               {research.title}
 //               {research.author && ` • ${research.author}`}
 //             </p>
@@ -59,13 +58,13 @@
 //           {/* PPT Upload */}
 //           <div className="bg-white rounded-xl border shadow-sm p-6">
 //             <div className="flex items-center gap-3 mb-4">
-//               <Upload className="w-6 h-6 text-blue-600" />
-//               <h3 className="text-lg font-semibold text-gray-900">
+//               <Upload className="w-6 h-6 text-brand-600" />
+//               <h3 className="text-lg font-semibold text-ink">
 //                 Upload PPT
 //               </h3>
 //             </div>
 
-//             <p className="text-sm text-gray-600 mb-4">
+//             <p className="text-sm text-muted mb-4">
 //               Upload the PowerPoint file. Slides will be auto-converted later.
 //             </p>
 
@@ -82,7 +81,7 @@
 //                 className="block w-full text-sm mb-4"
 //               />
 
-//               <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+//               <button className="w-full px-4 py-2 bg-brand-700 text-white rounded-lg hover:bg-brand-800">
 //                 Upload PPT
 //               </button>
 //             </form>
@@ -98,12 +97,12 @@
 //           <div className="bg-white rounded-xl border shadow-sm p-6">
 //             <div className="flex items-center gap-3 mb-4">
 //               <FileText className="w-6 h-6 text-yellow-600" />
-//               <h3 className="text-lg font-semibold text-gray-900">
+//               <h3 className="text-lg font-semibold text-ink">
 //                 Upload Technical Report (PDF)
 //               </h3>
 //             </div>
 
-//             <p className="text-sm text-gray-600 mb-4">
+//             <p className="text-sm text-muted mb-4">
 //               Optional technical research document for secure access.
 //             </p>
 
@@ -133,7 +132,7 @@
 //         </div>
 
 //         {/* Footer Note */}
-//         <div className="mt-8 text-sm text-gray-500">
+//         <div className="mt-8 text-sm text-muted">
 //           Next steps after upload:
 //           <ul className="list-disc ml-6 mt-2 space-y-1">
 //             <li>Convert PPT slides → images</li>
@@ -149,8 +148,7 @@ import { redirect } from "next/navigation"
 import { auth } from "@/auth"
 import { allowedEmails } from "@/lib/adminConfig"
 import prisma from "@/lib/prisma"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import AdminPageShell from "@/components/admin/AdminPageShell"
 import UploadForms from "./UploadForms"
 
 interface Props {
@@ -180,49 +178,36 @@ export default async function ResearchUploadPage({ params }: Props) {
     redirect("/admin")
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50 p-6 md:p-8">
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <Link
-            href="/admin"
-            className="inline-flex items-center gap-2 text-sm px-4 py-2.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm mb-6"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Dashboard
-          </Link>
+  const meta = [research.author, research.grade && `Grade ${research.grade}`, research.category, research.domain].filter(Boolean) as string[]
 
-          <div className="bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl p-8 text-white shadow-xl">
-            <h1 className="text-3xl font-bold mb-2">
-              Upload Research Content
-            </h1>
-            <p className="text-indigo-100 text-base">
-              {research.title}
-            </p>
-            <div className="flex flex-wrap gap-3 mt-4 text-sm">
-              {research.author && (
-                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                  {research.author}
-                </span>
-              )}
-              {research.grade && (
-                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                  Grade {research.grade}
-                </span>
-              )}
-              {research.category && (
-                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                  {research.category}
-                </span>
-              )}
-              {research.domain && (
-                <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                  {research.domain}
-                </span>
-              )}
+  return (
+    <AdminPageShell
+      moduleId="research"
+      title="Upload Research Files"
+      description={research.title}
+      parent={{ label: "Research", href: "/admin/research" }}
+    >
+      <div className="mx-auto max-w-5xl">
+        {/* Steps + paper summary */}
+        <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <ol className="flex items-center gap-3 text-sm">
+            <li className="flex items-center gap-2 text-muted">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-100">✓</span>
+              Details
+            </li>
+            <li aria-hidden className="h-px w-10 bg-line-strong" />
+            <li className="flex items-center gap-2 font-medium text-ink">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-700 text-xs font-semibold text-white">2</span>
+              Upload files
+            </li>
+          </ol>
+          {meta.length > 0 && (
+            <div className="flex flex-wrap gap-1.5">
+              {meta.map((item) => (
+                <span key={item} className="rounded-full bg-surface px-2.5 py-0.5 text-xs font-medium text-ink-soft ring-1 ring-inset ring-line">{item}</span>
+              ))}
             </div>
-          </div>
+          )}
         </div>
 
         {/* Upload Forms */}
@@ -243,7 +228,7 @@ export default async function ResearchUploadPage({ params }: Props) {
         />
 
         {/* Footer Note */}
-        {/* <div className="mt-8 text-sm text-gray-500">
+        {/* <div className="mt-8 text-sm text-muted">
           Recommended workflow:
           <ul className="list-disc ml-6 mt-2 space-y-1">
             <li>Export PPT → images (PNG/JPG)</li>
@@ -252,6 +237,6 @@ export default async function ResearchUploadPage({ params }: Props) {
           </ul>
         </div> */}
       </div>
-    </div>
+    </AdminPageShell>
   )
 }
