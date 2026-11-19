@@ -45,8 +45,9 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Empty Turbopack config to silence migration warning
-  turbopack: {},
+  turbopack: {
+    root: process.cwd(),
+  },
 
   webpack: (config, { isServer }) => {
     config.resolve.fallback = {

@@ -150,7 +150,7 @@ export async function POST(request: NextRequest) {
     // Validate required fields
     if (!name || !email || !grade || !schoolName || !parentName || !parentEmail || !parentPhone ||
         enrollments.length === 0 ||
-        enrollments.some((enrollment) => !enrollment.program || !enrollment.subject || enrollment.teacherIds.length === 0)) {
+        enrollments.some((enrollment) => !enrollment.program || !enrollment.subject || enrollment.subject.trim() === "Other" || enrollment.teacherIds.length === 0)) {
       return NextResponse.json(
         { error: "All fields are required for every program enrollment" },
         { status: 400 }

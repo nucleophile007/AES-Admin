@@ -6,7 +6,7 @@ export interface SubjectGroup {
 export const CHAMPIONS_SUBJECT_GROUPS: readonly SubjectGroup[] = [
   {
     name: "Math",
-    subjects: ["AMC 8", "AMC 10", "AMC 12"],
+    subjects: ["Math Kangaroo", "AMC 8", "AMC 10", "AMC 12"],
   },
   { name: "USPhO", subjects: [] },
   { name: "USNCO", subjects: [] },
@@ -15,8 +15,8 @@ export const CHAMPIONS_SUBJECT_GROUPS: readonly SubjectGroup[] = [
 
 export const PROGRAM_CATALOG = [
   {
-    name: "College Prep",
-    subjects: ["College Prep"],
+    name: "UACHIEVE College Prep",
+    subjects: ["Essay Writing", "College Prep Planning"],
   },
   {
     name: "AES Explorers Research Program",
@@ -41,15 +41,19 @@ export const TUTORING_SUBJECT_GROUPS: readonly SubjectGroup[] = [
   },
   {
     name: "Physics",
-    subjects: ["Regular Physics", "Honors Physics", "AP Physics I", "AP Physics II", "AP Physics C - Mechanics", "AP Physics C - E & M"],
+    subjects: ["Regular Physics", "Honors Physics", "AP Physics I", "AP Physics II", "AP Physics C - Mechanics", "AP Physics C - E & M", "Other"],
   },
   {
     name: "Chemistry",
-    subjects: ["Regular Chemistry", "Honors Chemistry", "AP Chemistry"],
+    subjects: ["Regular Chemistry", "Honors Chemistry", "AP Chemistry", "Other"],
   },
   {
     name: "Biology",
-    subjects: ["Regular Biology", "AP Biology"],
+    subjects: ["Regular Biology", "AP Biology", "Other"],
+  },
+  {
+    name: "Other",
+    subjects: ["Other"],
   },
 ]
 

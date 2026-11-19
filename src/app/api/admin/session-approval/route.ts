@@ -24,7 +24,7 @@ export async function GET() {
     }
 
     // Fetch all session approval requests
-    const allRegistrations = await prisma.webinarRegistration.findMany({
+    const allRegistrations = await (prisma as any).webinarRegistration.findMany({
       orderBy: { createdAt: 'desc' },
     })
 
@@ -52,7 +52,7 @@ export async function GET() {
     // 2. The admin has already approved this registration
     const relevantRegistrations = allRegistrations.filter((reg: any) => {
       // If admin already approved it, always show it
-      if (reg.approved && reg.adminEmail === adminEmail) {
+      if (!reg.cancelled && reg.approved && reg.adminEmail === adminEmail) {
         return true
       }
 
@@ -73,14 +73,16 @@ export async function GET() {
     })
 
     const totalCount = relevantRegistrations.length
-    const pendingCount = relevantRegistrations.filter((r: any) => !r.approved).length
-    const approvedCount = relevantRegistrations.filter((r: any) => r.approved).length
+    const pendingCount = relevantRegistrations.filter((r: any) => !r.cancelled && !r.approved).length
+    const approvedCount = relevantRegistrations.filter((r: any) => !r.cancelled && r.approved).length
+    const cancelledCount = relevantRegistrations.filter((r: any) => r.cancelled).length
 
     return Response.json({ 
       registrations: relevantRegistrations,
       totalCount,
       pendingCount,
       approvedCount,
+      cancelledCount,
       adminUser: authResult.session?.user?.email
     })
   } catch (error) {
