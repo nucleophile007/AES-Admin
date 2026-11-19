@@ -24,17 +24,18 @@ export default async function HomePage() {
     redirect('/auth/signin');
   }
 
-  const [students, pendingBookings, pendingReceipts, newFeedback] = await Promise.all([
+  const [students, pendingBookings, pendingReceipts, pendingFeedback] = await Promise.all([
     safeCount(() => prisma.student.count()),
     safeCount(() => prisma.mentorSlotBooking.count({ where: { status: 'PENDING' } })),
     safeCount(() => prisma.transactionReceipt.count({ where: { status: 'pending' } })),
-    safeCount(() => prisma.feedback.count({ where: { status: 'new' } })),
+    // Same rule as the Parent Feedback page's "Pending" filter: not approved yet.
+    safeCount(() => prisma.feedback.count({ where: { isApproved: false } })),
   ]);
 
   return (
     <DashboardView
       user={{ name: session.user.name, email: session.user.email, image: session.user.image }}
-      counts={{ students, pendingBookings, pendingReceipts, newFeedback }}
+      counts={{ students, pendingBookings, pendingReceipts, pendingFeedback }}
     />
   );
 }

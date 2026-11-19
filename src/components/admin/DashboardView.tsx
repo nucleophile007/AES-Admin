@@ -9,7 +9,7 @@ export type DashboardCounts = {
   students: number | null;
   pendingBookings: number | null;
   pendingReceipts: number | null;
-  newFeedback: number | null;
+  pendingFeedback: number | null;
 };
 
 type DashboardViewProps = {
@@ -18,12 +18,12 @@ type DashboardViewProps = {
 };
 
 export default function DashboardView({ user, counts }: DashboardViewProps) {
-  const { students, pendingBookings, pendingReceipts, newFeedback } = counts;
+  const { students, pendingBookings, pendingReceipts, pendingFeedback } = counts;
 
   const badges: Record<string, ModuleBadge> = {};
   if (pendingBookings) badges['mentor-calendar'] = { count: pendingBookings, label: 'pending' };
   if (pendingReceipts) badges['transaction-receipts'] = { count: pendingReceipts, label: 'to review' };
-  if (newFeedback) badges['feedback'] = { count: newFeedback, label: 'new' };
+  if (pendingFeedback) badges['feedback'] = { count: pendingFeedback, label: 'pending' };
 
   const firstName = (user.name || '').trim().split(/\s+/)[0] || 'there';
 
@@ -100,9 +100,9 @@ export default function DashboardView({ user, counts }: DashboardViewProps) {
             attention
           />
           <StatCard
-            label="New feedback"
-            value={newFeedback}
-            hint={newFeedback ? 'Parent feedback not yet reviewed' : 'Inbox is clear'}
+            label="Feedback to approve"
+            value={pendingFeedback}
+            hint={pendingFeedback ? 'Waiting for your approval' : 'All feedback approved'}
             href="/admin/feedback"
             icon={MessageSquare}
             attention
