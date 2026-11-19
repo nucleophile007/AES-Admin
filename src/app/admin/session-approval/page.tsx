@@ -44,9 +44,13 @@ interface SessionApproval {
   createdAt: string
   approved: boolean
   adminEmail: string | null
+  cancelled: boolean
+  cancellationReason: string | null
+  cancelledAt: string | null
+  cancelledBy: string | null
 }
 
-type StatusFilter = "all" | "pending" | "approved"
+type StatusFilter = "all" | "pending" | "approved" | "cancelled"
 
 const formatRegistered = (iso: string) =>
   new Date(iso).toLocaleDateString("en-US", {
@@ -68,6 +72,9 @@ export default function SessionApprovalPage() {
   const [selectedProgram, setSelectedProgram] = useState("all")
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all")
   const [approving, setApproving] = useState<Set<number>>(new Set())
+  const [cancellationTarget, setCancellationTarget] = useState<SessionApproval | null>(null)
+  const [cancellationReason, setCancellationReason] = useState("")
+  const [cancelling, setCancelling] = useState(false)
   const normalizedSearchTerm = useMemo(
     () => deferredSearchTerm.trim().toLowerCase(),
     [deferredSearchTerm],
@@ -94,7 +101,11 @@ export default function SessionApprovalPage() {
     }
 
     if (statusFilter !== "all") {
-      filtered = filtered.filter((reg) => (statusFilter === "approved" ? reg.approved : !reg.approved))
+      filtered = filtered.filter((reg) => {
+        if (statusFilter === "cancelled") return reg.cancelled
+        if (reg.cancelled) return false
+        return statusFilter === "approved" ? reg.approved : !reg.approved
+      })
     }
 
     return filtered
@@ -102,10 +113,12 @@ export default function SessionApprovalPage() {
 
   const counts = useMemo(() => {
     const approved = data.filter((r) => r.approved).length
+    const cancelled = data.filter((r) => r.cancelled).length
     return {
       total: data.length,
-      approved,
-      pending: data.length - approved,
+      approved: approved - cancelled,
+      pending: data.length - approved - cancelled,
+      cancelled,
     }
   }, [data])
 
@@ -229,6 +242,29 @@ export default function SessionApprovalPage() {
     }
   }
 
+  const cancelRegistration = async () => {
+    if (!cancellationTarget || !cancellationReason.trim()) return
+    setCancelling(true)
+    try {
+      const res = await fetch(`/api/admin/registration/${cancellationTarget.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "cancel", reason: cancellationReason.trim() }),
+      })
+      const response = await res.json()
+      if (!res.ok) throw new Error(response.error || "Cancellation failed")
+      const updated = response.registration as SessionApproval
+      setData((prev) => prev.map((registration) => registration.id === updated.id ? updated : registration))
+      setCancellationTarget(null)
+      setCancellationReason("")
+      toast.success("Session cancelled and parent notification queued")
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Cancellation failed")
+    } finally {
+      setCancelling(false)
+    }
+  }
+
   const filtersActive = Boolean(normalizedSearchTerm) || selectedProgram !== "all" || statusFilter !== "all"
   const clearFilters = () => {
     setSearchTerm("")
@@ -321,7 +357,9 @@ export default function SessionApprovalPage() {
                     </span>
                   </td>
                   <td className="px-4 py-4">
-                    {reg.approved ? (
+                    {reg.cancelled ? (
+                      <Badge tone="rose">Cancelled</Badge>
+                    ) : reg.approved ? (
                       <Badge tone="emerald" icon={CheckCircle2}>Approved</Badge>
                     ) : (
                       <Badge tone="amber" dot>Pending</Badge>
@@ -333,28 +371,41 @@ export default function SessionApprovalPage() {
                     )}
                   </td>
                   <td className="px-5 py-4 text-right">
-                    {!reg.approved ? (
-                      <button
-                        type="button"
-                        className={buttonClass("success", "sm", "min-w-[96px]")}
-                        disabled={busy}
-                        onClick={() => approve(reg.id)}
-                        title="Approve registration"
-                      >
-                        {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <CheckCircle2 className="h-3.5 w-3.5" />}
-                        Approve
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        className={buttonClass("dangerOutline", "sm", "min-w-[96px]")}
-                        disabled={busy || !isApprover}
-                        onClick={() => unapprove(reg.id)}
-                        title={!isApprover ? "Only the approving admin can remove approval" : "Remove approval"}
-                      >
-                        {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <X className="h-3.5 w-3.5" />}
-                        Remove
-                      </button>
+                    {!reg.cancelled && (
+                      <div className="flex justify-end gap-2">
+                        {!reg.approved ? (
+                          <button
+                            type="button"
+                            className={buttonClass("success", "sm", "min-w-[96px]")}
+                            disabled={busy}
+                            onClick={() => approve(reg.id)}
+                            title="Approve registration"
+                          >
+                            {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <CheckCircle2 className="h-3.5 w-3.5" />}
+                            Approve
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            className={buttonClass("dangerOutline", "sm", "min-w-[96px]")}
+                            disabled={busy || !isApprover}
+                            onClick={() => unapprove(reg.id)}
+                            title={!isApprover ? "Only the approving admin can remove approval" : "Remove approval"}
+                          >
+                            {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <X className="h-3.5 w-3.5" />}
+                            Remove
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          className={buttonClass("dangerOutline", "sm")}
+                          disabled={busy}
+                          onClick={() => { setCancellationTarget(reg); setCancellationReason("") }}
+                          title="Cancel session request"
+                        >
+                          Cancel
+                        </button>
+                      </div>
                     )}
                   </td>
                 </tr>
@@ -368,6 +419,7 @@ export default function SessionApprovalPage() {
 
   return (
     <AdminPageShell moduleId="session-approval" description="Review session requests from parents and approve the ones you can take.">
+      <>
       <Panel className="overflow-hidden">
         {/* Toolbar */}
         <div className="flex flex-col gap-3 border-b border-line p-4 lg:flex-row lg:items-center">
@@ -409,6 +461,7 @@ export default function SessionApprovalPage() {
                 { value: "all", label: "All", count: counts.total },
                 { value: "pending", label: "Pending", count: counts.pending },
                 { value: "approved", label: "Approved", count: counts.approved },
+                { value: "cancelled", label: "Cancelled", count: counts.cancelled },
               ]}
             />
           </div>
@@ -426,7 +479,45 @@ export default function SessionApprovalPage() {
         )}
 
         {body}
+        {cancellationTarget && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 p-4" role="dialog" aria-modal="true" aria-labelledby="cancel-session-title">
+            <div className="w-full max-w-lg rounded-2xl bg-surface p-6 shadow-2xl">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h2 id="cancel-session-title" className="text-lg font-semibold text-ink">Cancel session request</h2>
+                  <p className="mt-1 text-sm text-muted">The parent will receive this explanation by email.</p>
+                </div>
+                <button type="button" onClick={() => setCancellationTarget(null)} className="rounded-lg p-1 text-muted hover:bg-surface-muted" aria-label="Close cancellation dialog">
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              <div className="mt-5 rounded-lg border border-line bg-surface-muted p-3 text-sm">
+                <p className="font-medium text-ink">{cancellationTarget.studentName}</p>
+                <p className="mt-1 text-muted">{cancellationTarget.program} · {cancellationTarget.preferredTime}</p>
+              </div>
+              <label htmlFor="cancellation-reason" className="mt-5 block text-sm font-medium text-ink-soft">Reason for cancellation</label>
+              <textarea
+                id="cancellation-reason"
+                value={cancellationReason}
+                onChange={(event) => setCancellationReason(event.target.value)}
+                placeholder="Explain why this session is being cancelled…"
+                rows={5}
+                maxLength={2000}
+                className={`${inputClass} mt-2 min-h-32 resize-y`}
+                autoFocus
+              />
+              <div className="mt-4 flex justify-end gap-2">
+                <button type="button" className={buttonClass("secondary", "sm")} onClick={() => setCancellationTarget(null)} disabled={cancelling}>Keep request</button>
+                <button type="button" className={buttonClass("danger", "sm")} onClick={() => void cancelRegistration()} disabled={cancelling || cancellationReason.trim().length < 3}>
+                  {cancelling ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <X className="h-3.5 w-3.5" />}
+                  Cancel session
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </Panel>
+      </>
     </AdminPageShell>
   )
 }

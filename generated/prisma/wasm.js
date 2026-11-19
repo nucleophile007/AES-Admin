@@ -133,7 +133,11 @@ exports.Prisma.WebinarRegistrationScalarFieldEnum = {
   preferredTime: 'preferredTime',
   createdAt: 'createdAt',
   approved: 'approved',
-  adminEmail: 'adminEmail'
+  adminEmail: 'adminEmail',
+  cancelled: 'cancelled',
+  cancellationReason: 'cancellationReason',
+  cancelledAt: 'cancelledAt',
+  cancelledBy: 'cancelledBy'
 };
 
 exports.Prisma.AvailabilityDayScalarFieldEnum = {

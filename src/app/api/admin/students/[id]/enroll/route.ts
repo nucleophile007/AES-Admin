@@ -20,7 +20,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
     const studentId = Number((await params).id)
     const { program, subject, teacherId, teacherIds } = await request.json()
     const selectedTeacherIds = teacherIdsFrom(Array.isArray(teacherIds) ? teacherIds : [teacherId])
-    if (!Number.isInteger(studentId) || !program || !subject || !selectedTeacherIds.length) {
+    if (!Number.isInteger(studentId) || !program || !subject || subject.trim() === "Other" || !selectedTeacherIds.length) {
       return NextResponse.json({ error: "Program, subject, and at least one teacher are required" }, { status: 400 })
     }
     const student = await prisma.student.findUnique({ where: { id: studentId } })
@@ -60,7 +60,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     const { enrollmentId, program, subject, teacherIds } = await request.json()
     const id = Number(enrollmentId)
     const selectedTeacherIds = teacherIdsFrom(teacherIds)
-    if (!Number.isInteger(studentId) || !Number.isInteger(id) || !program || !subject || !selectedTeacherIds.length) {
+    if (!Number.isInteger(studentId) || !Number.isInteger(id) || !program || !subject || subject.trim() === "Other" || !selectedTeacherIds.length) {
       return NextResponse.json({ error: "Enrollment, program, subject, and at least one teacher are required" }, { status: 400 })
     }
     const enrollment = await prisma.enrollment.findFirst({ where: { id, studentId } })

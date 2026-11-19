@@ -6,9 +6,7 @@ import { Client } from '@upstash/qstash'
 // @ts-ignore - Prisma extension types
 const db = prisma as any;
 
-const qstash = new Client({
-  token: process.env.QSTASH_TOKEN!,
-})
+const qstash = process.env.QSTASH_TOKEN ? new Client({ token: process.env.QSTASH_TOKEN }) : null
 
 function normalizeUniqueTimes(times: unknown): string[] {
   if (!Array.isArray(times)) return []
@@ -43,9 +41,13 @@ export async function PATCH(
     }
 
     const body = await req.json()
-    const { approved } = body
+    const { approved, action, reason } = body
 
-    if (typeof approved !== 'boolean') {
+    if (action === 'cancel') {
+      if (typeof reason !== 'string' || reason.trim().length < 3 || reason.trim().length > 2000) {
+        return Response.json({ error: 'A cancellation reason between 3 and 2000 characters is required' }, { status: 400 })
+      }
+    } else if (typeof approved !== 'boolean') {
       return Response.json({ error: 'approved field must be a boolean' }, { status: 400 })
     }
 
@@ -56,6 +58,45 @@ export async function PATCH(
     }
 
     const adminEmail = authResult.session!.user!.email!
+
+    if (action === 'cancel') {
+      if (existingReg.cancelled) {
+        return Response.json({ error: 'Registration is already cancelled' }, { status: 409 })
+      }
+
+      const updatedReg = await db.webinarRegistration.update({
+        where: { id: numId },
+        data: {
+          approved: false,
+          cancelled: true,
+          cancellationReason: reason.trim(),
+          cancelledAt: new Date(),
+          cancelledBy: adminEmail,
+        },
+      })
+
+      if (existingReg.approved && existingReg.preferredTime && existingReg.adminEmail) {
+        await restoreAvailability(existingReg.preferredTime, existingReg.adminEmail)
+      }
+
+      await queueEmail('send-cancellation-email', {
+        parentEmail: updatedReg.parentEmail,
+        parentName: updatedReg.parentName,
+        studentName: updatedReg.studentName,
+        program: updatedReg.program,
+        preferredTime: updatedReg.preferredTime,
+        cancellationReason: updatedReg.cancellationReason,
+      })
+
+      return Response.json({
+        registration: updatedReg,
+        message: 'Registration cancelled and notification email queued',
+      })
+    }
+
+    if (existingReg.cancelled) {
+      return Response.json({ error: 'Cancelled registrations cannot be changed' }, { status: 409 })
+    }
 
     // Authorization check: Only the admin who approved can un-approve
     if (!approved && existingReg.approved && existingReg.adminEmail !== adminEmail) {
@@ -177,16 +218,20 @@ export async function PATCH(
     if (approved && !existingReg.approved) {
       try {
         const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
-        await qstash.publishJSON({
-          url: `${baseUrl}/api/jobs/send-approval-email`,
-          body: {
-            parentEmail: updatedReg.parentEmail,
-            parentName: updatedReg.parentName,
-            studentName: updatedReg.studentName,
-            program: updatedReg.program,
-            preferredTime: updatedReg.preferredTime,
-          },
-        })
+        if (!qstash || !process.env.NEXT_PUBLIC_BASE_URL) {
+          console.warn('QStash is not configured; skipping approval email')
+        } else {
+          await qstash.publishJSON({
+            url: `${baseUrl}/api/jobs/send-approval-email`,
+            body: {
+              parentEmail: updatedReg.parentEmail,
+              parentName: updatedReg.parentName,
+              studentName: updatedReg.studentName,
+              program: updatedReg.program,
+              preferredTime: updatedReg.preferredTime,
+            },
+          })
+        }
         console.log('Approval email queued for:', updatedReg.parentEmail)
       } catch (emailError) {
         console.error('Failed to queue approval email:', emailError)
@@ -194,7 +239,7 @@ export async function PATCH(
       }
     }
 
-    return Response.json({ 
+    return Response.json({
       registration: updatedReg,
       message: approved 
         ? (existingReg.approved ? 'Registration approved successfully' : 'Registration approved successfully and notification email queued')
@@ -203,5 +248,42 @@ export async function PATCH(
   } catch (error) {
     console.error('Error updating registration:', error)
     return Response.json({ error: 'Failed to update registration' }, { status: 500 })
+  }
+}
+
+async function restoreAvailability(preferredTime: string, adminEmail: string) {
+  const parts = preferredTime.split(' at ')
+  if (parts.length !== 2) return
+  const [date, time] = parts
+  const days = await prisma.availabilityDay.findMany({
+    where: { date, adminEmail },
+    orderBy: { id: 'asc' },
+  })
+
+  if (days.length === 0) {
+    await prisma.availabilityDay.create({ data: { date, times: [time], adminEmail } })
+    return
+  }
+
+  const [keep, ...duplicates] = days
+  const mergedTimes = normalizeUniqueTimes([...days.flatMap((day) => day.times as string[]), time])
+  await prisma.availabilityDay.update({ where: { id: keep.id }, data: { times: mergedTimes } })
+  if (duplicates.length > 0) {
+    await prisma.availabilityDay.deleteMany({ where: { id: { in: duplicates.map((day) => day.id) } } })
+  }
+}
+
+async function queueEmail(job: string, body: Record<string, string | null>) {
+  if (!qstash || !process.env.NEXT_PUBLIC_BASE_URL) {
+    console.warn(`QStash is not configured; skipping ${job}`)
+    return
+  }
+  try {
+    await qstash.publishJSON({
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/jobs/${job}`,
+      body,
+    })
+  } catch (error) {
+    console.error(`Failed to queue ${job}:`, error)
   }
 }

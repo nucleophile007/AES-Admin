@@ -23,6 +23,10 @@ model WebinarRegistration {
   createdAt     DateTime @default(now())
   approved      Boolean  @default(false)
   adminEmail    String?
+  cancelled     Boolean  @default(false)
+  cancellationReason String?
+  cancelledAt   DateTime?
+  cancelledBy   String?
 }
 
 model AvailabilityDay {

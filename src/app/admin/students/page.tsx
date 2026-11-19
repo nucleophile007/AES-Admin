@@ -67,11 +67,24 @@ function SubjectPicker({
   onChange: (value: string) => void
 }) {
   const groups = getSubjectGroupsForProgram(program)
+  const subjects = groups.flatMap((group) => group.subjects)
+  const isCustomSubject = Boolean(value) && (value === "Other" || !subjects.includes(value))
   const [expandedGroup, setExpandedGroup] = useState<string | null>(null)
 
   if (isSingleLevelProgram(program)) {
     return <div className="flex h-10 items-center rounded-lg border border-line bg-surface-muted px-3 text-sm text-muted">No subject selection needed</div>
   }
+
+  const customSubjectInput = isCustomSubject ? (
+    <input
+      type="text"
+      className={`${inputClass} mt-2`}
+      placeholder="Specify subject"
+      value={value === "Other" ? "" : value}
+      onChange={(event) => onChange(event.target.value || "Other")}
+      required
+    />
+  ) : null
 
   if (program === "Tutoring" || program === "AES Champions") {
     return (
@@ -128,21 +141,25 @@ function SubjectPicker({
             ))}
           </div>
         </details>
+        {customSubjectInput}
       </div>
     )
   }
 
   return (
-    <select
-      className={inputClass}
-      value={value}
-      onChange={(event) => onChange(event.target.value)}
-      required
-    >
-      <option value="">Select a subject...</option>
-      {groups.flatMap((group) => group.subjects).map((subject) => <option key={subject} value={subject}>{subject}</option>)}
-      {!getSubjectsForProgram(program).length && <option value="Other">Other (legacy/custom)</option>}
-    </select>
+    <>
+      <select
+        className={inputClass}
+        value={subjects.includes(value) ? value : isCustomSubject ? "Other" : value}
+        onChange={(event) => onChange(event.target.value)}
+        required
+      >
+        <option value="">Select a subject...</option>
+        {subjects.map((subject) => <option key={subject} value={subject}>{subject}</option>)}
+        {(isCustomSubject || !getSubjectsForProgram(program).length) && !subjects.includes("Other") && <option value="Other">Other</option>}
+      </select>
+      {customSubjectInput}
+    </>
   )
 }
 
@@ -461,7 +478,7 @@ export default function StudentsPage() {
         !formData.grade.trim() || !formData.schoolName.trim() || 
         !formData.parentName.trim() || !formData.parentEmail.trim() || !formData.parentPhone.trim() ||
         formData.enrollments.some((enrollment) =>
-          !enrollment.program.trim() || !enrollment.subject.trim() || enrollment.teacherIds.length === 0
+          !enrollment.program.trim() || !enrollment.subject.trim() || enrollment.subject.trim() === "Other" || enrollment.teacherIds.length === 0
         )) {
       setFormError("Complete every program enrollment with a subject and at least one teacher")
       setFormLoading(false)
@@ -540,7 +557,7 @@ export default function StudentsPage() {
 
     // Validate form
     if (!enrollmentData.program.trim() || !enrollmentData.subject.trim() || enrollmentData.teacherIds.length === 0) {
-      setEnrollmentError("All fields are required")
+      setEnrollmentError(enrollmentData.subject.trim() === "Other" ? "Specify the custom subject" : "All fields are required")
       setEnrollmentLoading(false)
       return
     }
@@ -959,7 +976,7 @@ export default function StudentsPage() {
                               value={enrollment.program}
                               onChange={(e) => updateEnrollmentDraft(index, {
                                 program: e.target.value,
-                                subject: isSingleLevelProgram(e.target.value) ? e.target.value : "",
+                                subject: "",
                                 teacherIds: [],
                               })}
                               required
@@ -1139,7 +1156,7 @@ export default function StudentsPage() {
                     onChange={(e) => setEnrollmentData(prev => ({
                       ...prev,
                       program: e.target.value,
-                      subject: isSingleLevelProgram(e.target.value) ? e.target.value : "",
+                      subject: "",
                     }))}
                     required
                   >
